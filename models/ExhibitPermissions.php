@@ -13,7 +13,7 @@ class ExhibitPermissions
 	public function __construct(Omeka_Db_Select $sql)
 	{
 		$acl = Omeka_Context::getInstance()->getAcl();
-		$db = $this->getDb();
+		$db = Omeka_Context::getInstance()->getDb();
 		
 		$has_permission = $acl->checkUserPermission('Exhibits', 'showNotPublic');
 		

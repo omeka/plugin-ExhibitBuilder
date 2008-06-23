@@ -2,7 +2,7 @@
 /**
 * Exhibit Table
 */
-class ExhibitTable extends Omeka_Table
+class ExhibitTable extends Omeka_Db_Table
 {
 	public function findBySlug($slug)
 	{
