@@ -249,7 +249,8 @@ function get_ex_layouts()
 function exhibit_layout($layout, $input=true)
 {	
 	//Load the thumbnail image
-	$imgFile = WEB_EXHIBIT_LAYOUTS.DIRECTORY_SEPARATOR.$layout.DIRECTORY_SEPARATOR.'layout.gif';
+	$imgFile = web_path_to("exhibit_layouts/$layout/layout.gif");
+
 	echo '<div class="layout">';
 	echo '<img src="'.$imgFile.'" />';
 	if($input) {
@@ -259,8 +260,6 @@ function exhibit_layout($layout, $input=true)
 	}
 	echo '<div class="layout-name">'.$layout.'</div>'; 
 	echo '</div>';
-	//Load the name/description/author from the header of the file
-	$file = EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$layout.'.php';
 }
 
 function exhibit_css($file)

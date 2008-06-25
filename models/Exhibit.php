@@ -80,9 +80,9 @@ class Exhibit extends Omeka_Record
 	
 	public function construct()
 	{
-		$this->_modules[] = new Taggable($this);
-		$this->_modules[] = new Relatable($this);
-		$this->_modules[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');		
+		$this->_mixins[] = new Taggable($this);
+		$this->_mixins[] = new Relatable($this);
+		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');		
 	}
 		
 	protected function beforeSaveForm(&$post)

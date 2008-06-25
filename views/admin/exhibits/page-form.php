@@ -74,6 +74,7 @@
 		new Ajax.Updater('item-select', uri, {
 			parameters: parameters,
 			evalScripts: true,
+			method: 'get',
 			onComplete: onFinish
 		});
 		
@@ -88,15 +89,6 @@
 <div id="page-builder">
 	<h1>Add Exhibit</h1>
 
-	<?php 
-		if(!$page->exists()) {
-			$url = uri('exhibits/add-page').DIRECTORY_SEPARATOR.$section->id.DIRECTORY_SEPARATOR; 
-		}else {
-			$url = uri('exhibits/edit-page').DIRECTORY_SEPARATOR.$page->id.DIRECTORY_SEPARATOR;
-		}
-		
-	?>
-		
 	<div id="item-select"></div>
 
 <form name="layout" id="page-form" method="post">

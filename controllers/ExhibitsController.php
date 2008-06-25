@@ -71,12 +71,25 @@ class ExhibitsController extends Omeka_Controller_Action
 		}
 	}
 	
+	/**
+	 * @todo Filter the input from the GET. Right now this takes place in the
+     * items controller browse action, but it should take place in another neutral location
+     * (like the table class maybe) so that other parts of the application can
+     * make use of it.
+	 * 
+	 * @param string
+	 * @return void
+	 **/
 	public function itemsAction()
 	{
 		$params = $this->_getAllParams();
-		//Make sure to render that specific page and only show public items
-		$params = array_merge($params, array('renderPage'=>'exhibits/_items.php'));
-		return $this->_forward('browse', 'items', null, $params);
+		$items = $this->getTable('Item')->findBy($params);
+		
+		// Fake the pagination
+		$pagination = array('per_page'=>2, 'page'=>1, 'total_results'=>5);
+		Zend_Registry::set('pagination', $pagination);
+		
+		$this->view->items = $items;
 	}
 	
 	public function showAction()
@@ -417,11 +430,13 @@ class ExhibitsController extends Omeka_Controller_Action
 		}
 		
 		if(isset($_POST['cancel_and_exhibit_form'])) {
-			$this->_redirect('editExhibit', array('id'=>$section->exhibit_id));
+			$this->redirect->goto('edit', null, null, array('id'=>$section->exhibit_id));
 		}
 		
 		//Register the page var so that theme functions can use it
 		Zend_Registry::set('page', $page);
+
+		$this->view->assign(compact('section','page'));
 		
 		if(!empty($_POST)) {
 
@@ -432,7 +447,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 				$page->layout = (string) $_POST['layout'];
 				
-				return $this->render('exhibits/form/page.php', compact('page','section'));
+				$this->render('page-form');
 			
 			}elseif(array_key_exists('change_layout', $_POST)) {
 				
@@ -442,7 +457,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				$this->setLayout(null);
 				$page->layout = null;
 				
-				return $this->render('exhibits/form/layout.php', compact('page','section'));		
+				$this->render('layout-form');		
 			}
 				
 			else {
@@ -468,19 +483,19 @@ class ExhibitsController extends Omeka_Controller_Action
 					if(array_key_exists('exhibit_form', $_POST)) {
 					
 						//Return to the exhibit form
-						$this->_redirect('editExhibit', array('id'=>$section->Exhibit->id));
+						$this->redirect->goto('edit', null, null, array('id'=>$section->Exhibit->id));
 						return;
 					
 					}elseif(array_key_exists('section_form', $_POST)) {
 					
 						//Return to the section form
-						$this->_redirect('editSection', array('id'=>$section->id));
+						$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 						return;
 					
 					}elseif(array_key_exists('page_form', $_POST)) {
 					
 						//Add another page
-						$this->_redirect('addPage', array('id'=>$section->id));
+						$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
 						return;
 					
 					}elseif(array_key_exists('save_and_paginate', $_POST)) {
@@ -489,7 +504,7 @@ class ExhibitsController extends Omeka_Controller_Action
 						//@todo How would this work?
 						$paginationPage = $this->_getParam('page');
 						
-						$this->_redirect('editPage', array('id'=>$page->id, 'page'=>$paginationPage) );
+						$this->redirect->goto('edit-page', null, null, array('id'=>$page->id, 'page'=>$paginationPage) );
 						return;
 						
 					}
@@ -497,8 +512,6 @@ class ExhibitsController extends Omeka_Controller_Action
 			}
 		}
 		
-		$this->view->assign(compact('section','page'));
-				
 		if ( empty($page->layout) ) {
 			$this->render('layout-form');
 		}else {

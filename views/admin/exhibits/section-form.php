@@ -54,7 +54,7 @@
 	<?php if ( section_has_pages($section) ): ?>
 		<p>To reorder pages, click and drag the page thumbnail to the left or right.</p>
 			<ul id="page-list">
-			<?php common('_page_list', compact('section'), 'exhibits'); ?>
+			<?php common('page-list', compact('section'), 'exhibits'); ?>
 
 			</ul>
 		<button type="submit" name="page_form" id="page_form" class="inline-button">Add a Page</button>

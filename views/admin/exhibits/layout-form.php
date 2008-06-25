@@ -11,8 +11,8 @@
 	function makeLayoutSelectable() {
 		$('layout-submits').hide();
 		var current_layout = $('current_layout');
-		var layouts = document.getElementsByClassName('layout');
-		
+		var layouts = $$('div.layout');
+
 		//Make each layout clickable
 		layouts.each( function(layout) {
 			layout.onclick = function() {

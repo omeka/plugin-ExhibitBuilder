@@ -4,27 +4,27 @@
 
 <div id="pagination">
 <?php 
-	 echo pagination_links(5, null, null, null, null, uri('exhibits/items/'), 'page'); 
+	 echo pagination(); 
 ?>
 
 </div>
 
 <div id="item-list">
-<?php foreach( $items as $k => $item ): ?>
+<?php while(loop_items()): ?>
 	<div class="item-drop">
 		<div class="item-drag">
 			<div class="handle"><img src="<?php echo img('arrow_move.gif'); ?>"></div>
 			<div class="item_id"><?php echo h($item->id); ?></div>
 			<?php 
-				if(has_thumbnail($item)){
-					echo thumbnail($item);
+				if(item_has_thumbnail()){
+					echo display_files_for_item();
 				} else {
-					echo h($item->title);
+					echo item('Title', 0);
 				}
 			?>
 		</div>
 		<div class="item_id"><?php echo h($item->id); ?></div>
 	</div>
-<?php endforeach; ?>
+<?php endwhile; ?>
 </div>
 		
