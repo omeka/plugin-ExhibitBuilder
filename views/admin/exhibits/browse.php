@@ -3,10 +3,7 @@
 <div id="primary">
 	<h1 class="floater">Exhibits</h1>
 	<a href="<?php echo uri('exhibits/add'); ?>" id="add-exhibit" class="add-exhibit">Add an Exhibit</a>
-<?php 
-	$exhibits = exhibits(); 
-?>	
-
+	
 <?php if(!count($exhibits)): ?>	
 	<div id="no-exhibits">
 	<h1>There are no exhibits yet.

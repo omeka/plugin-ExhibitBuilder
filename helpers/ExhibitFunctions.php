@@ -71,9 +71,9 @@ function exhibit_uri($exhibit, $section=null, $page=null)
 	
 	//If there is no section slug available, we want to build a URL for the summary page 
 	if(!$section_slug) {
-	    $uri = generate_url(array('slug'=>$exhibit_slug), 'exhibitSimple');
+	    $uri = url_for(array('slug'=>$exhibit_slug), 'exhibitSimple');
 	}else {
-	    $uri = generate_url(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
+	    $uri = url_for(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
 	}
 
     //If we are in the admin theme, we have to hack a solution that sends you to the public theme

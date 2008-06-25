@@ -8,16 +8,6 @@ class ExhibitsController extends Omeka_Controller_Action
 {
 	protected $session;
 	
-	protected $_redirects = array(
-		'addSection' => array('exhibits/addSection/id', array('id')),
-		'editSection'=> array('exhibits/editSection/id', array('id')),
-		'saveExhibit'=> array('exhibits/browse'),
-		'editExhibit'=> array('exhibits/edit/id', array('id')),
-		'deleteExhibit'=>array('exhibits/browse'),
-		'addPage'=>array('exhibits/addPage/id', array('id')),
-		'editPage'=>array('exhibits/editPage/id/page', array('id'), array('page'))
-	);
-	
 	public function init()
 	{
 		$this->_modelClass = 'Exhibit';
@@ -45,7 +35,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		
 		fire_plugin_hook('browse_exhibits', $exhibits);
 		
-		return $this->render('exhibits/browse.php', compact('exhibits'));
+		$this->view->assign(compact('exhibits'));
 	}
 	
 	public function showitemAction()
@@ -159,7 +149,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		
 		fire_plugin_hook('show_exhibit', $exhibit);
 		
-		return $this->renderExhibit(compact('exhibit'), 'summary');
+		$this->renderExhibit(compact('exhibit'), 'summary');
 	}
 	
 	/**
@@ -221,7 +211,7 @@ class ExhibitsController extends Omeka_Controller_Action
 					throw new Exception( 'You gotta render some stuff because whatever!' );
 					break;
 			}
-			
+
 			return $this->render($path, $vars);
 		}
 	}
@@ -269,24 +259,26 @@ class ExhibitsController extends Omeka_Controller_Action
 		} 
 		catch (Omeka_Validator_Exception $e) {
 			$this->flashValidationErrors($e);
+			$this->view->flash = $e->getMessage();
 		}
 		catch (Exception $e) {
 			$this->flash($e->getMessage());
+			$this->view->flash = $e->getMessage(); 
+		}
+		
+		$this->view->exhibit = $exhibit;
+		
+		//Send a header that will inform us that the request was a failure
+		//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
+		if (!$retVal) {
+		  $this->getResponse()->setHttpResponseCode(422);
 		}
 		
 		//@duplication see ExhibitsController::processSectionForm()
 		//If the form submission was invalid 
-		if($this->isAjaxRequest() and !$retVal) {
-			//Send a header that will inform us that the request was a failure
-			//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
-			$this->getResponse()->setHttpResponseCode(422);
-
+		if(!$this->getRequest()->isXmlHttpRequest()) {
+			$this->render('exhibit-form');
 		}
-		
-		$pass_to_template = compact('exhibit');
-		$pass_to_template['record'] = $exhibit;
-		
-		return $this->render('exhibits/form/exhibit.php',$pass_to_template);
 	}
 	
 	/**
@@ -313,7 +305,7 @@ class ExhibitsController extends Omeka_Controller_Action
 	{
 		//Check for a 'cancel' button so we can redirect
 		if(isset($_POST['cancel_section'])) {
-			$this->_redirect('editExhibit', array('id' => $section->exhibit_id));
+			$this->redirect->goto('edit', null, null, array('id' => $section->exhibit_id));
 		}
 		
 		$retVal = false;
@@ -345,35 +337,31 @@ class ExhibitsController extends Omeka_Controller_Action
 			if(array_key_exists('exhibit_form',$_POST)) {
 				
 				//Forward to the 'edit' action
-				$this->_redirect('editExhibit', array('id'=>$section->Exhibit->id)); 
+				$this->redirect->goto('edit', null, null, array('id'=>$section->exhibit_id));
 				return;
 			
 			}elseif(array_key_exists('page_form',$_POST)) {
 				
 				//Forward to the addPage action (id is the section id)
-				$this->_redirect('addPage', array('id'=>$section->id));
+				$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
 				return;
 				
 			}elseif(array_key_exists('add_new_section', $_POST)) {
 				//Forward back to adding a new section to the exhibit
-				$this->_redirect('addSection', array('id'=>$section->Exhibit->id));
+				$this->redirect->goto('add-section', null, null, array('id'=>$section->Exhibit->id));
 			}
 		}
 				
 		//If the form submission was invalid 
-		if($this->isAjaxRequest() and !$retVal) {
+		if($this->getRequest()->isXmlHttpRequest() and !$retVal) {
 			//Send a header that will inform us that the request was a failure
 			//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
 			$this->getResponse()->setHttpResponseCode(422);
 
 		}				
 		
-		//For a data feed, the record we want to render is the ExhibitSection
-		$pass_to_template = compact('exhibit', 'section');
-		$pass_to_template['record'] = $section;
-		
-		return $this->render('exhibits/form/section.php', $pass_to_template);	
-			
+		$this->view->assign(compact('exhibit', 'section'));
+		$this->render('section-form');	
 	}
 
 	/**
@@ -425,7 +413,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		//'cancel_and_section_form' and 'cancel_and_exhibit_form' as POST elements will cancel adding a page
 		//And they will redirect to whatever form is important
 		if(isset($_POST['cancel_and_section_form'])) {
-			$this->_redirect('editSection', array('id'=>$page->section_id));
+			$this->redirect->goto('edit-section', null, null, array('id'=>$page->section_id));
 		}
 		
 		if(isset($_POST['cancel_and_exhibit_form'])) {
@@ -508,11 +496,13 @@ class ExhibitsController extends Omeka_Controller_Action
 				}
 			}
 		}
+		
+		$this->view->assign(compact('section','page'));
 				
 		if ( empty($page->layout) ) {
-			return $this->render('exhibits/form/layout.php', compact('section','page'));
+			$this->render('layout-form');
 		}else {
-			return $this->render('exhibits/form/page.php',compact('section','page'));	
+			$this->render('page-form');	
 		}		
 	}
 	
@@ -568,21 +558,20 @@ class ExhibitsController extends Omeka_Controller_Action
 		$section = new ExhibitSection;
 		$section->Exhibit = $exhibit;
 		
-		$this->render('exhibits/_section_form.php', compact('section'));
+		$this->view->section = $section;
+		$this->render('sectionform');
 	}
 	
 	public function sectionListAction()
 	{
-		$exhibit = $this->findOrNew();
-		
-		return $this->render('exhibits/_section_list.php', compact('exhibit'));
+		$this->view->exhibit = $this->findOrNew();
+		return $this->render('section-list');
 	}
 	
 	public function pageListAction()
 	{
-		$section = $this->findById(null, 'ExhibitSection');
-
-		$this->render('exhibits/_page_list.php', compact('section'));
+		$this->view->section = $this->findById(null, 'ExhibitSection');
+		$this->render('page-list');
 	}
 	
 	protected function findOrNew()
@@ -621,10 +610,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				$this->flashValidationErrors($e);
 			}
 			
-			//Required to pass a 'record' instance so that Omeka can automatically render the JSON for the exhibit
-			$passVariables = array('exhibit'=>$exhibit, 'record'=>$exhibit);
-			
-			$this->render('exhibits/show.php', $passVariables);
+			$this->view->exhibit = $exhibit;			
 		}
 	}
 	

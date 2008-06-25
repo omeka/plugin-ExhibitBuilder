@@ -1,5 +1,6 @@
 <?php
 require_once 'ExhibitPage.php';
+require_once 'ExhibitSectionTable.php';
 /**
  * Section
  * @package: Omeka
