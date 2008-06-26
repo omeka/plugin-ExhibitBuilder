@@ -67,7 +67,7 @@ class ExhibitsController extends Omeka_Controller_Action
 			return $this->renderExhibit(compact('exhibit','item', 'section'), 'item');
 		}else {
 			$this->flash('This item is not used within this exhibit.');
-			$this->_redirect('403');
+			$this->redirect->gotoUrl('403');
 		}
 	}
 	
@@ -77,7 +77,6 @@ class ExhibitsController extends Omeka_Controller_Action
      * (like the table class maybe) so that other parts of the application can
      * make use of it.
 	 * 
-	 * @param string
 	 * @return void
 	 **/
 	public function itemsAction()
@@ -86,7 +85,8 @@ class ExhibitsController extends Omeka_Controller_Action
 		$items = $this->getTable('Item')->findBy($params);
 		
 		// Fake the pagination
-		$pagination = array('per_page'=>2, 'page'=>1, 'total_results'=>5);
+		$currentPage = 1;
+		$pagination = array('per_page'=>2, 'page'=>$currentPage, 'total_results'=>5);
 		Zend_Registry::set('pagination', $pagination);
 		
 		$this->view->items = $items;
@@ -257,11 +257,11 @@ class ExhibitsController extends Omeka_Controller_Action
 				if(array_key_exists('add_section',$_POST)) {
 					//forward to addSection & unset the POST vars 
 					unset($_POST);
-					$this->_redirect('addSection', array('id'=>$exhibit->id) );
+					$this->redirect->goto('add-section', null, null, array('id'=>$exhibit->id) );
 					return;
 				}elseif(array_key_exists('save_exhibit', $_POST)) {
 				
-					$this->_redirect('saveExhibit', array('slug'=>$exhibit->slug));
+					$this->redirect->goto('browse');
 				}else {
 				
 					//Everything else should render the page
@@ -364,17 +364,30 @@ class ExhibitsController extends Omeka_Controller_Action
 				$this->redirect->goto('add-section', null, null, array('id'=>$section->Exhibit->id));
 			}
 		}
-				
-		//If the form submission was invalid 
-		if($this->getRequest()->isXmlHttpRequest() and !$retVal) {
-			//Send a header that will inform us that the request was a failure
-			//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
-			$this->getResponse()->setHttpResponseCode(422);
 
-		}				
-		
 		$this->view->assign(compact('exhibit', 'section'));
-		$this->render('section-form');	
+		
+		if ($_POST and !$retVal) {
+            //Send a header that will inform us that the request was a failure
+            //@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
+		  $this->getResponse()->setHttpResponseCode(422);
+		}
+		
+		// Render the big section form script if this is not an AJAX request.
+		if (!$this->getRequest()->isXmlHttpRequest() ) {
+		    $this->render('section-form');	
+		} else {
+		    // This is for AJAX requests.
+		    
+		    // If the form submission was not valid, render the mini-form.
+		    if (!$retVal) {
+		        $this->render('sectionform');
+		    } else {
+		        // Otherwise render the partial that displays the list of sections.
+		        $this->render('section-list');
+		    }
+		    
+		}
 	}
 
 	/**
@@ -389,7 +402,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		
 		if(isset($_POST['cancel'])) {
 			$this->setLayout(null);
-			$this->_redirect('editSection', array('id'=>$section->id));
+			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 		}
 		
 		//Check to see if the page var was saved in the session
@@ -447,7 +460,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 				$page->layout = (string) $_POST['layout'];
 				
-				$this->render('page-form');
+				return $this->render('page-form');
 			
 			}elseif(array_key_exists('change_layout', $_POST)) {
 				
@@ -457,7 +470,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				$this->setLayout(null);
 				$page->layout = null;
 				
-				$this->render('layout-form');		
+				return $this->render('layout-form');		
 			}
 				
 			else {
@@ -549,9 +562,20 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 		$section->delete();
 		
-		$this->_redirect('editExhibit', array('id'=>$exhibit->id) );
+		// If we are making an AJAX request to delete a section, return the XHTML for the list partial
+		if ($this->getRequest()->isXmlHttpRequest()) {
+		    $this->view->exhibit = $exhibit;
+		    $this->render('section-list');
+		} else {
+		    // For non-AJAX requests, redirect to the exhibits/edit page.
+		    $this->redirect->goto('edit', null, null, array('id'=>$exhibit->id) );
+		}
+		
 	}
 	
+	/**
+	 * @internal There's a lot of duplication between this and deleteSectionAction().  Is that a problem?
+	 **/
 	public function deletePageAction()
 	{
 		$page = $this->findById(null,'ExhibitPage');
@@ -559,7 +583,12 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 		$page->delete();
 		
-		$this->_redirect('editSection', array('id' => $section->id) );
+		if ($this->getRequest()->isXmlHttpRequest()) {
+		    $this->view->section = $section;
+		    $this->render('page-list');
+		} else {
+		    $this->redirect->goto('edit-section', null, null, array('id' => $section->id) );
+		}
 	}
 	
 	/////HERE WE HAVE SOME AJAX-ONLY ACTIONS /////

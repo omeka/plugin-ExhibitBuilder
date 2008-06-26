@@ -19,7 +19,7 @@ class ExhibitSection extends Omeka_Record
 		
 	public function construct()
 	{
-		$this->_modules[] = new Orderable($this, 'ExhibitPage', 'section_id', 'Pages');
+		$this->_mixins[] = new Orderable($this, 'ExhibitPage', 'section_id', 'Pages');
 	}
 
 	protected function _validate()

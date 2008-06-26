@@ -1,4 +1,11 @@
 <?php head(array('title'=>'Browse Exhibits', 'body_class'=>'exhibits')); ?>
+<script type="text/javascript" charset="utf-8">
+    Event.observe(window, 'load', function(){
+        $$('.delete-exhibit').invoke('observe', 'click', function(){
+            return confirm('Are you sure you want to delete this exhibit?');
+        });
+    });
+</script>
 <?php common('exhibits-nav'); ?>
 <div id="primary">
 	<h1 class="floater">Exhibits</h1>

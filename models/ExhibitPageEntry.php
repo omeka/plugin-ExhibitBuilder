@@ -1,4 +1,5 @@
 <?php
+require_once 'ExhibitPageEntryTable.php';
 /**
  * ExhibitPageEntry
  * @package: Omeka

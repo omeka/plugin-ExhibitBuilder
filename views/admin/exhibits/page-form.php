@@ -1,34 +1,23 @@
 <?php head(array('title'=>'Exhibit Page', 'body_class'=>'exhibits')); ?>
 
-<?php echo js('search'); ?>
+<?php 
+echo js('search'); 
+echo js('exhibits');
+?>
 
 <script type="text/javascript" charset="utf-8">
-/*
-	    Event.observe(window,'load',function() {
-            div = document.getElementById("item-select");
-			div.style.position = "absolute";
-		//	div.style.bottom = '100px';
-		//	window.onscroll = function() {
-        //    div.style.top = (300 + self.pageYOffset) + "px";
-		}
-        });
-*/
-    //pageYOffset
 	var paginate_uri = "<?php echo uri('exhibits/items'); ?>";
 	
 	Event.observe(window, 'load', function() {
-		//Loads the items pagination
-		
-		
+
 		//Retrieve the pagination through ajaxy goodness
-		getPagination(paginate_uri, function() {
-			//When you're done, make all the items drag/droppable
-			dragDropForm();
-			
-			onLoadPagination();
-		});
-		
+		getPagination(paginate_uri);
 	});
+
+	Event.observe(document, 'omeka:loaditems', onLoadPagination);
+	
+	//When you're done, make all the items drag/droppable
+	Event.observe(document, 'omeka:loaditems', dragDropForm);
 	
 	function onLoadPagination() 
 	{
@@ -42,12 +31,10 @@
 		
 		//Make each of the pagination links fire an additional ajax request
 		var links = $$('#pagination a');
-		
-		links.each(function(link) {
-			link.onclick = function() {
-				getPagination(this.href, onLoadPagination);
-				return false;
-			}
+				
+		links.invoke('observe', 'click', function(e){
+		    e.stop();
+		    getPagination(this.href);
 		});
 		
 		//Make the correct elements on the pagination draggable
@@ -57,25 +44,26 @@
 		disablePaginationDraggables();
 		
 		//Hide all the numbers that tell us the Item ID
-		var idDivs = document.getElementsByClassName('item_id');
-		idDivs.each(function(el) {el.hide()});
+		$$('.item_id').invoke('hide');
 		
 		//Make the search form respond with ajax power
 		$('search').onsubmit = function() {
-			getPagination(paginate_uri, onLoadPagination, $('search').serialize());
+			getPagination(paginate_uri, $('search').serialize());
 			return false;
 		}
-		
-		return false;
 	}
 	
-	function getPagination(uri, onFinish, parameters)
+
+	
+	function getPagination(uri, parameters)
 	{
 		new Ajax.Updater('item-select', uri, {
 			parameters: parameters,
 			evalScripts: true,
 			method: 'get',
-			onComplete: onFinish
+			onComplete: function() {
+			    document.fire("omeka:loaditems");
+			}
 		});
 		
 	}

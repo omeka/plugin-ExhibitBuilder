@@ -25,7 +25,7 @@ function getItemId(element) {
 }
 
 function getItemIdFromSubDiv(element) {
-	var idDiv = element.getElementsByClassName('item_id')[0];
+	var idDiv = element.select('.item_id').first();
 	return parseInt(idDiv.innerHTML.strip());
 }
 
@@ -202,43 +202,14 @@ function dragDropForm() {
 		drop.appendChild(clear);
 	});
 	
-	//Hide the item_id divs
-	document.getElementsByClassName('item_id').each( function(el) {
-		el.hide();
-	});
-	
-	//Hide the labels for the item boxes
-	$$('.item-drop label').invoke('hide');
-	
-	//Hide the text fields for the layout form
-	$$('.item-drop input').invoke('hide');
-}
-
-//Hide buttons for the non-js version of the exhibits builder
-function hideReorderSections() {
-	if(!$('reorder_sections')) return;
-	$('reorder_sections').remove();	
-}
-
-//Hide more buttons for the non-js version of the exhibits builder
-function hideReorderExhibits() {
-	if(!$('reorder_exhibits')) return;
-	$('reorder_exhibits').remove();	
+	//Hide the item_id divs, labels for the item boxes, text fields for the layout form
+	$$('.item_id, .item-drop input, .item-drop label').invoke('hide');
 }
 
 //Style the handles for the section/page lists in the exhibit builder
 function styleExhibitBuilder() {
-	hideReorderSections();
-	hideReorderExhibits();
-	
-	var handles = $$('.handle');
-	for(var i=0; i<handles.length; i++) {
-		handles[i].setStyle({display:'inline',cursor: 'move'});
-	}
+	$$('.handle').invoke('setStyle', {display:'inline',cursor: 'move'});
 		
-	var orderInputs = $$('.order-input');
-	for(var i=0; i<orderInputs.length; i++) {
-		orderInputs[i].setStyle({border: 'none',background:'#fff',color: '#333'});
-	}	
+	$$('.order-input').invoke('setStyle', {border: 'none',background:'#fff',color: '#333'});
 }
 Event.observe(window,'load',styleExhibitBuilder);

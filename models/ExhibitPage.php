@@ -1,5 +1,7 @@
 <?php
 require_once 'ExhibitPageEntry.php';
+require_once 'ExhibitPageTable.php';
+
 /**
  * Exhibit Page
  * @package: Omeka
@@ -46,10 +48,12 @@ class ExhibitPage extends Omeka_Record
 	}
 	
 	protected function _delete()
-	{			
-		foreach ($this->ExhibitPageEntry as $ip) {
-			$ip->delete();
-		}
+	{	
+	    if($this->ExhibitPageEntry) {
+    		foreach ($this->ExhibitPageEntry as $ip) {
+    			$ip->delete();
+    		}	        
+	    }		
 	}
 		
 	protected function afterDelete()

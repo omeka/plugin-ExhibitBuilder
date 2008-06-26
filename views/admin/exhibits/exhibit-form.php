@@ -19,14 +19,15 @@
             this.addSectionButton = $(addSection);            
         },
         
-        loadSectionForm: function(exhibit_id) {
+        loadSectionForm: function() {
             
             var addSectionButton = this.addSectionButton;
             var sectionFormDiv = $('new-section');
-            
+                        
     		//Now submit the request for the mini-form
-    		new Ajax.Updater(sectionFormDiv, this.urls.sectionForm, {
-    			parameters: "id=" + exhibit_id,
+    		new Ajax.Updater(sectionFormDiv, this.urls.addSection, {
+    			parameters: "id=" + this.getExhibitId(),
+    			method: 'get',  // A 'GET' request will retrieve the form, 'POST' will submit the form
     			onFailure: function(t) {
     				Omeka.flash(t.responseText);
     			},
@@ -36,8 +37,6 @@
     			onComplete: function(t) {
                     new Effect.SlideDown(sectionFormDiv,{duration:0.8});
 
-                    // debugger;
-                    // 
                     // var firstInput = sectionFormDiv.down('input').first();
                     // firstInput.scrollTo();
                     // firstInput.focus();
@@ -59,37 +58,30 @@
 		
     		//Serialize all the form inputs (also specify JSON output)
     		var inputs = $$('#new-section input, #new-section textarea');
-    		var params = Form.serializeElements(inputs) + "&output=json";
+    		var params = Form.serializeElements(inputs) + "&output=json&id=" + this.getExhibitId();
 		
     		//Generate the URI for the 
-		
-    		var addSectionUri = this.urls.addSection + "/" + this.getExhibitId();
+		    		    
+            // var addSectionUri = this.urls.addSection + "/" + this.getExhibitId();
 		
     		//Send an AJAX request that saves the Section, then send another that updates the section list
-    		new Ajax.Request(addSectionUri, {
+    		new Ajax.Request(this.urls.addSection, {
     			parameters: params,
-    			onSuccess: function(t) {
+    			method: 'post',
+    			onSuccess: function(t) {    			    
     				//When successful, update the section list
-    				new Ajax.Updater('section-list', this.urls.sectionList, {
-    					parameters: {id: getExhibitId()},
-    					onSuccess: function(t) {
-    						//flash a happy message and get rid of the form
-    						Omeka.flash('Section has been saved successfully!', 'success');
-    						removeAddSectionForm();
-    					},
-    					onFailure: function(t) {
-    						alert(t.responseText);
-    					},
-    					onComplete: function(t) {
-    						//Make the section list draggable
-    						makeSectionListDraggable();
-    						//Highlight the section list
-    						new Effect.Highlight($('section-list').parent);
-    						this.addSectionButton.show();
-						
-    					}
-    				});
-    			},
+    				$('section-list').update(t.responseText);
+    				
+					//flash a happy message and get rid of the form
+					Omeka.flash('Section has been saved successfully!', 'success');
+    				this.removeAddSectionForm();
+					
+					//Make the section list draggable
+					makeSectionListDraggable(this);
+					//Highlight the section list
+                    // new Effect.Highlight($('section-list').parent);
+					this.addSectionButton.show();				
+    			}.bind(this),
     			//When adding a section does not work
     			on422: function(t, section) {
     				var error = section['Flash'];
@@ -125,17 +117,22 @@
                     output: "json"
                 },
     			onSuccess: function(t) {                
-    				debugger;
+    			    alert('foobar');
+     				
     				Omeka.flash('Exhibit was saved successfully', 'success');
-    				setExhibitId(exhibit['id']);				
+    				var exhibitId = t.responseJSON['exhibit']['id'];
+    				this.setExhibitId(exhibitId);				
 
-    				exhibit_id = exhibit['id'];
-
-    				loadSectionForm(exhibit_id);
-
+    				this.loadSectionForm();
+                    
     				//Update the form so that it has an action corresponding to edit rather than add
-    				$('exhibit-form').action = this.urls.edit + exhibit_id;		 		
-    			},
+    				$('exhibit-form').action = this.urls.edit + '/' + exhibitId;		 
+    				
+    				var addSection = this.urls.addSection;
+    				
+    				this.urls.addSection += '/' + exhibitId;
+    						
+    			}.bind(this),
     			on404: function(t) {
     			    debugger;
     //			    Omeka.flash("An error has occurred in saving the exhibit: " + t.responseText, 'error');
@@ -146,9 +143,9 @@
     			    Omeka.flash(errorMsg, 'error');
     			    alert(errorMsg);
     			},
-    			onComplete: function(t, exhibit) {
+    			onComplete: function(t) {
     				//update the exhibit slug b/c that is most likely to be auto-generated
-    				$('slug').value = exhibit['slug'];
+    				$('slug').value = t.responseJSON['exhibit']['slug'];
     			}		    
     		});
     	},
@@ -160,6 +157,7 @@
     			e.stop();
     			
     			var exhibit_id = this.getExhibitId();
+
     			//If we don't have a valid exhibit ID, we need to save the exhibit first
     			if(isNaN(exhibit_id)) {				
     				this.saveNewExhibit();

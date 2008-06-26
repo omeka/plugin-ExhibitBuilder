@@ -204,14 +204,14 @@ function layout_form_item($order, $label='Enter an Item ID #') {
 			}
 		echo '</div>';		
 	}
-	text(array('name'=>'Item['.$order.']', 'size'=>2), $item->id, $label);
+	echo text(array('name'=>'Item['.$order.']', 'size'=>2), $item->id, $label);
 	echo '</div>';
 }
 
 function layout_form_text($order, $label='Text') {
 	
 	echo '<div class="textfield">';
-	textarea(array('name'=>'Text['.$order.']','rows'=>'30','cols'=>'50','class'=>'textinput'), page_text($order, false), $label); 
+	echo textarea(array('name'=>'Text['.$order.']','rows'=>'30','cols'=>'50','class'=>'textinput'), page_text($order, false), $label); 
 	echo '</div>';
 }
 

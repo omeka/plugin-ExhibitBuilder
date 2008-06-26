@@ -2,9 +2,16 @@
 <?php items_search_form(array('id'=>'search'), $url); ?>
 </div>
 
+<script type="text/javascript" charset="utf-8">
+    Omeka.Search.toggleSearch();
+</script>
+
 <div id="pagination">
 <?php 
-	 echo pagination(); 
+	 echo pagination(array('url'=>url_for(array('controller'=>'exhibits',
+     'action'=>'items')) . '/')); 
+     // The extra slash is a hack, the pagination should be fixed to work
+     // without the extra slash being there.
 ?>
 
 </div>
