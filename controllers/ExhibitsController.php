@@ -82,11 +82,12 @@ class ExhibitsController extends Omeka_Controller_Action
 	public function itemsAction()
 	{
 		$params = $this->_getAllParams();
+		$params['per_page'] = 10;
 		$items = $this->getTable('Item')->findBy($params);
 		
 		// Fake the pagination
-		$currentPage = 1;
-		$pagination = array('per_page'=>2, 'page'=>$currentPage, 'total_results'=>5);
+		$currentPage = (int) $this->_getParam('page');
+		$pagination = array('per_page'=>$params['per_page'], 'page'=>$currentPage, 'total_results'=> count($items));
 		Zend_Registry::set('pagination', $pagination);
 		
 		$this->view->items = $items;
@@ -95,21 +96,17 @@ class ExhibitsController extends Omeka_Controller_Action
 	public function showAction()
 	{		
 		$exhibit = $this->findBySlug();
-
-		if(!$exhibit) {
-			return $this->errorAction();
-		}
 				
-		$section = $this->_getParam('section');
+		$sectionSlug = $this->_getParam('section');
 
-		$section = $exhibit->getSection($section);
+		$section = $exhibit->getSection($sectionSlug);
 		
 		if($section) {
-			$page_order = $this->_getParam('page');
+			$pageOrder = $this->_getParam('page');
 
-			$page = $section->getPage($page_order);			
+			$page = $section->getPage($pageOrder);			
 		}else {
-		    return $this->errorAction();
+		    $section = $exhibit->getFirstSection();
 		}
 		
 		$layout = $page->layout;
@@ -129,7 +126,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		Zend_Registry::set('page',		$page);
 		
 		fire_plugin_hook('show_exhibit', $exhibit,$section,$page);
-
+                
 		$this->renderExhibit(compact('section','exhibit','page'));
 	}
 	
@@ -159,7 +156,6 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 		Zend_Registry::set('exhibit', $exhibit);
 
-		
 		fire_plugin_hook('show_exhibit', $exhibit);
 		
 		$this->renderExhibit(compact('exhibit'), 'summary');
@@ -179,12 +175,12 @@ class ExhibitsController extends Omeka_Controller_Action
 		*/
 		extract($vars);
 		
-		if(!empty($exhibit->theme)) {
+		$this->view->assign($vars);
 		
-			$this->_view->addScriptPath(SHARED_DIR);
-			
+		if(!empty($exhibit->theme)) {
+					
 			//Hack to get just the directory name for the exhibit themes
-            $exhibitThemesDir = basename(EXHIBIT_THEMES_DIR);
+            $exhibitThemesDir = 'exhibit_themes';
             
 			switch ($toRender) {
 				case 'show':
@@ -200,32 +196,19 @@ class ExhibitsController extends Omeka_Controller_Action
 					throw new Exception( 'Hey, you gotta render something!' );
 					break;
 			}
-			
-			if(isset($renderPath) and file_exists(SHARED_DIR.DIRECTORY_SEPARATOR.$renderPath)) {
-				$this->render($renderPath, $vars);
-			}else {
-				throw new Exception( 
-					"Exhibit theme named '$exhibit->theme' no longer exists!\n\n  
-					Please change the exhibit's theme in order to properly view the exhibit." );
-			}	
+
+			return $this->renderScript($renderPath);
+
+                // throw new Exception( 
+                //  "Exhibit theme named '$exhibit->theme' no longer exists!\n\n  
+                //  Please change the exhibit's theme in order to properly view the exhibit." );
 			
 		}else {
-			switch ($toRender) {
-				case 'show':
-					$path = 'exhibits/show.php';
-					break;
-				case 'summary':
-					$path = 'exhibits/summary.php';
-					break;
-				case 'item':
-					$path = 'items/show.php';
-					break;
-				default:
-					throw new Exception( 'You gotta render some stuff because whatever!' );
-					break;
+			if (!in_array($toRender, array('show', 'summary', 'item'))) {
+			    throw new Exception( 'You gotta render some stuff because whatever!' );
 			}
-
-			return $this->render($path, $vars);
+			
+			return $this->render($toRender);
 		}
 	}
 	

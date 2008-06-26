@@ -124,6 +124,13 @@ class Exhibit extends Omeka_Record
         return $this->getTable('ExhibitSection')->fetchObject($sql, array( strtolower($slug), (int) $this->id));	
 	}
 	
+	public function getFirstSection()
+	{
+	    $table = $this->getTable('ExhibitSection');
+	    $select = $table->getSelect()->where("e.exhibit_id = ?", $this->id)->where("e.`order` = ?", 1)->limit(1);
+	    return $table->fetchObject($select);
+	}
+	
 	/**
 	 * The number of sections in the exhibit
 	 *

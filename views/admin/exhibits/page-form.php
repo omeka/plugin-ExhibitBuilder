@@ -10,7 +10,7 @@ echo js('exhibits');
 	
 	Event.observe(window, 'load', function() {
 
-		//Retrieve the pagination through ajaxy goodness
+		// Retrieve the pagination through ajaxy goodness
 		getPagination(paginate_uri);
 	});
 
@@ -18,6 +18,11 @@ echo js('exhibits');
 	
 	//When you're done, make all the items drag/droppable
 	Event.observe(document, 'omeka:loaditems', dragDropForm);
+	
+	Event.observe(document, 'omeka:loaditems', function(){
+	    // Put the 'delete' as background to anything with a 'remove_item' class
+        $$('.remove_item').invoke('setStyle', {backgroundImage: "url('<?php echo img('delete.gif'); ?>')"});
+	});
 	
 	function onLoadPagination() 
 	{
@@ -30,9 +35,7 @@ echo js('exhibits');
 		new Effect.Highlight('item-list');
 		
 		//Make each of the pagination links fire an additional ajax request
-		var links = $$('#pagination a');
-				
-		links.invoke('observe', 'click', function(e){
+		$$('#pagination a').invoke('observe', 'click', function(e){
 		    e.stop();
 		    getPagination(this.href);
 		});

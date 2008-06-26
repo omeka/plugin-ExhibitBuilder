@@ -11,13 +11,21 @@
 add_plugin_directories();
  
 define('EXHIBIT_BUILDER_VERSION', '0.2');
-define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
 
+define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
+define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)));
+
+/**
+ * @todo Deprecate these defined constants in favor of a more programmatic way
+ * of accessing exhibit themes?
+ */
 define('EXHIBIT_THEMES_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_themes');
 
 define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_layouts');
+
+define('WEB_EXHIBIT_THEMES', WEB_EXHIBIT_PLUGIN_DIR . '/views/shared/exhibit_themes');
 
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';

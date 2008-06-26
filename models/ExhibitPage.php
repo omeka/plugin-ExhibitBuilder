@@ -16,7 +16,7 @@ class ExhibitPage extends Omeka_Record
 	
 	public function construct()
 	{
-		$this->_modules[] = new Orderable($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
+		$this->_mixins[] = new Orderable($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
 	}
 	
 	/**
@@ -77,10 +77,11 @@ class ExhibitPage extends Omeka_Record
 		$textCount = count($post['Text']);
 		$itemCount = count($post['Item']);
 		$highCount = ($textCount > $itemCount) ? $textCount : $itemCount;	
-		
+
 		$entries = $this->ExhibitPageEntry;
 		for ($i=1; $i <= $highCount; $i++) { 
 			$ip = $entries[$i];
+
 			if(!$ip) {
 				$ip = new ExhibitPageEntry;
 				$ip->page_id = $this->id;

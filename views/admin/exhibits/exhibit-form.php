@@ -116,9 +116,7 @@
                 parameters: {
                     output: "json"
                 },
-    			onSuccess: function(t) {                
-    			    alert('foobar');
-     				
+    			onSuccess: function(t) {                     				
     				Omeka.flash('Exhibit was saved successfully', 'success');
     				var exhibitId = t.responseJSON['exhibit']['id'];
     				this.setExhibitId(exhibitId);				
@@ -174,7 +172,7 @@
         sectionForm: "<?php echo uri('exhibits/section-form'); ?>",
         addSection: "<?php echo url_for(array('controller'=>'exhibits','action'=>'add-section'), 'default'); ?>",
         sectionList: "<?php echo url_for(array('controller'=>'exhibits','action'=>'section-list'), 'default'); ?>",
-        edit: "<?php echo uri('exhibits/edit/'); ?>"
+        edit: "<?php echo uri('exhibits/edit'); ?>"
     };
         
 	Event.observe(window, 'load', function() {	

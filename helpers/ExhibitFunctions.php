@@ -102,11 +102,11 @@ function exhibit_item_uri($item, $exhibit=null, $section=null)
 	
 	//If the exhibit has a theme associated with it
 	if(!empty($exhibit->theme)) {
-		return generate_url(array('slug'=>$exhibit->slug,'section'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
+		return url_for(array('slug'=>$exhibit->slug,'section'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
 	}
 	
 	else {
-		return generate_url(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
+		return url_for(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
 	}
 	
 }
@@ -193,19 +193,18 @@ function page_item($order)
 }
 
 function layout_form_item($order, $label='Enter an Item ID #') {	
-	echo '<div class="item-drop">';	
+	$html = '<div class="item-drop">';	
 	$item = page_item($order);
+
 	if($item and $item->exists()) {
-		echo '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
-			if(has_thumbnail($item)){
-				echo thumbnail($item);
-			} else {
-				echo h($item->title);
-			}
-		echo '</div>';		
+	    set_current_item($item);
+		$html .= '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
+		$html .=  item_has_thumbnail() ? thumbnail($item) : item('Title', ', ');
+		$html .= '</div>';		
 	}
-	echo text(array('name'=>'Item['.$order.']', 'size'=>2), $item->id, $label);
-	echo '</div>';
+	$html .= text(array('name'=>'Item['.$order.']', 'size'=>2), $item->id, $label);
+	$html .= '</div>';
+	echo $html;
 }
 
 function layout_form_text($order, $label='Text') {

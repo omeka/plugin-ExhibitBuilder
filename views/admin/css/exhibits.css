@@ -67,7 +67,7 @@ table#exhibits {clear:both;}
 #item-list {margin-left:18px;}
 .handle {background-color:#fff; }
 
-.remove_item {position:absolute; top:0; right:0; width: 20px; padding:20px 0 0; background:#fff url("../images/delete.gif") 50% 50% no-repeat; z-index:10000; overflow:hidden; height:0 !important; height /**/:20px; border:1px solid #A2C9E8; border-width:0 0 1px 1px;}
+.remove_item {position:absolute; top:0; right:0; width: 20px; padding:20px 0 0; background:#fff 50% 50% no-repeat; z-index:10000; overflow:hidden; height:0 !important; height /**/:20px; border:1px solid #A2C9E8; border-width:0 0 1px 1px;}
 #layout-form .textfield {float:right; width:390px;}
 
 
