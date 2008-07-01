@@ -8,7 +8,7 @@
     
     
     Omeka = Omeka || new Object;
-    Omeka.ExhibitForm = new Class.create({
+    Omeka.ExhibitBuilder.ExhibitForm = new Class.create({
         /**
          * Pass a set of URLs to the app so it doesn't have to hard code the PHP 
          * for building URLs into the Javascript.
@@ -176,7 +176,7 @@
     };
         
 	Event.observe(window, 'load', function() {	
-        var exhibitBuilder = new Omeka.ExhibitForm(urls, 'add_new_section');
+        var exhibitBuilder = new Omeka.ExhibitBuilder.ExhibitForm(urls, 'add_new_section');
         exhibitBuilder.clickToSaveExhibit();
 		makeSectionListDraggable(exhibitBuilder);
 	});
@@ -184,7 +184,8 @@
     function makeSectionListDraggable(exhibitBuilder)
 	{	    
 		var list = $('section-list');
-
+        
+                
 	    var exhibit_id = exhibitBuilder.getExhibitId();	
 		listSorter.list = list;
 		listSorter.recordId = exhibit_id;
@@ -195,15 +196,12 @@
     	listSorter.handle = 'handle';
     	listSorter.confirmation = 'Are you sure you want to delete this section?';
     	listSorter.deleteLinks = '.section-delete a';
-    	listSorter.callback = styleExhibitBuilder;
-
+        listSorter.callback = Omeka.ExhibitBuilder.addStyling;
 
 		if(listSorter.list) {
 			//Create the sortable list
 			makeSortable(listSorter.list);
-		}
-
-		styleExhibitBuilder();		
+		}		
 	}   
 	
     var listSorter = {};

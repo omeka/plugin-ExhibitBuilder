@@ -28,7 +28,7 @@ function makeSortable(list) {
 //Enable or disable the section part of the form (depending)
 function enableListForm(enable) {
 	var orderInputs = $A(listSorter.list.getElementsByTagName('input'));
-	
+
 	if(enable == true) {
 		orderInputs.each(function(el) {el.enable();} );
 	}else {

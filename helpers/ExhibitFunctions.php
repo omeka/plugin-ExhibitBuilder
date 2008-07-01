@@ -192,23 +192,33 @@ function page_item($order)
 	return $item;
 }
 
-function layout_form_item($order, $label='Enter an Item ID #') {	
-	$html = '<div class="item-drop">';	
-	$item = page_item($order);
+function exhibit_form_item($item, $orderOnForm=null, $label=null)
+{
+    $html = '<div class="item-drop">';	
 
 	if($item and $item->exists()) {
 	    set_current_item($item);
 		$html .= '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
-		$html .=  item_has_thumbnail() ? thumbnail($item) : item('Title', ', ');
+		$html .=  item_has_thumbnail() ? thumbnail($item) : '<div class="title">' . item('Title', ', ') . '</div>';
 		$html .= '</div>';		
 	}
-	$html .= text(array('name'=>'Item['.$order.']', 'size'=>2), $item->id, $label);
+	
+	// If this is ordered on the form, make sure the generated form element indicates its order on the form.
+	if ($orderOnForm) {
+	   	$html .= text(array('name'=>'Item['.$orderOnForm.']', 'size'=>2), $item->id, $label);
+	} else {
+	    $html .= '<div class="item_id">' . $item->id . '</div>';
+	}
+	
 	$html .= '</div>';
-	echo $html;
+	return $html;
+}
+
+function layout_form_item($order, $label='Enter an Item ID #') {	
+	echo exhibit_form_item(page_item($order), $order, $label);
 }
 
 function layout_form_text($order, $label='Text') {
-	
 	echo '<div class="textfield">';
 	echo textarea(array('name'=>'Text['.$order.']','rows'=>'30','cols'=>'50','class'=>'textinput'), page_text($order, false), $label); 
 	echo '</div>';
