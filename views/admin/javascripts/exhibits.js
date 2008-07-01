@@ -160,29 +160,28 @@ Omeka.ExhibitBuilder = Class.create({
     	container.appendChild(item);
     	this.setItemId(container, this.getItemId(item));
     },
-
-    //Get a list of the draggables on the form
-    //Fade the image and unregister the ones that are on the pagination
+    
+    /**
+     * Get a list of the draggables on the form. Fade the image and unregister
+     * the ones that are on the pagination.
+     */
     disablePaginationDraggables: function() {
-    	var formContainers = $$('#layout-form div.item-drop');
-    	var paginationContainers = $$('#item-select div.item-drop');
-
-    	for (var i=0; i < formContainers.length; i++) {
-    		if(id = this.getItemId(formContainers[i])) {
-    			for (var j=0; j < paginationContainers.length; j++) {
-    				var paginationId = this.getItemId(paginationContainers[j]);
-    				if(paginationId == id) {
-
-    					//Disable the draggable
-    					var itemToDestroy = this.getItemFromContainer(paginationContainers[j]);
-    					if(itemToDestroy) {
-    						itemToDestroy.destroy();
-    					}
-    					break;
-    				}
-    			};
-    		}
-    	};
+    	var formItemId, selectItemId, itemToRemove;
+    	var layoutContainers = $$('#layout-form div.item-drop');
+    	var selectItemContainers = $$('#item-select div.item-drop');
+        
+        layoutContainers.each(function(formContainer) {
+            if (formItemId = this.getItemId(formContainer)) {
+                selectItemContainers.each(function(itemContainer) {
+                    if (formItemId == this.getItemId(itemContainer)) {
+                        //Stop the item from being dragged.
+                        if (itemToRemove = this.getItemFromContainer(itemContainer)) {
+                            itemToRemove.remove();
+                        };
+                    };
+                }.bind(this));
+            }
+        }.bind(this));
     },
 
     makeDraggable: function(containers) {

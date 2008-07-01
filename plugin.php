@@ -35,7 +35,17 @@ add_filter('admin_navigation_main', 'exhibit_admin_nav');
 function exhibit_admin_nav($navArray)
 {
     if (has_permission('Exhibits', 'browse')) {
-        return array('Exhibits'=> url_for('exhibits')) + $navArray;
+        
+        $exhibitNav = array('Exhibits'=> url_for('exhibits'));
+        
+        // Put the navigation at the beginning.
+        // $navArray = $exhibitNav + $navArray;
+        
+        // Put the navigation at the end.
+        // $navArrray += $exhibitNav;
+        
+        // Put the navigation 3 spots in.
+        $navArray = array_slice($navArray, 0, 3) + $exhibitNav + array_slice($navArray, 3);
     }
     
     return $navArray;
