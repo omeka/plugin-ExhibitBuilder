@@ -15,6 +15,8 @@ define('EXHIBIT_BUILDER_VERSION', '0.2');
 define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
 define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)));
 
+add_plugin_hook('install', 'exhibit_builder_install');
+
 /**
  * @todo Deprecate these defined constants in favor of a more programmatic way
  * of accessing exhibit themes?
@@ -29,6 +31,54 @@ define('WEB_EXHIBIT_THEMES', WEB_EXHIBIT_PLUGIN_DIR . '/views/shared/exhibit_the
 
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
+
+function exhibit_builder_install() {
+	set_option('exhibit_builder_version', EXHIBIT_BUILDER_VERSION);
+	
+	$db = get_db();
+	$db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
+      `id` int(10) unsigned NOT NULL auto_increment,
+      `title` varchar(255) collate utf8_unicode_ci default NULL,
+      `description` text collate utf8_unicode_ci,
+      `credits` text collate utf8_unicode_ci,
+      `featured` tinyint(1) default '0',
+      `public` tinyint(1) default '0',
+      `theme` varchar(30) collate utf8_unicode_ci default NULL,
+      `slug` varchar(30) collate utf8_unicode_ci default NULL,
+      PRIMARY KEY  (`id`),
+      UNIQUE KEY `slug` (`slug`),
+      KEY `public` (`public`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+
+	$db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
+      `id` int(10) unsigned NOT NULL auto_increment,
+      `title` varchar(255) collate utf8_unicode_ci default NULL,
+      `description` text collate utf8_unicode_ci,
+      `exhibit_id` int(10) unsigned NOT NULL,
+      `order` tinyint(3) unsigned NOT NULL,
+      `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
+      PRIMARY KEY  (`id`),
+      KEY `slug` (`slug`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+
+    $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}items_section_pages` (
+      `id` int(10) unsigned NOT NULL auto_increment,
+      `item_id` int(10) unsigned default NULL,
+      `page_id` int(10) unsigned NOT NULL,
+      `text` text collate utf8_unicode_ci,
+      `order` tinyint(3) unsigned NOT NULL,
+      PRIMARY KEY  (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    
+    $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
+      `id` int(10) unsigned NOT NULL auto_increment,
+      `section_id` int(10) unsigned NOT NULL,
+      `layout` varchar(255) collate utf8_unicode_ci default NULL,
+      `order` tinyint(3) unsigned NOT NULL,
+      PRIMARY KEY  (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;")
+
+}
 
 // Add navigation for the Exhibits
 add_filter('admin_navigation_main', 'exhibit_admin_nav');
@@ -132,17 +182,3 @@ class ExhibitBuilderBootstrap
          return $contextsArray;
      }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
