@@ -11,6 +11,11 @@
 
 table#exhibits {width:774px;}
 
+/* Exhibit Breadcrumb Navigation */
+#exhibits-breadcrumb {
+	float:right;
+}
+
 /* Exhibit Metadata */
 #section-list-container {clear:both;}
 

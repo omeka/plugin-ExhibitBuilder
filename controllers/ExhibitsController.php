@@ -216,14 +216,13 @@ class ExhibitsController extends Omeka_Controller_Action
 	{		
 		$exhibit = new Exhibit;
 				
-		return $this->processExhibitForm($exhibit);
+		return $this->processExhibitForm($exhibit, 'Add');
 	}
 
 	public function editAction()
 	{	
 		$exhibit = $this->findById();
-		
-		return $this->processExhibitForm($exhibit);
+		return $this->processExhibitForm($exhibit, 'Edit');
 	}	
 	
 	/**
@@ -231,7 +230,7 @@ class ExhibitsController extends Omeka_Controller_Action
 	 *
 	 * @return mixed
 	 **/
-	protected function processExhibitForm($exhibit)
+	protected function processExhibitForm($exhibit, $actionName)
 	{
 		try {
 			$retVal = $exhibit->saveForm($_POST);
@@ -262,7 +261,8 @@ class ExhibitsController extends Omeka_Controller_Action
 			$this->view->flash = $e->getMessage(); 
 		}
 		
-		$this->view->exhibit = $exhibit;
+		// $this->view->exhibit = $exhibit;
+		$this->view->assign(compact('exhibit', 'actionName'));
 		
 		//Send a header that will inform us that the request was a failure
 		//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
@@ -294,10 +294,10 @@ class ExhibitsController extends Omeka_Controller_Action
 		//Tell the plugin hook that we are adding a section
 		$this->addSection = true;
 		
-		return $this->processSectionForm($section, $exhibit);
+		return $this->processSectionForm($section, 'Add', $exhibit);
 	}
 	
-	protected function processSectionForm($section, $exhibit=null)
+	protected function processSectionForm($section, $actionName, $exhibit=null)
 	{
 		//Check for a 'cancel' button so we can redirect
 		if(isset($_POST['cancel_section'])) {
@@ -348,7 +348,7 @@ class ExhibitsController extends Omeka_Controller_Action
 			}
 		}
 
-		$this->view->assign(compact('exhibit', 'section'));
+		$this->view->assign(compact('exhibit', 'section', 'actionName'));
 		
 		if ($_POST and !$retVal) {
             //Send a header that will inform us that the request was a failure
@@ -382,29 +382,27 @@ class ExhibitsController extends Omeka_Controller_Action
 	public function addPageAction()
 	{
 		$section = $this->findById(null,'ExhibitSection');
-		
+		$exhibit = $section->Exhibit;
+				
 		if(isset($_POST['cancel'])) {
 			$this->setLayout(null);
 			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 		}
 		
 		//Check to see if the page var was saved in the session
-		if($layout = $this->getLayout()) {
-			
+		if ($layout = $this->getLayout()) {
 			$page = new ExhibitPage;
-
 			$page->layout = $layout;						
-		}else {
-
+		} else {
 			$page = new ExhibitPage;
 		}
-		$page->section_id = $section->id;
+		$page->section_id = $section->id;		
 				
 		//Set the order for the new page
 		$numPages = $section->getPageCount();
-		$page->order = $numPages + 1;
+		$page->order = $numPages + 1;		
 		
-		return $this->processPageForm($page, $section);
+		return $this->processPageForm($page, 'Add', $section, $exhibit);
 	}
 	
 	protected function getLayout()
@@ -417,7 +415,7 @@ class ExhibitsController extends Omeka_Controller_Action
 		$this->session->layout = (string) $layout;
 	}
 		
-	protected function processPageForm($page, $section=null) 
+	protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
 	{
 		//'cancel_and_section_form' and 'cancel_and_exhibit_form' as POST elements will cancel adding a page
 		//And they will redirect to whatever form is important
@@ -432,11 +430,11 @@ class ExhibitsController extends Omeka_Controller_Action
 		//Register the page var so that theme functions can use it
 		Zend_Registry::set('page', $page);
 
-		$this->view->assign(compact('section','page'));
-		
-		if(!empty($_POST)) {
+		$this->view->assign(compact('exhibit', 'section','page', 'actionName'));
+				
+		if (!empty($_POST)) {
 
-			if(array_key_exists('choose_layout', $_POST)) {
+			if (array_key_exists('choose_layout', $_POST)) {
 			
 				//A layout has been chosen for the page
 				$this->setLayout($_POST['layout']);
@@ -445,7 +443,7 @@ class ExhibitsController extends Omeka_Controller_Action
 				
 				return $this->render('page-form');
 			
-			}elseif(array_key_exists('change_layout', $_POST)) {
+			} elseif (array_key_exists('change_layout', $_POST)) {
 				
 				//User wishes to change the current layout
 				
@@ -525,15 +523,16 @@ class ExhibitsController extends Omeka_Controller_Action
 		
 		$exhibit = $section->Exhibit;
 		
-		return $this->processSectionForm($section, $exhibit);
+		return $this->processSectionForm($section, 'Edit', $exhibit);
 	}
 	
 	public function editPageAction()
 	{
 		$page = $this->findById(null,'ExhibitPage');
 		$section = $page->Section;
+		$exhibit = $section->Exhibit;
 		
-		return $this->processPageForm($page, $section);
+		return $this->processPageForm($page, 'Edit', $section, $exhibit);
 	}
 	
 	public function deleteSectionAction()

@@ -1,4 +1,4 @@
-<?php head(array('title'=>'Exhibit Page', 'body_class'=>'exhibits')); ?>
+<?php head(array('title'=> htmlentities($actionName) . ' Page', 'body_class'=>'exhibits')); ?>
 
 <?php 
 echo js('search'); 
@@ -58,7 +58,12 @@ echo js('tiny_mce/tiny_mce');
 <?php echo flash(); ?>
 
 <div id="page-builder">
-	<h1>Add Exhibit</h1>
+	
+	<div id="exhibits-breadcrumb">
+		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
+	</div>
+	
+	<h1><?php echo htmlentities($actionName); ?> Page</h1>
 
 	<div id="item-select"></div>
 

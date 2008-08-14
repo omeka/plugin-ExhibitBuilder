@@ -1,4 +1,4 @@
-<?php head(array('title'=>'Exhibit Section', 'body_class'=>'exhibits')); ?>
+<?php head(array('title'=> htmlentities($actionName) . ' Exhibit Section', 'body_class'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 <script type="text/javascript" charset="utf-8">
 	var listSorter = {};
@@ -25,7 +25,12 @@
 </script>
 <?php common('exhibits-nav'); ?>
 <div id="primary">
-	<h1>Add Exhibit</h1>
+	
+	<div id="exhibits-breadcrumb">
+		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <?php echo $actionName . ' Section'; ?>
+	</div>
+	
+	<h1><?php echo htmlentities($actionName); ?> Section</h1>
 
 <?php 
 	echo flash();
@@ -64,7 +69,7 @@
 	</fieldset>
 
 	<fieldset>
-		<p><button type="submit" name="exhibit_form">Save and Return to Exhibit</button> or <button type="submit" name="cancel_section" id="cancel_section" class="cancel">Cancel</button></p>
+		<p><button type="submit" name="exhibit_form">Save</button> or <button type="submit" name="cancel_section" id="cancel_section" class="cancel">Cancel</button></p>
 	</fieldset>
 </form>
 
