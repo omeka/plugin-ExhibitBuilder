@@ -76,7 +76,7 @@ function exhibit_builder_install() {
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;")
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 }
 
