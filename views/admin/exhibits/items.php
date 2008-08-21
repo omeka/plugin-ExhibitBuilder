@@ -1,6 +1,13 @@
 <div id="page-search-form">
-<?php items_search_form(array('id'=>'search'), url_for(array('controller'=>'exhibits',
-      'action'=>'items', 'page'=>null))); ?>
+<?php
+	// ******   WE NEED AN ITEM SEARCH FORM THAT WORKS  ********
+ 	$uri = url_for(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
+	$isPartial = true;
+	$formAttributes = array('id'=>'search');
+	common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
+
+	//items_search_form(array('id'=>'search'), $uri); 
+?>
 </div>
 
 <script type="text/javascript" charset="utf-8">

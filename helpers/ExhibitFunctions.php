@@ -70,16 +70,16 @@ function exhibit_uri($exhibit, $section=null, $page=null)
 	$page_num = ($page instanceof ExhibitPage) ? $page->order : $page;
 	
 	//If there is no section slug available, we want to build a URL for the summary page 
-	if(!$section_slug) {
+
+  
+	set_base_url_for_theme('public');  //If we are in the admin theme, we have to hack a solution that sends you to the public theme	
+	if(empty($section_slug)) {
 	    $uri = url_for(array('slug'=>$exhibit_slug), 'exhibitSimple');
-	}else {
+	} else {
 	    $uri = url_for(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
 	}
-
-    //If we are in the admin theme, we have to hack a solution that sends you to the public theme
-    //Keep in mind, WEB_DIR can be /admin, but WEB_ROOT is always the public site
-    $uri = str_replace(WEB_DIR, WEB_ROOT, $uri);
-
+	set_base_url_for_theme(); // Restore the base theme
+		
 	return $uri;
 }
 
