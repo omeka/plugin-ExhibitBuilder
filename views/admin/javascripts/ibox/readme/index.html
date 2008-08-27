@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>iBox v2</title>
+    <script type="text/javascript" src="../ibox.js"></script>
+    <script type="text/javascript">iBox.setPath('../');</script>
+    <link rel="stylesheet" href="../skins/darkbox/darkbox.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="global.css" type="text/css" media="screen"/>
+</head>
+
+<body>
+<div id="top">
+    <div id="header">
+        <div id="login-form" style="text-align: right;">
+        	<a href="http://labs.ibegin.com/forum/">Forum</a> | <a href="http://labs.ibegin.com/">Labs Home</a>
+        </div>
+        <h1>iBox <span>v2</span></h1>
+        <h4>Brought to you by <a href="http://labs.ibegin.com/">iBegin Labs</a></h4>
+    </div>
+    <div class="message">
+        <p>iBox is a lightweight script that lets you overlay images and documents in a small dialog without a page reload. It's built to be easy to install and use.</p>
+    </div>
+    
+    <div id="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#basics">Quick Start</a></li>
+            <li><a href="#uses">Uses</a>
+                <ol>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#documents">Documents</a></li>
+                    <li><a href="#inline-containers">Inline Containers</a></li>
+                </ol>
+            </li>
+            <li><a href="#extensions">Extensions</a>
+                <ol>
+                    <li><a href="#inline-containers">YouTube Videos Plug-in</a></li>
+                </ol>
+            </li>
+            <li><a href="#skinning">Skinning</a></li>
+            <li><a href="#non-js">Support for JavaScript-disabled Browsers</a></li>
+            <li><a href="#compression">Compression</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#license">License</a></li>
+        </ol>
+    </div>
+    
+    <div class="hastoc">
+    <h2 id="basics">Quick Start</h2>
+    <p>Using iBox is very simple. You need to include two lines at the top of your page:</p>
+    <p>Note: If you are using the Wordpress plug-in it automatically includes the following lines in your header.</p>
+    <pre>&lt;script type="text/javascript" src="<strong>ibox/</strong>ibox.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;iBox.setPath('<strong>ibox/</strong>');&lt;/script&gt;</pre>
+    <p>Make sure the paths for these are correct before continuing.</p>
+    <p>Now that you have the files needed, you simply can tag <code>rel="ibox"</code> on to an <code>&lt;a&gt;</code> tag that you want iBox to take over. See below for several examples.</p>
+    <h3>Global Options</h3>
+    <p>iBox includes several configuration options you may want to change to suit your needs. The recommended way of changing these is to create a new javascript file, or include the javascript code in your header, after the lines to initialize iBox. See the example:</p>
+     <pre>&lt;script type="text/javascript" src="ibox/ibox.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+iBox.setPath('ibox/');
+iBox.padding = 50;
+iBox.inherit_frames = false;
+&lt;/script&gt;</pre>
+    <h4>Available Options</h4>
+    <ul class="doc">
+        <li id="option-close-label">
+            <h5>close_label</h5>
+            <dl>
+                <dt>Default</dt>
+                <dd><code>'Close'</code></dd>
+            </dl>
+        </li>
+        <li id="option-padding">
+            <h5>padding</h5>
+            The minimum margin surrounding iBox and the page for automatic resizing.
+            <dl>
+                <dt>Default</dt>
+                <dd><code>100</code></dd>
+            </dl>
+        </li>
+        <li id="option-inherit-frames">
+            <h5>inherit_frames <small>(New in 2.17)</small></h5>
+            If this is set to true, iBox will always try to use the main window when in an iframe (if it exists) to call itself from.<br/>
+            Warning: Do not turn this on if your page is using frames!
+            <dl>
+                <dt>Default</dt>
+                <dd><code>false</code></dd>
+            </dl>
+        </li>
+        <li id="option-tags-to-hide">
+            <h5>tags_to_hide</h5>
+            An array of tag types to hide when iBox is visible.
+            <dl>
+                <dt>Default</dt>
+                <dd><code>['select', 'embed', 'object']</code></dd>
+            </dl>
+        </li>
+        <li id="option-default-width">
+            <h5>default_width</h5>
+            The default width of iBox containers when none is specified.
+            <dl>
+                <dt>Default</dt>
+                <dd><code>450</code></dd>
+            </dl>
+        </li>
+        <li id="option-fade-in-speed">
+            <h5>fade_in_speed</h5>
+            The amount of time in milliseconds for each fade step.
+            <dl>
+                <dt>Default</dt>
+                <dd><code>0</code></dd>
+            </dl>
+        </li>
+    </ul>
+    <h3>Per-iBox Options</h3>
+    <p>There are several arguments available on your iBox controls. These are specified in the <code>rel="ibox"</code> line. Any of the argument values may be wrapped in quotations (single or double, depending your use of the rel tag) to stop the &amp; (&amp;) from evaluating.</p>
+    <ul class="doc">
+        <li>
+            <h5>width</h5>
+            Sets the width of the popup.
+            <dl>
+                <dt>Example</dt>
+                <dd><code>rel="ibox&amp;width=350"</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>height</h5>
+            Sets the height of the popup.
+            <dl>
+                <dt>Example</dt>
+                <dd><code>rel="ibox&amp;height=350"</code></dd>
+            </dl>
+        </li>
+        <li id="option-target">
+            <h5>target</h5>
+            The target document to load (if different than the document in the <code>href</code> attribute).
+            <dl>
+                <dt>Example</dt>
+                <dd><code>rel="ibox&amp;target=my-js-document.html"</code></dd>
+                <dd><code>rel="ibox&amp;target='index.php?page=&amp;my-js-document'"</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>ignore_target</h5>
+            If you don't specify the target option, and you have the target attribute (<code>target="_blank"</code>), you can specify this option to tell iBox to ignore the target attribute.
+            <dl>
+                <dt>Example</dt>
+                <dd><code>rel="ibox&amp;ignore_target=true"</code></dd>
+            </dl>
+        </li>
+    </ul>
+    <p>iBox also supports some arguments via standard anchor attributes.</p>
+    <ul class="doc">
+        <li>
+            <h5>title</h5>
+            The title to show in the popup window.
+            <dl>
+                <dt>Example</dt>
+                <dd><code>title="Popup Title"</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>target (DEPRECATED)</h5>
+            The title to show in the popup window. This is deprecated, use the <a href="#option-target">target option</a> instead.
+            <dl>
+                <dt>Example</dt>
+                <dd><code>target="my-js-document.html"</code></dd>
+            </dl>
+        </li>
+    </ul>
+    </div>
+    
+	<h2 id="uses"><span><a href="#top">Top</a></span>Uses</h2>
+    <p>iBox by default supports several document types, but is extensible via plug-ins that will allow you to match content based on the URL. Below are the default plug-ins.</p>
+    <ul>
+        <li><a href="#images">Images</a></li>
+        <li><a href="#documents">Documents</a></li>
+        <li><a href="#inline-containers">Inline Containers</a></li>
+        <li><a href="#youtube">YouTube Videos</a> <small><strong>(New)</strong></small></li>
+        <li><a href="#force">Force iBox to Load</a></li>
+    </ul>
+    <p>iBox also lets you manually open boxes. This can be done with <code>iBox.showURL('my_url');</code> or <code>iBox.show('html');</code> as well as <code>iBox.show(htmlNode);</code>.</p>
+    
+
+    <h2 id="images"><span><a href="#top">Top</a></span>Images</h2>
+    <p>iBox easily supports the standard overlay of images, in many sizes, and will automatically scale down the window if the browser's viewpane is too small.</p>
+    <h3>Example</h3>
+    <a href="images/large/image_1b.jpg" rel="ibox" class="thumb" title="Good Barbeque at 1024x450!"><img src="images/small/image_1.jpg" alt=""/></a>
+    <a href="images/large/image_2.jpg" rel="ibox" class="thumb" title="500x426!" ><img src="images/small/image_2.jpg" alt=""/></a>        
+    <a href="images/large/image_3.jpg" rel="ibox" class="thumb" title="Auto Detect Image Size" ><img src="images/small/image_3.jpg" alt=""/></a>
+
+    <h3>Source</h3>
+    <pre>&lt;ul&gt;
+&lt;li&gt;&lt;a href="images/large/image_1b.jpg"  rel="ibox" title="Good Barbeque at 1024x450!"&gt;&lt;img src="images/small/image_1.jpg" alt=""/&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="images/large/image_2.jpg" rel="ibox" title="500x426!" &gt;&lt;img src="images/small/image_2.jpg" alt=""/&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="images/large/image_3.jpg" rel="ibox" title="Auto Detect Image Size" &gt;&lt;img src="images/small/image_3.jpg" alt=""/&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    
+    <h2 id="documents"><span><a href="#top">Top</a></span>Documents</h2>
+    <p>iBox supports overlaying documents as well as the standard images. This is achieved in the same fashion as an image, but instead of showing the image, it shows the document you are linking to.</p>
+    <h3>Example</h3>
+    <p><a href="ibox-ajax-test.html" rel="ibox" title="Loading External HTML File using AJAX" >ibox-ajax-test.html</a></p>
+    <h3>Source</h3>
+    <pre>&lt;a href="ibox-ajax-test.html" rel="ibox" title="Loading External HTML File using AJAX" &gt;ibox-ajax-test.html&lt;/a&gt;</pre>
+    
+    <h2 id="inline-containers"><span><a href="#top">Top</a></span>Inline Containers</h2>
+    <p>Support is also given for embedded containers so you don't need to perform a page request for a document.</p>
+    <h3>Example</h3>
+    <div id="inner_content" style="display:none;">
+        <div style="background:#000000;color:#ffffff;border:1px dashed #FFFFFF; padding: 0 10px;">
+        	<h3>It is a hidden div!</h3>
+        	<p>If you were to view source, you would find a div called 'inner_content'. This is that div. We have used CSS to set its display property to none, but using <a href="/blog/p_ibox.html">iBox</a>, you can clearly see it as an overlay. Hurrah!</p>
+        	<p>It is even styled. Oh so pretty it is</p>
+        </div>
+    </div>
+    <p>
+        <a href="#inner_content" rel="ibox" title="Loading Internal HTML Content" >#inner_content</a>
+    </p>
+    <h3>Source</h3>
+    <pre>&lt;div id="inner_content" style="display:none;"&gt;
+    &lt;div style="background:#000000;color:#ffffff;border:1px dashed #FFFFFF;padding:15px;margin:15px;"&gt;	
+    	&lt;h3&gt;It is a hidden div!&lt;/h3&gt;
+    	&lt;p&gt;If you were to view source, you would find a div called 'inner_content'. This is that div. We have used CSS to set its display property to none, but using &lt;a href="/blog/p_ibox.html"&gt;iBox&lt;/a&gt;, you can clearly see it as an overlay. Hurrah!&lt;/p&gt;
+    	&lt;p&gt;It is even styled. Oh so pretty it is&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p&gt;
+    &lt;a href="#inner_content" rel="ibox" title="Loading Internal HTML Content" &gt;#inner_content&lt;/a&gt;
+    &lt;/p&gt;</pre>
+    
+    <h2 id="extensions"><span><a href="#top">Top</a></span>Extensions</h2>
+    <p>iBox is built on it's plug-in handling. All document types that it handles by default are actually built as plug-ins. The default plug-in if nothing matches is the <a href="#documents">Document handler</a>.</p>
+    <h3>Creating Plugins</h3>
+    <p>Creating your own plug-ins is simple, and requires very little JavaScript knowledge. The first thing you'll want to do is create a file to hold your plug-ins. This file must be loaded after ibox.js is loaded. After you've got a workspace available, let's go ahead and create the plug-in.</p>
+    <p>You will need to decide on a name, that doesn't conflict with any existing plug-in names. Default Plugin's are stored in a special namespace so you won't have to worry about that.</p>
+    <pre>var iBoxPlugin_YouTube = function() {}</pre>
+    <p>Now, you need to write your plug-in's match function, which is where we check the URL against something else in order to verify if this plug-in should be used. This function is called <code>match</code> and one argument, the <code>url</code>.</p>
+    <pre>var _private = {
+youtube_url: /(?:http:\/\/)?(?:www\d*\.)?youtube\.com\/(?:v\/|(?:watch(?:\.php)?)?\?(?:.+&amp;)?v=)([^&amp;]+).*/
+}
+var _public = {
+match: function(url)
+{
+  return url.match(_private.youtube_url);
+},
+}</pre>
+    <p>Once our matching works, we need to add the rendering code. This functions is called <code>render</code> and has two arguments: <code>url</code>, and <code>params</code>.</p>
+    <pre>render: function(url, params)
+{
+  id = url.match(_private.youtube_url)[1];
+  params.width = 425;
+  var html = '&lt;object width="425" height="355"&gt;&lt;param name="movie" value="http://www.youtube.com/v/' + id + '"&gt;&lt;/param&gt;&lt;param name="wmode" value="transparent"&gt;&lt;/param&gt;&lt;embed src="http://www.youtube.com/v/' + id + '" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"&gt;&lt;/embed&gt;&lt;/object>';
+  iBox.html(html, params);
+}</pre>
+    <p>Now that you've got your rendering and matching, all that's left is to register, via <code>iBox.plugins.register(function)</code>. Below is the full example including the registration code.</p>
+    <pre>var iBoxPlugin_YouTube = function()
+{
+  var _private = {
+    youtube_url: /(?:http:\/\/)?(?:www\d*\.)?youtube\.com\/(?:v\/|(?:watch(?:\.php)?)?\?(?:.+&amp;)?v=)([^&amp;]+).*/
+  }
+  var _public = {
+    match: function(url)
+    {
+      return url.match(_private.youtube_url);
+    },
+
+    render: function(url, params)
+    {
+      id = url.match(_private.youtube_url)[1];
+      params.width = 425;
+      var html = '&lt;object width="425" height="355"&gt;&lt;param name="movie" value="http://www.youtube.com/v/' + id + '"&gt;&lt;/param&gt;&lt;param name="wmode" value="transparent"&gt;&lt;/param&gt;&lt;embed src="http://www.youtube.com/v/' + id + '" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"&gt;&lt;/embed&gt;&lt;/object&gt;';
+      iBox.html(html, params);
+    }
+  }
+  return _public;
+}();
+iBox.plugins.register(iBoxPlugin_YouTube);</pre>
+    
+    <h4>New in iBox 2.11</h4>
+    
+    <p>There is now an <code>unload</code> function available on plug-ins. This is called when the plug-in is unloaded.</p>
+    
+    <h3>Plugin Parameters</h3>
+    
+    <p>One of the common variables you'll see passed around is our <code>params</code> object. This contains all of the currently active options and parameters. These are set initially, but may be overwritten inside of your plug-in. Below are some common parameters.</p>
+    
+    <ul class="doc">
+        <li>
+            <h5>title</h5>
+            <dl>
+                <dt>Default</dt>
+                <dd><code>''</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>can_resize</h5>
+            <dl>
+                <dt>Default</dt>
+                <dd><code>true</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>use_fade</h5>
+            This option can be completely disabled by having the <code><a href="#option-fade-in-speed">iBox.fade_in_speed</a></code> option set to 0.
+            <dl>
+                <dt>Default</dt>
+                <dd><code>true</code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>width</h5>
+            <dl>
+                <dt>Default</dt>
+                <dd><code><a href="#option-default-width">iBox.default_width</a><code></dd>
+            </dl>
+        </li>
+        <li>
+            <h5>height</h5>
+            <dl>
+                <dt>Default</dt>
+                <dd><code>null</code></dd>
+            </dl>
+        </li>
+    </ul>
+    
+    <h3>Events <small>(New in 2.17)</small></h3>
+
+    <p>iBox allows you to bind to certain events, just as you would to normal events in your document, using the <code>iBox.addEvent(event_name, object, callback)</code> method. This method can also be used to bind to general events in your document. iBox currently consists of a few events on the object itself:</p>
+
+    <ul class="doc">
+        <li>
+            <h5>show</h5>
+            Fired when the iBox becomes visible.
+        </li>
+        <li>
+            <h5>hide</h5>
+            Fired when the iBox is closed.
+        </li>
+    </ul>
+    
+    <h2 id="youtube"><span><a href="#top">Top</a></span>YouTube Videos</h2>
+    <p>Similar to the code in the example above, we have added support for YouTube links as a default plug-in.</p>
+    <h3>Example</h3>
+    <p><a href="http://www.youtube.com/watch?v=Sr2JneittqQ" rel="ibox">My YouTube Video</a></p>
+    <h3>Source</h3>
+    <pre>&lt;a href="http://www.youtube.com/watch?v=Sr2JneittqQ" rel="ibox" &gt;My YouTube Video&lt;/a&gt;</pre>
+
+    <h2 id="skinning"><span><a href="#top">Top</a></span>Skinning iBox</h2>
+    <p>Customizing the display for iBox has become extremely easy. To show you how easy it is, we've included a lightbox skin. To use it you simply need to include <code>ibox.js</code>, and then include <code>lightbox.css</code>. You will notice that the skin you see in the readme is not the default. This is another example, called darkbox, created specifically for this readme file.</p>
+    <p>Note, that on a live site, we'd recommend you merge all of your CSS into one file for performance reasons.</p>
+    <h3>Example</h3>
+    <pre>&lt;link rel="stylesheet" href="ibox/skins/lightbox/lightbox.css" type="text/css" media="screen"/&gt;</pre>
+    <h3>Source</h3>
+    <pre>#ibox_wrapper {
+    padding: 10px 10px 35px 10px;
+    line-height: 25px;
+    border-color:#fff;
+}
+#ibox_wrapper, #ibox_footer_wrapper a { background-color:#fff; }
+#ibox_content { background-color:#fff; border:0; }
+#ibox_footer_wrapper {
+    padding: 0 3px;
+    bottom: 5px;
+    top: auto;
+}
+#ibox_footer_wrapper a {
+    text-indent: -10000px;
+    background: url('images/closelabel.gif');
+    width: 66px;
+    height: 22px;
+}
+#ibox_progress {
+    background: #fff url('images/loading.gif') center center no-repeat;
+}</pre>
+
+	<h2 id="force"><span><a href="#top">Top</a></span>Force iBox to Load</h2>
+	<p>iBox also lets you manually open boxes. This can be done with <code>iBox.showURL('my_url');</code> or <code>iBox.show('html');</code> as well as <code>iBox.show(htmlNode);</code>.</p>
+
+    <h2 id="non-js"><span><a href="#top">Top</a></span>Support for JavaScript-disabled Browsers</h2>
+    <p>We have not forgotten about users who disable JavaScript. iBox supports a <code>target</code> option in it's links which specify's the target document or image you wish to load, and doesn't have to be the same as the <code>href</code> attribute.</p>
+    <h3>Example</h3>
+    <p><a href="login.html" rel="ibox&amp;width=275&amp;target='ibox-login.html?hello&amp;hi'" title="Login">Login Form</a></p>
+    <h3>Source</h3>
+    <pre>&lt;a href="login.html" rel="ibox&amp;width=275&amp;target=ibox-login.html" title="Login" &gt;Login Form&lt;/a&gt;</pre>
+
+    <h2 id="compression"><span><a href="#top">Top</a></span>Compression</h2>
+    <p>We highly recommend using <a href="http://www.google.com/search?q=compress+javascript">a javascript compressor</a> to truly get lighweight performance.</p>
+    <p>As there are many variables for you to edit, we have opted not to include any compression. Once compressed, the iBox script weighs in at roughly 7 kb. Compare this to similar libraries which also force you to download a framework such a prototype or mootools, where as we do not.</p>
+
+    <h2 id="links"><span><a href="#top">Top</a></span>Resources</h2>
+    <ul>
+        <li><a href="http://labs.ibegin.com/ibox/">iBox Homepage</a></li>
+        <li><a href="http://labs.ibegin.com/forum/?CategoryID=4">iBox Support Forum</a></li>
+        <li><a href="http://labs.ibegin.com/">iBegin Labs</a></li>
+    </ul>
+
+    <h2 id="license"><span><a href="#top">Top</a></span>License</h2>
+    <p>Copyright (c) 2008 iBegin</p>
+
+    <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:</p>
+
+    <p>The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.</p>
+
+    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.</p>
+</div>
+
+</body>
+</html>
