@@ -31,7 +31,6 @@ echo js('tiny_mce/tiny_mce');
         // These have nothing to do with the exhibit builder per se, they are just
         // related to the search bar and styling of admin theme in general.
     	Event.observe(document, 'omeka:loaditems', Omeka.Search.toggleSearch);
-    	Event.observe(document, 'omeka:loaditems', roundCorners);
     	Event.observe(document, 'omeka:loaditems', Omeka.Search.activateSearchButtons);
 
     	Event.observe(document, 'omeka:loaditems', function(){
@@ -53,8 +52,7 @@ echo js('tiny_mce/tiny_mce');
  		theme_advanced_buttons3 : "",
  		theme_advanced_toolbar_align : "left"
         });
-    });
-    
+    });  
 
 </script>
 <?php echo js('exhibits'); ?>
@@ -73,7 +71,12 @@ echo js('tiny_mce/tiny_mce');
 	<div id="item-select" style="display:none;"></div>
 
 <form name="layout" id="page-form" method="post">
-
+    
+    <?php 
+		exhibit_layout($page->layout);
+	?>
+	
+<button id="change_layout" name="change_layout" type="submit">Change the Current Layout</button>
 	
 	<div id="layout-submits">
 
@@ -85,9 +88,8 @@ echo js('tiny_mce/tiny_mce');
 	</div>
 
 	</div>
-
+	
 		<p id="page-submits">
-			<button id="change_layout" name="change_layout" type="submit">Change the Current Layout</button> or 
 			<button id="section_form" name="section_form" type="submit">Save and Return to Section</button> or <button id="page_form" name="page_form" type="submit">Save and Add Another Page</button> or <button name="cancel_and_section_form" class="cancel">Cancel</button></p>
 		
 	</form>
