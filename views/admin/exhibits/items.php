@@ -16,7 +16,7 @@
 
 <div id="pagination">
 <?php     
-	 echo pagination(array('url'=>url_for(array('controller'=>'exhibits',
+	 echo pagination_links(array('url'=>url_for(array('controller'=>'exhibits',
       'action'=>'items', 'page'=>null)) . '/')); 
      // The extra slash is a hack, the pagination should be fixed to work
      // without the extra slash being there. Also, I get the feeling that being
