@@ -397,6 +397,25 @@ function display_exhibit_thumbnail_gallery($start, $end, $props=array())
     return $output;
 }
 
+function display_random_featured_exhibit()
+{
+    $html = '<div id="featured-exhibit">';
+	$featuredExhibit = random_featured_exhibit();
+	$html .= '<h2>Featured Exhibit</h2>';
+	if ($featuredExhibit) {
+	   $html .= '<h3>' . link_to_exhibit($featuredExhibit) . '</h3>';
+	} else {
+	   $html .= '<p>You have no featured exhibits.</p>';
+	}
+	$html .= '</div>';
+    return $html;
+}
+
+function random_featured_exhibit()
+{
+    trigger_error('random_featured_exhibit() will not work until the new Exhibit builder is finished!'); 
+    //return get_db()->getTable('Exhibit')->findRandomFeatured();
+}
 ///// END EXHIBIT FUNCTIONS /////
  
 ?>
