@@ -4,7 +4,7 @@ require_once 'Exhibit.php';
  * @package Omeka
  **/
 require_once 'Omeka/Controller/Action.php';
-class ExhibitsController extends Omeka_Controller_Action
+class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 {
 	protected $session;
 	
@@ -15,6 +15,8 @@ class ExhibitsController extends Omeka_Controller_Action
 		require_once 'Zend/Session.php';
 		$this->session = new Zend_Session_Namespace('Exhibit');
 	}
+	
+	public function indexAction() {}
 	
 	public function tagsAction()
 	{
