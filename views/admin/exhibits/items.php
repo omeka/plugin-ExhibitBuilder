@@ -1,7 +1,7 @@
 <div id="page-search-form">
 <?php
 	// ******   WE NEED AN ITEM SEARCH FORM THAT WORKS  ********
- 	$uri = url_for(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
+ 	$uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
 	$isPartial = true;
 	$formAttributes = array('id'=>'search');
 	common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
@@ -16,7 +16,7 @@
 
 <div id="pagination">
 <?php     
-	 echo pagination_links(array('url'=>url_for(array('controller'=>'exhibits',
+	 echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
       'action'=>'items', 'page'=>null)) . '/')); 
      // The extra slash is a hack, the pagination should be fixed to work
      // without the extra slash being there. Also, I get the feeling that being

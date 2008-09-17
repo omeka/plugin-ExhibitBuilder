@@ -86,7 +86,7 @@ function exhibit_admin_nav($navArray)
 {
     if (has_permission('Exhibits', 'browse')) {
         
-        $exhibitNav = array('Exhibits'=> url_for('exhibits'));
+        $exhibitNav = array('Exhibits'=> uri('exhibits'));
         
         // Put the navigation at the beginning.
         // $navArray = $exhibitNav + $navArray;

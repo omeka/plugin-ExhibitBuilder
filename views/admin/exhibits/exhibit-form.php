@@ -170,8 +170,8 @@
 
     var urls = {
         sectionForm: "<?php echo uri('exhibits/section-form'); ?>",
-        addSection: "<?php echo url_for(array('controller'=>'exhibits','action'=>'add-section'), 'default'); ?>",
-        sectionList: "<?php echo url_for(array('controller'=>'exhibits','action'=>'section-list'), 'default'); ?>",
+        addSection: "<?php echo uri(array('controller'=>'exhibits','action'=>'add-section'), 'default'); ?>",
+        sectionList: "<?php echo uri(array('controller'=>'exhibits','action'=>'section-list'), 'default'); ?>",
         edit: "<?php echo uri('exhibits/edit'); ?>"
     };
         
@@ -190,8 +190,8 @@
 		listSorter.list = list;
 		listSorter.recordId = exhibit_id;
     	listSorter.form = $('exhibit-form');
-    	listSorter.editUri = "<?php echo url_for(array('controller'=>'exhibits','action'=>'edit'),'default'); ?>/" + exhibit_id;
-    	listSorter.partialUri = "<?php echo url_for(array('controller'=>'exhibits', 'action'=>'section-list')); ?>?id="+exhibit_id;
+    	listSorter.editUri = "<?php echo uri(array('controller'=>'exhibits','action'=>'edit'),'default'); ?>/" + exhibit_id;
+    	listSorter.partialUri = "<?php echo uri(array('controller'=>'exhibits', 'action'=>'section-list')); ?>?id="+exhibit_id;
     	listSorter.tag = 'li';
     	listSorter.handle = 'handle';
     	listSorter.confirmation = 'Are you sure you want to delete this section?';

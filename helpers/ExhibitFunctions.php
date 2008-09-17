@@ -74,9 +74,9 @@ function exhibit_uri($exhibit, $section=null, $page=null)
   
 	set_base_url_for_theme('public');  //If we are in the admin theme, we have to hack a solution that sends you to the public theme	
 	if(empty($section_slug)) {
-	    $uri = url_for(array('slug'=>$exhibit_slug), 'exhibitSimple');
+	    $uri = uri(array('slug'=>$exhibit_slug), 'exhibitSimple');
 	} else {
-	    $uri = url_for(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
+	    $uri = uri(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
 	}
 	set_base_url_for_theme(); // Restore the base theme
 		
@@ -102,11 +102,11 @@ function exhibit_item_uri($item, $exhibit=null, $section=null)
 	
 	//If the exhibit has a theme associated with it
 	if(!empty($exhibit->theme)) {
-		return url_for(array('slug'=>$exhibit->slug,'section'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
+		return uri(array('slug'=>$exhibit->slug,'section'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
 	}
 	
 	else {
-		return url_for(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
+		return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
 	}
 	
 }
