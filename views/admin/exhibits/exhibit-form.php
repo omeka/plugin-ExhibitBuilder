@@ -213,15 +213,11 @@
 </script>
 <?php common('exhibits-nav'); ?>
 <div id="primary">
-
 	<div id="exhibits-breadcrumb">
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <?php echo $actionName . ' Exhibit'; ?>
 	</div>
 	
 	<h1><?php echo htmlentities($actionName); ?> Exhibit</h1>
-
-
-
 <form id="exhibit-form" method="post" class="exhibit-builder">
 
 	<fieldset>

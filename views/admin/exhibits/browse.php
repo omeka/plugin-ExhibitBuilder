@@ -7,8 +7,8 @@
     });
 </script>
 <?php common('exhibits-nav'); ?>
+<h1 class="floater">Exhibits</h1>
 <div id="primary">
-	<h1 class="floater">Exhibits</h1>
 	<a href="<?php echo uri('exhibits/add'); ?>" id="add-exhibit" class="add-exhibit">Add an Exhibit</a>
 	
 <?php if(!count($exhibits)): ?>	
