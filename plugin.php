@@ -17,6 +17,13 @@ define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)))
 
 add_plugin_hook('install', 'exhibit_builder_install');
 
+add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
+
+function exhibit_builder_public_main_nav($navArray) {
+    $navArray['Browse Exhibits'] = uri('exhibits');
+    return $navArray;
+}
+
 /**
  * @todo Deprecate these defined constants in favor of a more programmatic way
  * of accessing exhibit themes?
