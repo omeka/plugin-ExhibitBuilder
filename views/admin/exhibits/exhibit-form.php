@@ -5,8 +5,6 @@
 <script type="text/javascript" charset="utf-8">	
 //<![CDATA[
 
-    
-    
     Omeka = Omeka || new Object;
     Omeka.ExhibitBuilder.ExhibitForm = new Class.create({
         /**
@@ -90,13 +88,15 @@
 				
     				//Update the section slug in case that is a cause of the error
     				$('section-slug').value = section['slug'];
-    			},
+    			}
     		});            
         },
 
     	removeAddSectionForm: function() {		
     		$('new-section').update();
     		this.addSectionButton.show();
+    		
+    		return false; 
     	},
     	
     	//This is a bit of a hack.  The exhibit ID is a hidden value on the form
@@ -254,7 +254,7 @@
 			<ol id="section-list">
 				<?php common('section-list', compact('exhibit'), 'exhibits'); ?>
 			</ol>
-			<div id="new-section-link"><a href="#" name="add_new_section" id="add_new_section">Add a Section</a></div>
+			<div id="new-section-link"><a href="#" name="add_new_section" id="add_new_section">Add a Section</a></div> 
 			<div id="new-section"></div>
 			<input type="hidden" name="exhibit_id" id="exhibit_id" value="<?php echo h($exhibit->id); ?>" />
 		</div>
