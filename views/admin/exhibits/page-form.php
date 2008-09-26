@@ -56,7 +56,9 @@ echo js('tiny_mce/tiny_mce');
 
 </script>
 <?php echo js('exhibits'); ?>
-<?php common('exhibits-nav'); ?>
+
+<h1><?php echo htmlentities($actionName); ?> Page</h1>
+
 <div id="primary">
 <?php echo flash(); ?>
 
@@ -65,8 +67,6 @@ echo js('tiny_mce/tiny_mce');
 	<div id="exhibits-breadcrumb">
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
-	
-	<h1><?php echo htmlentities($actionName); ?> Page</h1>
 
 	<div id="item-select" style="display:none;"></div>
 

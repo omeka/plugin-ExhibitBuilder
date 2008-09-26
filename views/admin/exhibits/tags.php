@@ -1,6 +1,8 @@
 <?php head(); ?>
+
+<h1>Exhibit Tags</h1>
+
 <div id="primary">
-<h2>Exhibit Tags</h2>
 <?php if ( total_results() ): ?>
 	<?php
 	echo tag_cloud($tags, uri('exhibits/browse/'));

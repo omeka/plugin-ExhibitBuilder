@@ -23,14 +23,13 @@
 		};
 	});
 </script>
-<?php common('exhibits-nav'); ?>
+
+<h1><?php echo htmlentities($actionName); ?> Section</h1>
+
 <div id="primary">
-	
 	<div id="exhibits-breadcrumb">
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <?php echo $actionName . ' Section'; ?>
 	</div>
-	
-	<h1><?php echo htmlentities($actionName); ?> Section</h1>
 
 <?php 
 	echo flash();

@@ -6,17 +6,17 @@
         });
     });
 </script>
-<?php common('exhibits-nav'); ?>
-<h1 class="floater">Exhibits</h1>
+
+<h1>Exhibits</h1>
 <div id="primary">
 	<a href="<?php echo uri('exhibits/add'); ?>" id="add-exhibit" class="add-exhibit">Add an Exhibit</a>
 	
 <?php if(!count($exhibits)): ?>	
 	<div id="no-exhibits">
-	<h1>There are no exhibits yet.
+	<p>There are no exhibits yet.
 	
 	<?php if(has_permission('Exhibits','add')): ?>
-		  Why don't you <a href="<?php echo uri('exhibits/add'); ?>">add some</a>?</h1>
+		  Why don't you <a href="<?php echo uri('exhibits/add'); ?>">add some</a>?</p>
 	<?php endif; ?>
 	</div>
 	

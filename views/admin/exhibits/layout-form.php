@@ -1,7 +1,6 @@
 <?php head(array('title'=>'Exhibit Page', 'body_class'=>'exhibits')); ?>
 <?php echo js('exhibits'); ?>
 <div id="primary">
-<?php common('exhibits-nav'); ?>
 
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
