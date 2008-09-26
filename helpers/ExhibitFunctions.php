@@ -69,16 +69,14 @@ function exhibit_uri($exhibit, $section=null, $page=null)
 	
 	$page_num = ($page instanceof ExhibitPage) ? $page->order : $page;
 	
-	//If there is no section slug available, we want to build a URL for the summary page 
-
-  
-	set_base_url_for_theme('public');  //If we are in the admin theme, we have to hack a solution that sends you to the public theme	
+	//If there is no section slug available, we want to build a URL for the summary page
+    set_theme_base_uri('public');
 	if(empty($section_slug)) {
 	    $uri = uri(array('slug'=>$exhibit_slug), 'exhibitSimple');
 	} else {
 	    $uri = uri(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_num), 'exhibitShow');
 	}
-	set_base_url_for_theme(); // Restore the base theme
+	set_theme_base_uri(); // Restore the base theme
 		
 	return $uri;
 }
