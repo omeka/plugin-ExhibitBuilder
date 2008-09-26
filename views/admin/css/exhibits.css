@@ -362,52 +362,6 @@ table#exhibits {
 	display:none;
 }
 
-.exhibit-builder fieldset {
-	clear:both; 
-	overflow:hidden;
-}
-
-.exhibit-builder .field {
-	overflow:hidden;
-	display:block;
-	clear:both;
-	background:transparent;
-	margin-bottom:1em;
-}
-
-.exhibit-builder .field label {
-	float:left; 
-	width: 200px; 
-	display:block; 
-	text-align:right;
-	margin:0; 
-	padding:0;
-}
-
-.exhibit-builder .field input.textinput, .exhibit-builder .field textarea {
-	width: 690px; 
-	float:right; 
-	display:block;
-	margin:0;
-}
-
-.exhibit-builder .field .radio, #exhibit-form .field .select {
-	float:right; 
-	width: 700px;
-	margin:0; 
-}
-
-.exhibit-builder .field .radio label {
-	width:auto; 
-	display:inline;
-	float:none; 
-	margin-right:1em;
-}
-
-.exhibit-builder .field .select select{
-	margin:0;
-}
-
 button.cancel {
 	background:#fff; 
 	border:none; 
