@@ -197,7 +197,7 @@ function exhibit_form_item($item, $orderOnForm=null, $label=null)
 	if($item and $item->exists()) {
 	    set_current_item($item);
 		$html .= '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
-		$html .=  item_has_thumbnail() ? thumbnail($item) : '<div class="title">' . item('Title', ', ') . '</div>';
+		$html .=  item_has_thumbnail() ? item_thumbnail() : '<div class="title">' . item('Title', ', ') . '</div>';
 		$html .= '</div>';		
 	}
 	

@@ -68,7 +68,7 @@ echo js('tiny_mce/tiny_mce');
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
 
-	<div id="item-select" style="display:none;"></div>
+	<div id="item-select"></div>
 
 <form name="layout" id="page-form" method="post">
     
