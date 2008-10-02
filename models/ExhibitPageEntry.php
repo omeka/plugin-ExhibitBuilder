@@ -15,7 +15,9 @@ class ExhibitPageEntry extends Omeka_Record
 
 	protected function getItem()
 	{
-		return $this->getTable('Item')->find($this->item_id);
+		if ($this->item_id) {
+		    return $this->getTable('Item')->find($this->item_id);
+	    }
 	}
 	
 	protected function _validate()
