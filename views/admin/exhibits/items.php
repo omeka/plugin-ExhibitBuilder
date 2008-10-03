@@ -10,10 +10,6 @@
 ?>
 </div>
 
-<script type="text/javascript" charset="utf-8">
-    Omeka.Search.toggleSearch();
-</script>
-
 <div id="pagination">
 <?php     
 	 echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',

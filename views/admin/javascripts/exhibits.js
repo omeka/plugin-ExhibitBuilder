@@ -26,7 +26,9 @@ Omeka.ExhibitBuilder = Class.create({
      */
      getItems: function(uri, parameters)
 	 {	
-	     var fireEvents = false;    
+	     var fireEvents = false;
+	     
+	     this.paginationUri = uri;    
 		new Ajax.Updater('item-select', uri, {
 			parameters: parameters,
 			evalScripts: true,
@@ -47,7 +49,17 @@ Omeka.ExhibitBuilder = Class.create({
     
     searchItems: function(searchForm)
     {
-        debugger;
+        // The advanced search form automatically puts 'items/browse' as the 
+        // action URI.  We need to hack that with Javascript to make this work.
+        // This will give it the URI exhibits/items or whatever is set in
+        // page-form.php.
+        searchForm.action = this.paginationUri;
+        searchForm.request({
+            onComplete: function(t) {
+                $('item-select').update(t.responseText);
+                document.fire("omeka:loaditems");
+            }
+        });
     },
     
     getItemId: function(element) {
@@ -222,7 +234,7 @@ Omeka.ExhibitBuilder = Class.create({
 		//Make each of the pagination links fire an additional ajax request
 		$$('#pagination a').invoke('observe', 'click', function(e){
 		    e.stop();
-		    this.getItems(this.href);
+		    this.getItems(e.element().href);
 		}.bind(this));
 		
 		//Make the correct elements on the pagination draggable

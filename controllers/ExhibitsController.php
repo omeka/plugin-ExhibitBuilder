@@ -74,25 +74,21 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	}
 	
 	/**
-	 * @todo Filter the input from the GET. Right now this takes place in the
-     * items controller browse action, but it should take place in another neutral location
-     * (like the table class maybe) so that other parts of the application can
-     * make use of it.
 	 * 
 	 * @return void
 	 **/
 	public function itemsAction()
 	{
-		$params = $this->_getAllParams();
-		$params['per_page'] = 10;
-		$items = $this->getTable('Item')->findBy($params);
-		
-		// Fake the pagination
-		$currentPage = (int) $this->_getParam('page');
-		$pagination = array('per_page'=>$params['per_page'], 'page'=>$currentPage, 'total_results'=> count($items));
+		$results = $this->_helper->searchItems();
+
+        // Build the pagination.
+		$pagination = array(
+		    'per_page'=>$results['per_page'], 
+		    'page'=>$results['page'], 
+		    'total_results'=> $results['total_results']);
 		Zend_Registry::set('pagination', $pagination);
 		
-		$this->view->items = $items;
+		$this->view->items = $results['items'];
 	}
 	
 	public function showAction()
