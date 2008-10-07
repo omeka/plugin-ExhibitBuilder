@@ -14,7 +14,7 @@ function exhibit_thumbnail($item, $props=array('class'=>'permalink'))
 	
 	$file = $item->Files[0];
 	
-	$output .= thumbnail($file);
+	$output .= item_thumbnail($file);
 	
 	$output .= '</a>';
 	
@@ -34,7 +34,7 @@ function exhibit_fullsize($item, $props=array('class'=>'permalink'))
 	
 	$file = $item->Files[0];
 	
-	$output .= fullsize($file, $props);
+	$output .= item_fullsize($file, $props);
 	
 	$output .= '</a>';
 	

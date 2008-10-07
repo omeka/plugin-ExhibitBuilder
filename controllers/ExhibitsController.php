@@ -61,7 +61,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			Zend_Registry::set('exhibit', $exhibit);
 
 			Zend_Registry::set('section', $section);
-
 			
 			//Plugin hooks
 			fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
