@@ -19,8 +19,8 @@ define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 add_plugin_directories();
 
 add_plugin_hook('install', 'exhibit_builder_install');
-add_plugin_hook('initialize', array('ExhibitBuilderBootstrap', 'setup'));
-add_plugin_hook('add_routes', array('ExhibitBuilderBootstrap', 'addRoutes'));
+add_plugin_hook('define_acl', array('ExhibitBuilderBootstrap', 'setupAcl'));
+add_plugin_hook('define_routes', array('ExhibitBuilderBootstrap', 'addRoutes'));
 add_plugin_hook('public_theme_header', 'exhibit_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_admin_header');
 
@@ -126,21 +126,12 @@ function exhibit_admin_header()
 class ExhibitBuilderBootstrap
 {
     /**
-     * @todo Separate these actions by priority when priorities are added to plugin hooks.
-     **/
-    public static function setup()
-    {
-        self::setupAcl();
-    }
-    
-    /**
      * Modify the ACL to include an 'Exhibits' resource.
      * 
      * @return void
      **/
-    public static function setupAcl()
+    public static function setupAcl($acl)
     {
-        $acl = Omeka_Context::getInstance()->getAcl();
         $acl->loadResourceList(array('Exhibits'=> array('add', 'edit',
         'delete', 'addPage', 'editPage', 'deletePage', 'addSection', 'editSection',
         'deleteSection', 'save', 'showNotPublic')));    
