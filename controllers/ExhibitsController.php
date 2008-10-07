@@ -49,12 +49,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			$this->_table->find($slug) :
 			$this->_table->findBySlug($slug);
 			
+		$exhibittable = $this->_table;
+		
 		$item = $this->findById($item_id, 'Item');	
 		
 		$section_name = $this->_getParam('section');
 		$section = $exhibit->getSection($section_name);
 
-		if( $item and $item->isInExhibit($exhibit) ) {
+		if( $item and $this->_table->exhibitHasItem($exhibit, $item) ) {
 			
 			Zend_Registry::set('item', $item);
 
