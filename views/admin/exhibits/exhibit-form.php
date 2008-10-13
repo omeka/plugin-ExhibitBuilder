@@ -244,8 +244,9 @@
 		<div class="radio"><?php echo radio(array('name'=>'public', 'id'=>'public'), array('0'=>'No','1'=>'Yes'), $exhibit->public); ?></div>
 	</div>
 		<div class="field">
-			<label for="theme">Exhibit Theme</label>
-			<div class="select"><?php echo select(array('name'=>'theme','id'=>'theme'),get_ex_themes(),$exhibit->theme); ?></div>
+			<label for="theme">Exhibit Theme</label>			
+		    <?php $values = array('' => 'Current Public Theme') + get_ex_themes(); ?>
+			<div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?></div>
 		</div>
 		</fieldset>
 	<fieldset>
