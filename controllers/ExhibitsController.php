@@ -242,7 +242,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 					return;
 				}elseif(array_key_exists('save_exhibit', $_POST)) {
 				
-					$this->redirect->goto('browse');
+					$this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
 				}else {
 				
 					//Everything else should render the page
