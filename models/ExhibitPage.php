@@ -10,6 +10,8 @@ class ExhibitPage extends Omeka_Record
 {
 	public $section_id;
 	public $layout;
+	public $slug;
+	public $title;
 	public $order;
 	
 	protected $_related = array('ExhibitPageEntry'=>'loadOrderedChildren', 'Section'=>'getSection');
@@ -22,8 +24,9 @@ class ExhibitPage extends Omeka_Record
 	/**
 	 * In order to validate:
 	 * 1) must have a layout
-	 * 2) must be properly ordered
-	 * 3) Must be associated with a section
+     * 2) Must have a title
+     * 3) must be properly ordered
+	 * 4) Must be associated with a section
 	 *
 	 * @return void
 	 **/
@@ -31,6 +34,10 @@ class ExhibitPage extends Omeka_Record
 	{
 		if(empty($this->layout)) {
 			$this->addError('layout', 'Layout must be provided for each exhibit page.');
+		}
+		
+		if(empty($this->title)) {
+			$this->addError('title', 'Pages of an exhibit must be given a title.');
 		}
 		
 		if(empty($this->order)) {

@@ -72,6 +72,8 @@ function exhibit_builder_install() {
     $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `section_id` int(10) unsigned NOT NULL,
+      `title` varchar(255) collate utf8_unicode_ci default NULL,
+      `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
