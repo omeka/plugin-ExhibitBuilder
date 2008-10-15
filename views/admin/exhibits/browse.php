@@ -8,7 +8,7 @@
 </script>
 
 <h1>Exhibits</h1>
-<p id="add-item" class="add-button"><a class="add" href="<?php echo uri('exhibits/add'); ?>">Add Exhibit</a></p>
+<p id="add-exhibit" class="add-button"><a class="add" href="<?php echo uri('exhibits/add'); ?>">Add Exhibit</a></p>
 <div id="primary">
 	
 <?php if(!count($exhibits)): ?>	
