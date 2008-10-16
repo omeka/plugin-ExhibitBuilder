@@ -43,7 +43,7 @@
 		?>
 		
 	<fieldset>
-		<legend>Section Meta</legend>
+		<legend>Section Metadata</legend>
 		
 		
 		
