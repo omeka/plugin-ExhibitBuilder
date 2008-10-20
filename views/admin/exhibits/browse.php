@@ -1,8 +1,12 @@
 <?php head(array('title'=>'Browse Exhibits', 'body_class'=>'exhibits')); ?>
 <script type="text/javascript" charset="utf-8">
     Event.observe(window, 'load', function(){
-        $$('.delete-exhibit').invoke('observe', 'click', function(){
-            return confirm('Are you sure you want to delete this exhibit?');
+        $$('.delete-exhibit').invoke('observe', 'click', function(e){
+            if (confirm('Are you sure you want to delete this exhibit?')) {
+                return;
+            } else {
+                e.stop();
+            }
         });
     });
 </script>
