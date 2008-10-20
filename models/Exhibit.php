@@ -16,8 +16,8 @@ class Exhibit extends Omeka_Record
 	public $title;
 	public $description;
 	public $credits;
-	public $featured;
-	public $public;
+    public $featured = 0;
+    public $public = 1;
 	
 	public $theme;
 	public $slug;
