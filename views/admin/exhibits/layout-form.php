@@ -1,5 +1,8 @@
 <?php head(array('title'=>'Exhibit Page', 'body_class'=>'exhibits')); ?>
 <?php echo js('exhibits'); ?>
+
+<h1><?php echo htmlentities($actionName); ?> Page</h1>
+
 <div id="primary">
 
 <script type="text/javascript" charset="utf-8">
@@ -53,10 +56,25 @@
 		//	submit('Exhibit', 'exhibit_form');
 		//	submit('New Page', 'page_form'); 
 		?>
-		
 	
+    	<div id="exhibits-breadcrumb">
+    		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
+    	</div>	
+
+    <fieldset>
+        <legend>Page Metadata</legend>
+
+        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $page->title, 'Title for the Page'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $page->slug, 'URL Slug (optional)'); ?></div>
+    </fieldset>		
+		
 	<fieldset id="layouts">
 		<legend>Layouts</legend>
+		
+		<div id="chosen_layout">
+		<div id="current_layout"><p>Choose a layout by selecting a thumbnail on the right.</p></div>
+	    </div>
+		
 		<div id="layout-thumbs">
 		<?php 
 			$layouts = get_ex_layouts();
@@ -66,14 +84,12 @@
 			} 
 		?>
 		</div>
-		<div id="chosen_layout">
-		<div id="current_layout"><p>Choose a layout by selecting a thumbnail on the right.</p></div>
-		
-		<p id="layout-submits">
-		<button type="submit" name="choose_layout" id="choose_layout" class="page-button">Choose This Layout</button>
-		or <button type="submit" name="cancel_and_section_form" id="section_form" class="cancel">Cancel</button></p>
-	</div>
 	</fieldset> 
+	
+	<p id="layout-submits">
+	<button type="submit" name="choose_layout" id="choose_layout" class="page-button">Choose This Layout</button> or <button type="submit" name="page_form" id="page_form" class="page-button">New Page</button>
+	or <button type="submit" name="cancel_and_section_form" id="section_form" class="cancel">Cancel</button></p>
+	
 	
 </form>
 </div>

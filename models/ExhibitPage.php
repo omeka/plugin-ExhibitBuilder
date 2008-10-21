@@ -48,7 +48,31 @@ class ExhibitPage extends Omeka_Record
 			$this->addError('section_id', 'Exhibit page must be given a section');
 		}
 	}
+
+	protected function beforeSaveForm(&$post)
+	{					
+		//Whether or not the exhibit is featured
+		$this->featured = (bool) $post['featured'];
+		unset($post['featured']);
+		
+		//Make an exhibit slug if the posted slug is empty
+		//This is duplicated exactly in the Section class
+		$slugFodder = !empty($post['slug']) ? $post['slug'] : $post['title'];
+		$post['slug'] = generate_slug($slugFodder);
+	}
 	
+	/**
+	 * Check to see whether the slug field is empty, then provide one
+	 *
+	 * @return void
+	 **/
+	protected function beforeValidate()
+	{
+		if(empty($this->slug)) {
+			$this->slug = generate_slug($this->title);
+		}
+	}
+
 	protected function getSection()
 	{
 		return $this->getTable('ExhibitSection')->find($this->section_id);

@@ -73,11 +73,16 @@ echo js('tiny_mce/tiny_mce');
 
     <form name="layout" id="page-form" method="post">
     
-    <?php 
-		//exhibit_layout($page->layout);
-	?>
-<!-- <button id="change_layout" name="change_layout" type="submit">Change the Current Layout</button> -->
-	
+    <div id="page-metadata-list">
+        <h2>Page Metadata</h2>
+            <p>Page Title: <?php $page->title; ?></p>
+        <?php 
+            $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif"); 
+        	echo '<img src="'.$imgFile.'" />';
+        ?>
+    <button id="change_layout" name="change_layout" type="submit">Edit Page Metadata</button>
+    </div>
+    
 	<div id="layout-all">
 	<div id="layout-form">
 	<?php render_layout_form($page->layout); ?>
