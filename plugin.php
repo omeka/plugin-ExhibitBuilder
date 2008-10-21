@@ -79,6 +79,14 @@ function exhibit_builder_install() {
 
 }
 
+function exhibit_admin_header($request)
+{
+    // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
+    if ($request->getControllerName() == 'exhibits'):
+        echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
+    endif;
+}
+
 function exhibit_admin_nav($navArray)
 {
     if (has_permission('Exhibits', 'browse')) {
@@ -107,13 +115,6 @@ function exhibit_public_header()
 {
     // Add the stylesheet for the layout
     echo '<link rel="stylesheet" media="screen" href="' . layout_css() . '" /> ';
-}
-
-function exhibit_admin_header()
-{
-    // Add the stylesheet for general display of exhibits   
-    echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
-    
 }
 
 // Helper for retrieving metadata for a random featured exhibit
