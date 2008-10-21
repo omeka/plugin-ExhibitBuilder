@@ -21,6 +21,7 @@ add_plugin_hook('define_acl', array('ExhibitBuilderBootstrap', 'setupAcl'));
 add_plugin_hook('define_routes', array('ExhibitBuilderBootstrap', 'addRoutes'));
 add_plugin_hook('public_theme_header', 'exhibit_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_admin_header');
+add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_dashboard');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_admin_nav');
@@ -82,7 +83,7 @@ function exhibit_builder_install() {
 function exhibit_admin_header($request)
 {
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
-    if ($request->getControllerName() == 'exhibits'):
+    if ($request->getControllerName() == 'exhibits' || ($request->getControllerName() == 'index' && $request->getActionName() == 'index')):
         echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
     endif;
 }
@@ -115,6 +116,21 @@ function exhibit_public_header()
 {
     // Add the stylesheet for the layout
     echo '<link rel="stylesheet" media="screen" href="' . layout_css() . '" /> ';
+}
+
+function exhibit_dashboard()
+{
+?>
+    <?php if(has_permission('Exhibits','browse')): ?>
+	<dt class="exhibits"><a href="<?php echo uri('exhibits'); ?>">Exhibits</a></dt>
+	<dd class="exhibits">
+		<ul>
+			<li><a class="browse-exhibits" href="<?php echo uri('exhibits'); ?>">Browse Exhibits</a></li>
+			<li><a class="add-exhibit" href="<?php echo uri('exhibits/add/'); ?>">Create an Exhibit</a></li>
+		</ul>
+		<p>Create and manage exhibits that display items from the archive.</p>
+	</dd>
+	<?php endif;
 }
 
 // Helper for retrieving metadata for a random featured exhibit

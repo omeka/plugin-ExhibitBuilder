@@ -1,5 +1,27 @@
-/* Exhibits browse */
-#add-exhibit a.add {background-image:url("../images/picture_add.gif");}
+/* Exhibits Icons */
+.add-exhibit, .browse-exhibits {
+    background-position:top left; 
+    background-repeat:no-repeat; 
+    padding:2px 4px 2px 20px; 
+    text-decoration:none;
+}
+
+dd.exhibits ul li {
+    padding-left:12px;
+}
+
+.add-exhibit {
+    background-image:url("../images/picture_add.gif");
+}
+
+.browse-exhibits {
+    background-image:url("../images/pictures.gif");
+}
+
+/* Exhibits Browse */
+#add-exhibit a.add {
+    background-image:url("../images/picture_add.gif");
+}
 
 #no-exhibits {
 	clear:both;
