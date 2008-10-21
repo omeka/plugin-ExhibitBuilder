@@ -164,14 +164,21 @@ table#exhibits {
 }
 
 #page-builder {
-	width:846px;
-	margin:18px 0 18px 36px;
+	width:785px;
+	margin:18px;
+	overflow: hidden;
+	clear:both;
 }
 
 #item-select {
 	float:left; 
-	width: 378px; 
+	width: 750px; 
 	background:#DAE9F6;
+    margin: 15px 0;
+}
+
+#page-form {
+    clear: both;
 }
 
 #layout-all {
@@ -185,10 +192,8 @@ table#exhibits {
 	padding-bottom:1.8em;
 }
 
-#layout-form .item-drop {
-	width:100px; 
-	height:100px; 
-	float:left; 
+.item-drop {
+    float:left; 
 	overflow:hidden; 
 	border:1px solid #A2C9E8; 
 	margin-right:2px; 
@@ -196,9 +201,30 @@ table#exhibits {
 	display:block;
 }
 
+#item-select .item-drop {
+    width: 130px;
+    height: 130px;
+}
+
+#layout-form .item-drop {
+	width:100px; 
+	height:100px; 
+}
+
 #item-list .item-drop {
 	top:0; left:0;
 }
+
+.item-drag .handle, .item-drop .handle {
+    position:absolute; 
+    top:0; 
+    left:0;
+    cursor:move;
+    } 
+
+.handle {
+    background-color:#fff; 
+} 
 
 #item-list {
 	margin-left:18px;
@@ -237,13 +263,13 @@ table#exhibits {
 }
 
 #page-search-form .textinput {
-	width:358px;
+	clear: both;
+	overflow: hidden;
 }
 	
 #page-submits {
 	clear:both;
 }
-	
 
 /* choose layout */
 #layouts {}
@@ -266,7 +292,7 @@ table#exhibits {
 }
 			
 #chosen_layout {
-	width:390px; 
+	width:295px; 
 	float:right;
 }
 
@@ -277,7 +303,7 @@ table#exhibits {
 #current_layout {
 	margin-bottom:18px; 
 	background:#fff;
-	width:360px; 
+	width:295px; 
 	padding:15px;
 	float:right; 
 	background:#A2C9E8;
@@ -369,4 +395,8 @@ a.cancel {
 
 a.cancel:visited {
 	color:#38c;
+}
+
+div.field {
+    padding: 18px;
 }

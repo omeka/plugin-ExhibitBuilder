@@ -68,20 +68,16 @@ echo js('tiny_mce/tiny_mce');
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
 
-	<div id="item-select"></div>
 
-<form name="layout" id="page-form" method="post">
+    <div id="item-select"></div>
+
+    <form name="layout" id="page-form" method="post">
     
     <?php 
-		exhibit_layout($page->layout);
+		//exhibit_layout($page->layout);
 	?>
+<!-- <button id="change_layout" name="change_layout" type="submit">Change the Current Layout</button> -->
 	
-<button id="change_layout" name="change_layout" type="submit">Change the Current Layout</button>
-	
-	<div id="layout-submits">
-
-	
-	</div>
 	<div id="layout-all">
 	<div id="layout-form">
 	<?php render_layout_form($page->layout); ?>
@@ -89,8 +85,9 @@ echo js('tiny_mce/tiny_mce');
 
 	</div>
 	
-		<p id="page-submits">
-			<button id="section_form" name="section_form" type="submit">Save and Return to Section</button> or <button id="page_form" name="page_form" type="submit">Save and Add Another Page</button> or <button name="cancel_and_section_form" class="cancel">Cancel</button></p>
+		<div id="page-submits">
+			<button id="section_form" name="section_form" type="submit">Save and Return to Section</button> or <button id="page_form" name="page_form" type="submit">Save and Add Another Page</button> or <button name="cancel_and_section_form" class="cancel">Cancel</button>
+		</div>
 		
 	</form>
 </div>
