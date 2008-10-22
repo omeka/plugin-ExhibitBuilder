@@ -333,7 +333,7 @@ function page_nav()
     		$uri = exhibit_uri($section->Exhibit, $section, $page);
 		
     		//Create the link (also check if uri matches current uri)
-    		$output .= '<li'. ($page->id == $currentPage->id ? ' class="current"' : '').'><a href="'. $uri . '">Page '. $key .'</a></li>';
+    		$output .= '<li'. ($page->id == $currentPage->id ? ' class="current"' : '').'><a href="'. $uri . '">'. $page->title .'</a></li>';
 	
 	    }
     }
