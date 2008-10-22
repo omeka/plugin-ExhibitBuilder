@@ -57,7 +57,7 @@ function link_to_exhibit($exhibit, $text=null, $props=array(), $section=null, $p
 	
 	$text = !empty($text) ? $text : $exhibit->title;
 	
-	return '<a href="'.$uri.'">' . h($text) . '</a>';
+	return '<a href="'.$uri.'">' . $text . '</a>';
 }
 
 /**
@@ -417,6 +417,39 @@ function random_featured_exhibit()
     trigger_error('random_featured_exhibit() will not work until the new Exhibit builder is finished!'); 
     //return get_db()->getTable('Exhibit')->findRandomFeatured();
 }
+
+/**
+ * Links to next exhibit page
+ *
+ * @return string
+ **/
+function link_to_next_exhibit_page($text="Next Page --&gt;", $props=array())
+{
+    $exhibit = Zend_Registry::get('exhibit');
+    $section = Zend_Registry::get('section');
+	$page = Zend_Registry::get('page');
+
+	if($next = $page->next()) {
+		return link_to_exhibit($exhibit, $text, null, $section, $page->next());
+	}
+}
+
+/**
+ * Links to previous exhibit page
+ *
+ * @return string
+ **/
+function link_to_previous_exhibit_page($text="&lt;-- Previous Page", $props=array())
+{
+    $exhibit = Zend_Registry::get('exhibit');
+    $section = Zend_Registry::get('section');
+	$page = Zend_Registry::get('page');
+
+	if($previous = $page->previous()) {
+		return link_to_exhibit($exhibit, $text, null, $section, $page->previous());
+	}
+}
+
 ///// END EXHIBIT FUNCTIONS /////
  
 ?>

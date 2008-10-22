@@ -73,6 +73,16 @@ class ExhibitPage extends Omeka_Record
 		}
 	}
 
+    public function previous()
+    {
+        return $this->getDb()->getTable('ExhibitPage')->findPrevious($this);
+    }
+    
+    public function next()
+    {
+        return $this->getDb()->getTable('ExhibitPage')->findNext($this);
+    }
+
 	protected function getSection()
 	{
 		return $this->getTable('ExhibitSection')->find($this->section_id);
