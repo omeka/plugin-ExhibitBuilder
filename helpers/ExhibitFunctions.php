@@ -7,16 +7,18 @@
  * @return string
  **/
 function exhibit_thumbnail($item, $props=array('class'=>'permalink')) 
-{	
-	$uri = exhibit_item_uri($item);
-		
-	$output = '<a href="' . $uri . '">';
-	
-	$file = $item->Files[0];
-	
-	$output .= item_thumbnail($file);
-	
-	$output .= '</a>';
+{	  
+    $uri = exhibit_item_uri($item);
+     
+    $output = '<a href="' . $uri . '">';
+    
+    $file = $item->Files[0];
+
+    set_current_item($item);
+    
+    $output .= item_thumbnail();
+
+    $output .= '</a>';
 	
 	return $output;
 }
@@ -33,6 +35,8 @@ function exhibit_fullsize($item, $props=array('class'=>'permalink'))
 	$output = '<a href="' . $uri . '">';
 	
 	$file = $item->Files[0];
+
+    set_current_item($item);
 	
 	$output .= item_fullsize($file, $props);
 	
@@ -170,7 +174,7 @@ function page_text($order, $addTag=true)
 {
 	$page = Zend_Registry::get('page');
 
-	$text = $page->ExhibitPageEntry[$order]->text;
+	$text = $page->ExhibitPageEntry[(int) $order]->text;
 	if($addTag) {
 		return nls2p($text);
 	}
@@ -186,7 +190,6 @@ function page_item($order)
 	if(!$item or !$item->exists()) {
 		return null;
 	}
-
 	return $item;
 }
 
@@ -350,12 +353,12 @@ function render_exhibit_page()
 		$section = Zend_Registry::get('section');
 
 		$page = Zend_Registry::get('page');
-
-		if ($page->layout) {
-			include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$page->layout.DIRECTORY_SEPARATOR.'layout.php';
-		} else {
-			echo "this section has no pages added to it yet";
-		}
+        
+        if ($page->layout) {
+         include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$page->layout.DIRECTORY_SEPARATOR.'layout.php';
+        } else {
+         echo "this section has no pages added to it yet";
+        }
 	} catch (Exception $e) {}
 	
 }
