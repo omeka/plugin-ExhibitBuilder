@@ -38,7 +38,7 @@ function exhibit_fullsize($item, $props=array('class'=>'permalink'))
 
     set_current_item($item);
 	
-	$output .= item_fullsize($file, $props);
+	$output .= item_fullsize();
 	
 	$output .= '</a>';
 	
