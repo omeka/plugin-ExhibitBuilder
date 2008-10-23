@@ -3,7 +3,7 @@
 /* == Generic == */
 body {font: 62.5% Verdana, Arial, sans-serif; color:#fffff8; background:#222;}
 
-h1 {font-size:1.8em;line-height:1em;margin:2em 0 1em;}
+h1 {font-size:2.8em;line-height:1em;margin:.5em;}
 h2 {font-size:1.6em; line-height:1.125em;padding: 18px 18px 9px 0;margin: 0;}
 h3 {font-size:1.4em; margin-bottom:1.2857em; line-height:1.2857em;clear: both;font-weight: bold;color: #444444;}
 h5 {background-color: #222;padding: 0 0 1em;}
@@ -28,9 +28,9 @@ a:hover {color:#ff9900;}
 	.exhibit-section-nav li a:hover {text-decoration: underline;}
 	
 /* =Page Navigation= */
-.exhibit-page-nav {list-style:none; float: left; padding: 1em 0 0 1em; width: 100%;background-color: #222;}
+.exhibit-page-nav {list-style:none; float: left; padding: 1em 0 0 1em; width: 100%;background-color: #222; margin-bottom: 0;}
 	.exhibit-page-nav li {display:inline;float: left; margin-right:2px;}
-	.exhibit-page-nav li a {display:block; width: 5em; text-decoration:none;padding:0.25em 0;text-align: center;background-color: #666;color: #fff;}
+	.exhibit-page-nav li a {display:block;  text-decoration:none;padding:0.25em 1em;text-align: center;background-color: #666;color: #fff;}
 	.exhibit-page-nav li.current a,.exhibit-page-nav li a:hover {background-color: #fff;color:#333;}
 
 /* == Content == */

@@ -22,13 +22,10 @@
 <body id="<?php echo $exhibit->theme; ?>">
 	<div id="wrap">
 	<h5><a href="<?php echo uri('exhibits'); ?>">Back to Exhibits</a></h5>
+
+		<h1><?php echo link_to_exhibit($exhibit); ?></h1>
+
+		<?php echo page_nav(); ?>
 		
 		<div id="content">
 		<?php echo flash(); ?>	
-				
-		<?php echo page_nav(); ?>
-					
-		<h1><?php echo link_to_exhibit($exhibit); ?></h1>
-	
-			<?php echo flash(); ?>				
-
