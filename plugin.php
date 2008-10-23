@@ -71,13 +71,31 @@ function exhibit_builder_install() {
     $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `section_id` int(10) unsigned NOT NULL,
-      `title` varchar(255) collate utf8_unicode_ci default NULL,
+      `title` varchar(255) collate utf8_unicode_ci NOT NULL,
       `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
+    $checkIfTitleExists = $db->fetchOne("SHOW COLUMNS FROM `{$db->prefix}section_pages` LIKE 'title'");
+     
+    if ($checkIfTitleExists == null) {
+        $db->query("ALTER TABLE `{$db->prefix}section_pages` ADD `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, ADD `slug` VARCHAR( 30 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;");
+
+        $db = get_db();
+
+        $newSectionPages = $db->fetchAll("SELECT * FROM `{$db->prefix}section_pages`");
+
+        foreach($newSectionPages as $newPage) {
+             $pageNum = $newPage['order'];
+             $pageTitle = 'Page '. $pageNum;
+             $slug = generate_slug($pageTitle); 
+             $id = $newPage['id'];       
+
+            $db->exec("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
+            }
+    }
 }
 
 function exhibit_admin_header($request)
