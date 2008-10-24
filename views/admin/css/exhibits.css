@@ -194,7 +194,7 @@ table#exhibits {
 
 #item-select {
 	float:left; 
-	width: 750px; 
+	width: 780px; 
 	background:#DAE9F6;
     margin: 15px 0;
 }
@@ -204,7 +204,9 @@ table#exhibits {
 }
 
 #layout-all {
-	width:512px;
+	width:550px;
+	overflow: hidden;
+	clear:both;
 }
 
 #layout-form .item {

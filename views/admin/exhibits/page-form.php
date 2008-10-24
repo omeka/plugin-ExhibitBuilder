@@ -68,20 +68,18 @@ echo js('tiny_mce/tiny_mce');
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
 
-
-    <div id="item-select"></div>
-
-    <form name="layout" id="page-form" method="post">
-    
     <div id="page-metadata-list">
+    <form name="layout" id="page-form" method="post">
         <h2>Page Metadata</h2>
-            <p>Page Title: <?php $page->title; ?></p>
+            <p>Page Title: <?php echo $page->title; ?></p>
         <?php 
             $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif"); 
         	echo '<img src="'.$imgFile.'" />';
         ?>
     <button id="change_layout" name="change_layout" type="submit">Edit Page Metadata</button>
     </div>
+
+    <div id="item-select"></div>
     
 	<div id="layout-all">
 	<div id="layout-form">
