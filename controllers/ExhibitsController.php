@@ -101,9 +101,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$section = $exhibit->getSection($sectionSlug);
 		
 		if($section) {
-			$pageOrder = $this->_getParam('page');
+			$pageSlug = $this->_getParam('page');
 
-			$page = $section->getPage($pageOrder);			
+			$page = $section->getPage($pageSlug);			
 		}else {
 		    $section = $exhibit->getFirstSection();
 		}
