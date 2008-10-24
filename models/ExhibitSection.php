@@ -118,12 +118,20 @@ class ExhibitSection extends Omeka_Record
 		return $this->getChildCount();
 	}
 	
-	public function getPage($slug)
+	public function getPageBySlug($slug)
 	{
 		$db = $this->getDb();
 		$sql = "SELECT p.* FROM $db->ExhibitPage p WHERE p.slug = ? AND p.section_id = ?";
 
 		return $this->getTable('ExhibitPage')->fetchObject($sql, array($slug,$this->id));
+	}
+	
+	public function getPageByOrder($order)
+	{
+		$db = $this->getDb();
+		$sql = "SELECT p.* FROM $db->ExhibitPage p WHERE p.order = ?";
+
+		return $this->getTable('ExhibitPage')->fetchObject($sql, array($order));
 	}
 	
 	public function hasPages()
