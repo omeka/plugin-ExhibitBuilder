@@ -1,5 +1,6 @@
 <?php foreach( $section->Pages as $key => $page ): ?>
 <li id="page_<?php echo $page->order; ?>" class="page">
+    <?php echo '<strong>'. $page->title .'</strong>'; ?>
 	<div class="handle"><?php exhibit_layout($page->layout, false); ?></div>
 	<div class="page-links">
 	<span class="page-order"><?php echo text(array('name'=>"Pages[$key][order]",'size'=>2), $page->order); ?></span>
