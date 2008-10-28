@@ -11,12 +11,10 @@ function exhibit_thumbnail($item, $props=array('class'=>'permalink'))
     $uri = exhibit_item_uri($item);
      
     $output = '<a href="' . $uri . '">';
-    
-    $file = $item->Files[0];
 
     set_current_item($item);
     
-    $output .= item_thumbnail();
+    $output .= item_thumbnail($props);
 
     $output .= '</a>';
 	
@@ -33,12 +31,10 @@ function exhibit_fullsize($item, $props=array('class'=>'permalink'))
 	$uri = exhibit_item_uri($item);
 		
 	$output = '<a href="' . $uri . '">';
-	
-	$file = $item->Files[0];
 
     set_current_item($item);
 	
-	$output .= item_fullsize();
+	$output .= item_fullsize($props);
 	
 	$output .= '</a>';
 	
@@ -74,13 +70,11 @@ function exhibit_uri($exhibit, $section=null, $page=null)
 	$page_slug = ($page instanceof ExhibitPage) ? $page->slug : $page;
 	
 	//If there is no section slug available, we want to build a URL for the summary page
-    set_theme_base_uri('public');
 	if(empty($section_slug)) {
-	    $uri = uri(array('slug'=>$exhibit_slug), 'exhibitSimple');
+	    $uri = public_uri(array('slug'=>$exhibit_slug), 'exhibitSimple');
 	} else {
-	    $uri = uri(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_slug), 'exhibitShow');
+	    $uri = public_uri(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_slug), 'exhibitShow');
 	}
-	set_theme_base_uri(); // Restore the base theme
 		
 	return $uri;
 }
@@ -175,9 +169,7 @@ function page_text($order, $addTag=true)
 	$page = Zend_Registry::get('page');
 
 	$text = $page->ExhibitPageEntry[(int) $order]->text;
-	if($addTag) {
-		return nls2p($text);
-	}
+
 	return $text;
 }
 

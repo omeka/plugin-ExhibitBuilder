@@ -611,43 +611,4 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	}
 	
 	/////END AJAX-ONLY ACTIONS
-	
-	/**
-	 * The route exhibits/whatever can be one of three things: 
-	 *	built-in controller action
-	 *	static page
-	 *	exhibit slug
-	 *
-	 *	Unfortunately we have no way of knowing which one it is without a complicated database/filesystem check,
-	 *	so it can't go in the routes file (at least not in any way I've been able to figure out) -- Kris
-	 * 
-	 * @return void
-	 **/
-	public function routeSimpleAction()
-	{
-		//Check if it is a built in controller action
-		$slug = strtolower($this->_getParam('slug'));
-		
-		$action = $slug . 'Action';
-		
-		if(method_exists($this, $action)) {
-			$this->_setParam('action', $slug);
-			return $this->_forward($slug, 'exhibits', null, $this->_getAllParams());
-			exit;
-		}
-		
-		//Check if it is a static page
-		$page = $slug . '.php';
-		
-		//Try to render, invalid pages will be caught as exceptions
-		try {
-			return $this->render('exhibits' . DIRECTORY_SEPARATOR . $page);
-		} catch (Zend_View_Exception $e) {}
-		
-		
-		//Otherwise this is a slug for an Exhibit
-		
-		$this->_forward('summary', 'exhibits', null, $this->_getAllParams());
-	}
-} 
-?>
+}
