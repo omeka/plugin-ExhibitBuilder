@@ -557,18 +557,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	}
 	
 	/////HERE WE HAVE SOME AJAX-ONLY ACTIONS /////
-	
-	public function sectionFormAction()
-	{
-		$exhibit = $this->findById();
-		
-		$section = new ExhibitSection;
-		$section->Exhibit = $exhibit;
-		
-		$this->view->section = $section;
-		$this->render('sectionform');
-	}
-	
+
 	public function sectionListAction()
 	{
 		$this->view->exhibit = $this->findOrNew();
