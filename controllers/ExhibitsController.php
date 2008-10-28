@@ -3,7 +3,7 @@ require_once 'Exhibit.php';
 /**
  * @package Omeka
  **/
-require_once 'Omeka/Controller/Action.php';
+
 class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 {
 	protected $session;
