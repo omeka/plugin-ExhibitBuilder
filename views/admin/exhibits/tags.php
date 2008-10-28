@@ -3,7 +3,7 @@
 <h1>Exhibit Tags</h1>
 
 <div id="primary">
-<?php if ( total_results() ): ?>
+<?php if (!empty($tags)): ?>
 	<?php
 	echo tag_cloud($tags, uri('exhibits/browse/'));
 	?>

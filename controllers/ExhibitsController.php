@@ -16,11 +16,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$this->session = new Zend_Session_Namespace('Exhibit');
 	}
 	
-	public function indexAction() {}
-	
 	public function tagsAction()
 	{
-		$this->_forward('browse', 'Tags', null, array('tagType' => 'Exhibit', 'renderPage'=>'exhibits/tags.php'));
+        $params = array_merge($this->_getAllParams(), array('type'=>'Exhibit'));
+        $tags = $this->getTable('Tag')->findBy($params);
+        $this->view->assign(compact('tags'));
 	}
 	
 	public function browseAction()
@@ -68,7 +68,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
 			
 			return $this->renderExhibit(compact('exhibit','item', 'section'), 'item');
-		}else {
+		} else {
 			$this->flash('This item is not used within this exhibit.');
 			$this->redirect->gotoUrl('403');
 		}
@@ -113,15 +113,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		}
 		
 		$layout = $page->layout;
-
-/*
-			if(!$section) {
-			$this->flash('This section does not exist for this exhibit.');
-		}
-		elseif(!$page) {
-			$this->flash('This page does not exist in this section of the exhibit.');
-		}
-*/	
 		
 		//Register these so that theme functions can use them
 		Zend_Registry::set('section',	$section);
@@ -201,10 +192,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			}
 
 			return $this->renderScript($renderPath);
-
-                // throw new Exception( 
-                //  "Exhibit theme named '$exhibit->theme' no longer exists!\n\n  
-                //  Please change the exhibit's theme in order to properly view the exhibit." );
 			
 		}else {
 			if (!in_array($toRender, array('show', 'summary', 'item'))) {
@@ -244,27 +231,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 					unset($_POST);
 					$this->redirect->goto('add-section', null, null, array('id'=>$exhibit->id) );
 					return;
-				}elseif(array_key_exists('save_exhibit', $_POST)) {
+				}else if(array_key_exists('save_exhibit', $_POST)) {
 				
 					$this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
-				}else {
-				
-					//Everything else should render the page
-					//return $this->render('exhibits/form/exhibit.php',compact('exhibit'));
-				}			
+				}		
 			}
 					
 		} 
 		catch (Omeka_Validator_Exception $e) {
 			$this->flashValidationErrors($e);
-			$this->view->flash = $e->getMessage();
 		}
 		catch (Exception $e) {
 			$this->flash($e->getMessage());
-			$this->view->flash = $e->getMessage(); 
 		}
-		
-		// $this->view->exhibit = $exhibit;
+
 		$this->view->assign(compact('exhibit', 'actionName'));
 		
 		//Send a header that will inform us that the request was a failure
