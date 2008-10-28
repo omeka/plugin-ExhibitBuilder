@@ -17,15 +17,15 @@ define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_layouts');
 
 add_plugin_hook('install', 'exhibit_builder_install');
-add_plugin_hook('define_acl', array('ExhibitBuilderBootstrap', 'setupAcl'));
-add_plugin_hook('define_routes', array('ExhibitBuilderBootstrap', 'addRoutes'));
-add_plugin_hook('public_theme_header', 'exhibit_public_header');
-add_plugin_hook('admin_theme_header', 'exhibit_admin_header');
-add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_dashboard');
+add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
+add_plugin_hook('define_routes', 'exhibit_builder_routes');
+add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
+add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
+add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
-add_filter('admin_navigation_main', 'exhibit_admin_nav');
-add_filter('define_action_contexts', array('ExhibitBuilderBootstrap', 'defineActionResponseContexts'));
+add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
+add_filter('define_action_contexts', 'exhibit_builder_define_action_response_contexts');
 
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
@@ -98,7 +98,39 @@ function exhibit_builder_install() {
     }
 }
 
-function exhibit_admin_header($request)
+/**
+ * Modify the ACL to include an 'Exhibits' resource.
+ * 
+ * @return void
+ **/
+function exhibit_builder_setup_acl($acl)
+{
+    $acl->loadResourceList(array('Exhibits'=> array('add', 'edit',
+    'delete', 'addPage', 'editPage', 'deletePage', 'addSection', 'editSection',
+    'deleteSection', 'save', 'showNotPublic')));    
+    
+    // Test denying permission to see the exhibits.
+    // $acl->deny('super', array('Exhibits'));    
+}
+
+/**
+ * Add the routes from routes.ini in this plugin folder.
+ * 
+ * @return void
+ **/
+function exhibit_builder_routes($router) 
+{
+     $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
+     DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
+}
+
+function exhibit_builder_public_header()
+{
+    // Add the stylesheet for the layout
+    echo '<link rel="stylesheet" media="screen" href="' . layout_css() . '" /> ';
+}
+
+function exhibit_builder_admin_header($request)
 {
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
     if ($request->getControllerName() == 'exhibits' || ($request->getControllerName() == 'index' && $request->getActionName() == 'index')):
@@ -106,37 +138,7 @@ function exhibit_admin_header($request)
     endif;
 }
 
-function exhibit_admin_nav($navArray)
-{
-    if (has_permission('Exhibits', 'browse')) {
-        
-        $exhibitNav = array('Exhibits'=> uri('exhibits'));
-        
-        // Put the navigation at the beginning.
-        // $navArray = $exhibitNav + $navArray;
-        
-        // Put the navigation at the end.
-        // $navArrray += $exhibitNav;
-        
-        // Put the navigation 3 spots in.
-        $navArray = array_slice($navArray, 0, 3) + $exhibitNav + array_slice($navArray, 3);
-    }
-    
-    return $navArray;
-}
-
-function exhibit_builder_public_main_nav($navArray) {
-    $navArray['Browse Exhibits'] = uri('exhibits');
-    return $navArray;
-}
-
-function exhibit_public_header()
-{
-    // Add the stylesheet for the layout
-    echo '<link rel="stylesheet" media="screen" href="' . layout_css() . '" /> ';
-}
-
-function exhibit_dashboard()
+function exhibit_builder_dashboard()
 {
 ?>
     <?php if(has_permission('Exhibits','browse')): ?>
@@ -151,53 +153,32 @@ function exhibit_dashboard()
 	<?php endif;
 }
 
-// Helper for retrieving metadata for a random featured exhibit
-/* function random_featured_exhibit()
-{
-    trigger_error('random_featured_exhibit() will not work until the new Exhibit builder is finished!'); 
-    //return get_db()->getTable('Exhibit')->findRandomFeatured();
-} */
+function exhibit_builder_public_main_nav($navArray) {
+    $navArray['Browse Exhibits'] = uri('exhibits');
+    return $navArray;
+}
 
-class ExhibitBuilderBootstrap
+function exhibit_builder_admin_nav($navArray)
 {
-    /**
-     * Modify the ACL to include an 'Exhibits' resource.
-     * 
-     * @return void
-     **/
-    public static function setupAcl($acl)
-    {
-        $acl->loadResourceList(array('Exhibits'=> array('add', 'edit',
-        'delete', 'addPage', 'editPage', 'deletePage', 'addSection', 'editSection',
-        'deleteSection', 'save', 'showNotPublic')));    
+    if (has_permission('Exhibits', 'browse')) {
         
-        // Test denying permission to see the exhibits.
-        // $acl->deny('super', array('Exhibits'));    
+        $navArray += array('Exhibits'=> uri('exhibits'));
     }
     
-    /**
-     * Add the routes from routes.ini in this plugin folder.
-     * 
-     * @return void
-     **/
-     public static function addRoutes($router)
-     {
-         $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
-         DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
+    return $navArray;
+}
+ 
+function exhibit_builder_define_action_response_contexts($contextsArray, $controller, $contextSwitcher)
+{
+    switch (get_class($controller)) {
+        case 'ExhibitsController':
+            $contextsArray['save'] = array('json');
+            $contextsArray['add'] = array('json');
+            break;
+        
+        default:
+            break;
      }
      
-     public static function defineActionResponseContexts($contextsArray, $controller, $contextSwitcher)
-     {
-         switch (get_class($controller)) {
-            case 'ExhibitsController':
-                $contextsArray['save'] = array('json');
-                $contextsArray['add'] = array('json');
-                break;
-            
-            default:
-                break;
-         }
-         
-         return $contextsArray;
-     }
+     return $contextsArray;
 }
