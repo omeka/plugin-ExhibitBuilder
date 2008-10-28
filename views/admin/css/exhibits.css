@@ -204,7 +204,7 @@ table#exhibits {
 }
 
 #layout-all {
-	width:550px;
+	width: auto;
 	overflow: hidden;
 	clear:both;
 }
@@ -269,8 +269,7 @@ table#exhibits {
 }
 
 #layout-form .textfield {
-	float:right; 
-	width:390px;
+	float:right;
 }
 
 #item-select .item-drag .title {
@@ -423,4 +422,10 @@ a.cancel:visited {
 
 div.field {
     padding: 18px;
+}
+
+#layout-form .section {
+    overflow: hidden;
+    margin:20px;
+    zoom: 1;
 }
