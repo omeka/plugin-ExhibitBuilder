@@ -6,12 +6,14 @@
 
 <div class="gallery-full-right">
 	<div class="primary">
+	<?php if (use_exhibit_page_item(1)): ?>
 	<div class="item-full">
-		<?php $item = page_item(1); ?>
-		<?php echo exhibit_fullsize($item); ?>
-		<?php echo h($item->title); ?>
-		<?php echo $item->description; ?>
+		<?php echo exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
+		<?php echo item('Dublin Core', 'Title'); ?>
+		<?php echo item('Dublin Core', 'Description'); ?>
 	</div>
+   	<?php endif; ?>
+
 	</div><!--end primary-->
 	
 	<div class="secondary gallery">

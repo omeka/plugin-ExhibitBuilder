@@ -579,36 +579,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		}
 		return $exhibit;
 	}
-
-	/**
-	 * Return the Exhibit ID as a JSON value
-	 *
-	 * @return void
-	 **/
-	public function saveAction()
-	{
-		//Run a permission check
-		if(!$this->isAllowed('add')) {
-			$this->forbiddenAction();
-		}
-		
-		if(!empty($_POST)) {
-			$exhibit = $this->findOrNew();
-			
-			require_once 'Zend/Json.php';
-			$return = array();
-			try {
-				$exhibit->saveForm($_POST);
-			} catch (Omeka_Validator_Exception $e) {
-				//Set the 404 response code
-				$this->getResponse()->setHttpResponseCode(422); 
-				
-				$this->flashValidationErrors($e);
-			}
-			
-			$this->view->exhibit = $exhibit;			
-		}
-	}
 	
 	/////END AJAX-ONLY ACTIONS
 }
