@@ -87,7 +87,7 @@
 	</fieldset> 
 	
 	<p id="layout-submits">
-	<button type="submit" name="choose_layout" id="choose_layout" class="page-button">Save Page Metadata</button> or <button type="submit" name="cancel_and_section_form" id="section_form" class="cancel">Cancel</button></p>
+	<button type="submit" name="choose_layout" id="choose_layout" class="page-button">Save Changes</button> or <button type="submit" name="cancel_and_section_form" id="section_form" class="cancel">Cancel</button></p>
 	
 	
 </form>

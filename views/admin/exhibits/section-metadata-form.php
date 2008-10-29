@@ -60,15 +60,13 @@
 			<?php common('page-list', compact('section'), 'exhibits'); ?>
 
 			</ul>
-		<button type="submit" name="page_form" id="page_form" class="inline-button">Add a Page</button>
 	<?php else: ?>
-		<p>There are no pages in this section. <button type="submit" name="page_form" id="page_form" class="inline-button">Add a Page</button>
-		</p>
+		<p>There are no pages in this section.</p>
 	<?php endif; ?>
 	</fieldset>
 
 	<fieldset>
-		<p><button type="submit" name="exhibit_form">Save</button> or <button type="submit" name="cancel_section" id="cancel_section" class="cancel">Cancel</button></p>
+		<p><button type="submit" name="section_form">Save Changes</button> or <button type="submit" name="page_form" id="page_form" class="inline-button">Add Page</button> or <button type="submit" name="cancel_section" id="cancel_section" class="cancel">Cancel</button></p>
 	</fieldset>
 </form>
 
