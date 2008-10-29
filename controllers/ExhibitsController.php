@@ -256,7 +256,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		//@duplication see ExhibitsController::processSectionForm()
 		//If the form submission was invalid 
 		if(!$this->getRequest()->isXmlHttpRequest()) {
-			$this->render('exhibit-form');
+			$this->render('exhibit-metadata-form');
 		}
 	}
 	
@@ -341,7 +341,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		
 		// Render the big section form script if this is not an AJAX request.
 		if (!$this->getRequest()->isXmlHttpRequest() ) {
-		    $this->render('section-form');	
+		    $this->render('section-metadata-form');	
 		} else {
 		    // This is for AJAX requests.
 		    
@@ -434,7 +434,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 				$this->setLayout(null);
 				$page->layout = null;
 				
-				return $this->render('layout-form');		
+				return $this->render('page-metadata-form');		
 			}
 				
 			else {
@@ -490,7 +490,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		}
 		
 		if ( empty($page->layout) ) {
-			$this->render('layout-form');
+			$this->render('page-metadata-form');
 		}else {
 			$this->render('page-form');	
 		}		

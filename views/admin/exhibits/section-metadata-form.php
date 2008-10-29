@@ -6,7 +6,7 @@
 	Event.observe(window, 'load', function() {	
 		if(!$('page-list')) return;	
 		listSorter.list = $('page-list');
-		listSorter.form = $('section-form');
+		listSorter.form = $('section-metadata-form');
 		listSorter.editUri = "<?php echo $_SERVER['REQUEST_URI']; ?>";
 		listSorter.partialUri = "<?php echo uri('exhibits/page-list'); ?>";
 		listSorter.recordId = '<?php echo h($section->id); ?>';
@@ -35,7 +35,7 @@
 	echo flash();
 ?>
 
-<form method="post" accept-charset="utf-8" action="" id="section-form" class="exhibit-builder">
+<form method="post" accept-charset="utf-8" action="" id="section-metadata-form" class="exhibit-builder">
 			
 		<?php 
 		//	submit('Exhibit', 'exhibit_form');
