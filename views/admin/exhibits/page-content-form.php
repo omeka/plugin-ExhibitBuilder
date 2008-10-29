@@ -1,15 +1,10 @@
 <?php head(array('title'=> htmlentities($actionName) . ' Page', 'body_class'=>'exhibits')); ?>
 
 <?php 
-echo js('ibox/ibox');
 echo js('search'); 
 echo js('exhibits');
 echo js('tiny_mce/tiny_mce');
 ?>
-
-<script type="text/javascript" charset="utf-8">
-    iBox.setPath('<?php echo WEB_ROOT; ?>/plugins/Exhibitbuilder/views/admin/javascripts/ibox/');
-</script>
 
 <script type="text/javascript" charset="utf-8">
 	var paginate_uri = "<?php echo uri('exhibits/items'); ?>";
