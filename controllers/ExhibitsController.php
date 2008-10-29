@@ -424,7 +424,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 				
 				$page->layout = (string) $_POST['layout'];
 				
-				return $this->render('page-form');
+				return $this->render('page-content-form');
 			
 			} elseif (array_key_exists('change_layout', $_POST)) {
 				
@@ -492,7 +492,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		if ( empty($page->layout) ) {
 			$this->render('page-metadata-form');
 		}else {
-			$this->render('page-form');	
+			$this->render('page-content-form');	
 		}		
 	}
 	
