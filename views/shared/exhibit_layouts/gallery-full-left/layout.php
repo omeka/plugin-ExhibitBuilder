@@ -6,12 +6,12 @@
 
 <div class="gallery-full-left">
 	<div class="primary">
-		<?php if($item = page_item(1)):?>
+		<?php if(use_exhibit_page_item(1)):?>
 		<div class="item-full">
-			<?php echo exhibit_fullsize($item, array('class'=>'permalink')); ?>
-			<?php echo h($item->title); ?>
-			<?php echo h($item->description); ?>
-			<a href="<?php echo exhibit_item_uri($item); ?>">Item Link</a>
+			<?php echo exhibit_display_item(array('imageSize'=>'fullsize', 'width'=>null), array('class'=>'permalink')); ?>
+			<?php echo item('Dublin Core', 'Title'); ?>
+			<?php echo item('Dublin Core', 'Description'); ?>
+			<?php echo link_to_exhibit_item('Item Link'); ?>
 		</div>
 		<?php endif; ?>
 	</div>

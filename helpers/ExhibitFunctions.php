@@ -79,11 +79,21 @@ function exhibit_uri($exhibit, $section=null, $page=null)
 	return $uri;
 }
 
-function link_to_exhibit_item($item, $props=array())
+/**
+ * Link to the item within the exhibit.
+ * 
+ * @param string
+ * @return void
+ **/
+function link_to_exhibit_item($text = null, $props=array())
 {	
+    $item = get_current_item();
+    
 	$uri = exhibit_item_uri($item);
 	
-	echo '<a href="' . $uri . '" '. _tag_attributes($props). '>' . h($item->title) . '</a>';
+	$text = (!empty($text) ? $text : strip_formatting(item('Dublin Core', 'Title')));
+	
+	echo '<a href="' . $uri . '" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
 
 function exhibit_item_uri($item, $exhibit=null, $section=null)
@@ -380,9 +390,9 @@ function display_exhibit_thumbnail_gallery($start, $end, $props=array())
     $output = '';
     
     for ($i=(int)$start; $i <= (int)$end; $i++) { 
-        if($item=page_item($i)) {    
+        if (use_exhibit_page_item($i)) {    
     	    $output .= "\n" . '<div class="exhibit-item">';
-    	    $output .= exhibit_thumbnail($item, $props);
+    	    $output .= link_to_exhibit_item(item_thumbnail($props));
             $output .= '</div>' . "\n";
         }
     }
@@ -440,6 +450,46 @@ function link_to_previous_exhibit_page($text="&lt;-- Previous Page", $props=arra
 	if($previous = $page->previous()) {
 		return link_to_exhibit($exhibit, $text, null, $section, $page->previous());
 	}
+}
+
+function exhibit_display_item($displayFilesOptions = array(), $linkProperties = array())
+{
+    // $item = page_item($index);
+    // set_current_item($item);
+    $item = get_current_item();
+
+    // Always just display the first file (may change this in future).
+    $fileIndex = 0;
+    $linkProperties['href'] = exhibit_item_uri($item);
+    $html   = '<a ' . _tag_attributes($linkProperties) . '>';
+    $itemHtml  = display_file($item->Files[$fileIndex], $displayFilesOptions);
+    if (!$itemHtml) {
+        $itemHtml = item('Dublin Core', 'Title');
+    }
+    $html  .= $itemHtml;
+    $html  .= '</a>';
+    return $html;
+}
+
+/**
+ * @todo Needs optimization (shouldn't return the item object every time it's checked).
+ * @param integer
+ * @return boolean
+ **/
+function exhibit_page_has_item($index)
+{
+    return (boolean)page_item($index);
+}
+
+function use_exhibit_page_item($index)
+{
+    $item = page_item($index);
+    if ($item instanceof Item) {
+        set_current_item($item);
+        return $item;
+    }
+    
+    return false;
 }
 
 ///// END EXHIBIT FUNCTIONS /////
