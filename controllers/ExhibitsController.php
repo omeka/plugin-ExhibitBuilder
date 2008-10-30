@@ -367,35 +367,69 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$section = $this->findById(null,'ExhibitSection');
 		$exhibit = $section->Exhibit;
 				
-		if(isset($_POST['cancel'])) {
-			$this->setLayout(null);
+		if(isset($_POST['cancel_page'])) {
 			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 		}
 		
-		//Check to see if the page var was saved in the session
-		if ($layout = $this->getLayout()) {
-			$page = new ExhibitPage;
-			$page->layout = $layout;						
-		} else {
-			$page = new ExhibitPage;
-		}
+		$page = new ExhibitPage;
 		$page->section_id = $section->id;		
 				
 		//Set the order for the new page
 		$numPages = $section->getPageCount();
 		$page->order = $numPages + 1;		
 		
-		return $this->processPageForm($page, 'Add', $section, $exhibit);
+		$success = $this->processPageForm($page, 'Add', $section, $exhibit);
+		if ($success) {
+            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$page->id));
+		}
+		$this->render('page-metadata-form');
 	}
 	
-	protected function getLayout()
+	public function editPageContentAction()
 	{
-		return $this->session->layout;
+	    $page = $this->findById(null,'ExhibitPage');
+		$section = $page->Section;
+		$exhibit = $section->Exhibit;
+        
+	    $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
+	    
+	    
+	    if($success and array_key_exists('section_form', $_POST)) {
+
+			//Return to the section form
+			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
+			return;
+			
+		} else if ($success and array_key_exists('page_metadata_form', $_POST)) {
+		   $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$page->id));
+			return;
+		}
+	    
+	    $this->render('page-content-form');
 	}
-	
-	protected function setLayout($layout)
+
+    public function editPageMetadataAction()
+    {
+	    $page = $this->findById(null,'ExhibitPage');
+		$section = $page->Section;
+		$exhibit = $section->Exhibit;
+        
+	    $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
+	    
+        if ($success) {
+            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$page->id));
+		}
+        
+        $this->render('page-metadata-form');
+    }
+
+	public function editPageAction()
 	{
-		$this->session->layout = (string) $layout;
+		$page = $this->findById(null,'ExhibitPage');
+		$section = $page->Section;
+		$exhibit = $section->Exhibit;
+		
+		return $this->processPageForm($page, 'Edit', $section, $exhibit);
 	}
 		
 	protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
@@ -418,48 +452,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		if (!empty($_POST)) {
 
 				try {
-					$retVal = $page->saveForm($_POST);
+					$success = $page->saveForm($_POST);
 				} catch (Exception $e) {
 					$this->flash($e->getMessage());
 				}
-
-				//Otherwise the page form has been submitted
-				//check to see if we need to redirect
-				if($retVal) {
-				
-				    if (array_key_exists('save_page_content', $_POST)) {
-
-    					if(array_key_exists('section_form', $_POST)) {
-					
-    						//Return to the section form
-    						$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
-    						return;
-					
-    					}elseif(array_key_exists('page_form', $_POST)) {
-					
-    						//Add another page
-    						$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
-    						return;
-    					} 
-					
-				    }
-					
-					if (array_key_exists('save_page_metadata', $_POST)) {
-
-            				$page->layout = (string) $_POST['layout'];
-                            $scriptToRender = 'page-content-form';
-
-                            return $this->redirect->goto('edit-page', null, null, array('id'=>$page->id));
-            		}
-				}
 		}
-		
-		// If the POST is empty or the form submission is bad, render a page instead of redirecting.
-        if (empty($_POST)) {
-            $this->render('page-content-form');
-        } else {
-            $this->render('page-metadata-form');
-        }
+	return $success;
 	}
 	
 	/**
@@ -473,15 +471,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$exhibit = $section->Exhibit;
 		
 		return $this->processSectionForm($section, 'Edit', $exhibit);
-	}
-	
-	public function editPageAction()
-	{
-		$page = $this->findById(null,'ExhibitPage');
-		$section = $page->Section;
-		$exhibit = $section->Exhibit;
-		
-		return $this->processPageForm($page, 'Edit', $section, $exhibit);
 	}
 	
 	public function deleteSectionAction()
