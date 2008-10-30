@@ -21,13 +21,14 @@
 				layouts.each(function(layout) {
 					layout.style.border = "1px solid #ccc";
 					layout.style.backgroundColor = "#fff";
-				})
+				});
+				
 				this.style.border = "1px solid #6BA8DA";
 				this.style.backgroundColor = "#A2C9E8"
 				var img = this.getElementsByTagName('img')[0];
 				var copy = img.cloneNode(true);
 				var input = this.getElementsByTagName('input')[0];
-				var title = input.readAttribute('value');
+				var title = input.getAttribute('value');
 				var titletext = document.createTextNode(title);
 				var heading = document.createElement('h2');
 				heading.appendChild(titletext);
