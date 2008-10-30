@@ -27,12 +27,12 @@ function makeSortable(list) {
 
 //Enable or disable the section part of the form (depending)
 function enableListForm(enable) {
-	var orderInputs = $A(listSorter.list.getElementsByTagName('input'));
+	var orderInputs = listSorter.list.select('input');
 
 	if(enable == true) {
-		orderInputs.each(function(el) {el.enable();} );
+		orderInputs.invoke('enable');
 	}else {
-		orderInputs.each(function(el) {el.disable();} );
+		orderInputs.invoke('disable');
 	}
 }
 
@@ -65,7 +65,7 @@ function ajaxListDelete(event) {
 				},
 				onFailure: function(t) {
 					alert(t.status);
-				},
+				}
 			});	
 		}
 		

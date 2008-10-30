@@ -61,7 +61,7 @@
 
     <fieldset>
         <legend>Page Metadata</legend>
-
+        <?php echo flash(); ?>
         <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $page->title, 'Title for the Page'); ?></div>
         <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $page->slug, 'URL Slug (optional)'); ?></div>
     </fieldset>		

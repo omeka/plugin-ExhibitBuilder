@@ -23,7 +23,7 @@
 	    var exhibit_id = <?php echo $exhibit->id; ?>;	
 		listSorter.list = list;
 		listSorter.recordId = exhibit_id;
-    	listSorter.form = $('exhibit-form');
+    	listSorter.form = $('exhibit-metadata-form');
     	listSorter.editUri = "<?php echo uri(array('controller'=>'exhibits','action'=>'edit'),'default'); ?>/" + exhibit_id;
     	listSorter.partialUri = "<?php echo uri(array('controller'=>'exhibits', 'action'=>'section-list')); ?>?id="+exhibit_id;
     	listSorter.tag = 'li';
@@ -40,9 +40,6 @@
 	
     var listSorter = {};
 
-
-
-
 //]]>	
 </script>
 
@@ -53,7 +50,7 @@
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <?php echo $actionName . ' Exhibit'; ?>
 	</div>
 
-<form id="exhibit-form" method="post" class="exhibit-builder">
+<form id="exhibit-metadata-form" method="post" class="exhibit-builder">
 
 	<fieldset>
 		<legend>Exhibit Metadata</legend>
