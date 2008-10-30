@@ -11,7 +11,6 @@
 	Event.observe(window, 'load', makeLayoutSelectable);
 	
 	function makeLayoutSelectable() {
-		$('layout-submits').hide();
 		var current_layout = $('current_layout');
 		var layouts = $$('div.layout');
 
@@ -37,7 +36,6 @@
 				current_layout.update();
 				current_layout.appendChild(copy);
 				current_layout.appendChild(heading);
-				$('layout-submits').show();
 				//new Effect.Highlight(current_layout);
 
 				//Make sure the input is selected
@@ -86,8 +84,7 @@
 		</div>
 	</fieldset> 
 	
-	<p id="layout-submits">
-	<button type="submit" name="choose_layout" id="choose_layout" class="page-button">Save Changes</button> or <button type="submit" name="cancel_and_section_form" id="section_form" class="cancel">Cancel</button></p>
+	<p><button type="submit" name="save_page_metadata" id="page_metadata_form" class="page-button">Save Changes</button> or <button type="submit" name="cancel_page" id="page_form" class="cancel">Cancel</button></p>
 	
 	
 </form>

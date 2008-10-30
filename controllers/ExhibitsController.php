@@ -417,83 +417,49 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 				
 		if (!empty($_POST)) {
 
-			if (array_key_exists('choose_layout', $_POST)) {
-			
-				//A layout has been chosen for the page
-				$this->setLayout($_POST['layout']);
-				
-				$page->layout = (string) $_POST['layout'];
-				
-				return $this->render('page-content-form');
-			
-			} elseif (array_key_exists('change_layout', $_POST)) {
-				
-				//User wishes to change the current layout
-				
-				//Reset the layout vars
-				$this->setLayout(null);
-				$page->layout = null;
-				
-				return $this->render('page-metadata-form');		
-			}
-				
-			else {
 				try {
-					
-					if($layout = $this->getLayout()) {
-						$page->layout = $layout;
-					}
-
 					$retVal = $page->saveForm($_POST);
-
 				} catch (Exception $e) {
 					$this->flash($e->getMessage());
 				}
 
 				//Otherwise the page form has been submitted
+				//check to see if we need to redirect
 				if($retVal) {
 				
-					//Unset the page var that was saved in the session
-					$this->setLayout(null);
-				
-				
-					if(array_key_exists('exhibit_form', $_POST)) {
+				    if (array_key_exists('save_page_content', $_POST)) {
+
+    					if(array_key_exists('section_form', $_POST)) {
 					
-						//Return to the exhibit form
-						$this->redirect->goto('edit', null, null, array('id'=>$section->Exhibit->id));
-						return;
+    						//Return to the section form
+    						$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
+    						return;
 					
-					}elseif(array_key_exists('section_form', $_POST)) {
+    					}elseif(array_key_exists('page_form', $_POST)) {
 					
-						//Return to the section form
-						$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
-						return;
+    						//Add another page
+    						$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
+    						return;
+    					} 
 					
-					}elseif(array_key_exists('page_form', $_POST)) {
+				    }
 					
-						//Add another page
-						$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
-						return;
-					
-					}elseif(array_key_exists('save_and_paginate', $_POST)) {
-				
-						//User wants to save the current set of pagination
-						//@todo How would this work?
-						$paginationPage = $this->_getParam('page');
-						
-						$this->redirect->goto('edit-page', null, null, array('id'=>$page->id, 'page'=>$paginationPage) );
-						return;
-						
-					}
+					if (array_key_exists('save_page_metadata', $_POST)) {
+
+            				$page->layout = (string) $_POST['layout'];
+                            $scriptToRender = 'page-content-form';
+
+                            return $this->redirect->goto('edit-page', null, null, array('id'=>$page->id));
+            		}
 				}
-			}
 		}
 		
-		if ( empty($page->layout) ) {
-			$this->render('page-metadata-form');
-		}else {
-			$this->render('page-content-form');	
-		}		
+		// If the POST is empty or the form submission is bad, render a page instead of redirecting.
+        if (empty($_POST)) {
+            $this->render('page-content-form');
+        } else {
+            $this->render('page-metadata-form');
+        }
 	}
 	
 	/**

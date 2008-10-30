@@ -71,7 +71,7 @@ echo js('tiny_mce/tiny_mce');
             $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif"); 
         	echo '<img src="'.$imgFile.'" />';
         ?>
-    <button id="change_layout" name="change_layout" type="submit">Edit Page Metadata</button>
+    <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
     </div>
 
     <div id="item-select"></div>
