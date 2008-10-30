@@ -129,9 +129,9 @@ class ExhibitSection extends Omeka_Record
 	public function getPageByOrder($order)
 	{
 		$db = $this->getDb();
-		$sql = "SELECT p.* FROM $db->ExhibitPage p WHERE p.order = ?";
+		$sql = "SELECT p.* FROM $db->ExhibitPage p WHERE p.order = ? AND p.section_id = ?";
 
-		return $this->getTable('ExhibitPage')->fetchObject($sql, array($order));
+		return $this->getTable('ExhibitPage')->fetchObject($sql, array($order,$this->id));
 	}
 	
 	public function hasPages()
