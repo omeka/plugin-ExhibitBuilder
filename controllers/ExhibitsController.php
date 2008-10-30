@@ -313,21 +313,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			$this->flashSuccess("Changes to the exhibit's section were saved successfully!");
 			//Forward around based on what submit button was pressed
 			
-			if(array_key_exists('exhibit_form',$_POST)) {
-				
-				//Forward to the 'edit' action
-				$this->redirect->goto('edit', null, null, array('id'=>$section->exhibit_id));
-				return;
 			
-			}elseif(array_key_exists('page_form',$_POST)) {
+			if(array_key_exists('page_form',$_POST)) {
 				
 				//Forward to the addPage action (id is the section id)
 				$this->redirect->goto('add-page', null, null, array('id'=>$section->id));
 				return;
 				
-			}elseif(array_key_exists('add_new_section', $_POST)) {
-				//Forward back to adding a new section to the exhibit
-				$this->redirect->goto('add-section', null, null, array('id'=>$section->Exhibit->id));
+			}elseif(array_key_exists('section_form', $_POST)) {
+				$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 			}
 		}
 
