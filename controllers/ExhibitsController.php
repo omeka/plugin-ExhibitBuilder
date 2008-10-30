@@ -423,15 +423,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->render('page-metadata-form');
     }
 
-	public function editPageAction()
-	{
-		$page = $this->findById(null,'ExhibitPage');
-		$section = $page->Section;
-		$exhibit = $section->Exhibit;
-		
-		return $this->processPageForm($page, 'Edit', $section, $exhibit);
-	}
-		
 	protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
 	{
 		//'cancel_and_section_form' and 'cancel_and_exhibit_form' as POST elements will cancel adding a page
