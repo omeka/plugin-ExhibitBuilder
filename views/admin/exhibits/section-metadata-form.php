@@ -12,15 +12,15 @@
 		listSorter.recordId = '<?php echo h($section->id); ?>';
 		listSorter.tag = 'li';
 		listSorter.handle = 'handle';
-		listSorter.overlap = 'horizontal';
-		listSorter.constraint = 'horizontal';
+		listSorter.overlap = 'vertical';
+		listSorter.constraint = 'vertical';
 		listSorter.confirmation = 'Are you sure you want to delete this page?';
 		listSorter.deleteLinks = 'a.delete-page';
 								
 		if(listSorter.list) {
 			//Create the sortable list
 			makeSortable(listSorter.list);
-		};
+		}
 	});
 </script>
 

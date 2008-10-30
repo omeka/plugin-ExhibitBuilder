@@ -27,16 +27,6 @@ dd.exhibits ul li {
 	clear:both;
 }
 
-.section-delete a {
-	text-decoration:none; 
-	color:red;
-}
-
-.section-edit a {
-	text-decoration:none; 
-	color:#38c;
-}
-
 table#exhibits {
 	width:774px;
 }
@@ -53,12 +43,12 @@ table#exhibits {
 	clear:both;
 }
 
-#section-list {
+#section-list, #page-list {
 	float:left; 
 	width: 512px;
 }
 
-#section-list li {
+#section-list li, #page-list li {
 	display:block; 
 	overflow:hidden; 
 	float:left; 
@@ -70,24 +60,24 @@ table#exhibits {
 	background:#e9f6da;
 }
 
-#section-list li .left {
+#section-list li .left, #page-list li .left {
 	display:block; 
 	float:left; 
 	width: 65%;
 }
 	
-#section-list img {
+#section-list img, #page-list img {
 	background:#fff; 
 	padding:4px; 
 	float:left;
 }
 	
-#section-list input {
+#section-list input, #page-list input {
 	padding:4px 0; 
 	width:1em;
 }
 
-#section-list li .right {
+#section-list li .right, #page-list li .right {
 	display:block; 
 	float:right; 
 	width:28%; 
@@ -150,12 +140,12 @@ table#exhibits {
 
 #add-new-section-form .field {}
 
-.section-delete a {
+.section-delete a, .page-delete a {
 	text-decoration:none; 
 	color:red;
 }
 
-.section-edit a {
+.section-edit a, .page-edit a {
 	text-decoration:none; 
 	color:#38c;
 }
@@ -176,7 +166,7 @@ table#exhibits {
 /* Page Metadata */
 #layouts .layout {
 	display:block; 
-	float:left; 
+    float:left; 
 	text-align:center; 
 	border:1px solid #ccc; 
 	margin-right:18px; 
@@ -359,33 +349,6 @@ table#exhibits {
 
 #section-pages {
 	clear:both;
-}
-
-#page-list .page {
-	overflow:hidden; 
-	border-right:1px dotted #ccc;
-	width:180px;
-	float:left;
-}
-
-#page-list img {
-	margin:0 auto; 
-	text-align:center;
-	float:left;
-}
-
-#page-list .page-info {
-	float:left; 
-	width:48%;
-}
-
-#page-list span {
-	display:inline;
-}
-
-#page-list .page-links {
-	float:right; 
-	width: 48%;
 }
 
 #page-links input {
