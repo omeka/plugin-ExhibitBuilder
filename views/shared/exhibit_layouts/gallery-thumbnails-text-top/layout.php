@@ -1,10 +1,10 @@
 <?php 
-	//Name: Thumbnail Gallery;
-	//Description: Displays a gallery of up to 12 items;
+	//Name: Gallery Thumbnails Text Top;
+	//Description: Displays a block of text above a gallery of up to 12 items;
 	//Author: Jeremy Boggs; 
 ?>
 
-<div class="gallery-thumbnails-text-bottom">
+<div class="gallery-thumbnails-text-top">
 	<div class="primary">
 	<div class="exhibit-text">
 	<?php echo page_text(1); ?>

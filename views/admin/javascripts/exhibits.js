@@ -4,7 +4,6 @@ Omeka.ExhibitBuilder = Omeka.ExhibitBuilder || new Object;
 Omeka.ExhibitBuilder = Class.create({
     
     initialize: function() {        
-
         Event.observe(document, 'omeka:loaditems', this.onLoadPagination.bind(this));
         //When you're done, make all the items drag/droppable
     	Event.observe(document, 'omeka:loaditems', this.enableDragAndDrop.bind(this));

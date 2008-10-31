@@ -6,6 +6,8 @@
 
 <div class="text-full">
 	<div class="primary">
-	<?php echo page_text(1); ?>
+		<div class="exhibit-text">
+			<?php echo page_text(1); ?>
+		</div>
 	</div>
 </div>

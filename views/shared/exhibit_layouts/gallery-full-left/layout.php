@@ -7,7 +7,7 @@
 <div class="gallery-full-left">
 	<div class="primary">
 		<?php if(use_exhibit_page_item(1)):?>
-		<div class="item-full">
+		<div class="exhibit-item">
 			<?php echo exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
 			<?php echo item('Dublin Core', 'Title'); ?>
 			<?php echo item('Dublin Core', 'Description'); ?>
@@ -21,8 +21,8 @@
 	</div>
 	
 	<?php if($text = page_text(1)):?>
-	<div id="item-full-text">
-		<?php echo $text; ?>
+	<div class="tertiary">
+		<div class="exhibit-text"><?php echo page_text(1); ?></div>
 	</div>
 	<?php endif; ?>
 </div>
