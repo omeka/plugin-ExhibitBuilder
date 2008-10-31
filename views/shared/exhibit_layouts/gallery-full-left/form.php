@@ -11,7 +11,9 @@
 	<?php layout_form_item(3); ?>
 	<?php layout_form_item(4); ?>
 	<?php layout_form_item(5); ?>
-	<?php //layout_form_item(6); ?>
-	<?php //layout_form_item(7); ?>
+	<?php layout_form_item(6); ?>
+	<?php layout_form_item(7); ?>
+	<?php layout_form_item(8); ?>
+	<?php layout_form_item(9); ?>
 </div>	
 </fieldset>

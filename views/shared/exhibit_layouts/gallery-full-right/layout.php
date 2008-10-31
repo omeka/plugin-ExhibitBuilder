@@ -17,7 +17,7 @@
 	</div>
 	
 	<div class="secondary gallery">
-        <?php echo display_exhibit_thumbnail_gallery(2, 5, array('class'=>'permalink')); ?>
+        <?php echo display_exhibit_thumbnail_gallery(2, 9, array('class'=>'permalink')); ?>
 	</div>
 	
 	<?php if($text = page_text(1)):?>
