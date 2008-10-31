@@ -11,7 +11,7 @@
         sectionList: "<?php echo uri(array('controller'=>'exhibits','action'=>'section-list'), 'default'); ?>",
         edit: "<?php echo uri('exhibits/edit'); ?>"
     };
-        
+    
 	Event.observe(window, 'load', function() {	
 		makeSectionListDraggable();
 	});
@@ -20,7 +20,7 @@
 	{	    
 		var list = $('section-list');
         
-	    var exhibit_id = <?php echo $exhibit->id; ?>;	
+	    var exhibit_id = <?php echo $exhibit->exists() ? $exhibit->id : 'null'; ?>;	
 		listSorter.list = list;
 		listSorter.recordId = exhibit_id;
     	listSorter.form = $('exhibit-metadata-form');
