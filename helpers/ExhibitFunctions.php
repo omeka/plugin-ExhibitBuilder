@@ -465,7 +465,10 @@ function exhibit_display_item($displayFilesOptions = array(), $linkProperties = 
     $displayFilesOptions['linkToFile'] = false;
     
     $html   = '<a ' . _tag_attributes($linkProperties) . '>';
-    $itemHtml  = display_file($item->Files[$fileIndex], $displayFilesOptions);
+    
+    // Pass null as the 3rd arg so that it doesn't output the item-file div.
+    $fileWrapperClass = null;
+    $itemHtml  = display_file($item->Files[$fileIndex], $displayFilesOptions, $fileWrapperClass);
     if (!$itemHtml) {
         $itemHtml = item('Dublin Core', 'Title');
     }
