@@ -23,11 +23,6 @@ echo js('tiny_mce/tiny_mce');
 		// Retrieve the pagination through ajaxy goodness
 		exhibitBuilder.getItems(paginate_uri);
 
-        // These have nothing to do with the exhibit builder per se, they are just
-        // related to the search bar and styling of admin theme in general.
-    	Event.observe(document, 'omeka:loaditems', Omeka.Search.toggleSearch);
-    	Event.observe(document, 'omeka:loaditems', Omeka.Search.activateSearchButtons);
-
     	Event.observe(document, 'omeka:loaditems', function(){
     	    // Put the 'delete' as background to anything with a 'remove_item' class
             $$('.remove_item').invoke('setStyle', {backgroundImage: "url('<?php echo img('delete.gif'); ?>')"});            
