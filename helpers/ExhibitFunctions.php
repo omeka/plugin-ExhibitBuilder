@@ -93,7 +93,7 @@ function link_to_exhibit_item($text = null, $props=array())
 	
 	$text = (!empty($text) ? $text : strip_formatting(item('Dublin Core', 'Title')));
 	
-	echo '<a href="' . $uri . '" '. _tag_attributes($props) . '>' . $text . '</a>';
+	return '<a href="' . $uri . '" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
 
 function exhibit_item_uri($item, $exhibit=null, $section=null)
