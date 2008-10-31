@@ -45,9 +45,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $item_id = $this->_getParam('item_id');
         $slug = $this->_getParam('slug');
 
-        $exhibit = is_numeric($slug) ?
-            $this->_table->find($slug) :
-            $this->_table->findBySlug($slug);
+        $exhibit = $this->_table->findBySlug($slug);
  
         $exhibittable = $this->_table;
 
@@ -130,12 +128,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 			$slug = $this->_getParam('slug');
 		}
 		
-		//Slug can be either the numeric 'id' for the exhibit or the alphanumeric slug
-		if(is_numeric($slug)) {
-			$exhibit = $this->_table->findById($slug);
-		}else {
-			$exhibit = $this->_table->findBySlug($slug);
-		}
+		$exhibit = $this->_table->findBySlug($slug);
 		
 		if(!$exhibit) {
 		    throw new Zend_Controller_Exception('Cannot find exhibit with slug: '. $slug);
