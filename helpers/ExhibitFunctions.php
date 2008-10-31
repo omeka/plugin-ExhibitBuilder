@@ -468,6 +468,10 @@ function exhibit_display_item($displayFilesOptions = array(), $linkProperties = 
     // Always just display the first file (may change this in future).
     $fileIndex = 0;
     $linkProperties['href'] = exhibit_item_uri($item);
+    
+    // Don't link to the file b/c it overrides the link to the item.
+    $displayFilesOptions['linkToFile'] = false;
+    
     $html   = '<a ' . _tag_attributes($linkProperties) . '>';
     $itemHtml  = display_file($item->Files[$fileIndex], $displayFilesOptions);
     if (!$itemHtml) {
