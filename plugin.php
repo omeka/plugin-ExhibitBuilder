@@ -26,7 +26,6 @@ add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard'
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('define_action_contexts', 'exhibit_builder_define_action_response_contexts');
 
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
@@ -117,7 +116,7 @@ function exhibit_builder_setup_acl($acl)
 {
     $acl->loadResourceList(array('ExhibitBuilder_Exhibits'=> array('add', 'edit',
     'delete', 'add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section',
-    'delete-section', 'showNotPublic')));    
+    'delete-section', 'showNotPublic', 'section-list', 'page-list')));    
       
 }
 
@@ -176,19 +175,4 @@ function exhibit_builder_admin_nav($navArray)
     }
     
     return $navArray;
-}
- 
-function exhibit_builder_define_action_response_contexts($contextsArray, $controller, $contextSwitcher)
-{
-    switch (get_class($controller)) {
-        case 'ExhibitsController':
-            $contextsArray['save'] = array('json');
-            $contextsArray['add'] = array('json');
-            break;
-        
-        default:
-            break;
-     }
-     
-     return $contextsArray;
 }
