@@ -134,8 +134,10 @@ function exhibit_builder_routes($router)
 
 function exhibit_builder_public_header()
 {
-    // Add the stylesheet for the layout
-    echo '<link rel="stylesheet" media="screen" href="' . layout_css() . '" /> ';
+    if ($layoutCssHref = layout_css()) {
+        // Add the stylesheet for the layout
+        echo '<link rel="stylesheet" media="screen" href="' . $layoutCssHref . '" /> ';
+    }
 }
 
 function exhibit_builder_admin_header($request)
