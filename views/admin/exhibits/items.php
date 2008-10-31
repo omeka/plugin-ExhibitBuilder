@@ -1,13 +1,7 @@
-<div id="page-search-form">
-<?php
-	// ******   WE NEED AN ITEM SEARCH FORM THAT WORKS  ********
- 	$uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
-	$isPartial = true;
-	$formAttributes = array('id'=>'search');
-	common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
-
-	//items_search_form(array('id'=>'search'), $uri); 
-?>
+<div id="item-list">
+<?php while($item = loop_items()): ?>
+	<?php echo exhibit_form_item($item); ?>
+<?php endwhile; ?>
 </div>
 
 <div id="pagination">
@@ -21,9 +15,16 @@
 
 </div>
 
-<div id="item-list">
-<?php while($item = loop_items()): ?>
-	<?php echo exhibit_form_item($item); ?>
-<?php endwhile; ?>
+<div id="page-search-form">
+<?php
+ 	$uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
+	$isPartial = true;
+	$formAttributes = array('id'=>'search');
+	common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
+
+	//items_search_form(array('id'=>'search'), $uri); 
+?>
 </div>
-		
+
+
+

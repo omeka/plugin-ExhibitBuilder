@@ -275,6 +275,10 @@ table#exhibits {
 	display:none;
 }
 
+#page-search-form {
+    clear:both;
+}
+
 #page-search-form .textinput {
 	clear: both;
 	overflow: hidden;

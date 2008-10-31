@@ -57,9 +57,9 @@ echo js('tiny_mce/tiny_mce');
 	<div id="exhibits-breadcrumb">
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
-
-    <div id="page-metadata-list">
+  
     <form name="layout" id="page-form" method="post">
+        <div id="page-metadata-list">
         <h2>Page Metadata</h2>
             <p>Page Title: <?php echo $page->title; ?></p>
         <?php 
@@ -67,9 +67,7 @@ echo js('tiny_mce/tiny_mce');
         	echo '<img src="'.$imgFile.'" />';
         ?>
     <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
-    </div>
-
-    <div id="item-select"></div>
+        </div>
     
 	<div id="layout-all">
 	<div id="layout-form">
@@ -83,6 +81,9 @@ echo js('tiny_mce/tiny_mce');
 		</div>
 		
 	</form>
+	
+	<?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
+	<div id="item-select"></div>
 </div>
 </div>
 <?php foot(); ?>
