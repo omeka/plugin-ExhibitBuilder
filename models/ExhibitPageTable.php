@@ -29,18 +29,20 @@ class ExhibitPageTable extends Omeka_Db_Table
     
     protected function findNearby($page, $position = 'next')
     {
-        //This will only pull the title and id for the item
         $select = $this->getSelect();
-        
         $select->limit(1);
+        
+        $section = Zend_Registry::get('section');
         
         switch ($position) {
             case 'next':
+                $select->where('e.section_id = ?', (int) $section->id);
                 $select->where('e.order > ?', (int) $page->order);
                 $select->order('e.order ASC');
                 break;
                 
             case 'previous':
+                $select->where('e.section_id = ?', (int) $section->id);
                 $select->where('e.order < ?', (int) $page->order);
                 $select->order('e.order DESC');
                 break;
@@ -49,7 +51,7 @@ class ExhibitPageTable extends Omeka_Db_Table
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
                 break;
         }
-        
+
         return $this->fetchObject($select);
     }
 }

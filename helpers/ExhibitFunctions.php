@@ -416,8 +416,7 @@ function display_random_featured_exhibit()
 
 function random_featured_exhibit()
 {
-    trigger_error('random_featured_exhibit() will not work until the new Exhibit builder is finished!'); 
-    //return get_db()->getTable('Exhibit')->findRandomFeatured();
+    return get_db()->getTable('Exhibit')->findRandomFeatured();
 }
 
 /**
@@ -429,11 +428,13 @@ function link_to_next_exhibit_page($text="Next Page --&gt;", $props=array())
 {
     $exhibit = Zend_Registry::get('exhibit');
     $section = Zend_Registry::get('section');
-	$page = Zend_Registry::get('page');
-
-	if($next = $page->next()) {
-		return link_to_exhibit($exhibit, $text, null, $section, $page->next());
-	}
+    
+    // if page object exists, grab link to next exhibit page if exists
+    if ($page = Zend_Registry::get('page')) {
+    	if($next = $page->next()) {
+    		return link_to_exhibit($exhibit, $text, array(), $section, $page->next());
+    	}        
+    }
 }
 
 /**
@@ -445,10 +446,12 @@ function link_to_previous_exhibit_page($text="&lt;-- Previous Page", $props=arra
 {
     $exhibit = Zend_Registry::get('exhibit');
     $section = Zend_Registry::get('section');
-	$page = Zend_Registry::get('page');
 
-	if($previous = $page->previous()) {
-		return link_to_exhibit($exhibit, $text, null, $section, $page->previous());
+    // if page object exists, grab link to previous exhibit page if exists	
+	if ($page = Zend_Registry::get('page')) {
+    	if($previous = $page->previous()) {
+    		return link_to_exhibit($exhibit, $text, array(), $section, $page->previous());
+    	}	    
 	}
 }
 
