@@ -73,7 +73,7 @@
 		<div id="current_layout">
 		<?php
 		if ($page->title) {
-	        $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif");
+	        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$page->layout/layout.gif");
 	        echo "<img src=\"$imgFile\">";
 	        echo "<h2>" . $page->layout . "</h2>";
 		} else {

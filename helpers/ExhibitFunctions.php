@@ -155,7 +155,7 @@ function exhibit_head()
 	$exhibit = Zend_Registry::get('exhibit');
 
 	if($exhibit->theme) {
-		common('header',compact('exhibit'),'exhibit_themes'.DIRECTORY_SEPARATOR.$exhibit->theme);
+		common('header',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
 	}else {
 		head(compact('exhibit'));
 	}
@@ -167,7 +167,7 @@ function exhibit_foot()
 	$exhibit = Zend_Registry::get('exhibit');
 
 	if($exhibit->theme) {
-		common('footer',compact('exhibit'),'exhibit_themes'.DIRECTORY_SEPARATOR.$exhibit->theme);
+		common('footer',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
 	}else {
 		foot(compact('exhibit'));
 	}
@@ -261,7 +261,7 @@ function get_ex_layouts()
 function exhibit_layout($layout, $input=true)
 {	
 	//Load the thumbnail image
-	$imgFile = web_path_to("exhibit_layouts/$layout/layout.gif");
+	$imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
 	
 	$page = Zend_Registry::get('page');
     if ($layout == $page->layout) {
@@ -283,11 +283,7 @@ function exhibit_css($file)
 	if(Zend_Registry::isRegistered('exhibit')) {
 		$ex = Zend_Registry::get('exhibit');
 
-		$path = $ex->theme.DIRECTORY_SEPARATOR.$file.'.css';
-		
-		if(file_exists(EXHIBIT_THEMES_DIR.DIRECTORY_SEPARATOR.$path)) {
-			return WEB_EXHIBIT_THEMES.DIRECTORY_SEPARATOR.$path;
-		}
+		return css($file, EXHIBIT_THEMES_DIR_NAME . DIRECTORY_SEPARATOR . $ex->theme);
 	}
 	
 }
@@ -297,11 +293,7 @@ function layout_css($file='layout')
 	if(Zend_Registry::isRegistered('page')) {
 		$p = Zend_Registry::get('page');
 
-		$path = $p->layout.DIRECTORY_SEPARATOR.$file.'.css';
-		
-		if(file_exists(EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$path)) {
-			return WEB_EXHIBIT_LAYOUTS.DIRECTORY_SEPARATOR.$path;
-		}
+        return css($file, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $p->layout);
 	}
 }
 

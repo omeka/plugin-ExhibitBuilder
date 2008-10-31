@@ -63,7 +63,7 @@ echo js('tiny_mce/tiny_mce');
         <h2>Page Metadata</h2>
             <p>Page Title: <?php echo $page->title; ?></p>
         <?php 
-            $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif"); 
+            $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$page->layout/layout.gif"); 
         	echo '<img src="'.$imgFile.'" />';
         ?>
     <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>

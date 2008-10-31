@@ -10,10 +10,10 @@ define('EXHIBIT_BUILDER_VERSION', '0.3');
 define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
 
 define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)));
-define('WEB_EXHIBIT_THEMES', WEB_EXHIBIT_PLUGIN_DIR . '/views/shared/exhibit_themes');
-define('WEB_EXHIBIT_LAYOUTS', WEB_EXHIBIT_PLUGIN_DIR . '/views/shared/exhibit_layouts');
+define('EXHIBIT_THEMES_DIR_NAME', 'exhibit_themes');
+define('EXHIBIT_LAYOUTS_DIR_NAME', 'exhibit_layouts');
 define('EXHIBIT_THEMES_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
-. DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_themes');
+. DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . EXHIBIT_THEMES_DIR_NAME);
 define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_layouts');
 

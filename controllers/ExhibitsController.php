@@ -167,7 +167,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		if(!empty($exhibit->theme)) {
 					
 			//Hack to get just the directory name for the exhibit themes
-            $exhibitThemesDir = 'exhibit_themes';
+            $exhibitThemesDir = EXHIBIT_THEMES_DIR_NAME;
             
 			switch ($toRender) {
 				case 'show':
