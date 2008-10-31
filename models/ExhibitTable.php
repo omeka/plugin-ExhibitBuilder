@@ -60,7 +60,7 @@ class ExhibitTable extends Omeka_Db_Table
 				WHERE e.id = ? AND i.id = ?";
 				
 		$count = (int) $db->fetchOne($sql, array((int) $exhibit_id, (int) $item_id));
-		
+
 		return ($count > 0);
 	}
 	
