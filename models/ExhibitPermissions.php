@@ -15,7 +15,7 @@ class ExhibitPermissions
 		$acl = Omeka_Context::getInstance()->getAcl();
 		$db = Omeka_Context::getInstance()->getDb();
 		
-		$has_permission = $acl->checkUserPermission('Exhibits', 'showNotPublic');
+		$has_permission = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'showNotPublic');
 		
 		if(!$has_permission)
 		{

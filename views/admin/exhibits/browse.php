@@ -19,7 +19,7 @@
 	<div id="no-exhibits">
 	<p>There are no exhibits yet.
 	
-	<?php if(has_permission('Exhibits','add')): ?>
+	<?php if(has_permission('ExhibitBuilder_Exhibits','add')): ?>
 		  Why don't you <a href="<?php echo uri('exhibits/add'); ?>">add some</a>?</p>
 	<?php endif; ?>
 	</div>
@@ -40,10 +40,10 @@
 		<th>Tags</th>
 		<th>Theme</th>
 		<th>Preview</th>
-		<?php if(has_permission('Exhibits','edit')){ ?>
+		<?php if(has_permission('ExhibitBuilder_Exhibits','edit')){ ?>
 		
 		<th>Edit?</th>
-		<?php } if(has_permission('Exhibits','delete')){ ?>
+		<?php } if(has_permission('ExhibitBuilder_Exhibits','delete')){ ?>
 		<th>Delete?</th>
 		<?php } ?>
 	</tr>

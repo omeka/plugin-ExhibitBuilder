@@ -100,18 +100,25 @@ function exhibit_builder_install() {
 }
 
 /**
- * Modify the ACL to include an 'Exhibits' resource.
+ * Modify the ACL to include an 'ExhibitBuilder_Exhibits' resource.  
+ * 
+ * Requires the module name as part of the ACL resource in order to avoid naming
+ * conflicts with pre-existing controllers, e.g. an ExhibitBuilder_ItemsController
+ * would not rely on the existing Items ACL resource.
+ * 
+ * NOTE: unless explicitly denied, super users and admins will have access to all
+ * of the defined resources and privileges.  Other user levels will not by default.
+ * That means that admin and super users can both manipulate exhibits completely,
+ * but researcher/contributor cannot.
  * 
  * @return void
  **/
 function exhibit_builder_setup_acl($acl)
 {
-    $acl->loadResourceList(array('Exhibits'=> array('add', 'edit',
-    'delete', 'addPage', 'editPage', 'deletePage', 'addSection', 'editSection',
-    'deleteSection', 'save', 'showNotPublic')));    
-    
-    // Test denying permission to see the exhibits.
-    // $acl->deny('super', array('Exhibits'));    
+    $acl->loadResourceList(array('ExhibitBuilder_Exhibits'=> array('add', 'edit',
+    'delete', 'add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section',
+    'delete-section', 'showNotPublic')));    
+      
 }
 
 /**
@@ -142,7 +149,7 @@ function exhibit_builder_admin_header($request)
 function exhibit_builder_dashboard()
 {
 ?>
-    <?php if(has_permission('Exhibits','browse')): ?>
+    <?php if(has_permission('ExhibitBuilder_Exhibits','browse')): ?>
 	<dt class="exhibits"><a href="<?php echo uri('exhibits'); ?>">Exhibits</a></dt>
 	<dd class="exhibits">
 		<ul>
@@ -161,7 +168,7 @@ function exhibit_builder_public_main_nav($navArray) {
 
 function exhibit_builder_admin_nav($navArray)
 {
-    if (has_permission('Exhibits', 'browse')) {
+    if (has_permission('ExhibitBuilder_Exhibits', 'browse')) {
         
         $navArray += array('Exhibits'=> uri('exhibits'));
     }
