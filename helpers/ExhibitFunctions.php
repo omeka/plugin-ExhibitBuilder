@@ -262,8 +262,12 @@ function exhibit_layout($layout, $input=true)
 {	
 	//Load the thumbnail image
 	$imgFile = web_path_to("exhibit_layouts/$layout/layout.gif");
-
-	echo '<div class="layout">';
+	
+	$page = Zend_Registry::get('page');
+    if ($layout == $page->layout) {
+        $layout = "current_layout";
+    }
+	echo '<div class="layout" id="'. $layout .'">';
 	echo '<img src="'.$imgFile.'" />';
 	if($input) {
 		echo '<div class="input">';

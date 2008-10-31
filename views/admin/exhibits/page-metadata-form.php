@@ -37,7 +37,6 @@
 				current_layout.update();
 				current_layout.appendChild(copy);
 				current_layout.appendChild(heading);
-				//new Effect.Highlight(current_layout);
 
 				//Make sure the input is selected
 				var input = this.getElementsByTagName('input')[0];
@@ -71,7 +70,17 @@
 		<legend>Layouts</legend>
 		
 		<div id="chosen_layout">
-		<div id="current_layout"><p>Choose a layout by selecting a thumbnail on the right.</p></div>
+		<div id="current_layout">
+		<?php
+		if ($page->title) {
+	        $imgFile = web_path_to("exhibit_layouts/$page->layout/layout.gif");
+	        echo "<img src=\"$imgFile\">";
+	        echo "<h2>" . $page->layout . "</h2>";
+		} else {
+		    echo "<p>Choose a layout by selecting a thumbnail on the right.</p>";
+		}
+		?>
+		</div>
 	    </div>
 		
 		<div id="layout-thumbs">
