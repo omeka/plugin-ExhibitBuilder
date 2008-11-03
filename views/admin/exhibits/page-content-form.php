@@ -43,7 +43,15 @@ echo js('tiny_mce/tiny_mce');
  		theme_advanced_toolbar_align : "left"
         });
     });  
-
+    
+    Event.observe(document, 'omeka:loaditems', function(){
+        $('show-or-hide-search').observe('click', function(){
+            $('page-search-form').toggle();
+            this.toggleClassName('show-form');
+            this.update(this.hasClassName('show-form') ? 'Show Search Form' : 'Hide Search Form');
+        });
+    });
+    
 </script>
 <?php echo js('exhibits'); ?>
 
