@@ -377,19 +377,19 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	    $page = $this->findById(null,'ExhibitPage');
 		$section = $page->Section;
 		$exhibit = $section->Exhibit;
-        
+
 	    $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
 	    
 	    
 	    if($success and array_key_exists('section_form', $_POST)) {
 
 			//Return to the section form
-			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
-			return;
-			
+			return $this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
 		} else if ($success and array_key_exists('page_metadata_form', $_POST)) {
-		   $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$page->id));
-			return;
+		   return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$page->id));
+		} else if (array_key_exists('page_form',$_POST)) {
+			//Forward to the addPage action (id is the section id)
+			return $this->redirect->goto('add-page', null, null, array('id'=>$page->Section->id));
 		}
 	    
 	    $this->render('page-content-form');
