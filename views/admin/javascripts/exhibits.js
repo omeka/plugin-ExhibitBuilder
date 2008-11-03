@@ -298,7 +298,7 @@ Omeka.ExhibitBuilder = Class.create({
     
     styleDeleteButton: function(containers) {
         containers.each(function(container){
-            var clear = document.createElement('a');
+            var clear = $(document.createElement('a'));
     		clear.innerHTML = "Remove This Item";
     		clear.className = 'remove_item';
     		clear.style.cursor = "pointer";
