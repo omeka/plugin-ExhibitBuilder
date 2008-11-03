@@ -274,12 +274,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	}
 	
 	protected function processSectionForm($section, $actionName, $exhibit=null)
-	{
-		//Check for a 'cancel' button so we can redirect
-		if(isset($_POST['cancel_section'])) {
-			$this->redirect->goto('edit', null, null, array('id' => $section->exhibit_id));
-		}
-		
+	{		
 		$retVal = false;
 		
 		try {
@@ -411,17 +406,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     }
 
 	protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
-	{
-		//'cancel_and_section_form' and 'cancel_and_exhibit_form' as POST elements will cancel adding a page
-		//And they will redirect to whatever form is important
-		if(isset($_POST['cancel_and_section_form'])) {
-			$this->redirect->goto('edit-section', null, null, array('id'=>$page->section_id));
-		}
-		
-		if(isset($_POST['cancel_and_exhibit_form'])) {
-			$this->redirect->goto('edit', null, null, array('id'=>$section->exhibit_id));
-		}
-		
+	{		
 		//Register the page var so that theme functions can use it
 		Zend_Registry::set('page', $page);
 
@@ -447,7 +432,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$section = $this->findById(null, 'ExhibitSection');
 		
 		$exhibit = $section->Exhibit;
-		
+
 		return $this->processSectionForm($section, 'Edit', $exhibit);
 	}
 	

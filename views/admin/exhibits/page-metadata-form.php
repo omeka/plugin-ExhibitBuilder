@@ -94,7 +94,8 @@
 		</div>
 	</fieldset> 
 	
-	<p><button type="submit" name="save_page_metadata" id="page_metadata_form" class="page-button">Save Changes</button> or <button type="submit" name="cancel_page" id="page_form" class="cancel">Cancel</button></p>
+	<p><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
+	    <a href="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id)); ?>">Cancel</a></p>
 	
 	
 </form>

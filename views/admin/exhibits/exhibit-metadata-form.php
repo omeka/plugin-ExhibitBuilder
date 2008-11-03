@@ -95,7 +95,9 @@
 		</fieldset>
 		
 		<fieldset>
-        <p><button type="submit" name="save_exhibit" id="save_exhibit" class="exhibit-button">Save Changes</button> or <button type="submit" name="add_section">Add Section</button> or <a href="<?php echo uri('exhibits'); ?>" class="cancel">Cancel</a></p>
+        <p><input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
+            <input type="submit" name="add_section" value="Add Section" /> or 
+            <a href="<?php echo uri('exhibits'); ?>" class="cancel">Cancel</a></p>
 		</fieldset>
 </form>		
 </div>

@@ -66,7 +66,8 @@
 	</fieldset>
 
 	<fieldset>
-		<p><button type="submit" name="section_form">Save Changes</button> or <button type="submit" name="page_form" id="page_form" class="inline-button">Add Page</button> or <button type="submit" name="cancel_section" id="cancel_section" class="cancel">Cancel</button></p>
+		<p><input type="submit" name="section_form" value="Save Changes" /> or 
+		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$section->exhibit_id)); ?>">Cancel</a></p>
 	</fieldset>
 </form>
 

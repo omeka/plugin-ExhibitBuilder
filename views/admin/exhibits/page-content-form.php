@@ -89,7 +89,8 @@ echo js('tiny_mce/tiny_mce');
 	</div>
 	
 		<div id="page-submits">
-			<button id="section_form" name="section_form" type="submit">Save and Return to Section</button> or <button id="page_form" name="page_form" type="submit">Save and Add Another Page</button> or <button name="cancel_and_section_form" class="cancel" type="submit">Cancel</button>
+			<input id="section_form" name="section_form" type="submit" value="Save and Return to Section" /> or 
+			<input id="page_form" name="page_form" type="submit" value="Save and Add Another Page" /> or <a href="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id)); ?>">Cancel</a>
 		</div>
 	
 	<fieldset>
