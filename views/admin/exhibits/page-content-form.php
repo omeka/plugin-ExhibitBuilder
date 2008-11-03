@@ -57,7 +57,10 @@ echo js('tiny_mce/tiny_mce');
 	<div id="exhibits-breadcrumb">
 		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
 	</div>
-  
+    
+    <?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
+	<div id="item-select"></div>
+    
     <form name="layout" id="page-form" method="post">
         <div id="page-metadata-list">
         <h2>Page Metadata</h2>
@@ -82,9 +85,6 @@ echo js('tiny_mce/tiny_mce');
 	
 	<?php echo __v()->formHidden('slug', $page->slug); // Put this here to fool the form into not overriding the slug. ?>	
 	</form>
-	
-	<?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
-	<div id="item-select"></div>
 </div>
 </div>
 <?php foot(); ?>

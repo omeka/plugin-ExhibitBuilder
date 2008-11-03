@@ -1,9 +1,3 @@
-<div id="item-list">
-<?php while($item = loop_items()): ?>
-	<?php echo exhibit_form_item($item); ?>
-<?php endwhile; ?>
-</div>
-
 <div id="pagination">
 <?php     
 	 echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
@@ -26,5 +20,10 @@
 ?>
 </div>
 
+<div id="item-list">
+<?php while($item = loop_items()): ?>
+	<?php echo exhibit_form_item($item); ?>
+<?php endwhile; ?>
+</div>
 
 
