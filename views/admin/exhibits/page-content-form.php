@@ -45,6 +45,7 @@ echo js('tiny_mce/tiny_mce');
     });  
     
     Event.observe(document, 'omeka:loaditems', function(){
+        $('page-search-form').hide();
         $('show-or-hide-search').observe('click', function(){
             $('page-search-form').toggle();
             this.toggleClassName('show-form');
