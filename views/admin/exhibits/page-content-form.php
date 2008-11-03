@@ -70,13 +70,13 @@ echo js('tiny_mce/tiny_mce');
     <?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 	<div id="item-select"></div>
     
-    <form name="layout" id="page-form" method="post">
+    <form id="page-form" method="post" action="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$page->id)); ?>">
         <div id="page-metadata-list">
         <h2>Page Metadata</h2>
             <p>Page Title: <?php echo $page->title; ?></p>
         <?php 
             $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$page->layout/layout.gif"); 
-        	echo '<img src="'.$imgFile.'" />';
+        	echo '<img src="'.$imgFile.'" alt="' . $page->layout . '"/>';
         ?>
     <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
         </div>
@@ -92,7 +92,9 @@ echo js('tiny_mce/tiny_mce');
 			<button id="section_form" name="section_form" type="submit">Save and Return to Section</button> or <button id="page_form" name="page_form" type="submit">Save and Add Another Page</button> or <button name="cancel_and_section_form" class="cancel" type="submit">Cancel</button>
 		</div>
 	
+	<fieldset>
 	<?php echo __v()->formHidden('slug', $page->slug); // Put this here to fool the form into not overriding the slug. ?>	
+	</fieldset>
 	</form>
 </div>
 </div>

@@ -208,7 +208,7 @@ function exhibit_form_item($item, $orderOnForm=null, $label=null)
 	
 	// If this is ordered on the form, make sure the generated form element indicates its order on the form.
 	if ($orderOnForm) {
-	   	$html .= text(array('name'=>'Item['.$orderOnForm.']', 'size'=>2), $item->id, $label);
+	   	$html .= __v()->formText('Item['.$orderOnForm.']', $item->id, array('size'=>2));
 	} else {
 	    $html .= '<div class="item_id">' . $item->id . '</div>';
 	}
@@ -223,7 +223,7 @@ function layout_form_item($order, $label='Enter an Item ID #') {
 
 function layout_form_text($order, $label='Text') {
 	echo '<div class="textfield">';
-	echo textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'80','class'=>'textinput'), page_text($order, false), $label); 
+	echo textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'80','class'=>'textinput'), page_text($order, false)); 
 	echo '</div>';
 }
 
