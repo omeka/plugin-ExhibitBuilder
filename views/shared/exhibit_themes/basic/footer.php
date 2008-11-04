@@ -1,9 +1,9 @@
 <div id="footer">
 	<a href="http://omeka.org" id="omeka-logo">Proudly Powered by Omeka</a>
-</div><!--end footer-->
+</div>
 
-</div><!--end content-->
+</div>
 
-</div><!--end wrap-->
+</div>
 </body>
 </html>

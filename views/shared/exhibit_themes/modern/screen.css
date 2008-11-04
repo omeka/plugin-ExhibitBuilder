@@ -11,6 +11,8 @@ h5 {background-color: #222;padding: 0 0 1em;}
 a img {border:none;}
 p,ul,ol,dl {font-size:1.2em; margin-bottom:1.5em;line-height:1.8em;}
 
+strong {font-weight:bold;}
+em {font-style:italic;}
 a:link,a:visited {color: #dd3300;}
 a:hover {color:#ff9900;}
 	h1 a {text-decoration: none;}

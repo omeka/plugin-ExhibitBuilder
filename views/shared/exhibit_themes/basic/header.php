@@ -9,7 +9,6 @@
 
 <!-- Stylesheets -->
 <link rel="stylesheet" media="screen" href="<?php echo exhibit_css('screen'); ?>" />
-<link rel="stylesheet" media="screen" href="<?php echo layout_css('layout'); ?>" />
 <link rel="stylesheet" media="print" href="<?php echo css('print'); ?>" />
 
 <!-- JavaScripts -->

@@ -11,15 +11,12 @@
 	</ul>
 	
 	<?php echo show_item_metadata(); ?>
-	
-	
 
 	<div id="itemfiles">
 		<?php echo display_files_for_item(); ?>
 	</div>
 	
-	
-	<?php if ( item_belongs_to_collection() ): ?>
+	<?php if(item_belongs_to_collection()): ?>
         <div id="collection" class="field">
             <h2>Collection</h2>
             <div class="field-value"><p><?php echo link_to_collection_for_item(); ?></p></div>
