@@ -264,14 +264,13 @@ function exhibit_layout($layout, $input=true)
 	$imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
 	
 	$page = Zend_Registry::get('page');
-    if ($layout == $page->layout) {
-        $layout = "current_layout";
-    }
-	echo '<div class="layout" id="'. $layout .'">';
+
+    $isSelected = ($page->layout == $layout) and $layout;
+	echo '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. $layout .'">';
 	echo '<img src="'.$imgFile.'" />';
 	if($input) {
 		echo '<div class="input">';
-		echo '<input type="radio" name="layout" value="'.$layout .'" />';
+		echo '<input type="radio" name="layout" value="'.$layout .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
 		echo '</div>';
 	}
 	echo '<div class="layout-name">'.$layout.'</div>'; 

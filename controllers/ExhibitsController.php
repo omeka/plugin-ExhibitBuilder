@@ -349,10 +349,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		$section = $this->findById(null,'ExhibitSection');
 		$exhibit = $section->Exhibit;
 				
-		if(isset($_POST['cancel_page'])) {
-			$this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
-		}
-		
 		$page = new ExhibitPage;
 		$page->section_id = $section->id;		
 				
@@ -364,6 +360,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		if ($success) {
             return $this->redirect->goto('edit-page-content', null, null, array('id'=>$page->id));
 		}
+
 		$this->render('page-metadata-form');
 	}
 	

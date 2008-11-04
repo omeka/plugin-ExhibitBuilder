@@ -291,7 +291,6 @@ table#exhibits {
 
 #layouts #layout-thumbs {
 	width:512px; 
-	float:left;
 }
 
 #layouts .layout {
@@ -305,8 +304,12 @@ table#exhibits {
 #layout-thumbs .layout-name {
 	display:none;
 }
-			
+
 #chosen_layout {
+    float:right;
+}
+			
+#chosen_layout div.current-layout{
 	width:295px; 
 	float:right;
 }
@@ -315,10 +318,16 @@ table#exhibits {
 	float:right;
 }
 
-#current_layout {
+#chosen_layout div.layout-name {
+    font-family: Georgia,Times,"Times New Roman",serif;
+    color: #446677;
+    font-size: 1.8em;
+    margin-bottom: 1.2em;
+}
+
+.current-layout {
 	margin-bottom:18px; 
 	background:#fff;
-	width:295px; 
 	padding:15px;
 	float:right; 
 	background:#A2C9E8;

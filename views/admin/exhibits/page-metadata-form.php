@@ -11,37 +11,24 @@
 	Event.observe(window, 'load', makeLayoutSelectable);
 	
 	function makeLayoutSelectable() {
-		var current_layout = $('current_layout');
 		var layouts = $$('div.layout');
-
+        
 		//Make each layout clickable
-		layouts.each( function(layout) {
-			layout.onclick = function() {
-				//Make a copy of the image
-				layouts.each(function(layout) {
-					layout.style.border = "1px solid #ccc";
-					layout.style.backgroundColor = "#fff";
-				});
-				
-				this.style.border = "1px solid #6BA8DA";
-				this.style.backgroundColor = "#A2C9E8"
-				var img = this.getElementsByTagName('img')[0];
-				var copy = img.cloneNode(true);
-				var input = this.getElementsByTagName('input')[0];
-				var title = input.getAttribute('value');
-				var titletext = document.createTextNode(title);
-				var heading = document.createElement('h2');
-				heading.appendChild(titletext);
-				
-				//Overwrite the contents of the div that displays the current layout
-				current_layout.update();
-				current_layout.appendChild(copy);
-				current_layout.appendChild(heading);
+		layouts.invoke('observe', 'click', function(e) {
+            var currentLayout = $('layout-thumbs').select('div.current-layout').first();
 
-				//Make sure the input is selected
-				var input = this.getElementsByTagName('input')[0];
-				input.click();
-			}
+            if (currentLayout) {
+                currentLayout.removeClassName('current-layout');
+            }
+
+            this.addClassName('current-layout');
+            var copy = $(this.cloneNode(true));
+            
+            // Take the form input out of the copy (so no messed up forms).
+            copy.select('input').first().remove();
+                    
+            $('chosen_layout').update().appendChild(copy);
+            this.select('input').first().click();      
 		});		
 	}	
 
@@ -70,17 +57,13 @@
 		<legend>Layouts</legend>
 		
 		<div id="chosen_layout">
-		<div id="current_layout">
 		<?php
-		if ($page->title) {
-	        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$page->layout/layout.gif");
-	        echo "<img src=\"$imgFile\">";
-	        echo "<h2>" . $page->layout . "</h2>";
+		if ($page->layout) {
+	        echo exhibit_layout($page->layout, false);
 		} else {
 		    echo "<p>Choose a layout by selecting a thumbnail on the right.</p>";
 		}
 		?>
-		</div>
 	    </div>
 		
 		<div id="layout-thumbs">
