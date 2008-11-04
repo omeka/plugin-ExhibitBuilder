@@ -178,7 +178,6 @@ table#exhibits {
 #page-builder {
 	width:785px;
 	margin:18px;
-	overflow: hidden;
 	clear:both;
 }
 
@@ -187,6 +186,7 @@ table#exhibits {
 	width: 780px; 
 	background:#DAE9F6;
     margin: 15px 0;
+	padding: 0 0 18px;
 }
 
 #page-form {
@@ -195,7 +195,6 @@ table#exhibits {
 
 #layout-all {
 	width: auto;
-	overflow: hidden;
 	clear:both;
 }
 
@@ -208,7 +207,6 @@ table#exhibits {
 
 .item-drop {
     float:left; 
-	overflow:hidden; 
 	border:1px solid #A2C9E8; 
 	margin-right:2px; 
 	margin-bottom:2px;
@@ -402,3 +400,15 @@ div.field {
     display: block;
     padding:20px;
 }
+
+/* Pagination */
+.pagination_list {margin-left: 18px;}
+.pagination_list li {display:inline;padding: 3px 6px;}
+.pagination_list li.pagination_current {display:inline;background:#389; color:#fff;}
+.pagination_list li.pagination_range, 
+.pagination_list li.pagination_previous, 
+.pagination_list li.pagination_first, 
+.pagination_list li.pagination_next, 
+.pagination_list li.pagination_last {padding:0;display:inline;}
+	.pagination_list a {text-decoration:none; color:#333;background: #eee; padding: 3px 6px;}
+	.pagination_list a:hover {background: #38c; color: #fff;}
