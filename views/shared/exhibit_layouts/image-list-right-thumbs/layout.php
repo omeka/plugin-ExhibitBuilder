@@ -9,7 +9,7 @@
 		<?php if(use_exhibit_page_item($i)):?>
 		    <div class="exhibit-item">
 				<?php echo exhibit_display_item(array('imageSize'=>'thumbnail'), array('class'=>'permalink')); ?>
-				<?php echo item('Dublin Core', 'Title'); ?>
+				<div class="item-title"><?php echo item('Dublin Core', 'Title'); ?></div>
 				<?php if($text = page_text($i)): ?>
 		        <div class="exhibit-text"><?php echo $text; ?></div>
 				<?php endif; ?>

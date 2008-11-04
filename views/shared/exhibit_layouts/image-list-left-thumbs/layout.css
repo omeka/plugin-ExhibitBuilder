@@ -1,2 +1,3 @@
-.image-list-left .exhibit-item {overflow:hidden;width:auto;}
-.image-list-left .exhibit-item img {display: block; float:left; margin-right:20px; margin-bottom:20px;}
+.image-list-left-thumbs .exhibit-item {overflow:hidden;width:auto; margin-bottom:20px;}
+.image-list-left-thumbs .item-title {font-size:1.2em; font-weight:bold;}
+.image-list-left-thumbs .exhibit-item img {display: block; float:left; margin-right:20px; margin-bottom:20px;}

@@ -41,6 +41,12 @@ a:hover {color: #6699ff;text-decoration: none;}
 	.exhibit-page-nav li a {text-decoration:none;}
 	.exhibit-page-nav li.current a {color: #6699ff; border-bottom: 1px solid #6699ff; text-decoration:none;}
 
+/* == Previous-Next Navigation == */
+#previous-next-nav {font-size:1.1em; border-top:1px solid #6699ff;}
+	#previous-next-nav a {text-decoration:none; }
+#previous-next-nav .previous {float:left; width:48%;margin-bottom:2em;}
+#previous-next-nav .next {float:right; width: 48%; text-align:right;margin-bottom:2em;}
+
 /* == Content == */
 #exhibit-sections h3 {margin: 0 0 .5em; font-weight:bold;font-size: 1.2em; text-transform: uppercase; letter-spacing: .1em;}
 	#exhibit-sections h3 a,#exhibit-sections h3 a:visited {text-decoration: none;color: #663300;}

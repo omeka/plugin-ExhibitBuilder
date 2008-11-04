@@ -9,9 +9,11 @@
 		<?php if(use_exhibit_page_item(1)):?>
 		<div class="exhibit-item">
 			<?php echo exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
+			<div class="exhibit-item-caption">
 			<?php echo item('Dublin Core', 'Title'); ?>
 			<?php echo item('Dublin Core', 'Description'); ?>
 			<?php echo link_to_exhibit_item('Item Link'); ?>
+			</div>
 		</div>
 		<?php endif; ?>	
 	</div>

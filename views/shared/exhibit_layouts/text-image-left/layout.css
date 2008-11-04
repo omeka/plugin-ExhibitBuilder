@@ -1,1 +1,3 @@
-.primary {float:left; padding-right: 18px;}
+.text-image-left {overflow:hidden; zoom:1;}
+.text-image-left .exhibit-item {float:left; padding-right: 18px;}
+.text-image-left .exhibit-item-caption {float:left; width: 350px; font-size:1.1em;}
