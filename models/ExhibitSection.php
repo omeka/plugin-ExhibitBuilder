@@ -20,6 +20,11 @@ class ExhibitSection extends Omeka_Record
 	public function construct()
 	{
 		$this->_mixins[] = new Orderable($this, 'ExhibitPage', 'section_id', 'Pages');
+		$this->_mixins[] = new Sluggable($this, array(
+		    'parentIdFieldName'=>'exhibit_id',
+            'slugEmptyErrorMessage'=>'Slug must be given for each section of an exhibit.',
+            'slugLengthErrorMessage'=>'The slug for your exhibit section must be 30 characters or less.',
+            'slugUniqueErrorMessage'=>'Slugs for sections of an exhibit must be unique within that exhibit.  Please modify the slug so that it is unique.'));
 	}
 
 	protected function _validate()
@@ -35,40 +40,6 @@ class ExhibitSection extends Omeka_Record
 		if(empty($this->order) or !is_numeric($this->order)) {
 			$this->addError('order', 'Exhibit section must be properly ordered with an exhibit.');
 		}
-		
-		if(empty($this->slug)) {
-			$this->addError('slug', "Slug must be given for each section of an exhibit.");
-		}
-		
-		if($this->exhibit_id and !$this->slugIsUnique($this->slug)) {
-			$this->addError('slug', 'Slugs for sections of an exhibit must be unique within that exhibit.  Please modify the slug so that it is unique.');
-		}
-	}
-
-	protected function slugIsUnique($slug)
-	{
-		$db = $this->getDb();
-		$exhibit_id = (int) $this->exhibit_id;
-		
-		if(!$exhibit_id) {
-			$this->addError('exhibit_id', 'Section must be associated with a valid exhibit.');
-			return false;
-		}
-		
-		$sql = "SELECT COUNT(DISTINCT(s.id)) FROM $db->ExhibitSection s WHERE s.slug = ? AND s.exhibit_id = ?";
-		$pass = array($slug, $exhibit_id);
-		
-		//If the record is persistent, get the count of sections 
-		//with that slug that aren't this particular record
-		if($this->exists()) {
-			$sql .= " AND s.id != ?";
-			$pass[] = (int) $this->id;			
-		}
-				
-		//If there are no other sections with that particular slug, then it is unique
-		$count = (int) $db->fetchOne($sql, $pass);
-		return ($count == 0);
-		
 	}
 
 	protected function _delete()
@@ -94,18 +65,6 @@ class ExhibitSection extends Omeka_Record
 	{
 		$exhibit = $this->Exhibit;
 		$exhibit->reorderChildren();
-	}
-	
-	/**
-	 * @since 7-24-07 Now with slugs!
-	 *
-	 **/
-	protected function beforeSaveForm(&$post)
-	{
-		//We need to make a slug for this section
-		$slugFodder = !empty($post['slug']) ? $post['slug'] : $post['title'];
-
-		$post['slug'] = generate_slug($slugFodder);
 	}
 	
 	protected function getExhibit()

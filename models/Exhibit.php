@@ -6,7 +6,7 @@ require_once 'Taggable.php';
 require_once 'ExhibitTable.php';
 require_once 'Orderable.php';
 require_once 'ExhibitPermissions.php';
-
+require_once 'Sluggable.php';
 /**
  * Exhibit
  * @package: Omeka
@@ -34,20 +34,8 @@ class Exhibit extends Omeka_Record
 			$this->addError('title', 'Title for an exhibit must be 255 characters or less.');
 		}
 		
-		if(empty($this->slug)) {
-			$this->addError('slug', 'Exhibit must be given a valid slug.');
-		}
-		
-		if(!$this->fieldIsUnique('slug')) {
-			$this->addError('slug', 'Your URL slug is already in use by another exhibit.  Please choose another.');
-		}
-		
 		if(strlen($this->theme) > 30) {
 			$this->addError('theme', 'The name of your theme must be 30 characters or less.');
-		}
-		
-		if(strlen($this->slug) > 30) {
-			$this->addError('slug', 'The slug for your exhibit must be 30 characters or less.');
 		}
 	}
 	
@@ -82,7 +70,11 @@ class Exhibit extends Omeka_Record
 	{
 		$this->_mixins[] = new Taggable($this);
 		$this->_mixins[] = new Relatable($this);
-		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');		
+		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');	
+		$this->_mixins[] = new Sluggable($this, array(
+            'slugEmptyErrorMessage'=>'Exhibit must be given a valid slug.',
+            'slugLengthErrorMessage'=>'The slug for your exhibit must be 30 characters or less.',
+            'slugUniqueErrorMessage'=>'Your URL slug is already in use by another exhibit.  Please choose another.'));	
 	}
 		
 	protected function beforeSaveForm(&$post)
@@ -90,23 +82,6 @@ class Exhibit extends Omeka_Record
 		//Whether or not the exhibit is featured
 		$this->featured = (bool) $post['featured'];
 		unset($post['featured']);
-		
-		//Make an exhibit slug if the posted slug is empty
-		//This is duplicated exactly in the Section class
-		$slugFodder = !empty($post['slug']) ? $post['slug'] : $post['title'];
-		$post['slug'] = generate_slug($slugFodder);
-	}
-	
-	/**
-	 * Check to see whether the slug field is empty, then provide one
-	 *
-	 * @return void
-	 **/
-	protected function beforeValidate()
-	{
-		if(empty($this->slug)) {
-			$this->slug = generate_slug($this->title);
-		}
 	}
 	
 	protected function afterSaveForm($post)

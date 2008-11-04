@@ -19,6 +19,11 @@ class ExhibitPage extends Omeka_Record
 	public function construct()
 	{
 		$this->_mixins[] = new Orderable($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
+		$this->_mixins[] = new Sluggable($this, array(
+		    'parentIdFieldName'=>'section_id',
+            'slugEmptyErrorMessage'=>'Slug must be given for each page of an exhibit.',
+            'slugLengthErrorMessage'=>'The slug for your exhibit page must be 30 characters or less.',
+            'slugUniqueErrorMessage'=>'Slugs for pages of an exhibit must be unique within a given section of an exhibit.  Please modify the slug so that it is unique.'));
 	}
 	
 	/**
@@ -54,23 +59,6 @@ class ExhibitPage extends Omeka_Record
 		//Whether or not the exhibit is featured
 		$this->featured = (bool) $post['featured'];
 		unset($post['featured']);
-		
-		//Make an exhibit slug if the posted slug is empty
-		//This is duplicated exactly in the Section class
-		$slugFodder = !empty($post['slug']) ? $post['slug'] : $post['title'];
-		$post['slug'] = generate_slug($slugFodder);
-	}
-	
-	/**
-	 * Check to see whether the slug field is empty, then provide one
-	 *
-	 * @return void
-	 **/
-	protected function beforeValidate()
-	{
-		if(empty($this->slug)) {
-			$this->slug = generate_slug($this->title);
-		}
 	}
 
     public function previous()
