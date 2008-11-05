@@ -1,61 +1,40 @@
 <?php head(array('title'=> htmlentities($actionName) . ' Page', 'body_class'=>'exhibits')); ?>
 
-<?php 
-echo js('search'); 
-echo js('exhibits');
-echo js('tiny_mce/tiny_mce');
-?>
-
 <script type="text/javascript" charset="utf-8">
+
 	var paginate_uri = "<?php echo uri('exhibits/items'); ?>";
-	
-	Event.observe(window, 'load', function() {
-        var exhibitBuilder = new Omeka.ExhibitBuilder();
+		// 	
+			Event.observe(window, 'load', function() {
+		        var exhibitBuilder = new Omeka.ExhibitBuilder();
+						
+				// Put the handles on the items that are being dragged.
+				Event.observe(document, 'omeka:loaditems', function(){
+				    exhibitBuilder.setUrlForHandleGif("<?php echo img('arrow_move.gif'); ?>");
+				    exhibitBuilder.addHandles($$('#item-select .item-drag'));
+				});
 				
-		// Put the handles on the items that are being dragged.
-		Event.observe(document, 'omeka:loaditems', function(){
-		    exhibitBuilder.setUrlForHandleGif("<?php echo img('arrow_move.gif'); ?>");
-		    exhibitBuilder.addHandles($$('#item-select .item-drag'));
-		});
+				exhibitBuilder.addStyling();
+				
+				// Retrieve the pagination through ajaxy goodness
+				exhibitBuilder.getItems(paginate_uri);
 		
-		exhibitBuilder.addStyling();
+		    	Event.observe(document, 'omeka:loaditems', function(){
+		    	    // Put the 'delete' as background to anything with a 'remove_item' class
+		            $$('.remove_item').invoke('setStyle', {backgroundImage: "url('<?php echo img('delete.gif'); ?>')"});            
+		    	});
 		
-		// Retrieve the pagination through ajaxy goodness
-		exhibitBuilder.getItems(paginate_uri);
-
-    	Event.observe(document, 'omeka:loaditems', function(){
-    	    // Put the 'delete' as background to anything with a 'remove_item' class
-            $$('.remove_item').invoke('setStyle', {backgroundImage: "url('<?php echo img('delete.gif'); ?>')"});            
-    	});
-
-	});
-    
-    //Enable the WYSIWYG editor
-    Event.observe(window, 'load', function(){
-
-        tinyMCE.init({
-         mode: "textareas",
-    	theme: "advanced",
-    	theme_advanced_toolbar_location : "top",
-    	theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,formatselect",
- 		theme_advanced_buttons2 : "",
- 		theme_advanced_buttons3 : "",
- 		theme_advanced_toolbar_align : "left"
-        });
-    });  
-    
-    Event.observe(document, 'omeka:loaditems', function(){
-        $('page-search-form').hide();
-        $('show-or-hide-search').observe('click', function(){
-            $('page-search-form').toggle();
-            this.toggleClassName('show-form');
-            this.update(this.hasClassName('show-form') ? 'Show Search Form' : 'Hide Search Form');
-        });
-    });
-    
+			}); 
+		    
+		    Event.observe(document, 'omeka:loaditems', function(){
+		        $('page-search-form').hide();
+		        $('show-or-hide-search').observe('click', function(){
+		            $('page-search-form').toggle();
+		            this.toggleClassName('show-form');
+		            this.update(this.hasClassName('show-form') ? 'Show Search Form' : 'Hide Search Form');
+		        });
+		    });
+		    
 </script>
-<?php echo js('exhibits'); ?>
-
 <h1><?php echo htmlentities($actionName); ?> Page</h1>
 
 <div id="primary">
