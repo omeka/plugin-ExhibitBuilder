@@ -223,7 +223,7 @@ function layout_form_item($order, $label='Enter an Item ID #') {
 
 function layout_form_text($order, $label='Text') {
 	echo '<div class="textfield">';
-	echo textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'80','class'=>'textinput'), page_text($order, false)); 
+	echo textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), page_text($order, false)); 
 	echo '</div>';
 }
 

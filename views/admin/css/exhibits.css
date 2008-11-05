@@ -213,14 +213,17 @@ table#exhibits {
 	display:block;
 }
 
+.item-drop img {width: 130px; height:130px; }
+.item-drop .handle img {width:auto; height: auto;}
+
 #item-select .item-drop {
     width: 130px;
     height: 130px;
 }
 
 #layout-form .item-drop {
-	width:100px; 
-	height:100px; 
+	width:130px; 
+	height:130px; 
 }
 
 #item-list .item-drop {
