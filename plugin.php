@@ -27,6 +27,11 @@ add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard'
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 
+// This hook is defined in the HtmlPurifier plugin, meaning this will only work
+// if that plugin is enabled.
+add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
+
+
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
 
@@ -179,3 +184,59 @@ function exhibit_builder_admin_nav($navArray)
     
     return $navArray;
 }
+
+/**
+ * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
+ * enabled.
+ * 
+ * @param Zend_Controller_Request_Http $request
+ * @param HTMLPurifier $purifier The purifier object that was built from the configuration
+ * provided on the configuration form of the HtmlPurifier plugin.  
+ * @return void
+ **/
+function exhibit_builder_purify_html($request, $purifier)
+{
+    // Make sure that we only bother with the Exhibits controller in the ExhibitBuilder module.
+    if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
+        return;
+    }
+    
+    $post = $request->getPost();
+    
+    switch ($request->getActionName()) {
+        // exhibit-metadata-form
+        case 'add':
+        case 'edit':
+        // section-metadata-form    
+        case 'add-section':
+        case 'edit-section':
+            // The description field on both of these forms should be HTML.
+            $post['description'] = $purifier->purify($post['description']);
+            break;
+
+        case 'add-page':
+        case 'edit-page-metadata':
+            // Skip the page-metadata-form.
+            break;
+        
+        case 'edit-page-content':
+            // page-content-form
+            
+            if (is_array($post['Text'])) {
+                // All of the 'Text' entries are HTML.
+                foreach ($post['Text'] as $key => $text) {
+                    $post['Text'][$key] = $purifier->purify($text);
+                }            
+            }
+                
+            break;
+        
+        default:
+            // Don't process anything by default.
+            break;
+    }
+    
+    $request->setPost($post);
+}
+
+
