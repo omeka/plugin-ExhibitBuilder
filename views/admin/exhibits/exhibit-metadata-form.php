@@ -1,5 +1,4 @@
 <?php head(array('title'=> htmlentities($actionName) . ' Exhibit', 'body_class'=>'exhibits')); ?>
-<?php echo js('exhibits'); ?>
 <?php echo js('listsort'); ?>
 
 <script type="text/javascript" charset="utf-8">	

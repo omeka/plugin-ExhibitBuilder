@@ -4,7 +4,7 @@
 <?php echo section_nav(); ?>
 
 <h3 class="clear">Description</h3>
-<?php echo nls2p($exhibit->description); ?>
+<?php echo $exhibit->description; ?>
 
 <h3>Credits</h3>
 <p><?php echo h($exhibit->credits); ?></p>
