@@ -63,7 +63,8 @@
 	</div>
 	<div class="field"><?php echo text(array('name'=>'credits', 'id'=>'credits', 'class'=>'textinput'), $exhibit->credits,'Exhibit Credits'); ?></div>
 	<div class="field"><?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $exhibit->description, 'Exhibit Description'); ?></div>	
-	<div class="field"><?php echo text(array('name'=>'tags', 'id'=>'tags', 'class'=>'textinput'), tag_string($exhibit,null,', ',true), 'Exhibit Tags'); ?></div>
+	<?php $exhibitTagList = join(', ', pluck('name', $exhibit->Tags)); ?>
+	<div class="field"><?php echo text(array('name'=>'tags', 'id'=>'tags', 'class'=>'textinput'), $exhibitTagList, 'Exhibit Tags'); ?></div>
 	<div class="field">
 		<label for="featured">Exhibit is featured:</label>
 		<div class="radio"><?php echo radio(array('name'=>'featured', 'id'=>'featured'), array('0'=>'No','1'=>'Yes'), $exhibit->featured); ?></div>
