@@ -239,13 +239,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		}
 
 		$this->view->assign(compact('exhibit', 'actionName'));
-		
-		//Send a header that will inform us that the request was a failure
-		//@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
-		if (!$retVal) {
-		  $this->getResponse()->setHttpResponseCode(422);
-		}
-		
+				
 		//@duplication see ExhibitsController::processSectionForm()
 		//If the form submission was invalid 
 		if(!$this->getRequest()->isXmlHttpRequest()) {
@@ -314,13 +308,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 		}
 
 		$this->view->assign(compact('exhibit', 'section', 'actionName'));
-		
-		if ($_POST and !$retVal) {
-            //Send a header that will inform us that the request was a failure
-            //@see http://tech.groups.yahoo.com/group/rest-discuss/message/6183
-		  $this->getResponse()->setHttpResponseCode(422);
-		}
-		
+				
 		// Render the big section form script if this is not an AJAX request.
 		if (!$this->getRequest()->isXmlHttpRequest() ) {
 		    $this->render('section-metadata-form');	
