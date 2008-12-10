@@ -1,4 +1,4 @@
-<?php exhibit_head(); ?>
+<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
 
 <h2><?php echo htmlentities($section->title); ?></h2>	
 		

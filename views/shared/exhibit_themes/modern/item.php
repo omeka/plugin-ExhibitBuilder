@@ -1,4 +1,4 @@
-<?php exhibit_head(); ?>
+<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
 <div id="primary" class="show">
 
 	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>

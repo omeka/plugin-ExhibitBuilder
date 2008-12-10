@@ -1,4 +1,4 @@
-<?php exhibit_head(); ?>
+<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
 <div id="primary">
 	<h2><?php echo $page->title; ?></h2>
 	<div id="previous-next-nav">

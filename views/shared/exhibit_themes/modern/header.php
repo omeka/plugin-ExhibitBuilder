@@ -18,7 +18,7 @@
 <?php plugin_header(); ?>
 
 </head>
-<body id="<?php echo $exhibit->theme; ?>">
+<body<?php echo $bodyclass ? ' class="'.$bodyclass.'"' : ''; ?> id="<?php echo $exhibit->theme; ?>">
 	<div id="wrap">
 	<h5><a href="<?php echo uri('exhibits'); ?>">Back to Exhibits</a></h5>
 

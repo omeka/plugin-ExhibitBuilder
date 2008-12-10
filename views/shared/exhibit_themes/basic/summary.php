@@ -1,4 +1,4 @@
-<?php exhibit_head(); ?>
+<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
 
 <div class="exhibit-description">
 	<?php echo $exhibit->description; ?>
