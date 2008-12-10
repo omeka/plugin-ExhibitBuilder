@@ -85,7 +85,7 @@ function exhibit_uri($exhibit, $section=null, $page=null)
  * @param string
  * @return void
  **/
-function link_to_exhibit_item($text = null, $props=array())
+function link_to_exhibit_item($text = null, $props=array('class' => 'exhibit-item-link'))
 {	
     $item = get_current_item();
     
@@ -291,8 +291,9 @@ function layout_css($file='layout')
 {
 	if(Zend_Registry::isRegistered('page')) {
 		$p = Zend_Registry::get('page');
-
+		if(!empty($p)) {
         return css($file, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $p->layout);
+		}
 	}
 }
 
