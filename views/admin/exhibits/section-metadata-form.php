@@ -1,4 +1,4 @@
-<?php head(array('title'=> htmlentities($actionName) . ' Exhibit Section', 'body_class'=>'exhibits')); ?>
+<?php head(array('title'=> htmlentities($actionName) . ' Exhibit Section', 'bodyclass'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 <script type="text/javascript" charset="utf-8">
 	var listSorter = {};
