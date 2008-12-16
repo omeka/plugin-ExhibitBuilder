@@ -1,4 +1,4 @@
-<?php head(array('title'=>'Browse Exhibits', 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=>'Browse Exhibits', 'body_class'=>'exhibits')); ?>
 <script type="text/javascript" charset="utf-8">
     Event.observe(window, 'load', function(){
         $$('.delete-exhibit').invoke('observe', 'click', function(e){

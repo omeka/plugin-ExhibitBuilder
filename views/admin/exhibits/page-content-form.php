@@ -1,4 +1,4 @@
-<?php head(array('title'=> htmlentities($actionName) . ' Page', 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=> htmlentities($actionName) . ' Page', 'body_class'=>'exhibits')); ?>
 
 <script type="text/javascript" charset="utf-8">
 
