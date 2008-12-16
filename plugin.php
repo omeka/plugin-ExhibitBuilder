@@ -147,12 +147,13 @@ function exhibit_builder_public_header()
 function exhibit_builder_admin_header($request)
 {
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
-    if ($request->getControllerName() == 'exhibits' || ($request->getControllerName() == 'index' && $request->getActionName() == 'index')):
-        echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
-		echo js('tiny_mce/tiny_mce');
-		echo js('search'); 
-		echo js('exhibits');
-    endif;
+    if ($request->getControllerName() == 'exhibits' || ($request->getModuleName() == 'default' && $request->getControllerName() == 'index' && $request->getActionName() == 'index')):
+            echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
+    		echo js('tiny_mce/tiny_mce');
+    		echo js('search'); 
+    		echo js('exhibits');
+        endif;
+
 }
 
 function exhibit_builder_dashboard()

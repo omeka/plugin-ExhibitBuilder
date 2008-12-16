@@ -171,7 +171,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             
 			switch ($toRender) {
 				case 'show':
-					$renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
+					if($section->hasPages()) {
+						$renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
+					} else { 
+						'This section has no pages!';
+					}
 					break;
 				case 'summary':
 					$renderPath = $exhibitThemesDir. DIRECTORY_SEPARATOR . $exhibit->theme . DIRECTORY_SEPARATOR . 'summary.php';
