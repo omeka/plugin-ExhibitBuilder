@@ -17,6 +17,8 @@ define('EXHIBIT_THEMES_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 . DIRECTORY_SEPARATOR . 'shared' . DIRECTORY_SEPARATOR . 'exhibit_layouts');
 
+require_once 'Exhibit.php';
+
 add_plugin_hook('install', 'exhibit_builder_install');
 add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_routes');
