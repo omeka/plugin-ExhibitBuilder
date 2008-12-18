@@ -117,15 +117,15 @@ function exhibit_item_uri($item, $exhibit=null, $section=null)
 	
 }
 
-function exhibits($params = array()) {
-	return _get_recordset($params, 'exhibits');
+function get_exhibits($params = array()) {
+	return get_db()->getTable('Exhibit')->findBy($params);
 }
 
 function recent_exhibits($num = 10) {
-	return exhibits(array('recent'=>true,'limit'=>$num));
+	return get_exhibits(array('recent'=>true,'limit'=>$num));
 }
 
-function exhibit($id=null) {
+function get_exhibit_by_id($id=null) {
 	if(!$id) {
 		if(Zend_Registry::isRegistered('exhibit')) {
 			return Zend_Registry::get('exhibit');
@@ -140,7 +140,7 @@ function exhibit_section($id=null) {
 		if(Zend_Registry::isRegistered('section')) {
 			return Zend_Registry::get('section');
 		}
-	}else {
+	} else {
 		return get_db()->getTable('ExhibitSection')->find($id);
 	}
 }
@@ -498,6 +498,17 @@ function use_exhibit_page_item($index)
     return false;
 }
 
-///// END EXHIBIT FUNCTIONS /////
- 
-?>
+function show_exhibit_list()
+{
+	$exhibits = get_exhibits();
+	if($exhibits):
+    foreach( $exhibits as $key=>$exhibit ): ?>
+	<div class="exhibit <?php if($key%2==1) echo ' even'; else echo ' odd'; ?>">
+		<h2><?php echo link_to_exhibit($exhibit); ?></h2>
+		<div class="description"><?php echo $exhibit->description; ?></div>
+		<p class="tags"><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></p>
+	</div>
+<?php endforeach; else: ?>
+	<p>There are no exhibits.</p>
+<?php endif;
+}
