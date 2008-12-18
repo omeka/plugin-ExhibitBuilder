@@ -6,7 +6,7 @@
  * @package Omeka
  * @subpackage ExhibitBuilder
  **/
-define('EXHIBIT_BUILDER_VERSION', '0.3');
+define('EXHIBIT_BUILDER_VERSION', '0.3.1');
 define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
 
 define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)));
