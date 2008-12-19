@@ -3,6 +3,8 @@
 <script type="text/javascript" charset="utf-8">
 	var listSorter = {};
 	
+	Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
+	
 	Event.observe(window, 'load', function() {	
 		if(!$('page-list')) return;	
 		listSorter.list = $('page-list');

@@ -8,6 +8,8 @@
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 
+    Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
+
 	Event.observe(window, 'load', makeLayoutSelectable);
 	
 	function makeLayoutSelectable() {

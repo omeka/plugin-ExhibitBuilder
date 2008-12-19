@@ -3,7 +3,9 @@
 
 <script type="text/javascript" charset="utf-8">	
 //<![CDATA[
-
+    
+    Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
+    
     var urls = {
         sectionForm: "<?php echo uri('exhibits/section-form'); ?>",
         addSection: "<?php echo uri(array('controller'=>'exhibits','action'=>'add-section'), 'default'); ?>",

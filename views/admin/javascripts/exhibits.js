@@ -3,9 +3,7 @@ Omeka.ExhibitBuilder = Omeka.ExhibitBuilder || new Object;
 
 Omeka.ExhibitBuilder = Class.create({
     
-    initialize: function() {
-		Event.observe(document, 'omeka:loaditems', Omeka.ExhibitBuilder.wysiwyg);
-		
+    initialize: function() {		
         Event.observe(document, 'omeka:loaditems', this.onLoadPagination.bind(this));
         //When you're done, make all the items drag/droppable
     	Event.observe(document, 'omeka:loaditems', this.enableDragAndDrop.bind(this));
@@ -321,17 +319,19 @@ Omeka.ExhibitBuilder = Class.create({
 
 Omeka.ExhibitBuilder.wysiwyg = function() {
     if (typeof tinyMCE == 'undefined') {return;};
+    
+    if (!this.isInitialized) {
+        this.isInitialized = true;
 
-    //WYSIWYG Editor
-   tinyMCE.init({
-    mode : "textareas", // All textareas
-   	theme: "advanced",
-   	theme_advanced_toolbar_location : "top",
-   	theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,formatselect",
-	theme_advanced_buttons2 : "",
-	theme_advanced_buttons3 : "",
-	theme_advanced_toolbar_align : "left"
-   });
+         //WYSIWYG Editor
+        tinyMCE.init({
+         mode : "textareas", // All textareas
+        	theme: "advanced",
+        	theme_advanced_toolbar_location : "top",
+        	theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,formatselect",
+     	theme_advanced_buttons2 : "",
+     	theme_advanced_buttons3 : "",
+     	theme_advanced_toolbar_align : "left"
+        });
+    };
 }
-
-Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);

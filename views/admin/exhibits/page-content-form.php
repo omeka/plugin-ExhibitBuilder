@@ -2,6 +2,8 @@
 
 <script type="text/javascript" charset="utf-8">
 
+    Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
+
 	var paginate_uri = "<?php echo uri('exhibits/items'); ?>";
 		// 	
 			Event.observe(window, 'load', function() {
