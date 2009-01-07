@@ -84,6 +84,16 @@ class ExhibitTable extends Omeka_Db_Table
 			$select->where("tg.type = 'Exhibit'");
 		}
 		
+		if (isset($params['limit']))
+		{
+		    $select->limit($params['limit']);
+		}
+		
+		if (isset($params['recent']) && $params['recent'] == true)
+        {
+            $select->order('e.id DESC');
+        }
+        
 		new ExhibitPermissions($select);
 		
 		$exhibits = $this->fetchObjects($select);
