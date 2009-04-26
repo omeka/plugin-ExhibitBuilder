@@ -1,12 +1,12 @@
-<?php head(array('title'=>'Summary of ' . h($exhibit->title))); ?>
+<?php head(array('title' => 'Summary of ' . html_escape($exhibit->title))); ?>
 <div id="primary">
-<h2><?php echo h($exhibit->title); ?></h2>
+<h2><?php echo html_escape($exhibit->title); ?></h2>
 <?php echo section_nav(); ?>
 
 <h3 class="clear">Description</h3>
 <?php echo $exhibit->description; ?>
 
 <h3>Credits</h3>
-<p><?php echo h($exhibit->credits); ?></p>
+<p><?php echo html_escape($exhibit->credits); ?></p>
 </div>
 <?php foot(); ?>

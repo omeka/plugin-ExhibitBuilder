@@ -1,22 +1,10 @@
 <?php head(array('title'=>'Browse Exhibits')); ?>
-
-<script type="text/javascript" charset="utf-8">
-//<![CDATA[
-	Event.observe(window,'load',function() {
-		var deleteLinks = document.getElementsByClassName('delete-link');
-		for (var i=0; i < deleteLinks.length; i++) {
-			deleteLinks[i].onclick = function() {
-				return confirm( 'Are you sure you want to delete this exhibit and all of its data from the archive?' );
-			};
-		};
-	});
-//]]>	
-</script>
 <div id="primary">
+	<h1>Exhibits</h1>
+	
 	<?php 
 	if($exhibits):
 	?>
-	<h1>Exhibits</h1>
 	
 	<ul class="navigation" id="secondary-nav">
 	    <?php echo nav(array('Browse All' => uri('exhibits'), 'Browse by Tag' => uri('exhibits/tags'))); ?>

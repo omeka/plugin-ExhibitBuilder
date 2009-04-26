@@ -307,7 +307,7 @@ function section_nav()
 	foreach ($exhibit->Sections as $key => $section) {		
 	
 		$uri = exhibit_uri($exhibit, $section);
-		$output .= '<li' . (is_current_uri($uri) ? ' class="current"' : ''). '><a href="' . $uri . '">' . h($section->title) . '</a></li>';
+		$output .= '<li' . (is_current_uri($uri) ? ' class="current"' : ''). '><a href="' . $uri . '">' . html_escape($section->title) . '</a></li>';
 	
 	}
 	

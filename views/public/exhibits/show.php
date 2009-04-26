@@ -1,6 +1,6 @@
-<?php head(array('title'=>h($exhibit->title))); ?>
+<?php head(array('title' => html_escape($exhibit->title))); ?>
 <div id="primary">
-	<h2><?php echo h($exhibit->title); ?></h2>
+	<h2><?php echo html_escape($exhibit->title); ?></h2>
 
 <div id="nav-container">
 	<?php echo section_nav();?>
