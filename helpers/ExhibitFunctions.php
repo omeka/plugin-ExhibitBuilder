@@ -307,7 +307,7 @@ function section_nav()
 	foreach ($exhibit->Sections as $key => $section) {		
 	
 		$uri = exhibit_uri($exhibit, $section);
-		$output .= '<li><a href="' . $uri . '"' . (is_current($uri) ? ' class="current"' : ''). '>' . h($section->title) . '</a></li>';
+		$output .= '<li' . (is_current_uri($uri) ? ' class="current"' : ''). '><a href="' . $uri . '">' . h($section->title) . '</a></li>';
 	
 	}
 	
@@ -420,7 +420,7 @@ function random_featured_exhibit()
  *
  * @return string
  **/
-function link_to_next_exhibit_page($text="Next Page --&gt;", $props=array())
+function link_to_next_exhibit_page($text="Next Page &rarr;", $props=array())
 {
     $exhibit = Zend_Registry::get('exhibit');
     $section = Zend_Registry::get('section');
@@ -438,7 +438,7 @@ function link_to_next_exhibit_page($text="Next Page --&gt;", $props=array())
  *
  * @return string
  **/
-function link_to_previous_exhibit_page($text="&lt;-- Previous Page", $props=array())
+function link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array())
 {
     $exhibit = Zend_Registry::get('exhibit');
     $section = Zend_Registry::get('section');
