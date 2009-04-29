@@ -381,14 +381,15 @@ function render_layout_form($layout)
  * @param array $props Properties to apply to the <img> tag for the thumbnails
  * @return string HTML output
  **/
-function display_exhibit_thumbnail_gallery($start, $end, $props=array())
+function display_exhibit_thumbnail_gallery($start, $end, $props=array(), $thumbnail_type="square_thumbnail")
 {
     $output = '';
     
     for ($i=(int)$start; $i <= (int)$end; $i++) { 
         if (use_exhibit_page_item($i)) {    
     	    $output .= "\n" . '<div class="exhibit-item">';
-    	    $output .= link_to_exhibit_item(item_thumbnail($props));
+			$thumbnail = item_image($thumbnail_type, $props);
+    	    $output .= link_to_exhibit_item($thumbnail);
             $output .= '</div>' . "\n";
         }
     }
