@@ -11,7 +11,7 @@
 		listSorter.form = $('section-metadata-form');
 		listSorter.editUri = "<?php echo $_SERVER['REQUEST_URI']; ?>";
 		listSorter.partialUri = "<?php echo uri('exhibits/page-list'); ?>";
-		listSorter.recordId = '<?php echo h($section->id); ?>';
+		listSorter.recordId = '<?php echo html_escape($section->id); ?>';
 		listSorter.tag = 'li';
 		listSorter.handle = 'handle';
 		listSorter.overlap = 'vertical';
