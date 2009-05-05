@@ -1,0 +1,136 @@
+/* == Imports == */
+@import url("reset.css");
+
+/* == Generic styles ======== */
+body {font:62.5% "Times New Roman", Times, serif; color:#777;background-color:#333;}
+
+	/* -- Headings -- */
+	h1 {font-size:3em; line-height:1.333333em;color:#999;padding-left:20px;}
+	    h1 a {text-decoration:none;}
+	h2 {font-size:2.2em; line-height:1.333333em;color:#999;}
+	    h2.item-title {font-size:2.2em; line-height:1.333333em;color:#999;}
+	    h2 a {text-decoration:none;font-style:italic;}
+	h3 {font-size:1.9em; line-height:1em;color:#999;}
+	    h3 a {text-decoration:none;font-style:italic;}
+	h4 {}
+	h5 {}
+	h6 {}
+	
+	#home h2 {font-size:3em; line-height:1.333333em;color:#999;}
+
+	/* -- Misc Block elements -- */
+	p, ul, ol {font-size:1.33em; line-height:1.33333em; margin-bottom:1.33333em;color:#ddd;}
+	ol {list-style:decimal inside;}
+	li {font-size:1em;}
+	
+	/* -- Misc Inline elements -- */
+	em {font-style:italic;}
+	strong {font-weight:bold;}
+	label {font-size:1.5em;}
+
+	/* -- Links -- */
+	a:link {color:#999;}
+	a:visited {color:#999;}
+	a:hover {color:#777;}
+	a:active {color:#777;}
+
+	/* -- Misc Classes -- */
+
+		/* Navigation Classes*/
+		.navigation {list-style:none; margin: 2em 0 0;}
+		.navigation li {display:inline;}
+
+		/* Pagination Classes */
+		.item-pagination {float:right;margin:10px 0 10px 0;}
+		.item-pagination li.next {margin-left:20px;}
+		
+		.pagination ul {text-align:right; line-height:1em; padding:0.5em; }
+		.pagination li {display:inline; margin-left:1em; margin-bottom:0; padding:0.5em 0;}
+		
+
+		.pagination .next {border-left:1px solid #ccc; padding-left:1em;}
+		.pagination .previous {border-right:1px solid #ccc; padding-right:1em;}
+		
+		/* Items Classes */
+		.element {border-bottom:1px solid #ccc; margin-top:7px; }
+		.element-text {font-size:1.5em; line-height:1.33333em;color:#ddd;margin:7px 0 7px 0;}
+		.element-text-empty {font-size:1.5em; line-height:1.33333em;color:#ddd;margin:7px 0 7px 0;}
+		.element-text a {color:#ddd;margin:7px 0 7px 0;}
+		.element-text p {margin-bottom:0;font-size:1em;}
+		.element-text ul {margin-bottom:0;font-size:1em;}
+		
+		.item-image img {padding:5px; border:2px solid #444; margin-bottom:2em;}
+		
+		.item-meta {overflow:hidden;}
+		
+		/* Tags Classes */
+		.tags li {display:inline;}
+		ul.tags {margin:0;}
+
+
+/* == Header == */
+#header-container {border-bottom:1px solid #ccc;}
+#header {width:860px;padding:40px 0 0;}
+
+/* == Content == */
+
+	/* -- Structure -- */
+	#content {padding:15px 0 0 20px; overflow:hidden;clear:both;background-color:#222;}
+		#primary {float:left; width: 840px; }
+
+		/* -- Pagination -- */
+		#pagination-top ul {border-bottom:1px solid #ccc;margin:0;}
+		#pagination-bottom ul {margin-bottom:0;border-top:2px solid #ccc;}
+
+		
+/* == Items Pages ==*/
+	#item-files img {padding:5px; border:1px solid #444;}
+	
+
+/* == Exhibits Pages */
+	.exhibit {margin:10px 0 10px 0;}
+	#exhibits p {margin:3px 0 3px;}
+	
+	#exhibit-show {clear:both;}
+
+	.exhibit-section-nav {list-style:none; margin:2em 0 0;}
+	.exhibit-section-nav {padding:0.4em 20px; font-size:1.5em; }
+	.exhibit-section-nav li {display:inline;zoom:1;}
+	.exhibit-section-nav a {padding:0.5em 1em 0.5em; color:#999;text-decoration:none;zoom:1;}
+	.exhibit-section-nav a:hover {color:#777;}
+	.exhibit-section-nav li.current a {background:#fff;color:#333; font-weight:bold;}
+
+	.exhibit-page-nav {clear:both;margin-top:0.4em;}
+	ul.exhibit-page-nav {}
+	.exhibit-page-nav li {display:inline;margin-right:1em;zoom:1;}
+	.exhibit-page-nav a {font-size:1.25em;padding:0.5em 0 0; color:#999;text-decoration:none;zoom:1;}
+	.exhibit-page-nav li.current a {border-bottom:1px dashed #999;}
+	
+	#exhibit-summary {margin-top:2em;}
+	
+	.exhibit-return {float:right;font-size:1.5em;}
+	
+	#previous-next-nav {overflow:hidden;margin-bottom:1em;}
+	#previous-next-nav a {font-size:1.5em;text-decoration:none;display:block;float:left;}
+	.next {float:right;}
+	
+	.exhibit-item {font-size:1.2em;}
+	
+	.item-title {font-size:1.75em;}
+	
+	a#omeka-logo {float:right;text-decoration:none;}
+	
+	li.item-title {font-size:1.333em;}
+	
+	.element-set h2 {display:none;}
+	
+	#itemfiles img {padding-top:10px;}
+	
+	#citation {border:none;}
+
+/* == Footer == */
+#footer-container {clear:both;height:200px; border-top:1px solid #ccc;}
+#footer {clear:both; overflow:hidden; margin:1em 0 0 25px;width: 860px;padding-bottom:20px;}
+	#footer p {clear:both;text-align:right;padding:10px 0 0;}
+	#footer ul {float:left; width:860px;text-align:right;margin-top:10px;}
+		#footer ul li {margin-left:12px;}

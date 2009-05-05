@@ -1,0 +1,143 @@
+/* 
+Grid: 846px wide, 12 columns at 54px each, 11 gutters at 18px each.
+1 = 54px
+2 = 126px (6 columns)
+3 = 198px (4 columns)
+4 = 270px (3 columns)
+5 = 342px
+6 = 414px (2 columns)
+7 = 486px
+8 = 558px
+9 = 630px
+10 = 702px
+11 = 774px
+12 = 846px
+*/
+/* == Imports == */
+@import url("reset.css");
+
+/* == Generic == */
+body {font: 62.5% "Helvetica Neue",Helvetica, Arial, sans-serif; color: #333; background: #fff; }
+
+	/* -- Headings -- */
+	h1, h2, h3 {font-weight: normal; font-family: 'Gill Sans', sans-serif;color:#015581;}
+	
+	h1 {font-size: 2.4em; line-height:1em;margin-bottom: 0.5em;text-transform:uppercase;letter-spacing:.1em;} 
+	h2 {font-size: 1.8em; line-height:2em;margin-bottom:0;}
+	h3 {font-size: 1.5em; line-height: 1.2em; margin: 0 0 1.2em; font-weight:normal;color:#015581;}
+	h4 {font-size: 1.2em; line-height: 1.5em; margin-bottom:1.5em; font-weight:bold;}
+	h5 {font-size: 1.2em; line-height: 1.5em; margin-bottom:1.5em; font-style:italic;}
+	
+	body#home #content h2 {font-size: 2.4em; line-height:1em;margin-bottom: 0.5em;text-transform:uppercase;letter-spacing:.1em;}
+	body#home #content h3 {font-size: 1.8em; line-height:2em;margin-bottom:0;}
+	#items.show h3 {margin:0;}
+	
+	h1 a, h2 a, h3 a {text-decoration:none;}
+	img a {border: none;}
+
+	/* -- Misc Block elements -- */
+	p {font-size:1.2em; line-height:1.5em; margin-bottom:1.5em;}
+	ul {font-size:1.2em; line-height:1.5em; margin-bottom:1.5em;}
+	ol {font-size:1.2em; line-height:1.5em; margin-bottom:1.5em;list-style:decimal inside;}
+	dl {font-size:1.2em; line-height:1.5em; margin-bottom:1.5em;}
+	
+	/* -- Misc Inline elements -- */
+	em,i {font-style:italic;}
+	strong,b {font-weight:bold;}
+	abbr,acronym {border: none; font-style: normal;}
+		
+	/* -- Links -- */
+	a:link {color: #369;}
+	a:visited {color: #369;}
+	a:hover {color: #ff8000;} 
+	a:active {color: #ff8000;}
+
+
+	
+		/* Navigation Classes*/
+		.navigation {list-style:none;}
+			.navigation li {display:inline;}
+			.navigation a {text-decoration:none;}
+		
+		/* Pagination Classes */
+			.pagination li {display:inline;padding:6px 8px; background:#0176b4; color:#fff;margin-right:1px;}
+			.pagination a { color:#fff; text-decoration:none;}
+	
+		/* Items Classes*/
+		.element {overflow:hidden;clear:both;margin-bottom:1.5em;}
+		.element-text {font-size:1.2em; line-height:1.5em;margin:0;}
+        .element-text p {font-size:1em;margin:0;}
+		.element-text-empty {font-size:1.2em; line-height:1.5em;margin:0;}
+			
+		.item-pagination {clear:both;overflow:hidden; border-top:1px solid #eee; padding-top:18px;}
+			.item-pagination a {text-decoration:none; font-weight:bold;width:48%; float:left;}
+			.item-pagination .next a {float:right; text-align:right;}
+			
+			#previous-next-nav {clear:both;overflow:hidden; border-top:1px solid #eee; padding-top:18px;}
+    			#previous-next-nav a {text-decoration:none; font-weight:bold;width:48%; float:left;}
+    			#previous-next-nav .next a {float:right; text-align:right;}
+		
+		.item-tags {clear:left; margin-left:216px;}
+
+		.download-file img {width: 54px; height:54px; float:left; margin-left:18px;}
+
+		/* Exhibits Classes */
+
+		.exhibit-section-nav {margin-bottom:0;border-bottom:1px solid #ccc;padding:0.3em; }
+				.exhibit-section-nav li {padding:0.5em 0;display:inline;}
+				.exhibit-section-nav a {padding:0.5em 1em 0.5em; color:#666;text-decoration:none;}
+				.exhibit-section-nav li.current a {border-top:1px solid #ccc;background:#fff;color:#333; font-weight:bold;border-left:1px solid #ccc; border-right:1px solid #ccc; border-bottom:1px solid #fff;}
+		
+		.exhibit-page-nav {color:#fff;}
+			.exhibit-page-nav li {display:inline; color:#fff;margin-right:1px;}
+			.exhibit-page-nav a:link, .exhibit-page-nav a:visited { color:#fff;padding:6px 8px; background:#0176b4; text-decoration:none;}
+			.exhibit-page-nav a:hover, .exhibit-page-nav .current a {background:#ff8000;}
+			.exhibit-page-nav a:active { color:#fff;padding:6px 8px; background:#0176b4; text-decoration:none;}
+			.exhibit-page-nav .current a {background:#ff8000;}
+		
+		/* Tags Classes */
+			.tags li {display:inline;}
+
+/* == Wrap == */
+#wrap {width: 882px; margin:36px auto;}
+
+/* == Header == */
+#header {margin-bottom:1em;}
+	#site-title {float:left; width: 432px;margin-bottom:1em;font-weight: normal; font-family: 'Gill Sans', sans-serif;color:#015581;font-size: 3.6em; text-transform: uppercase; letter-spacing: .2em; line-height: 1em; }
+	#site-title a {text-decoration:none;}
+	
+/* == Content == */
+
+	/* Structure */
+	#content {padding:18px 18px 0;overflow:hidden; zoom:1;border:1px solid #ccc; background:#fff;border-top-width:0;}
+	
+		
+		#secondary-nav {margin-bottom:2em; border-bottom:1px solid #ccc;margin-bottom:1.5em;padding:0.3em; }
+				#secondary-nav li {padding:0.5em 0;}
+				#secondary-nav a {padding:0.5em 1em 0.5em; color:#666;}
+				#secondary-nav li.current a {border-top:1px solid #ccc;background:#fff;color:#333; font-weight:bold;border-left:1px solid #ccc; border-right:1px solid #ccc; border-bottom:1px solid #fff;}
+		
+	.item-description a.show {padding-left:5px;display:inline;}
+	.item-description {font-size:1.2em; line-height:1.5em; margin-bottom:1.5em;}
+    .item-description p {font-size:1em;}
+
+	/* Items Pages */
+	
+	#items.show #primary {width: 558px;}
+	ul.title-list {margin:0;}
+	.title-list li {font-size: 1.2em; line-height: 1.5em; font-style:italic;}
+
+		#item-images {overflow:hidden; margin-bottom:18px;}
+			#item-images-thumbs {margin:18px 0 18px -18px;}
+
+	/* Exhibits Pages */
+	#omeka-logo{float:right;padding-bottom:5px;}
+
+/* == Footer == */
+#footer {clear:both; font-weight:bold;overflow:hidden; zoom:1; padding-top:18px;}
+	#footer a {text-decoration:none;}
+	#footer .navigation {float:right; text-align:right; width: 48%;}
+	#footer .navigation li {display:inline;}
+		#footer .navigation a {margin-left:8px;}
+	
+	#footer p {float:left; width: 48%;}
