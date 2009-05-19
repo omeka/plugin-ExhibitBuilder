@@ -318,35 +318,23 @@ Omeka.ExhibitBuilder = Class.create({
 });
 
 Omeka.ExhibitBuilder.wysiwyg = function() {
-    if (typeof tinyMCE == 'undefined') {
-	return;
-	};
     
     if (!this.isInitialized) {
         this.isInitialized = true;
-
-        if (Prototype.Browser.IE) {
-            tinyMCE.init({
-                mode: "specific_textareas",
-                editor_selector: "html-editor"
-            });
-        } else {
-			//WYSIWYG Editor
-			tinyMCE.init({
-				mode : "textareas", // All textareas
-				theme: "advanced",
-				theme_advanced_toolbar_location : "top",
-				force_br_newlines : false,
-				forced_root_block : '', // Needed for 3.x
-				remove_linebreaks : true,
-				fix_content_duplication : false,
-				fix_list_elements : true,
-				valid_child_elements:"ul[li],ol[li]",
-				theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,formatselect,code",
-				theme_advanced_buttons2 : "",
-				theme_advanced_buttons3 : "",
-				theme_advanced_toolbar_align : "left"
-			});
-		}
+		tinyMCE.init({
+			mode : "textareas", // All textareas
+			theme: "advanced",
+			theme_advanced_toolbar_location : "top",
+			force_br_newlines : false,
+			forced_root_block : '', // Needed for 3.x
+			remove_linebreaks : true,
+			fix_content_duplication : false,
+			fix_list_elements : true,
+			valid_child_elements:"ul[li],ol[li]",
+			theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,link,formatselect,code",
+			theme_advanced_buttons2 : "",
+			theme_advanced_buttons3 : "",
+			theme_advanced_toolbar_align : "left"
+		});
     };
 }
