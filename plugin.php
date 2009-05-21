@@ -20,6 +20,7 @@ define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'views'
 require_once 'Exhibit.php';
 
 add_plugin_hook('install', 'exhibit_builder_install');
+add_plugin_hook('uninstall', 'exhibit_builder_uninstall');
 add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
@@ -37,7 +38,13 @@ add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
 
-function exhibit_builder_install() {
+/**
+ * Installs the plugin, creating the tables in the database and setting plugin options
+ * 
+ * @return void
+ **/
+function exhibit_builder_install() 
+{
 	set_option('exhibit_builder_version', EXHIBIT_BUILDER_VERSION);
 	
 	$db = get_db();
@@ -89,20 +96,38 @@ function exhibit_builder_install() {
      
     if ($checkIfTitleExists == null) {
         $db->query("ALTER TABLE `{$db->prefix}section_pages` ADD `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, ADD `slug` VARCHAR( 30 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;");
-
-        $db = get_db();
-
         $newSectionPages = $db->fetchAll("SELECT * FROM `{$db->prefix}section_pages`");
 
         foreach($newSectionPages as $newPage) {
-             $pageNum = $newPage['order'];
-             $pageTitle = 'Page '. $pageNum;
-             $slug = generate_slug($pageTitle); 
-             $id = $newPage['id'];       
-
+            $pageNum = $newPage['order'];
+            $pageTitle = 'Page '. $pageNum;
+            $slug = generate_slug($pageTitle); 
+            $id = $newPage['id'];
             $db->exec("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
-            }
+        }
     }
+}
+
+/**
+ * Uninstalls the plugin, deleting the tables from the database, as well as any plugin options
+ * 
+ * @return void
+ **/
+function exhibit_builder_uninstall() 
+{
+    // delete the plugin version number.
+    delete_option('exhibit_builder_plugin_version');
+    
+    // drop the tables
+    $db = get_db();
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibits`";
+    $db->query($sql);
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}sections`";
+    $db->query($sql);
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}items_section_pages`";
+    $db->query($sql);
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
+    $db->query($sql);
 }
 
 /**
@@ -138,6 +163,11 @@ function exhibit_builder_routes($router)
      DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
 }
 
+/**
+ * Displays the CSS layout for the exhibit in the header
+ * 
+ * @return void
+ **/
 function exhibit_builder_public_header()
 {
     if ($layoutCssHref = exhibit_builder_layout_css()) {
@@ -146,6 +176,11 @@ function exhibit_builder_public_header()
     }
 }
 
+/**
+ * Displays the CSS style and javascript for the exhibit in the admin header
+ * 
+ * @return void
+ **/
 function exhibit_builder_admin_header($request)
 {
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
@@ -158,10 +193,15 @@ function exhibit_builder_admin_header($request)
 
 }
 
+/**
+ * Appends an Exhibits section to admin dashboard
+ * 
+ * @return void
+ **/
 function exhibit_builder_dashboard()
 {
 ?>
-    <?php if(has_permission('ExhibitBuilder_Exhibits','browse')): ?>
+    <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
 	<dt class="exhibits"><a href="<?php echo uri('exhibits'); ?>">Exhibits</a></dt>
 	<dd class="exhibits">
 		<ul>
@@ -173,11 +213,24 @@ function exhibit_builder_dashboard()
 	<?php endif;
 }
 
-function exhibit_builder_public_main_nav($navArray) {
+/**
+ * Adds the Browse Exhibits link to the public main navigation
+ *
+ * @param array $navArray The array of navigation links 
+ * @return array
+ **/
+function exhibit_builder_public_main_nav($navArray) 
+{
     $navArray['Browse Exhibits'] = uri('exhibits');
     return $navArray;
 }
 
+/**
+ * Adds the Exhibits link to the admin navigation
+ *
+ * @param array $navArray The array of admin navigation links  
+ * @return array
+ **/
 function exhibit_builder_admin_nav($navArray)
 {
     if (has_permission('ExhibitBuilder_Exhibits', 'browse')) {
@@ -210,6 +263,7 @@ function exhibit_builder_purify_html($request, $purifier)
         // exhibit-metadata-form
         case 'add':
         case 'edit':
+        
         // section-metadata-form    
         case 'add-section':
         case 'edit-section':
@@ -224,14 +278,12 @@ function exhibit_builder_purify_html($request, $purifier)
         
         case 'edit-page-content':
             // page-content-form
-            
             if (is_array($post['Text'])) {
                 // All of the 'Text' entries are HTML.
                 foreach ($post['Text'] as $key => $text) {
                     $post['Text'][$key] = $purifier->purify($text);
                 }            
-            }
-                
+            }   
             break;
         
         default:
@@ -241,5 +293,3 @@ function exhibit_builder_purify_html($request, $purifier)
     
     $request->setPost($post);
 }
-
-

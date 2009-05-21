@@ -64,10 +64,9 @@
 		<div id="layout-thumbs">
 		<?php 
 			$layouts = exhibit_builder_get_ex_layouts();
-	
 			foreach ($layouts as $layout) {
-				exhibit_builder_exhibit_layout($layout);
-			} 
+				echo exhibit_builder_exhibit_layout($layout);
+			}
 		?>
 		</div>
 	</fieldset> 
