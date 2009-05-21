@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <!-- Stylesheets -->
-<link rel="stylesheet" media="screen" href="<?php echo exhibit_css('screen'); ?>" />
+<link rel="stylesheet" media="screen" href="<?php echo exhibit_builder_exhibit_css('screen'); ?>" />
 <link rel="stylesheet" media="print" href="<?php echo css('print'); ?>" />
 
 <!-- JavaScripts -->
@@ -25,15 +25,15 @@
     <div id="header">
         
     <h5><a class="exhibit-return" href="<?php echo uri('exhibits'); ?>">Back to Exhibits</a></h5>
-    <h1><?php echo link_to_exhibit($exhibit); ?></h1>
+    <h1><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h1>
 
     <div id="exhibit-nav">
-    	<?php echo section_nav();?>
+    	<?php echo exhibit_builder_section_nav();?>
     </div>
     
     </div>
 </div>
 
 <div id="content">
-	<?php echo page_nav(); ?>
+	<?php echo exhibit_builder_page_nav(); ?>
 <?php echo flash(); ?>				

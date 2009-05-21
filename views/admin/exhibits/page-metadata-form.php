@@ -1,7 +1,7 @@
 <?php head(array('title'=>'Exhibit Page', 'bodyclass'=>'exhibits')); ?>
 <?php echo js('exhibits'); ?>
 
-<h1><?php echo htmlentities($actionName); ?> Page</h1>
+<h1><?php echo html_escape($actionName); ?> Page</h1>
 
 <div id="primary">
 
@@ -38,15 +38,10 @@
 </script>
 
 <form method="post" id="choose-layout">
-		
-		<?php 
-		//	submit('Exhibit', 'exhibit_form');
-		//	submit('New Page', 'page_form'); 
-		?>
 	
-    	<div id="exhibits-breadcrumb">
-    		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
-    	</div>	
+    <div id="exhibits-breadcrumb">
+    	<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo html_escape($section['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
+    </div>	
 
     <fieldset>
         <legend>Page Metadata</legend>
@@ -61,19 +56,19 @@
 		<div id="chosen_layout">
 		<?php
 		if ($page->layout) {
-	        echo exhibit_layout($page->layout, false);
+	        echo exhibit_builder_exhibit_layout($page->layout, false);
 		} else {
-		    echo "<p>Choose a layout by selecting a thumbnail on the right.</p>";
+		    echo '<p>' . html_escape('Choose a layout by selecting a thumbnail on the right.') . '</p>';
 		}
 		?>
 	    </div>
 		
 		<div id="layout-thumbs">
 		<?php 
-			$layouts = get_ex_layouts();
+			$layouts = exhibit_builder_get_ex_layouts();
 	
 			foreach ($layouts as $layout) {
-				exhibit_layout($layout);
+				exhibit_builder_exhibit_layout($layout);
 			} 
 		?>
 		</div>
