@@ -6,9 +6,9 @@
     		<span class="input"><?php echo text(array('name'=>"Sections[$key][order]",'size'=>2,'class'=>'order-input'), $section->order); ?></span>
     		<span class="section-title">
     		<?php if (strlen($section->title) > 40):
-    		    echo html_escape(substr($section->title, 0, 40));
+    		    echo htmlentities(substr($section->title, 0, 40));
     		    else:
-    		    echo html_escape($section->title); 
+    		    echo htmlentities($section->title); 
     		    endif;?></span>
     		</span>
     		<span class="right">

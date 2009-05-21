@@ -1,4 +1,4 @@
-<?php exhibit_builder_exhibit_head(array('bodyclass' => 'exhibits')); ?>
+<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
 <div id="primary" class="show">
 
 	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>
@@ -12,6 +12,8 @@
 	
 	<?php echo show_item_metadata(); ?>
 	
+	
+
 	<div id="itemfiles">
 		<?php echo display_files_for_item(); ?>
 	</div>
@@ -39,4 +41,4 @@
 	</div>
 
 </div>
-<?php exhibit_builder_exhibit_foot(); ?>
+<?php exhibit_foot(); ?>

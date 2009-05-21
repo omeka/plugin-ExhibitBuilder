@@ -140,7 +140,7 @@ function exhibit_builder_routes($router)
 
 function exhibit_builder_public_header()
 {
-    if ($layoutCssHref = exhibit_builder_layout_css()) {
+    if ($layoutCssHref = layout_css()) {
         // Add the stylesheet for the layout
         echo '<link rel="stylesheet" media="screen" href="' . $layoutCssHref . '" /> ';
     }

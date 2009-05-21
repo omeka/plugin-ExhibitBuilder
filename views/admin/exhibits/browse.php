@@ -56,7 +56,7 @@
 		<td><?php echo $exhibit->title; ?></td>
 		<td><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></td>
 		<td><?php if($exhibit->theme==null) echo 'Current Public Theme'; else echo $exhibit->theme;?></td>
-		<td><?php echo '<a href="' . exhibit_builder_exhibit_uri($exhibit). '">[Preview]</a>'; ?></td>
+		<td><?php echo '<a href="' .exhibit_uri($exhibit). '">[Preview]</a>'; ?></td>
 		<td><?php echo link_to($exhibit, 'edit', '[Edit]', array('class'=>'edit-exhibit')); ?></td>
 		<td><?php echo link_to($exhibit, 'delete', '[Delete]', array('class'=>'delete-exhibit')) ?></td>
 	</tr>

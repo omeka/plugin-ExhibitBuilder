@@ -1,4 +1,4 @@
-<?php head(array('title'=> html_escape($actionName . ' Exhibit'), 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=> htmlentities($actionName) . ' Exhibit', 'bodyclass'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 
 <script type="text/javascript" charset="utf-8">	
@@ -44,11 +44,11 @@
 //]]>	
 </script>
 
-<h1><?php echo html_escape($actionName); ?> Exhibit</h1>
+<h1><?php echo htmlentities($actionName); ?> Exhibit</h1>
 
 <div id="primary">
 	<div id="exhibits-breadcrumb">
-		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <?php echo html_escape($actionName . ' Exhibit'); ?>
+		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <?php echo $actionName . ' Exhibit'; ?>
 	</div>
 
 <form id="exhibit-metadata-form" method="post" class="exhibit-builder">
@@ -78,7 +78,7 @@
 	</div>
 		<div class="field">
 			<label for="theme">Exhibit Theme</label>			
-		    <?php $values = array('' => 'Current Public Theme') + exhibit_builder_get_ex_themes(); ?>
+		    <?php $values = array('' => 'Current Public Theme') + get_ex_themes(); ?>
 			<div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?></div>
 		</div>
 		</fieldset>

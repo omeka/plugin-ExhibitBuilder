@@ -1,20 +1,23 @@
-<?php head(array('title'=> html_escape("Item #{$item->id}"))); ?>
+<?php head(array('title'=>"Item #{$item->id}")); ?>
 <div id="primary">
 
 	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>
 	<ul>
         <?php foreach (item('Dublin Core', 'Title', 'all') as $title): ?>
            <li class="item-title">
-           <?php echo html_escape($title); ?>
+           <?php echo $title; ?>
            </li>
         <?php endforeach ?>
 	</ul>
 	
 	<?php echo show_item_metadata(); ?>
 	
+	
+
 	<div id="itemfiles">
 		<?php echo display_files_for_item(); ?>
 	</div>
+	
 	
 	<?php if ( item_belongs_to_collection() ): ?>
         <div id="collection" class="field">
@@ -23,6 +26,8 @@
         </div>
     <?php endif; ?>
     
+	
+
 	<?php if(count($item->Tags)): ?>
 	<div class="tags">
 		<h3>Tags:</h3>
