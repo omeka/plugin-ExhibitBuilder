@@ -1,4 +1,4 @@
-<?php head(array('title'=> htmlentities($actionName) . ' Page', 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=> html_escape($actionName . ' Page'), 'bodyclass'=>'exhibits')); ?>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -37,7 +37,7 @@
 		    });
 		    
 </script>
-<h1><?php echo htmlentities($actionName); ?> Page</h1>
+<h1><?php echo html_escape($actionName); ?> Page</h1>
 
 <div id="primary">
 <?php echo flash(); ?>
@@ -45,7 +45,7 @@
 <div id="page-builder">
 	
 	<div id="exhibits-breadcrumb">
-		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo $exhibit['title']; ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo $actionName . ' Page'; ?>
+		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo $section['title']; ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
 	</div>
     
     <?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
@@ -54,7 +54,7 @@
     <form id="page-form" method="post" action="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$page->id)); ?>">
         <div id="page-metadata-list">
         <h2>Page Metadata</h2>
-            <p>Page Title: <?php echo $page->title; ?></p>
+            <p>Page Title: <?php echo html_escape($page->title); ?></p>
         <?php 
             $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$page->layout/layout.gif"); 
         	echo '<img src="'.$imgFile.'" alt="' . $page->layout . '"/>';
@@ -64,7 +64,7 @@
     
 	<div id="layout-all">
 	<div id="layout-form">
-	<?php render_layout_form($page->layout); ?>
+	<?php exhibit_builder_render_layout_form($page->layout); ?>
 	</div>
 
 	</div>

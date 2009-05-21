@@ -1,4 +1,4 @@
-<?php exhibit_head(array('bodyclass' => 'exhibits')); ?>
+<?php exhibit_builder_exhibit_head(array('bodyclass' => 'exhibits')); ?>
 <div id="primary" class="show">
 
 	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>
@@ -23,8 +23,6 @@
         </div>
     <?php endif; ?>
     
-	
-
 	<?php if(count($item->Tags)): ?>
 	<div class="tags">
 		<h3>Tags:</h3>
@@ -38,4 +36,4 @@
 	</div>
 
 </div>
-<?php exhibit_foot(); ?>
+<?php exhibit_builder_exhibit_foot(); ?>

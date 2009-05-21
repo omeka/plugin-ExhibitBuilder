@@ -1,7 +1,7 @@
 <fieldset>
 	<?php 
 	
-	layout_form_text(1);
+	exhibit_builder_layout_form_text(1);
 
 	?>
 	
