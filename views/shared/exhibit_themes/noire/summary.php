@@ -2,13 +2,13 @@
 
 <div id="primary">
     <div class="exhibit-description">
-	<?php echo html_escape($exhibit->description); ?>
+	<?php echo $exhibit->description; ?>
 </div>
 
 <div id="exhibit-sections">	
 	<?php foreach($exhibit->Sections as $section): ?>
 	<h3><a href="<?php echo exhibit_builder_exhibit_uri($exhibit, $section); ?>"><?php echo html_escape($section->title); ?></a></h3>
-	<?php echo html_escape($section->description); ?>
+	<?php echo $section->description; ?>
 	<?php endforeach; ?>
 </div>
 

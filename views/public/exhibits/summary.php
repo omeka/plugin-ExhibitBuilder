@@ -4,7 +4,7 @@
 <?php echo exhibit_builder_section_nav(); ?>
 
 <h3 class="clear">Description</h3>
-<?php echo html_escape($exhibit->description); ?>
+<?php echo $exhibit->description; ?>
 
 <h3>Credits</h3>
 <p><?php echo html_escape($exhibit->credits); ?></p>

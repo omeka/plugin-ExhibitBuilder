@@ -15,7 +15,7 @@
 <?php foreach( $exhibits as $key=>$exhibit ): ?>
 	<div class="exhibit <?php if($key%2==1) echo ' even'; else echo ' odd'; ?>">
 		<h2><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h2>
-		<div class="description"><?php echo html_escape($exhibit->description); ?></div>
+		<div class="description"><?php echo $exhibit->description; ?></div>
 		<p class="tags"><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></p>
 	</div>
 <?php endforeach; ?>
