@@ -40,10 +40,10 @@
 		<th>Tags</th>
 		<th>Theme</th>
 		<th>Preview</th>
-		<?php if(has_permission('ExhibitBuilder_Exhibits','edit')){ ?>
+		<?php if(has_permission('ExhibitBuilder_Exhibits','browse')){ ?>
 		
 		<th>Edit?</th>
-		<?php } if(has_permission('ExhibitBuilder_Exhibits','delete')){ ?>
+		<?php } if(has_permission('ExhibitBuilder_Exhibits','deleteAll')){ ?>
 		<th>Delete?</th>
 		<?php } ?>
 	</tr>
@@ -57,8 +57,14 @@
 		<td><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></td>
 		<td><?php if($exhibit->theme==null) echo 'Current Public Theme'; else echo $exhibit->theme;?></td>
 		<td><?php echo '<a href="' . exhibit_builder_exhibit_uri($exhibit). '">[Preview]</a>'; ?></td>
-		<td><?php echo link_to($exhibit, 'edit', '[Edit]', array('class'=>'edit-exhibit')); ?></td>
+		<td>
+		<?php if(exhibit_builder_user_can_edit($exhibit)): ?>
+		<?php echo link_to($exhibit, 'edit', '[Edit]', array('class'=>'edit-exhibit')); ?>
+		<?php endif; ?>
+		</td>
+		<?php if(has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
 		<td><?php echo link_to($exhibit, 'delete', '[Delete]', array('class'=>'delete-exhibit')) ?></td>
+		<?php endif; ?>
 	</tr>
 <?php endforeach; ?>
 </tbody>

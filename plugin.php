@@ -146,10 +146,17 @@ function exhibit_builder_uninstall()
  **/
 function exhibit_builder_setup_acl($acl)
 {
-    $acl->loadResourceList(array('ExhibitBuilder_Exhibits'=> array('add', 'edit',
-    'delete', 'add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section',
-    'delete-section', 'showNotPublic', 'section-list', 'page-list')));    
-      
+
+    $resource = new Omeka_Acl_Resource('ExhibitBuilder_Exhibits');
+    $resource->add(array('add','editSelf', 'editAll', 'deleteSelf', 'deleteAll','add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section', 'delete-section', 'showNotPublic', 'section-list', 'page-list'));
+    $acl->add($resource);
+    
+    // Deny contributor users editAll, deleteAll
+    $acl->deny('contributor', 'ExhibitBuilder_Exhibits', array('editAll','deleteAll'));
+    
+    // Allow contributors everything else
+    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');
+          
 }
 
 /**

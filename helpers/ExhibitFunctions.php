@@ -643,3 +643,10 @@ function exhibit_builder_show_exhibit_list()
     ob_end_clean();
     return $html;
 }
+
+function exhibit_builder_user_can_edit($exhibit, $user = null)
+{
+    if(!$user) $user = current_user();
+    return (($exhibit->wasAddedBy($user) && get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editSelf')) || 
+         get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editAll'));
+} 

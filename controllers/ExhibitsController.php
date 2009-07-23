@@ -207,9 +207,18 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 	}
 
 	public function editAction()
-	{	
-		$exhibit = $this->findById();
-		return $this->processExhibitForm($exhibit, 'Edit');
+	{		
+        if ($user = $this->getCurrentUser()) {
+        
+            $exhibit = $this->findById();
+        
+            if ($this->isAllowed('editAll', 'ExhibitBuilder_Exhibits') || ($this->isAllowed('editSelf', 'ExhibitBuilder_Exhibits') && $exhibit->wasAddedBy($user))) {
+                return $this->processExhibitForm($exhibit, 'Edit');
+            }
+            
+        }
+        throw new Omeka_Controller_Exception_403();
+		
 	}	
 	
 	/**
