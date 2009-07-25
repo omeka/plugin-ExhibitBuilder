@@ -50,58 +50,58 @@ class Sluggable extends Omeka_Record_Mixin
         }
                 
         if(empty($this->record->slug)) {
-			$this->record->slug = generate_slug($seedValue);
-		}
+            $this->record->slug = generate_slug($seedValue);
+        }
     }
     
     public function afterValidate()
     {
         if(empty($this->record->slug)) {
-			$this->addError('slug', $this->options['slugEmptyErrorMessage']);
-		}
+            $this->addError('slug', $this->options['slugEmptyErrorMessage']);
+        }
 
-		if(!$this->slugIsUnique($this->record->slug)) {
-			$this->addError('slug', $this->options['slugUniqueErrorMessage']);
-		} 
-		        
+        if(!$this->slugIsUnique($this->record->slug)) {
+            $this->addError('slug', $this->options['slugUniqueErrorMessage']);
+        } 
+                
         if(strlen($this->record->slug) > $this->options['slugMaxLength']) {
             $this->addError('slug', $this->options['slugLengthErrorMessage']);
         }
     }
     
     public function beforeSaveForm(&$post)
-	{ 
-	    //Make an exhibit slug if the posted slug is empty
-		$slugFodder = !empty($post['slug']) ? $post['slug'] : $post[$this->options['slugSeedFieldName']];
-		$post['slug'] = generate_slug($slugFodder);
-	}
-	
-	public function slugIsUnique($slug)
-	{
-		$db = $this->getDb();
-		
-		$select = $this->record->getTable()->getSelect();
-		$select->reset('columns')->from(array(), 'COUNT(DISTINCT(id))');
-		$select->where('slug = ?', $slug);
-				
-		if ($this->parentIdFieldName) {
-		    $parentId = $this->getParentId();
-		  
+    { 
+        //Make an exhibit slug if the posted slug is empty
+        $slugFodder = !empty($post['slug']) ? $post['slug'] : $post[$this->options['slugSeedFieldName']];
+        $post['slug'] = generate_slug($slugFodder);
+    }
+    
+    public function slugIsUnique($slug)
+    {
+        $db = $this->getDb();
+        
+        $select = $this->record->getTable()->getSelect();
+        $select->reset('columns')->from(array(), 'COUNT(DISTINCT(id))');
+        $select->where('slug = ?', $slug);
+                
+        if ($this->parentIdFieldName) {
+            $parentId = $this->getParentId();
+          
             if(!$parentId) {
-            	throw new Exception('Cannot check for unique slugs if the record is not assigned a valid parent ID!');
+                throw new Exception('Cannot check for unique slugs if the record is not assigned a valid parent ID!');
             }
             
             $select->where($this->parentIdFieldName . ' = ?', $parentId);
-		}
-		
-		//If the record is persistent, get the count of sections 
-		//with that slug that aren't this particular record
-		if($this->exists()) {
-		    $select->where('id != ?', $this->record->id);
-		}
-						
-		//If there are no other sections with that particular slug, then it is unique
-		$count = (int) $db->fetchOne($select);
-		return ($count == 0);		
-	}
+        }
+        
+        //If the record is persistent, get the count of sections 
+        //with that slug that aren't this particular record
+        if($this->exists()) {
+            $select->where('id != ?', $this->record->id);
+        }
+                        
+        //If there are no other sections with that particular slug, then it is unique
+        $count = (int) $db->fetchOne($select);
+        return ($count == 0);       
+    }
 }

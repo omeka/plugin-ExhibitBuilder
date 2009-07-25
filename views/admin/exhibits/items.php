@@ -1,17 +1,17 @@
 <a href="#" id="show-or-hide-search" class="show-form">Show Search Form</a>
 <div id="page-search-form">
 <?php
- 	$uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
-	$isPartial = true;
-	$formAttributes = array('id'=>'search');
-	common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
+    $uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
+    $isPartial = true;
+    $formAttributes = array('id'=>'search');
+    common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
 
-	//items_search_form(array('id'=>'search'), $uri); 
+    //items_search_form(array('id'=>'search'), $uri); 
 ?>
 </div>
 <div id="pagination">
 <?php     
-	 echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
+     echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
       'action'=>'items', 'page'=>null)) . '/')); 
      // The extra slash is a hack, the pagination should be fixed to work
      // without the extra slash being there. Also, I get the feeling that being
@@ -24,8 +24,6 @@
     <p>There are no items to choose from.  Please refine your search or <a href="<?php echo uri('items/add'); ?>">add</a> some items.</p>
 <?php endif; ?>
 <?php while($item = loop_items()): ?>
-	<?php echo exhibit_builder_exhibit_form_item($item); ?>
+    <?php echo exhibit_builder_exhibit_form_item($item); ?>
 <?php endwhile; ?>
 </div>
-
-
