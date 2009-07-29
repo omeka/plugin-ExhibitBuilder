@@ -34,7 +34,7 @@ table#exhibits {
 
 /* Exhibit Breadcrumb Navigation */
 #exhibits-breadcrumb {
-    float:right;
+    text-align:right;
 }
 
 
@@ -395,10 +395,6 @@ a.cancel {
 
 a.cancel:visited {
     color:#38c;
-}
-
-div.field {
-    padding: 18px;
 }
 
 #layout-form .section {
