@@ -46,18 +46,7 @@ class ExhibitSection extends Omeka_Record
     {           
         foreach ($this->Pages as $page) {
             $page->delete();
-        }
-        
-/*
-        $id = (int) $this->id;
-        //Delete thyself and all thine dependencies
-        $delete = "DELETE items_section_pages, section_pages, sections FROM sections 
-        LEFT JOIN section_pages ON section_pages.section_id = sections.id
-        LEFT JOIN items_section_pages ON items_section_pages.page_id = section_pages.id
-        WHERE sections.id = $id;";
-        
-        $this->getDb()->exec($delete);
-*/                  
+        }              
     }
         
     //Deleting a section must re-order the other sections
@@ -70,6 +59,16 @@ class ExhibitSection extends Omeka_Record
     protected function getExhibit()
     {
         return $this->getTable('Exhibit')->find($this->exhibit_id);
+    }
+    
+    public function previous()
+    {
+        return $this->getTable('ExhibitSection')->findPrevious($this);
+    }
+    
+    public function next()
+    {
+        return $this->getTable('ExhibitSection')->findNext($this);
     }
     
     public function getPageCount()
@@ -98,6 +97,34 @@ class ExhibitSection extends Omeka_Record
         $count = $this->getPageCount();
         return $count > 0;
     }
+    
+    /**
+     * Creates and returns a Zend_Search_Lucene_Document for the ExhibitSection
+     *
+     * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
+     * @return Zend_Search_Lucene_Document
+     **/
+    public function createLuceneDocument($doc=null) 
+    {   
+        // If no document, lets start a new Zend Lucene Document
+        if (!$doc) {
+            $doc = new Zend_Search_Lucene_Document(); 
+        }  
+                
+        // Adds fields for title, description, and slug
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'title'), $this->title);
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'description'), $this->description);
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'slug'), $this->slug);
+
+        // add the exhibit id of the the exhibit that contains the section.
+        if ($this->exhibit_id) {
+            Omeka_Search::addLuceneField($doc, 'Keyword', array('ExhibitSection','exhibit_id'), $this->ExhibitSection, true);                        
+        }
+        
+        // Create the Lucene document.
+        return parent::createLuceneDocument($doc);
+    }
+    
 }
 
 ?>

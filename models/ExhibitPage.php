@@ -123,5 +123,44 @@ class ExhibitPage extends Omeka_Record
 			$ip->forceSave();
 		}
 	}
+	
+	public function getPageEntries()
+	{
+	    return $this->ExhibitPageEntry;
+	}
+	
+	/**
+     * Creates and returns a Zend_Search_Lucene_Document for the ExhibitPage
+     *
+     * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
+     * @return Zend_Search_Lucene_Document
+     **/
+    public function createLuceneDocument($doc=null) 
+    {   
+        // If no document, lets start a new Zend Lucene Document
+        if (!$doc) {
+            $doc = new Zend_Search_Lucene_Document(); 
+        }  
+        
+        // Adds fields for title and text
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);
+
+        // add the section id of the section that contains the page
+        if ($this->section_id) {
+            Omeka_Search::addLuceneField($doc, 'Keyword', array('ExhibitPage','section_id'), $this->section_id, true);                        
+        }
+        
+        // Add field for page entry texts.
+        $entries = $this->getPageEntries();
+        $entryTexts = array();
+        foreach ($entries as $entry) {
+            $entryTexts[] = $entry->text;
+        }
+        if(count($entryTexts) > 0) {
+            Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitPage', 'entry_texts'), $entryTexts);    
+        }
+        
+        return parent::createLuceneDocument($doc);
+    }
 }
 ?>

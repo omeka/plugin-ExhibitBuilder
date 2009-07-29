@@ -38,6 +38,12 @@ class ExhibitPageEntry extends Omeka_Record
             $this->addError(null, 'item_id field must be empty or a valid foreign key');
         }
     }
+    
+	protected function getPage()
+	{
+		return $this->getTable('ExhibitPage')->find($this->page_id);
+	}
+    
 }
 
 ?>

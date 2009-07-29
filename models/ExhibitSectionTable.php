@@ -16,4 +16,42 @@
 class ExhibitSectionTable extends Omeka_Db_Table
 {
     protected $_name = 'sections';
+    
+    public function findPrevious($section)
+       {
+           return $this->findNearby($section, 'previous');
+       }
+
+       public function findNext($section)
+       {
+           return $this->findNearby($section, 'next');
+       }
+
+       protected function findNearby($section, $position = 'next')
+       {
+           $select = $this->getSelect();
+           $select->limit(1);
+
+           $exhibit = Zend_Registry::get('exhibit');
+
+           switch ($position) {
+               case 'next':
+                   $select->where('e.exhibit_id = ?', (int) $exhibit->id);
+                   $select->where('e.order > ?', (int) $section->order);
+                   $select->order('e.order ASC');
+                   break;
+
+               case 'previous':
+                   $select->where('e.exhibit_id = ?', (int) $exhibit->id);
+                   $select->where('e.order < ?', (int) $section->order);
+                   $select->order('e.order DESC');
+                   break;
+
+               default:
+                   throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
+                   break;
+           }
+
+           return $this->fetchObject($select);
+       }
 }

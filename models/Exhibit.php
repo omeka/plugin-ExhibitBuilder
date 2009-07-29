@@ -115,4 +115,42 @@ class Exhibit extends Omeka_Record
 	{
 		return $this->getChildCount();
 	}
+	
+    /**
+     * Creates and returns a Zend_Search_Lucene_Document for the SimplePagesPage
+     *
+     * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
+     * @return Zend_Search_Lucene_Document
+     **/
+    public function createLuceneDocument($doc=null) 
+    {   
+        // If no document, lets create a new Zend Lucene Document
+        if (!$doc) {
+            $doc = new Zend_Search_Lucene_Document(); 
+        }
+        
+        // adds the fields for public and private       
+        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $this->public == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);         
+        // adds the fields for public and private       
+        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_FEATURED, $this->featured == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);   
+        
+        // Adds fields for title, description, and slug
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('Exhibit', 'title'), $this->title);
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('Exhibit', 'description'), $this->description);
+        Omeka_Search::addLuceneField($doc, 'UnStored', array('Exhibit', 'slug'), $this->slug);
+        
+        //add the tags under the 'tag' field
+        $tags = $this->getTags();
+        $tagNames = array();
+        foreach($tags as $tag) {
+            $tagNames[] = $tag->name;
+        }
+        
+        if (count($tagNames) > 0) {
+            Omeka_Search::addLuceneField($doc, 'UnStored', array('Exhibit','tags'), $tagNames);            
+        }
+        
+        return parent::createLuceneDocument($doc);
+    }
+    
 }
