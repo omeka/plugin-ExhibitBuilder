@@ -29,7 +29,7 @@ add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard'
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('default_search_models', 'exhibit_builder_default_search_models');
+add_filter('search_models', 'exhibit_builder_search_models');
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
@@ -255,7 +255,7 @@ function exhibit_builder_admin_nav($navArray)
  * @param array $modelsToSearch The array of search models 
  * @return array
  **/
-function exhibit_builder_default_search_models($modelsToSearch)
+function exhibit_builder_search_models($modelsToSearch)
 {
     $models = array('Exhibit', 'ExhibitSection', 'ExhibitPage');
     foreach($models as $model) {
