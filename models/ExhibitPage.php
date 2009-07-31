@@ -71,7 +71,7 @@ class ExhibitPage extends Omeka_Record
         return $this->getDb()->getTable('ExhibitPage')->findNext($this);
     }
 
-	protected function getSection()
+	public function getSection()
 	{
 		return $this->getTable('ExhibitSection')->find($this->section_id);
 	}
@@ -141,6 +141,10 @@ class ExhibitPage extends Omeka_Record
         if (!$doc) {
             $doc = new Zend_Search_Lucene_Document(); 
         }  
+        
+        // adds the fields for public and private       
+        $isPublic = $this->getSection()->getExhibit()->public;
+        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
         
         // Adds fields for title and text
         Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);

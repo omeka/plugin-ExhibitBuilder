@@ -257,10 +257,10 @@ function exhibit_builder_admin_nav($navArray)
  **/
 function exhibit_builder_search_models($modelsToSearch)
 {
-    $models = array('Exhibit', 'ExhibitSection', 'ExhibitPage');
-    foreach($models as $model) {
-        $modelsToSearch[] = $model;
-    }
+    $modelsToSearch['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelsToSearch['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelsToSearch['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    
     return $modelsToSearch;
 }
 

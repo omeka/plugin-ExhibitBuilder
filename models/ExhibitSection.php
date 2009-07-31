@@ -56,7 +56,7 @@ class ExhibitSection extends Omeka_Record
         $exhibit->reorderChildren();
     }
     
-    protected function getExhibit()
+    public function getExhibit()
     {
         return $this->getTable('Exhibit')->find($this->exhibit_id);
     }
@@ -110,6 +110,10 @@ class ExhibitSection extends Omeka_Record
         if (!$doc) {
             $doc = new Zend_Search_Lucene_Document(); 
         }  
+        
+        // adds the fields for public and private       
+        $isPublic = $this->getExhibit()->public;
+        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
                 
         // Adds fields for title, description, and slug
         Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'title'), $this->title);
