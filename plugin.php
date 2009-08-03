@@ -26,10 +26,13 @@ add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
 add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
+add_plugin_hook('public_search_form', 'exhibit_builder_public_search_form');
+add_plugin_hook('search_result', 'exhibit_builder_search_result');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('search_models', 'exhibit_builder_search_models');
+add_filter('public_search_navigation', 'exhibit_builder_public_search_navigation');
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
@@ -250,6 +253,19 @@ function exhibit_builder_admin_nav($navArray)
 }
 
 /**
+ * Adds the Exhibits tab to the advanced search page
+ *
+ * @param array $navs The associative array that contains the tab name as the key and 
+ * the uri to the advanced search page
+ * @return array
+ **/
+function exhibit_builder_public_search_navigation($navs)
+{
+    $navs['Exhibits'] = uri('search/?form=Exhibit');
+    return $navs;
+}
+
+/**
  * Adds the Exhibits models to the default search models
  *
  * @param array $modelsToSearch The array of search models 
@@ -262,6 +278,21 @@ function exhibit_builder_search_models($modelsToSearch)
     $modelsToSearch['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
     
     return $modelsToSearch;
+}
+
+/**
+ * Displays the advanced search form
+ *
+ * @param string $formName The name of the advanced search form
+ * @param array $formName The array of the advanced search form attributes
+ **/
+function exhibit_builder_public_search_form($formName, $formAttributes)
+{
+    switch($formName) {
+        case 'Exhibit':
+            include 'exhibit-search-form.php';
+        break;
+    }
 }
 
 /**
@@ -315,4 +346,17 @@ function exhibit_builder_purify_html($request, $purifier)
     }
     
     $request->setPost($post);
+}
+
+function exhibit_builder_search_result($record)
+{
+    switch(get_class($record)) {
+        case 'Exhibit':
+            echo '<p>' . $record->title . '</p>';
+        break;
+        
+        case 'ExhibitPage':
+            echo '<p>' . $record->title . '</p>';
+        break;
+    }
 }
