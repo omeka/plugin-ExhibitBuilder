@@ -142,28 +142,31 @@ class ExhibitPage extends Omeka_Record
             $doc = new Zend_Search_Lucene_Document(); 
         }  
         
-        // adds the fields for public and private       
-        $isPublic = $this->getSection()->getExhibit()->public;
-        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
+        if ($search = Omeka_Search::getInstance()) {
         
-        // Adds fields for title and text
-        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);
+            // adds the fields for public and private       
+            $isPublic = $this->getSection()->getExhibit()->public;
+            $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
 
-        // add the section id of the section that contains the page
-        if ($this->section_id) {
-            Omeka_Search::addLuceneField($doc, 'Keyword', array('ExhibitPage','section_id'), $this->section_id, true);                        
+            // Adds fields for title and text
+            $search->addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);
+
+            // add the section id of the section that contains the page
+            if ($this->section_id) {
+                $search->addLuceneField($doc, 'Keyword', array('ExhibitPage','section_id'), $this->section_id, true);                        
+            }
+
+            // Add field for page entry texts.
+            $entries = $this->getPageEntries();
+            $entryTexts = array();
+            foreach ($entries as $entry) {
+                $entryTexts[] = $entry->text;
+            }
+            if(count($entryTexts) > 0) {
+                $search->addLuceneField($doc, 'UnStored', array('ExhibitPage', 'entry_texts'), $entryTexts);    
+            }    
         }
-        
-        // Add field for page entry texts.
-        $entries = $this->getPageEntries();
-        $entryTexts = array();
-        foreach ($entries as $entry) {
-            $entryTexts[] = $entry->text;
-        }
-        if(count($entryTexts) > 0) {
-            Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitPage', 'entry_texts'), $entryTexts);    
-        }
-        
+                
         return parent::createLuceneDocument($doc);
     }
 }

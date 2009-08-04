@@ -355,8 +355,26 @@ function exhibit_builder_search_result($record)
             echo '<p>' . $record->title . '</p>';
         break;
         
+        case 'ExhibitSection':
+            echo '<p>' . $record->title . '</p>';
+        break;
+        
         case 'ExhibitPage':
             echo '<p>' . $record->title . '</p>';
         break;
     }
+}
+
+/**
+ * Returns the select dropdown for the exhibits 
+ * 
+ * @param array $props Optional
+ * @param string|null $value Optional
+ * @param string|null $label Optional
+ * @param array $search Optional
+ * @return string
+ **/
+function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
+{
+    return _select_from_table('Exhibit', $props, $value, $label, $search);
 }

@@ -116,6 +116,70 @@ class ExhibitTable extends Omeka_Db_Table
         
         return $this->fetchObject($select);
     }
+    
+    protected function _getColumnPairs()
+    {        
+        return array('e.id', 'e.title');
+    }
+    
+    /**
+     * Adds an lucene subquery to the search query for the advanced search
+     *
+     * @param Zend_Search_Lucene_Search_Query_Boolean $advancedSearchQuery
+     * @param string|array $requestParams An associative array of request parameters
+     */
+    public function addAdvancedSearchQueryForLucene($advancedSearchQuery, $requestParams) 
+    {
+        if ($search = Omeka_Search::getInstance()) {
+            
+            // Build an advanced search query for the item
+            $advancedSearchQueryForExhibit = new Zend_Search_Lucene_Search_Query_Boolean();
+            foreach($requestParams as $requestParamName => $requestParamValue) {
+                switch($requestParamName) {
+
+                    case 'public':
+                        if (is_true($requestParamValue)) {
+                            $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_IS_PUBLIC, Omeka_Search::FIELD_VALUE_TRUE, true);
+                            $advancedSearchQueryForItem->addSubquery($subquery, true);
+                        }
+                    break;
+
+                    case 'tag':
+                    case 'tags':
+                        $this->filterByTagsLucene($advancedSearchQueryForExhibit, $requestParamValue);
+                        break;
+
+                }
+            }
+
+            // add the item advanced search query to the searchQuery as a disjunctive subquery 
+            // (i.e. there will be OR statements between each of models' the advanced search queries)
+            $advancedSearchQuery->addSubquery($advancedSearchQueryForExhibit);
+        }        
+    }
+    
+    /**
+     * Query must look like the following in order to correctly retrieve items     
+     * that have all the tags provided (in this example, all items that are
+     * tagged both 'foo' and 'bar'):
+     *
+     * @param Zend_Search_Lucene_Search_Query_Boolean $searchQuery
+     * @param string|array $tags A comma-delimited string or an array of tag 
+     *         names.
+     */
+    public function filterByTagsLucene($searchQuery, $tags)
+    {
+        if ($search = Omeka_Search::getInstance()) {
+            if (!is_array($tags)) {
+                $tags = explode(',', $tags);
+            }
+            // make all of the tags required (i.e. conjoin the tags with AND)
+            foreach ($tags as $tag) {
+                $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_TAG, trim($tag));
+                $searchQuery->addSubquery($subquery, true);
+            }
+        }
+    }
 }
  
 ?>

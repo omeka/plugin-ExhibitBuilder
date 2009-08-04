@@ -111,18 +111,21 @@ class ExhibitSection extends Omeka_Record
             $doc = new Zend_Search_Lucene_Document(); 
         }  
         
-        // adds the fields for public and private       
-        $isPublic = $this->getExhibit()->public;
-        Omeka_Search::addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
-                
-        // Adds fields for title, description, and slug
-        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'title'), $this->title);
-        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'description'), $this->description);
-        Omeka_Search::addLuceneField($doc, 'UnStored', array('ExhibitSection', 'slug'), $this->slug);
+        if ($search = Omeka_Search::getInstance()) {
+            
+            // adds the fields for public and private       
+            $isPublic = $this->getExhibit()->public;
+            $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
 
-        // add the exhibit id of the the exhibit that contains the section.
-        if ($this->exhibit_id) {
-            Omeka_Search::addLuceneField($doc, 'Keyword', array('ExhibitSection','exhibit_id'), $this->ExhibitSection, true);                        
+            // Adds fields for title, description, and slug
+            $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'title'), $this->title);
+            $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'description'), $this->description);
+            $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'slug'), $this->slug);
+
+            // add the exhibit id of the the exhibit that contains the section.
+            if ($this->exhibit_id) {
+                $search->addLuceneField($doc, 'Keyword', array('ExhibitSection','exhibit_id'), $this->ExhibitSection, true);                        
+            }
         }
         
         // Create the Lucene document.
