@@ -91,6 +91,29 @@ class Exhibit extends Omeka_Record
 		$this->applyTagString($post['tags'], $current_user->Entity, true);	
 	}
 	
+	protected function afterSave()
+	{
+        // update the lucene index with the record
+        if ($search = Omeka_Search::getInstance()) {
+            $sections = $this->getSections();            
+            foreach($sections as $section) {
+                $search->updateLuceneByRecord($section);
+                $pages = $section->getPages();
+                foreach($pages as $page) {
+                    $search->updateLuceneByRecord($page);
+                }
+            }
+        }
+	}
+	
+    public function getSections() 
+    {
+        //return $this->Sections;
+        $db = $this->getDb();
+        $sql = "SELECT s.* FROM $db->ExhibitSection s WHERE s.exhibit_id = ?";
+        return $this->getTable('ExhibitSection')->fetchObjects($sql, array((int) $this->id));
+    }
+	
 	public function getSection($slug)
 	{
 		$db = $this->getDb();

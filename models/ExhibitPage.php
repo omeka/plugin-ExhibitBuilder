@@ -144,16 +144,21 @@ class ExhibitPage extends Omeka_Record
         
         if ($search = Omeka_Search::getInstance()) {
         
-            // adds the fields for public and private       
+            // Add the fields for public and private       
             $isPublic = $this->getSection()->getExhibit()->public;
             $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
 
-            // Adds fields for title and text
+            // Add fields for title and text
             $search->addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);
 
-            // add the section id of the section that contains the page
+            // Add the section id of the section that contains the page
             if ($this->section_id) {
                 $search->addLuceneField($doc, 'Keyword', array('ExhibitPage','section_id'), $this->section_id, true);                        
+            }
+            
+            // add the exhibit id of the exhibit that contains the page
+            if ($this->section_id) {
+                $search->addLuceneField($doc, 'Keyword', array('ExhibitPage','exhibit_id'), $this->getSection()->getExhibit()->id, true);                        
             }
 
             // Add field for page entry texts.

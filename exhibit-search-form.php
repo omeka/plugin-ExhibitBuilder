@@ -11,9 +11,9 @@
 	</div>
 	
 	<div class="field">
-	    <?php echo label('exhibits', 'Search By Exhibit'); ?>
+	    <?php echo label('exhibit_id', 'Search By Exhibit'); ?>
 	    <div class="inputs">
-	        <?php echo exhibit_builder_select_exhibit(array('name'=>'exhibits','id'=>'exhibit-search'), $_REQUEST['tags'], null); ?>
+	        <?php echo exhibit_builder_select_exhibit(array('name'=>'exhibit_id','id'=>'exhibit-search'), $_REQUEST['tags'], null); ?>
 	    </div>
 	</div>
 	

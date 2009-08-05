@@ -123,7 +123,7 @@ class ExhibitTable extends Omeka_Db_Table
     }
     
     /**
-     * Adds an lucene subquery to the search query for the advanced search
+     * Adds an advanced search subquery to the lucene search query 
      *
      * @param Zend_Search_Lucene_Search_Query_Boolean $advancedSearchQuery
      * @param string|array $requestParams An associative array of request parameters
@@ -152,17 +152,15 @@ class ExhibitTable extends Omeka_Db_Table
                 }
             }
 
-            // add the item advanced search query to the searchQuery as a disjunctive subquery 
+            // add the exhibit advanced search query to the searchQuery as a disjunctive subquery 
             // (i.e. there will be OR statements between each of models' the advanced search queries)
             $advancedSearchQuery->addSubquery($advancedSearchQueryForExhibit);
         }        
     }
     
     /**
-     * Query must look like the following in order to correctly retrieve items     
-     * that have all the tags provided (in this example, all items that are
-     * tagged both 'foo' and 'bar'):
-     *
+     * Filters the exhibit by comma-delimited tags
+     * 
      * @param Zend_Search_Lucene_Search_Query_Boolean $searchQuery
      * @param string|array $tags A comma-delimited string or an array of tag 
      *         names.
