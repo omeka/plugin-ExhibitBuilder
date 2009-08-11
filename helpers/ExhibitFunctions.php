@@ -145,7 +145,7 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $section=null)
     }
     
     if (!$section) {
-        $section = exhbit_builder_get_current_section();
+        $section = exhibit_builder_get_current_section();
     }
     
     //If the exhibit has a theme associated with it
