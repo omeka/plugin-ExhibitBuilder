@@ -109,9 +109,10 @@ class ExhibitSection extends Omeka_Record
      * Creates and returns a Zend_Search_Lucene_Document for the ExhibitSection
      *
      * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
+     * @param string $contentFieldValue The value for the content field.
      * @return Zend_Search_Lucene_Document
      **/
-    public function createLuceneDocument($doc=null) 
+    public function createLuceneDocument($doc=null, $contentFieldValue='') 
     {   
         // If no document, lets start a new Zend Lucene Document
         if (!$doc) {
@@ -126,8 +127,13 @@ class ExhibitSection extends Omeka_Record
 
             // Adds fields for title, description, and slug
             $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'title'), $this->title);
+            $contentFieldValue .= $this->title . "\n";
+            
             $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'description'), $this->description);
+            $contentFieldValue .= $this->description . "\n";
+            
             $search->addLuceneField($doc, 'UnStored', array('ExhibitSection', 'slug'), $this->slug);
+            $contentFieldValue .= $this->slug . "\n";
 
             // add the exhibit id of the the exhibit that contains the section.
             if ($this->exhibit_id) {
@@ -136,7 +142,7 @@ class ExhibitSection extends Omeka_Record
         }
         
         // Create the Lucene document.
-        return parent::createLuceneDocument($doc);
+        return parent::createLuceneDocument($doc, $contentFieldValue);
     }
     
 }

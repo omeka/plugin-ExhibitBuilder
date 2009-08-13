@@ -72,7 +72,7 @@ class ExhibitSectionTable extends Omeka_Db_Table
 
                       case 'public':
                           if (is_true($requestParamValue)) {
-                              $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_IS_PUBLIC, Omeka_Search::FIELD_VALUE_TRUE, true);
+                              $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_IS_PUBLIC, Omeka_Search::FIELD_VALUE_TRUE);
                               $advancedSearchQueryForItem->addSubquery($subquery, true);
                           }
                       break;
@@ -99,7 +99,7 @@ class ExhibitSectionTable extends Omeka_Db_Table
       public function filterByExhibitLucene($searchQuery, $exhibitId)
       {
           if ($search = Omeka_Search::getInstance()) {
-            $subquery = $search->getLuceneTermQueryForFieldName(array('ExhibitSection','exhibit_id'), $exhibitId, true);
+            $subquery = $search->getLuceneTermQueryForFieldName(array('ExhibitSection','exhibit_id'), $exhibitId);
             $searchQuery->addSubquery($subquery, true);
           }
       }

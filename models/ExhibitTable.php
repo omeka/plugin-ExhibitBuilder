@@ -139,7 +139,7 @@ class ExhibitTable extends Omeka_Db_Table
 
                     case 'public':
                         if (is_true($requestParamValue)) {
-                            $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_IS_PUBLIC, Omeka_Search::FIELD_VALUE_TRUE, true);
+                            $subquery = $search->getLuceneTermQueryForFieldName(Omeka_Search::FIELD_NAME_IS_PUBLIC, Omeka_Search::FIELD_VALUE_TRUE);
                             $advancedSearchQueryForItem->addSubquery($subquery, true);
                         }
                     break;

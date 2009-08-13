@@ -143,9 +143,10 @@ class Exhibit extends Omeka_Record
      * Creates and returns a Zend_Search_Lucene_Document for the SimplePagesPage
      *
      * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
+     * @param string $contentFieldValue The value for the content field.
      * @return Zend_Search_Lucene_Document
      **/
-    public function createLuceneDocument($doc=null) 
+    public function createLuceneDocument($doc=null, $contentFieldValue='') 
     {   
         // If no document, lets create a new Zend Lucene Document
         if (!$doc) {
@@ -162,8 +163,13 @@ class Exhibit extends Omeka_Record
 
             // Adds fields for title, description, and slug
             $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'title'), $this->title);
+            $contentFieldValue .= $this->title . "\n";
+
             $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'description'), $this->description);
+            $contentFieldValue .= $this->description . "\n";
+
             $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'slug'), $this->slug);
+            $contentFieldValue .= $this->slug . "\n";
 
             //add the tags under the 'tag' field
             $tags = $this->getTags();
@@ -171,12 +177,12 @@ class Exhibit extends Omeka_Record
             foreach($tags as $tag) {
                 $tagNames[] = $tag->name;
             }
-
             if (count($tagNames) > 0) {
-                $search->addLuceneField($doc, 'UnStored', Omeka_Search::FIELD_NAME_TAG, $tagNames);            
+                $search->addLuceneField($doc, 'UnStored', Omeka_Search::FIELD_NAME_TAG, $tagNames);
+                $contentFieldValue .= implode(' ', $tagNames) . "\n";            
             }
         }
         
-        return parent::createLuceneDocument($doc);
+        return parent::createLuceneDocument($doc, $contentFieldValue);
     }
 }
