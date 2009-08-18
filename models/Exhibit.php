@@ -90,22 +90,7 @@ class Exhibit extends Omeka_Record
 		$current_user = Omeka_Context::getInstance()->getCurrentUser();		
 		$this->applyTagString($post['tags'], $current_user->Entity, true);	
 	}
-	
-	protected function afterSave()
-	{
-        // update the lucene index with the record
-        if ($search = Omeka_Search::getInstance()) {
-            $sections = $this->getSections();            
-            foreach($sections as $section) {
-                $search->updateLuceneByRecord($section);
-                $pages = $section->getPages();
-                foreach($pages as $page) {
-                    $search->updateLuceneByRecord($page);
-                }
-            }
-        }
-	}
-	
+		
     public function getSections() 
     {
         //return $this->Sections;
@@ -138,51 +123,4 @@ class Exhibit extends Omeka_Record
 	{
 		return $this->getChildCount();
 	}
-	
-    /**
-     * Creates and returns a Zend_Search_Lucene_Document for the SimplePagesPage
-     *
-     * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
-     * @param string $contentFieldValue The value for the content field.
-     * @return Zend_Search_Lucene_Document
-     **/
-    public function createLuceneDocument($doc=null, $contentFieldValue='') 
-    {   
-        // If no document, lets create a new Zend Lucene Document
-        if (!$doc) {
-            $doc = new Zend_Search_Lucene_Document(); 
-        }
-        
-        if ($search = Omeka_Search::getInstance()) {
-            
-            // adds the fields for public and private       
-            $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $this->public == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);         
-            
-            // adds the fields for public and private       
-            $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_FEATURED, $this->featured == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);   
-
-            // Adds fields for title, description, and slug
-            $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'title'), $this->title);
-            $contentFieldValue .= $this->title . "\n";
-
-            $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'description'), $this->description);
-            $contentFieldValue .= $this->description . "\n";
-
-            $search->addLuceneField($doc, 'UnStored', array('Exhibit', 'slug'), $this->slug);
-            $contentFieldValue .= $this->slug . "\n";
-
-            //add the tags under the 'tag' field
-            $tags = $this->getTags();
-            $tagNames = array();
-            foreach($tags as $tag) {
-                $tagNames[] = $tag->name;
-            }
-            if (count($tagNames) > 0) {
-                $search->addLuceneField($doc, 'UnStored', Omeka_Search::FIELD_NAME_TAG, $tagNames);
-                $contentFieldValue .= implode(' ', $tagNames) . "\n";            
-            }
-        }
-        
-        return parent::createLuceneDocument($doc, $contentFieldValue);
-    }
 }

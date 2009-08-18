@@ -128,54 +128,5 @@ class ExhibitPage extends Omeka_Record
 	{
 	    return $this->ExhibitPageEntry;
 	}
-	
-	/**
-     * Creates and returns a Zend_Search_Lucene_Document for the ExhibitPage
-     *
-     * @param Zend_Search_Lucene_Document $doc The Zend_Search_Lucene_Document from the subclass of Omeka_Record.
-     * @param string $contentFieldValue The value for the content field.
-     * @return Zend_Search_Lucene_Document
-     **/
-    public function createLuceneDocument($doc=null, $contentFieldValue='') 
-    {   
-        // If no document, lets start a new Zend Lucene Document
-        if (!$doc) {
-            $doc = new Zend_Search_Lucene_Document(); 
-        }  
-        
-        if ($search = Omeka_Search::getInstance()) {
-        
-            // Add the fields for public and private       
-            $isPublic = $this->getSection()->getExhibit()->public;
-            $search->addLuceneField($doc, 'Keyword', Omeka_Search::FIELD_NAME_IS_PUBLIC, $isPublic == '1' ? Omeka_Search::FIELD_VALUE_TRUE : Omeka_Search::FIELD_VALUE_FALSE, true);
-
-            // Add fields for title and text
-            $search->addLuceneField($doc, 'UnStored', array('ExhibitPage', 'title'), $this->title);
-            $contentFieldValue .= $this->title . "\n";
-
-            // Add the section id of the section that contains the page
-            if ($this->section_id) {
-                $search->addLuceneField($doc, 'Keyword', array('ExhibitPage','section_id'), $this->section_id, true);                        
-            }
-            
-            // add the exhibit id of the exhibit that contains the page
-            if ($this->section_id) {
-                $search->addLuceneField($doc, 'Keyword', array('ExhibitPage','exhibit_id'), $this->getSection()->getExhibit()->id, true);                        
-            }
-
-            // Add field for page entry texts.
-            $entries = $this->getPageEntries();
-            $entryTexts = array();
-            foreach ($entries as $entry) {
-                $entryTexts[] = $entry->text;
-            }
-            if(count($entryTexts) > 0) {
-                $search->addLuceneField($doc, 'UnStored', array('ExhibitPage', 'entry_texts'), $entryTexts);    
-                $contentFieldValue .= implode(' ', $entryTexts) . "\n";            
-            }    
-        }
-                
-        return parent::createLuceneDocument($doc, $contentFieldValue);
-    }
 }
 ?>

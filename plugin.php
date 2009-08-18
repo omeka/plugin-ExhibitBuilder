@@ -26,13 +26,32 @@ add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
 add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
-add_plugin_hook('public_search_form', 'exhibit_builder_public_search_form');
-add_plugin_hook('search_result', 'exhibit_builder_search_result');
+add_plugin_hook('lucene_search_form', 'exhibit_builder_lucene_search_form');
+add_plugin_hook('lucene_search_result', 'exhibit_builder_lucene_search_result');
+add_plugin_hook('lucene_search_add_advanced_search_query', 'exhibit_builder_lucene_search_add_advanced_search_query');
+add_plugin_hook('after_save_exhibit', 'exhibit_builder_after_save_exhibit');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('search_models', 'exhibit_builder_search_models');
-add_filter('public_search_navigation', 'exhibit_builder_public_search_navigation');
+add_filter('lucene_search_advanced_navigation', 'exhibit_builder_lucene_search_advanced_navigation');
+add_filter('lucene_search_models', 'exhibit_builder_lucene_search_models');
+add_filter('lucene_search_create_document', 'exhibit_builder_lucene_search_create_document');
+
+function exhibit_builder_after_save_exhibit($exhibit)
+{
+    // update the lucene index with the record
+    if (class_exists('LuceneSearch_Search') && $search = LuceneSearch_Search::getInstance()) {
+        $sections = $exhibit->getSections();            
+        foreach($sections as $section) {
+            $search->updateLuceneByRecord($section);
+            $pages = $section->getPages();
+            foreach($pages as $page) {
+                $search->updateLuceneByRecord($page);
+            }
+        }
+    }
+}
+
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
@@ -253,49 +272,6 @@ function exhibit_builder_admin_nav($navArray)
 }
 
 /**
- * Adds the Exhibits tab to the advanced search page
- *
- * @param array $navs The associative array that contains the tab name as the key and 
- * the uri to the advanced search page
- * @return array
- **/
-function exhibit_builder_public_search_navigation($navs)
-{
-    $navs['Exhibits'] = uri('search/?form=Exhibit');
-    return $navs;
-}
-
-/**
- * Adds the Exhibits models to the default search models
- *
- * @param array $modelsToSearch The array of search models 
- * @return array
- **/
-function exhibit_builder_search_models($modelsToSearch)
-{
-    $modelsToSearch['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelsToSearch['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelsToSearch['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    
-    return $modelsToSearch;
-}
-
-/**
- * Displays the advanced search form
- *
- * @param string $formName The name of the advanced search form
- * @param array $formName The array of the advanced search form attributes
- **/
-function exhibit_builder_public_search_form($formName, $formAttributes)
-{
-    switch($formName) {
-        case 'Exhibit':
-            include 'exhibit-search-form.php';
-        break;
-    }
-}
-
-/**
  * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
  * enabled.
  * 
@@ -348,7 +324,29 @@ function exhibit_builder_purify_html($request, $purifier)
     $request->setPost($post);
 }
 
-function exhibit_builder_search_result($record)
+/**
+ * Returns the select dropdown for the exhibits 
+ * 
+ * @param array $props Optional
+ * @param string|null $value Optional
+ * @param string|null $label Optional
+ * @param array $search Optional
+ * @return string
+ **/
+function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
+{
+    return _select_from_table('Exhibit', $props, $value, $label, $search);
+}
+
+function exhibit_builder_lucene_search_create_document($doc, $record)
+{
+    if ($df = ExhibitLuceneDocumentFactory::getInstance()) {
+        $doc = $df->createDocument($record);
+    }
+    return $doc;
+}
+
+function exhibit_builder_lucene_search_result($record)
 {
     switch(get_class($record)) {
         case 'Exhibit':
@@ -365,16 +363,52 @@ function exhibit_builder_search_result($record)
     }
 }
 
-/**
- * Returns the select dropdown for the exhibits 
- * 
- * @param array $props Optional
- * @param string|null $value Optional
- * @param string|null $label Optional
- * @param array $search Optional
- * @return string
- **/
-function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
+function exhibit_builder_lucene_search_add_advanced_search_query($modelName, $searchQuery, $requestParams)
 {
-    return _select_from_table('Exhibit', $props, $value, $label, $search);
+    if ($asf = ExhibitLuceneAdvancedSearchFactory::getInstance()) {
+        $asf->addAdvancedSearchQuery($modelName, $searchQuery, $requestParams);
+    }
+}
+
+/**
+ * Adds the Exhibits tab to the advanced search page
+ *
+ * @param array $navs The associative array that contains the tab name as the key and 
+ * the uri to the advanced search page
+ * @return array
+ **/
+function exhibit_builder_lucene_search_advanced_navigation($navs)
+{
+    $navs['Exhibits'] = uri('search/?form=Exhibit');
+    return $navs;
+}
+
+/**
+ * Adds the Exhibits models to the search models for LuceneSearch
+ *
+ * @param array $modelsToSearch The array of search models 
+ * @return array
+ **/
+function exhibit_builder_lucene_search_models($modelsToSearch)
+{
+    $modelsToSearch['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelsToSearch['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelsToSearch['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    
+    return $modelsToSearch;
+}
+
+/**
+ * Displays the advanced search form
+ *
+ * @param string $formName The name of the advanced search form
+ * @param array $formName The array of the advanced search form attributes
+ **/
+function exhibit_builder_lucene_search_form($formName, $formAttributes)
+{
+    switch($formName) {
+        case 'Exhibit':
+            include 'exhibit-search-form.php';
+        break;
+    }
 }
