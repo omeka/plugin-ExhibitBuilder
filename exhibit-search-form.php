@@ -1,5 +1,5 @@
 <?php if (!$formActionUri): ?>
-    <?php $formActionUri = uri(array('controller'=>'search', 'action'=>'results')); ?>
+    <?php $formActionUri = uri('search/results'); ?>
 <?php endif; ?>
 	
 <form <?php echo _tag_attributes($formAttributes); ?> action="<?php echo $formActionUri; ?>" method="get">

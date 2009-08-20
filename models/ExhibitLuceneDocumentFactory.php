@@ -114,7 +114,7 @@ class ExhibitLuceneDocumentFactory
 
             // add the exhibit id of the the exhibit that contains the section.
             if ($exhibitSection->exhibit_id) {
-                $search->addLuceneField($doc, 'Keyword', array('ExhibitSection','exhibit_id'), $exhibitSection->ExhibitSection, true);                        
+                $search->addLuceneField($doc, 'Keyword', array('ExhibitSection','exhibit_id'), $exhibitSection->getExhibit()->id, true);                        
             }
 
 	        if (trim($contentFieldValue) != '') {

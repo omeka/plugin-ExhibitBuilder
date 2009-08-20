@@ -6,7 +6,6 @@
  * @package Omeka
  * @subpackage ExhibitBuilder
  **/
-define('EXHIBIT_BUILDER_VERSION', get_plugin_ini('ExhibitBuilder', 'version'));
 define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
 
 define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' . basename(dirname(__FILE__)));
@@ -67,9 +66,7 @@ require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SE
  * @return void
  **/
 function exhibit_builder_install() 
-{
-	set_option('exhibit_builder_version', EXHIBIT_BUILDER_VERSION);
-	
+{	
 	$db = get_db();
 	$db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
       `id` int(10) unsigned NOT NULL auto_increment,
@@ -137,10 +134,7 @@ function exhibit_builder_install()
  * @return void
  **/
 function exhibit_builder_uninstall() 
-{
-    // delete the plugin version number.
-    delete_option('exhibit_builder_plugin_version');
-    
+{   
     // drop the tables
     $db = get_db();
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibits`";

@@ -104,7 +104,7 @@ class ExhibitLuceneAdvancedSearchFactory
     {
         if ($search = LuceneSearch_Search::getInstance()) {
 
-            // Build an advanced search query for the item
+            // Build an advanced search query for the exhibit section
             $advancedSearchQueryForExhibitSection = new Zend_Search_Lucene_Search_Query_Boolean();
             foreach($requestParams as $requestParamName => $requestParamValue) {
                 switch($requestParamName) {
@@ -112,12 +112,12 @@ class ExhibitLuceneAdvancedSearchFactory
                     case 'public':
                         if (is_true($requestParamValue)) {
                             $subquery = $search->getLuceneTermQueryForFieldName(LuceneSearch_Search::FIELD_NAME_IS_PUBLIC, LuceneSearch_Search::FIELD_VALUE_TRUE);
-                            $advancedSearchQueryForItem->addSubquery($subquery, true);
+                            $advancedSearchQueryForExhibitSection->addSubquery($subquery, true);
                         }
                     break;
 
                     case 'exhibit_id':
-                        $this->filterByExhibitForExhibitSection($advancedSearchQueryForExhibit, $requestParamValue);
+                        $this->filterByExhibitForExhibitSection($advancedSearchQueryForExhibitSection, $requestParamValue);
                     break;
 
                 }
@@ -153,31 +153,31 @@ class ExhibitLuceneAdvancedSearchFactory
     {
         if ($search = LuceneSearch_Search::getInstance()) {
 
-            // Build an advanced search query for the item
-            $advancedSearchQueryForExhibitSection = new Zend_Search_Lucene_Search_Query_Boolean();
+            // Build an advanced search query for the exhibit page
+            $advancedSearchQueryForExhibitPage = new Zend_Search_Lucene_Search_Query_Boolean();
             foreach($requestParams as $requestParamName => $requestParamValue) {
                 switch($requestParamName) {
 
                     case 'public':
                         if (is_true($requestParamValue)) {
                             $subquery = $search->getLuceneTermQueryForFieldName(LuceneSearch_Search::FIELD_NAME_IS_PUBLIC, LuceneSearch_Search::FIELD_VALUE_TRUE);
-                            $advancedSearchQueryForItem->addSubquery($subquery, true);
+                            $advancedSearchQueryForExhibitPage->addSubquery($subquery, true);
                         }
                     break;
 
                     case 'exhibit_id':
-                        $this->filterByExhibitForExhibitPage($advancedSearchQueryForExhibit, $requestParamValue);
+                        $this->filterByExhibitForExhibitPage($advancedSearchQueryForExhibitPage, $requestParamValue);
                     break;
 
                     case 'section_id':
-                        $this->filterByExhibitSectionForExhibitPage($advancedSearchQueryForExhibit, $requestParamValue);
+                        $this->filterByExhibitSectionForExhibitPage($advancedSearchQueryForExhibitPage, $requestParamValue);
                     break;
                 }
             }
 
-            // add the exhibit section advanced search query to the searchQuery as a disjunctive subquery 
+            // add the exhibit page advanced search query to the searchQuery as a disjunctive subquery 
             // (i.e. there will be OR statements between each of models' the advanced search queries)
-            $searchQuery->addSubquery($advancedSearchQueryForExhibitSection);
+            $searchQuery->addSubquery($advancedSearchQueryForExhibitPage);
         }        
     }
    
