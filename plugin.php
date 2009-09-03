@@ -25,10 +25,10 @@ add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
 add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
+add_plugin_hook('after_save_exhibit', 'exhibit_builder_after_save_exhibit');
 add_plugin_hook('lucene_search_form', 'exhibit_builder_lucene_search_form');
 add_plugin_hook('lucene_search_result', 'exhibit_builder_lucene_search_result');
 add_plugin_hook('lucene_search_add_advanced_search_query', 'exhibit_builder_lucene_search_add_advanced_search_query');
-add_plugin_hook('after_save_exhibit', 'exhibit_builder_after_save_exhibit');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');

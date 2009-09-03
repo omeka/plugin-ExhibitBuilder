@@ -11,6 +11,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function init()
     {
         $this->_modelClass = 'Exhibit';
+        $this->_browseRecordsPerPage = 10;
         
         require_once 'Zend/Session.php';
         $this->session = new Zend_Session_Namespace('Exhibit');
@@ -21,23 +22,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $params = array_merge($this->_getAllParams(), array('type'=>'Exhibit'));
         $tags = $this->getTable('Tag')->findBy($params);
         $this->view->assign(compact('tags'));
-    }
-    
-    public function browseAction()
-    {
-        $filter = array();
-        
-        if(($tags = $this->_getParam('tag')) || ($tags = $this->_getParam('tags'))) {
-            $filter['tags'] = $tags;
-        }
-                
-        $exhibits = $this->_table->findBy($filter);
-                
-        Zend_Registry::set('exhibits', $exhibits);
-        
-        fire_plugin_hook('browse_exhibits', $exhibits);
-        
-        $this->view->assign(compact('exhibits'));
     }
     
     public function showitemAction()

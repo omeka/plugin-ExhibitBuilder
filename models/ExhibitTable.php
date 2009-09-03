@@ -4,6 +4,45 @@
 */
 class ExhibitTable extends Omeka_Db_Table
 {
+    
+    public function applySearchFilters($select, $params)
+    {        
+        $db = $this->getDb();
+        foreach($params as $paramName => $paramValue) {
+            switch($paramName) {
+                case 'tag':
+                case 'tags':
+                    $tags = explode(',', $paramValue);
+                    $select->joinInner(array('tg'=>$db->Taggings), 'tg.relation_id = e.id', array());
+                    $select->joinInner(array('t'=>$db->Tag), "t.id = tg.tag_id", array());
+                    foreach ($tags as $k => $tag) {
+                        $select->where('t.name = ?', trim($tag));
+                    }
+                    $select->where("tg.type = ? ", array('Exhibit'));
+                    break;
+                case 'limit':
+                    $select->limit($paramValue);
+                    break;
+                
+                case 'sort':
+                    switch($paramValue) {
+                        
+                        case 'recent':
+                        default:
+                            $select->order("e.id DESC");
+                        
+                            //$select->order("added DESC");
+                            break;                            
+                    }
+                    break;
+            }
+        }
+        
+        new ExhibitPermissions($select);
+                
+        return $select;
+    }
+    
     public function findBySlug($slug)
     {
         $db = $this->getDb();
@@ -22,15 +61,16 @@ class ExhibitTable extends Omeka_Db_Table
      *
      * @return void
      **/
-    public function count()
+    public function count($params)
     {
         $db = $this->getDb();
+        
         $select = new Omeka_Db_Select;
-        
-        $select->from("$db->Exhibit e", "COUNT(DISTINCT(e.id))");
-        
+        $select->from(array('e'=>$db->Exhibit), "COUNT(DISTINCT(e.id))");
         new ExhibitPermissions($select);
         
+        $this->applySearchFilters($select, $params);
+           
         return $db->fetchOne($select);
     }
     
@@ -39,7 +79,6 @@ class ExhibitTable extends Omeka_Db_Table
         $db = $this->getDb();
         
         $select = new Omeka_Db_Select;
-        
         $select->from(array('e'=>$db->Exhibit), array('e.*'));
         $select->where("e.id = ?");
         
@@ -63,44 +102,7 @@ class ExhibitTable extends Omeka_Db_Table
 
         return ($count > 0);
     }
-    
-    public function findBy($params=array())
-    {
-        $db = $this->getDb();
         
-        $select = new Omeka_Db_Select;
-        
-        $select->from(array('e'=>$db->Exhibit), array('e.*'));
-
-        if(isset($params['tags'])) {
-            $tags = explode(',', $params['tags']);
-            $select->joinInner(array('tg'=>$db->Taggings), 'tg.relation_id = e.id', array());
-            $select->joinInner(array('t'=>$db->Tag), "t.id = tg.tag_id", array());
-            foreach ($tags as $k => $tag) {
-                $select->where('t.name = ?', trim($tag));
-            }
-            
-            //Ah, inheritance
-            $select->where("tg.type = 'Exhibit'");
-        }
-        
-        if (isset($params['limit']))
-        {
-            $select->limit($params['limit']);
-        }
-        
-        if (isset($params['recent']) && $params['recent'] == true)
-        {
-            $select->order('e.id DESC');
-        }
-        
-        new ExhibitPermissions($select);
-        
-        $exhibits = $this->fetchObjects($select);
-        
-        return $exhibits;
-    }
-    
     /**
      * @duplication CollectionTable::findRandomFeatured(), ItemTable::findRandomFeatured()
      *
@@ -111,7 +113,6 @@ class ExhibitTable extends Omeka_Db_Table
         $db = $this->getDb();
         
         $select = new Omeka_Db_Select;
-        
         $select->from(array('e'=>$db->Exhibit))->where("e.featured = 1")->order("RAND()")->limit(1);
         
         return $this->fetchObject($select);

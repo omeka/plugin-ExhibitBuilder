@@ -11,7 +11,7 @@
     });
 </script>
 
-<h1>Exhibits</h1>
+<h1>Browse Exhibits (<?php echo $total_records; ?> total)</h1>
 <p id="add-exhibit" class="add-button"><a class="add" href="<?php echo uri('exhibits/add'); ?>">Add Exhibit</a></p>
 <div id="primary">
     
@@ -24,7 +24,9 @@
     <?php endif; ?>
     </div>
     
-<?php else: //Show the exhibits in a table?>    
+<?php else: //Show the exhibits in a table?>
+
+<div class="pagination"><?php echo pagination_links(); ?></div>
 
 <table id="exhibits">
     <col id="col-id" />
@@ -59,17 +61,17 @@
         <td><?php echo '<a href="' . exhibit_builder_exhibit_uri($exhibit). '">[Preview]</a>'; ?></td>
         <td>
         <?php if(exhibit_builder_user_can_edit($exhibit)): ?>
-        <?php echo link_to($exhibit, 'edit', '[Edit]', array('class'=>'edit-exhibit')); ?>
+        <?php echo link_to($exhibit, 'edit', 'Edit', array('class'=>'edit')); ?>
         <?php endif; ?>
         </td>
         <?php if(has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
-        <td><?php echo link_to($exhibit, 'delete', '[Delete]', array('class'=>'delete-exhibit')) ?></td>
+        <td><?php echo link_to($exhibit, 'delete', 'Delete', array('class'=>'delete')) ?></td>
         <?php endif; ?>
     </tr>
 <?php endforeach; ?>
 </tbody>
 </table>
-
+<div class="pagination"><?php echo pagination_links(); ?></div>
 <?php endif; ?>
 
 </div>
