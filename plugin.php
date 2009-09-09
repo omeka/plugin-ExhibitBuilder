@@ -33,7 +33,7 @@ add_plugin_hook('lucene_search_add_advanced_search_query', 'exhibit_builder_luce
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('lucene_search_advanced_navigation', 'exhibit_builder_lucene_search_advanced_navigation');
-add_filter('lucene_search_models', 'exhibit_builder_lucene_search_models');
+add_filter('lucene_search_model_to_permission_info', 'exhibit_builder_lucene_search_model_to_permission_info');
 add_filter('lucene_search_create_document', 'exhibit_builder_lucene_search_create_document');
 
 function exhibit_builder_after_save_exhibit($exhibit)
@@ -383,13 +383,13 @@ function exhibit_builder_lucene_search_advanced_navigation($navs)
  * @param array $modelsToSearch The array of search models 
  * @return array
  **/
-function exhibit_builder_lucene_search_models($modelsToSearch)
+function exhibit_builder_lucene_search_model_to_permission_info($modelToPermissionInfo)
 {
-    $modelsToSearch['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelsToSearch['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelsToSearch['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelToPermissionInfo['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelToPermissionInfo['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
+    $modelToPermissionInfo['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
     
-    return $modelsToSearch;
+    return $modelToPermissionInfo;
 }
 
 /**
