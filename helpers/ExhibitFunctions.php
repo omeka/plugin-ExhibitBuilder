@@ -436,15 +436,26 @@ function exhibit_builder_section_nav($exhibit=null)
  *
  * @return string
  **/
-function exhibit_builder_page_nav($section = null)
+function exhibit_builder_page_nav($section = null, $linkTextType='title')
 {
+    $linkTextType = strtolower(trim($linkTextType));
     if(!$section) {
         $section = exhibit_builder_get_current_section();
     }
     if($section->hasPages()) {
         $html = '<ul class="exhibit-page-nav">';
         foreach ($section->Pages as $page) {
-            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a href="'. exhibit_builder_exhibit_uri($section->Exhibit, $section, $page) . '">'. $page->title .'</a></li>';
+            switch($linkTextType) {
+                case 'order':
+                    $linkText = $page->order;
+                    break;
+                case 'title':
+                default:
+                    $linkText = $page->title;
+                    break;
+                
+            }
+            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a href="'. exhibit_builder_exhibit_uri($section->Exhibit, $section, $page) . '">'. $linkText .'</a></li>';
         }
         $html .= '</ul>';
         return $html;
