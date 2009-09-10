@@ -33,8 +33,8 @@ function exhibit_builder_get_current_page()
 
 function exhibit_builder_is_current_exhibit($exhibit)
 {
-    if(Zend_Registry::isRegistered('exhibit')) {
-        if($exhibit == exhibit_builder_get_current_exhibit()) { 
+    if (Zend_Registry::isRegistered('exhibit')) {
+        if ($exhibit == exhibit_builder_get_current_exhibit()) { 
              return true;
         }
     }
@@ -43,9 +43,9 @@ function exhibit_builder_is_current_exhibit($exhibit)
 
 function exhibit_builder_is_current_section($section)
 {
-    if(Zend_Registry::isRegistered('section')) {
+    if (Zend_Registry::isRegistered('section')) {
         $currentSection = exhibit_builder_get_current_section();        
-        if($section->id == $currentSection->id) { 
+        if ($section->id == $currentSection->id) { 
             return true;
         }
     }
@@ -54,9 +54,9 @@ function exhibit_builder_is_current_section($section)
 
 function exhibit_builder_is_current_page($page)
 {
-    if(Zend_Registry::isRegistered('page')) {
+    if (Zend_Registry::isRegistered('page')) {
         $currentPage = exhibit_builder_get_current_page();        
-        if($page->id == $currentPage->id) { 
+        if ($page->id == $currentPage->id) { 
             return true;
         }
     }
@@ -239,7 +239,7 @@ function exhibit_builder_exhibit_foot()
  **/
 function exhibit_builder_page_text($order, $addTag=true, $page = null)
 {
-    if(!$page) {
+    if (!$page) {
         $page = exhibit_builder_get_current_page();
     }
     $text = $page->ExhibitPageEntry[(int) $order]->text;
@@ -254,7 +254,7 @@ function exhibit_builder_page_text($order, $addTag=true, $page = null)
  **/
 function exhibit_builder_page_item($order, $page = null, $item = null)
 {
-    if(!$page) {
+    if (!$page) {
         $page = exhibit_builder_get_current_page();
     }
     $item = $page->ExhibitPageEntry[(int) $order]->Item;
@@ -276,7 +276,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
 {
     $html = '<div class="item-drop">';  
 
-    if($item and $item->exists()) {
+    if ($item and $item->exists()) {
         set_current_item($item);
         $html .= '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
         $html .=  item_has_thumbnail() ? item_square_thumbnail() : '<div class="title">' . item('Dublin Core', 'Title', ', ') . '</div>';
@@ -375,7 +375,7 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
     $html = '';
     $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. $layout .'">';
     $html .= '<img src="'.$imgFile.'" />';
-    if($input) {
+    if ($input) {
         $html .= '<div class="input">';
         $html .= '<input type="radio" name="layout" value="'.$layout .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
         $html .= '</div>';
@@ -405,9 +405,9 @@ function exhibit_builder_exhibit_css($file)
  **/
 function exhibit_builder_layout_css($file='layout')
 {
-    if(Zend_Registry::isRegistered('page')) {
+    if (Zend_Registry::isRegistered('page')) {
         $p = Zend_Registry::get('page');
-        if(!empty($p)) {
+        if (!empty($p)) {
             return css($file, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $p->layout);
         }
     }
@@ -420,7 +420,7 @@ function exhibit_builder_layout_css($file='layout')
  **/
 function exhibit_builder_section_nav($exhibit=null)
 {
-    if(!$exhibit) {
+    if (!$exhibit) {
         $exhibit = Zend_Registry::get('exhibit');
     }
     $html = '<ul class="exhibit-section-nav">';
@@ -439,10 +439,10 @@ function exhibit_builder_section_nav($exhibit=null)
 function exhibit_builder_page_nav($section = null, $linkTextType='title')
 {
     $linkTextType = strtolower(trim($linkTextType));
-    if(!$section) {
+    if (!$section) {
         $section = exhibit_builder_get_current_section();
     }
-    if($section->hasPages()) {
+    if ($section->hasPages()) {
         $html = '<ul class="exhibit-page-nav">';
         foreach ($section->Pages as $page) {
             switch($linkTextType) {
@@ -465,13 +465,13 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
 
 function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
 {
-    if(!$exhibit) {
+    if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $section) {
         $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . exhibit_builder_exhibit_uri($exhibit, $section) . '">' . $section->title . '</a>';
-        if($show_all_pages == true || exhibit_builder_is_current_section($section)) {
+        if ($show_all_pages == true || exhibit_builder_is_current_section($section)) {
             $html .= exhibit_builder_page_nav($section);
         }
         $html .= '</li>';
@@ -488,7 +488,7 @@ function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
  **/
 function exhibit_builder_render_exhibit_page($page = null)
 {
-    if(!$page) {
+    if (!$page) {
         $page = exhibit_builder_get_current_page();
     }
     if ($page->layout) {
@@ -521,7 +521,6 @@ function exhibit_builder_render_layout_form($layout)
 function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props=array(), $thumbnail_type="square_thumbnail")
 {
     $output = '';
-    
     for ($i=(int)$start; $i <= (int)$end; $i++) { 
         if (exhibit_builder_use_exhibit_page_item($i)) {    
             $output .= "\n" . '<div class="exhibit-item">';
@@ -530,7 +529,6 @@ function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props=
             $output .= '</div>' . "\n";
         }
     }
-    
     return $output;
 }
 
@@ -572,7 +570,7 @@ function exhibit_builder_random_featured_exhibit()
  **/
 function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $props=array(), $page = null)
 {
-    if(!$page) {
+    if (!$page) {
         $page = exhibit_builder_get_current_page();
     }
     $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
@@ -580,9 +578,9 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
     
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
-    if($nextPage = $page->next()) {
+    if ($nextPage = $page->next()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $section, $nextPage);
-    } elseif($nextSection = $section->next()) {
+    } elseif ($nextSection = $section->next()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $nextSection);
     }
 }
@@ -596,15 +594,16 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
  **/
 function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array(), $page = null)
 {
-    if(!$page) {
+    if (!$page) {
         $page = exhibit_builder_get_current_page();
     }
+
     $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
     $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
     
     // if page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous exhibit section, if it exists.
-    if($previousPage = $page->previous()) {
+    if ($previousPage = $page->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $section, $previousPage);
     } elseif($previousSection = $section->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $previousSection);
@@ -667,7 +666,6 @@ function exhibit_builder_use_exhibit_page_item($index)
         set_current_item($item);
         return $item;
     }
-    
     return false;
 }
 
@@ -713,17 +711,22 @@ function exhibit_builder_exhibit_fullsize($item, $props=array('class'=>'permalin
 function exhibit_builder_show_exhibit_list()
 {
     $exhibits = exhibit_builder_get_exhibits();
-    if($exhibits):
-    ob_start();
-    foreach( $exhibits as $key=>$exhibit ): ?>
-    <div class="exhibit <?php if($key%2==1) echo ' even'; else echo ' odd'; ?>">
+    if ($exhibits) {
+        ob_start();
+        foreach( $exhibits as $key=>$exhibit ) { 
+?>
+    <div class="exhibit <?php if ($key%2==1) { echo ' even'; } else { echo ' odd'; } ?>">
         <h2><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h2>
         <div class="description"><?php echo $exhibit->description; ?></div>
         <p class="tags"><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></p>
     </div>
-<?php endforeach; else: ?>
+<?php  
+        } 
+    } else { 
+?>
     <p>There are no exhibits.</p>
-<?php endif;
+<?php 
+    }
     $html = ob_get_contents();
     ob_end_clean();
     return $html;
@@ -736,10 +739,12 @@ function exhibit_builder_show_exhibit_list()
  **/
 function exhibit_builder_user_can_edit($exhibit=null, $user = null)
 {
-    if(!$exhibit) {
+    if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
     }
-    if(!$user) $user = current_user();
+    if (!$user) { 
+        $user = current_user();
+    }
     return (($exhibit->wasAddedBy($user) && get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editSelf')) || 
          get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editAll'));
-} 
+}

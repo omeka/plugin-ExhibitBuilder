@@ -38,12 +38,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $section_name = $this->_getParam('section');
         $section = $exhibit->getSection($section_name);
   
-        if( $item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
+        if ($item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
      
             Zend_Registry::set('item', $item);
-
             Zend_Registry::set('exhibit', $exhibit);
-
             Zend_Registry::set('section', $section);
      
             //Plugin hooks
@@ -75,22 +73,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     }
     
     public function showAction()
-    {       
+    {                  
         $exhibit = $this->findBySlug();
                 
         $sectionSlug = $this->_getParam('section');
 
         $section = $exhibit->getSection($sectionSlug);
         
-        if($section) {
+        if ($section) {
             $pageSlug = $this->_getParam('page');
-
-            $page = $section->getPageBySlug($pageSlug);         
-        
+            $page = $section->getPageBySlug($pageSlug);
             if ($page == null) {
                 $page = $section->getPageByOrder(1);
             }
-        }else {
+        } else {
             $section = $exhibit->getFirstSection();
         }
         
@@ -108,13 +104,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     protected function findBySlug($slug=null) 
     {
-        if(!$slug) {
+        if (!$slug) {
             $slug = $this->_getParam('slug');
         }
-        
         $exhibit = $this->_table->findBySlug($slug);
-        
-        if(!$exhibit) {
+        if (!$exhibit) {
             throw new Zend_Controller_Exception('Cannot find exhibit with slug: '. $slug);
         }
                 
@@ -124,11 +118,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function summaryAction()
     {
         $exhibit = $this->findBySlug();     
-                
         Zend_Registry::set('exhibit', $exhibit);
-
         fire_plugin_hook('show_exhibit', $exhibit);
-        
         $this->renderExhibit(compact('exhibit'), 'summary');
     }
     
@@ -140,22 +131,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      * 
      * @return void
      **/
-    protected function renderExhibit($vars, $toRender='show') {
+    protected function renderExhibit($vars, $toRender='show') 
+    {
         /*  If there is a theme, render the header/footer and layout page,
             Otherwise render the default exhibits/show.php page
         */
         extract($vars);
-        
         $this->view->assign($vars);
-        
-        if(!empty($exhibit->theme)) {
+        if (!empty($exhibit->theme)) {
                     
             //Hack to get just the directory name for the exhibit themes
-            $exhibitThemesDir = EXHIBIT_THEMES_DIR_NAME;
-            
+            $exhibitThemesDir = EXHIBIT_THEMES_DIR_NAME;  
             switch ($toRender) {
                 case 'show':
-                    if($section->hasPages()) {
+                    if ($section->hasPages()) {
                         $renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
                     } else { 
                         'This section has no pages!';
@@ -171,38 +160,31 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                     throw new Exception( 'Hey, you gotta render something!' );
                     break;
             }
-
             return $this->renderScript($renderPath);
             
-        }else {
+        } else {
             if (!in_array($toRender, array('show', 'summary', 'item'))) {
                 throw new Exception( 'You gotta render some stuff because whatever!' );
             }
-            
             return $this->render($toRender);
         }
     }
     
     public function addAction()
     {       
-        $exhibit = new Exhibit;
-                
+        $exhibit = new Exhibit;     
         return $this->processExhibitForm($exhibit, 'Add');
     }
 
     public function editAction()
     {       
         if ($user = $this->getCurrentUser()) {
-        
             $exhibit = $this->findById();
-        
             if ($this->isAllowed('editAll', 'ExhibitBuilder_Exhibits') || ($this->isAllowed('editSelf', 'ExhibitBuilder_Exhibits') && $exhibit->wasAddedBy($user))) {
                 return $this->processExhibitForm($exhibit, 'Edit');
             }
-            
         }
         throw new Omeka_Controller_Exception_403();
-        
     }   
     
     /**
@@ -214,24 +196,19 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         try {
             $retVal = $exhibit->saveForm($_POST);
-
-            if($retVal) {
-                if(array_key_exists('add_section',$_POST)) {
+            if ($retVal) {
+                if (array_key_exists('add_section',$_POST)) {
                     //forward to addSection & unset the POST vars 
                     unset($_POST);
                     $this->redirect->goto('add-section', null, null, array('id'=>$exhibit->id) );
                     return;
-                }else if(array_key_exists('save_exhibit', $_POST)) {
-                
+                } else if (array_key_exists('save_exhibit', $_POST)) {
                     $this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
                 }       
             }
-                    
-        } 
-        catch (Omeka_Validator_Exception $e) {
+        } catch (Omeka_Validator_Exception $e) {
             $this->flashValidationErrors($e);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->flash($e->getMessage());
         }
 
@@ -239,7 +216,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 
         //@duplication see ExhibitsController::processSectionForm()
         //If the form submission was invalid 
-        if(!$this->getRequest()->isXmlHttpRequest()) {
+        if (!$this->getRequest()->isXmlHttpRequest()) {
             $this->render('exhibit-metadata-form');
         }
     }
@@ -271,35 +248,30 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         try {
             //Section form may be prefixed with Section (like name="Section[title]") or it may not be, depending
             
-            if(array_key_exists('Section', $_POST)) {
+            if (array_key_exists('Section', $_POST)) {
                 $toPost = $_POST['Section'];
-            }else {
+            } else {
                 $toPost = $_POST;
             }
-            
             $retVal = $section->saveForm($toPost);
-        } 
-        catch (Omeka_Validator_Exception $e) {
+        } catch (Omeka_Validator_Exception $e) {
             $this->flashValidationErrors($e);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->flash($e->getMessage());
         }
                     
         //If successful form submission
-        if($retVal)
-        {   
+        if ($retVal) {   
             $this->flashSuccess("Changes to the exhibit's section were saved successfully!");
+            
             //Forward around based on what submit button was pressed
-            
-            
-            if(array_key_exists('page_form',$_POST)) {
+            if (array_key_exists('page_form',$_POST)) {
                 
                 //Forward to the addPage action (id is the section id)
                 $this->redirect->goto('add-page', null, null, array('id'=>$section->id));
                 return;
                 
-            }elseif(array_key_exists('section_form', $_POST)) {
+            } elseif(array_key_exists('section_form', $_POST)) {
                 $this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
             }
         }
@@ -358,8 +330,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
         
         
-        if($success and array_key_exists('section_form', $_POST)) {
-
+        if ($success and array_key_exists('section_form', $_POST)) {
             //Return to the section form
             return $this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
         } else if ($success and array_key_exists('page_metadata_form', $_POST)) {
@@ -392,17 +363,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         //Register the page var so that theme functions can use it
         Zend_Registry::set('page', $page);
 
-        $this->view->assign(compact('exhibit', 'section','page', 'actionName'));
-                
+        $this->view->assign(compact('exhibit', 'section','page', 'actionName'));        
         if (!empty($_POST)) {
-
-                try {
-                    $success = $page->saveForm($_POST);
-                } catch (Exception $e) {
-                    $this->flash($e->getMessage());
-                }
+            try {
+                $success = $page->saveForm($_POST);
+            } catch (Exception $e) {
+                $this->flash($e->getMessage());
+            }
         }
-    return $success;
+        return $success;
     }
     
     /**
@@ -412,9 +381,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function editSectionAction()
     {
         $section = $this->findById(null, 'ExhibitSection');
-        
         $exhibit = $section->Exhibit;
-
         return $this->processSectionForm($section, 'Edit', $exhibit);
     }
     
@@ -435,7 +402,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             // For non-AJAX requests, redirect to the exhibits/edit page.
             $this->redirect->goto('edit', null, null, array('id'=>$exhibit->id) );
         }
-        
     }
     
     /**
