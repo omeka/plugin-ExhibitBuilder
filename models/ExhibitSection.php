@@ -1,10 +1,17 @@
 <?php
+/**
+ * ExhibitSection class
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-2009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @package Omeka
+ * @author CHNM
+ **/
+
 require_once 'ExhibitPage.php';
 require_once 'ExhibitSectionTable.php';
-/**
- * Section
- * @package: Omeka
- */
+
 class ExhibitSection extends Omeka_Record
 {
     
@@ -105,5 +112,3 @@ class ExhibitSection extends Omeka_Record
         return $count > 0;
     } 
 }
-
-?>

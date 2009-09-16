@@ -1,19 +1,15 @@
 <?php
 /**
- * @version $Id$
- * @copyright Center for History and New Media, 2007-2008
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- **/
-
-/**
  * The only requirement for a record to use this mixin is that it needs a 
  * field named 'slug'.
- *
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-2009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package Omeka
  * @author CHNM
- * @copyright Center for History and New Media, 2007-2008
  **/
+
 class Sluggable extends Omeka_Record_Mixin
 {
     function __construct($record, $options = array())
@@ -49,7 +45,7 @@ class Sluggable extends Omeka_Record_Mixin
             return;
         }
                 
-        if(empty($this->record->slug)) {
+        if (empty($this->record->slug)) {
             $this->record->slug = generate_slug($seedValue);
         }
     }
@@ -69,11 +65,11 @@ class Sluggable extends Omeka_Record_Mixin
         }
     }
     
-    public function beforeSaveForm(&$post)
+    public function getSlugFromPost($post)
     { 
         //Make an exhibit slug if the posted slug is empty
         $slugFodder = !empty($post['slug']) ? $post['slug'] : $post[$this->options['slugSeedFieldName']];
-        $post['slug'] = generate_slug($slugFodder);
+        return generate_slug($slugFodder);
     }
     
     public function slugIsUnique($slug)

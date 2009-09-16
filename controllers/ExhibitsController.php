@@ -1,8 +1,15 @@
 <?php 
-require_once 'Exhibit.php';
 /**
+ * ExhibitController class
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-20009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package Omeka
+ * @author CHNM
  **/
+ 
+require_once 'Exhibit.php';
 
 class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 {

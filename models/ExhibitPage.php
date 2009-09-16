@@ -1,11 +1,17 @@
 <?php
+/**
+ * ExhibitPage class
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-20009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @package Omeka
+ * @author CHNM
+ **/
+
 require_once 'ExhibitPageEntry.php';
 require_once 'ExhibitPageTable.php';
 
-/**
- * Exhibit Page
- * @package: Omeka
- */
 class ExhibitPage extends Omeka_Record
 {
 	public $section_id;
@@ -54,11 +60,18 @@ class ExhibitPage extends Omeka_Record
 		}
 	}
 
-	protected function beforeSaveForm(&$post)
+	protected function beforeSaveForm($post)
 	{					
 		//Whether or not the exhibit is featured
 		$this->featured = (bool) $post['featured'];
-		unset($post['featured']);
+		$this->slug = $this->getSlugFromPost($post);		
+	}
+	
+	protected function setFromPost($post)
+	{
+	    unset($post['featured']);
+	    unset($post['slug']);
+		return parent::setFromPost($post);
 	}
 
     public function previous()
@@ -111,7 +124,7 @@ class ExhibitPage extends Omeka_Record
 		for ($i=1; $i <= $highCount; $i++) { 
 			$ip = $entries[$i];
 
-			if(!$ip) {
+			if (!$ip) {
 				$ip = new ExhibitPageEntry;
 				$ip->page_id = $this->id;
 			}
@@ -129,4 +142,3 @@ class ExhibitPage extends Omeka_Record
 	    return $this->ExhibitPageEntry;
 	}
 }
-?>

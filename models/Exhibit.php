@@ -1,4 +1,14 @@
 <?php
+/**
+ * Exhibit class
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-20009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @package Omeka
+ * @author CHNM
+ **/
+ 
 require_once 'ExhibitSection.php';
 require_once 'Tag.php';
 require_once 'Taggings.php';
@@ -7,10 +17,7 @@ require_once 'ExhibitTable.php';
 require_once 'Orderable.php';
 require_once 'ExhibitPermissions.php';
 require_once 'Sluggable.php';
-/**
- * Exhibit
- * @package: Omeka
- */
+
 class Exhibit extends Omeka_Record
 {
 	public $title;
@@ -77,11 +84,18 @@ class Exhibit extends Omeka_Record
             'slugUniqueErrorMessage'=>'Your URL slug is already in use by another exhibit.  Please choose another.'));	
 	}
 		
-	protected function beforeSaveForm(&$post)
+	protected function beforeSaveForm($post)
 	{					
 		//Whether or not the exhibit is featured
 		$this->featured = (bool) $post['featured'];
-		unset($post['featured']);
+		$this->slug = $this->getSlugFromPost($post);		
+	}
+	
+	protected function setFromPost($post)
+	{
+	    unset($post['featured']);
+	    unset($post['slug']);
+		return parent::setFromPost($post);
 	}
 	
 	protected function afterSaveForm($post)

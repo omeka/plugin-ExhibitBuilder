@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * Lucene advanced search factory class for exhibits, exhibit sections, and exhibit pages.
+ * 
+ * @version $Id$
+ * @copyright Center for History and New Media, 2007-20009
+ * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * @package Omeka
+ * @author CHNM
+ **/
+ 
 class ExhibitLuceneAdvancedSearchFactory
 {
     static private $_instance;
