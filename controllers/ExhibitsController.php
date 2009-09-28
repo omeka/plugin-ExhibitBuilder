@@ -154,7 +154,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                     if ($section->hasPages()) {
                         $renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
                     } else { 
-                        'This section has no pages!';
+                        throw new Exception('This section has no pages!');
                     }
                     break;
                 case 'summary':

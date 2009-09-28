@@ -8,7 +8,10 @@
  **/
 function exhibit_builder_get_current_exhibit()
 {
-    return Zend_Registry::get('exhibit');
+    if (Zend_Registry::isRegistered('exhibit')) {
+        return Zend_Registry::get('exhibit');
+    }
+    return false;
 }
 
 /**
@@ -18,7 +21,10 @@ function exhibit_builder_get_current_exhibit()
  **/
 function exhibit_builder_get_current_section()
 {
-    return Zend_Registry::get('section');
+    if (Zend_Registry::isRegistered('section')) {
+        return Zend_Registry::get('section');
+    }
+    return false;
 }
 
 /**
@@ -28,7 +34,10 @@ function exhibit_builder_get_current_section()
  **/
 function exhibit_builder_get_current_page()
 {
-    return Zend_Registry::get('page');    
+    if (Zend_Registry::isRegistered('page')) {
+        return Zend_Registry::get('page');    
+    }
+    return false;
 }
 
 function exhibit_builder_is_current_exhibit($exhibit)
@@ -421,7 +430,9 @@ function exhibit_builder_layout_css($file='layout')
 function exhibit_builder_section_nav($exhibit=null)
 {
     if (!$exhibit) {
-        $exhibit = Zend_Registry::get('exhibit');
+        if (!($exhibit = exhibit_builder_get_current_exhibit())) {
+            return;
+        }    
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $key => $section) {      
@@ -440,7 +451,9 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
 {
     $linkTextType = strtolower(trim($linkTextType));
     if (!$section) {
-        $section = exhibit_builder_get_current_section();
+        if (!($section = exhibit_builder_get_current_section())) {
+            return;
+        }
     }
     if ($section->hasPages()) {
         $html = '<ul class="exhibit-page-nav">';
@@ -466,7 +479,9 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
 function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        if (!($exhibit = exhibit_builder_get_current_exhibit())) {
+            return;
+        }    
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $section) {
