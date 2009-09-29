@@ -181,6 +181,8 @@ table#exhibits {
     clear:both;
 }
 
+#page-builder #pagination {margin-left:18px;}
+
 #item-select {
     float:left; 
     width: 780px; 

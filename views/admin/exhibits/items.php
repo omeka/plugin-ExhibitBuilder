@@ -9,7 +9,7 @@
     //items_search_form(array('id'=>'search'), $uri); 
 ?>
 </div>
-<div id="pagination">
+<div id="pagination" class="pagination">
 <?php     
      echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
       'action'=>'items', 'page'=>null)) . '/')); 
