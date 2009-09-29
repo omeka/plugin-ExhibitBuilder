@@ -8,8 +8,8 @@
  **/
 function exhibit_builder_get_current_exhibit()
 {
-    if (Zend_Registry::isRegistered('exhibit')) {
-        return Zend_Registry::get('exhibit');
+    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
+        return Zend_Registry::get('exhibit_builder_exhibit');
     }
     return false;
 }
@@ -21,8 +21,8 @@ function exhibit_builder_get_current_exhibit()
  **/
 function exhibit_builder_get_current_section()
 {
-    if (Zend_Registry::isRegistered('section')) {
-        return Zend_Registry::get('section');
+    if (Zend_Registry::isRegistered('exhibit_builder_section')) {
+        return Zend_Registry::get('exhibit_builder_section');
     }
     return false;
 }
@@ -34,15 +34,15 @@ function exhibit_builder_get_current_section()
  **/
 function exhibit_builder_get_current_page()
 {
-    if (Zend_Registry::isRegistered('page')) {
-        return Zend_Registry::get('page');    
+    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
+        return Zend_Registry::get('exhibit_builder_page');    
     }
     return false;
 }
 
 function exhibit_builder_is_current_exhibit($exhibit)
 {
-    if (Zend_Registry::isRegistered('exhibit')) {
+    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
         if ($exhibit == exhibit_builder_get_current_exhibit()) { 
              return true;
         }
@@ -52,7 +52,7 @@ function exhibit_builder_is_current_exhibit($exhibit)
 
 function exhibit_builder_is_current_section($section)
 {
-    if (Zend_Registry::isRegistered('section')) {
+    if (Zend_Registry::isRegistered('exhibit_builder_section')) {
         $currentSection = exhibit_builder_get_current_section();        
         if ($section->id == $currentSection->id) { 
             return true;
@@ -63,7 +63,7 @@ function exhibit_builder_is_current_section($section)
 
 function exhibit_builder_is_current_page($page)
 {
-    if (Zend_Registry::isRegistered('page')) {
+    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
         $currentPage = exhibit_builder_get_current_page();        
         if ($page->id == $currentPage->id) { 
             return true;
@@ -216,7 +216,7 @@ function exhibit_builder_get_exhibit_section_by_id($sectionId)
  **/
 function exhibit_builder_exhibit_head()
 {
-    $exhibit = Zend_Registry::get('exhibit');
+    $exhibit = Zend_Registry::get('exhibit_builder_exhibit');
     if ($exhibit->theme) {
         common('header',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
     } else {
@@ -231,7 +231,7 @@ function exhibit_builder_exhibit_head()
  **/
 function exhibit_builder_exhibit_foot()
 {
-    $exhibit = Zend_Registry::get('exhibit');
+    $exhibit = Zend_Registry::get('exhibit_builder_exhibit');
     if ($exhibit->theme) {
         common('footer',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
     } else {
@@ -378,7 +378,7 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
     //Load the thumbnail image
     $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
     
-    $page = Zend_Registry::get('page');
+    $page = Zend_Registry::get('exhibit_builder_page');
     $isSelected = ($page->layout == $layout) and $layout;
     
     $html = '';
@@ -401,8 +401,8 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
  **/
 function exhibit_builder_exhibit_css($file)
 {
-    if (Zend_Registry::isRegistered('exhibit')) {
-        $ex = Zend_Registry::get('exhibit');
+    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
+        $ex = Zend_Registry::get('exhibit_builder_exhibit');
         return css($file, EXHIBIT_THEMES_DIR_NAME . DIRECTORY_SEPARATOR . $ex->theme);
     }   
 }
@@ -414,8 +414,8 @@ function exhibit_builder_exhibit_css($file)
  **/
 function exhibit_builder_layout_css($file='layout')
 {
-    if (Zend_Registry::isRegistered('page')) {
-        $p = Zend_Registry::get('page');
+    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
+        $p = Zend_Registry::get('exhibit_builder_page');
         if (!empty($p)) {
             return css($file, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $p->layout);
         }

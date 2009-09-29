@@ -13,22 +13,24 @@ class ExhibitPageTable extends Omeka_Db_Table
 {
     protected $_name = 'section_pages';
     
-    public function findPrevious($page)
+    public function findPrevious($page, $section=null)
     {
-        return $this->findNearby($page, 'previous');
+        return $this->findNearby($page, 'previous', $section);
     }
     
-    public function findNext($page)
+    public function findNext($page, $section=null)
     {
-        return $this->findNearby($page, 'next');
+        return $this->findNearby($page, 'next', $section);
     }
     
-    protected function findNearby($page, $position = 'next')
+    protected function findNearby($page, $position = 'next', $section=null)
     {
         $select = $this->getSelect();
         $select->limit(1);
         
-        $section = Zend_Registry::get('section');
+        if (!$section) {
+            $section = Zend_Registry::get('exhibit_builder_section');
+        }
         
         switch ($position) {
             case 'next':
