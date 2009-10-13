@@ -1,4 +1,11 @@
-<?php head(array('title'=> html_escape($actionName . ' Exhibit'), 'bodyclass'=>'exhibits')); ?>
+<?php
+if ($exhibit->title) {
+    $exhibitTitle = $actionName . ' Exhibit: "' . $exhibit->title . '"';
+} else {
+    $sectionTitle = $actionName . ' Exhibit';
+}
+?>
+<?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 
 <script type="text/javascript" charset="utf-8"> 
@@ -7,10 +14,10 @@
     Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
     
     var urls = {
-        sectionForm: "<?php echo uri('exhibits/section-form'); ?>",
-        addSection: "<?php echo uri(array('controller'=>'exhibits','action'=>'add-section'), 'default'); ?>",
-        sectionList: "<?php echo uri(array('controller'=>'exhibits','action'=>'section-list'), 'default'); ?>",
-        edit: "<?php echo uri('exhibits/edit'); ?>"
+        sectionForm: <?php echo Zend_Json::encode(uri('exhibits/section-form')); ?>,
+        addSection: <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'add-section'), 'default')); ?>,
+        sectionList: <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'section-list'), 'default')); ?>,
+        edit: <?php echo Zend_Json::encode(uri('exhibits/edit')); ?>
     };
     
     Event.observe(window, 'load', function() {  
@@ -25,8 +32,8 @@
         listSorter.list = list;
         listSorter.recordId = exhibit_id;
         listSorter.form = $('exhibit-metadata-form');
-        listSorter.editUri = "<?php echo uri(array('controller'=>'exhibits','action'=>'edit'),'default'); ?>/" + exhibit_id;
-        listSorter.partialUri = "<?php echo uri(array('controller'=>'exhibits', 'action'=>'section-list')); ?>?id="+exhibit_id;
+        listSorter.editUri = <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
+        listSorter.partialUri = <?php echo  Zend_Json::encode(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
         listSorter.tag = 'li';
         listSorter.handle = 'handle';
         listSorter.confirmation = 'Are you sure you want to delete this section?';
@@ -44,11 +51,11 @@
 //]]>   
 </script>
 
-<h1><?php echo html_escape($actionName); ?> Exhibit</h1>
+<h1><?php echo html_escape($exhibitTitle); ?></h1>
 
 <div id="primary">
     <div id="exhibits-breadcrumb">
-        <a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <?php echo html_escape($actionName . ' Exhibit'); ?>
+        <a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape($actionName . ' Exhibit'); ?>
     </div>
 
 <form id="exhibit-metadata-form" method="post" class="exhibit-builder">
@@ -99,7 +106,7 @@
         <fieldset>
         <p><input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
             <input type="submit" name="add_section" value="Add Section" /> or 
-            <a href="<?php echo uri('exhibits'); ?>" class="cancel">Cancel</a></p>
+            <a href="<?php echo html_escape(uri('exhibits')); ?>" class="cancel">Cancel</a></p>
         </fieldset>
 </form>     
 </div>

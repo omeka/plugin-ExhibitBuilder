@@ -1,4 +1,4 @@
-<fieldset class="<?php echo $layout; ?>">
+<fieldset class="<?php echo html_escape($layout); ?>">
 	<?php for($i=1; $i<=8; $i++): ?>
 	    <div class="section">
     	<?php 

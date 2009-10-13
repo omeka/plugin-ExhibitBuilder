@@ -53,7 +53,7 @@ class ExhibitSection extends Omeka_Record
     {           
         foreach ($this->Pages as $page) {
             $page->delete();
-        }              
+        }
     }
         
     //Deleting a section must re-order the other sections

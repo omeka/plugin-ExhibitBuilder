@@ -21,7 +21,7 @@
 </div>
 <div id="item-list">
 <?php if (!has_items_for_loop()): ?>
-    <p>There are no items to choose from.  Please refine your search or <a href="<?php echo uri('items/add'); ?>">add</a> some items.</p>
+    <p>There are no items to choose from.  Please refine your search or <a href="<?php echo html_escape(uri('items/add')); ?>">add</a> some items.</p>
 <?php endif; ?>
 <?php while($item = loop_items()): ?>
     <?php echo exhibit_builder_exhibit_form_item($item); ?>

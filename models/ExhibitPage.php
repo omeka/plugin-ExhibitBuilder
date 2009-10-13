@@ -91,11 +91,11 @@ class ExhibitPage extends Omeka_Record
 	
 	protected function _delete()
 	{	
-	    if($this->ExhibitPageEntry) {
+	    if ($this->ExhibitPageEntry) {
     		foreach ($this->ExhibitPageEntry as $ip) {
     			$ip->delete();
     		}	        
-	    }		
+	    }
 	}
 		
 	protected function afterDelete()

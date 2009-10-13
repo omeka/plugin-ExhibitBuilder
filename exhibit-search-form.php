@@ -2,7 +2,7 @@
     <?php $formActionUri = uri('search/results'); ?>
 <?php endif; ?>
 	
-<form <?php echo _tag_attributes($formAttributes); ?> action="<?php echo $formActionUri; ?>" method="get">
+<form <?php echo _tag_attributes($formAttributes); ?> action="<?php echo html_escape($formActionUri); ?>" method="get">
 	<div id="search-keywords" class="field">    
 		<?php echo label('search','Search for Keywords'); ?>
 		<div class="inputs">

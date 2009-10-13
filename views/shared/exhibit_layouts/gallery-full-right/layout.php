@@ -6,7 +6,7 @@
 
 <div class="gallery-full-right">
 	<div class="primary">
-		<?php if(exhibit_builder_use_exhibit_page_item(1)):?>
+		<?php if (exhibit_builder_use_exhibit_page_item(1)): ?>
 		<div class="exhibit-item">
 			<?php echo exhibit_builder_exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
 			<?php echo item('Dublin Core', 'Title'); ?>

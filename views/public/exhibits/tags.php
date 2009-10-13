@@ -1,4 +1,4 @@
-<?php head(array('title'=> html_escape('Browse Exhibits by Tag'))); ?>
+<?php head(array('title'=> 'Browse Exhibits by Tag')); ?>
 <div id="primary">
 <h1>Browse by Tag</h1>
 <ul class="navigation exhibit-tags" id="secondary-nav">

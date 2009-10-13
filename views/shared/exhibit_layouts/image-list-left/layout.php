@@ -10,7 +10,7 @@
    		    <div class="exhibit-item">
 				<?php echo exhibit_builder_exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
 				<?php echo item('Dublin Core', 'Title'); ?>
-				<?php if($text = exhibit_builder_page_text($i)): ?>
+				<?php if ($text = exhibit_builder_page_text($i)): ?>
    		        <div class="exhibit-text"><?php echo $text; ?></div>
 				<?php endif; ?>
    		    </div>

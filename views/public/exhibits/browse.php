@@ -1,4 +1,4 @@
-<?php head(array('title'=>'Browse Exhibits')); ?>
+<?php head(array('title'=>html_escape('Browse Exhibits'))); ?>
 <div id="primary">
     <h1>Browse Exhibits (<?php echo $total_records; ?> total)</h1>
 	<?php if (count($exhibits) > 0): ?>

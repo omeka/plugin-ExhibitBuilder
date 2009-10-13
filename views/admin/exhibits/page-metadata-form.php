@@ -38,7 +38,7 @@
 <form method="post" id="choose-layout">
 	
     <div id="exhibits-breadcrumb">
-    	<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo uri('exhibits/edit-section/' . $section['id']);?>"><?php echo html_escape($section['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
+    	<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $section['id']));?>"><?php echo html_escape($section['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
     </div>	
 
     <fieldset>
@@ -72,7 +72,7 @@
 	</fieldset> 
 	
 	<p><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
-	    <a href="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id)); ?>">Cancel</a></p>
+	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id))); ?>">Cancel</a></p>
 	
 	
 </form>

@@ -97,7 +97,7 @@ function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $
 {   
     $uri = exhibit_builder_exhibit_uri($exhibit, $section, $page);
     $text = !empty($text) ? $text : $exhibit->title;
-    return '<a href="'.$uri.'">' . $text . '</a>';
+    return '<a href="' . html_escape($uri) .'">' . $text . '</a>';
 }
 
 /**
@@ -136,7 +136,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class'
     $item = get_current_item();
     $uri = exhibit_builder_exhibit_item_uri($item);
     $text = (!empty($text) ? $text : strip_formatting(item('Dublin Core', 'Title')));
-    return '<a href="' . $uri . '" '. _tag_attributes($props) . '>' . $text . '</a>';
+    return '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
 
 /**
@@ -287,7 +287,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
 
     if ($item and $item->exists()) {
         set_current_item($item);
-        $html .= '<div class="item-drag"><div class="item_id">' . $item->id . '</div>';
+        $html .= '<div class="item-drag"><div class="item_id">' . html_escape($item->id) . '</div>';
         $html .=  item_has_thumbnail() ? item_square_thumbnail() : '<div class="title">' . item('Dublin Core', 'Title', ', ') . '</div>';
         $html .= '</div>';      
     }
@@ -296,7 +296,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
     if ($orderOnForm) {
         $html .= __v()->formText('Item['.$orderOnForm.']', $item->id, array('size'=>2));
     } else {
-        $html .= '<div class="item_id">' . $item->id . '</div>';
+        $html .= '<div class="item_id">' . html_escape($item->id) . '</div>';
     }
     
     $html .= '</div>';
@@ -382,14 +382,14 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
     $isSelected = ($page->layout == $layout) and $layout;
     
     $html = '';
-    $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. $layout .'">';
-    $html .= '<img src="'.$imgFile.'" />';
+    $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">';
+    $html .= '<img src="'. html_escape($imgFile) .'" />';
     if ($input) {
         $html .= '<div class="input">';
-        $html .= '<input type="radio" name="layout" value="'.$layout .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
+        $html .= '<input type="radio" name="layout" value="'. html_escape($layout) .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
         $html .= '</div>';
     }
-    $html .= '<div class="layout-name">'.$layout.'</div>'; 
+    $html .= '<div class="layout-name">'.html_escape($layout).'</div>'; 
     $html .= '</div>';
     return $html;
 }
@@ -436,7 +436,7 @@ function exhibit_builder_section_nav($exhibit=null)
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $key => $section) {      
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . exhibit_builder_exhibit_uri($exhibit, $section) . '">' . $section->title . '</a></li>';
+        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';
     }
     $html .= '</ul>';
     return $html;
@@ -468,7 +468,7 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
                     break;
                 
             }
-            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a href="'. exhibit_builder_exhibit_uri($section->Exhibit, $section, $page) . '">'. $linkText .'</a></li>';
+            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a href="'. html_escape(exhibit_builder_exhibit_uri($section->Exhibit, $section, $page)) . '">'. html_escape($linkText) .'</a></li>';
         }
         $html .= '</ul>';
         return $html;
@@ -485,7 +485,7 @@ function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $section) {
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . exhibit_builder_exhibit_uri($exhibit, $section) . '">' . $section->title . '</a>';
+        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a>';
         if ($show_all_pages == true || exhibit_builder_is_current_section($section)) {
             $html .= exhibit_builder_page_nav($section);
         }
@@ -620,7 +620,7 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
     // a link to the last page on the previous exhibit section, if it exists.
     if ($previousPage = $page->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $section, $previousPage);
-    } elseif($previousSection = $section->previous()) {
+    } elseif ($previousSection = $section->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $previousSection);
     }      
 }
@@ -695,7 +695,7 @@ function exhibit_builder_use_exhibit_page_item($index)
 function exhibit_builder_exhibit_thumbnail($item, $props=array('class'=>'permalink'), $index=0) 
 {     
     $uri = exhibit_builder_exhibit_item_uri($item);
-    $html = '<a href="' . $uri . '">';
+    $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_thumbnail($props, $index, $item);
     $html .= '</a>';    
     return $html;
@@ -712,7 +712,7 @@ function exhibit_builder_exhibit_thumbnail($item, $props=array('class'=>'permali
 function exhibit_builder_exhibit_fullsize($item, $props=array('class'=>'permalink'), $index=0)
 {
     $uri = exhibit_builder_exhibit_item_uri($item);
-    $html = '<a href="' . $uri . '">';
+    $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_fullsize($props, $index, $item);
     $html .= '</a>';
     return $html;

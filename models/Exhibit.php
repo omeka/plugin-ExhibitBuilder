@@ -8,7 +8,7 @@
  * @package Omeka
  * @author CHNM
  **/
- 
+
 require_once 'ExhibitSection.php';
 require_once 'Tag.php';
 require_once 'Taggings.php';
@@ -49,28 +49,11 @@ class Exhibit extends Omeka_Record
 	protected function _delete()
 	{
 		//Just delete the sections and the cascade will take care of the rest
-		
 		$sections = $this->Sections;
-		
 		foreach ($sections as $section) {
 			$section->delete();
 		}
-				
-/*
-		//This query will delete everything from the exhibits tables when an exhibit is deleted
-		//This is semi-duplicated in the Section, ExhibitPage, ExhibitPageEntry models as necessary
-		$exhibit_id = $this->id;
-		
-		$delete = "DELETE items_section_pages, section_pages, sections, exhibits FROM exhibits 
-		LEFT JOIN sections ON sections.exhibit_id = exhibits.id
-		LEFT JOIN section_pages ON section_pages.section_id = sections.id
-		LEFT JOIN items_section_pages ON items_section_pages.page_id = section_pages.id
-		WHERE exhibits.id = $exhibit_id;";
-		
-		$db->exec($delete);
-*/	
-		
-		
+		$this->deleteTaggings();
 	}
 	
 	public function construct()

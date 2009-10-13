@@ -1,4 +1,4 @@
-<fieldset class="<?php echo $layout; ?>">
+<fieldset class="<?php echo html_escape($layout); ?>">
 	<div class="primary">
 	<?php 
 	    echo exhibit_builder_layout_form_text(1);

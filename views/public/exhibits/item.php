@@ -5,7 +5,7 @@
 	<ul>
         <?php foreach (item('Dublin Core', 'Title', 'all') as $title): ?>
            <li class="item-title">
-           <?php echo html_escape($title); ?>
+           <?php echo $title; ?>
            </li>
         <?php endforeach ?>
 	</ul>
@@ -23,7 +23,7 @@
         </div>
     <?php endif; ?>
     
-	<?php if(count($item->Tags)): ?>
+	<?php if (count($item->Tags)): ?>
 	<div class="tags">
 		<h3>Tags:</h3>
 	   <?php echo item_tags_as_string(); ?>	

@@ -1,4 +1,4 @@
-<fieldset class="<?php echo $layout; ?>">
+<fieldset class="<?php echo html_escape($layout); ?>">
 
 <div class="primary">
 	<h3>Primary</h3>

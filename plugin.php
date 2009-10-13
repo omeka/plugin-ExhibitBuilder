@@ -196,7 +196,7 @@ function exhibit_builder_public_header()
 {
     if ($layoutCssHref = exhibit_builder_layout_css()) {
         // Add the stylesheet for the layout
-        echo '<link rel="stylesheet" media="screen" href="' . $layoutCssHref . '" /> ';
+        echo '<link rel="stylesheet" media="screen" href="' . html_escape($layoutCssHref) . '" /> ';
     }
 }
 
@@ -209,7 +209,7 @@ function exhibit_builder_admin_header($request)
 {
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
     if ($request->getControllerName() == 'exhibits' || ($request->getModuleName() == 'default' && $request->getControllerName() == 'index' && $request->getActionName() == 'index')):
-            echo '<link rel="stylesheet" media="screen" href="' . css('exhibits') . '" /> ';
+            echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('exhibits')) . '" /> ';
     		echo js('tiny_mce/tiny_mce');
     		echo js('search'); 
     		echo js('exhibits');
@@ -226,11 +226,11 @@ function exhibit_builder_dashboard()
 {
 ?>
     <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
-	<dt class="exhibits"><a href="<?php echo uri('exhibits'); ?>">Exhibits</a></dt>
+	<dt class="exhibits"><a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a></dt>
 	<dd class="exhibits">
 		<ul>
-			<li><a class="browse-exhibits" href="<?php echo uri('exhibits'); ?>">Browse Exhibits</a></li>
-			<li><a class="add-exhibit" href="<?php echo uri('exhibits/add/'); ?>">Create an Exhibit</a></li>
+			<li><a class="browse-exhibits" href="<?php echo html_escape(uri('exhibits')); ?>">Browse Exhibits</a></li>
+			<li><a class="add-exhibit" href="<?php echo html_escape(uri('exhibits/add/')); ?>">Create an Exhibit</a></li>
 		</ul>
 		<p>Create and manage exhibits that display items from the archive.</p>
 	</dd>
@@ -258,10 +258,8 @@ function exhibit_builder_public_main_nav($navArray)
 function exhibit_builder_admin_nav($navArray)
 {
     if (has_permission('ExhibitBuilder_Exhibits', 'browse')) {
-        
         $navArray += array('Exhibits'=> uri('exhibits'));
     }
-    
     return $navArray;
 }
 
@@ -344,15 +342,15 @@ function exhibit_builder_lucene_search_result($record)
 {
     switch(get_class($record)) {
         case 'Exhibit':
-            echo '<p>' . $record->title . '</p>';
+            echo '<p>' . html_escape($record->title) . '</p>';
         break;
         
         case 'ExhibitSection':
-            echo '<p>' . $record->title . '</p>';
+            echo '<p>' . html_escape($record->title) . '</p>';
         break;
         
         case 'ExhibitPage':
-            echo '<p>' . $record->title . '</p>';
+            echo '<p>' . html_escape($record->title) . '</p>';
         break;
     }
 }

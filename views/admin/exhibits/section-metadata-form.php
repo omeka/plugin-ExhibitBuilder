@@ -1,6 +1,15 @@
-<?php head(array('title'=> html_escape($actionName . ' Exhibit Section'), 'bodyclass'=>'exhibits')); ?>
+<?php
+if ($section->title) {
+    $sectionTitle = $actionName . ' Section: "' . $section->title . '"';
+} else {
+    $sectionTitle = $actionName . ' Section';
+}
+?>
+<?php head(array('title'=> html_escape($sectionTitle), 'bodyclass'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 <script type="text/javascript" charset="utf-8">
+//<![CDATA[
+
 	var listSorter = {};
 	
 	Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
@@ -9,9 +18,9 @@
 		if(!$('page-list')) return;	
 		listSorter.list = $('page-list');
 		listSorter.form = $('section-metadata-form');
-		listSorter.editUri = "<?php echo $_SERVER['REQUEST_URI']; ?>";
-		listSorter.partialUri = "<?php echo uri('exhibits/page-list'); ?>";
-		listSorter.recordId = '<?php echo html_escape($section->id); ?>';
+		listSorter.editUri = <?php echo Zend_Json::encode($_SERVER['REQUEST_URI']); ?>;
+		listSorter.partialUri = <?php echo Zend_Json::encode(uri('exhibits/page-list')); ?>;
+		listSorter.recordId = <?php echo Zend_Json::encode($section->id); ?>;
 		listSorter.tag = 'li';
 		listSorter.handle = 'handle';
 		listSorter.overlap = 'vertical';
@@ -24,13 +33,15 @@
 			makeSortable(listSorter.list);
 		}
 	});
+
+//]]>
 </script>
 
-<h1><?php echo html_escape($actionName); ?> Section</h1>
+<h1><?php echo html_escape($sectionTitle); ?></h1>
 
 <div id="primary">
 	<div id="exhibits-breadcrumb">
-		<a href="<?php echo uri('exhibits'); ?>">Exhibits</a> &gt; <a href="<?php echo uri('exhibits/edit/' . $exhibit['id']);?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Section'); ?>
+		<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Section'); ?>
 	</div>
 
 <?php 
@@ -48,7 +59,7 @@
 
 	</fieldset>
 		<fieldset id="section-pages">
-			<legend>Pages in This Section</legend>	
+			<legend>Pages in this Section</legend>	
 	<?php if (exhibit_builder_section_has_pages($section) ): ?>
 		<p>To reorder pages, click and drag the page thumbnail to the left or right.</p>
 			<ul id="page-list">
@@ -62,7 +73,7 @@
 
 	<fieldset>
 		<p><input type="submit" name="section_form" value="Save Changes" /> or 
-		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$section->exhibit_id)); ?>">Cancel</a></p>
+		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$section->exhibit_id))); ?>">Cancel</a></p>
 	</fieldset>
 </form>
 </div>
