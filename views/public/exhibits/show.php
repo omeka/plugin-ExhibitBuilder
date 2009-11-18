@@ -1,4 +1,4 @@
-<?php head(array('title' => html_escape($exhibit->title))); ?>
+<?php head(array('title' => html_escape($exhibit->title),'bodyid'=>'exhibit','bodyclass'=>'show')); ?>
 <div id="primary">
 	<h2><?php echo html_escape($exhibit->title); ?></h2>
 

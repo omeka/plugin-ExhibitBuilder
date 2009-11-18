@@ -1,4 +1,4 @@
-<?php head(array('title' => html_escape('Summary of ' . $exhibit->title))); ?>
+<?php head(array('title' => html_escape('Summary of ' . $exhibit->title),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
 <div id="primary">
 <h2><?php echo html_escape($exhibit->title); ?></h2>
 <?php echo exhibit_builder_section_nav(); ?>

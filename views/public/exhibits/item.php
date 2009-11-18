@@ -1,4 +1,4 @@
-<?php head(array('title'=> html_escape("Item #{$item->id}"))); ?>
+<?php head(array('title'=> html_escape("Item #{$item->id}"),'bodyid'=>'exhibit','bodyclass'=>'item')); ?>
 <div id="primary">
 
 	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>
