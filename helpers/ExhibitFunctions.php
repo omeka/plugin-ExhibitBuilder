@@ -647,10 +647,14 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     
     // Pass null as the 3rd arg so that it doesn't output the item-file div.
     $fileWrapperClass = null;
-    $itemHtml  = display_file($item->Files[$fileIndex], $displayFilesOptions, $fileWrapperClass);
-    if (!$itemHtml) {
+    $file = $item->Files[$fileIndex];
+    $itemHtml = '';
+    if ($file) {
+        $itemHtml .= display_file($file, $displayFilesOptions, $fileWrapperClass);
+    } else {
         $itemHtml = item('Dublin Core', 'Title');
     }
+
     $html .= $itemHtml;
     $html .= '</a>';
     return $html;
