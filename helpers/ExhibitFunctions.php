@@ -436,7 +436,7 @@ function exhibit_builder_section_nav($exhibit=null)
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $key => $section) {      
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';
+        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';
     }
     $html .= '</ul>';
     return $html;
@@ -468,7 +468,7 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
                     break;
                 
             }
-            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a href="'. html_escape(exhibit_builder_exhibit_uri($section->Exhibit, $section, $page)) . '">'. html_escape($linkText) .'</a></li>';
+            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($section->Exhibit, $section, $page)) . '">'. html_escape($linkText) .'</a></li>';
         }
         $html .= '</ul>';
         return $html;
@@ -485,7 +485,7 @@ function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
     }
     $html = '<ul class="exhibit-section-nav">';
     foreach ($exhibit->Sections as $section) {
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a>';
+        $html .= '<li class="exhibit-nested-section' . (exhibit_builder_is_current_section($section) ? ' current' : '') . '"><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a>';
         if ($show_all_pages == true || exhibit_builder_is_current_section($section)) {
             $html .= exhibit_builder_page_nav($section);
         }
@@ -493,7 +493,6 @@ function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
     }
     $html .= '</ul>';
     return $html;
-    
 }
 
 /**
