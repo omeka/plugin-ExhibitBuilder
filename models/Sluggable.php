@@ -77,7 +77,7 @@ class Sluggable extends Omeka_Record_Mixin
         $db = $this->getDb();
         
         $select = $this->record->getTable()->getSelect();
-        $select->reset('columns')->from(array(), 'COUNT(DISTINCT(id))');
+        $select->reset(Zend_Db_Select::COLUMNS)->from(array(), 'COUNT(DISTINCT(id))');
         $select->where('slug = ?', $slug);
                 
         if ($this->parentIdFieldName) {
