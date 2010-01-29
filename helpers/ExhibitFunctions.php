@@ -97,7 +97,7 @@ function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $
 {   
     $uri = exhibit_builder_exhibit_uri($exhibit, $section, $page);
     $text = !empty($text) ? $text : $exhibit->title;
-    return '<a href="' . html_escape($uri) .'">' . $text . '</a>';
+    return '<a href="' . html_escape($uri) .'" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
 
 /**
@@ -593,9 +593,9 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
     if ($nextPage = $page->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $section, $nextPage);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $nextPage);
     } elseif ($nextSection = $section->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $nextSection);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextSection);
     }
 }
 
@@ -618,9 +618,9 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
     // if page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous exhibit section, if it exists.
     if ($previousPage = $page->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $section, $previousPage);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $previousPage);
     } elseif ($previousSection = $section->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, array(), $previousSection);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection);
     }      
 }
 
