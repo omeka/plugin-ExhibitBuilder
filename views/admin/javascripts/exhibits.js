@@ -322,6 +322,7 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
     if (!this.isInitialized) {
         this.isInitialized = true;
 		tinyMCE.init({
+            convert_urls : false,
 			mode : "textareas", // All textareas
 			theme: "advanced",
 			theme_advanced_toolbar_location : "top",
