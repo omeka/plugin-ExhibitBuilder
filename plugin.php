@@ -25,37 +25,13 @@ add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
 add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
-add_plugin_hook('after_save_exhibit', 'exhibit_builder_after_save_exhibit');
-add_plugin_hook('lucene_search_form', 'exhibit_builder_lucene_search_form');
-add_plugin_hook('lucene_search_result', 'exhibit_builder_lucene_search_result');
-add_plugin_hook('lucene_search_add_advanced_search_query', 'exhibit_builder_lucene_search_add_advanced_search_query');
-
-add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
-add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('lucene_search_advanced_navigation', 'exhibit_builder_lucene_search_advanced_navigation');
-add_filter('lucene_search_model_to_permission_info', 'exhibit_builder_lucene_search_model_to_permission_info');
-add_filter('lucene_search_create_document', 'exhibit_builder_lucene_search_create_document');
-
-function exhibit_builder_after_save_exhibit($exhibit)
-{
-    // update the lucene index with the record
-    if (class_exists('LuceneSearch_Search') && $search = LuceneSearch_Search::getInstance()) {
-        $sections = $exhibit->getSections();            
-        foreach($sections as $section) {
-            $search->updateLuceneByRecord($section);
-            $pages = $section->getPages();
-            foreach($pages as $page) {
-                $search->updateLuceneByRecord($page);
-            }
-        }
-    }
-}
-
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
 add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 
+add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
+add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 
 // Helper functions for exhibits
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
@@ -163,7 +139,6 @@ function exhibit_builder_uninstall()
  **/
 function exhibit_builder_setup_acl($acl)
 {
-
     $resource = new Omeka_Acl_Resource('ExhibitBuilder_Exhibits');
     $resource->add(array('add','editSelf', 'editAll', 'deleteSelf', 'deleteAll','add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section', 'delete-section', 'showNotPublic', 'section-list', 'page-list'));
     $acl->add($resource);
@@ -172,8 +147,7 @@ function exhibit_builder_setup_acl($acl)
     $acl->deny('contributor', 'ExhibitBuilder_Exhibits', array('editAll','deleteAll'));
     
     // Allow contributors everything else
-    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');
-          
+    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');         
 }
 
 /**
@@ -328,79 +302,4 @@ function exhibit_builder_purify_html($request, $purifier)
 function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
 {
     return _select_from_table('Exhibit', $props, $value, $label, $search);
-}
-
-function exhibit_builder_lucene_search_create_document($doc, $record)
-{
-    if ($df = ExhibitLuceneDocumentFactory::getInstance()) {
-        $doc = $df->createDocument($record);
-    }
-    return $doc;
-}
-
-function exhibit_builder_lucene_search_result($record)
-{
-    switch(get_class($record)) {
-        case 'Exhibit':
-            echo '<p>' . html_escape($record->title) . '</p>';
-        break;
-        
-        case 'ExhibitSection':
-            echo '<p>' . html_escape($record->title) . '</p>';
-        break;
-        
-        case 'ExhibitPage':
-            echo '<p>' . html_escape($record->title) . '</p>';
-        break;
-    }
-}
-
-function exhibit_builder_lucene_search_add_advanced_search_query($modelName, $searchQuery, $requestParams)
-{
-    if ($asf = ExhibitLuceneAdvancedSearchFactory::getInstance()) {
-        $asf->addAdvancedSearchQuery($modelName, $searchQuery, $requestParams);
-    }
-}
-
-/**
- * Adds the Exhibits tab to the advanced search page
- *
- * @param array $navs The associative array that contains the tab name as the key and 
- * the uri to the advanced search page
- * @return array
- **/
-function exhibit_builder_lucene_search_advanced_navigation($navs)
-{
-    $navs['Exhibits'] = uri('search/?form=Exhibit');
-    return $navs;
-}
-
-/**
- * Adds the Exhibits models to the search models for LuceneSearch
- *
- * @param array $modelsToSearch The array of search models 
- * @return array
- **/
-function exhibit_builder_lucene_search_model_to_permission_info($modelToPermissionInfo)
-{
-    $modelToPermissionInfo['Exhibit'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelToPermissionInfo['ExhibitSection'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    $modelToPermissionInfo['ExhibitPage'] = array('resourceName'=>'ExhibitBuilder_Exhibits', 'showPrivatePermission'=>'showNotPublic');
-    
-    return $modelToPermissionInfo;
-}
-
-/**
- * Displays the advanced search form
- *
- * @param string $formName The name of the advanced search form
- * @param array $formName The array of the advanced search form attributes
- **/
-function exhibit_builder_lucene_search_form($formName, $formAttributes)
-{
-    switch($formName) {
-        case 'Exhibit':
-            include 'exhibit-search-form.php';
-        break;
-    }
 }
