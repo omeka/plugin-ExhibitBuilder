@@ -590,6 +590,10 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
     $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
     $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
     
+    if(!isset($props['class'])) {
+        $props['class'] = 'next-page';
+    }
+    
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
     if ($nextPage = $page->next()) {
@@ -614,6 +618,10 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
 
     $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
     $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
+    
+    if(!isset($props['class'])) {
+        $props['class'] = 'previous-page';
+    }
     
     // if page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous exhibit section, if it exists.
