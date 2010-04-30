@@ -1,3 +1,21 @@
-.image-list-left {clear: both;}
-.image-list-left .exhibit-item {overflow:hidden;display:block; width:auto;float:none;clear:both;}
-	.image-list-left .exhibit-item img {float:left; margin-right:20px; margin-bottom:20px;}
+/* CSS for the image-list-left layout */
+
+.image-text-group {
+    overflow:hidden;
+    zoom:1;
+}
+
+.exhibit-item {
+    float:left; 
+    width: 48%;
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width:100%;
+}
+
+.exhibit-text {
+    float:right;
+    width: 48%;
+}

@@ -1,3 +1,15 @@
-.text-image-left {overflow:hidden; zoom:1;}
-.text-image-left .exhibit-item {float:left; padding-right: 18px;}
-.text-image-left .exhibit-item-caption {float:left; width: 350px; font-size:1.1em;}
+.text-image-left {
+    overflow:hidden; 
+    zoom:1;
+}
+
+.text-image-left .exhibit-item {
+    float:left; 
+    width: 48%; 
+    margin-right:2%;
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width: 100%;
+}

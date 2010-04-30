@@ -1,2 +1,21 @@
-.image-list-right .exhibit-item {overflow:hidden;width:auto;}
-	.image-list-right .exhibit-item img {float:right; margin-left:18px; margin-bottom:18px;}
+/* CSS for the image-list-right layout */
+
+.image-text-group {
+    overflow:hidden;
+    zoom:1;
+}
+
+.exhibit-item {
+    float:right; 
+    width: 48%;
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width:100%;
+}
+
+.exhibit-text {
+    float:left;
+    width: 48%;
+}

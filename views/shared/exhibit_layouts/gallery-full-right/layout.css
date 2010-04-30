@@ -1,4 +1,28 @@
-.gallery-full-right .primary {float:right; overflow:hidden; width:48%;}
-.gallery-full-right .secondary {float:left; width:48%;}
-.gallery-full-right .gallery .exhibit-item {float:left; margin-right:18px; margin-bottom:18px; overflow:hidden;}
-#item-full-text {clear: both; padding-top: 2em;}
+/* CSS for the gallery-full-right layout */
+
+.primary,
+.secondary {
+    float:right; 
+    width:49%;
+    overflow:hidden;
+    zoom:1;
+}
+
+.secondary {
+    float:left; 
+}
+
+.gallery .exhibit-item {
+    float:left; 
+    margin-right:2%;
+    width: 48%;
+}
+
+.exhibit-item {
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width: 100%;
+}
+

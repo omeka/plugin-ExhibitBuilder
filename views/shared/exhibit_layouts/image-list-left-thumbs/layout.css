@@ -1,2 +1,21 @@
-.image-list-left-thumbs .exhibit-item {overflow:hidden;width:auto; margin-bottom:20px;}
-.image-list-left-thumbs .exhibit-item img {display: block; float:left; margin-right:20px; margin-bottom:20px;}
+/* CSS for the image-list-left-thumbs layout */
+
+.image-text-group {
+    overflow:hidden;
+    zoom:1;
+}
+
+.exhibit-item {
+    float:left; 
+    width: 23%;
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width:100%;
+}
+
+.exhibit-text {
+    float:right;
+    width: 73%;
+}

@@ -1,1 +1,14 @@
-.gallery-thumbnails .exhibit-item {display:block; float:left; width:170px; height:170px; padding-top:18px; margin-right:18px; margin-bottom: 18px;}
+/* CSS for the gallery-thumbnails layout */
+
+.exhibit-item {
+    display:block; 
+    float:left; 
+    width: 23%; 
+    height:23%; 
+    margin-right:2%;
+    margin-bottom:2%;
+}
+
+.exhibit-item img {
+    max-width: 100%;
+}
