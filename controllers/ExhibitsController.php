@@ -47,9 +47,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
   
         if ($item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
      
-            Zend_Registry::set('exhibit_builder_item', $item);
-            Zend_Registry::set('exhibit_builder_exhibit', $exhibit);
-            Zend_Registry::set('exhibit_builder_section', $section);
+            exhibit_builder_set_current_exhibit($exhibit);
+            exhibit_builder_set_current_section($section);
+            exhibit_builder_set_current_page($page);
      
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
@@ -100,9 +100,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $layout = $page->layout;
         
         //Register these so that theme functions can use them
-        Zend_Registry::set('exhibit_builder_section', $section);
-        Zend_Registry::set('exhibit_builder_exhibit', $exhibit);
-        Zend_Registry::set('exhibit_builder_page', $page);
+        exhibit_builder_set_current_exhibit($exhibit);
+        exhibit_builder_set_current_section($section);
+        exhibit_builder_set_current_page($page);
         
         fire_plugin_hook('show_exhibit', $exhibit,$section,$page);
                 
@@ -124,8 +124,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function summaryAction()
     {
-        $exhibit = $this->findBySlug();     
-        Zend_Registry::set('exhibit_builder_exhibit', $exhibit);
+        $exhibit = $this->findBySlug();
+        exhibit_builder_set_current_exhibit($exhibit);
         fire_plugin_hook('show_exhibit', $exhibit);
         $this->renderExhibit(compact('exhibit'), 'summary');
     }
@@ -368,8 +368,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
     {       
         //Register the page var so that theme functions can use it
-        Zend_Registry::set('exhibit_builder_page', $page);
-
+        exhibit_builder_set_current_page($page);
+        
         $this->view->assign(compact('exhibit', 'section','page', 'actionName'));        
         if (!empty($_POST)) {
             try {

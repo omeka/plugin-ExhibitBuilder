@@ -33,8 +33,10 @@ add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 
-// Helper functions for exhibits
+// Helper functions for exhibits, exhibit sections, and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
+require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitSectionFunctions.php';
+require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitPageFunctions.php';
 
 /**
  * Installs the plugin, creating the tables in the database and setting plugin options

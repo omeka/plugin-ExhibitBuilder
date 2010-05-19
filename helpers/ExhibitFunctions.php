@@ -1,5 +1,4 @@
 <?php 
-///// EXHIBIT FUNCTIONS /////
 
 /**
  * Returns the current exhibit.
@@ -15,82 +14,36 @@ function exhibit_builder_get_current_exhibit()
 }
 
 /**
- * Returns the current section.
+ * Sets the current exhibit.
  *
- * @return Section|null
+ * @param Exhibit|null $exhibit
+ * @return void
  **/
-function exhibit_builder_get_current_section()
+function exhibit_builder_set_current_exhibit($exhibit=null)
 {
-    if (Zend_Registry::isRegistered('exhibit_builder_section')) {
-        return Zend_Registry::get('exhibit_builder_section');
-    }
-    return false;
+    Zend_Registry::set('exhibit_builder_exhibit', $exhibit);
 }
 
 /**
- * Returns the current page.
+ * Returns whether an exhibit is the current exhibit.
  *
- * @return Page|null
- **/
-function exhibit_builder_get_current_page()
-{
-    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
-        return Zend_Registry::get('exhibit_builder_page');    
-    }
-    return false;
-}
-
-function exhibit_builder_is_current_exhibit($exhibit)
-{
-    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
-        if ($exhibit == exhibit_builder_get_current_exhibit()) { 
-             return true;
-        }
-    }
-    return false;
-}
-
-function exhibit_builder_is_current_section($section)
-{
-    if (Zend_Registry::isRegistered('exhibit_builder_section')) {
-        $currentSection = exhibit_builder_get_current_section();        
-        if ($section->id == $currentSection->id) { 
-            return true;
-        }
-    }
-    return false;
-}
-
-function exhibit_builder_is_current_page($page)
-{
-    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
-        $currentPage = exhibit_builder_get_current_page();        
-        if ($page->id == $currentPage->id) { 
-            return true;
-        }
-    }
-    return false;
-}
-
-/**
- * Returns whether the section has pages.
- *
- * @param ExhibitSection $section
+ * @param Exhibit|null $exhibit
  * @return boolean
  **/
-function exhibit_builder_section_has_pages($section) 
+function exhibit_builder_is_current_exhibit($exhibit)
 {
-    return $section->hasPages();
+    $currentExhibit = exhibit_builder_get_current_exhibit();
+    return ($exhibit == $currentExhibit || ($exhibit && $currentExhibit && $exhibit->id == $currentExhibit->id));
 }
 
 /**
  * Returns a link to the exhibit
  *
  * @param Exhibit $exhibit
- * @param string $text The text of the link
+ * @param string|null $text The text of the link
  * @param array $props
- * @param ExhibitSection $section
- * @param ExhibitPage $page
+ * @param ExhibitSection|null $section
+ * @param ExhibitPage|null $page
  * @return boolean
  **/
 function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $section=null, $page = null)
@@ -104,22 +57,22 @@ function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $
  * Returns a URI to the exhibit
  *
  * @param Exhibit $exhibit
- * @param ExhibitSection $section
- * @param ExhibitPage $page 
+ * @param ExhibitSection|null $section
+ * @param ExhibitPage|null $page 
  * @internal This relates to: ExhibitsController::showAction(), ExhibitsController::summaryAction()
  * @return string
  **/
 function exhibit_builder_exhibit_uri($exhibit, $section=null, $page=null)
 {
-    $exhibit_slug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
-    $section_slug = ($section instanceof ExhibitSection) ? $section->slug : $section;
-    $page_slug = ($page instanceof ExhibitPage) ? $page->slug : $page;
+    $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
+    $sectionSlug = ($section instanceof ExhibitSection) ? $section->slug : $section;
+    $pageSlug = ($page instanceof ExhibitPage) ? $page->slug : $page;
 
     //If there is no section slug available, we want to build a URL for the summary page
-    if (empty($section_slug)) {
-        $uri = public_uri(array('slug'=>$exhibit_slug), 'exhibitSimple');
+    if (empty($sectionSlug)) {
+        $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $uri = public_uri(array('slug'=>$exhibit_slug, 'section'=>$section_slug, 'page'=>$page_slug), 'exhibitShow');
+        $uri = public_uri(array('slug'=>$exhibitSlug, 'section'=>$sectionSlug, 'page'=>$pageSlug), 'exhibitShow');
     }
     return $uri;
 }
@@ -127,13 +80,17 @@ function exhibit_builder_exhibit_uri($exhibit, $section=null, $page=null)
 /**
  * Returns a link to the item within the exhibit.
  * 
- * @param string $text
+ * @param string|null $text
  * @param array $props
+ * @param Item|null $item If null, will use the current item.
  * @return string
  **/
-function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class' => 'exhibit-item-link'))
+function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class' => 'exhibit-item-link'), $item=null)
 {   
-    $item = get_current_item();
+    if (!$item) {
+        $item = get_current_item();
+    }
+    
     $uri = exhibit_builder_exhibit_item_uri($item);
     $text = (!empty($text) ? $text : strip_formatting(item('Dublin Core', 'Title')));
     return '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
@@ -143,8 +100,8 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class'
  * Returns a URI to the exhibit item
  * 
  * @param Item $item
- * @param Exhibit $exhibit
- * @param ExhibitSection $section
+ * @param Exhibit|null $exhibit If null, will use the current exhibit.
+ * @param ExhibitSection|null $section If null, will use the current exhibit section
  * @return string
  **/
 function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $section=null)
@@ -190,23 +147,12 @@ function exhibit_builder_recent_exhibits($num = 10)
 /**
  * Returns an Exhibit by id
  * 
- * @param int $id The id of the exhibit
+ * @param int $exhibitId The id of the exhibit
  * @return Exhibit
  **/
 function exhibit_builder_get_exhibit_by_id($exhibitId) 
 {
     return get_db()->getTable('Exhibit')->find($exhibitId);
-}
-
-/**
- * Returns an ExhibitSection by id
- *
- * @param $id The id of the exhibit section
- * @return ExhibitSection
- **/
-function exhibit_builder_get_exhibit_section_by_id($sectionId) 
-{
-    return get_db()->getTable('ExhibitSection')->find($sectionId);
 }
 
 /**
@@ -216,7 +162,7 @@ function exhibit_builder_get_exhibit_section_by_id($sectionId)
  **/
 function exhibit_builder_exhibit_head()
 {
-    $exhibit = Zend_Registry::get('exhibit_builder_exhibit');
+    $exhibit = exhibit_builder_get_current_exhibit();
     if ($exhibit->theme) {
         common('header',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
     } else {
@@ -231,7 +177,7 @@ function exhibit_builder_exhibit_head()
  **/
 function exhibit_builder_exhibit_foot()
 {
-    $exhibit = Zend_Registry::get('exhibit_builder_exhibit');
+    $exhibit = exhibit_builder_get_current_exhibit();
     if ($exhibit->theme) {
         common('footer',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
     } else {
@@ -239,39 +185,6 @@ function exhibit_builder_exhibit_foot()
     }
 }
 
-/**
- * Returns the text of the exhibit page
- *
- * @param int $order
- * @param bool $addTag
- * @return string
- **/
-function exhibit_builder_page_text($order, $addTag=true, $page = null)
-{
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
-    }
-    $text = $page->ExhibitPageEntry[(int) $order]->text;
-    return $text;
-}
-
-/**
- * Returns the item of the exhibit page
- *
- * @param int $order
- * @return Item
- **/
-function exhibit_builder_page_item($order, $page = null, $item = null)
-{
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
-    }
-    $item = $page->ExhibitPageEntry[(int) $order]->Item;
-    if (!$item or !$item->exists()) {
-        return null;
-    }
-    return $item;
-}
 
 /**
  * Returns the HTML code of the item drag and drop section of the exhibit form
@@ -337,8 +250,7 @@ function exhibit_builder_layout_form_text($order, $label='Text')
  **/
 function exhibit_builder_get_ex_themes() 
 {   
-    $path = EXHIBIT_THEMES_DIR;
-    $iter = new VersionedDirectoryIterator($path);
+    $iter = new VersionedDirectoryIterator(EXHIBIT_THEMES_DIR);
     $array = $iter->getValid();
     return array_combine($array,$array);
 }
@@ -350,8 +262,7 @@ function exhibit_builder_get_ex_themes()
  **/
 function exhibit_builder_get_ex_layouts()
 {
-    $path = EXHIBIT_LAYOUTS_DIR;
-    $it = new VersionedDirectoryIterator($path,false);
+    $it = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR,false);
     $array = $it->getValid();
     
     //strip off file extensions
@@ -370,7 +281,7 @@ function exhibit_builder_get_ex_layouts()
  * Returns the HTML code for an exhibit layout
  *
  * @param string $layout The layout name
- * @param bool $input Whether or not to include the input to select the layout
+ * @param boolean $input Whether or not to include the input to select the layout
  * @return string
  **/
 function exhibit_builder_exhibit_layout($layout, $input=true)
@@ -378,7 +289,7 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
     //Load the thumbnail image
     $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
     
-    $page = Zend_Registry::get('exhibit_builder_page');
+    $page = exhibit_builder_get_current_page();
     $isSelected = ($page->layout == $layout) and $layout;
     
     $html = '';
@@ -397,107 +308,33 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
 /**
  * Returns the web path to the exhibit css
  *
+ * @param string $fileName The name of the CSS file (does not include file extension)
  * @return string
  **/
-function exhibit_builder_exhibit_css($file)
+function exhibit_builder_exhibit_css($fileName)
 {
-    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
-        $ex = Zend_Registry::get('exhibit_builder_exhibit');
-        return css($file, EXHIBIT_THEMES_DIR_NAME . DIRECTORY_SEPARATOR . $ex->theme);
+    if ($exhibit = exhibit_builder_get_current_exhibit()) {
+        return css($fileName, EXHIBIT_THEMES_DIR_NAME . DIRECTORY_SEPARATOR . $exhibit->theme);
     }   
 }
 
 /**
  * Returns the web path to the layout css
  *
+ * @param string $fileName The name of the CSS file (does not include file extension)
  * @return string
  **/
-function exhibit_builder_layout_css($file='layout')
+function exhibit_builder_layout_css($fileName='layout')
 {
-    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
-        $p = Zend_Registry::get('exhibit_builder_page');
-        if (!empty($p)) {
-            return css($file, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $p->layout);
-        }
+    if ($page = exhibit_builder_get_current_page()) {
+        return css($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $page->layout);
     }
-}
-
-/**
- * Returns the HTML code of the exhibit section navigation
- *
- * @return string
- **/
-function exhibit_builder_section_nav($exhibit=null)
-{
-    if (!$exhibit) {
-        if (!($exhibit = exhibit_builder_get_current_exhibit())) {
-            return;
-        }    
-    }
-    $html = '<ul class="exhibit-section-nav">';
-    foreach ($exhibit->Sections as $key => $section) {      
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';
-    }
-    $html .= '</ul>';
-    return $html;
-}
-
-/**
- * Returns the HTML code of the exhibit page navigation
- *
- * @return string
- **/
-function exhibit_builder_page_nav($section = null, $linkTextType='title')
-{
-    $linkTextType = strtolower(trim($linkTextType));
-    if (!$section) {
-        if (!($section = exhibit_builder_get_current_section())) {
-            return;
-        }
-    }
-    if ($section->hasPages()) {
-        $html = '<ul class="exhibit-page-nav">';
-        foreach ($section->Pages as $page) {
-            switch($linkTextType) {
-                case 'order':
-                    $linkText = $page->order;
-                    break;
-                case 'title':
-                default:
-                    $linkText = $page->title;
-                    break;
-                
-            }
-            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($section->Exhibit, $section, $page)) . '">'. html_escape($linkText) .'</a></li>';
-        }
-        $html .= '</ul>';
-        return $html;
-    }
-    return false;
-}
-
-function exhibit_builder_nested_nav($exhibit = null, $show_all_pages = false)
-{
-    if (!$exhibit) {
-        if (!($exhibit = exhibit_builder_get_current_exhibit())) {
-            return;
-        }    
-    }
-    $html = '<ul class="exhibit-section-nav">';
-    foreach ($exhibit->Sections as $section) {
-        $html .= '<li class="exhibit-nested-section' . (exhibit_builder_is_current_section($section) ? ' current' : '') . '"><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a>';
-        if ($show_all_pages == true || exhibit_builder_is_current_section($section)) {
-            $html .= exhibit_builder_page_nav($section);
-        }
-        $html .= '</li>';
-    }
-    $html .= '</ul>';
-    return $html;
 }
 
 /**
  * Displays an exhibit page
  * 
+ * @param ExhibitPage $page If null, will use the current exhibit page.
  * @return void
  **/
 function exhibit_builder_render_exhibit_page($page = null)
@@ -524,30 +361,31 @@ function exhibit_builder_render_layout_form($layout)
 }
 
 /**
- * A set of linked thumbnails for the items on a given exhibit page.  Each 
+ * Returns HTML for a set of linked thumbnails for the items on a given exhibit page.  Each 
  * thumbnail is wrapped with a div of class = "exhibit-item"
  *
  * @param int $start The range of items on the page to display as thumbnails
  * @param int $end The end of the range
  * @param array $props Properties to apply to the <img> tag for the thumbnails
+ * @param string $thumbnailType The type of thumbnail to display
  * @return string HTML output
  **/
-function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props=array(), $thumbnail_type="square_thumbnail")
+function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props=array(), $thumbnailType="square_thumbnail")
 {
-    $output = '';
+    $html = '';
     for ($i=(int)$start; $i <= (int)$end; $i++) { 
         if (exhibit_builder_use_exhibit_page_item($i)) {    
-            $output .= "\n" . '<div class="exhibit-item">';
-            $thumbnail = item_image($thumbnail_type, $props);
-            $output .= exhibit_builder_link_to_exhibit_item($thumbnail);
-            $output .= '</div>' . "\n";
+            $html .= "\n" . '<div class="exhibit-item">';
+            $thumbnail = item_image($thumbnailType, $props);
+            $html .= exhibit_builder_link_to_exhibit_item($thumbnail);
+            $html .= '</div>' . "\n";
         }
     }
-    return $output;
+    return $html;
 }
 
 /**
- * Returns the html of a random featured exhibit
+ * Returns the HTML of a random featured exhibit
  *
  * @return string
  **/
@@ -573,63 +411,6 @@ function exhibit_builder_display_random_featured_exhibit()
 function exhibit_builder_random_featured_exhibit()
 {
     return get_db()->getTable('Exhibit')->findRandomFeatured();
-}
-
-/**
- * Returns a link to the next exhibit page
- *
- * @param string $text The label for the next page link
- * @param array $props
- * @return string
- **/
-function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $props=array(), $page = null)
-{
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
-    }
-    $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
-    
-    if(!isset($props['class'])) {
-        $props['class'] = 'next-page';
-    }
-    
-    // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
-    // a link to the first page on the next exhibit section, if it exists.
-    if ($nextPage = $page->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $nextPage);
-    } elseif ($nextSection = $section->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextSection);
-    }
-}
-
-/**
- * Returns a link to the previous exhibit page
- *
- * @param string $text The label for the previous page link
- * @param array $props
- * @return string
- **/
-function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array(), $page = null)
-{
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
-    }
-
-    $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
-    
-    if(!isset($props['class'])) {
-        $props['class'] = 'previous-page';
-    }
-    
-    // if page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
-    // a link to the last page on the previous exhibit section, if it exists.
-    if ($previousPage = $page->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $previousPage);
-    } elseif ($previousSection = $section->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection);
-    }      
 }
 
 /**
@@ -665,34 +446,6 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     $html .= $itemHtml;
     $html .= '</a>';
     return $html;
-}
-
-/**
- * Returns whether an exhibit page has an item
- * 
- * @todo Needs optimization (shouldn't return the item object every time it's checked).
- * @param integer
- * @return boolean
- **/
-function exhibit_builder_exhibit_page_has_item($index)
-{
-    return (boolean)exhibit_builder_page_item($index);
-}
-
-/**
- * Returns an item at the specified index of an exhibit page.  If no item exists on the page, it returns false.
- * 
- * @param integer $index The index of the page item
- * @return Item|boolean
- **/
-function exhibit_builder_use_exhibit_page_item($index)
-{
-    $item = exhibit_builder_page_item($index);
-    if ($item instanceof Item) {
-        set_current_item($item);
-        return $item;
-    }
-    return false;
 }
 
 /**
@@ -761,6 +514,8 @@ function exhibit_builder_show_exhibit_list()
 /**
  * Returns true if a given user can edit a given exhibit.
  * 
+ * @param Exhibit|null $exhibit If null, will use the current exhibit
+ * @param User|null $user If null, will use the current user.
  * @return boolean
  **/
 function exhibit_builder_user_can_edit($exhibit=null, $user = null)
