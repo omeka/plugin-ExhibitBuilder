@@ -1,11 +1,11 @@
 <?php
-    if ($page->title) {
-        $pageTitle = $actionName . ' Page: "' . $page->title . '"';
+    if ($exhibitPage->title) {
+        $exhibitPageTitle = $actionName . ' Page: "' . $exhibitPage->title . '"';
     } else {
-        $pageTitle = $actionName . ' Page';
+        $exhibitPageTitle = $actionName . ' Page';
     }
 ?>
-<?php head(array('title'=> html_escape($pageTitle), 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
@@ -45,7 +45,7 @@
 		    });
 //]]>	    
 </script>
-<h1><?php echo html_escape($pageTitle); ?></h1>
+<h1><?php echo html_escape($exhibitPageTitle); ?></h1>
 
 <div id="primary">
 <?php echo flash(); ?>
@@ -53,37 +53,37 @@
 <div id="page-builder">
 	
 	<div id="exhibits-breadcrumb">
-		<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $section['id']));?>"><?php echo html_escape($section['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
+		<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
 	</div>
     
     <?php //This item-select idv must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 	<div id="item-select"></div>
     
-    <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$page->id))); ?>">
+    <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
         <div id="page-metadata-list">
         <h2>Page Metadata</h2>
-            <p>Page Title: <?php echo html_escape($page->title); ?></p>
+            <p>Page Title: <?php echo html_escape($exhibitPage->title); ?></p>
         <?php 
-            $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$page->layout/layout.gif"); 
-        	echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($page->layout) . '"/>';
+            $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif"); 
+        	echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
         ?>
     <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
         </div>
     
 	<div id="layout-all">
 	<div id="layout-form">
-	<?php exhibit_builder_render_layout_form($page->layout); ?>
+	<?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
 	</div>
 
 	</div>
 	
 		<div id="page-submits">
 			<input id="section_form" name="section_form" type="submit" value="Save and Return to Section" /> or 
-			<input id="page_form" name="page_form" type="submit" value="Save and Add Another Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id))); ?>">Cancel</a>
+			<input id="page_form" name="page_form" type="submit" value="Save and Add Another Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a>
 		</div>
 	
 	<fieldset>
-	<?php echo __v()->formHidden('slug', $page->slug); // Put this here to fool the form into not overriding the slug. ?>	
+	<?php echo __v()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>	
 	</fieldset>
 	</form>
 </div>

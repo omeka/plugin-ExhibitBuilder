@@ -7,21 +7,18 @@
  **/
 function exhibit_builder_get_current_page()
 {
-    if (Zend_Registry::isRegistered('exhibit_builder_page')) {
-        return Zend_Registry::get('exhibit_builder_page');    
-    }
-    return false;
+    return __v()->exhibitPage;
 }
 
 /**
  * Sets the current exhibit page.
  *
- * @param ExhibitPage|null $page
+ * @param ExhibitPage|null $exhibitPage
  * @return void
  **/
-function exhibit_builder_set_current_page($page=null)
+function exhibit_builder_set_current_page($exhibitPage=null)
 {
-    Zend_Registry::set('exhibit_builder_page', $page);
+    __v()->exhibitPage = $exhibitPage;
 }
 
 /**
@@ -194,4 +191,125 @@ function exhibit_builder_use_exhibit_page_item($index)
         return $item;
     }
     return false;
+}
+
+/**
+* Gets the current exhibit page
+*
+* @return ExhibitPage|null
+**/
+function get_current_exhibit_page()
+{
+    return exhibit_builder_get_current_page();
+}
+
+/**
+ * Sets the current exhibit page
+ *
+ * @see loop_exhibit_pages()
+ * @param ExhibitPage
+ * @return void
+ **/
+function set_current_exhibit_page(ExhibitPage $exhibitPage)
+{
+   exhibit_builder_set_current_page($exhibitPage);
+}
+
+/**
+ * Sets the exhibit pages for loop
+ *
+ * @param array $exhibitPages
+ * @return void
+ **/
+function set_exhibit_pages_for_loop($exhibitPages)
+{
+    __v()->exhibitPages = $exhibitPages;
+}
+
+/**
+ * Sets the exhibit pages for loop by the exhibit section
+ *
+ * @param ExhibitSection|null $exhibitSection If null, it uses the current section
+ * @return void
+ **/
+function set_exhibit_pages_for_loop_by_section($exhibitSection = null) 
+{   
+    if (!$exhibitSection) {
+        $exhibitSection = get_current_section();
+    }
+        
+    if ($exhibitSection) {
+        set_exhibit_pages_for_loop($exhibitSection->Pages);
+    }
+}
+
+/**
+ * Get the set of exhibit pages for the current loop.
+ * 
+ * @return array
+ **/
+function get_exhibit_pages_for_loop()
+{
+    return __v()->exhibitPages;
+}
+
+/**
+ * Loops through exhibit pages assigned to the view.
+ * 
+ * @return mixed The current exhibit page
+ */
+function loop_exhibit_pages()
+{
+    return loop_records('exhibitPages', get_exhibit_pages_for_loop(), 'set_current_exhibit_page');
+}
+
+/**
+ * Determine whether or not there are any exhibit pages in the database.
+ * 
+ * @return boolean
+ **/
+function has_exhibit_pages()
+{
+    return (total_exhibit_pages() > 0);    
+}
+
+/**
+ * Determines whether there are any exhibit pages for loop.
+ * @return boolean
+ */
+function has_exhibit_pages_for_loop()
+{
+    $view = __v();
+    return ($view->exhibitPages and count($view->exhibitPages));
+}
+
+/**
+  * Returns the total number of exhibit pages in the database
+  *
+  * @return integer
+  **/
+ function total_exhibit_pages() 
+ {	
+ 	return get_db()->getTable('ExhibitPage')->count();
+ }
+
+/**
+* Gets a property from an exhibit page
+*
+* @param string $propertyName
+* @param array $options
+* @param Exhibit $exhibitPage  The exhibit page
+* @return mixed The exhibit page property value
+**/
+function exhibit_page($propertyName, $options=array(), $exhibitPage=null)
+{
+    if (!$exhibitPage) {
+        $exhibitPage = get_current_exhibit_page();
+    }
+        
+	if (property_exists(get_class($exhibitPage), $propertyName)) {
+	    return $exhibitPage->$propertyName;
+	} else {
+	    return null;
+	}
 }

@@ -33,28 +33,18 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function showitemAction()
     {
-        $item_id = $this->_getParam('item_id');
-        $slug = $this->_getParam('slug');
-
-        $exhibit = $this->_table->findBySlug($slug);
- 
-        $exhibittable = $this->_table;
-
-        $item = $this->findById($item_id, 'Item');   
-
-        $section_name = $this->_getParam('section');
-        $section = $exhibit->getSection($section_name);
+        $itemId = $this->_getParam('item_id');
+        $item = $this->findById($itemId, 'Item');   
+        
+        $exhibit = $this->findBySlug();
+        $exhibitSection = $exhibit->getSection($this->_getParam('section'));
   
         if ($item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
-     
-            exhibit_builder_set_current_exhibit($exhibit);
-            exhibit_builder_set_current_section($section);
-            exhibit_builder_set_current_page($page);
      
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
      
-            return $this->renderExhibit(compact('exhibit','item', 'section'), 'item');
+            return $this->renderExhibit(compact('exhibit', 'exhibitSection', 'item'), 'item');
         } else {
             $this->flash('This item is not used within this exhibit.');
             $this->redirect->gotoUrl('403');
@@ -81,32 +71,21 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function showAction()
     {                  
-        $exhibit = $this->findBySlug();
-                
-        $sectionSlug = $this->_getParam('section');
-
-        $section = $exhibit->getSection($sectionSlug);
+        $exhibit = $this->findBySlug();                
+        $exhibitSection = $exhibit->getSection($this->_getParam('section'));
         
-        if ($section) {
-            $pageSlug = $this->_getParam('page');
-            $page = $section->getPageBySlug($pageSlug);
-            if ($page == null) {
-                $page = $section->getPageByOrder(1);
+        if ($exhibitSection) {
+            $exhibitPage = $exhibitSection->getPageBySlug($this->_getParam('page'));
+            if (!$exhibitPage) {
+                $exhibitPage = $exhibitSection->getPageByOrder(1);
             }
         } else {
-            $section = $exhibit->getFirstSection();
+            $exhibitSection = $exhibit->getFirstSection();
         }
         
-        $layout = $page->layout;
-        
-        //Register these so that theme functions can use them
-        exhibit_builder_set_current_exhibit($exhibit);
-        exhibit_builder_set_current_section($section);
-        exhibit_builder_set_current_page($page);
-        
-        fire_plugin_hook('show_exhibit', $exhibit,$section,$page);
+        fire_plugin_hook('show_exhibit', $exhibit, $exhibitSection, $exhibitPage);
                 
-        $this->renderExhibit(compact('section','exhibit','page'));
+        $this->renderExhibit(compact('exhibit', 'exhibitSection', 'exhibitPage'));
     }
     
     protected function findBySlug($slug=null) 
@@ -125,7 +104,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function summaryAction()
     {
         $exhibit = $this->findBySlug();
-        exhibit_builder_set_current_exhibit($exhibit);
         fire_plugin_hook('show_exhibit', $exhibit);
         $this->renderExhibit(compact('exhibit'), 'summary');
     }
@@ -151,7 +129,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $exhibitThemesDir = EXHIBIT_THEMES_DIR_NAME;  
             switch ($toRender) {
                 case 'show':
-                    if ($section->hasPages()) {
+                    if ($exhibitSection->hasPages()) {
                         $renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
                     } else { 
                         throw new Exception('This section has no pages!');
@@ -235,20 +213,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function addSectionAction()
     {
         $exhibit = $this->findById();
-        $section = new ExhibitSection;
-        $section->exhibit_id = $exhibit->id;
+        $exhibitSection = new ExhibitSection;
+        $exhibitSection->exhibit_id = $exhibit->id;
         
         //Give the new section a section order (1, 2, 3, ...)
         $numSections = $exhibit->getSectionCount();
-        $section->order = $numSections + 1;
+        $exhibitSection->order = $numSections + 1;
         
         //Tell the plugin hook that we are adding a section
         $this->addSection = true;
         
-        return $this->processSectionForm($section, 'Add', $exhibit);
+        return $this->processSectionForm($exhibitSection, 'Add', $exhibit);
     }
     
-    protected function processSectionForm($section, $actionName, $exhibit=null)
+    protected function processSectionForm($exhibitSection, $actionName, $exhibit=null)
     {       
         $retVal = false;
         
@@ -260,7 +238,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             } else {
                 $toPost = $_POST;
             }
-            $retVal = $section->saveForm($toPost);
+            $retVal = $exhibitSection->saveForm($toPost);
         } catch (Omeka_Validator_Exception $e) {
             $this->flashValidationErrors($e);
         } catch (Exception $e) {
@@ -275,15 +253,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             if (array_key_exists('page_form',$_POST)) {
                 
                 //Forward to the addPage action (id is the section id)
-                $this->redirect->goto('add-page', null, null, array('id'=>$section->id));
+                $this->redirect->goto('add-page', null, null, array('id'=>$exhibitSection->id));
                 return;
                 
             } elseif(array_key_exists('section_form', $_POST)) {
-                $this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
+                $this->redirect->goto('edit-section', null, null, array('id'=>$exhibitSection->id));
             }
         }
 
-        $this->view->assign(compact('exhibit', 'section', 'actionName'));
+        $this->view->assign(compact('exhibit', 'exhibitSection', 'actionName'));
                 
         // Render the big section form script if this is not an AJAX request.
         if (!$this->getRequest()->isXmlHttpRequest() ) {
@@ -310,19 +288,19 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      **/
     public function addPageAction()
     {
-        $section = $this->findById(null,'ExhibitSection');
-        $exhibit = $section->Exhibit;
+        $exhibitSection = $this->findById(null,'ExhibitSection');
+        $exhibit = $exhibitSection->Exhibit;
                 
-        $page = new ExhibitPage;
-        $page->section_id = $section->id;       
+        $exhibitPage = new ExhibitPage;
+        $exhibitPage->section_id = $exhibitSection->id;       
                 
         //Set the order for the new page
-        $numPages = $section->getPageCount();
-        $page->order = $numPages + 1;       
+        $numPages = $exhibitSection->getPageCount();
+        $exhibitPage->order = $numPages + 1;       
         
-        $success = $this->processPageForm($page, 'Add', $section, $exhibit);
+        $success = $this->processPageForm($exhibitPage, 'Add', $exhibitSection, $exhibit);
         if ($success) {
-            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$page->id));
+            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
         $this->render('page-metadata-form');
@@ -330,21 +308,21 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function editPageContentAction()
     {
-        $page = $this->findById(null,'ExhibitPage');
-        $section = $page->Section;
-        $exhibit = $section->Exhibit;
+        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitSection = $exhibitPage->Section;
+        $exhibit = $exhibitSection->Exhibit;
 
-        $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
+        $success = $this->processPageForm($exhibitPage, 'Edit', $exhibitSection, $exhibit);
         
         
         if ($success and array_key_exists('section_form', $_POST)) {
             //Return to the section form
-            return $this->redirect->goto('edit-section', null, null, array('id'=>$section->id));
+            return $this->redirect->goto('edit-section', null, null, array('id'=>$exhibitSection->id));
         } else if ($success and array_key_exists('page_metadata_form', $_POST)) {
-           return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$page->id));
+           return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
         } else if (array_key_exists('page_form',$_POST)) {
             //Forward to the addPage action (id is the section id)
-            return $this->redirect->goto('add-page', null, null, array('id'=>$page->Section->id));
+            return $this->redirect->goto('add-page', null, null, array('id'=>$exhibitPage->Section->id));
         }
         
         $this->render('page-content-form');
@@ -352,28 +330,25 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function editPageMetadataAction()
     {
-        $page = $this->findById(null,'ExhibitPage');
-        $section = $page->Section;
-        $exhibit = $section->Exhibit;
+        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitSection = $exhibitPage->Section;
+        $exhibit = $exhibitSection->Exhibit;
         
-        $success = $this->processPageForm($page, 'Edit', $section, $exhibit);
+        $success = $this->processPageForm($exhibitPage, 'Edit', $exhibitSection, $exhibit);
         
         if ($success) {
-            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$page->id));
+            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
         
         $this->render('page-metadata-form');
     }
 
-    protected function processPageForm($page, $actionName, $section=null, $exhibit=null) 
-    {       
-        //Register the page var so that theme functions can use it
-        exhibit_builder_set_current_page($page);
-        
-        $this->view->assign(compact('exhibit', 'section','page', 'actionName'));        
+    protected function processPageForm($exhibitPage, $actionName, $exhibitSection=null, $exhibit=null) 
+    {        
+        $this->view->assign(compact('exhibit', 'exhibitSection', 'exhibitPage', 'actionName'));        
         if (!empty($_POST)) {
             try {
-                $success = $page->saveForm($_POST);
+                $success = $exhibitPage->saveForm($_POST);
             } catch (Exception $e) {
                 $this->flash($e->getMessage());
             }
@@ -387,19 +362,19 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      **/
     public function editSectionAction()
     {
-        $section = $this->findById(null, 'ExhibitSection');
-        $exhibit = $section->Exhibit;
-        return $this->processSectionForm($section, 'Edit', $exhibit);
+        $exhibitSection = $this->findById(null, 'ExhibitSection');
+        $exhibit = $exhibitSection->Exhibit;
+        return $this->processSectionForm($exhibitSection, 'Edit', $exhibit);
     }
     
     public function deleteSectionAction()
     {
         //Delete the section and re-order the rest of the sections in the exhibit
         
-        $section = $this->findById(null,'ExhibitSection');
-        $exhibit = $section->Exhibit;
+        $exhibitSection = $this->findById(null,'ExhibitSection');
+        $exhibit = $exhibitSection->Exhibit;
                 
-        $section->delete();
+        $exhibitSection->delete();
         
         // If we are making an AJAX request to delete a section, return the XHTML for the list partial
         if ($this->getRequest()->isXmlHttpRequest()) {
@@ -416,16 +391,16 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      **/
     public function deletePageAction()
     {
-        $page = $this->findById(null,'ExhibitPage');
-        $section = $page->Section;
+        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitSection = $exhibitPage->Section;
                 
-        $page->delete();
+        $exhibitPage->delete();
         
         if ($this->getRequest()->isXmlHttpRequest()) {
-            $this->view->section = $section;
+            $this->view->exhibitSection = $exhibitSection;
             $this->render('page-list');
         } else {
-            $this->redirect->goto('edit-section', null, null, array('id' => $section->id) );
+            $this->redirect->goto('edit-section', null, null, array('id' => $exhibitSection->id) );
         }
     }
     
@@ -439,7 +414,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function pageListAction()
     {
-        $this->view->section = $this->findById(null, 'ExhibitSection');
+        $this->view->exhibitSection = $this->findById(null, 'ExhibitSection');
         $this->render('page-list');
     }
     

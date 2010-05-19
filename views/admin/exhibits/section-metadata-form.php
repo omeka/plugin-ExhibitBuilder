@@ -1,11 +1,11 @@
 <?php
-if ($section->title) {
-    $sectionTitle = $actionName . ' Section: "' . $section->title . '"';
+if ($exhibitSection->title) {
+    $exhibitSectionTitle = $actionName . ' Section: "' . $exhibitSection->title . '"';
 } else {
-    $sectionTitle = $actionName . ' Section';
+    $exhibitSectionTitle = $actionName . ' Section';
 }
 ?>
-<?php head(array('title'=> html_escape($sectionTitle), 'bodyclass'=>'exhibits')); ?>
+<?php head(array('title'=> html_escape($exhibitSectionTitle), 'bodyclass'=>'exhibits')); ?>
 <?php echo js('listsort'); ?>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
@@ -20,7 +20,7 @@ if ($section->title) {
 		listSorter.form = $('section-metadata-form');
 		listSorter.editUri = <?php echo Zend_Json::encode($_SERVER['REQUEST_URI']); ?>;
 		listSorter.partialUri = <?php echo Zend_Json::encode(uri('exhibits/page-list')); ?>;
-		listSorter.recordId = <?php echo Zend_Json::encode($section->id); ?>;
+		listSorter.recordId = <?php echo Zend_Json::encode($exhibitSection->id); ?>;
 		listSorter.tag = 'li';
 		listSorter.handle = 'handle';
 		listSorter.overlap = 'vertical';
@@ -37,7 +37,7 @@ if ($section->title) {
 //]]>
 </script>
 
-<h1><?php echo html_escape($sectionTitle); ?></h1>
+<h1><?php echo html_escape($exhibitSectionTitle); ?></h1>
 
 <div id="primary">
 	<div id="exhibits-breadcrumb">
@@ -53,14 +53,14 @@ if ($section->title) {
 	<fieldset>
 		<legend>Section Metadata</legend>
 		
-	<div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $section->title, 'Title for the Section'); ?></div>
-		<div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $section->slug, 'URL Slug (optional)'); ?></div>
-	<div class="field"><?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $section->description, 'Section Description'); ?></div>	
+	<div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitSection->title, 'Title for the Section'); ?></div>
+		<div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitSection->slug, 'URL Slug (optional)'); ?></div>
+	<div class="field"><?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $exhibitSection->description, 'Section Description'); ?></div>	
 
 	</fieldset>
 		<fieldset id="section-pages">
 			<legend>Pages in this Section</legend>	
-	<?php if (exhibit_builder_section_has_pages($section) ): ?>
+	<?php if (exhibit_builder_section_has_pages($exhibitSection) ): ?>
 		<p>To reorder pages, click and drag the page thumbnail to the left or right.</p>
 			<ul id="page-list">
 			<?php common('page-list', compact('section'), 'exhibits'); ?>
@@ -73,7 +73,7 @@ if ($section->title) {
 
 	<fieldset>
 		<p><input type="submit" name="section_form" value="Save Changes" /> or 
-		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$section->exhibit_id))); ?>">Cancel</a></p>
+		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$exhibitSection->exhibit_id))); ?>">Cancel</a></p>
 	</fieldset>
 </form>
 </div>

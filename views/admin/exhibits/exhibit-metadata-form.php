@@ -2,7 +2,7 @@
 if ($exhibit->title) {
     $exhibitTitle = $actionName . ' Exhibit: "' . $exhibit->title . '"';
 } else {
-    $sectionTitle = $actionName . ' Exhibit';
+    $exhibitSectionTitle = $actionName . ' Exhibit';
 }
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>

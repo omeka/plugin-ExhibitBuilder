@@ -1,6 +1,6 @@
 <?php exhibit_builder_exhibit_head(array('bodyclass' => 'exhibits')); ?>
 
-<h2><?php echo html_escape($section->title); ?></h2>	
+<h2><?php echo html_escape(exhibit_section('title')); ?></h2>	
 		
 <div id="primary">
 	

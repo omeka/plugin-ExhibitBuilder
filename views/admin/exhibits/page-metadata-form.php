@@ -38,14 +38,14 @@
 <form method="post" id="choose-layout">
 	
     <div id="exhibits-breadcrumb">
-    	<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $section['id']));?>"><?php echo html_escape($section['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
+    	<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
     </div>	
 
     <fieldset>
         <legend>Page Metadata</legend>
         <?php echo flash(); ?>
-        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $page->title, 'Title for the Page'); ?></div>
-        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $page->slug, 'URL Slug (optional)'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitPage->title, 'Title for the Page'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitPage->slug, 'URL Slug (optional)'); ?></div>
     </fieldset>		
 		
 	<fieldset id="layouts">
@@ -53,8 +53,8 @@
 		
 		<div id="chosen_layout">
 		<?php
-		if ($page->layout) {
-	        echo exhibit_builder_exhibit_layout($page->layout, false);
+		if ($exhibitPage->layout) {
+	        echo exhibit_builder_exhibit_layout($exhibitPage->layout, false);
 		} else {
 		    echo '<p>' . html_escape('Choose a layout by selecting a thumbnail on the right.') . '</p>';
 		}
@@ -72,7 +72,7 @@
 	</fieldset> 
 	
 	<p><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
-	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$page->section_id))); ?>">Cancel</a></p>
+	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a></p>
 	
 	
 </form>

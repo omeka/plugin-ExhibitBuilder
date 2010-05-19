@@ -25,7 +25,7 @@
     
 	
 
-	<?php if(count($item->Tags)): ?>
+	<?php if (item_has_tags()): ?>
 	<div class="tags">
 		<h3>Tags:</h3>
 	   <?php echo item_tags_as_string(); ?>	

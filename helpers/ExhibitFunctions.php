@@ -7,10 +7,7 @@
  **/
 function exhibit_builder_get_current_exhibit()
 {
-    if (Zend_Registry::isRegistered('exhibit_builder_exhibit')) {
-        return Zend_Registry::get('exhibit_builder_exhibit');
-    }
-    return false;
+    return __v()->exhibit;
 }
 
 /**
@@ -21,7 +18,7 @@ function exhibit_builder_get_current_exhibit()
  **/
 function exhibit_builder_set_current_exhibit($exhibit=null)
 {
-    Zend_Registry::set('exhibit_builder_exhibit', $exhibit);
+    __v()->exhibit = $exhibit;
 }
 
 /**
@@ -39,15 +36,18 @@ function exhibit_builder_is_current_exhibit($exhibit)
 /**
  * Returns a link to the exhibit
  *
- * @param Exhibit $exhibit
+ * @param Exhibit $exhibit|null If null, it uses the current exhibit
  * @param string|null $text The text of the link
  * @param array $props
  * @param ExhibitSection|null $section
  * @param ExhibitPage|null $page
- * @return boolean
+ * @return string
  **/
-function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $section=null, $page = null)
+function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array(), $section=null, $page = null)
 {   
+    if (!$exhibit) {
+        $exhibit = exhibit_builder_get_current_exhibit();
+    }
     $uri = exhibit_builder_exhibit_uri($exhibit, $section, $page);
     $text = !empty($text) ? $text : $exhibit->title;
     return '<a href="' . html_escape($uri) .'" '. _tag_attributes($props) . '>' . $text . '</a>';
@@ -56,14 +56,17 @@ function exhibit_builder_link_to_exhibit($exhibit, $text=null, $props=array(), $
 /**
  * Returns a URI to the exhibit
  *
- * @param Exhibit $exhibit
+ * @param Exhibit $exhibit|null If null, it uses the current exhibit.
  * @param ExhibitSection|null $section
  * @param ExhibitPage|null $page 
  * @internal This relates to: ExhibitsController::showAction(), ExhibitsController::summaryAction()
  * @return string
  **/
-function exhibit_builder_exhibit_uri($exhibit, $section=null, $page=null)
+function exhibit_builder_exhibit_uri($exhibit=null, $section=null, $page=null)
 {
+    if (!$exhibit) {
+        $exhibit = exhibit_builder_get_current_exhibit();
+    }
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
     $sectionSlug = ($section instanceof ExhibitSection) ? $section->slug : $section;
     $pageSlug = ($page instanceof ExhibitPage) ? $page->slug : $page;
@@ -528,4 +531,124 @@ function exhibit_builder_user_can_edit($exhibit=null, $user = null)
     }
     return (($exhibit->wasAddedBy($user) && get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editSelf')) || 
          get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editAll'));
+}
+
+/**
+* Gets the current exhibit
+*
+* @return Exhibit|null
+**/
+function get_current_exhibit()
+{
+    return exhibit_builder_get_current_exhibit();
+}
+
+/**
+ * Sets the current exhibit
+ *
+ * @see loop_exhibits()
+ * @param Exhibit
+ * @return void
+ **/
+function set_current_exhibit(Exhibit $exhibit)
+{
+   exhibit_builder_set_current_exhibit($exhibit);
+}
+
+/**
+ * Sets the exhibits for loop
+ *
+ * @param array $exhibits
+ * @return void
+ **/
+function set_exhibits_for_loop($exhibits)
+{
+    __v()->exhibits = $exhibits;
+}
+
+/**
+ * Get the set of exhibits for the current loop.
+ * 
+ * @return array
+ **/
+function get_exhibits_for_loop()
+{
+    return __v()->exhibits;
+}
+
+/**
+ * Loops through exhibits assigned to the view.
+ * 
+ * @return mixed The current exhibit
+ */
+function loop_exhibits()
+{
+    return loop_records('exhibits', get_exhibits_for_loop(), 'set_current_exhibit');
+}
+
+/**
+ * Determine whether or not there are any exhibits in the database.
+ * 
+ * @return boolean
+ **/
+function has_exhibits()
+{
+    return (total_exhibits() > 0);    
+}
+
+/**
+ * Determines whether there are any exhibits for loop.
+ * @return boolean
+ */
+function has_exhibits_for_loop()
+{
+    $view = __v();
+    return ($view->exhibits and count($view->exhibits));
+}
+
+/**
+  * Returns the total number of exhibits in the database
+  *
+  * @return integer
+  **/
+ function total_exhibits() 
+ {	
+ 	return get_db()->getTable('Exhibit')->count();
+ }
+
+/**
+* Gets a property from an exhibit
+*
+* @param string $propertyName
+* @param array $options
+* @param Exhibit $exhibit  The exhibit
+* @return mixed The exhibit property value
+**/
+function exhibit($propertyName, $options=array(), $exhibit=null)
+{
+    if (!$exhibit) {
+        $exhibit = get_current_exhibit();
+    }
+        
+	if (property_exists(get_class($exhibit), $propertyName)) {
+	    return $exhibit->$propertyName;
+	} else {
+	    return null;
+	}
+}
+
+/**
+* Returns a link to an exhibit, exhibit section, or exhibit page.
+* @uses exhibit_builder_link_to_exhibit
+*
+* @param string|null $text The text of the link
+* @param array $props
+* @param ExhibitSection|null $section
+* @param ExhibitPage|null $page
+* @param Exhibit $exhibit|null If null, it uses the current exhibit
+* @return string
+**/
+function link_to_exhibit($text = null, $props = array(), $section=null, $page=null, $exhibit=null)
+{
+	return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $page);
 }

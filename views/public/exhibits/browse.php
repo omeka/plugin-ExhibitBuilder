@@ -10,13 +10,15 @@
     <div class="pagination"><?php echo pagination_links(); ?></div>
 	
     <div id="exhibits">	
-    <?php foreach( $exhibits as $key=>$exhibit ): ?>
-    	<div class="exhibit <?php if($key%2==1) echo ' even'; else echo ' odd'; ?>">
-    		<h2><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h2>
-    		<div class="description"><?php echo $exhibit->description; ?></div>
-    		<p class="tags"><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></p>
+    <?php $exhibitCount = 0; ?>
+    <?php while(loop_exhibits()): ?>
+    	<?php $exhibitCount++; ?>
+    	<div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
+    		<h2><?php echo link_to_exhibit(); ?></h2>
+    		<div class="description"><?php echo exhibit('description'); ?></div>
+    		<p class="tags"><?php echo tag_string(get_current_exhibit(), uri('exhibits/browse/tag/')); ?></p>
     	</div>
-    <?php endforeach; ?>
+    <?php endwhile; ?>
     </div>
     
     <div class="pagination"><?php echo pagination_links(); ?></div>

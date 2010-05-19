@@ -29,7 +29,7 @@ class ExhibitSectionTable extends Omeka_Db_Table
        $select->limit(1);
 
        if (!$exhibit) {
-           $exhibit = Zend_Registry::get('exhibit_builder_exhibit');
+           $exhibit = exhibit_builder_get_current_exhibit();
        }
 
        switch ($position) {
