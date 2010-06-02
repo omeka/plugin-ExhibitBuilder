@@ -124,35 +124,29 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         extract($vars);
         $this->view->assign($vars);
         if (!empty($exhibit->theme)) {
-                    
-            //Hack to get just the directory name for the exhibit themes
-            $exhibitThemesDir = EXHIBIT_THEMES_DIR_NAME;  
-            switch ($toRender) {
-                case 'show':
-                    if ($exhibitSection->hasPages()) {
-                        $renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'show.php';
-                    } else { 
-                        throw new Exception('This section has no pages!');
-                    }
-                    break;
-                case 'summary':
-                    $renderPath = $exhibitThemesDir. DIRECTORY_SEPARATOR . $exhibit->theme . DIRECTORY_SEPARATOR . 'summary.php';
-                    break;
-                case 'item':
-                    $renderPath = $exhibitThemesDir.DIRECTORY_SEPARATOR.$exhibit->theme.DIRECTORY_SEPARATOR.'item.php';
-                    break;
-                default:
-                    throw new Exception( 'Hey, you gotta render something!' );
-                    break;
-            }
-            return $this->renderScript($renderPath);
+            /**
+             * Define some paths we need. 
+             * $exhibitThemePhysicalPath - The physical path to the exhibit's theme
+             * $exhibitThemeWebPath - The web path to the exhibit's theme
+             */
+            $exhibitThemePhysicalPath = PUBLIC_THEME_DIR.DIRECTORY_SEPARATOR.$exhibit->theme;
+            $exhibitThemeWebPath = WEB_PUBLIC_THEME.DIRECTORY_SEPARATOR.$exhibit->theme;
             
-        } else {
-            if (!in_array($toRender, array('show', 'summary', 'item'))) {
-                throw new Exception( 'You gotta render some stuff because whatever!' );
-            }
-            return $this->render($toRender);
+            /* 
+             * This tells the view where the our exhibit theme's scripts and 
+             * assets are. Otherwise the view will use scripts and assets from 
+             * the public theme.
+             */
+            $this->view->addScriptPath($exhibitThemePhysicalPath);
+            $this->view->addAssetPath($exhibitThemePhysicalPath, $exhibitThemeWebPath);
         }
+
+        /* If we don't pass a valid value to $toRender, thow an exception. */
+        if (!in_array($toRender, array('show', 'summary', 'item'))) {
+            throw new Exception( 'You gotta render some stuff because whatever!' );
+        }
+        return $this->render($toRender);
+        
     }
     
     public function addAction()
