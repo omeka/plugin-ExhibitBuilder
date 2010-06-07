@@ -63,7 +63,7 @@ if ($exhibitSection->title) {
 	<?php if (exhibit_builder_section_has_pages($exhibitSection) ): ?>
 		<p>To reorder pages, click and drag the page thumbnail to the left or right.</p>
 			<ul id="page-list">
-			<?php common('page-list', compact('section'), 'exhibits'); ?>
+			<?php common('page-list', compact('exhibitSection'), 'exhibits'); ?>
 
 			</ul>
 	<?php else: ?>
