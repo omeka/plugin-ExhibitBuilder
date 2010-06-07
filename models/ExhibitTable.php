@@ -15,6 +15,7 @@ class ExhibitTable extends Omeka_Db_Table
     public function applySearchFilters($select, $params)
     {        
         $db = $this->getDb();
+        
         foreach($params as $paramName => $paramValue) {
             switch($paramName) {
                 case 'tag':
@@ -41,6 +42,12 @@ class ExhibitTable extends Omeka_Db_Table
                             //$select->order("added DESC");
                             break;                            
                     }
+                    break;
+                case 'public':
+                    $this->filterByPublic($select, $params['public']);
+                    break;
+                case 'featured':
+                    $this->filterByFeatured($select, $params['featured']);
                     break;
             }
         }
@@ -128,6 +135,44 @@ class ExhibitTable extends Omeka_Db_Table
     protected function _getColumnPairs()
     {        
         return array('e.id', 'e.title');
+    }
+    
+    /**
+     * Apply a filter to the exhibits based on whether or not they are public
+     * 
+     * @param Zend_Db_Select
+     * @param boolean Whether or not to retrieve only public exhibits
+     * @return void
+     **/
+    public function filterByPublic($select, $isPublic)
+    {         
+        $isPublic = (bool) $isPublic; // this makes sure that empty strings and unset parameters are false
+
+        //Force a preview of the public collections
+        if ($isPublic) {
+            $select->where('e.public = 1');
+        } else {
+            $select->where('e.public = 0');
+        }
+    }
+    
+    /**
+     * Apply a filter to the exhibits based on whether or not they are featured
+     * 
+     * @param Zend_Db_Select
+     * @param boolean Whether or not to retrieve only public exhibits
+     * @return void
+     **/
+    public function filterByFeatured($select, $isFeatured)
+    {
+        $isFeatured = (bool) $isFeatured; // this make sure that empty strings and unset parameters are false
+        
+        //filter items based on featured (only value of 'true' will return featured collections)
+        if ($isFeatured) {
+            $select->where('e.featured = 1');
+        } else {
+            $select->where('e.featured = 0');
+        }     
     }
 }
  
