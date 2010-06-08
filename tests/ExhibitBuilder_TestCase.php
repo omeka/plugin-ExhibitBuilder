@@ -63,21 +63,26 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
         }
     	
     	$exhibit->save();
+    	
+    	return $exhibit;
 	}
 	
 	protected function _createNewExhibits($numberPublicNotFeatured = 5, $numberPublicFeatured = 5, $numberPrivateNotFeatured = 5, $numberPrivateFeatured = 5) 
 	{
+	    $exhibits = array();
         for ($i=0; $i < $numberPublicNotFeatured; $i++) {
-            $this->_createNewExhibit(1, 0, 'Test Public Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'punf' . $i);
+            $exhibits[] = $this->_createNewExhibit(1, 0, 'Test Public Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'punf' . $i);
         }
         for ($i=0; $i < $numberPublicFeatured; $i++) {
-            $this->_createNewExhibit(1, 1, 'Test Public Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'puf' . $i);   
+            $exhibits[] = $this->_createNewExhibit(1, 1, 'Test Public Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'puf' . $i);   
         }
         for ($i=0; $i < $numberPrivateNotFeatured; $i++) {
-            $this->_createNewExhibit(0, 0, 'Test Private Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prnf' . $i);
+            $exhibits[] = $this->_createNewExhibit(0, 0, 'Test Private Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prnf' . $i);
         }
         for ($i=0; $i < $numberPrivateFeatured; $i++) {
-            $this->_createNewExhibit(0, 1, 'Test Private Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prf' . $i);
+            $exhibits[] = $this->_createNewExhibit(0, 1, 'Test Private Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prf' . $i);
         }
+        
+        return $exhibits;
 	}
 }
