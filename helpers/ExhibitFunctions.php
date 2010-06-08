@@ -398,7 +398,8 @@ function exhibit_builder_display_random_featured_exhibit()
     $featuredExhibit = exhibit_builder_random_featured_exhibit();
     $html .= '<h2>Featured Exhibit</h2>';
     if ($featuredExhibit) {
-       $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>';
+       $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>'."\n";
+       $html .= '<p>'.snippet_by_word_count(exhibit('description', array(), $featuredExhibit)).'</p>';
     } else {
        $html .= '<p>You have no featured exhibits.</p>';
     }
