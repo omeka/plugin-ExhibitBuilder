@@ -282,19 +282,31 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase
     /**
      * Tests whether loop_exhibits() loops through the correct exhibits.
      *
-     * @uses loop_exhibits()
+     * @uses loop_exhibits(), get_current_exhibit()
      **/
     public function testLoopExhibits()
     { 
+        $exhibitIds = array();
+        
         $exhibit1 = $this->_createNewExhibit(1, 0, 'Exhibit Title 1', 'Exhibit Description 1', 'Jim Safley');
+        $exhibitIds[] = $exhibit1->id;
+        
         $exhibit2 = $this->_createNewExhibit(1, 0, 'Exhibit Title 2', 'Exhibit Description 2', 'Jim Safley');
+        $exhibitIds[] = $exhibit2->id;
+
         $exhibit3 = $this->_createNewExhibit(1, 0, 'Exhibit Title 3', 'Exhibit Description 3', 'Jim Safley');
+        $exhibitIds[] = $exhibit3->id;
+        
         $exhibit4 = $this->_createNewExhibit(1, 0, 'Exhibit Title 4', 'Exhibit Description 4', 'Jim Safley');
+        $exhibitIds[] = $exhibit4->id;
+
 
         $this->dispatch('exhibits');
         $exhibitCount = 0;
         while(loop_exhibits()) {
             $exhibitCount++;
+            $exhibit = get_current_exhibit();
+            $this->assertTrue(in_array($exhibit->id, $exhibitIds));
         }
         $this->assertEquals(4, $exhibitCount);
     }
@@ -317,5 +329,35 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase
         $exhibit2 = $this->_createNewExhibit(1, 0, 'Exhibit Title 2', 'Exhibit Description 2', 'Jim Safley');
         $exhibitLink = link_to_exhibit('Wow', array('class'=>'zany', 'id' => 'wowlink'), null, null, $exhibit2);
         $this->assertThat($exhibitLink, $this->stringContains('exhibits/show/exhibit-title-2" class="zany" id="wowlink">Wow</a>'));
+    }
+    
+    public function testSetExhibitsForLoop()
+    {
+        $exhibits = $this->_createNewExhibits();
+        $exhibitIds = array();
+        foreach($exhibits as $exhibit) {
+            $exhibitIds[] = $exhibit->id;
+        }
+        
+        $this->dispatch('exhibits');
+        $currentExhibits = get_exhibits_for_loop();
+        $this->assertEquals(10, count($currentExhibits));
+        foreach($currentExhibits as $exhibit) {
+            $this->assertTrue(in_array($exhibit->id, $exhibitIds));
+        }
+        
+        $exhibits2 = $this->_createNewExhibits();
+        $exhibitIds2 = array();
+        foreach($exhibits2 as $exhibit) {
+            $exhibitIds2[] = $exhibit->id;
+        }
+        
+        set_exhibits_for_loop($exhibits2);
+        
+        $currentExhibits = get_exhibits_for_loop();
+        $this->assertEquals(count($exhibits2), count($currentExhibits));
+        foreach($currentExhibits as $exhibit) {
+            $this->assertTrue(in_array($exhibit->id, $exhibitIds2));
+        }
     }
 }
