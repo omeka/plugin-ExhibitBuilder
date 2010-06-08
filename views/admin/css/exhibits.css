@@ -37,6 +37,16 @@ table#exhibits {
     text-align:right;
 }
 
+/* Exhibit Save Changes */
+#exhibit-builder-save-changes {
+    text-align:right;
+}
+#exhibit-builder-save-changes input {
+    display:inline;
+    float:none;
+    margin:0;
+    line-height:1;
+}
 
 /* Exhibit Metadata */
 #section-list-container {

@@ -72,7 +72,7 @@ if ($exhibitSection->title) {
 	</fieldset>
 
 	<fieldset>
-		<p><input type="submit" name="section_form" value="Save Changes" /> or 
+		<p id="exhibit-builder-save-changes"><input type="submit" name="section_form" value="Save Changes" /> or 
 		    <input type="submit" name="page_form" id="page_form" value="Add Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit', 'id'=>$exhibitSection->exhibit_id))); ?>">Cancel</a></p>
 	</fieldset>
 </form>

@@ -70,10 +70,10 @@
 		?>
 		</div>
 	</fieldset> 
-	
-	<p><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
+	<fieldset>
+	<p id="exhibit-builder-save-changes"><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
 	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a></p>
-	
+	</fieldset>
 	
 </form>
 </div>

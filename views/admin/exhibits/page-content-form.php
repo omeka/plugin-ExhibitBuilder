@@ -76,12 +76,12 @@
 	</div>
 
 	</div>
-	
-		<div id="page-submits">
+    <fieldset>
+		<p id="exhibit-builder-save-changes">
 			<input id="section_form" name="section_form" type="submit" value="Save and Return to Section" /> or 
 			<input id="page_form" name="page_form" type="submit" value="Save and Add Another Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a>
-		</div>
-	
+		</p>
+	</fieldset>
 	<fieldset>
 	<?php echo __v()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>	
 	</fieldset>

@@ -2,7 +2,7 @@
 if ($exhibit->title) {
     $exhibitTitle = $actionName . ' Exhibit: "' . $exhibit->title . '"';
 } else {
-    $exhibitSectionTitle = $actionName . ' Exhibit';
+    $exhibitTitle = $actionName . ' Exhibit';
 }
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
@@ -104,7 +104,7 @@ if ($exhibit->title) {
         </fieldset>
         
         <fieldset>
-        <p><input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
+        <p id="exhibit-builder-save-changes"><input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
             <input type="submit" name="add_section" value="Add Section" /> or 
             <a href="<?php echo html_escape(uri('exhibits')); ?>" class="cancel">Cancel</a></p>
         </fieldset>
