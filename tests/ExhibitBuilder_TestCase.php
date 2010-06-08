@@ -49,7 +49,7 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
         add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');     
     }
     
-    protected function _createNewExhibit($isPublic, $isFeatured, $title, $description, $credits)
+    protected function _createNewExhibit($isPublic, $isFeatured, $title, $description, $credits, $slug='')
 	{
 		$exhibit = new Exhibit;
 		$exhibit->public = $isPublic ? 1 : 0;
@@ -57,19 +57,27 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
 		$exhibit->title = $title;
     	$exhibit->description = $description;
     	$exhibit->credits = $credits;
+        
+        if ($slug != '') {
+            $exhibit->slug = $slug;
+        }
+    	
     	$exhibit->save();
 	}
 	
-	protected function _createNewExhibits($numberPublic = 5, $numberPrivate = 5, $numberPublicFeatured = 5) 
+	protected function _createNewExhibits($numberPublicNotFeatured = 5, $numberPublicFeatured = 5, $numberPrivateNotFeatured = 5, $numberPrivateFeatured = 5) 
 	{
-        for ($i=0; $i < $numberPublic; $i++) {
-            $this->_createNewExhibit(1, 0, 'Test Public Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i);
+        for ($i=0; $i < $numberPublicNotFeatured; $i++) {
+            $this->_createNewExhibit(1, 0, 'Test Public Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'punf' . $i);
         }
         for ($i=0; $i < $numberPublicFeatured; $i++) {
-            $this->_createNewExhibit(1, 1, 'Test Public Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i);   
+            $this->_createNewExhibit(1, 1, 'Test Public Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'puf' . $i);   
         }
-        for ($i=0; $i < $numberPrivate; $i++) {
-            $this->_createNewExhibit(0, 0, 'Test Private Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i);
+        for ($i=0; $i < $numberPrivateNotFeatured; $i++) {
+            $this->_createNewExhibit(0, 0, 'Test Private Not Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prnf' . $i);
+        }
+        for ($i=0; $i < $numberPrivateFeatured; $i++) {
+            $this->_createNewExhibit(0, 1, 'Test Private Featured Exhibit '.$i, 'Description for '.$i, 'Credits for '.$i, 'prf' . $i);
         }
 	}
 }

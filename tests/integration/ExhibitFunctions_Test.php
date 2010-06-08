@@ -1,16 +1,17 @@
 <?php
-
-class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
+class ExhibitFunctions_Test extends ExhibitBuilder_TestCase 
+{
     
     /**
      * Tests whether exhibit_builder_get_exhibits returns all available exhibits.
      *
      * @uses exhibit_builder_get_exhibits
      **/
-    public function testCanGetExhibits() {
+    public function testCanGetExhibits() 
+    {
         $this->_createNewExhibits();
         $exhibits = exhibit_builder_get_exhibits();
-        $this->assertEquals(15, count($exhibits));
+        $this->assertEquals(20, count($exhibits));
     }
     
     /**
@@ -18,10 +19,14 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_get_exhibits
      **/
-    public function testCanGetPublicExhibits() {        
+    public function testCanGetPublicExhibits() 
+    {        
         $this->_createNewExhibits();
         $exhibits = exhibit_builder_get_exhibits(array('public' => 1));
         $this->assertEquals(10, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertTrue((bool)$exhibit->public);
+        }
     }
     
     /**
@@ -29,10 +34,14 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_get_exhibits
      **/
-    public function testCanGetPrivateExhibits() {        
+    public function testCanGetPrivateExhibits() 
+    {        
         $this->_createNewExhibits();
         $exhibits = exhibit_builder_get_exhibits(array('public' => 0));
-        $this->assertEquals(5, count($exhibits));
+        $this->assertEquals(10, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertFalse((bool)$exhibit->public);
+        }
     }
     
     /**
@@ -40,10 +49,63 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_get_exhibits
      **/
-    public function testCanGetPublicFeaturedExhibits() {
+    public function testCanGetPublicFeaturedExhibits() 
+    {
         $this->_createNewExhibits();
         $exhibits = exhibit_builder_get_exhibits(array('public' => 1, 'featured' => 1));
         $this->assertEquals(5, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertTrue((bool)$exhibit->public);
+            $this->assertTrue((bool)$exhibit->featured);
+        }
+    }
+    
+    /**
+     * Tests whether exhibit_builder_get_exhibits returns all public and not featured exhibits.
+     *
+     * @uses exhibit_builder_get_exhibits
+     **/
+    public function testCanGetPublicNotFeaturedExhibits() 
+    {
+        $this->_createNewExhibits();
+        $exhibits = exhibit_builder_get_exhibits(array('public' => 1, 'featured' => 0));
+        $this->assertEquals(5, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertTrue((bool)$exhibit->public);
+            $this->assertFalse((bool)$exhibit->featured);
+        }
+    }
+    
+    /**
+     * Tests whether exhibit_builder_get_exhibits returns all private and not featured exhibits.
+     *
+     * @uses exhibit_builder_get_exhibits
+     **/
+    public function testCanGetPrivateNotFeaturedExhibits() 
+    {
+        $this->_createNewExhibits();
+        $exhibits = exhibit_builder_get_exhibits(array('public' => 0, 'featured' => 0));
+        $this->assertEquals(5, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertFalse((bool)$exhibit->public);
+            $this->assertFalse((bool)$exhibit->featured);
+        }
+    }
+    
+    /**
+     * Tests whether exhibit_builder_get_exhibits returns all private and featured exhibits.
+     *
+     * @uses exhibit_builder_get_exhibits
+     **/
+    public function testCanGetPrivateFeaturedExhibits() 
+    {
+        $this->_createNewExhibits();
+        $exhibits = exhibit_builder_get_exhibits(array('public' => 0, 'featured' => 1));
+        $this->assertEquals(5, count($exhibits));
+        foreach($exhibits as $exhibit) {
+            $this->assertFalse((bool)$exhibit->public);
+            $this->assertTrue((bool)$exhibit->featured);
+        }
     }
     
     /**
@@ -51,11 +113,18 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses total_exhibits
      **/
-    public function testCanGetExhibitCount() {
-        $this->_createNewExhibits();
-        $count = total_exhibits();
+    public function testCanGetExhibitCount() 
+    {
+        $publicNotFeaturedExhibitCount = 2;
+        $publicFeaturedExhibitCount = 3;
+        $privateNotFeaturedExhibitCount = 4;
+        $privateFeaturedExhibitCount = 5;
+
+        $expectedTotalCount = $publicNotFeaturedExhibitCount + $publicFeaturedExhibitCount + $privateNotFeaturedExhibitCount + $privateFeaturedExhibitCount;
         
-        $this->assertEquals(15, $count); 
+        $this->_createNewExhibits($publicNotFeaturedExhibitCount, $publicFeaturedExhibitCount, $privateNotFeaturedExhibitCount, $privateFeaturedExhibitCount);
+        $actualTotalCount = total_exhibits();
+        $this->assertEquals($expectedTotalCount, $actualTotalCount); 
     }
     
     /**
@@ -63,7 +132,8 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_recent_exhibits()
      **/
-    public function testCanGetRecentExhibits() {
+    public function testCanGetRecentExhibits() 
+    {
         $this->_createNewExhibits();
         
         $recentExhibits = exhibit_builder_recent_exhibits();
@@ -78,7 +148,8 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses has_exhibits
      **/
-    public function testHasExhibits() {
+    public function testHasExhibits() 
+    {
         $this->_createNewExhibits();
         $this->assertTrue(has_exhibits(), 'No exhibits!');
     }
@@ -88,7 +159,8 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses has_exhibits_for_loop
      **/
-    public function testHasExhibitsForLoop() {
+    public function testHasExhibitsForLoop() 
+    {
         $this->_createNewExhibits();
         $this->dispatch('exhibits');
         $this->assertTrue(has_exhibits_for_loop(), 'No exhibits for loop!');
@@ -100,12 +172,16 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_get_current_exhibit
      **/
-    public function testGetCurrentExhibit() {
-        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit description.', 'Jim Safley');
+    public function testGetCurrentExhibit() 
+    {
+        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit Description', 'Jim Safley');
         $this->dispatch('exhibits/show/exhibit-title');
         $exhibit = exhibit_builder_get_current_exhibit();        
         $this->assertTrue(!empty($exhibit), 'No current exhibit!');
-        $this->assertThat($exhibit->title, $this->stringContains('Exhibit Title'));
+        $this->assertEquals('Exhibit Title', $exhibit->title);
+        $this->assertEquals('Exhibit Description', $exhibit->description);
+        $this->assertEquals('Jim Safley', $exhibit->credits);
+        $this->assertEquals('exhibit-title', $exhibit->slug);
     }
     
     /**
@@ -113,7 +189,8 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit_builder_exhibit_uri
      **/
-    public function testGetCorrectExhibitUri() {
+    public function testGetCorrectExhibitUri() 
+    {
         $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit description.', 'Jim Safley');
         $this->dispatch('exhibits/show/exhibit-title');
         $exhibitUri = exhibit_builder_exhibit_uri();
@@ -125,24 +202,34 @@ class ExhibitFunctions_Test extends ExhibitBuilder_TestCase {
      *
      * @uses exhibit()
      **/
-    public function testCanRetrieveCorrectExhibitValue() {
-        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit description.', 'Jim Safley');
+    public function testCanRetrieveCorrectExhibitValue() 
+    {
+        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit Description', 'Jim Safley');
         $this->dispatch('exhibits/show/exhibit-title');
         
         // Exhibit Title
         $exhibitTitle = exhibit('Title');
-        $this->assertThat($exhibitTitle, $this->stringContains("Exhibit Title"));
+        $this->assertEquals('Exhibit Title', $exhibitTitle);
     
         // Exhibit Description
         $exhibitDescription = exhibit('Description');
-        $this->assertThat($exhibitDescription, $this->stringContains("Exhibit description."));
+        $this->assertEquals('Exhibit Description', $exhibitDescription);
     
         // Exhibit Description
         $exhibitCredits = exhibit('Credits');
-        $this->assertThat($exhibitCredits, $this->stringContains("Jim Safley"));
+        $this->assertEquals('Jim Safley', $exhibitCredits);
         
         // Exhibit Slug
         $exhibitSlug = exhibit('slug');
-        $this->assertThat($exhibitSlug, $this->stringContains("exhibit-title"));    
+        $this->assertEquals('exhibit-title', $exhibitSlug);    
+    }
+    
+    public function testCanUseZeroForSlug()
+    {
+        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit Description', 'Jim Safley', '0');
+        $exhibits = exhibit_builder_get_exhibits(array('public' => 1));
+        $this->assertEquals(1, count($exhibits));
+        $exhibit = $exhibits[0];
+        $this->assertEquals('0', $exhibit->slug);
     }
 }
