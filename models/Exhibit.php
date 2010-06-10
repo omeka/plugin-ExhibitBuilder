@@ -27,6 +27,7 @@ class Exhibit extends Omeka_Record
     public $public = 1;
 	
 	public $theme;
+	public $theme_options;
 	public $slug;
 	
 	protected $_related = array('Sections'=>'loadOrderedChildren', 'Tags'=>'getTags');
@@ -119,5 +120,15 @@ class Exhibit extends Omeka_Record
 	public function getSectionCount()
 	{
 		return $this->getChildCount();
+	}
+	
+	public function setThemeOptions($themeOptions)
+	{
+	    $this->theme_options = serialize($themeOptions);
+	}
+	
+	public function getThemeOptions()
+	{
+	    return unserialize($this->theme_options);
 	}
 }

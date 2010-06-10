@@ -76,17 +76,19 @@ if ($exhibit->title) {
     <div class="field"><?php echo text(array('name'=>'tags', 'id'=>'tags', 'class'=>'textinput'), $exhibitTagList, 'Exhibit Tags'); ?></div>
     <div class="field">
         <label for="featured">Exhibit is featured:</label>
-        <div class="radio"><?php echo radio(array('name'=>'featured', 'id'=>'featured'), array('0'=>'No','1'=>'Yes'), $exhibit->featured); ?></div>
+        <div class="radio"><?php echo checkbox(array('name'=>'featured', 'id'=>'featured'), $exhibit->featured); ?></div>
     </div>
     
     <div class="field">
         <label for="featured">Exhibit is public:</label>
-        <div class="radio"><?php echo radio(array('name'=>'public', 'id'=>'public'), array('0'=>'No','1'=>'Yes'), $exhibit->public); ?></div>
+        <div class="radio"><?php echo checkbox(array('name'=>'public', 'id'=>'public'), $exhibit->public); ?></div>
     </div>
         <div class="field">
             <label for="theme">Exhibit Theme</label>            
             <?php $values = array('' => 'Current Public Theme') + exhibit_builder_get_ex_themes(); ?>
-            <div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?></div>
+            <div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?>
+            <?php if ($theme->hasConfig): ?><a href="<?php echo html_escape(uri("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button">Configure</a><?php endif;?>
+            </div>
         </div>
         </fieldset>
     <fieldset>

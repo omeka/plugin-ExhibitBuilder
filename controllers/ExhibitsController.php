@@ -13,6 +13,8 @@ require_once 'Exhibit.php';
 
 class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 {
+    const THEME_FILE_HIDDEN_FIELD_NAME_PREFIX = 'hidden_file_';
+    
     protected $session;
     
     public function init()
@@ -191,13 +193,115 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $this->flash($e->getMessage());
         }
 
-        $this->view->assign(compact('exhibit', 'actionName'));
+        if (!($themeName = $exhibit->theme)) {
+            $themeName = get_option('public_theme');
+        }
+        $theme = Theme::getAvailable($themeName);
+        $this->view->assign(compact('exhibit', 'actionName', 'theme'));
                 
         //@duplication see ExhibitsController::processSectionForm()
         //If the form submission was invalid 
         if (!$this->getRequest()->isXmlHttpRequest()) {
             $this->render('exhibit-metadata-form');
         }
+    }
+    
+    public function themeConfigAction()
+    {
+        $exhibit = $this->findById();
+        if (!($themeName = $exhibit->theme)) {
+            $themeName = get_option('public_theme');
+        }
+        $form = Theme::getConfigurationForm($themeName);
+        $theme = Theme::getAvailable($themeName);
+        $form->setDefaults($exhibit->getThemeOptions());
+        
+        // process the form if posted
+        if ($this->getRequest()->isPost()) {            
+            $uploadedFileNames = array();
+            $elements = $form->getElements();
+            foreach($elements as $element) {
+                if ($element instanceof Zend_Form_Element_File) {
+                    $elementName = $element->getName();
+                    
+                    // add filters to rename all of the uploaded theme files                                               
+                    
+                    // Make sure the file was uploaded before adding the Rename filter to the element
+                    if ($element->isUploaded()) {
+                        if (get_option('disable_default_file_validation') == '0') {
+                            $element->addValidator(new Omeka_Validate_File_Extension());
+                            $element->addValidator(new Omeka_Validate_File_MimeType());
+                        }
+                        
+                        $fileName = basename($element->getFileName());
+                        $uploadedFileName = Theme::getUploadedFileName($themeName, $elementName, $fileName);                      
+                        $uploadedFileNames[$elementName] = $uploadedFileName;
+                        $uploadedFilePath = $element->getDestination() . DIRECTORY_SEPARATOR . $uploadedFileName;
+                        $element->addFilter('Rename', array('target'=>$uploadedFilePath, 'overwrite'=>true));
+                    }
+
+                    // If file input's related  hidden input has a non-empty value, 
+                    // then the user has NOT changed the file, so do NOT upload the file.
+                    if ($hiddenFileElement = $form->getElement(self::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX . $elementName)) { 
+                        $hiddenFileElementValue = trim($_POST[$hiddenFileElement->getName()]); 
+                        if ($hiddenFileElementValue != "") {                              
+                            // Ignore the file input element
+                            $element->setIgnore(true);
+                        }
+                    }
+                }
+            }
+
+            // validate the form (note: this will populate the form with the post values)
+            if ($form->isValid($_POST)) {                                
+                $formValues = $form->getValues();
+                $currentThemeOptions = Theme::getOptions($themeName);
+                
+                foreach($elements as $element) {
+                    if ($element instanceof Zend_Form_Element_File) {                                                
+                        $elementName = $element->getName();
+                        // set the theme option for the uploaded file to the file name
+                        if ($element->getIgnore()) {
+                            // set the form value to the old theme option
+                            $formValues[$elementName] = $currentThemeOptions[$elementName];
+                        } else {                          
+                            // set the new file
+                            $newFileName = $uploadedFileNames[$elementName];
+                            $formValues[$elementName] = $newFileName;
+                            
+                            // delete old file if it is not the same as the new file name
+                            $oldFileName = $currentThemeOptions[$elementName];
+                            if ($oldFileName != $newFileName) {
+                                $oldFilePath = THEME_UPLOADS_DIR . DIRECTORY_SEPARATOR . $oldFileName;
+                                if (is_writable($oldFilePath) && is_file($oldFilePath)) {
+                                    unlink($oldFilePath);
+                                }
+                            }
+                        }       
+                    } else if ($element instanceof Zend_Form_Element_Hidden) {
+                        $elementName = $element->getName();
+                        // unset the values for the hidden fields associated with the file inputs
+                        if (strpos($elementName, self::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX) == 0) { 
+                            unset($formValues[$elementName]);
+                        }
+                   }
+                }
+                
+                // unset the submit input
+                unset($formValues['submit']);
+                
+                reset($formValues);
+                                
+                // set the theme options
+                $exhibit->setThemeOptions($formValues);
+                $exhibit->save();
+                
+                $this->flashSuccess('The theme settings were successfully saved!');
+                //$this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
+            }
+        }
+        
+        $this->view->assign(compact('exhibit', 'form', 'theme'));
     }
     
     /**

@@ -32,7 +32,7 @@ add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('theme_option', 'exhibit_builder_theme_option');
+add_filter('theme_options', 'exhibit_builder_theme_options');
 
 // Helper functions for exhibits, exhibit sections, and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'ExhibitFunctions.php';
@@ -244,17 +244,14 @@ function exhibit_builder_admin_nav($navArray)
 /**
  * Intercepts get_theme_option calls to allow theme settings on a per-Exhibit basis.
  */
-function exhibit_builder_theme_option($themeOptionValue, $themeName, $themeOptionName)
+function exhibit_builder_theme_options($themeOptions, $themeName)
 {
-    if (Omeka_Context::getInstance()->getRequest()->getModuleName() == 'exhibit-builder') {
-    if ($exhibit = exhibit_builder_get_current_exhibit()) {
-        $exhibitThemeOptions = unserialize($exhibit->theme_options);
-        if ($exhibitThemeOption = $exhibitThemeOptions[$themeOptionName]) {
-            return $exhibitThemeOption;
+    if (Omeka_Context::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
+        if ($exhibit = exhibit_builder_get_current_exhibit()) {
+            $themeOptions = $exhibit->theme_options;
         }
     }
-}
-    return $themeOptionValue;
+    return $themeOptions;
 }
 
 /**
