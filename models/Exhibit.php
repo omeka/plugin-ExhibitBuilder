@@ -129,6 +129,9 @@ class Exhibit extends Omeka_Record
 	
 	public function getThemeOptions()
 	{
+	    if (empty($this->theme_options)) {
+	        return array();
+	    }
 	    return unserialize($this->theme_options);
 	}
 }
