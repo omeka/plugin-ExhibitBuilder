@@ -20,6 +20,7 @@ require_once 'Exhibit.php';
 
 add_plugin_hook('install', 'exhibit_builder_install');
 add_plugin_hook('uninstall', 'exhibit_builder_uninstall');
+add_plugin_hook('upgrade', 'exhibit_builder_upgrade');
 add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
@@ -125,6 +126,16 @@ function exhibit_builder_uninstall()
     $db->query($sql);
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
     $db->query($sql);
+}
+
+function exhibit_builder_upgrade($oldVersion, $newVersion)
+{
+    // Transition to upgrade model for EB
+    if (version_compare($oldVersion, '0.6', '<') )
+    {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `theme_options` text collate utf8_unicode_ci default NULL AFTER `theme`";
+        $db->query($sql);
+    }
 }
 
 /**
