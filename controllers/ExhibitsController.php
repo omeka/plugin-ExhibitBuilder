@@ -212,7 +212,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         if (!($themeName = $exhibit->theme)) {
             $themeName = get_option('public_theme');
         }
-        $form = Theme::getConfigurationForm($themeName);
+        $form = new Omeka_Form_ThemeConfiguration(array('themeName' => $themeName));
         $theme = Theme::getAvailable($themeName);
         $form->setDefaults($exhibit->getThemeOptions());
         
