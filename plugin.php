@@ -133,6 +133,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
     // Transition to upgrade model for EB
     if (version_compare($oldVersion, '0.6', '<') )
     {
+        $db = get_db();
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `theme_options` text collate utf8_unicode_ci default NULL AFTER `theme`";
         $db->query($sql);
     }
