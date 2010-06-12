@@ -75,7 +75,7 @@ function exhibit_builder_exhibit_uri($exhibit=null, $section=null, $page=null)
     if (empty($sectionSlug)) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $uri = public_uri(array('slug'=>$exhibitSlug, 'section'=>$sectionSlug, 'page'=>$pageSlug), 'exhibitShow');
+        $uri = public_uri(array('slug'=>$exhibitSlug, 'section_slug'=>$sectionSlug, 'page_slug'=>$pageSlug), 'exhibitShow');
     }
     return $uri;
 }
@@ -119,7 +119,7 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $section=null)
     
     //If the exhibit has a theme associated with it
     if (!empty($exhibit->theme)) {
-        return uri(array('slug'=>$exhibit->slug,'section'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
+        return uri(array('slug'=>$exhibit->slug,'section_slug'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
     } else {
         return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
     }   

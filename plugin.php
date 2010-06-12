@@ -203,8 +203,7 @@ function exhibit_builder_admin_header($request)
     		echo js('tiny_mce/tiny_mce');
     		echo js('search'); 
     		echo js('exhibits');
-        endif;
-
+    endif;
 }
 
 /**

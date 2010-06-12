@@ -26,6 +26,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->session = new Zend_Session_Namespace('Exhibit');
     }
     
+    protected function _findByExhibitSlug($exhibitSlug=null) 
+    {        
+        if (!$exhibitSlug) {
+            $exhibitSlug = $this->_getParam('slug');
+        }
+        $exhibit = $this->_table->findBySlug($exhibitSlug);        
+        return $exhibit;
+    }
+        
     public function tagsAction()
     {
         $params = array_merge($this->_getAllParams(), array('type'=>'Exhibit'));
@@ -38,8 +47,13 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $itemId = $this->_getParam('item_id');
         $item = $this->findById($itemId, 'Item');   
         
-        $exhibit = $this->findBySlug();
-        $exhibitSection = $exhibit->getSection($this->_getParam('section'));
+        $exhibit = $this->_findByExhibitSlug();
+        if (!$exhibit) {
+            $this->errorAction();    
+        }
+        
+        $sectionSlug = $this->_getParam('section_slug');
+        $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
   
         if ($item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
      
@@ -58,7 +72,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      * @return void
      **/
     public function itemsAction()
-    {
+    {        
         $results = $this->_helper->searchItems();
 
         // Build the pagination.
@@ -72,17 +86,28 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     }
     
     public function showAction()
-    {                  
-        $exhibit = $this->findBySlug();                
-        $exhibitSection = $exhibit->getSection($this->_getParam('section'));
+    {
+        $exhibit = $this->_findByExhibitSlug();                
+        if (!$exhibit) {
+            $this->errorAction();    
+        }
+        
+        $sectionSlug = $this->_getParam('section_slug');
+        $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
         
         if ($exhibitSection) {
-            $exhibitPage = $exhibitSection->getPageBySlug($this->_getParam('page'));
+            $pageSlug = $this->_getParam('page_slug');
+            $exhibitPage = $exhibitSection->getPageBySlug($pageSlug);            
             if (!$exhibitPage) {
-                $exhibitPage = $exhibitSection->getPageByOrder(1);
+                if ($pageSlug == '') {
+                    $exhibitPage = $exhibitSection->getPageByOrder(1);
+                }
+            }
+            if (!$exhibitPage) {
+                $this->errorAction();
             }
         } else {
-            $exhibitSection = $exhibit->getFirstSection();
+            $this->errorAction();
         }
         
         fire_plugin_hook('show_exhibit', $exhibit, $exhibitSection, $exhibitPage);
@@ -90,22 +115,13 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->renderExhibit(compact('exhibit', 'exhibitSection', 'exhibitPage'));
     }
     
-    protected function findBySlug($slug=null) 
-    {
-        if (!$slug) {
-            $slug = $this->_getParam('slug');
-        }
-        $exhibit = $this->_table->findBySlug($slug);
-        if (!$exhibit) {
-            throw new Zend_Controller_Exception('Cannot find exhibit with slug: '. $slug);
-        }
-                
-        return $exhibit;
-    }
-    
     public function summaryAction()
     {
-        $exhibit = $this->findBySlug();
+        $exhibit = $this->_findByExhibitSlug();
+        if (!$exhibit) {
+            $this->errorAction();    
+        }
+        
         fire_plugin_hook('show_exhibit', $exhibit);
         $this->renderExhibit(compact('exhibit'), 'summary');
     }
@@ -119,7 +135,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      * @return void
      **/
     protected function renderExhibit($vars, $toRender='show') 
-    {
+    {   
         /*  If there is a theme, render the header/footer and layout page,
             Otherwise render the default exhibits/show.php page
         */
@@ -527,4 +543,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     }
     
     /////END AJAX-ONLY ACTIONS
+}
+
+class ExhibitsController_BadSlug_Exception extends Zend_Controller_Exception 
+{    
 }

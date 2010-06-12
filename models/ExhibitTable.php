@@ -64,9 +64,7 @@ class ExhibitTable extends Omeka_Db_Table
         $select->from(array('e'=>$db->Exhibit), array('e.*'));
         $select->where("e.slug = ?");
         $select->limit(1);
-        
         new ExhibitPermissions($select);
-        
         return $this->fetchObject($select, array($slug));       
     }
     

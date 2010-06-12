@@ -97,12 +97,12 @@ class Exhibit extends Omeka_Record
         return $this->getTable('ExhibitSection')->fetchObjects($sql, array((int) $this->id));
     }
 	
-	public function getSection($slug)
+	public function getSectionBySlug($slug)
 	{
 		$db = $this->getDb();
 		$sql = "SELECT s.* FROM $db->ExhibitSection s WHERE s.slug = ? AND s.exhibit_id = ?";
 
-        return $this->getTable('ExhibitSection')->fetchObject($sql, array( strtolower($slug), (int) $this->id));	
+        return $this->getTable('ExhibitSection')->fetchObject($sql, array(strtolower($slug), (int) $this->id));	
 	}
 	
 	public function getFirstSection()

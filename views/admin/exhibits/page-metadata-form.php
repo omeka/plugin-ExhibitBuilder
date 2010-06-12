@@ -44,8 +44,8 @@
     <fieldset>
         <legend>Page Metadata</legend>
         <?php echo flash(); ?>
-        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitPage->title, 'Title for the Page'); ?></div>
-        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitPage->slug, 'URL Slug (optional)'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitPage->title, 'Page Title'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitPage->slug, 'Page Slug (no spaces or special characters)'); ?></div>
     </fieldset>		
 		
 	<fieldset id="layouts">

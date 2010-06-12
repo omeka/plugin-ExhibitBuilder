@@ -69,8 +69,10 @@ function exhibit_builder_section_nav($exhibit=null)
         }    
     }
     $html = '<ul class="exhibit-section-nav">';
-    foreach ($exhibit->Sections as $key => $section) {      
-        $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';
+    foreach ($exhibit->Sections as $key => $section) {
+        if ($section->hasPages()) {
+            $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';            
+        }      
     }
     $html .= '</ul>';
     return $html;

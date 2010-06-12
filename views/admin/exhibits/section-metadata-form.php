@@ -53,8 +53,8 @@ if ($exhibitSection->title) {
 	<fieldset>
 		<legend>Section Metadata</legend>
 		
-	<div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitSection->title, 'Title for the Section'); ?></div>
-		<div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitSection->slug, 'URL Slug (optional)'); ?></div>
+	<div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitSection->title, 'Section Title'); ?></div>
+		<div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitSection->slug, 'Section Slug (no spaces or special characters)'); ?></div>
 	<div class="field"><?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $exhibitSection->description, 'Section Description'); ?></div>	
 
 	</fieldset>

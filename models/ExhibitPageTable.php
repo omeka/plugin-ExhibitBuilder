@@ -52,4 +52,14 @@ class ExhibitPageTable extends Omeka_Db_Table
 
         return $this->fetchObject($select);
     }
+    
+    public function findBySlug($slug)
+    {
+        $db = $this->getDb();
+        $select = new Omeka_Db_Select;
+        $select->from(array('e'=>$db->ExhibitPage), array('e.*'));
+        $select->where("e.slug = ?");
+        $select->limit(1);
+        return $this->fetchObject($select, array($slug));       
+    }
 }
