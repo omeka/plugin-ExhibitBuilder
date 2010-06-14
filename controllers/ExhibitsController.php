@@ -207,10 +207,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $this->flash($e->getMessage());
         }
 
-        if (!($themeName = $exhibit->theme)) {
-            $themeName = get_option('public_theme');
+        if ($themeName = $exhibit->theme) {
+            $theme = Theme::getAvailable($themeName);
+        } else {
+            $theme = null;
         }
-        $theme = Theme::getAvailable($themeName);
+        
         $this->view->assign(compact('exhibit', 'actionName', 'theme'));
                 
         //@duplication see ExhibitsController::processSectionForm()
@@ -223,8 +225,13 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function themeConfigAction()
     {
         $exhibit = $this->findById();
-        if (!($themeName = $exhibit->theme)) {
-            $themeName = get_option('public_theme');
+        $themeName = $exhibit->theme;
+        
+        // Abort if no specific theme is selected.
+        if (empty($themeName)) {
+            $this->flashError("You must specifically select a theme in order to configure it.");
+            $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
+            return;
         }
         $form = new Omeka_Form_ThemeConfiguration(array('themeName' => $themeName));
         $theme = Theme::getAvailable($themeName);

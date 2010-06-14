@@ -122,16 +122,29 @@ class Exhibit extends Omeka_Record
 		return $this->getChildCount();
 	}
 	
-	public function setThemeOptions($themeOptions)
+	public function setThemeOptions($themeOptions, $themeName = null)
 	{
-	    $this->theme_options = serialize($themeOptions);
+	    if ($themeName === null) {
+	        $themeName = $this->theme;
+	    }
+	    if (!empty($themeName)) {
+    	    $themeOptionsArray = unserialize($this->theme_options);
+    	    $themeOptionsArray[$themeName] = $themeOptions;
+        }
+	    
+	    $this->theme_options = serialize($themeOptionsArray);
 	}
 	
-	public function getThemeOptions()
+	public function getThemeOptions($themeName = null)
 	{
-	    if (empty($this->theme_options)) {
+	    if ($themeName === null) {
+	        $themeName = $this->theme;
+	    }
+	    if (empty($themeName) || empty($this->theme_options)) {
 	        return array();
 	    }
-	    return unserialize($this->theme_options);
+	    
+	    $themeOptionsArray = unserialize($this->theme_options);
+	    return $themeOptionsArray[$themeName];
 	}
 }
