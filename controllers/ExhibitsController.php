@@ -278,7 +278,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                         }
                         
                         $fileName = basename($element->getFileName());
-                        $uploadedFileName = Theme::getUploadedFileName($themeName, $elementName, $fileName);                      
+                        $uploadedFileName = 'exhibit_'.$exhibit->title.'_'.Theme::getUploadedFileName($themeName, $elementName, $fileName);                      
                         $uploadedFileNames[$elementName] = $uploadedFileName;
                         $uploadedFilePath = $element->getDestination() . DIRECTORY_SEPARATOR . $uploadedFileName;
                         $element->addFilter('Rename', array('target'=>$uploadedFilePath, 'overwrite'=>true));
@@ -313,15 +313,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                             $newFileName = $uploadedFileNames[$elementName];
                             $formValues[$elementName] = $newFileName;
                             
-                            // Temporarily remove this removal logic until a better solution can be found.
                             // delete old file if it is not the same as the new file name
-                            /*$oldFileName = $currentThemeOptions[$elementName];
+                            $oldFileName = $currentThemeOptions[$elementName];
                             if ($oldFileName != $newFileName) {
                                 $oldFilePath = THEME_UPLOADS_DIR . DIRECTORY_SEPARATOR . $oldFileName;
                                 if (is_writable($oldFilePath) && is_file($oldFilePath)) {
                                     unlink($oldFilePath);
                                 }
-                            }*/
+                            }
                         }       
                     } else if ($element instanceof Zend_Form_Element_Hidden) {
                         $elementName = $element->getName();
