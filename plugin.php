@@ -1,7 +1,7 @@
 <?php
 /**
  * @version $Id$
- * @copyright Center for History and New Media, 2007-2008
+ * @copyright Center for History and New Media, 2007-2010
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package Omeka
  * @subpackage ExhibitBuilder
@@ -48,7 +48,7 @@ require_once EXHIBIT_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SE
 function exhibit_builder_install() 
 {	
 	$db = get_db();
-	$db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
+	$db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `title` varchar(255) collate utf8_unicode_ci default NULL,
       `description` text collate utf8_unicode_ci,
@@ -63,7 +63,7 @@ function exhibit_builder_install()
       KEY `public` (`public`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-	$db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
+	$db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `title` varchar(255) collate utf8_unicode_ci default NULL,
       `description` text collate utf8_unicode_ci,
@@ -74,7 +74,7 @@ function exhibit_builder_install()
       KEY `slug` (`slug`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-    $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}items_section_pages` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}items_section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `item_id` int(10) unsigned default NULL,
       `page_id` int(10) unsigned NOT NULL,
@@ -83,7 +83,7 @@ function exhibit_builder_install()
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
     
-    $db->exec("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `section_id` int(10) unsigned NOT NULL,
       `title` varchar(255) collate utf8_unicode_ci NOT NULL,
@@ -93,6 +93,8 @@ function exhibit_builder_install()
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
+
+    // Legacy upgrade code
     $checkIfTitleExists = $db->fetchOne("SHOW COLUMNS FROM `{$db->prefix}section_pages` LIKE 'title'");
      
     if ($checkIfTitleExists == null) {
@@ -104,7 +106,7 @@ function exhibit_builder_install()
             $pageTitle = 'Page '. $pageNum;
             $slug = generate_slug($pageTitle); 
             $id = $newPage['id'];
-            $db->exec("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
+            $db->query("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
         }
     }
 }
@@ -128,6 +130,12 @@ function exhibit_builder_uninstall()
     $db->query($sql);
 }
 
+/**
+ * Upgrades ExhibitBuilder's tables to be compatible with a new version.
+ *
+ * @param string $oldVersion Previous plugin version
+ * @param string $newVersion Current version; to be upgraded to
+ */
 function exhibit_builder_upgrade($oldVersion, $newVersion)
 {
     // Transition to upgrade model for EB
@@ -254,6 +262,9 @@ function exhibit_builder_admin_nav($navArray)
 
 /**
  * Intercepts get_theme_option calls to allow theme settings on a per-Exhibit basis.
+ *
+ * @param string $themeOptions Serialized array of theme options
+ * @param string $themeName Name of theme to get options for (ignored by ExhibitBuilder)
  */
 function exhibit_builder_theme_options($themeOptions, $themeName)
 {
