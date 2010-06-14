@@ -239,13 +239,24 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         //$form->setDefaults($existingOptions);
         $hiddenFieldPrefix = Omeka_Form_ThemeConfiguration::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX;
         
-        foreach($previousOptions as $key => $value) {
-            if ($form->getElement($key)) {
-                $form->$key->setValue($value);
+        if (empty($previousOptions)) {
+            // Unset hidden field values if there are no pre-existing options.
+            $elements = $form->getElements();
+            foreach ($elements as $element) {
+                if (strpos($element->getName(), $hiddenFieldPrefix) == 0) { 
+                    $element->setValue(null);
+                }
             }
-            $hiddenKey = $hiddenFieldPrefix.$key;
-            if ($form->getElement($hiddenKey)) {
-                $form->$hiddenKey->setValue($value);
+        } else {
+            // Replace form values and hidden values with exhibit theme options.
+            foreach($previousOptions as $key => $value) {
+                if ($form->getElement($key)) {
+                    $form->$key->setValue($value);
+                }
+                $hiddenKey = $hiddenFieldPrefix.$key;
+                if ($form->getElement($hiddenKey)) {
+                    $form->$hiddenKey->setValue($value);
+                }
             }
         }
         
