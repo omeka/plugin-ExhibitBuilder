@@ -259,11 +259,11 @@ function exhibit_builder_theme_options($themeOptions, $themeName)
 {
     if (Omeka_Context::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
         if ($exhibit = exhibit_builder_get_current_exhibit()) {
-            $exhibitThemeOptions = serialize($exhibit->getThemeOptions());
+            $exhibitThemeOptions = $exhibit->getThemeOptions();
         }
     }
     if (!empty($exhibitThemeOptions)) {
-        return $exhibitThemeOptions;
+        return serialize($exhibitThemeOptions);
     }
     return $themeOptions;
 }
