@@ -13,8 +13,6 @@ require_once 'Exhibit.php';
 
 class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 {
-    const THEME_FILE_HIDDEN_FIELD_NAME_PREFIX = 'hidden_file_';
-    
     protected $session;
     
     public function init()
@@ -230,7 +228,19 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
         $form = new Omeka_Form_ThemeConfiguration(array('themeName' => $themeName));
         $theme = Theme::getAvailable($themeName);
-        $form->setDefaults($exhibit->getThemeOptions());
+        $previousOptions = $exhibit->getThemeOptions();
+        //$form->setDefaults($existingOptions);
+        $hiddenFieldPrefix = Omeka_Form_ThemeConfiguration::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX;
+        
+        foreach($previousOptions as $key => $value) {
+            if ($form->getElement($key)) {
+                $form->$key->setValue($value);
+            }
+            $hiddenKey = $hiddenFieldPrefix.$key;
+            if ($form->getElement($hiddenKey)) {
+                $form->$hiddenKey->setValue($value);
+            }
+        }
         
         // process the form if posted
         if ($this->getRequest()->isPost()) {            
@@ -258,7 +268,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
                     // If file input's related  hidden input has a non-empty value, 
                     // then the user has NOT changed the file, so do NOT upload the file.
-                    if ($hiddenFileElement = $form->getElement(self::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX . $elementName)) { 
+                    if ($hiddenFileElement = $form->getElement($hiddenFieldPrefix . $elementName)) { 
                         $hiddenFileElementValue = trim($_POST[$hiddenFileElement->getName()]); 
                         if ($hiddenFileElementValue != "") {                              
                             // Ignore the file input element
@@ -271,7 +281,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             // validate the form (note: this will populate the form with the post values)
             if ($form->isValid($_POST)) {                                
                 $formValues = $form->getValues();
-                $currentThemeOptions = Theme::getOptions($themeName);
+                $currentThemeOptions = $previousOptions;
                 
                 foreach($elements as $element) {
                     if ($element instanceof Zend_Form_Element_File) {                                                
@@ -297,7 +307,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                     } else if ($element instanceof Zend_Form_Element_Hidden) {
                         $elementName = $element->getName();
                         // unset the values for the hidden fields associated with the file inputs
-                        if (strpos($elementName, self::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX) == 0) { 
+                        if (strpos($elementName, $hiddenFieldPrefix) == 0) { 
                             unset($formValues[$elementName]);
                         }
                    }
@@ -314,6 +324,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 
                 $this->flashSuccess('The theme settings were successfully saved!');
                 //$this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
+                $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             }
         }
         
