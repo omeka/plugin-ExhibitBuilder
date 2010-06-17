@@ -28,4 +28,12 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
 		}
 		return $exhibits;
 	}
+	
+	public function tearDown()
+	{
+        Zend_Registry::_unsetInstance();
+        Omeka_Context::resetInstance();
+        Omeka_Controller_Flash::reset();
+        parent::tearDown();
+	}
 }
