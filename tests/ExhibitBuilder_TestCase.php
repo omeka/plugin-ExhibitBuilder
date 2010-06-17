@@ -42,6 +42,9 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
         add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
         add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
         add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
+        add_plugin_hook('config_form', 'exhibit_builder_config_form');
+        add_plugin_hook('config', 'exhibit_builder_config');
+        add_plugin_hook('initialize', 'exhibit_builder_initialize');
         add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
         
         // Add plugin filters

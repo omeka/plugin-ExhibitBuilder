@@ -26,6 +26,10 @@ add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
 add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
 add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
+add_plugin_hook('config_form', 'exhibit_builder_config_form');
+add_plugin_hook('config', 'exhibit_builder_config');
+add_plugin_hook('initialize', 'exhibit_builder_initialize');
+
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
@@ -109,6 +113,9 @@ function exhibit_builder_install()
             $db->query("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
         }
     }
+    
+    // Set the initial options
+    set_option('exhibit_builder_use_browse_exhibits_for_homepage', '0');
 }
 
 /**
@@ -128,6 +135,9 @@ function exhibit_builder_uninstall()
     $db->query($sql);
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
     $db->query($sql);
+    
+    // delete plugin options
+    delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
 }
 
 /**
@@ -344,4 +354,46 @@ function exhibit_builder_purify_html($request, $purifier)
 function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
 {
     return _select_from_table('Exhibit', $props, $value, $label, $search);
+}
+
+function exhibit_builder_config_form()
+{
+    include 'config_form.php';
+}
+
+function exhibit_builder_config()
+{
+    set_option('exhibit_builder_use_browse_exhibits_for_homepage', (int)(boolean)$_POST['exhibit_builder_use_browse_exhibits_for_homepage']);
+}
+
+function exhibit_builder_initialize()
+{
+    Zend_Controller_Front::getInstance()->registerPlugin(new ExhibitBuilderControllerPlugin);
+}
+
+class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
+{
+    /**
+    *
+    * @param Zend_Controller_Request_Abstract $request
+    * @return void
+    */
+    public function routeStartup(Zend_Controller_Request_Abstract $request)
+    {
+        $router = Omeka_Context::getInstance()->getFrontController()->getRouter();
+        if (get_option('exhibit_builder_use_browse_exhibits_for_homepage') == '1' && !is_admin_theme()) {
+            $router->addRoute(
+                'exhibit_builder_show_home_page', 
+                new Zend_Controller_Router_Route(
+                    '/', 
+                    array(
+                        'module'       => 'exhibit-builder', 
+                        'controller'   => 'exhibits', 
+                        'action'       => 'browse',
+                        'page'         => 1 
+                    )
+                )
+            );
+        } 
+    }
 }
