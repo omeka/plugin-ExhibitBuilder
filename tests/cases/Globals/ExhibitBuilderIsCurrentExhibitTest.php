@@ -8,7 +8,7 @@ require_once EXHIBIT_BUILDER_DIR . '/helpers/ExhibitFunctions.php';
 class ExhibitBuilderIsCurrentExhibitTest extends ExhibitBuilder_ViewTestCase 
 {
 	/**
-	 * Tests whether is_current_exhibit correctly determines which exhibit is current.
+	 * Tests whether exhibit_builder_is_current_exhibit correctly determines which exhibit is current.
 	 */
 	public function testExhibitBuilderIsCurrentExhibit()
 	{

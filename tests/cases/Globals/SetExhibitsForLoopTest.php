@@ -12,15 +12,18 @@ class SetExhibitsForLoopTest extends ExhibitBuilder_ViewTestCase
 	 */
 	public function testSetExhibitsForLoop()
     {
-		$exhibits = $this->_createExhibitArray();
+        $maxExhibitCount = 8;
+		$exhibits = $this->_createExhibitArray($maxExhibitCount);
 		
 		set_exhibits_for_loop($exhibits);
 		$this->assertSame($exhibits, $this->view->exhibits);
 		
-		$exhibitsCount = 0;
+		$exhibitCount = 0;
 		foreach ($this->view->exhibits as $exhibit) {
 			$this->assertTrue(in_array($exhibit, $exhibits));
-			$exhibitsCount++;
+			$exhibitCount++;
 		}
+		
+		$this->assertEquals($maxExhibitCount, $exhibitCount);
     }
 }

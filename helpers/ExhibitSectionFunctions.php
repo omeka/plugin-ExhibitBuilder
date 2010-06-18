@@ -36,11 +36,14 @@ function exhibit_builder_is_current_section($section)
 /**
  * Returns whether the exhibit section has pages.
  *
- * @param ExhibitSection $section
+ * @param ExhibitSection|null $section If null, it uses the current exhibit section
  * @return boolean
  **/
-function exhibit_builder_section_has_pages($section) 
+function exhibit_builder_section_has_pages($section=null) 
 {
+    if ($section === null) {
+        $section = exhibit_builder_get_current_section();
+    }
     return $section->hasPages();
 }
 
@@ -216,7 +219,7 @@ function exhibit_section($propertyName, $options=array(), $exhibitSection=null)
     if (!$exhibitSection) {
         $exhibitSection = get_current_exhibit_section();
     }
-        
+    $propertyName = Inflector::underscore($propertyName);
 	if (property_exists(get_class($exhibitSection), $propertyName)) {
 	    return $exhibitSection->$propertyName;
 	} else {

@@ -8,21 +8,23 @@ require_once EXHIBIT_BUILDER_DIR . '/helpers/ExhibitFunctions.php';
 class GetExhibitsForLoopTest extends ExhibitBuilder_ViewTestCase 
 {
 	/**
-	 * Tests whether get_exhibits_for_loop returns exhibits that have been get on the view.
+	 * Tests whether get_exhibits_for_loop returns exhibits that have been set on the view.
 	 */
 	public function testGetExhibitsForLoop()
 	{
-		$exhibits = $this->_createExhibitArray();
+	    $maxExhibitCount = 8;
+		$exhibits = $this->_createExhibitArray($maxExhibitCount);
 		
 		$this->view->exhibits = $exhibits;
 		
 		$loopExhibits = get_exhibits_for_loop();
 		$this->assertSame($exhibits, $loopExhibits);
 		
-		$exhibitsCount = 0;
+		$exhibitCount = 0;
 		foreach ($loopExhibits as $exhibit) {
 			$this->assertTrue(in_array($exhibit, $exhibits));
-			$exhibitsCount++;
+			$exhibitCount++;
 		}
+		$this->assertEquals($maxExhibitCount, $exhibitCount);
 	}
 }

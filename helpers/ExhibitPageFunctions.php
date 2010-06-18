@@ -306,7 +306,7 @@ function exhibit_page($propertyName, $options=array(), $exhibitPage=null)
     if (!$exhibitPage) {
         $exhibitPage = get_current_exhibit_page();
     }
-        
+    $propertyName = Inflector::underscore($propertyName);        
 	if (property_exists(get_class($exhibitPage), $propertyName)) {
 	    return $exhibitPage->$propertyName;
 	} else {

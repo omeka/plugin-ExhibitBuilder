@@ -15,7 +15,8 @@ class HasExhibitsForLoopTest extends ExhibitBuilder_ViewTestCase
 		$this->assertFalse(has_exhibits_for_loop());
 		$this->view->exhibits = array();
 		$this->assertFalse(has_exhibits_for_loop());
-		$this->view->exhibits = $this->_createExhibitArray();
+		$maxExhibitCount = 6;
+		$this->view->exhibits = $this->_createExhibitArray($maxExhibitCount);
 		$this->assertTrue(has_exhibits_for_loop());
 	}
 }

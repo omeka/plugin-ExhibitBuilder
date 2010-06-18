@@ -51,11 +51,11 @@ class ExhibitPage extends Omeka_Record
 			$this->addError('title', 'Pages of an exhibit must be given a title.');
 		}
 		
-		if(empty($this->order)) {
+		if(empty($this->order) or !is_numeric($this->order)) {
 			$this->addError('order', 'Exhibit page must be ordered within its section.');
 		}
 		
-		if(empty($this->section_id)) {
+		if(empty($this->section_id) or !is_numeric($this->section_id)) {
 			$this->addError('section_id', 'Exhibit page must be given a section');
 		}
 	}

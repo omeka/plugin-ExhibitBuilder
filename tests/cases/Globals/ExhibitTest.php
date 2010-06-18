@@ -15,19 +15,15 @@ class ExhibitTest extends ExhibitBuilder_TestCase
         $this->dispatch('exhibits/show/exhibit-title');
 
         // Exhibit Title
-        $exhibitTitle = exhibit('Title');
-        $this->assertEquals('Exhibit Title', $exhibitTitle);
+        $this->assertEquals('Exhibit Title', exhibit('Title'));
 
         // Exhibit Description
-        $exhibitDescription = exhibit('Description');
-        $this->assertEquals('Exhibit Description', $exhibitDescription);
+        $this->assertEquals('Exhibit Description', exhibit('Description'));
 
-        // Exhibit Description
-        $exhibitCredits = exhibit('Credits');
-        $this->assertEquals('Jim Safley', $exhibitCredits);
+        // Exhibit Credits
+        $this->assertEquals('Jim Safley', exhibit('Credits'));
 
         // Exhibit Slug
-        $exhibitSlug = exhibit('slug');
-        $this->assertEquals('exhibit-title', $exhibitSlug);    
+        $this->assertEquals('exhibit-title', exhibit('slug'));    
     }
 }

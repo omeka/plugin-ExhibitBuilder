@@ -3,14 +3,14 @@
 require_once EXHIBIT_BUILDER_DIR . '/helpers/ExhibitFunctions.php';
 
 /**
- * Tests for get_current_exhibit function
+ * Tests for exhibit_builder_get_current_exhibit function
  */
-class GetCurrentExhibitTest extends ExhibitBuilder_ViewTestCase 
+class ExhibitBuilderGetCurrentExhibitTest extends ExhibitBuilder_ViewTestCase 
 {
 	/**
-	 * Tests whether get_current_exhibit correctly returns an exhibit from the view.
+	 * Tests whether exhibit_builder_get_current_exhibit correctly returns an exhibit from the view.
 	 */
-	public function testGetCurrentExhibit()
+	public function testExhibitBuilderGetCurrentExhibit()
 	{
 		$this->view->exhibit = new Exhibit;
 		$exhibit = exhibit_builder_get_current_exhibit();
@@ -21,9 +21,9 @@ class GetCurrentExhibitTest extends ExhibitBuilder_ViewTestCase
 	}
 	
 	/**
-	 * Tests whether get_current_exhibit returns null when no exhibit is set on the view.
+	 * Tests whether exhibit_builder_get_current_exhibit returns null when no exhibit is set on the view.
 	 */
-	public function testGetCurrentExhibitNull()
+	public function testExhibitBuilderGetCurrentExhibitNull()
 	{
 		$exhibit = exhibit_builder_get_current_exhibit();
 		$this->assertNull($exhibit);

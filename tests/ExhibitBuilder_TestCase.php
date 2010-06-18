@@ -88,4 +88,38 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
         
         return $exhibits;
 	}
+	
+	protected function _createNewExhibitSection($exhibit, $title, $description, $slug='', $order=1)
+	{
+	    $exhibitSection = new ExhibitSection;
+	    $exhibitSection->exhibit_id = $exhibit->id;
+	    $exhibitSection->title = $title;
+	    $exhibitSection->description = $description;
+	    $exhibitSection->order = $order;
+
+        if ($slug != '') {
+            $exhibitSection->slug = $slug;
+        }
+
+	    $exhibitSection->save();
+	    	    
+	    return $exhibitSection;
+	}
+	
+	protected function _createNewExhibitPage($exhibitSection, $title, $slug='', $order=1, $layout='text')
+	{
+	    $exhibitPage = new ExhibitPage;
+	    $exhibitPage->section_id = $exhibitSection->id;
+	    $exhibitPage->title = $title;
+	    $exhibitPage->layout = $layout;
+	    $exhibitPage->order = $order;
+
+        if ($slug != '') {
+            $exhibitPage->slug = $slug;
+        }
+
+	    $exhibitPage->save();
+	    	    
+	    return $exhibitPage;
+	}
 }
