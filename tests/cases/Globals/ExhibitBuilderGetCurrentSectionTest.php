@@ -3,7 +3,7 @@
 require_once EXHIBIT_BUILDER_DIR . '/helpers/ExhibitSectionFunctions.php';
 
 /**
- * Tests for exhibit_builder_get_current_exhibit_section function
+ * Tests for exhibit_builder_get_current_section function
  */
 class ExhibitBuilderGetCurrentSectionTest extends ExhibitBuilder_ViewTestCase 
 {

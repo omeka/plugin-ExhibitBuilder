@@ -10,7 +10,7 @@ class SetExhibitSectionsForLoopTest extends ExhibitBuilder_ViewTestCase
 	/**
 	 * Tests whether set_exhibit_sections_for_loop correctly sets exhibit sections on the view.
 	 */
-	public function testSetExhibitsForLoop()
+	public function testSetExhibitSectionsForLoop()
     {
         $maxExhibitSectionCount = 8;
 		$exhibitSections = $this->_createExhibitSectionArray($maxExhibitSectionCount);

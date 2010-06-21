@@ -10,7 +10,7 @@ class GetExhibitSectionsForLoopTest extends ExhibitBuilder_ViewTestCase
 	/**
 	 * Tests whether get_exhibit_sections_for_loop returns exhibit sections that have been set on the view.
 	 */
-	public function testGetExhibitsForLoop()
+	public function testGetExhibitSectionsForLoop()
 	{
 	    $maxExhibitSectionCount = 8;
 		$exhibitSections = $this->_createExhibitSectionArray($maxExhibitSectionCount);

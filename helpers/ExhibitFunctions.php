@@ -39,16 +39,16 @@ function exhibit_builder_is_current_exhibit($exhibit)
  * @param Exhibit $exhibit|null If null, it uses the current exhibit
  * @param string|null $text The text of the link
  * @param array $props
- * @param ExhibitSection|null $section
- * @param ExhibitPage|null $page
+ * @param ExhibitSection|null $exhibitSection
+ * @param ExhibitPage|null $exhibitPage
  * @return string
  **/
-function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array(), $section=null, $page = null)
+function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array(), $exhibitSection=null, $exhibitPage = null)
 {   
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
     }
-    $uri = exhibit_builder_exhibit_uri($exhibit, $section, $page);
+    $uri = exhibit_builder_exhibit_uri($exhibit, $exhibitSection, $exhibitPage);
     $text = !empty($text) ? $text : $exhibit->title;
     return '<a href="' . html_escape($uri) .'" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
@@ -57,25 +57,25 @@ function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array
  * Returns a URI to the exhibit
  *
  * @param Exhibit $exhibit|null If null, it uses the current exhibit.
- * @param ExhibitSection|null $section
- * @param ExhibitPage|null $page 
+ * @param ExhibitSection|null $exhibitSection
+ * @param ExhibitPage|null $exhibitPage 
  * @internal This relates to: ExhibitsController::showAction(), ExhibitsController::summaryAction()
  * @return string
  **/
-function exhibit_builder_exhibit_uri($exhibit=null, $section=null, $page=null)
+function exhibit_builder_exhibit_uri($exhibit=null, $exhibitSection=null, $exhibitPage=null)
 {
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
     }
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
-    $sectionSlug = ($section instanceof ExhibitSection) ? $section->slug : $section;
-    $pageSlug = ($page instanceof ExhibitPage) ? $page->slug : $page;
+    $exhibitSectionSlug = ($exhibitSection instanceof ExhibitSection) ? $exhibitSection->slug : $exhibitSection;
+    $exhibitPageSlug = ($exhibitPage instanceof ExhibitPage) ? $exhibitPage->slug : $exhibitPage;
 
     //If there is no section slug available, we want to build a URL for the summary page
-    if (empty($sectionSlug)) {
+    if (empty($exhibitSectionSlug)) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $uri = public_uri(array('slug'=>$exhibitSlug, 'section_slug'=>$sectionSlug, 'page_slug'=>$pageSlug), 'exhibitShow');
+        $uri = public_uri(array('slug'=>$exhibitSlug, 'section_slug'=>$exhibitSectionSlug, 'page_slug'=>$exhibitPageSlug), 'exhibitShow');
     }
     return $uri;
 }
@@ -104,22 +104,22 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class'
  * 
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
- * @param ExhibitSection|null $section If null, will use the current exhibit section
+ * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
  * @return string
  **/
-function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $section=null)
+function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $exhibitSection=null)
 {
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
     }
     
-    if (!$section) {
-        $section = exhibit_builder_get_current_section();
+    if (!$exhibitSection) {
+        $exhibitSection = exhibit_builder_get_current_section();
     }
     
     //If the exhibit has a theme associated with it
     if (!empty($exhibit->theme)) {
-        return uri(array('slug'=>$exhibit->slug,'section_slug'=>$section->slug,'item_id'=>$item->id), 'exhibitItem');
+        return uri(array('slug'=>$exhibit->slug,'section_slug'=>$exhibitSection->slug,'item_id'=>$item->id), 'exhibitItem');
     } else {
         return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
     }   
@@ -241,7 +241,7 @@ function exhibit_builder_layout_form_item($order, $label='Enter an Item ID #')
 function exhibit_builder_layout_form_text($order, $label='Text') 
 {
     $html = '<div class="textfield">';
-    $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order, false)); 
+    $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order)); 
     $html .= '</div>';
     return $html;
 }
@@ -292,8 +292,8 @@ function exhibit_builder_exhibit_layout($layout, $input=true)
     //Load the thumbnail image
     $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
     
-    $page = exhibit_builder_get_current_page();
-    $isSelected = ($page->layout == $layout) and $layout;
+    $exhibitPage = exhibit_builder_get_current_page();
+    $isSelected = ($exhibitPage->layout == $layout) and $layout;
     
     $html = '';
     $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">';
@@ -329,24 +329,24 @@ function exhibit_builder_exhibit_css($fileName)
  **/
 function exhibit_builder_layout_css($fileName='layout')
 {
-    if ($page = exhibit_builder_get_current_page()) {
-        return css($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $page->layout);
+    if ($exhibitPage = exhibit_builder_get_current_page()) {
+        return css($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
     }
 }
 
 /**
  * Displays an exhibit page
  * 
- * @param ExhibitPage $page If null, will use the current exhibit page.
+ * @param ExhibitPage $exhibitPage If null, will use the current exhibit page.
  * @return void
  **/
-function exhibit_builder_render_exhibit_page($page = null)
+function exhibit_builder_render_exhibit_page($exhibitPage = null)
 {
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
-    if ($page->layout) {
-     include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$page->layout.DIRECTORY_SEPARATOR.'layout.php';
+    if ($exhibitPage->layout) {
+     include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$exhibitPage->layout.DIRECTORY_SEPARATOR.'layout.php';
     } else {
      echo "This page does not have a layout.";
     }
@@ -644,12 +644,12 @@ function exhibit($propertyName, $options=array(), $exhibit=null)
 *
 * @param string|null $text The text of the link
 * @param array $props
-* @param ExhibitSection|null $section
-* @param ExhibitPage|null $page
+* @param ExhibitSection|null $exhibitSection
+* @param ExhibitPage|null $exhibitPage
 * @param Exhibit $exhibit|null If null, it uses the current exhibit
 * @return string
 **/
-function link_to_exhibit($text = null, $props = array(), $section=null, $page=null, $exhibit=null)
+function link_to_exhibit($text = null, $props = array(), $exhibitSection=null, $exhibitPage=null, $exhibit=null)
 {
-	return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $page);
+	return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $exhibitPage);
 }

@@ -8,7 +8,7 @@ require_once EXHIBIT_BUILDER_DIR . '/helpers/ExhibitSectionFunctions.php';
 class ExhibitBuilderSetCurrentSectionTest extends ExhibitBuilder_ViewTestCase 
 {
 	/**
-	 * Tests whether set_current_exhibit_section correctly sets an exhibit on the view.
+	 * Tests whether exhibit_builder_set_current_section correctly sets an exhibit section on the view.
 	 */
 	public function testExhibitBuilderSetCurrentSection()
 	{

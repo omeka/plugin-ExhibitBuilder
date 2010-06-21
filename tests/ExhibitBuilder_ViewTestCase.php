@@ -3,6 +3,7 @@
 require_once HELPERS;
 require_once EXHIBIT_BUILDER_DIR . '/models/Exhibit.php';
 require_once EXHIBIT_BUILDER_DIR . '/models/ExhibitSection.php';
+require_once EXHIBIT_BUILDER_DIR . '/models/ExhibitPage.php';
 
 
 class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase 
@@ -38,13 +39,29 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
 	 **/
 	protected function _createExhibitSectionArray($maxExhibitSectionCount=10)
 	{
-		$exhibits = array();
+		$exhibitSections = array();
 		for ($i = 0; $i < $maxExhibitSectionCount; $i++) {
 			$exhibitSection = new ExhibitSection;
 			$exhibitSection->id = $i;
 			$exhibitSections[] = $exhibitSection;
 		}
 		return $exhibitSections;
+	}
+	
+	/**
+	 * Creates an array of exhibit pages.
+	 * @param $maxExhibitPageCount The number of exhibit pages to create
+	 * @return array An array of exhibit pages
+	 **/
+	protected function _createExhibitPageArray($maxExhibitPageCount=10)
+	{
+		$exhibitPages = array();
+		for ($i = 0; $i < $maxExhibitPageCount; $i++) {
+			$exhibitPage = new ExhibitPage;
+			$exhibitPage->id = $i;
+			$exhibitPages[] = $exhibitPage;
+		}
+		return $exhibitPages;
 	}
 	
 	public function tearDown()

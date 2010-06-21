@@ -24,45 +24,44 @@ function exhibit_builder_set_current_page($exhibitPage=null)
 /**
  * Returns whether an exhibit page is the current exhibit page.
  *
- * @param ExhibitPage|null $page
+ * @param ExhibitPage|null $exhibitPage
  * @return boolean
  **/
-function exhibit_builder_is_current_page($page)
+function exhibit_builder_is_current_page($exhibitPage)
 {
-    $currentPage = exhibit_builder_get_current_page();
-    return ($page === $currentPage || ($page && $currentPage && $page->id == $currentPage->id));
+    $currentExhibitPage = exhibit_builder_get_current_page();
+    return ($exhibitPage === $currentExhibitPage || ($exhibitPage && $currentExhibitPage && $exhibitPage->id == $currentExhibitPage->id));
 }
 
 /**
  * Returns the text of the exhibit page
  *
- * @param int $order
- * @param bool $addTag
- * @param ExhibitPage|null If null, it will use the current exhibit page
+ * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_page_text($order, $addTag=true, $page=null)
+function exhibit_builder_page_text($exhibitPageEntryIndex, $exhibitPage=null)
 {
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
-    $text = $page->ExhibitPageEntry[(int) $order]->text;
+    $text = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->text;
     return $text;
 }
 
 /**
  * Returns an item on the exhibit page.
  *
- * @param int $order
- * @param ExhibitPage|null $page If null, will use the current exhibit page
+ * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
  * @return Item
  **/
-function exhibit_builder_page_item($order, $page = null)
+function exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage = null)
 {
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
-    $item = $page->ExhibitPageEntry[(int) $order]->Item;
+    $item = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->Item;
     if (!$item or !$item->exists()) {
         return null;
     }
@@ -72,34 +71,36 @@ function exhibit_builder_page_item($order, $page = null)
 /**
  * Returns the HTML code of the exhibit page navigation
  * 
- * @param ExhibitSection|null $section If null, will use the current exhibit section
- * @param string $linkTextType
+ * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
+ * @param string $linkTextType The type of page information should be used for the link text.  
+ * If 'order', it uses the page order as the link text.  
+ * If 'title' or any other value, it uses the page title as the link text.
  * @return string
  **/
-function exhibit_builder_page_nav($section = null, $linkTextType='title')
+function exhibit_builder_page_nav($exhibitSection = null, $linkTextType='title')
 {
-    $linkTextType = strtolower(trim($linkTextType));
-    if (!$section) {
-        if (!($section = exhibit_builder_get_current_section())) {
+    $linkTextType = Inflector::underscore($linkTextType);
+    if (!$exhibitSection) {
+        if (!($exhibitSection = exhibit_builder_get_current_section())) {
             return;
         }
     }
-    if ($section->hasPages()) {
-        $html = '<ul class="exhibit-page-nav">';
-        foreach ($section->Pages as $page) {
+    if ($exhibitSection->hasPages()) {
+        $html = '<ul class="exhibit-page-nav">' . "\n";
+        foreach ($exhibitSection->Pages as $exhibitPage) {
             switch($linkTextType) {
                 case 'order':
-                    $linkText = $page->order;
+                    $linkText = $exhibitPage->order;
                     break;
                 case 'title':
                 default:
-                    $linkText = $page->title;
+                    $linkText = $exhibitPage->title;
                     break;
                 
             }
-            $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($section->Exhibit, $section, $page)) . '">'. html_escape($linkText) .'</a></li>';
+            $html .= '<li'. (exhibit_builder_is_current_page($exhibitPage) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibitSection->Exhibit, $exhibitSection, $exhibitPage)) . '">'. html_escape($linkText) .'</a></li>' . "\n";
         }
-        $html .= '</ul>';
+        $html .= '</ul>' . "\n";
         return $html;
     }
     return false;
@@ -110,17 +111,17 @@ function exhibit_builder_page_nav($section = null, $linkTextType='title')
  *
  * @param string $text The label for the next page link
  * @param array $props
- * @param ExhibitPage $page If null, will use the current exhibit page
+ * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $props=array(), $page = null)
+function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $props=array(), $exhibitPage = null)
 {
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
     
-    $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
+    $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
+    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
     
     if(!isset($props['class'])) {
         $props['class'] = 'next-page';
@@ -128,9 +129,9 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
     
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
-    if ($nextPage = $page->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $nextPage);
-    } elseif ($nextSection = $section->next()) {
+    if ($nextPage = $exhibitPage->next()) {
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $nextPage);
+    } elseif ($nextSection = $exhibitSection->next()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextSection);
     }
 }
@@ -140,17 +141,17 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
  *
  * @param string $text The label for the previous page link
  * @param array $props
- * @param ExhibitPage $page If null, will use the current exhibit page
+ * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array(), $page = null)
+function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array(), $exhibitPage = null)
 {
-    if (!$page) {
-        $page = exhibit_builder_get_current_page();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
 
-    $section = exhibit_builder_get_exhibit_section_by_id($page->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($section->exhibit_id);
+    $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
+    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
     
     if(!isset($props['class'])) {
         $props['class'] = 'previous-page';
@@ -158,9 +159,9 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
     
     // If page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous exhibit section, if it exists.
-    if ($previousPage = $page->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $section, $previousPage);
-    } elseif ($previousSection = $section->previous()) {
+    if ($previousPage = $exhibitPage->previous()) {
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $previousPage);
+    } elseif ($previousSection = $exhibitSection->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection);
     }      
 }
@@ -169,12 +170,13 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
  * Returns whether an exhibit page has an item
  * 
  * @todo Needs optimization (shouldn't return the item object every time it's checked).
- * @param integer $index The index of the page item
+ * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
  * @return boolean
  **/
-function exhibit_builder_exhibit_page_has_item($index)
+function exhibit_builder_exhibit_page_has_item($exhibitPageEntryIndex, $exhibitPage = null)
 {
-    return (boolean)exhibit_builder_page_item($index);
+    return (boolean)exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage);
 }
 
 /**
@@ -235,7 +237,7 @@ function set_exhibit_pages_for_loop($exhibitPages)
 function set_exhibit_pages_for_loop_by_section($exhibitSection = null) 
 {   
     if (!$exhibitSection) {
-        $exhibitSection = get_current_section();
+        $exhibitSection = exhibit_builder_get_current_section();
     }
         
     if ($exhibitSection) {

@@ -122,4 +122,28 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
 	    	    
 	    return $exhibitPage;
 	}
+	
+	protected function _createNewExhibitPageEntry($exhibitPage, $text='', $order=1, $item=null) 
+	{
+	    $exhibitPageEntry = new ExhibitPageEntry;
+	    $exhibitPageEntry->page_id = $exhibitPage->id;
+	    $exhibitPageEntry->text = $text;
+	    $exhibitPageEntry->order = $order;
+	    
+	    if ($item && $item->exists()) {
+	        $exhibitPageEntry->item_id = $item->id;
+	    }
+	    
+	    $exhibitPageEntry->save();
+	    
+	    return $exhibitPageEntry;
+	}
+	
+	protected function _createNewItem($isPublic = true, $title = 'Item Title', $titleIsHtml = true)
+	{
+	    $item = insert_item(
+            array('public'=>$isPublic), 
+            array('Dublin Core'=>array('Title'=>array(array('text'=>$title, 'html'=>$titleIsHtml)))));
+        return $item;
+	}
 }

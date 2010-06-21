@@ -24,38 +24,38 @@ function exhibit_builder_set_current_section($exhibitSection=null)
 /**
  * Returns whether an exhibit section is the current exhibit section.
  *
- * @param ExhibitSection|null $section
+ * @param ExhibitSection|null $exhibitSection
  * @return boolean
  **/
-function exhibit_builder_is_current_section($section)
+function exhibit_builder_is_current_section($exhibitSection)
 {
-    $currentSection = exhibit_builder_get_current_section();
-    return ($section === $currentSection || ($section && $currentSection && $section->id == $currentSection->id));
+    $currentExhibitSection = exhibit_builder_get_current_section();
+    return ($exhibitSection === $currentExhibitSection || ($exhibitSection && $currentExhibitSection && $exhibitSection->id == $currentExhibitSection->id));
 }
 
 /**
  * Returns whether the exhibit section has pages.
  *
- * @param ExhibitSection|null $section If null, it uses the current exhibit section
+ * @param ExhibitSection|null $exhibitSection If null, it uses the current exhibit section
  * @return boolean
  **/
-function exhibit_builder_section_has_pages($section=null) 
+function exhibit_builder_section_has_pages($exhibitSection=null) 
 {
-    if ($section === null) {
-        $section = exhibit_builder_get_current_section();
+    if ($exhibitSection === null) {
+        $exhibitSection = exhibit_builder_get_current_section();
     }
-    return $section->hasPages();
+    return $exhibitSection->hasPages();
 }
 
 /**
  * Returns an exhibit section by id
  *
- * @param $sectionId The id of the exhibit section
+ * @param $exhibitSectionId The id of the exhibit section
  * @return ExhibitSection
  **/
-function exhibit_builder_get_exhibit_section_by_id($sectionId) 
+function exhibit_builder_get_exhibit_section_by_id($exhibitSectionId) 
 {
-    return get_db()->getTable('ExhibitSection')->find($sectionId);
+    return get_db()->getTable('ExhibitSection')->find($exhibitSectionId);
 }
 
 /**
@@ -72,9 +72,9 @@ function exhibit_builder_section_nav($exhibit=null)
         }    
     }
     $html = '<ul class="exhibit-section-nav">';
-    foreach ($exhibit->Sections as $key => $section) {
-        if ($section->hasPages()) {
-            $html .= '<li' . (exhibit_builder_is_current_section($section) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a></li>';            
+    foreach ($exhibit->Sections as $key => $exhibitSection) {
+        if ($exhibitSection->hasPages()) {
+            $html .= '<li' . (exhibit_builder_is_current_section($exhibitSection) ? ' class="current"' : ''). '><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitSection)) . '">' . html_escape($exhibitSection->title) . '</a></li>';            
         }      
     }
     $html .= '</ul>';
@@ -96,10 +96,10 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
         }    
     }
     $html = '<ul class="exhibit-section-nav">';
-    foreach ($exhibit->Sections as $section) {
-        $html .= '<li class="exhibit-nested-section' . (exhibit_builder_is_current_section($section) ? ' current' : '') . '"><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $section)) . '">' . html_escape($section->title) . '</a>';
-        if ($showAllPages || exhibit_builder_is_current_section($section)) {
-            $html .= exhibit_builder_page_nav($section);
+    foreach ($exhibit->Sections as $exhibitSection) {
+        $html .= '<li class="exhibit-nested-section' . (exhibit_builder_is_current_section($exhibitSection) ? ' current' : '') . '"><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitSection)) . '">' . html_escape($exhibitSection->title) . '</a>';
+        if ($showAllPages || exhibit_builder_is_current_section($exhibitSection)) {
+            $html .= exhibit_builder_page_nav($exhibitSection);
         }
         $html .= '</li>';
     }

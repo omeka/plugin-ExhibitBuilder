@@ -8,7 +8,7 @@ class SetExhibitSectionsForLoopByExhibitTest extends ExhibitBuilder_TestCase
 	/**
 	 * Tests whether set_exhibit_sections_for_loop_by_exhibit correctly sets exhibit sections on the view when the exhibit is specified.
 	 */
-	public function testSetExhibitsForLoopByExhibitWhenExhibitIsSpecified()
+	public function testSetExhibitSectionsForLoopByExhibitWhenExhibitIsSpecified()
     {
 		$exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
@@ -33,7 +33,7 @@ class SetExhibitSectionsForLoopByExhibitTest extends ExhibitBuilder_TestCase
     /**
 	 * Tests whether set_exhibit_sections_for_loop_by_exhibit correctly sets exhibit sections on the view when the exhibit is not specified.
 	 */
-	public function testSetExhibitsForLoopByExhibitWhenExhibitIsNotSpecified()
+	public function testSetExhibitSectionsForLoopByExhibitWhenExhibitIsNotSpecified()
     {
 		$exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
