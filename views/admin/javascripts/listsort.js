@@ -1,16 +1,4 @@
-function makeSortable(list) {
-	//var opt = {tag: listSorter.tag, onUpdate: reorderList, ghosting: false};	
-    // if (listSorter.handle) {
-    //  opt.handle = listSorter.handle;
-    // }    
-    // if (listSorter.overlap) {
-    //  opt.overlap = listSorter.overlap;
-    // }
-    // if (listSorter.constraint) {
-    //  opt.constraint = listSorter.constraint;
-    // }
-	//Sortable.create(list, opt);
-	
+function makeSortable(list) {	
 	var options = {};
 	if (listSorter.axis) {
 	    options.axis = listSorter.axis;
