@@ -12,6 +12,9 @@ function makeSortable(list) {
 	//Sortable.create(list, opt);
 	
 	var options = {};
+	if (listSorter.axis) {
+	    options.axis = listSorter.axis;
+	}
 	list.sortable(options);
 	list.bind('sortupdate', function(event, ui) { reorderList(jQuery(this)); });
 	

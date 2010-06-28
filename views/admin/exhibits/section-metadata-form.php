@@ -25,9 +25,7 @@ if ($exhibitSection->title) {
 		listSorter.partialUri = <?php echo js_escape(uri('exhibits/page-list')); ?>;
 		listSorter.recordId = <?php echo js_escape($exhibitSection->id); ?>;
 		listSorter.tag = 'li';
-		listSorter.handle = 'handle';
-		listSorter.overlap = 'vertical';
-		listSorter.constraint = 'vertical';
+		listSorter.axis = 'y';
 		listSorter.confirmation = 'Are you sure you want to delete this page?';
 		listSorter.deleteLinks = 'a.delete-page';
 								

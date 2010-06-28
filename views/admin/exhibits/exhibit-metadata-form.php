@@ -35,7 +35,7 @@ if ($exhibit->title) {
         listSorter.editUri = <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
         listSorter.partialUri = <?php echo  js_escape(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
         listSorter.tag = 'li';
-        listSorter.handle = 'handle';
+		listSorter.axis = 'y';
         listSorter.confirmation = 'Are you sure you want to delete this section?';
         listSorter.deleteLinks = '.section-delete a';
         listSorter.callback = Omeka.ExhibitBuilder.addStyling;
