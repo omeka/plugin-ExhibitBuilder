@@ -24,13 +24,13 @@
 		exhibitBuilder.addStyling();
 		
 		// Set the exhibit item uri
-		exhibitBuilder.itemContainerUri = <?php echo Zend_Json::encode(uri('exhibits/item-container')); ?>;
+		exhibitBuilder.itemContainerUri = <?php echo js_escape(uri('exhibits/item-container')); ?>;
 		
 		// Set the paginated exhibit items uri
-		exhibitBuilder.paginatedItemsUri = <?php echo Zend_Json::encode(uri('exhibits/items')); ?>;
+		exhibitBuilder.paginatedItemsUri = <?php echo js_escape(uri('exhibits/items')); ?>;
 		
 		// Set the remove item background image uri
-		exhibitBuilder.removeItemBackgroundImageUri = <?php echo Zend_Json::encode(img('delete.gif')); ?>;
+		exhibitBuilder.removeItemBackgroundImageUri = <?php echo js_escape(img('delete.gif')); ?>;
 		
 		// Get the paginated items
 		exhibitBuilder.getItems();

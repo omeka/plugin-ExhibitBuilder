@@ -12,13 +12,18 @@ if ($exhibitSection->title) {
 	var listSorter = {};
 	
 	jQuery(document).ready(function() {
-		var pageList = jQuery('#page-list');
+        makePageListDraggable();
+    });
+    
+    function makePageListDraggable()
+    {
+        var pageList = jQuery('#page-list');
 		if (!pageList) return;	
 		listSorter.list = pageList;
 		listSorter.form = jQuery('#section-metadata-form');
-		listSorter.editUri = <?php echo Zend_Json::encode($_SERVER['REQUEST_URI']); ?>;
-		listSorter.partialUri = <?php echo Zend_Json::encode(uri('exhibits/page-list')); ?>;
-		listSorter.recordId = <?php echo Zend_Json::encode($exhibitSection->id); ?>;
+		listSorter.editUri = <?php echo js_escape($_SERVER['REQUEST_URI']); ?>;
+		listSorter.partialUri = <?php echo js_escape(uri('exhibits/page-list')); ?>;
+		listSorter.recordId = <?php echo js_escape($exhibitSection->id); ?>;
 		listSorter.tag = 'li';
 		listSorter.handle = 'handle';
 		listSorter.overlap = 'vertical';
@@ -30,7 +35,7 @@ if ($exhibitSection->title) {
 			//Create the sortable list
 			makeSortable(listSorter.list);
 		}
-    });
+    }
     
     jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
 //]]>

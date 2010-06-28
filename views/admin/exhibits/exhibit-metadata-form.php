@@ -13,10 +13,10 @@ if ($exhibit->title) {
 
     var listSorter = {};
     var urls = {
-        sectionForm: <?php echo Zend_Json::encode(uri('exhibits/section-form')); ?>,
-        addSection: <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'add-section'), 'default')); ?>,
-        sectionList: <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'section-list'), 'default')); ?>,
-        edit: <?php echo Zend_Json::encode(uri('exhibits/edit')); ?>
+        sectionForm: <?php echo js_escape(uri('exhibits/section-form')); ?>,
+        addSection: <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'add-section'), 'default')); ?>,
+        sectionList: <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'section-list'), 'default')); ?>,
+        edit: <?php echo js_escape(uri('exhibits/edit')); ?>
     };
     
     jQuery(document).ready(function() {
@@ -32,8 +32,8 @@ if ($exhibit->title) {
         listSorter.list = jQuery('#section-list');
         listSorter.recordId = exhibit_id;
         listSorter.form = jQuery('#exhibit-metadata-form');
-        listSorter.editUri = <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
-        listSorter.partialUri = <?php echo  Zend_Json::encode(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
+        listSorter.editUri = <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
+        listSorter.partialUri = <?php echo  js_escape(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
         listSorter.tag = 'li';
         listSorter.handle = 'handle';
         listSorter.confirmation = 'Are you sure you want to delete this section?';
