@@ -221,6 +221,16 @@ function exhibit_builder_admin_header($request)
     		echo js('tiny_mce/tiny_mce');
     		echo js('search'); 
     		echo js('exhibits');
+    		
+    		echo js('jquery');
+    		
+            echo '<script type="text/javascript" charset="utf-8">' . "\n";
+            echo 'jQuery.noConflict();' . "\n";
+            echo '</script>' . "\n";
+    		
+    		echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui/css/ui-lightness/jquery-ui-1.8.2.custom')) . '" /> ';
+            echo js('jquery-ui/js/jquery-ui-1.8.2.custom.min');
+    		
     endif;
 }
 

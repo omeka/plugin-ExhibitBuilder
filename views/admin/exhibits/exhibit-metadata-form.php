@@ -10,9 +10,8 @@ if ($exhibit->title) {
 
 <script type="text/javascript" charset="utf-8"> 
 //<![CDATA[
-    
-    Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
-    
+
+    var listSorter = {};
     var urls = {
         sectionForm: <?php echo Zend_Json::encode(uri('exhibits/section-form')); ?>,
         addSection: <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'add-section'), 'default')); ?>,
@@ -20,18 +19,19 @@ if ($exhibit->title) {
         edit: <?php echo Zend_Json::encode(uri('exhibits/edit')); ?>
     };
     
-    Event.observe(window, 'load', function() {  
+    jQuery(document).ready(function() {
         makeSectionListDraggable();
     });
+
+    jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
     
     function makeSectionListDraggable()
     {       
-        var list = $('section-list');
+        var exhibit_id = <?php echo $exhibit->exists() ? js_escape($exhibit->id) : 'null'; ?>; 
         
-        var exhibit_id = <?php echo $exhibit->exists() ? $exhibit->id : 'null'; ?>; 
-        listSorter.list = list;
+        listSorter.list = jQuery('#section-list');
         listSorter.recordId = exhibit_id;
-        listSorter.form = $('exhibit-metadata-form');
+        listSorter.form = jQuery('#exhibit-metadata-form');
         listSorter.editUri = <?php echo Zend_Json::encode(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
         listSorter.partialUri = <?php echo  Zend_Json::encode(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
         listSorter.tag = 'li';
@@ -40,14 +40,11 @@ if ($exhibit->title) {
         listSorter.deleteLinks = '.section-delete a';
         listSorter.callback = Omeka.ExhibitBuilder.addStyling;
 
-        if(listSorter.list) {
+        if (listSorter.list) {
             //Create the sortable list
             makeSortable(listSorter.list);
         }       
-    }   
-    
-    var listSorter = {};
-
+    }
 //]]>   
 </script>
 

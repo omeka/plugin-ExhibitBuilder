@@ -7,12 +7,6 @@
 ?>
 <?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
-<?php echo js('jquery'); ?>
-<script type="text/javascript" charset="utf-8">
-    jQuery.noConflict();
-</script>
-<?php echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui/css/ui-lightness/jquery-ui-1.8.2.custom')) . '" /> '; ?>
-<?php echo js('jquery-ui/js/jquery-ui-1.8.2.custom.min'); ?>
 <style>
 .ui-button-text {
     color:black;
@@ -62,9 +56,7 @@
                 }
             });
     	});
-    	
-    	Omeka.ExhibitBuilder.wysiwyg;
-    	
+    	    	
     	// Search Items Dialog Box
          jQuery('#search-items').dialog({
      		autoOpen: false,
@@ -82,7 +74,9 @@
      			} 
      		}
      	});
-	}); 
+	});
+	
+	jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
 //]]>    
 </script>
 <h1><?php echo html_escape($exhibitPageTitle); ?></h1>

@@ -7,31 +7,36 @@
 
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
-
-	Event.observe(window, 'load', makeLayoutSelectable);
 	
-	function makeLayoutSelectable() {
-		var layouts = $$('div.layout');
-        
+	jQuery(document).ready(function() {
+        makeLayoutSelectable();
+    });
+	
+	function makeLayoutSelectable() {        
 		//Make each layout clickable
-		layouts.invoke('observe', 'click', function(e) {
-            var currentLayout = $('layout-thumbs').select('div.current-layout').first();
-
-            if (currentLayout) {
-                currentLayout.removeClassName('current-layout');
-            }
-
-            this.addClassName('current-layout');
-            var copy = $(this.cloneNode(true));
+		jQuery('div.layout').bind('click', function(e) {
+            jQuery('#layout-thumbs').find('div.current-layout').removeClass('current-layout');
+            jQuery(this).addClass('current-layout');
+            
+            // Remove the old chosen layout
+            jQuery('#chosen_layout').find('div.layout').remove()
+            
+            // Copy the chosen layout
+            var copyLayout = jQuery(this).clone();
             
             // Take the form input out of the copy (so no messed up forms).
-            copy.select('input').first().remove();
-                    
-            $('chosen_layout').update().appendChild(copy);
-            this.select('input').first().click();      
+            copyLayout.find('input').remove();
+            
+            // Change the id of the copy
+            copyLayout.attr('id', 'chosen_' + copyLayout.attr('id'));
+            
+            // Append the copy layout to the chosen_layout div        
+            copyLayout.appendTo('#chosen_layout');
+            
+            // Click the radio input for the layout
+            jQuery(this).find('input').click();      
 		});		
-	}	
-
+	}
 //]]>	
 </script>
 

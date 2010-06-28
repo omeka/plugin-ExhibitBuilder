@@ -9,15 +9,13 @@ if ($exhibitSection->title) {
 <?php echo js('listsort'); ?>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
-
 	var listSorter = {};
 	
-	Event.observe(window, 'load', Omeka.ExhibitBuilder.wysiwyg);
-	
-	Event.observe(window, 'load', function() {	
-		if(!$('page-list')) return;	
-		listSorter.list = $('page-list');
-		listSorter.form = $('section-metadata-form');
+	jQuery(document).ready(function() {
+		var pageList = jQuery('#page-list');
+		if (!pageList) return;	
+		listSorter.list = pageList;
+		listSorter.form = jQuery('#section-metadata-form');
 		listSorter.editUri = <?php echo Zend_Json::encode($_SERVER['REQUEST_URI']); ?>;
 		listSorter.partialUri = <?php echo Zend_Json::encode(uri('exhibits/page-list')); ?>;
 		listSorter.recordId = <?php echo Zend_Json::encode($exhibitSection->id); ?>;
@@ -28,12 +26,13 @@ if ($exhibitSection->title) {
 		listSorter.confirmation = 'Are you sure you want to delete this page?';
 		listSorter.deleteLinks = 'a.delete-page';
 								
-		if(listSorter.list) {
+		if (listSorter.list) {
 			//Create the sortable list
 			makeSortable(listSorter.list);
 		}
-	});
-
+    });
+    
+    jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
 //]]>
 </script>
 

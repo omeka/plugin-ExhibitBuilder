@@ -4,8 +4,6 @@
     $uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
     $formAttributes = array('id'=>'search');
     common('advanced-search', array('isPartial'=>true, 'formAttributes'=>$formAttributes), 'items');
-
-    //items_search_form(array('id'=>'search'), $uri); 
 ?>
 </div>
 <div id="pagination" class="pagination">
