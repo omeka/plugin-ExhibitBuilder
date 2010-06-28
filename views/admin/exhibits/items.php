@@ -2,9 +2,8 @@
 <div id="page-search-form">
 <?php
     $uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
-    $isPartial = true;
     $formAttributes = array('id'=>'search');
-    common('advanced-search', array('isPartial'=>$isPartial, 'formAttributes'=>$formAttributes), 'items');
+    common('advanced-search', array('isPartial'=>true, 'formAttributes'=>$formAttributes), 'items');
 
     //items_search_form(array('id'=>'search'), $uri); 
 ?>

@@ -190,7 +190,7 @@ function exhibit_builder_exhibit_foot()
 
 
 /**
- * Returns the HTML code of the item drag and drop section of the exhibit form
+ * Returns the HTML code of the item attach section of the exhibit form
  *
  * @param Item $item
  * @param int $orderOnForm
@@ -199,22 +199,22 @@ function exhibit_builder_exhibit_foot()
  **/
 function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null)
 {
-    $html = '<div class="item-drop">';  
+    $html = '<div class="item-select-outer">';  
 
     if ($item and $item->exists()) {
         set_current_item($item);
-        $html .= '<div class="item-drag"><div class="item_id">' . html_escape($item->id) . '</div>';
-        $html .=  item_has_thumbnail() ? item_square_thumbnail() : '<div class="title">' . item('Dublin Core', 'Title', ', ') . '</div>';
-        $html .= '</div>';      
+        $html .= '<div class="item-select-inner">' . "\n";
+        $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
+        $html .=  item_has_thumbnail() ? item_square_thumbnail() : '<div class="title">' . item('Dublin Core', 'Title', ', ') . '</div>' . "\n";
+        $html .= '</div>' . "\n";      
+    } else {
+        $html .= '<a href="#" class="attach-item-link">Attach Item</a>' . "\n";
     }
     
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
     if ($orderOnForm) {
-        $html .= __v()->formText('Item['.$orderOnForm.']', $item->id, array('size'=>2));
-    } else {
-        $html .= '<div class="item_id">' . html_escape($item->id) . '</div>';
+        $html .= __v()->formHidden('Item['.$orderOnForm.']', $item->id, array('size'=>2));
     }
-    
     $html .= '</div>';
     return $html;
 }

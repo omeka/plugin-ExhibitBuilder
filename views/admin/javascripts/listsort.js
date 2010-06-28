@@ -10,7 +10,6 @@ function makeSortable(list) {
 	if(listSorter.constraint) {
 		opt.constraint = listSorter.constraint;
 	}
-//	Sortable.destroy(list);
 	
 	Sortable.create(list, opt);
 	enableListForm(false);
@@ -46,28 +45,28 @@ function reorderList(container) {
 }
 
 function ajaxListDelete(event) {
-		var href = this.href;
+	var href = this.href;
 
-		if(confirm(listSorter.confirmation)) {
-		
-			new Ajax.Request(href, {
-				method:'get',
-				/**
-				 * Successful AJAX requests to delete will retrieve XHTML for the list partial.
-				 */
-				onSuccess: function(t) {
-					listSorter.list.updateAppear(t.responseText);
-					makeSortable(listSorter.list);
-                    if(listSorter.callback) {
-                        listSorter.callback();
-                    }
-                    
-				},
-				onFailure: function(t) {
-					alert(t.status);
-				}
-			});	
-		}
-		
-		return false;
+	if(confirm(listSorter.confirmation)) {
+	
+		new Ajax.Request(href, {
+			method:'get',
+			/**
+			 * Successful AJAX requests to delete will retrieve XHTML for the list partial.
+			 */
+			onSuccess: function(t) {
+				listSorter.list.updateAppear(t.responseText);
+				makeSortable(listSorter.list);
+                if(listSorter.callback) {
+                    listSorter.callback();
+                }
+                
+			},
+			onFailure: function(t) {
+				alert(t.status);
+			}
+		});	
+	}
+	
+	return false;
 }

@@ -83,6 +83,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->view->items = $results['items'];
     }
     
+    public function itemContainerAction()
+    {        
+        $itemId = (int)$this->_getParam('item_id');        
+        $orderOnForm = (int)$this->_getParam('order_on_form');
+        $item = get_db()->getTable('Item')->find($itemId);
+        $this->view->item = $item;
+        $this->view->orderOnForm = $orderOnForm;
+    }
+    
     public function showAction()
     {
         $exhibit = $this->_findByExhibitSlug();                

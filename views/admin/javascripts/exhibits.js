@@ -1,324 +1,260 @@
 Omeka = Omeka || new Object;
 Omeka.ExhibitBuilder = Omeka.ExhibitBuilder || new Object;
 
-Omeka.ExhibitBuilder = Class.create({
+Omeka.ExhibitBuilder = function() {
     
-    initialize: function() {		
-        Event.observe(document, 'omeka:loaditems', this.onLoadPagination.bind(this));
-        //When you're done, make all the items drag/droppable
-    	Event.observe(document, 'omeka:loaditems', this.enableDragAndDrop.bind(this));
-    	
-        Event.observe(document, 'omeka:dropitem', function(e){
-            this.moveItem(e.memo.item, e.memo.container);
-            this.postDropStyling(e.memo.item, e.memo.container);
-        }.bind(this));
-    },
+    this.paginatedItemsUri = ''; // Used to get a paginated list of items for the item search
+    this.itemContainerUri = ''; // Used to get a single item container
+    this.removeItemBackgroundImageUri = ''; // Used to specify the background image for the remove item link
     
-    postDropStyling: function(item, container)
-    {
-        item.select('.handle').first().hide();
-		new Effect.Highlight(container);
-    },
+    /*
+    * Load paginated search
+    */
+    this.loadPaginatedSearch = function() {
+    	// Make each of the pagination links fire an additional ajax request
+    	jQuery('#pagination a').bind('click', {exhibitBuilder: this}, function(event){
+    	    event.stopPropagation();
+    	    event.data.exhibitBuilder.getItems(event.target.attr('href'));
+    	    return false;
+    	});
+
+        // Setup layout item Containers
+        this.setupLayoutItemContainers();
+        
+        // Setup search item Containers
+        this.setupSearchItemContainers();
+
+    	// Make the search form respond with ajax power
+    	jQuery('#search').bind('submit', {exhibitBuilder:this}, function(event){
+    	    event.stopPropagation();
+    	    event.data.exhibitBuilder.searchItems(jQuery('#search'));
+    	    return false;
+    	});
+    };
     
-    /**
-     * AJAX request to retrieve the list of items that can be used in the exhibit.
-     */
-     getItems: function(uri, parameters)
-	 {	
-	     var fireEvents = false;
-	     
-	     this.paginationUri = uri;    
-		new Ajax.Updater('item-select', uri, {
-			parameters: parameters,
-			evalScripts: true,
-			method: 'get',
-			onSuccess: function() {
-			    fireEvents = true;
-			},
-			onFailure: function(t) {
-			    alert(t.status);
-			},
-			onComplete: function() {
-			    if(fireEvents) {
-			        document.fire("omeka:loaditems");
-			    }
-			}
-		});
-    },
+    jQuery(document).bind('omeka:loaditems', 
+                          {exhibitBuilder:this}, 
+                          function(event){
+                              event.data.exhibitBuilder.loadPaginatedSearch()
+                          });
     
-    searchItems: function(searchForm)
+    /*
+    * Setup the item containers located in the main layout
+    */
+    this.setupLayoutItemContainers = function() {
+    	var exhibitBuilder = this;
+    	var layoutItemContainers = jQuery('#layout-form div.item-select-outer');
+        jQuery.each(layoutItemContainers, function(index, rawLayoutItemContainer) {
+            var layoutItemContainer = jQuery(rawLayoutItemContainer);
+            exhibitBuilder.setupLayoutItemContainer(layoutItemContainer);
+        });
+    };
+    
+    /*
+    * Setup an item container located in the main layout
+    */
+    this.setupLayoutItemContainer = function(layoutItemContainer) {        
+        
+        // Add delete buttons to the layout item container
+        this.addDeleteButtonsToLayoutItemContainer(layoutItemContainer);
+        
+        // Hide the item id information
+        layoutItemContainer.find('.item_id').hide();
+        
+        // Attach Item Dialog Link
+     	layoutItemContainer.find('.attach-item-link').click(function(){
+     	    jQuery(this).parent().addClass('item-targeted');
+     		jQuery('#search-items').dialog('open');
+     		return false;
+     	});
+    };
+    
+    /*
+    * Setup the item containers located in the search box
+    */
+    this.setupSearchItemContainers = function() {
+        var exhibitBuilder = this;
+        var searchItemContainers = jQuery('#item-select div.item-select-outer');
+        jQuery.each(searchItemContainers, function(index, rawSearchItemContainer) {
+            var searchItemContainer = jQuery(rawSearchItemContainer);
+            exhibitBuilder.setupSearchItemContainer(searchItemContainer);
+        });
+    }
+    
+    /*
+    * Setup an item container located in the search box
+    */
+    this.setupSearchItemContainer = function(searchItemContainer) {
+        // Add selection highlighting to the search item container
+        this.addSelectionHighlightingToSearchItemContainer(searchItemContainer);
+    
+        // Hide the item id information
+        searchItemContainer.find('.item_id').hide();
+    
+    };
+    
+    /*
+    * Use AJAX request to retrieve the list of items that can be used in the exhibit.
+    */
+    this.getItems = function(uri, parameters) {		     
+         
+         if (!uri || uri.length == 0) {
+             uri = this.paginatedItemsUri;
+         }
+         var fireEvents = false;
+         jQuery.ajax({
+           url: uri,
+           data: parameters,
+           method: 'GET',
+
+           success: function(data) {
+             jQuery('#item-select').html(data);
+             fireEvents = true;
+           },
+
+           error: function(xhr, textStatus, errorThrown) {
+             alert('Error getting items: ' . textStatus);  
+           },
+
+           complete: function(xhr, textStatus) {
+                // Activate the buttons on the advanced search
+                Omeka.Search.activateSearchButtons();
+                
+                if (fireEvents) {
+        	        jQuery(document).trigger("omeka:loaditems");
+        	    }
+           }
+         });
+    };
+
+    /*
+    * Process the search form 
+    */
+    this.searchItems = function(searchForm)
     {
         // The advanced search form automatically puts 'items/browse' as the 
         // action URI.  We need to hack that with Javascript to make this work.
         // This will give it the URI exhibits/items or whatever is set in
         // page-form.php.
-        searchForm.action = this.paginationUri;
-        searchForm.request({
-            onComplete: function(t) {
-                $('item-select').update(t.responseText);
-                document.fire("omeka:loaditems");
-            }
+        searchForm.attr('action', this.paginatedItemsUri);
+        jQuery.ajax({
+          url: this.paginatedItemsUri,
+          data: searchForm.serialize(),
+          method: 'POST',
+          complete: function(xhr, textStatus) {
+              jQuery('#item-select').html(xhr.responseText);
+              jQuery(document).trigger("omeka:loaditems");
+          }
         });
-    },
-    
-    getItemId: function(element) {
-    	var id = null;
-    	if(!element) {
-    		throw 'Invalid element passed to getItemId()';
-    	} 
+    };
 
-        function getItemIdFromSubDiv(element) {
-        	var idDiv = element.select('.item_id').first();
-        	if(Object.isUndefined(idDiv)) {
-        	    return false;
-        	}
-        	return parseInt(idDiv.innerHTML.strip());
-        }
+    /*
+    * Style the handles for the section/page lists in the exhibit builder.
+    */
+    this.addStyling = function() {
+        jQuery('.handle').css({'display':'inline', 'cursor': 'move'});
+    	jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
+    };
 
-    	//item is a form element so return the value
-    	if(element.hasClassName('item-drag')) {
-
-    		return getItemIdFromSubDiv(element);		
-    	}
-    	else if( element.hasClassName('item-drop') ) {
-
-    		//try to get itemId from the input in the div
-    		id = this.getItemIdFromInput(element);
-    		if(isNaN(parseInt(id))) {
-    			return getItemIdFromSubDiv(element);
-    		} else {
-    			return id;
-    		}
-
-    	}else {
-    		throw 'Invalid element with class = ' + element.className + ' has been passed to getItemId()';
-    	}
-
-    	return false;
-    },
-
-    getItemIdFromInput: function(element) {
-    	var input = element.getElementsByTagName('input')[0];
-
-    	if(!input) {
-    		return false;
-    	}
-    	return input.value;
-    },
-
-    setItemId: function(element, id) {
-    	if(element.hasClassName('item-drop')) {
-    		var input = element.getElementsByTagName('input')[0];
-    		if(input) {
-    			input.value = id;
-    		}
-    	}else if(element.hasClassName('item-drag')) {
-    		var idDiv = element.getElementsByClassName('item_id')[0];
-    		idDiv.innerHTML = id;
-    	}else {
-    		throw 'Element passed to setItemId() has className of '+element.className;
-    	}
-    },
-
-    getItemFromContainer: function(container) {
-    	var item = container.select('div.item-drag').last();
-    	return item ? item : false;
-    },
-
-    sendItemHome: function(draggable) {
-    		var draggableId = this.getItemId(draggable);
-            
-            this.addHandles([draggable]);
-            
-    		//Loop through a list of the containers in the pagination
-    		//Check the itemId of each for a match
-    		var containers = $$('#item-select .item-drop');
-    		var reAttached = false;
-
-    		for (var i=0; i < containers.length; i++) {
-    			var containerItemId = this.getItemId(containers[i]);
-    			var container = containers[i];
-
-    			if(containerItemId == draggableId) {
-    				//Check if there is already an item in this spot
-    				if(!this.getItemFromContainer(container)) {
-    					reAttached = true;
-    					container.appendChild(draggable);
-    				}
-    			}
-    		};
-
-    		if(!reAttached) {
-    			draggable.destroy();
-    		}
-
-    },
-
-    moveItem: function(item, container) {
-    	/* 	Step 1: Get the itemId for the newly dropped item
-    		Step 2: Get the existing item
-    			Step 3: If there is an existing item, move it back to its original spot
-    				Step 4: If there is already a droppable item in its original spot, destroy it
-    		Step 5: Move the newly dropped item inside the droppable container
-    		Step 6: Change the value of the container's form element to reflect the new itemId */
-    	var oldItem = this.getItemFromContainer(container);
-        
-    	if(oldItem) {
-    		this.sendItemHome(oldItem);
-    	}
-
-    	//append and set the itemId of the droppable element
-    	container.appendChild(item);
-    	this.setItemId(container, this.getItemId(item));
-    },
-    
-    /**
-     * Get a list of the draggables on the form. Fade the image and unregister
-     * the ones that are on the pagination.
-     */
-    disablePaginationDraggables: function() {
-    	var formItemId, selectItemId, itemToRemove;
-    	var layoutContainers = $$('#layout-form div.item-drop');
-    	var selectItemContainers = $$('#item-select div.item-drop');
-        
-        layoutContainers.each(function(formContainer) {
-            if (formItemId = this.getItemId(formContainer)) {
-                selectItemContainers.each(function(itemContainer) {
-                    if (formItemId == this.getItemId(itemContainer)) {
-                        //Stop the item from being dragged.
-                        if (itemToRemove = this.getItemFromContainer(itemContainer)) {
-                            itemToRemove.remove();
-                        };
-                    };
-                }.bind(this));
-            }
-        }.bind(this));
-    },
-
-    makeDraggable: function(containers) {
-    	var item, options = {
-    		revert:true,
-    		handle: 'handle',
-    		snap: [20, 20],
-    		scroll: window,
-    		scrollSensitivity: 50,
-    		scrollSpeed: 40,
-    		onStart: function(item, event) {			
-    			if(item.element.descendantOf('layout-form')) {
-    				var oldContainer = item.element.parentNode;
-    				this.setItemId(oldContainer, false);
-    			}
-    		}.bind(this),
-    		onEnd: function(item) {
-    			var container = item.element.parentNode;
-    			if(container.descendantOf('layout-form')) {
-    				this.setItemId(container, this.getItemId(item.element));
-    			}
-    		}.bind(this)
-    	};
-
-    	for (var i=0; i < containers.length; i++) {
-
-    		var item = this.getItemFromContainer(containers[i]);
-    		if(item) {
-    			var drag = new Draggable(item, options);
-    		}
-    	};
-    },
-
-	onLoadPagination: function() 
-	{        
-		new Effect.Highlight('item-list');
-		
-		//Make each of the pagination links fire an additional ajax request
-		$$('#pagination a').invoke('observe', 'click', function(e){
-		    e.stop();
-		    this.getItems(e.element().href);
-		}.bind(this));
-		
-		//Make the correct elements on the pagination draggable
-		this.makeDraggable($$('#item-select div.item-drop'));
-		
-		//Disable the items in the pagination that are already used
-		this.disablePaginationDraggables();
-		
-		//Hide all the numbers that tell us the Item ID
-		$$('.item_id').invoke('hide');
-		
-		//Make the search form respond with ajax power
-		Event.observe('search', 'submit', function(e){
-		    e.stop();
-		    this.searchItems($('search'));
-		}.bind(this));
-	},
-
-    makeDroppable: function(containers) {
-    	containers.each(function(container){
-    	    Droppables.add(container, {
-    			snap: true,
-    			onDrop: function(draggable, droppable) {
-    			    document.fire('omeka:dropitem', {item: draggable, container: droppable});
-    			}
+    /*
+    * Add delete buttons to the layout item containers 
+    */
+    this.addDeleteButtonsToLayoutItemContainer = function(layoutItemContainer) {
+        // Only add a Remove Item link to the layout item container if it has an item
+        if (layoutItemContainer.find('div.item-select-inner').size()) {
+            var removeItemLink = jQuery('<a></a>');
+    		removeItemLink.html('Remove This Item');
+    		removeItemLink.addClass('remove_item');
+    		removeItemLink.css('cursor', 'pointer');
+    		
+    		// Put the 'delete' as background to anything with a 'remove_item' class
+            removeItemLink.css('backgroundImage', 'url(' + this.removeItemBackgroundImageUri + ')');            
+    	    
+    		// Make the remove item link delete the item when clicked
+    		removeItemLink.bind('click', {exhibitBuilder: this}, function(event) {
+    		    event.data.exhibitBuilder.deleteItemFromItemContainer(layoutItemContainer);
+    		    return;
     		});
+    		layoutItemContainer.append(removeItemLink);
+        }           
+    };
+
+    /*
+    * Add selection highlighting to the search item containers 
+    */
+    this.addSelectionHighlightingToSearchItemContainer = function(searchItemContainer) {
+        searchItemContainer.bind('click', {exhibitBuilder: this}, function(event) {
+    		jQuery('#item-list div.item-select-outer').removeClass('item-selected');
+    		jQuery(this).addClass('item-selected');
+    		return;
     	});
-    },
+    };
     
-    setUrlForHandleGif: function(url) {
-        this.handleUrl = url;
-    },
-    
-    addHandles: function(items) {
-        items.invoke('insert', {top: '<div class="handle"><img src="' + this.handleUrl + '"></div>'});
-    },
-        
-    deleteItemFromContainer: function(container) {
-        var handle, item = this.getItemFromContainer(container);
-        this.setItemId(container, false);
-        if(item) {
-        	this.sendItemHome(item);
-        	// Show the handle for moving the item.
-        	item.select('.handle').first().show();
-        }
-    },
-    
-    enableDragAndDrop: function() {
-    	var formContainers = $$('#layout-form div.item-drop');
-        
-    	// All items are draggable but only items on the form will reset the form inputs when dragged
-    	this.makeDraggable(formContainers);
-
-    	// Dropping the items on the form should only work when dropping them elsewhere on the form
-    	this.makeDroppable(formContainers);
-
-    	this.styleDeleteButton(formContainers);
-    	
-    	// Hide the item_id divs, labels for the item boxes, text fields for the layout form
-    	$$('.item_id, .item-drop input, .item-drop label').invoke('hide');
-    },
-    
-    styleDeleteButton: function(containers) {
-        containers.each(function(container){
-            var clear = $(document.createElement('a'));
-    		clear.innerHTML = "Remove This Item";
-    		clear.className = 'remove_item';
-    		clear.style.cursor = "pointer";
-    		clear.observe('click', this.deleteItemFromContainer.bind(this, container));
-    		container.appendChild(clear);            
-        }.bind(this));
-    },
-    
-    /**
-     * Style the handles for the section/page lists in the exhibit builder.
-     */
-    addStyling: function() {
-        $$('.handle').invoke('setStyle', {display:'inline',cursor: 'move'});
-
-    	$$('.order-input').invoke('setStyle', {border: 'none',background:'#fff',color: '#333'});
+    /*
+    * Attach the selected item from a search item container to a layout item container
+    */
+    this.attachSelectedItem = function() {
+        var selectedItemContainer = jQuery('.item-selected');
+        var selectedItemId = this.getItemIdFromItemContainer(selectedItemContainer);        		
+        var targetedItemContainer = jQuery('.item-targeted');
+		var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);		
+		this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);
     }
-});
+    
+    /*
+    * Deletes an item from the item container
+    */
+    this.deleteItemFromItemContainer = function(itemContainer) {
+        var orderOnForm = this.getItemOrderFromItemContainer(itemContainer);
+        this.setItemForItemContainer(itemContainer, 0, orderOnForm);
+    };
+
+    /*
+    * Sets the item for a container.  It uses Ajax to dynamically get a new item container
+    */
+    this.setItemForItemContainer = function(itemContainer, itemId, orderOnForm) {
+        var exhibitBuilder = this;        
+        jQuery.ajax({
+          url: this.itemContainerUri,
+          data: {'item_id': itemId, 'order_on_form': orderOnForm},
+          method: 'POST',
+          complete: function(xhr, textStatus) {
+              var newItemContainer = jQuery(xhr.responseText);
+              itemContainer.replaceWith(newItemContainer);
+              exhibitBuilder.setupLayoutItemContainer(newItemContainer);
+          }
+        });
+    };
+
+    /*
+    * Get the id of the item (if any) in the item container
+    */
+    this.getItemIdFromItemContainer = function(itemContainer) {
+        // for some weird reason, itemContainer.find('.item_id').first(); does not work, 
+        // so we assume that their is only one item id div in the item container
+        var itemIdDiv = itemContainer.find('.item_id');
+        if (itemIdDiv) {
+            return itemIdDiv.text();
+        }
+        return false;
+    };
+    
+    /*
+    * Get the order of the item (if any) in the item container
+    */
+    this.getItemOrderFromItemContainer = function(itemContainer) {
+        // for some weird reason, itemContainer.find("input[id^='" + itemOrderPrefix + "']").first() does not work, 
+        // so we assume that their is only one input whose id begins with the 'Item-' in the item container
+        var itemOrderPrefix = 'Item-';
+        var itemOrderInput = itemContainer.find("input[id^='" + itemOrderPrefix + "']");
+        if (itemOrderInput) {
+            return itemOrderInput.attr('id').substring(itemOrderPrefix.length);
+        }
+        return false;
+    };
+}
 
 Omeka.ExhibitBuilder.wysiwyg = function() {
-    
     if (!this.isInitialized) {
         this.isInitialized = true;
 		tinyMCE.init({
@@ -339,3 +275,7 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
 		});
     };
 }
+
+
+
+
