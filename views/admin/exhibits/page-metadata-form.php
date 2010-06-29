@@ -33,8 +33,8 @@
             // Append the copy layout to the chosen_layout div        
             copyLayout.appendTo('#chosen_layout');
             
-            // Click the radio input for the layout
-            jQuery(this).find('input').click();      
+            // Check the radio input for the layout
+            jQuery(this).find('input').attr('checked', true);      
 		});		
 	}
 //]]>	

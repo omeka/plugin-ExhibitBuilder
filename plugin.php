@@ -228,8 +228,8 @@ function exhibit_builder_admin_header($request)
             echo 'jQuery.noConflict();' . "\n";
             echo '</script>' . "\n";
     		
-    		echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui/css/ui-lightness/jquery-ui-1.8.2.custom')) . '" /> ';
-            echo js('jquery-ui/js/jquery-ui-1.8.2.custom.min');
+    		echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui')) . '" /> ';
+            echo js('jquery-ui');
     		
     endif;
 }
