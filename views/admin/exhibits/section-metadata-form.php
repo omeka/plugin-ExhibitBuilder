@@ -10,10 +10,6 @@ if ($exhibitSection->title) {
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 	var listSorter = {};
-	
-	jQuery(document).ready(function() {
-        makePageListDraggable();
-    });
     
     function makePageListDraggable()
     {
@@ -35,7 +31,10 @@ if ($exhibitSection->title) {
 		}
     }
     
-    jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
+    jQuery(window).load(function() {
+        Omeka.ExhibitBuilder.wysiwyg();
+        makePageListDraggable();
+    });
 //]]>
 </script>
 

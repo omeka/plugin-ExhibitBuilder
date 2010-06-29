@@ -10,20 +10,7 @@ if ($exhibit->title) {
 
 <script type="text/javascript" charset="utf-8"> 
 //<![CDATA[
-
     var listSorter = {};
-    var urls = {
-        sectionForm: <?php echo js_escape(uri('exhibits/section-form')); ?>,
-        addSection: <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'add-section'), 'default')); ?>,
-        sectionList: <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'section-list'), 'default')); ?>,
-        edit: <?php echo js_escape(uri('exhibits/edit')); ?>
-    };
-    
-    jQuery(document).ready(function() {
-        makeSectionListDraggable();
-    });
-
-    jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
     
     function makeSectionListDraggable()
     {       
@@ -45,6 +32,11 @@ if ($exhibit->title) {
             makeSortable(listSorter.list);
         }       
     }
+    
+    jQuery(window).load(function() {
+        Omeka.ExhibitBuilder.wysiwyg();
+        makeSectionListDraggable(); 
+    });
 //]]>   
 </script>
 

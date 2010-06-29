@@ -7,12 +7,6 @@
 ?>
 <?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
-<style>
-.ui-button-text {
-    color:black;
-}
-</style>
-
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 
@@ -76,7 +70,9 @@
      	});
 	});
 	
-	jQuery(window).load(function() {Omeka.ExhibitBuilder.wysiwyg;});
+    jQuery(window).load(function() {
+        Omeka.ExhibitBuilder.wysiwyg();
+    });
 //]]>    
 </script>
 <h1><?php echo html_escape($exhibitPageTitle); ?></h1>

@@ -1,5 +1,4 @@
 <?php head(array('title'=>'Exhibit Page', 'bodyclass'=>'exhibits')); ?>
-<?php echo js('exhibits'); ?>
 
 <h1><?php echo html_escape($actionName); ?> Page</h1>
 
