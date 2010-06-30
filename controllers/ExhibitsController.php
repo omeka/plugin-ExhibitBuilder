@@ -394,21 +394,23 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         } catch (Omeka_Validator_Exception $e) {
             $this->flashValidationErrors($e);
         } catch (Exception $e) {
-            $this->flash($e->getMessage());
+            $this->flashError($e->getMessage());
         }
                     
         //If successful form submission
         if ($retVal) {   
-            $this->flashSuccess("Changes to the exhibit's section were saved successfully!");
             
             //Forward around based on what submit button was pressed
-            if (array_key_exists('page_form',$_POST)) {
-                
+            if (array_key_exists('page_form',$_POST)) {    
                 //Forward to the addPage action (id is the section id)
                 $this->redirect->goto('add-page', null, null, array('id'=>$exhibitSection->id));
                 return;
-                
-            } elseif(array_key_exists('section_form', $_POST)) {
+            } else {
+                // Only flash this success message if it is not going to the Add Page
+                $this->flashSuccess("Changes to the exhibit's section were successfully saved!");
+            }
+            
+            if (array_key_exists('section_form', $_POST)) {
                 $this->redirect->goto('edit-section', null, null, array('id'=>$exhibitSection->id));
             }
         }
@@ -452,6 +454,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibitSection, $exhibit);
         if ($success) {
+            $this->flashSuccess("Changes to the exhibit's page were successfully saved!");
             return $this->redirect->goto('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
@@ -502,7 +505,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             try {
                 $success = $exhibitPage->saveForm($_POST);
             } catch (Exception $e) {
-                $this->flash($e->getMessage());
+                $this->flashError($e->getMessage());
             }
         }
         return $success;
