@@ -162,7 +162,7 @@ table#exhibits {
 
 .exhibit-button {
     display:inline;
-} 
+}
 
 #exhibit-form #exhibit-save {
     clear:both;
@@ -416,4 +416,22 @@ a.cancel:visited {
     font-size: 1.5em;
     display: block;
     padding:20px;
+}
+
+
+/* Delete Link Styles */
+.delete-exhibit {
+    background-position: 0 50%;
+    padding-left: 18px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    background-image:url("../../../../../admin/themes/default/images/delete.gif");
+}
+
+.delete-section, .delete-page {
+    background-position: 12px 50%;
+    padding-left: 32px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    background-image:url("../../../../../admin/themes/default/images/delete.gif");
 }

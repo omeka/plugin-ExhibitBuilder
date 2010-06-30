@@ -8,7 +8,7 @@
     		</span>
     		<span class="right">
     		    <span class="section-edit"><a href="<?php echo html_escape(uri('exhibits/edit-section/'.$exhibitSection->id)); ?>" class="edit">Edit</a></span>
-    		    <span class="section-delete"><a href="<?php echo html_escape(uri('exhibits/delete-section/'.$exhibitSection->id)); ?>" class="delete">Delete</a></span>
+    		    <span class="section-delete"><a href="<?php echo html_escape(uri('exhibits/delete-section/'.$exhibitSection->id)); ?>" class="delete-section">Delete</a></span>
     		</span>
     	</li>
     <?php endforeach; ?>    

@@ -1,11 +1,11 @@
 <?php head(array('title'=>'Browse Exhibits', 'bodyclass'=>'exhibits')); ?>
 <script type="text/javascript" charset="utf-8">
     jQuery(document).ready(function() {
-        jQuery('.delete-exhibit').bind('click', function(e){
+        jQuery('.delete-exhibit').bind('click', function(event){
+            event.stopImmediatePropagation();
             if (confirm('Are you sure you want to delete this exhibit?')) {
                 return;
             } else {
-                e.stop();
                 return false;
             }
         });
@@ -66,7 +66,7 @@
         <?php endif; ?>
         </td>
         <?php if (has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
-        <td><?php echo link_to($exhibit, 'delete', 'Delete', array('class'=>'delete')) ?></td>
+        <td><?php echo link_to($exhibit, 'delete', 'Delete', array('class'=>'delete-exhibit')) ?></td>
         <?php endif; ?>
     </tr>
 <?php endforeach; ?>
