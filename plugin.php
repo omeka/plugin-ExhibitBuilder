@@ -83,6 +83,7 @@ function exhibit_builder_install()
       `item_id` int(10) unsigned default NULL,
       `page_id` int(10) unsigned NOT NULL,
       `text` text collate utf8_unicode_ci,
+      `caption` text collate utf8_unicode_ci,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
@@ -153,6 +154,13 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
     {
         $db = get_db();
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `theme_options` text collate utf8_unicode_ci default NULL AFTER `theme`";
+        $db->query($sql);
+    }
+    
+    if (version_compare($oldVersion, '0.6', '<=') )
+    {
+        $db = get_db();
+        $sql = "ALTER TABLE `{$db->prefix}items_section_pages` ADD COLUMN `caption` text collate utf8_unicode_ci default NULL AFTER `text`";
         $db->query($sql);
     }
 }

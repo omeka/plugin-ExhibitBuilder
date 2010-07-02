@@ -123,12 +123,13 @@ class ExhibitBuilder_TestCase extends Omeka_Test_AppTestCase
 	    return $exhibitPage;
 	}
 	
-	protected function _createNewExhibitPageEntry($exhibitPage, $text='', $order=1, $item=null) 
+	protected function _createNewExhibitPageEntry($exhibitPage, $text='', $order=1, $item=null, $caption='') 
 	{
 	    $exhibitPageEntry = new ExhibitPageEntry;
 	    $exhibitPageEntry->page_id = $exhibitPage->id;
 	    $exhibitPageEntry->text = $text;
 	    $exhibitPageEntry->order = $order;
+	    $exhibitPageEntry->caption =  $caption;
 	    
 	    if ($item && $item->exists()) {
 	        $exhibitPageEntry->item_id = $item->id;

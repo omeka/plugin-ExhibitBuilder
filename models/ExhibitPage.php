@@ -43,19 +43,19 @@ class ExhibitPage extends Omeka_Record
 	 **/
 	protected function _validate()
 	{
-		if(empty($this->layout)) {
+		if (empty($this->layout)) {
 			$this->addError('layout', 'Layout must be provided for each exhibit page.');
 		}
 		
-		if(empty($this->title)) {
+		if (!strlen($this->title)) {
 			$this->addError('title', 'Pages of an exhibit must be given a title.');
 		}
 		
-		if(empty($this->order) or !is_numeric($this->order)) {
+		if (empty($this->order) or !is_numeric($this->order)) {
 			$this->addError('order', 'Exhibit page must be ordered within its section.');
 		}
 		
-		if(empty($this->section_id) or !is_numeric($this->section_id)) {
+		if (empty($this->section_id) or !is_numeric($this->section_id)) {
 			$this->addError('section_id', 'Exhibit page must be given a section');
 		}
 	}

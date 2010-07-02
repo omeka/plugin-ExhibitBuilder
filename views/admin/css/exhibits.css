@@ -57,46 +57,66 @@ table#exhibits {
     clear:both;
 }
 
-#section-list, #page-list {
+.page-list .layout-name {
+    display:none;
+}
+
+.section-list, .page-list {
     float:left; 
     width: 512px;
 }
 
-#section-list li, #page-list li {
+.section-list li div.section-info {
+    background:#e9f6da;
+    padding: 5px;
+}
+
+.page-list {
+    padding-bottom: 5px; /* This padding is necessary for jquery sortable, so that list items can be dragged onto empty lists. */
+}
+
+.page-list li div.page-info {
+    background: lightyellow;
+    padding: 5px;
+}
+
+.section-list li, .page-list li {
     display:block; 
     overflow:hidden; 
     float:left; 
     clear:both; 
-    height:2em;
     width:512px; 
-    margin:0 0 2px 0; 
+    margin:15px 0 0 0; 
     padding:0; 
-    background:#e9f6da;
 }
 
-#section-list li .left, #page-list li .left {
+/*
+
+.section-list li .left, .page-list li .left {
     display:block; 
     float:left; 
     width: 65%;
 }
     
-#section-list img, #page-list img {
+.section-list img, .page-list img {
     background:#fff; 
     padding:4px; 
     float:left;
 }
     
-#section-list input, #page-list input {
+.section-list input, .page-list input {
     padding:4px 0; 
     width:1em;
 }
 
-#section-list li .right, #page-list li .right {
+.section-list li .right, .page-list li .right {
     display:block; 
     float:right; 
     width:28%; 
     padding:4px 0;
 } 
+
+*/
 
 #new-section-link {
     float:right; 
@@ -393,10 +413,6 @@ table#exhibits {
     background:#fff; 
     color:#555; 
     border:none;
-}
-
-#page-list .layout-name {
-    display:none;
 }
 
 button.cancel {

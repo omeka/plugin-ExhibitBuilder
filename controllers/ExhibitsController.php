@@ -181,7 +181,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     }
 
     public function editAction()
-    {       
+    {   
         if ($user = $this->getCurrentUser()) {
             $exhibit = $this->findById();
             if ($this->isAllowed('editAll', 'ExhibitBuilder_Exhibits') || ($this->isAllowed('editSelf', 'ExhibitBuilder_Exhibits') && $exhibit->wasAddedBy($user))) {
@@ -234,10 +234,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function themeConfigAction()
     {
         $exhibit = $this->findById();
-        $themeName = $exhibit->theme;
+        $themeName = (string)$exhibit->theme;
         
         // Abort if no specific theme is selected.
-        if (empty($themeName)) {
+        if ($themeName == '') {
             $this->flashError("You must specifically select a theme in order to configure it.");
             $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             return;
@@ -245,7 +245,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $form = new Omeka_Form_ThemeConfiguration(array('themeName' => $themeName));
         $theme = Theme::getAvailable($themeName);
         $previousOptions = $exhibit->getThemeOptions();
-        //$form->setDefaults($existingOptions);
         $hiddenFieldPrefix = Omeka_Form_ThemeConfiguration::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX;
         
         if (empty($previousOptions)) {
@@ -350,7 +349,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 $exhibit->save();
                 
                 $this->flashSuccess('The theme settings were successfully saved!');
-                //$this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
                 $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             }
         }

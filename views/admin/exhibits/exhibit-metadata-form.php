@@ -13,24 +13,52 @@ if ($exhibit->title) {
     var listSorter = {};
     
     function makeSectionListDraggable()
-    {       
-        var exhibit_id = <?php echo $exhibit->exists() ? js_escape($exhibit->id) : 'null'; ?>; 
+    {
+        var sectionList = jQuery('.section-list');
+        var sectionListSortableOptions = {axis:'y'};
+        var sectionListOrderInputSelector = '.section-info input';
         
-        listSorter.list = jQuery('#section-list');
-        listSorter.recordId = exhibit_id;
-        listSorter.form = jQuery('#exhibit-metadata-form');
-        listSorter.editUri = <?php echo js_escape(uri(array('controller'=>'exhibits','action'=>'edit'),'default')); ?> + "/" + exhibit_id;
-        listSorter.partialUri = <?php echo  js_escape(uri(array('controller'=>'exhibits', 'action'=>'section-list'))); ?> + "?id=" + exhibit_id;
-        listSorter.tag = 'li';
-		listSorter.axis = 'y';
-        listSorter.confirmation = 'Are you sure you want to delete this section?';
-        listSorter.deleteLinks = '.section-delete a';
-        listSorter.callback = Omeka.ExhibitBuilder.addStyling;
+		var sectionListDeleteLinksSelector = '.section-delete a';
+		var sectionListDeleteConfirmationText = 'Are you sure you want to delete this section?';
+        var sectionListFormSelector = '#exhibit-metadata-form';
+		var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
+        makeSortable(sectionList, 
+                     sectionListSortableOptions,
+                     sectionListOrderInputSelector,
+                     sectionListDeleteLinksSelector, 
+                     sectionListDeleteConfirmationText, 
+                     sectionListFormSelector, 
+                     sectionListCallback);
 
-        if (listSorter.list) {
-            //Create the sortable list
-            makeSortable(listSorter.list);
-        }       
+
+        var pageListSortableOptions = {axis:'y', connectWith:'.page-list'};
+        var pageListOrderInputSelector = '.page-info input';
+        var pageListDeleteLinksSelector = '.page-delete a';
+        var pageListDeleteConfirmationText = 'Are you sure you want to delete this page?';
+        var pageListFormSelector = '#exhibit-metadata-form';
+        var pageListCallback = Omeka.ExhibitBuilder.addStyling;
+        
+        var pageLists = jQuery('.page-list');
+        jQuery.each(pageLists, function(index, pageList) {
+            makeSortable(jQuery(pageList), 
+                         pageListSortableOptions,
+                         pageListOrderInputSelector, 
+                         pageListDeleteLinksSelector, 
+                         pageListDeleteConfirmationText, 
+                         pageListFormSelector, 
+                         pageListCallback);
+            
+            // Make sure the order inputs for pages change the names to reflect their new
+            // section when moved to another section           
+            jQuery(pageList).bind('sortreceive', function(event, ui) {                
+                var pageItem = jQuery(ui.item);
+                var orderInput = pageItem.find(pageListOrderInputSelector);              
+                var pageId = orderInput.attr('name').match(/(\d+)/g)[1];                
+                var nSectionId = pageItem.closest('li.exhibit-section-item').attr('id').match(/(\d+)/g)[0];
+                var nInputName = 'Pages['+ nSectionId + ']['+ pageId  + '][order]';
+                orderInput.attr('name', nInputName);
+            });
+        });
     }
     
     jQuery(window).load(function() {
@@ -88,15 +116,16 @@ if ($exhibit->title) {
             </div>
         </fieldset>
         <fieldset>
-            <legend>Exhibit Sections</legend>
+            <legend>Exhibit Sections and Pages</legend>
             <div id="section-list-container">
                 <?php if (!$exhibit->Sections): ?>
                     <p>There are no sections.</p>
                 <?php else: ?>
-                <ol id="section-list">
+                <p>To reorder sections or pages, click and drag the section or page up or down to the preferred location.</p>
+                <?php endif; ?>
+                <ul class="section-list">
                     <?php common('section-list', compact('exhibit'), 'exhibits'); ?>
-                </ol>
-                <?php endif;?>
+                </ul>
             </div>
         </fieldset>
         <fieldset>

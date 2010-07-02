@@ -34,15 +34,15 @@ class Exhibit extends Omeka_Record
 
 	protected function _validate()
 	{
-		if(empty($this->title)) {
+		if (!strlen((string)$this->title)) {
 			$this->addError('title', 'Exhibit must be given a title.');
 		}
 		
-		if(strlen($this->title) > 255) {
+		if (strlen((string)$this->title) > 255) {
 			$this->addError('title', 'Title for an exhibit must be 255 characters or less.');
 		}
 		
-		if(strlen($this->theme) > 30) {
+		if (strlen((string)$this->theme) > 30) {
 			$this->addError('theme', 'The name of your theme must be 30 characters or less.');
 		}
 	}
@@ -61,7 +61,7 @@ class Exhibit extends Omeka_Record
 	{
 		$this->_mixins[] = new Taggable($this);
 		$this->_mixins[] = new Relatable($this);
-		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');	
+		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');
 		$this->_mixins[] = new Sluggable($this, array(
             'slugEmptyErrorMessage'=>'Exhibit must be given a valid slug.',
             'slugLengthErrorMessage'=>'The slug for your exhibit must be 30 characters or less.',
@@ -86,7 +86,33 @@ class Exhibit extends Omeka_Record
 	{
 		//Add the tags after the form has been saved
 		$current_user = Omeka_Context::getInstance()->getCurrentUser();		
-		$this->applyTagString($post['tags'], $current_user->Entity, true);	
+		$this->applyTagString($post['tags'], $current_user->Entity, true);
+		
+		// Save the new page orderings for each section
+		$pagesBySection = $post['Pages'];
+        foreach($pagesBySection as $sectionId => $pagesInfos) {
+             
+             // Rewrite the page order data, so that pages are ordered 1,2,3, ... etc.
+             $rawPageOrdersByPageId = array();
+             foreach($pagesInfos as $pageId => $pageInfo) {
+                 $rawPageOrdersByPageId[$pageId] = $pageInfo['order'];
+             }
+             asort($rawPageOrdersByPageId, SORT_NUMERIC);
+             $pageOrder = 0;
+             $pageOrdersByPageId = array();
+             foreach($rawPageOrdersByPageId as $pageId => $rawPageOrder) {
+                 $pageOrder++;
+                 $pageOrdersByPageId[$pageId] = $pageOrder;
+             }
+                          
+             // Save the new page orders
+             foreach($pageOrdersByPageId as $pageId => $pageOrder) {
+                 $exhibitPage = $this->getDb()->getTable('ExhibitPage')->find($pageId);                 
+                 $exhibitPage->section_id = $sectionId; // Change the section if necessary
+                 $exhibitPage->order = $pageOrder; // Change the page order
+                 $exhibitPage->save();
+             }             
+        }
 	}
 		
     public function getSections() 
@@ -127,7 +153,7 @@ class Exhibit extends Omeka_Record
 	    if ($themeName === null) {
 	        $themeName = $this->theme;
 	    }
-	    if (!empty($themeName)) {
+	    if ($themeName !== null && $themeName != '') {
     	    $themeOptionsArray = unserialize($this->theme_options);
     	    $themeOptionsArray[$themeName] = $themeOptions;
         }
@@ -140,7 +166,9 @@ class Exhibit extends Omeka_Record
 	    if ($themeName === null) {
 	        $themeName = $this->theme;
 	    }
-	    if (empty($themeName) || empty($this->theme_options)) {
+	    
+	    $themeName = (string)$themeName;
+	    if ($themeName == '' || empty($this->theme_options)) {
 	        return array();
 	    }
 	    

@@ -36,15 +36,15 @@ class ExhibitSection extends Omeka_Record
 
     protected function _validate()
     {
-        if(empty($this->title)) {
+        if (!strlen($this->title)) {
             $this->addError('title', 'Sections of an exhibit must be given a title.');
         }
         
-        if(empty($this->exhibit_id) or !is_numeric($this->exhibit_id)) {
+        if (empty($this->exhibit_id) or !is_numeric($this->exhibit_id)) {
             $this->addError('exhibit_id', 'Exhibit sections must be associated with an exhibit.');
         }
         
-        if(empty($this->order) or !is_numeric($this->order)) {
+        if (empty($this->order) or !is_numeric($this->order)) {
             $this->addError('order', 'Exhibit section must be properly ordered with an exhibit.');
         }
     }
