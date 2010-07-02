@@ -40,12 +40,16 @@ table#exhibits {
 /* Exhibit Save Changes */
 #exhibit-builder-save-changes {
     text-align:right;
+    line-height:2em;
+    margin-top:2em;
+    margin-bottom:0;
 }
 #exhibit-builder-save-changes input {
     display:inline;
     float:none;
     margin:0;
     line-height:1;
+    cursor:pointer;
 }
 
 /* Exhibit Metadata */
@@ -193,14 +197,6 @@ table#exhibits {
 
 #page-builder #pagination {margin-left:18px;}
 
-#item-select {
-    float:left; 
-    width: 780px; 
-    background:#DAE9F6;
-    margin: 15px 0;
-    padding: 0 0 18px;
-}
-
 #page-form {
     clear: both;
 }
@@ -210,14 +206,14 @@ table#exhibits {
     clear:both;
 }
 
-#layout-form .item {
+/*#layout-form .item {
     clear:both; 
     border-bottom:1px solid #ccc; 
     margin-bottom:1.8em; 
     padding-bottom:1.8em;
-}
+}*/
 
-.item-select-outer {
+/*.item-select-outer {
     float:left; 
     border:1px solid #A2C9E8; 
     margin-right:2px; 
@@ -227,16 +223,12 @@ table#exhibits {
 
 .item-select-outer img {width: 130px; height:130px; }
 
-.item-selected {
-    border: 3px solid #021a40;
-}
-
 #item-select .item-select-outer {
     width: 130px;
     height: 130px;
-}
+}*/
 
-#layout-form .item-select-outer {
+/*#layout-form .item-select-outer {
     width:130px; 
     height:130px;
     position: relative; 
@@ -244,14 +236,29 @@ table#exhibits {
 
 #item-list .item-select-outer {
     top:0; left:0;
-}
+}*/
 
-#layout-form .item-select-inner {
+/*#layout-form .item-select-inner {
     position: relative; 
 }
 
 #item-list {
     margin-left:18px;
+}*/
+
+.item-select-outer {
+    cursor:pointer;
+    padding: 12px;
+    border:1px dotted #eee;
+    border-width: 0 0 1px;
+    overflow:hidden;
+    zoom:1;
+}
+
+.item-selected {
+    background: #fffff0;
+    border-width:0;
+    border: 1px solid #fff09e;
 }
 
 .remove_item {
@@ -268,17 +275,25 @@ table#exhibits {
     border-width:0 0 1px 1px;
 }
 
-#layout-form .textfield {
-    float:right;
+.textfield {
+    clear:both;
 }
 
-#item-select .item-select-inner .title {
-    float:right;padding: 10px;
+.textfield textarea {
+    width: 99%;
+}
+
+.item-file {
+    float:left;
+    width: 48%;
+}
+
+.caption {
+    float:right;
+    width: 48%;
 }
 
 #search {
-    background:#B5D4EC;
-    border-bottom:1px solid #fff;
 }
 
 #layout-form label {
