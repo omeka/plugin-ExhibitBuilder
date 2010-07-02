@@ -50,6 +50,22 @@ function exhibit_builder_page_text($exhibitPageEntryIndex, $exhibitPage=null)
 }
 
 /**
+ * Returns the caption on an exhibit page
+ *
+ * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
+ * @return string
+ **/
+function exhibit_builder_page_caption($exhibitPageEntryIndex, $exhibitPage=null)
+{
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
+    }
+    $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;
+    return $caption;
+}
+
+/**
  * Returns an item on the exhibit page.
  *
  * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...

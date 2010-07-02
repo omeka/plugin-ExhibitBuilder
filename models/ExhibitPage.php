@@ -130,7 +130,9 @@ class ExhibitPage extends Omeka_Record
 			}
 			$text = $post['Text'][$i];
 			$item_id = $post['Item'][$i];
+			$caption = $post['Caption'][$i];
 			$ip->text = (string) $text;
+			$ip->caption = (string) $caption;
 			$ip->item_id = (int) is_numeric($item_id) ? $item_id : null;
 			$ip->order = (int) $i;
 			$ip->forceSave();

@@ -16,6 +16,7 @@ class ExhibitPageEntry extends Omeka_Record
     public $item_id;
     public $page_id;
     public $text;
+    public $caption;
     public $order;
     
     protected $_related = array('Item'=>'getItem');

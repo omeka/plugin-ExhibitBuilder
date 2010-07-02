@@ -205,7 +205,16 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
         set_current_item($item);
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
-        $html .=  item_has_thumbnail() ? item_square_thumbnail() : '<div class="title">' . item('Dublin Core', 'Title', ', ') . '</div>' . "\n";
+        $html .= '<h2 class="title">' . item('Dublin Core', 'Title') . '</h2>' . "\n";
+        if ($file = $item->Files[0]) {
+            $html .=  display_file($file);
+        } 
+        
+        $html .= '<div class="caption-container">' . "\n";
+        $html .= '<p><strong>Caption</strong></p>';
+        $html .= exhibit_builder_layout_form_caption($orderOnForm);
+	    $html .= '</div>' . "\n";      
+        
         $html .= '</div>' . "\n";      
     } else {
         $html .= '<a href="#" class="attach-item-link">Attach Item</a>' . "\n";
@@ -242,6 +251,22 @@ function exhibit_builder_layout_form_text($order, $label='Text')
 {
     $html = '<div class="textfield">';
     $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order)); 
+    $html .= '</div>';
+    return $html;
+}
+
+/**
+ * Returns the HTML code for a caption on a layout form
+ *
+ * @param int $order The order of the item
+ * @param string $label
+ * @return string
+ **/
+function exhibit_builder_layout_form_caption($order, $label='Caption') 
+{
+    $html = '<div class="caption">';
+    $html .= '<label for="Caption['.$order.']">'.$label.'</label>';
+    $html .= textarea(array('name'=>'Caption['.$order.']','rows'=>'4','cols'=>'30','class'=>'textinput'), exhibit_builder_page_caption($order)); 
     $html .= '</div>';
     return $html;
 }
