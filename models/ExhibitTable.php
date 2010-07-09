@@ -73,7 +73,7 @@ class ExhibitTable extends Omeka_Db_Table
      *
      * @return void
      **/
-    public function count($params)
+    public function count($params = array())
     {
         $db = $this->getDb();
         
