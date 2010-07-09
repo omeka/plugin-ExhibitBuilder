@@ -248,6 +248,11 @@ table#exhibits {
     height: 130px;
 }*/
 
+/*
+#layout-form .item-select-outer {
+    position: relative;
+}
+*/
 /*#layout-form .item-select-outer {
     width:130px; 
     height:130px;
@@ -282,15 +287,15 @@ table#exhibits {
 }
 
 .remove_item {
-    position:absolute; 
-    top:0; right:0; 
+    position:absolute;
+    top:0; 
+    right:0; 
     width: 20px; 
     padding:20px 0 0; 
     background:#fff 50% 50% no-repeat; 
     z-index:10000; 
     overflow:hidden; 
     height:0 !important; 
-    height /**/:20px; 
     border:1px solid #A2C9E8; 
     border-width:0 0 1px 1px;
 }
@@ -308,7 +313,8 @@ table#exhibits {
     width: 48%;
 }
 
-.caption {
+
+.caption-container {
     float:right;
     width: 48%;
 }
@@ -465,4 +471,8 @@ a.cancel:visited {
     background-repeat: no-repeat;
     text-decoration: none;
     background-image:url("../../../../../admin/themes/default/images/delete.gif");
+}
+
+.item_id {
+    display:none;
 }

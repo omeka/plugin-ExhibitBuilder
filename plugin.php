@@ -237,8 +237,7 @@ function exhibit_builder_admin_header($request)
             echo '</script>' . "\n";
     		
     		echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui')) . '" /> ';
-            echo js('jquery-ui');
-    		
+            echo js('jquery-ui');	
     endif;
 }
 
@@ -369,7 +368,7 @@ function exhibit_builder_purify_html($request, $purifier)
  * @param array $search Optional
  * @return string
  **/
-function exhibit_builder_select_exhibit($props = array(), $value=null, $label=null, $search = array())
+function exhibit_builder_select_exhibit($props = array(), $value = null, $label = null, $search = array())
 {
     return _select_from_table('Exhibit', $props, $value, $label, $search);
 }

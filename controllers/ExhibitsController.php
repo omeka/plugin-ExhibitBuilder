@@ -24,7 +24,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->session = new Zend_Session_Namespace('Exhibit');
     }
     
-    protected function _findByExhibitSlug($exhibitSlug=null) 
+    protected function _findByExhibitSlug($exhibitSlug = null) 
     {        
         if (!$exhibitSlug) {
             $exhibitSlug = $this->_getParam('slug');
@@ -141,7 +141,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      * 
      * @return void
      **/
-    protected function renderExhibit($vars, $toRender='show') 
+    protected function renderExhibit($vars, $toRender = 'show') 
     {   
         /*  If there is a theme, render the header/footer and layout page,
             Otherwise render the default exhibits/show.php page
@@ -376,7 +376,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         return $this->processSectionForm($exhibitSection, 'Add', $exhibit);
     }
     
-    protected function processSectionForm($exhibitSection, $actionName, $exhibit=null)
+    protected function processSectionForm($exhibitSection, $actionName, $exhibit = null)
     {       
         $retVal = false;
         
@@ -496,7 +496,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->render('page-metadata-form');
     }
 
-    protected function processPageForm($exhibitPage, $actionName, $exhibitSection=null, $exhibit=null) 
+    protected function processPageForm($exhibitPage, $actionName, $exhibitSection = null, $exhibit = null) 
     {        
         $this->view->assign(compact('exhibit', 'exhibitSection', 'exhibitPage', 'actionName'));        
         if (!empty($_POST)) {

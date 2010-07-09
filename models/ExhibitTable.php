@@ -173,5 +173,3 @@ class ExhibitTable extends Omeka_Db_Table
         }     
     }
 }
- 
-?>

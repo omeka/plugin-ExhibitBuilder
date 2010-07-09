@@ -23,7 +23,7 @@ class ExhibitSectionTable extends Omeka_Db_Table
         return $this->findNearby($section, 'next', $exhibit);
     }
 
-    protected function findNearby($section, $position = 'next', $exhibit=null)
+    protected function findNearby($section, $position = 'next', $exhibit = null)
     {
        $select = $this->getSelect();
        $select->limit(1);

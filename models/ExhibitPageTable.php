@@ -13,17 +13,17 @@ class ExhibitPageTable extends Omeka_Db_Table
 {
     protected $_name = 'section_pages';
     
-    public function findPrevious($page, $section=null)
+    public function findPrevious($page, $section = null)
     {
         return $this->findNearby($page, 'previous', $section);
     }
     
-    public function findNext($page, $section=null)
+    public function findNext($page, $section = null)
     {
         return $this->findNearby($page, 'next', $section);
     }
     
-    protected function findNearby($page, $position = 'next', $section=null)
+    protected function findNearby($page, $position = 'next', $section = null)
     {
         $select = $this->getSelect();
         $select->limit(1);

@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 /**
  * Returns the current exhibit.
  *
@@ -16,7 +15,7 @@ function exhibit_builder_get_current_exhibit()
  * @param Exhibit|null $exhibit
  * @return void
  **/
-function exhibit_builder_set_current_exhibit($exhibit=null)
+function exhibit_builder_set_current_exhibit($exhibit = null)
 {
     __v()->exhibit = $exhibit;
 }
@@ -43,7 +42,7 @@ function exhibit_builder_is_current_exhibit($exhibit)
  * @param ExhibitPage|null $exhibitPage
  * @return string
  **/
-function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array(), $exhibitSection=null, $exhibitPage = null)
+function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props = array(), $exhibitSection = null, $exhibitPage = null)
 {   
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
@@ -62,7 +61,7 @@ function exhibit_builder_link_to_exhibit($exhibit=null, $text=null, $props=array
  * @internal This relates to: ExhibitsController::showAction(), ExhibitsController::summaryAction()
  * @return string
  **/
-function exhibit_builder_exhibit_uri($exhibit=null, $exhibitSection=null, $exhibitPage=null)
+function exhibit_builder_exhibit_uri($exhibit = null, $exhibitSection = null, $exhibitPage = null)
 {
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
@@ -88,7 +87,7 @@ function exhibit_builder_exhibit_uri($exhibit=null, $exhibitSection=null, $exhib
  * @param Item|null $item If null, will use the current item.
  * @return string
  **/
-function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class' => 'exhibit-item-link'), $item=null)
+function exhibit_builder_link_to_exhibit_item($text = null, $props = array('class' => 'exhibit-item-link'), $item = null)
 {   
     if (!$item) {
         $item = get_current_item();
@@ -107,7 +106,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props=array('class'
  * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
  * @return string
  **/
-function exhibit_builder_exhibit_item_uri($item, $exhibit=null, $exhibitSection=null)
+function exhibit_builder_exhibit_item_uri($item, $exhibit = null, $exhibitSection = null)
 {
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
@@ -197,7 +196,7 @@ function exhibit_builder_exhibit_foot()
  * @param string $label
  * @return string
  **/
-function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null)
+function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = null, $includeCaption = true)
 {
     $html = '<div class="item-select-outer">';  
 
@@ -207,23 +206,23 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . item('Dublin Core', 'Title') . '</h2>' . "\n";
         if ($file = $item->Files[0]) {
-            $html .=  display_file($file);
+            $html .=  display_file($file, array('linkToFile'=>false, 'imgAttributes' => array('alt' => item('Dublin Core', 'Title'))));
         } 
         
-        $html .= '<div class="caption-container">' . "\n";
-        $html .= '<p><strong>Caption</strong></p>';
-        $html .= exhibit_builder_layout_form_caption($orderOnForm);
-	    $html .= '</div>' . "\n";      
+        if ($includeCaption) {
+            $html .= exhibit_builder_layout_form_caption($orderOnForm);
+        }     
         
         $html .= '</div>' . "\n";      
     } else {
-        $html .= '<a href="#" class="attach-item-link">Attach Item</a>' . "\n";
+        $html .= '<a href="" class="attach-item-link">Attach Item</a>' . "\n";
     }
     
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
     if ($orderOnForm) {
         $html .= __v()->formHidden('Item['.$orderOnForm.']', $item->id, array('size'=>2));
     }
+    
     $html .= '</div>';
     return $html;
 }
@@ -235,7 +234,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm=null, $label=null
  * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_item($order, $label='Enter an Item ID #') 
+function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #') 
 {   
     return exhibit_builder_exhibit_form_item(exhibit_builder_page_item($order), $order, $label);
 }
@@ -247,7 +246,7 @@ function exhibit_builder_layout_form_item($order, $label='Enter an Item ID #')
  * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_text($order, $label='Text') 
+function exhibit_builder_layout_form_text($order, $label = 'Text') 
 {
     $html = '<div class="textfield">';
     $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order)); 
@@ -262,12 +261,15 @@ function exhibit_builder_layout_form_text($order, $label='Text')
  * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_caption($order, $label='Caption') 
+function exhibit_builder_layout_form_caption($order, $label = 'Caption') 
 {
-    $html = '<div class="caption">';
-    $html .= '<label for="Caption['.$order.']">'.$label.'</label>';
+    $html = '<div class="caption-container">' . "\n";
+    $html .= '<p>' . html_escape($label) . '</p>' . "\n";
+    $html .= '<div class="caption">' . "\n";
+    $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
     $html .= textarea(array('name'=>'Caption['.$order.']','rows'=>'4','cols'=>'30','class'=>'textinput'), exhibit_builder_page_caption($order)); 
-    $html .= '</div>';
+    $html .= '</div>' . "\n";
+    $html .= '</div>' . "\n";
     return $html;
 }
 
@@ -312,7 +314,7 @@ function exhibit_builder_get_ex_layouts()
  * @param boolean $input Whether or not to include the input to select the layout
  * @return string
  **/
-function exhibit_builder_exhibit_layout($layout, $input=true)
+function exhibit_builder_exhibit_layout($layout, $input = true)
 {   
     //Load the thumbnail image
     $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
@@ -352,7 +354,7 @@ function exhibit_builder_exhibit_css($fileName)
  * @param string $fileName The name of the CSS file (does not include file extension)
  * @return string
  **/
-function exhibit_builder_layout_css($fileName='layout')
+function exhibit_builder_layout_css($fileName = 'layout')
 {
     if ($exhibitPage = exhibit_builder_get_current_page()) {
         return css($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
@@ -398,7 +400,7 @@ function exhibit_builder_render_layout_form($layout)
  * @param string $thumbnailType The type of thumbnail to display
  * @return string HTML output
  **/
-function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props=array(), $thumbnailType="square_thumbnail")
+function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props = array(), $thumbnailType = 'square_thumbnail')
 {
     $html = '';
     for ($i=(int)$start; $i <= (int)$end; $i++) { 
@@ -462,6 +464,16 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     
     $html = '<a ' . _tag_attributes($linkProperties) . '>';
     
+    // If the file is an image, add the item title as the alt text
+    $imgAttributes = $displayFilesOptions['imgAttributes'];
+    if (!is_array($imgAttributes)) {
+        $imageAttributes = array();
+    }
+    if (!array_key_exists('alt', $imageAttributes)) {
+        $imageAttributes['alt'] = item('Dublin Core', 'Title');
+    }
+    $displayFilesOptions['imgAttributes'] = $imageAttributes;
+    
     // Pass null as the 3rd arg so that it doesn't output the item-file div.
     $fileWrapperClass = null;
     $file = $item->Files[$fileIndex];
@@ -485,7 +497,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
  * @param int $index The index of the image for the item
  * @return string
  **/
-function exhibit_builder_exhibit_thumbnail($item, $props=array('class'=>'permalink'), $index=0) 
+function exhibit_builder_exhibit_thumbnail($item, $props = array('class'=>'permalink'), $index = 0) 
 {     
     $uri = exhibit_builder_exhibit_item_uri($item);
     $html = '<a href="' . html_escape($uri) . '">';
@@ -502,7 +514,7 @@ function exhibit_builder_exhibit_thumbnail($item, $props=array('class'=>'permali
  * @param int $index The index of the image for the item
  * @return string
  **/
-function exhibit_builder_exhibit_fullsize($item, $props=array('class'=>'permalink'), $index=0)
+function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permalink'), $index = 0)
 {
     $uri = exhibit_builder_exhibit_item_uri($item);
     $html = '<a href="' . html_escape($uri) . '">';
@@ -547,7 +559,7 @@ function exhibit_builder_show_exhibit_list()
  * @param User|null $user If null, will use the current user.
  * @return boolean
  **/
-function exhibit_builder_user_can_edit($exhibit=null, $user = null)
+function exhibit_builder_user_can_edit($exhibit = null, $user = null)
 {
     if (!$exhibit) {
         $exhibit = exhibit_builder_get_current_exhibit();
@@ -650,7 +662,7 @@ function has_exhibits_for_loop()
 * @param Exhibit $exhibit  The exhibit
 * @return mixed The exhibit property value
 **/
-function exhibit($propertyName, $options=array(), $exhibit=null)
+function exhibit($propertyName, $options = array(), $exhibit = null)
 {
     if (!$exhibit) {
         $exhibit = get_current_exhibit();
@@ -674,7 +686,7 @@ function exhibit($propertyName, $options=array(), $exhibit=null)
 * @param Exhibit $exhibit|null If null, it uses the current exhibit
 * @return string
 **/
-function link_to_exhibit($text = null, $props = array(), $exhibitSection=null, $exhibitPage=null, $exhibit=null)
+function link_to_exhibit($text = null, $props = array(), $exhibitSection = null, $exhibitPage = null, $exhibit = null)
 {
 	return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $exhibitPage);
 }

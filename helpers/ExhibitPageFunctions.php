@@ -16,7 +16,7 @@ function exhibit_builder_get_current_page()
  * @param ExhibitPage|null $exhibitPage
  * @return void
  **/
-function exhibit_builder_set_current_page($exhibitPage=null)
+function exhibit_builder_set_current_page($exhibitPage = null)
 {
     __v()->exhibitPage = $exhibitPage;
 }
@@ -34,53 +34,71 @@ function exhibit_builder_is_current_page($exhibitPage)
 }
 
 /**
- * Returns the text of the exhibit page
+ * Returns the text of the exhibit page entry
  *
- * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_page_text($exhibitPageEntryIndex, $exhibitPage=null)
+function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null)
 {
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    $text = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->text;
+    
+    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
+        $text = '';
+    } else {
+        $text = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->text;
+    }
+    
     return $text;
 }
 
 /**
- * Returns the caption on an exhibit page
+ * Returns the caption of an exhibit page entry
  *
- * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_page_caption($exhibitPageEntryIndex, $exhibitPage=null)
+function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;
+    
+    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
+        $caption = '';
+    } else {
+        $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;        
+    }
+    
     return $caption;
 }
 
 /**
- * Returns an item on the exhibit page.
+ * Returns an item of an exhibit page entry
  *
- * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
  * @return Item
  **/
-function exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage = null)
+function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    $item = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->Item;
-    if (!$item or !$item->exists()) {
-        return null;
+    
+    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
+        $item = null;
+    } else {
+        $item = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->Item;
+        if (!$item || !$item->exists()) {
+            $item = null;
+        }
     }
+    
     return $item;
 }
 
@@ -93,7 +111,7 @@ function exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage = null)
  * If 'title' or any other value, it uses the page title as the link text.
  * @return string
  **/
-function exhibit_builder_page_nav($exhibitSection = null, $linkTextType='title')
+function exhibit_builder_page_nav($exhibitSection = null, $linkTextType = 'title')
 {
     $linkTextType = Inflector::underscore($linkTextType);
     if (!$exhibitSection) {
@@ -130,7 +148,7 @@ function exhibit_builder_page_nav($exhibitSection = null, $linkTextType='title')
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $props=array(), $exhibitPage = null)
+function exhibit_builder_link_to_next_exhibit_page($text = "Next Page &rarr;", $props = array(), $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
@@ -160,7 +178,7 @@ function exhibit_builder_link_to_next_exhibit_page($text="Next Page &rarr;", $pr
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Page", $props=array(), $exhibitPage = null)
+function exhibit_builder_link_to_previous_exhibit_page($text = "&larr; Previous Page", $props = array(), $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
@@ -186,24 +204,25 @@ function exhibit_builder_link_to_previous_exhibit_page($text="&larr; Previous Pa
  * Returns whether an exhibit page has an item
  * 
  * @todo Needs optimization (shouldn't return the item object every time it's checked).
- * @param int $exhibitPageEntryIndex The i-th the page entry, where i = 1, 2, 3, ...
+ * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
  * @return boolean
  **/
-function exhibit_builder_exhibit_page_has_item($exhibitPageEntryIndex, $exhibitPage = null)
+function exhibit_builder_exhibit_page_has_item($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     return (boolean)exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage);
 }
 
 /**
- * Returns an item at the specified index of an exhibit page.  If no item exists on the page, it returns false.
+ * Returns an item at the specified page entry index of an exhibit page.  
+ * If no item exists on the page, it returns false.
  * 
- * @param integer $index The index of the page item
+ * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @return Item|boolean
  **/
-function exhibit_builder_use_exhibit_page_item($index)
+function exhibit_builder_use_exhibit_page_item($exhibitPageEntryIndex = 1)
 {
-    $item = exhibit_builder_page_item($index);
+    $item = exhibit_builder_page_item($exhibitPageEntryIndex);
     if ($item instanceof Item) {
         set_current_item($item);
         return $item;
@@ -319,7 +338,7 @@ function has_exhibit_pages_for_loop()
 * @param Exhibit $exhibitPage  The exhibit page
 * @return mixed The exhibit page property value
 **/
-function exhibit_page($propertyName, $options=array(), $exhibitPage=null)
+function exhibit_page($propertyName, $options = array(), $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = get_current_exhibit_page();

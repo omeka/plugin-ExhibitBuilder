@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Returns the current exhibit section.
  *
@@ -16,7 +15,7 @@ function exhibit_builder_get_current_section()
  * @param ExhibitSection|null $exhibitSection
  * @return void
  **/
-function exhibit_builder_set_current_section($exhibitSection=null)
+function exhibit_builder_set_current_section($exhibitSection = null)
 {
     __v()->exhibitSection = $exhibitSection;
 }
@@ -39,7 +38,7 @@ function exhibit_builder_is_current_section($exhibitSection)
  * @param ExhibitSection|null $exhibitSection If null, it uses the current exhibit section
  * @return boolean
  **/
-function exhibit_builder_section_has_pages($exhibitSection=null) 
+function exhibit_builder_section_has_pages($exhibitSection = null) 
 {
     if ($exhibitSection === null) {
         $exhibitSection = exhibit_builder_get_current_section();
@@ -64,7 +63,7 @@ function exhibit_builder_get_exhibit_section_by_id($exhibitSectionId)
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
  * @return string
  **/
-function exhibit_builder_section_nav($exhibit=null)
+function exhibit_builder_section_nav($exhibit = null)
 {
     if (!$exhibit) {
         if (!($exhibit = exhibit_builder_get_current_exhibit())) {
@@ -214,7 +213,7 @@ function has_exhibit_sections_for_loop()
 * @param Exhibit $exhibitSection  The exhibit section
 * @return mixed The exhibit section property value
 **/
-function exhibit_section($propertyName, $options=array(), $exhibitSection=null)
+function exhibit_section($propertyName, $options = array(), $exhibitSection = null)
 {
     if (!$exhibitSection) {
         $exhibitSection = get_current_exhibit_section();

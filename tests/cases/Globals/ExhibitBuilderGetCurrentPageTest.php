@@ -23,9 +23,9 @@ class ExhibitBuilderGetCurrentPageTest extends ExhibitBuilder_ViewTestCase
 	/**
 	 * Tests whether exhibit_builder_get_current_page returns null when no exhibit page is set on the view.
 	 */
-	public function testExhibitBuilderGetCurrentSectionNull()
+	public function testExhibitBuilderGetCurrentPageNull()
 	{
-		$exhibitSection = exhibit_builder_get_current_page();
+		$exhibitPage = exhibit_builder_get_current_page();
 		$this->assertNull($exhibitPage);
 	}
 }

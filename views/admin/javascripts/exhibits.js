@@ -175,7 +175,7 @@ Omeka.ExhibitBuilder = function() {
     		    event.data.exhibitBuilder.deleteItemFromItemContainer(layoutItemContainer);
     		    return;
     		});
-    		layoutItemContainer.append(removeItemLink);
+    		layoutItemContainer.find('h2.title').css('position', 'relative').append(removeItemLink);
         }           
     };
 

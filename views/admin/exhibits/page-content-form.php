@@ -48,6 +48,7 @@
                 } else {
                     showHideLink.text('Hide Search Form');
                 }
+                return false;
             });
     	});
     	    	

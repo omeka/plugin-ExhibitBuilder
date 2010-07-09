@@ -1,4 +1,4 @@
-<a href="#" id="show-or-hide-search" class="show-form">Show Search Form</a>
+<a href="" id="show-or-hide-search" class="show-form">Show Search Form</a>
 <div id="page-search-form">
 <?php
     $uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
@@ -21,6 +21,6 @@
     <p>There are no items to choose from.  Please refine your search or <a href="<?php echo html_escape(uri('items/add')); ?>">add</a> some items.</p>
 <?php endif; ?>
 <?php while($item = loop_items()): ?>
-    <?php echo exhibit_builder_exhibit_form_item($item); ?>
+    <?php echo exhibit_builder_exhibit_form_item($item, null, null, false); ?>
 <?php endwhile; ?>
 </div>
