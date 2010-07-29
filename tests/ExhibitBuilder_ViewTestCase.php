@@ -14,6 +14,7 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
 	{
 		$this->view = new Omeka_View;
 		Zend_Registry::set('view', $this->view);
+        Omeka_Context::getInstance()->setDb($this->getMock('Omeka_Db', null, array(null)));
 	}
 	
 	/**
