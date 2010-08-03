@@ -23,8 +23,8 @@ class ExhibitBuilderPageNavTest extends ExhibitBuilder_TestCase
             $this->assertTrue($exhibitPage->exists());
         }
         $this->dispatch('exhibits/show/exhibitslug/exhibitsectionslug/exhibitpageslug2');
-
-        $basePageUrl =  dirname($this->config->background->php->path) . '/exhibits/show/exhibitslug/exhibitsectionslug/exhibitpageslug';
+        
+        $basePageUrl = public_uri('exhibits/show/exhibitslug/exhibitsectionslug/exhibitpageslug');
         
         // Test the page nav when the page titles are used as the link texts        
         $html = '';
