@@ -408,6 +408,7 @@ function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props 
             $html .= "\n" . '<div class="exhibit-item">';
             $thumbnail = item_image($thumbnailType, $props);
             $html .= exhibit_builder_link_to_exhibit_item($thumbnail);
+            $html .= exhibit_builder_exhibit_display_caption($i);
             $html .= '</div>' . "\n";
         }
     }
