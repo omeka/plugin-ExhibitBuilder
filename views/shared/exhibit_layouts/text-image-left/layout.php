@@ -9,11 +9,7 @@
 		<?php if(exhibit_builder_use_exhibit_page_item(1)):?>
 		<div class="exhibit-item">
 			<?php echo exhibit_builder_exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
-			<div class="exhibit-item-caption">
-			<?php echo item('Dublin Core', 'Title'); ?>
-			<?php echo item('Dublin Core', 'Description'); ?>
-			<?php echo exhibit_builder_link_to_exhibit_item('Item Link'); ?>
-			</div>
+			<?php echo exhibit_builder_exhibit_display_caption(1); ?>
 		</div>
 		<?php endif; ?>	
 	</div>

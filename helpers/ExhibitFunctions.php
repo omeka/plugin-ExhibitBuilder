@@ -451,7 +451,7 @@ function exhibit_builder_random_featured_exhibit()
  * @param array $linkProperties
  * @return string
  **/
-function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array())
+function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array(), $index = 1)
 {
     $item = get_current_item();
 
@@ -486,9 +486,25 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
 
     $html .= $itemHtml;
     $html .= '</a>';
+
     return $html;
 }
 
+/**
+ * Returns the caption at a given index
+ *
+ * @param index 
+ **/
+function exhibit_builder_exhibit_display_caption($index = 1)
+{
+    $html = '';
+    if ($caption = exhibit_builder_page_caption($index)) {
+        $html .= '<div class="exhibit-item-caption">'."\n";
+        $html .= $caption."\n";
+        $html .= '</div>'."\n";
+    }
+    return $html;
+}
 /**
  * Returns the HTML code for an exhibit thumbnail image.
  *

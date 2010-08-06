@@ -19,7 +19,7 @@
 		<?php if(exhibit_builder_use_exhibit_page_item($i)):?>
 	    <div class="exhibit-item">
 			<?php echo exhibit_builder_exhibit_display_item(array('imageSize'=>'fullsize'), array('class'=>'permalink')); ?>
-			<?php echo item('Dublin Core', 'Title'); ?>
+			<?php echo exhibit_builder_exhibit_display_caption(1); ?>
 	    </div>
 		<?php endif; ?>
 	</div>
