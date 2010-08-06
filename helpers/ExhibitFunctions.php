@@ -48,7 +48,7 @@ function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props =
         $exhibit = exhibit_builder_get_current_exhibit();
     }
     $uri = exhibit_builder_exhibit_uri($exhibit, $exhibitSection, $exhibitPage);
-    $text = !empty($text) ? $text : $exhibit->title;
+    $text = !empty($text) ? $text : html_escape($exhibit->title);
     return '<a href="' . html_escape($uri) .'" '. _tag_attributes($props) . '>' . $text . '</a>';
 }
 
