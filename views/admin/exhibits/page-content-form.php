@@ -73,6 +73,10 @@
 	
     jQuery(window).load(function() {
         Omeka.ExhibitBuilder.wysiwyg();
+        Omeka.ExhibitBuilder.addNumbers();
+    });
+    jQuery(document).bind('exhibitbuilder:attachitem', function(){
+        Omeka.ExhibitBuilder.addNumbers();
     });
 //]]>    
 </script>

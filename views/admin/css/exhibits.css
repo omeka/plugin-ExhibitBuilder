@@ -1,13 +1,9 @@
-/* Exhibits Icons */
+/* -- Exhibits Icons -- */
 .add-exhibit, .browse-exhibits {
     background-position:top left; 
     background-repeat:no-repeat; 
     padding:2px 4px 2px 20px; 
     text-decoration:none;
-}
-
-dd.exhibits ul li {
-    padding-left:12px;
 }
 
 .add-exhibit {
@@ -18,7 +14,28 @@ dd.exhibits ul li {
     background-image:url("../images/pictures.gif");
 }
 
-/* Exhibits Browse */
+.delete-exhibit {
+    background-position: 0 50%;
+    padding-left: 18px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    background-image:url("../../../../../admin/themes/default/images/delete.gif");
+}
+
+.delete-section, .delete-page {
+    background-position: 12px 50%;
+    padding-left: 32px;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    background-image:url("../../../../../admin/themes/default/images/delete.gif");
+}
+
+/* -- Styles for Exhibits list on admin dashboard -- */
+dd.exhibits ul li {
+    padding-left:12px;
+}
+
+/* -- Exhibits Browse -- */
 #add-exhibit a.add {
     background-image:url("../images/picture_add.gif");
 }
@@ -31,6 +48,7 @@ table#exhibits {
     width:774px;
 }
 
+/* -- Exhibit add/edit -- */
 
 /* Exhibit Breadcrumb Navigation */
 #exhibits-breadcrumb {
@@ -52,128 +70,137 @@ table#exhibits {
     cursor:pointer;
 }
 
-/* Exhibit Metadata */
+/* Exhibit Sections and Pages */
 #section-list-container {
     clear:both;
+}
+
+.section-list {
+    width:512px;
+    float:left;
+}
+
+#reorder-instructions {
+    float:right; width: 280px; font-size:11px;color: #888;
 }
 
 .page-list .layout-name {
     display:none;
 }
 
-.section-list, .page-list {
-    float:left; 
-    width: 512px;
+.section-list li {
+    background:#e9f6da;
+    margin-bottom:15px;
+    position:relative;
+    display:block; 
+    clear:both;
+    width:auto;
+    padding:15px;
 }
 
-.section-list li div.section-info {
-    background:#e9f6da;
-    padding: 5px;
+/* Class used by jQuery UI drag/drop */
+.ui-sortable-helper,
+.ui-sortable-helper img,
+.ui-sortable-helper li {
+    background-color:#fff09e !important;
+}
+
+.ui-state-hover {
+    background: #fff09e !important;
+}
+li.ui-state-highlight {
+    background: green !important;
+    
+}
+.ui-sortable-helper * {
+    opacity:0.7;
+}
+
+/* Clears floats in .section-list li */
+.section-list li:after,
+.page-list li:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.section-list li .left {
+    display:block; 
+    float:left; 
+    width: 60%;
+}
+
+.section-title img {
+    position:absolute;
+    top: 12px;
+    left:6px;
+
+}
+    
+.section-list input {
+    padding:4px 0; 
+    width:1em;
+} 
+
+.section-list .section-title {
+    font-size:1.5em;
+}
+
+.section-info {
+    margin-bottom:12px;
+}
+.section-list input {
+    display:none;
+}
+
+.section-actions {
+    text-align:left;
+    margin:20px 0;
+}
+
+.section-actions a {
+    background-color: rgba(255,255,255,0.5) !important;
+    padding:10px 10px 10px 34px;
+}
+
+.section-pages-info {
+    clear:both; 
+    padding-top:12px;   
 }
 
 .page-list {
-    padding-bottom: 5px; /* This padding is necessary for jquery sortable, so that list items can be dragged onto empty lists. */
+    line-height:2em;
+    padding:0;
+    margin:1em 0;
 }
 
-.page-list li div.page-info {
-    background: lightyellow;
-    padding: 5px;
-}
-
-.section-list li, .page-list li {
-    display:block; 
-    overflow:hidden; 
-    float:left; 
-    clear:both; 
-    width:512px; 
-    margin:15px 0 0 0; 
-    padding:0; 
-}
-
-/*
-
-.section-list li .left, .page-list li .left {
-    display:block; 
-    float:left; 
-    width: 65%;
-}
-    
-.section-list img, .page-list img {
-    background:#fff; 
-    padding:4px; 
-    float:left;
-}
-    
-.section-list input, .page-list input {
-    padding:4px 0; 
-    width:1em;
-}
-
-.section-list li .right, .page-list li .right {
+.page-list .right {
     display:block; 
     float:right; 
-    width:28%; 
+    text-align:right;
+    width:30%; 
     padding:4px 0;
-} 
-
-*/
-
-#new-section-link {
-    float:right; 
-    width:390px; 
-    font-size:1.2em;
+    font-size:88%;
 }
 
-#new-section {
-    float:right; 
-    width: 390px;
-}
-
-#new-section-link a {
-    background-color:#d4ecb5; 
-    float:left; 
-    padding:12px; 
-    text-decoration:none; 
-    color:#060; 
+.page-list li {
     display:block;
+    zoom:1;
+    border-bottom:1px dotted rgba(0,0,0,0.1);
+    padding:0;
+    margin:0;
 }
 
-#new-section-link a:hover {
-    background-color:#e9f6da;
+#section-add {
+    clear:both;
 }
-
-#exhibit-form #new-section .field input.textinput {
-    width: 380px !important;
+#section-add input {
+    float:none;
+    margin:0;
 }
-
-#exhibit-form #new-section .field label {
-    text-align:left; 
-    width:auto; 
-    display:block;
-}
-
-#add_section {
-    background-color:#d4ecb5; 
-    padding:6px; 
-    text-decoration:none; 
-    color:#060;
-}
-
-#add_section:hover {
-    background-color:#e9f6da;
-}
-
 
 /* Section Metadata */
-#add-new-section-form {
-    background: #fff09e; 
-    overflow:hidden; 
-    width:342px; 
-    padding:18px;
-}
-
-#add-new-section-form .field {}
-
 .section-delete a, .page-delete a {
     text-decoration:none; 
     color:red;
@@ -226,51 +253,6 @@ table#exhibits {
     clear:both;
 }
 
-/*#layout-form .item {
-    clear:both; 
-    border-bottom:1px solid #ccc; 
-    margin-bottom:1.8em; 
-    padding-bottom:1.8em;
-}*/
-
-/*.item-select-outer {
-    float:left; 
-    border:1px solid #A2C9E8; 
-    margin-right:2px; 
-    margin-bottom:2px;
-    display:block;
-}
-
-.item-select-outer img {width: 130px; height:130px; }
-
-#item-select .item-select-outer {
-    width: 130px;
-    height: 130px;
-}*/
-
-/*
-#layout-form .item-select-outer {
-    position: relative;
-}
-*/
-/*#layout-form .item-select-outer {
-    width:130px; 
-    height:130px;
-    position: relative; 
-}
-
-#item-list .item-select-outer {
-    top:0; left:0;
-}*/
-
-/*#layout-form .item-select-inner {
-    position: relative; 
-}
-
-#item-list {
-    margin-left:18px;
-}*/
-
 .item-select-outer {
     cursor:pointer;
     padding: 12px;
@@ -290,14 +272,12 @@ table#exhibits {
     position:absolute;
     top:0; 
     right:0; 
-    width: 20px; 
-    padding:20px 0 0; 
-    background:#fff 50% 50% no-repeat; 
     z-index:10000; 
-    overflow:hidden; 
-    height:0 !important; 
-    border:1px solid #A2C9E8; 
-    border-width:0 0 1px 1px;
+    padding: 4px 8px;
+    font-size:12px;
+    font-weight:bold;
+    background:#fff;
+    color: #900 !important;
 }
 
 .textfield {
@@ -308,39 +288,31 @@ table#exhibits {
     width: 99%;
 }
 
-.item-file {
+.item-file,
+.caption-container {
     float:left;
     width: 48%;
 }
 
-
 .caption-container {
     float:right;
-    width: 48%;
-}
-
-#search {
 }
 
 #layout-form label {
     display:none;
 }
 
-#page-search-form {
-    clear:both;
-}
-
-#page-search-form .textinput {
-    clear: both;
-    overflow: hidden;
-}
-    
+#page-search-form,
+#page-search-form .textinput,
 #page-submits {
     clear:both;
 }
 
+#page-search-form .textinput {
+    overflow:hidden;
+}
+
 /* choose layout */
-#layouts {}
 
 #layouts #layout-thumbs {
     width:512px; 
@@ -350,25 +322,19 @@ table#exhibits {
     cursor:pointer;
 }
 
-#layouts .layout input {
-    display:none;
-}
-
+#layouts .layout input,
 #layout-thumbs .layout-name {
     display:none;
 }
 
-#chosen_layout {
+#chosen_layout,
+#chosen_layout div.current-layout,
+#chosen_layout img {
     float:right;
 }
             
 #chosen_layout div.current-layout{
     width:295px; 
-    float:right;
-}
-
-#chosen_layout img {
-    float:right;
 }
 
 #chosen_layout div.layout-name {
@@ -434,15 +400,6 @@ button.cancel {
     text-indent:0;
 }
 
-a.cancel {
-    text-decoration:none; 
-    color:#38c;
-}
-
-a.cancel:visited {
-    color:#38c;
-}
-
 #layout-form .section {
     overflow: hidden;
     margin:20px;
@@ -455,23 +412,24 @@ a.cancel:visited {
     padding:20px;
 }
 
+.exhibit-form-element {
+    position:relative;
+    padding:30px;
+    background:#f0f0f0;
+    margin-bottom:20px;
+}
 
+.exhibit-form-element-number {
+    position:absolute;
+    top:0;
+    left: 0;
+    background: #fff;
+    padding:4px 8px;
+    font-size:12px;
+    font-weight:bold;
+}
 /* Delete Link Styles */
-.delete-exhibit {
-    background-position: 0 50%;
-    padding-left: 18px;
-    background-repeat: no-repeat;
-    text-decoration: none;
-    background-image:url("../../../../../admin/themes/default/images/delete.gif");
-}
 
-.delete-section, .delete-page {
-    background-position: 12px 50%;
-    padding-left: 32px;
-    background-repeat: no-repeat;
-    text-decoration: none;
-    background-image:url("../../../../../admin/themes/default/images/delete.gif");
-}
 
 .item_id {
     display:none;

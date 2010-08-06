@@ -198,7 +198,7 @@ function exhibit_builder_exhibit_foot()
  **/
 function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = null, $includeCaption = true)
 {
-    $html = '<div class="item-select-outer">';  
+    $html = '<div class="item-select-outer exhibit-form-element">';  
 
     if ($item and $item->exists()) {
         set_current_item($item);
@@ -248,7 +248,7 @@ function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #')
  **/
 function exhibit_builder_layout_form_text($order, $label = 'Text') 
 {
-    $html = '<div class="textfield">';
+    $html = '<div class="textfield exhibit-form-element">';
     $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order)); 
     $html .= '</div>';
     return $html;

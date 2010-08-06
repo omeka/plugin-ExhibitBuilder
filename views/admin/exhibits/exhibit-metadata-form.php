@@ -63,6 +63,8 @@ if ($exhibit->title) {
     
     jQuery(window).load(function() {
         Omeka.ExhibitBuilder.wysiwyg();
+        Omeka.ExhibitBuilder.addStyling();
+        
         makeSectionListDraggable(); 
     });
 //]]>   
@@ -121,17 +123,19 @@ if ($exhibit->title) {
                 <?php if (!$exhibit->Sections): ?>
                     <p>There are no sections.</p>
                 <?php else: ?>
-                <p>To reorder sections or pages, click and drag the section or page up or down to the preferred location.</p>
+                <p id="reorder-instructions">To reorder sections or pages, click and drag the section or page up or down to the preferred location.</p>
                 <?php endif; ?>
                 <ul class="section-list">
                     <?php common('section-list', compact('exhibit'), 'exhibits'); ?>
                 </ul>
             </div>
+            <div id="section-add">
+                <input type="submit" name="add_section" id="add-section" value="Add Section" />
+            </div>
         </fieldset>
         <fieldset>
             <p id="exhibit-builder-save-changes">
                 <input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
-                <input type="submit" name="add_section" value="Add Section" /> or 
                 <a href="<?php echo html_escape(uri('exhibits')); ?>" class="cancel">Cancel</a>
             </p>
         </fieldset>

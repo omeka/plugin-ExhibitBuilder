@@ -67,6 +67,9 @@ Omeka.ExhibitBuilder = function() {
      		jQuery('#search-items').dialog('open');
      		return false;
      	});
+     	
+     	jQuery(layoutItemContainer).trigger("exhibitbuilder:attachitem");
+        
     };
     
     /*
@@ -149,14 +152,6 @@ Omeka.ExhibitBuilder = function() {
     };
 
     /*
-    * Style the handles for the section/page lists in the exhibit builder.
-    */
-    this.addStyling = function() {
-        jQuery('.handle').css({'display':'inline', 'cursor': 'move'});
-    	jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
-    };
-
-    /*
     * Add delete buttons to the layout item containers 
     */
     this.addDeleteButtonsToLayoutItemContainer = function(layoutItemContainer) {
@@ -164,18 +159,23 @@ Omeka.ExhibitBuilder = function() {
         if (layoutItemContainer.find('div.item-select-inner').size()) {
             var removeItemLink = jQuery('<a></a>');
     		removeItemLink.html('Remove This Item');
-    		removeItemLink.addClass('remove_item');
+    		removeItemLink.addClass('remove_item delete-item');
     		removeItemLink.css('cursor', 'pointer');
+    		removeItemLink.prepend('<img src="'+this.removeItemBackgroundImageUri+'" /> ');
     		
     		// Put the 'delete' as background to anything with a 'remove_item' class
-            removeItemLink.css('backgroundImage', 'url(' + this.removeItemBackgroundImageUri + ')');            
-    	    
-    		// Make the remove item link delete the item when clicked
-    		removeItemLink.bind('click', {exhibitBuilder: this}, function(event) {
-    		    event.data.exhibitBuilder.deleteItemFromItemContainer(layoutItemContainer);
-    		    return;
-    		});
-    		layoutItemContainer.find('h2.title').css('position', 'relative').append(removeItemLink);
+            // removeItemLink.css({
+            //     'backgroundImage' : 'url(' + this.removeItemBackgroundImageUri + ')',
+            //     ''
+            //     'padding-left': '20px'
+            //     });            
+
+            // Make the remove item link delete the item when clicked
+            removeItemLink.bind('click', {exhibitBuilder: this}, function(event) {
+                event.data.exhibitBuilder.deleteItemFromItemContainer(layoutItemContainer);
+                return;
+            });
+            layoutItemContainer.append(removeItemLink);
         }           
     };
 
@@ -184,10 +184,10 @@ Omeka.ExhibitBuilder = function() {
     */
     this.addSelectionHighlightingToSearchItemContainer = function(searchItemContainer) {
         searchItemContainer.bind('click', {exhibitBuilder: this}, function(event) {
-    		jQuery('#item-list div.item-select-outer').removeClass('item-selected');
-    		jQuery(this).addClass('item-selected');
-    		return;
-    	});
+            jQuery('#item-list div.item-select-outer').removeClass('item-selected');
+            jQuery(this).addClass('item-selected');
+            return;
+        });
     };
     
     /*
@@ -197,8 +197,8 @@ Omeka.ExhibitBuilder = function() {
         var selectedItemContainer = jQuery('.item-selected');
         var selectedItemId = this.getItemIdFromItemContainer(selectedItemContainer);        		
         var targetedItemContainer = jQuery('.item-targeted');
-		var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);		
-		this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);
+        var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);		
+        this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);	        
     }
     
     /*
@@ -207,6 +207,7 @@ Omeka.ExhibitBuilder = function() {
     this.deleteItemFromItemContainer = function(itemContainer) {
         var orderOnForm = this.getItemOrderFromItemContainer(itemContainer);
         this.setItemForItemContainer(itemContainer, 0, orderOnForm);
+        
     };
 
     /*
@@ -222,6 +223,7 @@ Omeka.ExhibitBuilder = function() {
               var newItemContainer = jQuery(xhr.responseText);
               itemContainer.replaceWith(newItemContainer);
               exhibitBuilder.setupLayoutItemContainer(newItemContainer);
+              
           }
         });
     };
@@ -252,6 +254,10 @@ Omeka.ExhibitBuilder = function() {
         }
         return false;
     };
+    
+    this.addStyling = function() {
+        jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
+    }
 }
 
 Omeka.ExhibitBuilder.wysiwyg = function() {
@@ -276,6 +282,15 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
     };
 }
 
+Omeka.ExhibitBuilder.addStyling = function() {
+	jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
+	jQuery('.section-list, .page-list').css({'cursor':'move'});
+	jQuery('.section-list li:hover').css({'background':'#fff09e'});
+}
 
-
-
+Omeka.ExhibitBuilder.addNumbers = function() {
+    jQuery('#layout-form .exhibit-form-element').each(function(i){
+        var number = i+1;
+        jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
+    });
+}
