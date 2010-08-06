@@ -74,7 +74,7 @@ function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage =
         $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;        
     }
     
-    return $caption;
+    return html_escape($caption);
 }
 
 /**
@@ -345,7 +345,7 @@ function exhibit_page($propertyName, $options = array(), $exhibitPage = null)
     }
     $propertyName = Inflector::underscore($propertyName);        
 	if (property_exists(get_class($exhibitPage), $propertyName)) {
-	    return $exhibitPage->$propertyName;
+	    return html_escape($exhibitPage->$propertyName);
 	} else {
 	    return null;
 	}
