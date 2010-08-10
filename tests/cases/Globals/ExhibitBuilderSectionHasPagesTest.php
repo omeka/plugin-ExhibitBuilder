@@ -2,8 +2,15 @@
 /**
  * Tests for exhibit_builder_get_exhibits function
  */
-class ExhibitBuilderSectionHasPagesTest extends ExhibitBuilder_TestCase 
+class ExhibitBuilderSectionHasPagesTest extends Omeka_Test_AppTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->helper = new ExhibitBuilder_IntegrationHelper;
+        $this->helper->setUpPlugin();
+    }
+
     /**
      * Tests whether exhibit_builder_section_has_pages has no pages when the current section does not have any pages
      *
@@ -11,10 +18,10 @@ class ExhibitBuilderSectionHasPagesTest extends ExhibitBuilder_TestCase
      **/
     public function testExhibtBuilderSectionHasPagesWhenSectionHasNoPages() 
     {
-        $exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
+        $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
         
-        $exhibitSection = $this->_createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
+        $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
         $this->assertTrue($exhibitSection->exists());
         
         $this->assertFalse(exhibit_builder_section_has_pages($exhibitSection));
@@ -32,13 +39,13 @@ class ExhibitBuilderSectionHasPagesTest extends ExhibitBuilder_TestCase
      **/
     public function testExhibtBuilderSectionHasPagesWhenSectionHasPages() 
     {
-        $exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
+        $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
         
-        $exhibitSection = $this->_createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
+        $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
         $this->assertTrue($exhibitSection->exists());
         
-        $exhibitPage = $this->_createNewExhibitPage($exhibitSection, 'Exhibit Page Title', 'exhibitpageslug', 1);
+        $exhibitPage = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title', 'exhibitpageslug', 1);
         $this->assertTrue($exhibitPage->exists());
         
         $this->assertTrue(exhibit_builder_section_has_pages($exhibitSection));
@@ -49,7 +56,7 @@ class ExhibitBuilderSectionHasPagesTest extends ExhibitBuilder_TestCase
         $this->assertTrue(exhibit_builder_section_has_pages());
         
         // See if multiple pages works
-        $exhibitPage2 = $this->_createNewExhibitPage($exhibitSection, 'Exhibit Page Title 2', 'exhibitpageslug2', 2);
+        $exhibitPage2 = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title 2', 'exhibitpageslug2', 2);
         $this->assertTrue($exhibitPage2->exists());
         
         $this->assertTrue(exhibit_builder_section_has_pages($exhibitSection));

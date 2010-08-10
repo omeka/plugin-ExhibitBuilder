@@ -2,8 +2,15 @@
 /**
  * Tests for exhibit function
  */
-class ExhibitTest extends ExhibitBuilder_TestCase 
+class ExhibitTest extends Omeka_Test_AppTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->helper = new ExhibitBuilder_IntegrationHelper;
+        $this->helper->setUpPlugin();
+    }
+    
     /**
      * Tests whether exhibit() returns the correct value.
      *
@@ -11,7 +18,7 @@ class ExhibitTest extends ExhibitBuilder_TestCase
      **/
     public function testCanRetrieveCorrectExhibitValue() 
     {
-        $this->_createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit Description', 'Jim Safley');
+        $this->helper->createNewExhibit(1, 0, 'Exhibit Title', 'Exhibit Description', 'Jim Safley');
         $this->dispatch('exhibits/show/exhibit-title');
 
         // Exhibit Title

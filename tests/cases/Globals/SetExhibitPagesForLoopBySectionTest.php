@@ -3,65 +3,58 @@
 /**
  * Tests for set_exhibit_pages_for_loop_by_section function
  */
-class SetExhibitPagesForLoopBySectionTest extends ExhibitBuilder_TestCase 
+class SetExhibitPagesForLoopBySectionTest extends Omeka_Test_AppTestCase
 {
-	/**
-	 * Tests whether set_exhibit_pages_for_loop_by_section correctly sets exhibit pages on the view when the exhibit section is specified.
-	 */
-	public function testSetExhibitPagesForLoopBySectionWhenSectionIsSpecified()
+    public function setUp()
     {
-		$exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
-        $this->assertTrue($exhibit->exists());
+        parent::setUp();
+        $this->helper = new ExhibitBuilder_IntegrationHelper;
+        $this->helper->setUpPlugin();
 
-        $exhibitSection = $this->_createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
-        $this->assertTrue($exhibitSection->exists());
-        
-        $maxExhibitPageCount = 6;
-        $exhibitPageSlugs[] = array();
-        for($i = 1; $i <= $maxExhibitPageCount; $i++) {
-            $exhibitPage = $this->_createNewExhibitPage($exhibitSection, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, $i, 'text');
+        $this->exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
+        $this->assertTrue($this->exhibit->exists());
+
+        $this->exhibitSection = $this->helper->createNewExhibitSection($this->exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
+        $this->assertTrue($this->exhibitSection->exists());
+
+        $this->maxExhibitPageCount = 6;
+        $this->exhibitPageSlugs = array();
+        for($i = 1; $i <= $this->maxExhibitPageCount; $i++) {
+            $exhibitPage = $this->helper->createNewExhibitPage($this->exhibitSection, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, $i, 'text');
             $this->assertTrue($exhibitPage->exists());
-            $exhibitPageSlugs[] = $exhibitPage->slug;
+            $this->exhibitPageSlugs[] = $exhibitPage->slug;
         }
-        
-        set_exhibit_pages_for_loop_by_section($exhibitSection);
+    }
+
+    /**
+     * Tests whether set_exhibit_pages_for_loop_by_section correctly sets exhibit pages on the view when the exhibit section is specified.
+     */
+    public function testSetExhibitPagesForLoopBySectionWhenSectionIsSpecified()
+    {   
+        set_exhibit_pages_for_loop_by_section($this->exhibitSection);
         $exhibitPageCount = 0;
         foreach ($this->view->exhibitPages as $exhibitPage) {
-            $this->assertTrue(in_array($exhibitPage->slug, $exhibitPageSlugs));
+            $this->assertTrue(in_array($exhibitPage->slug, $this->exhibitPageSlugs));
             $exhibitPageCount++;
         }
-        $this->assertEquals($maxExhibitPageCount, $exhibitPageCount);
+        $this->assertEquals($this->maxExhibitPageCount, $exhibitPageCount);
     }
     
     /**
-	 * Tests whether set_exhibit_pages_for_loop_by_section correctly sets exhibit pages on the view when the exhibit section is not specified.
-	 */
-	public function testSetExhibitPagesForLoopBySectionWhenSectionIsNotSpecified()
+     * Tests whether set_exhibit_pages_for_loop_by_section correctly sets exhibit pages on the view when the exhibit section is not specified.
+     */
+    public function testSetExhibitPagesForLoopBySectionWhenSectionIsNotSpecified()
     {
-		$exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
-        $this->assertTrue($exhibit->exists());
-
-        $exhibitSection = $this->_createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug');
-        $this->assertTrue($exhibitSection->exists());
-        
-        $maxExhibitPageCount = 6;
-        $exhibitPageSlugs[] = array();
-        for($i = 1; $i <= $maxExhibitPageCount; $i++) {
-            $exhibitPage = $this->_createNewExhibitPage($exhibitSection, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, $i, 'text');
-            $this->assertTrue($exhibitPage->exists());
-            $exhibitPageSlugs[] = $exhibitPage->slug;
-        }
-		
-		exhibit_builder_set_current_exhibit($exhibit);
-		exhibit_builder_set_current_section($exhibitSection);
+        exhibit_builder_set_current_exhibit($this->exhibit);
+        exhibit_builder_set_current_section($this->exhibitSection);
         
         // Make sure it uses the current exhibit by default
         set_exhibit_pages_for_loop_by_section();
         $exhibitPageCount = 0;
         foreach ($this->view->exhibitPages as $exhibitPage) {
-            $this->assertTrue(in_array($exhibitPage->slug, $exhibitPageSlugs));
+            $this->assertTrue(in_array($exhibitPage->slug, $this->exhibitPageSlugs));
             $exhibitPageCount++;
         }
-        $this->assertEquals($maxExhibitPageCount, $exhibitPageCount);
+        $this->assertEquals($this->maxExhibitPageCount, $exhibitPageCount);
     }
 }

@@ -2,8 +2,14 @@
 /**
  * Tests for exhibit_section function
  */
-class ExhibitSectionTest extends ExhibitBuilder_TestCase 
+class ExhibitSectionTest extends Omeka_Test_AppTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->helper = new ExhibitBuilder_IntegrationHelper;
+        $this->helper->setUpPlugin();
+    }
     /**
      * Tests whether exhibit_section() returns the correct value.
      *
@@ -11,15 +17,15 @@ class ExhibitSectionTest extends ExhibitBuilder_TestCase
      **/
     public function testCanRetrieveCorrectExhibitSectionValue() 
     {
-        $exhibit = $this->_createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
+        $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
         
         $maxExhibitSectionCount = 8;
         for($i = 1; $i <= $maxExhibitSectionCount; $i++) {
-            $exhibitSection = $this->_createNewExhibitSection($exhibit, 'Exhibit Section Title ' . $i, 'Exhibit Section Description ' . $i, 'exhibitsectionslug' . $i, $i);
+            $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title ' . $i, 'Exhibit Section Description ' . $i, 'exhibitsectionslug' . $i, $i);
             $this->assertTrue($exhibitSection->exists());
             
-            $exhibitPage = $this->_createNewExhibitPage($exhibitSection, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, 1);
+            $exhibitPage = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, 1);
             $this->assertTrue($exhibitPage->exists());
         }        
         $this->dispatch('exhibits/show/exhibitslug/exhibitsectionslug3');

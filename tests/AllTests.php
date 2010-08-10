@@ -6,9 +6,9 @@
  * @package Omeka
  */
 
-defined('EXHIBIT_BUILDER_DIR') || define('EXHIBIT_BUILDER_DIR', dirname(dirname(__FILE__)));
+define('EXHIBIT_BUILDER_DIR', dirname(dirname(__FILE__)));
 require_once 'ExhibitBuilder_ViewTestCase.php';
-require_once 'ExhibitBuilder_TestCase.php';
+require_once 'ExhibitBuilder_IntegrationHelper.php';
 
 /**
  * 

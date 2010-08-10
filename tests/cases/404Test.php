@@ -1,6 +1,15 @@
 <?php
-class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase 
+class ExhibitBuilder_404Test extends Omeka_Test_AppTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->helper = new ExhibitBuilder_IntegrationHelper;
+        $this->helper->setUpPlugin();
+
+        $this->helper->createNewExhibits(1,0,0,0);
+    }
+
     /**
      * Tests to make sure the exhibits controller will return a 404 error for a bad exhibit slug
      *
@@ -8,7 +17,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testError404WithBadExhibitSlug() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -30,7 +38,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testNoError404WithGoodExhibitSlug() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -52,7 +59,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testError404WithBadExhibitSectionSlug() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -83,7 +89,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testError404WithGoodExhibitSectionSlugButSectionHasNoPages() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -111,7 +116,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testNoError404WithGoodExhibitSectionSlugAndSectionHasPages() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -152,7 +156,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testError404WithBadExhibitPageSlug() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
@@ -192,7 +195,6 @@ class ExhibitBuilder_404Test extends ExhibitBuilder_TestCase
      **/
     public function testNoError404WithGoodExhibitPageSlug() 
     {
-        $this->_createNewExhibits(1,0,0,0);
         $exhibits = exhibit_builder_get_exhibits();
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
