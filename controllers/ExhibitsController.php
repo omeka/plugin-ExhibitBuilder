@@ -51,13 +51,13 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         
         $exhibit = $this->_findByExhibitSlug();
         if (!$exhibit) {
-            $this->errorAction();    
+            return $this->errorAction();    
         }
         
         $sectionSlug = $this->_getParam('section_slug');
         $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
   
-        if ($item and $exhibitTable->exhibitHasItem($exhibit->id, $item->id) ) {
+        if ($item && $exhibit->hasItem($item) ) {
      
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  $item, $exhibit);

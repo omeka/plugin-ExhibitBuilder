@@ -148,6 +148,23 @@ class Exhibit extends Omeka_Record
 		return $this->getChildCount();
 	}
 	
+	/**
+	 * Determine whether an exhibit uses a particular item on any of its pages.
+	 * 
+	 * @param Item $item
+	 * @return boolean
+	 */
+	public function hasItem(Item $item)
+	{
+	    if (!$item->exists()) {
+	       throw new InvalidArgumentException("Item does not exist (is not persisted).");
+	    }
+	    if (!$this->exists()) {
+	       throw new RuntimeException("Cannot call hasItem() on a new (non-persisted) exhibit.");
+	    }
+	    return $this->getTable()->exhibitHasItem($this->id, $item->id);
+	}
+	
 	public function setThemeOptions($themeOptions, $themeName = null)
 	{
 	    if ($themeName === null) {
