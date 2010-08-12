@@ -19,12 +19,17 @@ class ExhibitPermissions
      **/
     public function __construct(Omeka_Db_Select $sql)
     {
-        $acl = Omeka_Context::getInstance()->getAcl();
-        $db = Omeka_Context::getInstance()->getDb();
-        
-        $has_permission = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'showNotPublic');
-        
-        if(!$has_permission)
+        if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
+            $oc = Omeka_Context::getInstance();
+            $acl = $oc->getAcl();
+            $currentUser = $oc->getCurrentUser();        
+            $hasPermission = $acl->isAllowed($currentUser, 'ExhibitBuilder_Exhibits', 'showNotPublic');
+        } else {
+            $acl = Omeka_Context::getInstance()->getAcl();
+            $hasPermission = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'showNotPublic');            
+        }
+
+        if(!$hasPermission)
         {
             $sql->where('e.public = 1');
         }

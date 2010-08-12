@@ -18,10 +18,10 @@ if ($exhibit->title) {
         var sectionListSortableOptions = {axis:'y'};
         var sectionListOrderInputSelector = '.section-info input';
         
-		var sectionListDeleteLinksSelector = '.section-delete a';
-		var sectionListDeleteConfirmationText = 'Are you sure you want to delete this section?';
+	var sectionListDeleteLinksSelector = '.section-delete a';
+	var sectionListDeleteConfirmationText = 'Are you sure you want to delete this section?';
         var sectionListFormSelector = '#exhibit-metadata-form';
-		var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
+	var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
         makeSortable(sectionList, 
                      sectionListSortableOptions,
                      sectionListOrderInputSelector,
@@ -29,7 +29,6 @@ if ($exhibit->title) {
                      sectionListDeleteConfirmationText, 
                      sectionListFormSelector, 
                      sectionListCallback);
-
 
         var pageListSortableOptions = {axis:'y', connectWith:'.page-list'};
         var pageListOrderInputSelector = '.page-info input';

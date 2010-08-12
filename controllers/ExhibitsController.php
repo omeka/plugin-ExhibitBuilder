@@ -17,7 +17,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function init()
     {
-        $this->_modelClass = 'Exhibit';
+        if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
+            $this->_helper->db->setDefaultModelName('Exhibit');        
+        } else {
+            $this->_modelClass = 'Exhibit';
+        }
         $this->_browseRecordsPerPage = 10;
         
         require_once 'Zend/Session.php';
@@ -29,7 +33,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         if (!$exhibitSlug) {
             $exhibitSlug = $this->_getParam('slug');
         }
-        $exhibit = $this->_table->findBySlug($exhibitSlug);        
+        $exhibit = $this->getTable('Exhibit')->findBySlug($exhibitSlug);        
         return $exhibit;
     }
         
@@ -53,7 +57,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $sectionSlug = $this->_getParam('section_slug');
         $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
   
-        if ($item and $this->_table->exhibitHasItem($exhibit->id, $item->id) ) {
+        if ($item and $exhibitTable->exhibitHasItem($exhibit->id, $item->id) ) {
      
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  $item, $exhibit);

@@ -9,7 +9,7 @@
 <div id="pagination" class="pagination">
 <?php     
      echo pagination_links(array('url'=>uri(array('controller'=>'exhibits',
-      'action'=>'items', 'page'=>null)) . '/')); 
+      'action'=>'items', 'page'=>null), 'exhibitItemPagination') . '/')); 
      // The extra slash is a hack, the pagination should be fixed to work
      // without the extra slash being there. Also, I get the feeling that being
      // forced to set the 'page' parameter to null is also a hack.

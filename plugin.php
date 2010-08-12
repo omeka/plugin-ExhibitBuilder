@@ -170,24 +170,47 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
  * conflicts with pre-existing controllers, e.g. an ExhibitBuilder_ItemsController
  * would not rely on the existing Items ACL resource.
  * 
- * NOTE: unless explicitly denied, super users and admins will have access to all
- * of the defined resources and privileges.  Other user levels will not by default.
- * That means that admin and super users can both manipulate exhibits completely,
- * but researcher/contributor cannot.
- * 
  * @return void
  **/
 function exhibit_builder_setup_acl($acl)
 {
-    $resource = new Omeka_Acl_Resource('ExhibitBuilder_Exhibits');
-    $resource->add(array('add','editSelf', 'editAll', 'deleteSelf', 'deleteAll','add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section', 'delete-section', 'showNotPublic', 'section-list', 'page-list'));
-    $acl->add($resource);
-    
-    // Deny contributor users editAll, deleteAll
-    $acl->deny('contributor', 'ExhibitBuilder_Exhibits', array('editAll','deleteAll'));
-    
-    // Allow contributors everything else
-    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');         
+    /**
+     * The following applies only to the ACL definitions on Omeka trunk.  This
+     * behavior has been changed in 2.0.
+     * 
+     * NOTE: unless explicitly denied, super users and admins have access to all
+     * of the defined resources and privileges.  Other user levels will not by default.
+     * That means that admin and super users can both manipulate exhibits completely,
+     * but researcher/contributor cannot. 
+     */
+    if (version_compare(OMEKA_VERSION, '2.0-dev', '<')) {
+        $resource = new Omeka_Acl_Resource('ExhibitBuilder_Exhibits');
+        $resource->add(array('add','editSelf', 'editAll', 'deleteSelf', 'deleteAll','add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section', 'delete-section', 'showNotPublic', 'section-list', 'page-list'));
+        $acl->add($resource);
+
+        // Deny contributor users editAll, deleteAll
+        $acl->deny('contributor', 'ExhibitBuilder_Exhibits', array('editAll','deleteAll'));
+
+        // Allow contributors everything else
+        $acl->allow('contributor', 'ExhibitBuilder_Exhibits');         
+    } else {
+        $resource = new Zend_Acl_Resource('ExhibitBuilder_Exhibits');
+        $acl->add($resource);
+        $acl->allow(null, 'ExhibitBuilder_Exhibits', array(
+            'show', 
+            'summary', 
+            'showitem',
+            'browse'));
+        $acl->allow('contributor', 'ExhibitBuilder_Exhibits', array(
+            'show',
+            'summary',
+            'showitem',
+            'browse',
+            'add',
+            'editSelf',
+            'deleteSelf'
+        ));    
+    }
 }
 
 /**
@@ -221,22 +244,33 @@ function exhibit_builder_public_header()
  **/
 function exhibit_builder_admin_header($request)
 {
-    // Check if using Exhibits controller, and add the stylesheet for general display of exhibits   
-    if ($request->getControllerName() == 'exhibits' || ($request->getModuleName() == 'default' && $request->getControllerName() == 'index' && $request->getActionName() == 'index')):
+    $isHomePage = $request->getModuleName() == 'default' 
+        && $request->getControllerName() == 'index' 
+        && $request->getActionName() == 'index';
+    
+    // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
+    if ($request->getControllerName() == 'exhibits' || $isHomePage) {
+	    if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
+            __v()->headLink()->appendStylesheet(css('exhibits'), 'screen', false);
+            __v()->headScript()->appendFile(web_path_to("javascripts/tiny_mce/tiny_mce.js"))
+                               ->appendFile(web_path_to("javascripts/exhibits.js"));
+            __v()->headScript()->appendFile(web_path_to("javascripts/jquery.js"));
+            __v()->headScript()->appendScript("jQuery.noConflict();");
+            __v()->headLink()->appendStylesheet(css('jquery-ui'), 'screen', false);
+            __v()->headScript()->appendFile(web_path_to("javascripts/jquery-ui.js"));
+        } else {
             echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('exhibits')) . '" /> ';
-    		echo js('tiny_mce/tiny_mce');
-    		echo js('search'); 
-    		echo js('exhibits');
-    		
-    		echo js('jquery');
-    		
+    	    echo js('tiny_mce/tiny_mce');
+    	    echo js('search'); 
+    	    echo js('exhibits');
+    	    echo js('jquery');
             echo '<script type="text/javascript" charset="utf-8">' . "\n";
             echo 'jQuery.noConflict();' . "\n";
             echo '</script>' . "\n";
-    		
-    		echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui')) . '" /> ';
+    	    echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui')) . '" /> ';
             echo js('jquery-ui');	
-    endif;
+	    }
+	}
 }
 
 /**

@@ -584,8 +584,16 @@ function exhibit_builder_user_can_edit($exhibit = null, $user = null)
     if (!$user) { 
         $user = current_user();
     }
-    return (($exhibit->wasAddedBy($user) && get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editSelf')) || 
-         get_acl()->checkUserPermission('ExhibitBuilder_Exhibits', 'editAll'));
+    $acl = get_acl();
+    if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
+        $canEditSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editSelf');
+        $canEditOthers = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editAll');
+    } else {
+        $canEditSelf = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'editSelf');
+        $canEditOthers = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'editAll');
+    }
+    
+    return (($exhibit->wasAddedBy($user) && $canEditSelf) || $canEditOthers);    
 }
 
 /**
