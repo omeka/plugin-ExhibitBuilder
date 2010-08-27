@@ -33,7 +33,7 @@ class SetExhibitPagesForLoopBySectionTest extends Omeka_Test_AppTestCase
     {   
         set_exhibit_pages_for_loop_by_section($this->exhibitSection);
         $exhibitPageCount = 0;
-        foreach ($this->view->exhibitPages as $exhibitPage) {
+        foreach (__v()->exhibitPages as $exhibitPage) {
             $this->assertTrue(in_array($exhibitPage->slug, $this->exhibitPageSlugs));
             $exhibitPageCount++;
         }
@@ -51,7 +51,7 @@ class SetExhibitPagesForLoopBySectionTest extends Omeka_Test_AppTestCase
         // Make sure it uses the current exhibit by default
         set_exhibit_pages_for_loop_by_section();
         $exhibitPageCount = 0;
-        foreach ($this->view->exhibitPages as $exhibitPage) {
+        foreach (__v()->exhibitPages as $exhibitPage) {
             $this->assertTrue(in_array($exhibitPage->slug, $this->exhibitPageSlugs));
             $exhibitPageCount++;
         }

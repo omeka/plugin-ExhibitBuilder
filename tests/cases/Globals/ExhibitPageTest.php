@@ -4,6 +4,8 @@
  */
 class ExhibitPageTest extends Omeka_Test_AppTestCase
 {
+    protected $_useAdminViews = false;
+    
     public function setUp()
     {
         parent::setUp();

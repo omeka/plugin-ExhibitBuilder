@@ -31,7 +31,7 @@ class SetExhibitSectionsForLoopByExhibitTest extends Omeka_Test_AppTestCase
 		
         set_exhibit_sections_for_loop_by_exhibit($exhibit);
         $exhibitSectionCount = 0;
-        foreach ($this->view->exhibitSections as $exhibitSection) {
+        foreach (__v()->exhibitSections as $exhibitSection) {
             $this->assertTrue(in_array($exhibitSection->slug, $exhibitSectionSlugs));
             $exhibitSectionCount++;
         }
@@ -59,7 +59,7 @@ class SetExhibitSectionsForLoopByExhibitTest extends Omeka_Test_AppTestCase
         // Make sure it uses the current exhibit by default
         set_exhibit_sections_for_loop_by_exhibit();
         $exhibitSectionCount = 0;
-        foreach ($this->view->exhibitSections as $exhibitSection) {
+        foreach (__v()->exhibitSections as $exhibitSection) {
             $this->assertTrue(in_array($exhibitSection->slug, $exhibitSectionSlugs));
             $exhibitSectionCount++;
         }
