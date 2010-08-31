@@ -19,7 +19,7 @@
 		<?php if(exhibit_builder_use_exhibit_page_item($i)):?>
 	    <div class="exhibit-item">
 			<?php echo exhibit_builder_exhibit_display_item(array('imageSize'=>'thumbnail'), array('class'=>'permalink')); ?>
-			<?php echo exhibit_builder_exhibit_display_caption(1); ?>
+			<?php echo exhibit_builder_exhibit_display_caption($i); ?>
 	    </div>
 		<?php endif; ?>
 	</div>
