@@ -33,14 +33,14 @@ class ExhibitTable extends Omeka_Db_Table
                     break;
                 
                 case 'sort':
-                    switch($paramValue) {
+                    switch($paramValue) {   
+                        case 'alpha':
+                            $select->order("e.title ASC");
+                            break;
                         
                         case 'recent':
-                        default:
                             $select->order("e.id DESC");
-                        
-                            //$select->order("added DESC");
-                            break;                            
+                            break;     
                     }
                     break;
                 case 'public':

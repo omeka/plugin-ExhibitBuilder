@@ -137,6 +137,7 @@ function exhibit_builder_uninstall()
     
     // delete plugin options
     delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
+    delete_option('exhibit_builder_sort_browse');
 }
 
 /**
@@ -413,6 +414,7 @@ function exhibit_builder_config_form()
 function exhibit_builder_config()
 {
     set_option('exhibit_builder_use_browse_exhibits_for_homepage', (int)(boolean)$_POST['exhibit_builder_use_browse_exhibits_for_homepage']);
+    set_option('exhibit_builder_sort_browse', $_POST['exhibit_builder_sort_browse']);
 }
 
 function exhibit_builder_initialize()

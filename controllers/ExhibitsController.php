@@ -28,6 +28,26 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $this->session = new Zend_Session_Namespace('Exhibit');
     }
     
+    public function browseAction()
+    {
+        $request = $this->getRequest();
+        $sortParam = $request->getParam('sort');
+        $sortOptionValue = get_option('exhibit_builder_sort_browse');
+        
+        if (!isset($sortParam)) {
+            switch ($sortOptionValue) {
+                case 'alpha':
+                    $request->setParam('sort', 'alpha');
+                    break;
+                case 'recent':
+                    $request->setParam('sort', 'recent');
+                    break;
+            }
+        }
+        
+        parent::browseAction();
+    }
+    
     protected function _findByExhibitSlug($exhibitSlug = null) 
     {        
         if (!$exhibitSlug) {
