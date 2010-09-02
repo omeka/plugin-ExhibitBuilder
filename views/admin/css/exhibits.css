@@ -412,7 +412,7 @@ button.cancel {
     padding:20px;
 }
 
-.exhibit-form-element {
+#page-form .exhibit-form-element {
     position:relative;
     padding:30px;
     background:#f0f0f0;

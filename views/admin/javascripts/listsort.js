@@ -75,7 +75,7 @@ function ajaxListDelete(event) {
 
            error: function(xhr, textStatus, errorThrown) {
              alert(textStatus);  
-           },
+           }
          });
 	}
 	return false;
