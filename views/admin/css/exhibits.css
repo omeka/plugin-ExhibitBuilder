@@ -263,9 +263,9 @@ table#exhibits {
 }
 
 .item-selected {
-    background: #fffff0;
+    background: #D2E5F4;
     border-width:0;
-    border: 1px solid #fff09e;
+    border: 1px solid #8EBDE3;
 }
 
 .remove_item {
@@ -433,4 +433,12 @@ button.cancel {
 
 .item_id {
     display:none;
+}
+
+.attach-item-link {
+    margin-bottom:0;
+}
+.attach-item-link .button {
+    float:none !important;
+    font-size: 90%;
 }

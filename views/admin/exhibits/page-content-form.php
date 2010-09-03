@@ -60,11 +60,8 @@
      		title: 'Attach an Item',
      		modal: true,
      		buttons: {
-     			"Attach Item": function() { 
+     			"Attach Selected Item": function() { 
                     exhibitBuilder.attachSelectedItem();
-     				jQuery(this).dialog('close'); 
-     			}, 
-     			"Cancel": function() { 
      				jQuery(this).dialog('close'); 
      			} 
      		}
