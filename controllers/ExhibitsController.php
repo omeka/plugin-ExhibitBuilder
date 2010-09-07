@@ -489,8 +489,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $exhibitSection = $exhibitPage->Section;
         $exhibit = $exhibitSection->Exhibit;
 
-        $success = $this->processPageForm($exhibitPage, 'Edit', $exhibitSection, $exhibit);
+        $layoutIni = $this->layoutIni($exhibitPage->layout);
         
+        $layoutName = $layoutIni->name;
+        $layoutDescription = $layoutIni->description;
+
+        $success = $this->processPageForm($exhibitPage, 'Edit', $exhibitSection, $exhibit);        
         
         if ($success and array_key_exists('section_form', $_POST)) {
             //Return to the section form
@@ -501,6 +505,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             //Forward to the addPage action (id is the section id)
             return $this->redirect->goto('add-page', null, null, array('id'=>$exhibitPage->Section->id));
         }
+        
+        $this->view->layoutName = $layoutName;
+        $this->view->layoutDescription = $layoutDescription;
         
         $this->render('page-content-form');
     }
@@ -605,8 +612,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         return $exhibit;
     }
     
+    protected function layoutIni($layout)
+    {
+        $iniPath = EXHIBIT_LAYOUTS_DIR . DIRECTORY_SEPARATOR. "$layout" . DIRECTORY_SEPARATOR . "layout.ini";
+        if (file_exists($iniPath) && is_readable($iniPath)) {
+            $ini = new Zend_Config_Ini($iniPath, 'layout');
+            return $ini;
+        }
+        return false;
+    }
+    
     /////END AJAX-ONLY ACTIONS
 }
+
+
 
 class ExhibitsController_BadSlug_Exception extends Zend_Controller_Exception 
 {    

@@ -1,9 +1,3 @@
-<?php 
-	//Name: Image List Right Thumbs;
-	//Description: An image gallery, with the thumbnail image on the right;
-	//Author: Jeremy Boggs; 
-?>
-
 <div class="image-list-right-thumbs">
 	<?php 
 	for ($i=1; $i <= 8; $i++): 

@@ -1,9 +1,3 @@
-<?php 
-	//Name: Image List Right;
-	//Description: An image gallery, with a full-size image on the right;
-	//Author: Jeremy Boggs; 
-?>
-
 <div class="image-list-right">
 	<?php 
 	for ($i=1; $i <= 8; $i++): 

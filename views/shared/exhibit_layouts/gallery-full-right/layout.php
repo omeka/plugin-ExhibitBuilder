@@ -1,9 +1,3 @@
-<?php 
-	//Name: Gallery Full Right;
-	//Description: An image gallery, with a wider right column;
-	//Author: Jeremy Boggs; 
-?>
-
 <div class="gallery-full-right">
 	<div class="primary">
 		<?php if (exhibit_builder_use_exhibit_page_item(1)): ?>

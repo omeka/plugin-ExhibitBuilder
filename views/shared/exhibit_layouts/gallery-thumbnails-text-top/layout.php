@@ -1,9 +1,3 @@
-<?php 
-	//Name: Gallery Thumbnails Text Top;
-	//Description: Displays a block of text above a gallery of up to 12 items;
-	//Author: Jeremy Boggs; 
-?>
-
 <div class="gallery-thumbnails-text-top">
 	<div class="primary">
 		<div class="exhibit-text">

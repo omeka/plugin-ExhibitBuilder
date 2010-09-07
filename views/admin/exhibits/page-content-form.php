@@ -94,16 +94,23 @@
     
     <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
         <div id="page-metadata-list">
-        <h2>Page Metadata</h2>
-            <p>Page Title: <?php echo html_escape($exhibitPage->title); ?></p>
-        <?php 
-            $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif"); 
-        	echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
-        ?>
+        <h2>Page Layout</h2>
+            <div id="layout-metadata">
+                <?php 
+                    $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif"); 
+                	echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
+                ?>
+                <ul>
+                 <li><strong><?php echo $layoutName; ?></strong></li>
+                 <li><?php echo $layoutDescription; ?></li>
+                 </ul>
+            </div>
+
     <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
         </div>
     
 	<div id="layout-all">
+	    <h2>Page Content</h2>
 	<div id="layout-form">
 	<?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
 	</div>

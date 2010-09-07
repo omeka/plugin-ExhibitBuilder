@@ -1,9 +1,3 @@
-<?php 
-	//Name: Text Image Right;
-	//Description: A full page of text, with a full-size image floated right;
-	//Author: Jeremy Boggs; 
-?>
-
 <div class="text-image-right">
 	<div class="primary">
 		<?php if(exhibit_builder_use_exhibit_page_item(1)):?>

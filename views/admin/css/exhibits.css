@@ -442,3 +442,21 @@ button.cancel {
     float:none !important;
     font-size: 90%;
 }
+
+#page-metadata-list {
+    overflow:hidden; zoom:1;
+    margin-bottom:20px;
+    padding-bottom:19px;
+    border-bottom:1px dotted #ccc;
+}
+#page-metadata-list img {
+    float:left;
+}
+
+#page-metadata-list ul {
+    margin-left: 100px;
+}
+button#page_metadata_form {
+    float:none;
+    margin-left: 20px;
+}
