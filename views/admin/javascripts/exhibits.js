@@ -285,7 +285,6 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
 Omeka.ExhibitBuilder.addStyling = function() {
 	jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
 	jQuery('.section-list, .page-list').css({'cursor':'move'});
-	jQuery('.section-list li:hover').css({'background':'#fff09e'});
 }
 
 Omeka.ExhibitBuilder.addNumbers = function() {

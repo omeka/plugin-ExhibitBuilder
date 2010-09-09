@@ -65,6 +65,17 @@ if ($exhibit->title) {
         Omeka.ExhibitBuilder.addStyling();
         
         makeSectionListDraggable(); 
+        
+        // Fixes jQuery UI sortable bug in IE7, where dragging a nested sortable would
+        // also drag its container. See http://dev.jqueryui.com/ticket/4333
+        jQuery(".page-list li").hover(
+            function(){
+        	    jQuery(".section-list").sortable("option", "disabled", true);
+            },
+            function(){
+        	    jQuery(".section-list").sortable("option", "disabled", false);
+            }
+        );
     });
 //]]>   
 </script>
