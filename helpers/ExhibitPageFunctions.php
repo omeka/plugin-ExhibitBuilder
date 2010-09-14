@@ -135,6 +135,7 @@ function exhibit_builder_page_nav($exhibitSection = null, $linkTextType = 'title
             $html .= '<li'. (exhibit_builder_is_current_page($exhibitPage) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibitSection->Exhibit, $exhibitSection, $exhibitPage)) . '">'. html_escape($linkText) .'</a></li>' . "\n";
         }
         $html .= '</ul>' . "\n";
+        $html = apply_filters('exhibit_builder_page_nav', $html, $exhibitSection, $linkTextType);
         return $html;
     }
     return false;

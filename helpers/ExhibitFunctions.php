@@ -95,7 +95,9 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array('clas
     
     $uri = exhibit_builder_exhibit_item_uri($item);
     $text = (!empty($text) ? $text : strip_formatting(item('Dublin Core', 'Title')));
-    return '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
+    $html = '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
+    $html = apply_filters('exhibit_builder_link_to_exhibit_item', $html, $text, $props, $item);
+    return $html;
 }
 
 /**
@@ -251,6 +253,7 @@ function exhibit_builder_layout_form_text($order, $label = 'Text')
     $html = '<div class="textfield exhibit-form-element">';
     $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order)); 
     $html .= '</div>';
+    $html = apply_filters('exhibit_builder_layout_form_text', $html, $order, $label);
     return $html;
 }
 
@@ -270,6 +273,8 @@ function exhibit_builder_layout_form_caption($order, $label = 'Caption')
     $html .= textarea(array('name'=>'Caption['.$order.']','rows'=>'4','cols'=>'30','class'=>'textinput'), exhibit_builder_page_caption($order)); 
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
+    
+    $html = apply_filters('exhibit_builder_layout_form_caption', $html, $order, $label);
     return $html;
 }
 
@@ -332,6 +337,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
     }
     $html .= '<div class="layout-name">'.html_escape($layout).'</div>'; 
     $html .= '</div>';
+    $html = apply_filters('exhibit_builder_exhibit_layout', $html, $layout, $input);
     return $html;
 }
 
@@ -412,6 +418,7 @@ function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props 
             $html .= '</div>' . "\n";
         }
     }
+    $html = apply_filters('exhibit_builder_display_exhibit_thumbnail_gallery', $html, $start, $end, $props, $thumbnailType);
     return $html;
 }
 
@@ -432,6 +439,7 @@ function exhibit_builder_display_random_featured_exhibit()
        $html .= '<p>You have no featured exhibits.</p>';
     }
     $html .= '</div>';
+    $html = apply_filters('exhibit_builder_display_random_featured_exhibit', $html);
     return $html;
 }
 
@@ -452,10 +460,13 @@ function exhibit_builder_random_featured_exhibit()
  * @param array $linkProperties
  * @return string
  **/
-function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array(), $index = 1)
+function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array(), $item = null)
 {
-    $item = get_current_item();
-
+    if (!$item) {
+        $item = get_current_item();
+    } else {
+        set_current_item($item);
+    }
     // Always just display the first file (may change this in future).
     $fileIndex = 0;
     $linkProperties['href'] = exhibit_builder_exhibit_item_uri($item);
@@ -487,6 +498,8 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
 
     $html .= $itemHtml;
     $html .= '</a>';
+    
+    $html = apply_filters('exhibit_builder_exhibit_display_item', $html, $displayFilesOptions, $linkProperties, $item);
 
     return $html;
 }
@@ -504,6 +517,9 @@ function exhibit_builder_exhibit_display_caption($index = 1)
         $html .= $caption."\n";
         $html .= '</div>'."\n";
     }
+    
+    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, $index);
+    
     return $html;
 }
 /**
@@ -519,7 +535,8 @@ function exhibit_builder_exhibit_thumbnail($item, $props = array('class'=>'perma
     $uri = exhibit_builder_exhibit_item_uri($item);
     $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_thumbnail($props, $index, $item);
-    $html .= '</a>';    
+    $html .= '</a>';  
+    $html = apply_filters('exhibit_builder_exhibit_thumbnail', $html, $item, $props, $index);
     return $html;
 }
 
@@ -537,35 +554,7 @@ function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permal
     $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_fullsize($props, $index, $item);
     $html .= '</a>';
-    return $html;
-}
-
-/**
- * Returns the html code that lists the exhibits
- * 
- * @return string
- **/
-function exhibit_builder_show_exhibit_list()
-{
-    $exhibits = exhibit_builder_get_exhibits();
-    if ($exhibits) {
-        ob_start();
-        foreach( $exhibits as $key=>$exhibit ) { 
-?>
-    <div class="exhibit <?php if ($key%2==1) { echo ' even'; } else { echo ' odd'; } ?>">
-        <h2><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h2>
-        <div class="description"><?php echo $exhibit->description; ?></div>
-        <p class="tags"><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></p>
-    </div>
-<?php  
-        } 
-    } else { 
-?>
-    <p>There are no exhibits.</p>
-<?php 
-    }
-    $html = ob_get_contents();
-    ob_end_clean();
+    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, $item, $props, $index);
     return $html;
 }
 

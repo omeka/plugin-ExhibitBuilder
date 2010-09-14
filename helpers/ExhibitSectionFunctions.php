@@ -77,6 +77,7 @@ function exhibit_builder_section_nav($exhibit = null)
         }      
     }
     $html .= '</ul>';
+    $html = apply_filters('exhibit_builder_section_nav', $html, $exhibit);
     return $html;
 }
 
@@ -103,6 +104,7 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
         $html .= '</li>';
     }
     $html .= '</ul>';
+    $html = apply_filters('exhibit_builder_nested_nav', $html, $exhibit, $showAllPages);
     return $html;
 }
 
