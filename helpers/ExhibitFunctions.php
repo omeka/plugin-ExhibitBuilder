@@ -464,9 +464,8 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
 {
     if (!$item) {
         $item = get_current_item();
-    } else {
-        set_current_item($item);
     }
+    
     // Always just display the first file (may change this in future).
     $fileIndex = 0;
     $linkProperties['href'] = exhibit_builder_exhibit_item_uri($item);
@@ -482,7 +481,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
         $imageAttributes = array();
     }
     if (!array_key_exists('alt', $imageAttributes)) {
-        $imageAttributes['alt'] = item('Dublin Core', 'Title');
+        $imageAttributes['alt'] = item('Dublin Core', 'Title', array(), $item);
     }
     $displayFilesOptions['imgAttributes'] = $imageAttributes;
     
@@ -493,7 +492,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     if ($file) {
         $itemHtml .= display_file($file, $displayFilesOptions, $fileWrapperClass);
     } else {
-        $itemHtml = item('Dublin Core', 'Title');
+        $itemHtml = item('Dublin Core', 'Title', array(), $item);
     }
 
     $html .= $itemHtml;
