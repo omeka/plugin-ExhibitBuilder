@@ -436,12 +436,15 @@ class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
             $router->addRoute(
                 'exhibit_builder_show_home_page', 
                 new Zend_Controller_Router_Route(
-                    '/', 
+                    '/:page', 
                     array(
                         'module'       => 'exhibit-builder', 
                         'controller'   => 'exhibits', 
                         'action'       => 'browse',
                         'page'         => 1 
+                    ),
+                    array(
+                        'page'  => '\d+'
                     )
                 )
             );
