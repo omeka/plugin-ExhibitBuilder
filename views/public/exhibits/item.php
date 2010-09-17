@@ -1,7 +1,7 @@
-<?php head(array('title'=> html_escape("Item #{$item->id}"),'bodyid'=>'exhibit','bodyclass'=>'item')); ?>
+<?php head(array('title'=> html_escape("Item #{$item->id}"),'bodyid'=>'exhibit','bodyclass'=>'exhibit-item')); ?>
 <div id="primary">
 
-	<h2 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h2>
+	<h1 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h1>
 	<ul>
         <?php foreach (item('Dublin Core', 'Title', 'all') as $title): ?>
            <li class="item-title">
@@ -25,7 +25,7 @@
     
 	<?php if (item_has_tags()): ?>
 	<div class="tags">
-		<h3>Tags:</h3>
+		<h2>Tags</h2>
 	   <?php echo item_tags_as_string(); ?>	
 	</div>
 	<?php endif;?>
