@@ -682,7 +682,7 @@ function exhibit($propertyName, $options = array(), $exhibit = null)
     }
     $propertyName = Inflector::underscore($propertyName);
 	if (property_exists(get_class($exhibit), $propertyName)) {
-	    return html_escape($exhibit->$propertyName);
+	    return $exhibit->$propertyName;
 	} else {
 	    return null;
 	}
