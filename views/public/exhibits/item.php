@@ -1,4 +1,4 @@
-<?php head(array('title'=> html_escape("Item #{$item->id}"),'bodyid'=>'exhibit','bodyclass'=>'exhibit-item')); ?>
+<?php head(array('title'=> html_escape("Item #{$item->id}"),'bodyid'=>'exhibit','bodyclass'=>'exhibit-item-show')); ?>
 <div id="primary">
 
 	<h1 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h1>
@@ -32,7 +32,7 @@
 	
 	<div id="citation" class="field">
     	<h2>Citation</h2>
-    	<div id="citation-value" class="field-value"><?php echo item_citation(); ?></div>
+    	<p id="citation-value" class="field-value"><?php echo item_citation(); ?></p>
 	</div>
 	
 </div>
