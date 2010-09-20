@@ -255,21 +255,11 @@ function exhibit_builder_admin_header($request)
             __v()->headLink()->appendStylesheet(css('exhibits'), 'screen', false);
             __v()->headScript()->appendFile(web_path_to("javascripts/tiny_mce/tiny_mce.js"))
                                ->appendFile(web_path_to("javascripts/exhibits.js"));
-            __v()->headScript()->appendFile(web_path_to("javascripts/jquery.js"));
-            __v()->headScript()->appendScript("jQuery.noConflict();");
-            __v()->headLink()->appendStylesheet(css('jquery-ui'), 'screen', false);
-            __v()->headScript()->appendFile(web_path_to("javascripts/jquery-ui.js"));
         } else {
             echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('exhibits')) . '" /> ';
     	    echo js('tiny_mce/tiny_mce');
     	    echo js('search'); 
-    	    echo js('exhibits');
-    	    echo js('jquery');
-            echo '<script type="text/javascript" charset="utf-8">' . "\n";
-            echo 'jQuery.noConflict();' . "\n";
-            echo '</script>' . "\n";
-    	    echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('jquery-ui')) . '" /> ';
-            echo js('jquery-ui');	
+    	    echo js('exhibits');	
 	    }
 	}
 }
