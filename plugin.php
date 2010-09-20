@@ -244,13 +244,9 @@ function exhibit_builder_public_header()
  * @return void
  **/
 function exhibit_builder_admin_header($request)
-{
-    $isHomePage = $request->getModuleName() == 'default' 
-        && $request->getControllerName() == 'index' 
-        && $request->getActionName() == 'index';
-    
+{   
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
-    if ($request->getControllerName() == 'exhibits' || $isHomePage) {
+    if ($request->getModuleName() == 'exhibit-builder' && $request->getControllerName() == 'exhibits') {
 	    if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
             __v()->headLink()->appendStylesheet(css('exhibits'), 'screen', false);
             __v()->headScript()->appendFile(web_path_to("javascripts/tiny_mce/tiny_mce.js"))
@@ -258,7 +254,6 @@ function exhibit_builder_admin_header($request)
         } else {
             echo '<link rel="stylesheet" media="screen" href="' . html_escape(css('exhibits')) . '" /> ';
     	    echo js('tiny_mce/tiny_mce');
-    	    echo js('search'); 
     	    echo js('exhibits');	
 	    }
 	}
