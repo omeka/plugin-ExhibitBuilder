@@ -292,6 +292,25 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             }
         }
         
+        $themeConfigIni = $theme->path . DIRECTORY_SEPARATOR . 'config.ini';
+        
+        if (file_exists($themeConfigIni) && is_readable($themeConfigIni)) {
+
+            try {
+                $pluginsIni = new Zend_Config_Ini($themeConfigIni, 'plugins');
+                $excludeFields = $pluginsIni->exclude_fields; 
+                $excludeFields = explode(',', $excludeFields);
+                
+            } catch(Exception $e) {
+                $excludeFields = array();
+            }
+            
+            foreach ($excludeFields as $excludeField) {
+                trim($excludeField);
+                $form->removeElement($excludeField);
+            }
+        }
+        
         // process the form if posted
         if ($this->getRequest()->isPost()) {            
             $uploadedFileNames = array();
