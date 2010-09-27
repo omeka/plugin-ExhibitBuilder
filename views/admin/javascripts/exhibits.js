@@ -269,7 +269,7 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
 			theme: "advanced",
 			theme_advanced_toolbar_location : "top",
 			force_br_newlines : false,
-			forced_root_block : '', // Needed for 3.x
+			forced_root_block : 'p', // Needed for 3.x
 			remove_linebreaks : true,
 			fix_content_duplication : false,
 			fix_list_elements : true,
