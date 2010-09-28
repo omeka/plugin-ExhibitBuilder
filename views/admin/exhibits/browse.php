@@ -66,7 +66,7 @@
         <?php endif; ?>
         </td>
         <?php if (has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
-        <td><?php echo link_to($exhibit, 'delete', 'Delete', array('class'=>'delete-exhibit')) ?></td>
+        <td><?php echo delete_button($exhibit, "delete-exhibit-{$exhibit->id}", 'Delete') ?></td>
         <?php endif; ?>
     </tr>
 <?php endforeach; ?>
