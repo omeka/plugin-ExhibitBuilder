@@ -167,27 +167,22 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      **/
     protected function renderExhibit($vars, $toRender = 'show') 
     {   
-        /*  If there is a theme, render the header/footer and layout page,
-            Otherwise render the default exhibits/show.php page
-        */
         extract($vars);
         $this->view->assign($vars);
+        // If there is a theme set, use that theme for display, otherwise use
+        // the current public theme.
         if (!empty($exhibit->theme)) {
-            /**
-             * Define some paths we need. 
-             * $exhibitThemePhysicalPath - The physical path to the exhibit's theme
-             * $exhibitThemeWebPath - The web path to the exhibit's theme
-             */
-            $exhibitThemePhysicalPath = PUBLIC_THEME_DIR.DIRECTORY_SEPARATOR.$exhibit->theme;
-            $exhibitThemeWebPath = WEB_PUBLIC_THEME.DIRECTORY_SEPARATOR.$exhibit->theme;
+            $theme = Theme::getAvailable($exhibit->theme);
+
+            $scriptPath = $theme->getScriptPath();
+            $assetPath = $theme->getAssetPath();
+            $pluginScriptPath = $theme->getScriptPathForPlugin('exhibit-builder');
+            $pluginAssetPath = $theme->getAssetPathForPlugin('exhibit-builder');
             
-            /* 
-             * This tells the view where the our exhibit theme's scripts and 
-             * assets are. Otherwise the view will use scripts and assets from 
-             * the public theme.
-             */
-            $this->view->addScriptPath($exhibitThemePhysicalPath);
-            $this->view->addAssetPath($exhibitThemePhysicalPath, $exhibitThemeWebPath);
+            $this->view->addScriptPath($scriptPath);
+            $this->view->addAssetPath($scriptPath, $assetPath);
+            $this->view->addScriptPath($pluginScriptPath);
+            $this->view->addAssetPath($pluginScriptPath, $pluginAssetPath);
         }
 
         /* If we don't pass a valid value to $toRender, thow an exception. */
