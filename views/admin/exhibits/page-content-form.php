@@ -74,6 +74,7 @@
     });
     jQuery(document).bind('exhibitbuilder:attachitem', function(){
         Omeka.ExhibitBuilder.addNumbers();
+        Omeka.ExhibitBuilder.wysiwyg();
     });
 //]]>    
 </script>

@@ -74,7 +74,7 @@ function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage =
         $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;        
     }
     
-    return html_escape($caption);
+    return $caption;
 }
 
 /**
