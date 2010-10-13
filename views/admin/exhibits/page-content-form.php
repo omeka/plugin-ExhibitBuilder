@@ -72,9 +72,11 @@
         Omeka.ExhibitBuilder.wysiwyg();
         Omeka.ExhibitBuilder.addNumbers();
     });
-    jQuery(document).bind('exhibitbuilder:attachitem', function(){
-        Omeka.ExhibitBuilder.addNumbers();
-        Omeka.ExhibitBuilder.wysiwyg();
+    jQuery(document).bind('exhibitbuilder:attachitem', function (event) {
+        // Add tinyMCE to all textareas in the div where the item was attached.
+        jQuery(event.target).find('textarea').each(function () {
+            tinyMCE.execCommand('mceAddControl', false, this.id);
+        });
     });
 //]]>    
 </script>
