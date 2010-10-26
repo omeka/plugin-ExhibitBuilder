@@ -366,7 +366,12 @@ function exhibit_builder_purify_html($request, $purifier)
                 foreach ($post['Text'] as $key => $text) {
                     $post['Text'][$key] = $purifier->purify($text);
                 }            
-            }   
+            }
+            if (is_array($post['Caption'])) {
+                foreach ($post['Caption'] as $key => $text) {
+                    $post['Caption'][$key] = $purifier->purify($text);
+                }
+            }
             break;
         
         default:
