@@ -41,13 +41,15 @@ class Sluggable extends Omeka_Record_Mixin
     
     public function beforeValidate()
     {
-        if (!($seedValue = $this->record->{$this->options['slugSeedFieldName']})) {
-            return;
-        }
-                        
+        $seedValue = '';
+
+        // Create a slug if one was not specified.
         if (trim($this->record->slug) == '') {
-            $this->record->slug = generate_slug($seedValue);
+            $seedValue = $this->record->{$this->options['slugSeedFieldName']};
+        } else {
+            $seedValue = $this->record->slug;
         }
+        $this->record->slug = generate_slug($seedValue);
     }
     
     public function afterValidate()
@@ -63,13 +65,6 @@ class Sluggable extends Omeka_Record_Mixin
         if(strlen($this->record->slug) > $this->options['slugMaxLength']) {
             $this->addError('slug', $this->options['slugLengthErrorMessage']);
         }
-    }
-    
-    public function getSlugFromPost($post)
-    { 
-        // Make an exhibit slug if the posted slug is empty
-        $slugFodder = !(trim($post['slug']) == '') ? $post['slug'] : $post[$this->options['slugSeedFieldName']];
-        return generate_slug($slugFodder);
     }
     
     public function slugIsUnique($slug)

@@ -63,14 +63,12 @@ class ExhibitPage extends Omeka_Record
 	protected function beforeSaveForm($post)
 	{					
 		//Whether or not the exhibit is featured
-		$this->featured = (bool) $post['featured'];
-		$this->slug = $this->getSlugFromPost($post);		
+		$this->featured = (bool) $post['featured'];	
 	}
 	
 	protected function setFromPost($post)
 	{
 	    unset($post['featured']);
-	    unset($post['slug']);
 		return parent::setFromPost($post);
 	}
 
