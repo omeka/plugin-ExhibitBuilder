@@ -284,10 +284,10 @@ function exhibit_builder_layout_form_caption($order, $label = 'Caption')
  * @return array
  **/
 function exhibit_builder_get_ex_themes() 
-{   
-    $iter = new VersionedDirectoryIterator(PUBLIC_THEME_DIR);
-    $array = $iter->getValid();
-    return array_combine($array,$array);
+{
+    $themes = Theme::getAvailable();
+    $themeNames = array_keys($themes);
+    return array_combine($themeNames,$themeNames);
 }
 
 /**
