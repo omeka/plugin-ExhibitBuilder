@@ -285,7 +285,7 @@ function exhibit_builder_layout_form_caption($order, $label = 'Caption')
  **/
 function exhibit_builder_get_ex_themes() 
 {
-    $themes = Theme::getAvailable();
+    $themes = apply_filters('browse_themes', Theme::getAvailable());
     $themeNames = array_keys($themes);
     return array_combine($themeNames,$themeNames);
 }
