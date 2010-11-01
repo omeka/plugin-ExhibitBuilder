@@ -318,7 +318,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                     
                     // Make sure the file was uploaded before adding the Rename filter to the element
                     if ($element->isUploaded()) {
-                        if (get_option('disable_default_file_validation') == '0') {
+                        if (get_option(File::DISABLE_DEFAULT_VALIDATION_OPTION) != '1') {
                             $element->addValidator(new Omeka_Validate_File_Extension());
                             $element->addValidator(new Omeka_Validate_File_MimeType());
                         }
