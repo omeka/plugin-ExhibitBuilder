@@ -307,37 +307,30 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
         
         // process the form if posted
-        if ($this->getRequest()->isPost()) {            
-            $uploadedFileNames = array();
+        if ($this->getRequest()->isPost()) {
             $elements = $form->getElements();
             foreach($elements as $element) {
                 if ($element instanceof Zend_Form_Element_File) {
                     $elementName = $element->getName();
                     
-                    // add filters to rename all of the uploaded theme files                                               
-                    
-                    // Make sure the file was uploaded before adding the Rename filter to the element
-                    if ($element->isUploaded()) {
-                        if (get_option(File::DISABLE_DEFAULT_VALIDATION_OPTION) != '1') {
-                            $element->addValidator(new Omeka_Validate_File_Extension());
-                            $element->addValidator(new Omeka_Validate_File_MimeType());
-                        }
-                        
-                        $fileName = basename($element->getFileName());
-                        $uploadedFileName = 'exhibit_'.$exhibit->title.'_'.Theme::getUploadedFileName($themeName, $elementName, $fileName);                      
-                        $uploadedFileNames[$elementName] = $uploadedFileName;
-                        $uploadedFilePath = $element->getDestination() . DIRECTORY_SEPARATOR . $uploadedFileName;
-                        $element->addFilter('Rename', array('target'=>$uploadedFilePath, 'overwrite'=>true));
-                    }
-
                     // If file input's related  hidden input has a non-empty value, 
                     // then the user has NOT changed the file, so do NOT upload the file.
-                    if ($hiddenFileElement = $form->getElement($hiddenFieldPrefix . $elementName)) { 
+                    if (($hiddenFileElement = $form->getElement($hiddenFieldPrefix . $elementName))) {
                         $hiddenFileElementValue = trim($_POST[$hiddenFileElement->getName()]); 
                         if ($hiddenFileElementValue != "") {                              
                             // Ignore the file input element
                             $element->setIgnore(true);
                         }
+                    }
+
+                    // Change the Rename filter to add the exhibit to the name.
+                    $rename = $element->getFilter('Rename');
+                    if ($rename) {
+                        $options = $rename->getFile();
+                        $options = $options[0];
+                        $fileName = 'exhibit_' . $exhibit->id . '_' . basename($options['target']);
+                        $options['target'] = $element->getDestination() . DIRECTORY_SEPARATOR . $fileName;
+                        $rename->setFile($options);
                     }
                 }
             }
@@ -356,7 +349,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                             $formValues[$elementName] = $currentThemeOptions[$elementName];
                         } else {                          
                             // set the new file
-                            $newFileName = $uploadedFileNames[$elementName];
+                            $newFileName = $element->getFileName(null, false);
                             $formValues[$elementName] = $newFileName;
                             
                             // delete old file if it is not the same as the new file name
@@ -368,17 +361,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                                 }
                             }
                         }       
-                    } else if ($element instanceof Zend_Form_Element_Hidden) {
-                        $elementName = $element->getName();
-                        // unset the values for the hidden fields associated with the file inputs
-                        if (strpos($elementName, $hiddenFieldPrefix) == 0) { 
-                            unset($formValues[$elementName]);
-                        }
-                   }
+                    }
                 }
-                
-                // unset the submit input
-                unset($formValues['submit']);
                 
                 reset($formValues);
                                 
