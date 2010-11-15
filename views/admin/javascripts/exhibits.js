@@ -121,7 +121,7 @@ Omeka.ExhibitBuilder = function() {
 
            complete: function(xhr, textStatus) {
                 // Activate the buttons on the advanced search
-                Omeka.Search.activateSearchButtons();
+                //Omeka.Search.activateSearchButtons();
                 
                 if (fireEvents) {
         	        jQuery(document).trigger("omeka:loaditems");
