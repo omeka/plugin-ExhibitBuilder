@@ -145,7 +145,7 @@ function exhibit_builder_get_exhibits($params = array())
  **/
 function exhibit_builder_recent_exhibits($num = 10) 
 {
-    return exhibit_builder_get_exhibits(array('recent'=>true,'limit'=>$num));
+    return exhibit_builder_get_exhibits(array('sort'=>'recent','limit'=>$num));
 }
 
 /**
