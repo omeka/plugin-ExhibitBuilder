@@ -87,10 +87,14 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitSection = null, $e
  * @param Item|null $item If null, will use the current item.
  * @return string
  **/
-function exhibit_builder_link_to_exhibit_item($text = null, $props = array('class' => 'exhibit-item-link'), $item = null)
+function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $item = null)
 {   
     if (!$item) {
         $item = get_current_item();
+    }
+
+    if (!isset($props['class'])) {
+        $props['class'] = 'exhibit-item-link';
     }
     
     $uri = exhibit_builder_exhibit_item_uri($item);
@@ -468,35 +472,25 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     
     // Always just display the first file (may change this in future).
     $fileIndex = 0;
-    $linkProperties['href'] = exhibit_builder_exhibit_item_uri($item);
     
-    // Don't link to the file b/c it overrides the link to the item.
-    $displayFilesOptions['linkToFile'] = false;
-    
-    $html = '<a ' . _tag_attributes($linkProperties) . '>';
-    
-    // If the file is an image, add the item title as the alt text
-    $imgAttributes = $displayFilesOptions['imgAttributes'];
-    if (!is_array($imgAttributes)) {
-        $imageAttributes = array();
+    // Default link href points to the exhibit item page.
+    if (!isset($displayFilesOptions['linkAttributes']['href'])) {
+        $displayFilesOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
     }
-    if (!array_key_exists('alt', $imageAttributes)) {
-        $imageAttributes['alt'] = item('Dublin Core', 'Title', array(), $item);
+    
+    // Default alt text is the
+    if(!isset($displayFileOptions['imgAttributes']['alt'])) {
+        $displayFilesOptions['imgAttributes']['alt'] = item('Dublin Core', 'Title', array(), $item);
     }
-    $displayFilesOptions['imgAttributes'] = $imageAttributes;
     
     // Pass null as the 3rd arg so that it doesn't output the item-file div.
     $fileWrapperClass = null;
     $file = $item->Files[$fileIndex];
-    $itemHtml = '';
     if ($file) {
-        $itemHtml .= display_file($file, $displayFilesOptions, $fileWrapperClass);
+        $html = display_file($file, $displayFilesOptions, $fileWrapperClass);
     } else {
-        $itemHtml = item('Dublin Core', 'Title', array(), $item);
+        $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
-
-    $html .= $itemHtml;
-    $html .= '</a>';
     
     $html = apply_filters('exhibit_builder_exhibit_display_item', $html, $displayFilesOptions, $linkProperties, $item);
 
