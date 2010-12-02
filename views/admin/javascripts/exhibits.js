@@ -1,5 +1,6 @@
-Omeka = Omeka || new Object;
-Omeka.ExhibitBuilder = Omeka.ExhibitBuilder || new Object;
+if (typeof Omeka === 'undefined') {
+    Omeka = {};
+}
 
 Omeka.ExhibitBuilder = function() {
     
