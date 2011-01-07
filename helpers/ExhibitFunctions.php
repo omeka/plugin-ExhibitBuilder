@@ -301,18 +301,9 @@ function exhibit_builder_get_ex_themes()
  **/
 function exhibit_builder_get_ex_layouts()
 {
-    $it = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR,false);
+    $it = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR, true);
     $array = $it->getValid();
-    
-    //strip off file extensions
-    foreach ($array as $k=>$file) {
-        $array[$k] = array_shift(explode('.',$file));
-    }
-    
     natsort($array);
-    
-    //get rid of duplicates
-    $array = array_flip(array_flip($array));
     return $array;
 }
 
@@ -326,7 +317,12 @@ function exhibit_builder_get_ex_layouts()
 function exhibit_builder_exhibit_layout($layout, $input = true)
 {   
     //Load the thumbnail image
-    $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
+    try {
+        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
+    } catch (Exception $e) {
+        // Thumbnail not found, assuming this folder isn't a layout.
+        return;
+    }
     
     $exhibitPage = exhibit_builder_get_current_page();
     $isSelected = ($exhibitPage->layout == $layout) and $layout;
