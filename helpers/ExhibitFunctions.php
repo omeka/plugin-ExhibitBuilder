@@ -167,30 +167,22 @@ function exhibit_builder_get_exhibit_by_id($exhibitId)
  * Displays the exhibit header
  *
  * @return void
+ * @deprecated since 1.0.1
  **/
 function exhibit_builder_exhibit_head()
 {
-    $exhibit = exhibit_builder_get_current_exhibit();
-    if ($exhibit->theme) {
-        common('header',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
-    } else {
-        head(compact('exhibit'));
-    }
+	head(compact('exhibit'));
 }
 
 /**
  * Displays the exhibit footer
  *
  * @return void
+ * @deprecated since 1.0.1
  **/
 function exhibit_builder_exhibit_foot()
 {
-    $exhibit = exhibit_builder_get_current_exhibit();
-    if ($exhibit->theme) {
-        common('footer',compact('exhibit'), EXHIBIT_THEMES_DIR_NAME.DIRECTORY_SEPARATOR.$exhibit->theme);
-    } else {
-        foot(compact('exhibit'));
-    }
+	foot(compact('exhibit'));
 }
 
 
@@ -346,12 +338,11 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
  *
  * @param string $fileName The name of the CSS file (does not include file extension)
  * @return string
+ * @deprecated since 1.0.1
  **/
 function exhibit_builder_exhibit_css($fileName)
 {
-    if ($exhibit = exhibit_builder_get_current_exhibit()) {
-        return css($fileName, EXHIBIT_THEMES_DIR_NAME . DIRECTORY_SEPARATOR . $exhibit->theme);
-    }   
+	return css($fileName);   
 }
 
 /**
