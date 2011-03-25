@@ -122,12 +122,7 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null, $exhibitSectio
         $exhibitSection = exhibit_builder_get_current_section();
     }
     
-    //If the exhibit has a theme associated with it
-    if (!empty($exhibit->theme)) {
-        return uri(array('slug'=>$exhibit->slug,'section_slug'=>$exhibitSection->slug,'item_id'=>$item->id), 'exhibitItem');
-    } else {
-        return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
-    }   
+    return uri(array('slug'=>$exhibit->slug,'section_slug'=>$exhibitSection->slug,'item_id'=>$item->id), 'exhibitItem');
 }
 
 /**
