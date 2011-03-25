@@ -2,13 +2,6 @@
 <div id="primary">
 
 	<h1 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h1>
-	<ul>
-        <?php foreach (item('Dublin Core', 'Title', 'all') as $title): ?>
-           <li class="item-title">
-           <?php echo $title; ?>
-           </li>
-        <?php endforeach ?>
-	</ul>
 	
 	<?php echo show_item_metadata(); ?>
 	
