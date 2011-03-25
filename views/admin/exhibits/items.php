@@ -3,7 +3,7 @@
 <?php
     $uri = uri(array('controller'=>'exhibits', 'action'=>'items', 'page'=>null));
     $formAttributes = array('id'=>'search');
-    common('advanced-search', array('isPartial'=>true, 'formAttributes'=>$formAttributes), 'items');
+    echo items_search_form($formAttributes);
 ?>
 </div>
 <div id="pagination" class="pagination">
