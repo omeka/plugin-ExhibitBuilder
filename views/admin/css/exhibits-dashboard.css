@@ -1,0 +1,19 @@
+/* -- Styles for Exhibits list on admin dashboard -- */
+dd.exhibits ul li {
+    padding-left:12px;
+}
+
+.add-exhibit, .browse-exhibits {
+    background-position:top left; 
+    background-repeat:no-repeat; 
+    padding:2px 4px 2px 20px; 
+    text-decoration:none;
+}
+
+.add-exhibit {
+    background-image:url("../images/picture_add.gif");
+}
+
+.browse-exhibits {
+    background-image:url("../images/pictures.gif");
+}
