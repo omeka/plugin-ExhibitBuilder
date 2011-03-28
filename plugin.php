@@ -241,11 +241,16 @@ function exhibit_builder_public_header()
  * @return void
  **/
 function exhibit_builder_admin_header($request)
-{   
+{
+    $module = $request->getModuleName();
+    $controller = $request->getControllerName();
+
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
-    if ($request->getModuleName() == 'exhibit-builder' && $request->getControllerName() == 'exhibits') {
+    if ($module == 'exhibit-builder' && $controller == 'exhibits') {
         queue_css('exhibits', 'screen');
         queue_js(array('tiny_mce/tiny_mce', 'exhibits'));
+    } else if ($module == 'default' && $controller == 'index') {
+        queue_css('exhibits-dashboard');
     }
 }
 
