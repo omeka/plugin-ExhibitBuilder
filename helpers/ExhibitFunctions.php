@@ -107,22 +107,15 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 /**
  * Returns a URI to the exhibit item
  * 
+ * @deprecated since 1.1
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
  * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
  * @return string
  **/
 function exhibit_builder_exhibit_item_uri($item, $exhibit = null, $exhibitSection = null)
-{
-    if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
-    }
-    
-    if (!$exhibitSection) {
-        $exhibitSection = exhibit_builder_get_current_section();
-    }
-    
-    return uri(array('slug'=>$exhibit->slug,'section_slug'=>$exhibitSection->slug,'item_id'=>$item->id), 'exhibitItem');
+{   
+    return item_uri('show', $item);
 }
 
 /**
