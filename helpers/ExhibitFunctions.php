@@ -114,8 +114,21 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
  * @return string
  **/
 function exhibit_builder_exhibit_item_uri($item, $exhibit = null, $exhibitSection = null)
-{   
-    return item_uri('show', $item);
+{
+    if (!$exhibit) {
+        $exhibit = exhibit_builder_get_current_exhibit();
+    }
+
+    if (!$exhibitSection) {
+        $exhibitSection = exhibit_builder_get_current_section();
+    }
+    
+    //If the exhibit has a theme associated with it
+    if (!empty($exhibit->theme)) {
+        return uri(array('slug'=>$exhibit->slug,'section_slug'=>$exhibitSection->slug,'item_id'=>$item->id), 'exhibitItem');
+    } else {
+        return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
+    }
 }
 
 /**
