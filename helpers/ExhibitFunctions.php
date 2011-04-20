@@ -263,15 +263,21 @@ function exhibit_builder_layout_form_caption($order, $label = 'Caption')
 }
 
 /**
- * Returns an array of available exhibit themes
+ * Returns an array of available themes
  *
  * @return array
  **/
 function exhibit_builder_get_ex_themes() 
 {
+    $themeNames = array();
+
     $themes = apply_filters('browse_themes', Theme::getAvailable());
-    $themeNames = array_keys($themes);
-    return array_combine($themeNames,$themeNames);
+    foreach ($themes as $themeDir => $theme) {
+        $title = !empty($theme->title) ? $theme->title : $themeDir;
+        $themeNames[$themeDir] = $title;
+    }
+
+    return $themeNames;
 }
 
 /**
