@@ -58,7 +58,15 @@
         <td><?php echo html_escape($exhibit->id);?></td>
         <td><?php echo html_escape( $exhibit->title); ?></td>
         <td><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></td>
-        <td><?php if ($exhibit->theme==null) echo 'Current Public Theme'; else echo html_escape($exhibit->theme);?></td>
+        <?php
+        if ($exhibit->theme==null) {
+            $themeName = 'Current Public Theme';
+        } else {
+            $theme = Theme::getAvailable($exhibit->theme);
+            $themeName = !empty($theme->title) ? $theme->title : $exhibit->theme;
+        }
+        ?>
+        <td><?php echo html_escape($themeName);?></td>
         <td><?php echo '<a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit)). '">[Preview]</a>'; ?></td>
         <td>
         <?php if (exhibit_builder_user_can_edit($exhibit)): ?>
