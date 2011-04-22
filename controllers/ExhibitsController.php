@@ -261,31 +261,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             return;
         }
-        $form = new Omeka_Form_ThemeConfiguration(array('themeName' => $themeName));
+
         $theme = Theme::getAvailable($themeName);
         $previousOptions = $exhibit->getThemeOptions();
-        $hiddenFieldPrefix = Omeka_Form_ThemeConfiguration::THEME_FILE_HIDDEN_FIELD_NAME_PREFIX;
         
-        if (empty($previousOptions)) {
-            // Unset hidden field values if there are no pre-existing options.
-            $elements = $form->getElements();
-            foreach ($elements as $element) {
-                if (strpos($element->getName(), $hiddenFieldPrefix) == 0) { 
-                    $element->setValue(null);
-                }
-            }
-        } else {
-            // Replace form values and hidden values with exhibit theme options.
-            foreach($previousOptions as $key => $value) {
-                if ($form->getElement($key)) {
-                    $form->$key->setValue($value);
-                }
-                $hiddenKey = $hiddenFieldPrefix.$key;
-                if ($form->getElement($hiddenKey)) {
-                    $form->$hiddenKey->setValue($value);
-                }
-            }
-        }
+        $form = new Omeka_Form_ThemeConfiguration(array(
+            'themeName' => $themeName,
+            'themeOptions' => $previousOptions
+        ));
         
         $themeConfigIni = $theme->path . DIRECTORY_SEPARATOR . 'config.ini';
         
@@ -308,66 +291,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         
         // process the form if posted
         if ($this->getRequest()->isPost()) {
-            $elements = $form->getElements();
-            foreach($elements as $element) {
-                if ($element instanceof Zend_Form_Element_File) {
-                    $elementName = $element->getName();
-                    
-                    // If file input's related  hidden input has a non-empty value, 
-                    // then the user has NOT changed the file, so do NOT upload the file.
-                    if (($hiddenFileElement = $form->getElement($hiddenFieldPrefix . $elementName))) {
-                        $hiddenFileElementValue = trim($_POST[$hiddenFileElement->getName()]); 
-                        if ($hiddenFileElementValue != "") {                              
-                            // Ignore the file input element
-                            $element->setIgnore(true);
-                        }
-                    }
+            $configHelper = new Omeka_Controller_Action_Helper_ThemeConfiguration;
 
-                    // Change the Rename filter to add the exhibit to the name.
-                    $rename = $element->getFilter('Rename');
-                    if ($rename) {
-                        $options = $rename->getFile();
-                        $options = $options[0];
-                        $fileName = 'exhibit_' . $exhibit->id . '_' . basename($options['target']);
-                        $options['target'] = $element->getDestination() . DIRECTORY_SEPARATOR . $fileName;
-                        $rename->setFile($options);
-                    }
-                }
-            }
-
-            // validate the form (note: this will populate the form with the post values)
-            if ($form->isValid($_POST)) {                                
-                $formValues = $form->getValues();
-                $currentThemeOptions = $previousOptions;
-                
-                foreach($elements as $element) {
-                    if ($element instanceof Zend_Form_Element_File) {                                                
-                        $elementName = $element->getName();
-                        // set the theme option for the uploaded file to the file name
-                        if ($element->getIgnore()) {
-                            // set the form value to the old theme option
-                            $formValues[$elementName] = $currentThemeOptions[$elementName];
-                        } else {                          
-                            // set the new file
-                            $newFileName = $element->getFileName(null, false);
-                            $formValues[$elementName] = $newFileName;
-                            
-                            // delete old file if it is not the same as the new file name
-                            $oldFileName = $currentThemeOptions[$elementName];
-                            if ($oldFileName != $newFileName) {
-                                $oldFilePath = THEME_UPLOADS_DIR . DIRECTORY_SEPARATOR . $oldFileName;
-                                if (is_writable($oldFilePath) && is_file($oldFilePath)) {
-                                    unlink($oldFilePath);
-                                }
-                            }
-                        }       
-                    }
-                }
-                
-                reset($formValues);
-                                
-                // set the theme options
-                $exhibit->setThemeOptions($formValues);
+            if (($newOptions = $configHelper->processForm($form, $_POST, $previousOptions))) {
+                $exhibit->setThemeOptions($newOptions);
                 $exhibit->save();
                 
                 $this->flashSuccess('The theme settings were successfully saved!');
