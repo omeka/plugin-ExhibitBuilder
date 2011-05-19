@@ -281,6 +281,32 @@ function exhibit_builder_theme_options($themeOptions, $themeName)
 }
 
 /**
+ * Filter for changing the public theme between exhibits.
+ *
+ * @param string $themeName "Normal" current theme.
+ * @return string Theme that will actually be used.
+ */
+function exhibit_builder_public_theme_name($themeName)
+{
+    static $exhibitTheme;
+
+    if ($exhibitTheme) {
+        return $exhibitTheme;
+    }
+
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+    
+    if ($request->getModuleName() == 'exhibit-builder') {
+        $slug = $request->getParam('slug');
+        $exhibit = get_db()->getTable('Exhibit')->findBySlug($slug);
+        if ($exhibit && ($exhibitTheme = $exhibit->theme)) {
+            return $exhibitTheme;
+        }
+    }
+    return $themeName;
+}
+
+/**
  * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
  * enabled.
  * 

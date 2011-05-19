@@ -36,6 +36,7 @@ add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('theme_options', 'exhibit_builder_theme_options');
+add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
 
 // Helper functions for exhibits, exhibit sections, and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';

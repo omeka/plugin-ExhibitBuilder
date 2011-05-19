@@ -169,21 +169,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {   
         extract($vars);
         $this->view->assign($vars);
-        // If there is a theme set, use that theme for display, otherwise use
-        // the current public theme.
-        if (!empty($exhibit->theme)) {
-            $theme = Theme::getAvailable($exhibit->theme);
-
-            $scriptPath = $theme->getScriptPath();
-            $assetPath = $theme->getAssetPath();
-            $pluginScriptPath = $theme->getScriptPathForPlugin('exhibit-builder');
-            $pluginAssetPath = $theme->getAssetPathForPlugin('exhibit-builder');
-            
-            $this->view->addScriptPath($scriptPath);
-            $this->view->addAssetPath($scriptPath, $assetPath);
-            $this->view->addScriptPath($pluginScriptPath);
-            $this->view->addAssetPath($pluginScriptPath, $pluginAssetPath);
-        }
 
         /* If we don't pass a valid value to $toRender, thow an exception. */
         if (!in_array($toRender, array('show', 'summary', 'item'))) {
