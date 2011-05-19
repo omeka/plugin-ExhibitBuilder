@@ -573,6 +573,33 @@ function exhibit_builder_user_can_edit($exhibit = null, $user = null)
 }
 
 /**
+ * Returns true if a given user can delete a given exhibit.
+ *
+ * @param Exhibit|null $exhibit If null, will use the current exhibit
+ * @param User|null $user If null, will use the current user.
+ * @return boolean
+ **/
+function exhibit_builder_user_can_delete($exhibit = null, $user = null)
+{
+    if (!$exhibit) {
+        $exhibit = exhibit_builder_get_current_exhibit();
+    }
+    if (!$user) {
+        $user = current_user();
+    }
+    $acl = get_acl();
+    if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
+        $canDeleteSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteSelf');
+        $canDeleteAll = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteAll');
+    } else {
+        $canDeleteSelf = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'deleteSelf');
+        $canDeleteAll = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'deleteAll');
+    }
+
+    return (($exhibit->wasAddedBy($user) && $canDeleteSelf) || $canDeleteOthers);
+}
+
+/**
 * Gets the current exhibit
 *
 * @return Exhibit|null

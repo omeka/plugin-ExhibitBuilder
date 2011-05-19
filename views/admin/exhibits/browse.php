@@ -46,9 +46,7 @@
         <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
         <th>Edit?</th>
         <?php endif; ?>
-        <?php if (has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
         <th>Delete?</th>
-        <?php endif; ?>
     </tr>
     </thead>
     <tbody>
@@ -73,9 +71,11 @@
         <?php echo link_to($exhibit, 'edit', 'Edit', array('class'=>'edit')); ?>
         <?php endif; ?>
         </td>
-        <?php if (has_permission('ExhibitBuilder_Exhibits','deleteAll')): ?>
-        <td><?php echo delete_button($exhibit, "delete-exhibit-{$exhibit->id}", 'Delete') ?></td>
+        <td>
+        <?php if (exhibit_builder_user_can_delete($exhibit)): ?>
+        <?php echo delete_button($exhibit, "delete-exhibit-{$exhibit->id}", 'Delete') ?>
         <?php endif; ?>
+        </td>
     </tr>
 <?php endforeach; ?>
 </tbody>
