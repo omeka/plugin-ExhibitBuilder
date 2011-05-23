@@ -596,7 +596,7 @@ function exhibit_builder_user_can_delete($exhibit = null, $user = null)
         $canDeleteAll = $acl->checkUserPermission('ExhibitBuilder_Exhibits', 'deleteAll');
     }
 
-    return (($exhibit->wasAddedBy($user) && $canDeleteSelf) || $canDeleteOthers);
+    return (($exhibit->wasAddedBy($user) && $canDeleteSelf) || $canDeleteAll);
 }
 
 /**
