@@ -4,7 +4,7 @@
     padding-left: 18px;
     background-repeat: no-repeat;
     text-decoration: none;
-    background-image:url("../../../../../admin/themes/default/images/delete.gif");
+    background-image:url("../../../../../application/views/scripts/images/silk-icons/delete.png");
 }
 
 .delete-section, .delete-page {
@@ -12,7 +12,7 @@
     padding-left: 32px;
     background-repeat: no-repeat;
     text-decoration: none;
-    background-image:url("../../../../../admin/themes/default/images/delete.gif");
+    background-image:url("../../../../../application/views/scripts/images/silk-icons/delete.png");
 }
 
 /* -- Exhibits Browse -- */

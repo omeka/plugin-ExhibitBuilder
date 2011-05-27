@@ -3,7 +3,7 @@
     	<li id="page_<?php echo html_escape($exhibitPage->id); ?>" class="exhibit-page-item">
     		<div class="page-info">
         		<span class="left">
-        			<span class="handle"><img src="<?php echo html_escape(img('page_go.gif')); ?>" alt="Move" /></span>
+        			<span class="handle"><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>
         		    <span class="input">
         		        <?php
         		            if ($fromExhibitPage):
