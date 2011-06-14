@@ -1,17 +1,4 @@
 <?php head(array('title'=>'Browse Exhibits', 'bodyclass'=>'exhibits')); ?>
-<script type="text/javascript" charset="utf-8">
-    jQuery(document).ready(function() {
-        jQuery('.delete-exhibit').bind('click', function(event){
-            event.stopImmediatePropagation();
-            if (confirm('Are you sure you want to delete this exhibit?')) {
-                return;
-            } else {
-                return false;
-            }
-        });
-    });
-</script>
-
 <h1>Browse Exhibits (<?php echo $total_records; ?> total)</h1>
 <p id="add-exhibit" class="add-button"><a class="add" href="<?php echo html_escape(uri('exhibits/add')); ?>">Add Exhibit</a></p>
 <div id="primary">
