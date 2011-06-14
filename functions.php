@@ -133,43 +133,27 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
  **/
 function exhibit_builder_setup_acl($acl)
 {
-    /**
-     * The following applies only to the ACL definitions on Omeka trunk.  This
-     * behavior has been changed in 2.0.
-     * 
+    /*
      * NOTE: unless explicitly denied, super users and admins have access to all
      * of the defined resources and privileges.  Other user levels will not by default.
      * That means that admin and super users can both manipulate exhibits completely,
      * but researcher/contributor cannot. 
      */
-    if (version_compare(OMEKA_VERSION, '2.0-dev', '<')) {
-        $resource = new Omeka_Acl_Resource('ExhibitBuilder_Exhibits');
-        $resource->add(array('add','editSelf', 'editAll', 'deleteSelf', 'deleteAll','add-page', 'edit-page-content', 'edit-page-metadata', 'delete-page', 'add-section', 'edit-section', 'delete-section', 'showNotPublic', 'section-list', 'page-list'));
-        $acl->add($resource);
+    $resourceList = array('ExhibitBuilder_Exhibits' => array(
+        'add', 'editSelf', 'editAll', 'deleteSelf', 'deleteAll',
+        'showNotPublic', 'add-page', 'edit-page-content',
+        'edit-page-metadata', 'delete-page', 'add-section',
+        'edit-section', 'delete-section', 'section-list', 'page-list')
+    );
+    $acl->loadResourceList($resourceList);
 
-        // Deny contributor users editAll, deleteAll
-        $acl->deny('contributor', 'ExhibitBuilder_Exhibits', array('editAll','deleteAll'));
+    $acl->allow(null, 'ExhibitBuilder_Exhibits',
+        array('show', 'summary', 'showitem', 'browse'));
 
-        // Allow contributors everything else
-        $acl->allow('contributor', 'ExhibitBuilder_Exhibits');         
-    } else {
-        $resource = new Zend_Acl_Resource('ExhibitBuilder_Exhibits');
-        $acl->add($resource);
-        $acl->allow(null, 'ExhibitBuilder_Exhibits', array(
-            'show', 
-            'summary', 
-            'showitem',
-            'browse'));
-        $acl->allow('contributor', 'ExhibitBuilder_Exhibits', array(
-            'show',
-            'summary',
-            'showitem',
-            'browse',
-            'add',
-            'editSelf',
-            'deleteSelf'
-        ));    
-    }
+    // Allow contributors everything but editAll and deleteAll.
+    $acl->deny('contributor', 'ExhibitBuilder_Exhibits',
+        array('editAll', 'deleteAll'));
+    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');
 }
 
 /**

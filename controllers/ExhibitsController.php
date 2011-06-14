@@ -180,20 +180,29 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     
     public function addAction()
     {       
-        $exhibit = new Exhibit;     
+        $exhibit = new Exhibit;
         return $this->processExhibitForm($exhibit, 'Add');
     }
 
     public function editAction()
     {   
-        if ($user = $this->getCurrentUser()) {
-            $exhibit = $this->findById();
-            if ($this->isAllowed('editAll', 'ExhibitBuilder_Exhibits') || ($this->isAllowed('editSelf', 'ExhibitBuilder_Exhibits') && $exhibit->wasAddedBy($user))) {
-                return $this->processExhibitForm($exhibit, 'Edit');
-            }
+        $exhibit = $this->findById();
+        if (!exhibit_builder_user_can_edit($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
         }
-        throw new Omeka_Controller_Exception_403();
-    }   
+
+        return $this->processExhibitForm($exhibit, 'Edit');
+    }
+
+    public function deleteAction()
+    {
+        $exhibit = $this->findById();
+        if (!exhibit_builder_user_can_delete($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
+
+        return parent::deleteAction();
+    }
     
     /**
      * This is where all the redirects and page rendering goes
@@ -399,6 +408,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $exhibitSection = $exhibitPage->Section;
         $exhibit = $exhibitSection->Exhibit;
 
+        if (!exhibit_builder_user_can_edit($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
+
         $layoutIni = $this->layoutIni($exhibitPage->layout);
         
         $layoutName = $layoutIni->name;
@@ -427,6 +440,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $exhibitPage = $this->findById(null,'ExhibitPage');
         $exhibitSection = $exhibitPage->Section;
         $exhibit = $exhibitSection->Exhibit;
+
+        if (!exhibit_builder_user_can_edit($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
         
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibitSection, $exhibit);
         
@@ -458,6 +475,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $exhibitSection = $this->findById(null, 'ExhibitSection');
         $exhibit = $exhibitSection->Exhibit;
+
+        if (!exhibit_builder_user_can_edit($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
+        
         return $this->processSectionForm($exhibitSection, 'Edit', $exhibit);
     }
     
@@ -467,7 +489,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         
         $exhibitSection = $this->findById(null,'ExhibitSection');
         $exhibit = $exhibitSection->Exhibit;
-                
+
+        if (!exhibit_builder_user_can_delete($exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
+
         $exhibitSection->delete();
         
         // If we are making an AJAX request to delete a section, return the XHTML for the list partial
@@ -487,7 +513,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $exhibitPage = $this->findById(null,'ExhibitPage');
         $exhibitSection = $exhibitPage->Section;
-                
+
+        if (!exhibit_builder_user_can_delete($exhibitSection->Exhibit)) {
+            throw new Omeka_Controller_Exception_403;
+        }
+        
         $exhibitPage->delete();
         
         if ($this->getRequest()->isXmlHttpRequest()) {
