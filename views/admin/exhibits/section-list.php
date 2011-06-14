@@ -14,19 +14,12 @@
     		</div>
     		<div class="section-pages-info">
     		<h4>Pages:</h4>
-    		<?php if (exhibit_builder_section_has_pages($exhibitSection)): ?>
-    		
-    		<ul class="page-list">
-  			
-			
-			    <?php 
-			        $fromExhibitPage = true;
-			        common('page-list', compact('exhibitSection', 'fromExhibitPage'), 'exhibits'); 
-			    ?>
-			</ul>
-			<?php else: ?>
-			<div>There are no pages in this section.</div>
-			<?php endif; ?>
+            <ul class="page-list"><?php
+                    if (exhibit_builder_section_has_pages($exhibitSection)):
+                        $fromExhibitPage = true;
+                        common('page-list', compact('exhibitSection', 'fromExhibitPage'), 'exhibits');
+                    endif;
+            ?></ul>
 			
 			<div class="section-actions">
 			 <span class="page-add"><a class="add" href="<?php echo html_escape(uri('exhibits/add-page/'.$exhibitSection->id)); ?>">Add a Page</a></span>

@@ -15,7 +15,7 @@ if ($exhibit->title) {
     function makeSectionListDraggable()
     {
         var sectionList = jQuery('.section-list');
-        var sectionListSortableOptions = {axis:'y'};
+        var sectionListSortableOptions = {axis:'y', forcePlaceholderSize: true};
         var sectionListOrderInputSelector = '.section-info input';
         
 	var sectionListDeleteLinksSelector = '.section-delete a';

@@ -153,6 +153,11 @@ li.ui-state-highlight {
     line-height:2em;
     padding:0;
     margin:1em 0;
+    min-height:2em;
+}
+
+.page-list:empty:after {
+    content: "There are no pages in this section. Drop a page here to add one.";
 }
 
 .page-list .right {
@@ -162,6 +167,14 @@ li.ui-state-highlight {
     width:30%; 
     padding:4px 0;
     font-size:88%;
+}
+
+.page-list .left {
+    padding:4px 0;
+}
+
+.page-list img {
+    vertical-align: text-bottom;
 }
 
 .page-list li {
