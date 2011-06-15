@@ -27,11 +27,11 @@
     <col id="col-delete" />
     <thead>
     <tr>
-        <th>ID</th>
         <th>Title</th>
         <th>Tags</th>
         <th>Theme</th>
-        <th>Preview</th>
+        <th>Public</th>
+        <th>Featured</th>
         <th>Edit?</th>
         <th>Delete?</th>
     </tr>
@@ -40,8 +40,7 @@
         
 <?php foreach($exhibits as $key=>$exhibit): ?>
     <tr class="exhibit <?php if($key%2==1) echo ' even'; else echo ' odd'; ?>">
-        <td><?php echo html_escape($exhibit->id);?></td>
-        <td><?php echo html_escape( $exhibit->title); ?></td>
+        <td><a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo html_escape($exhibit->title); ?></a></td>
         <td><?php echo tag_string($exhibit, uri('exhibits/browse/tag/')); ?></td>
         <?php
         if ($exhibit->theme==null) {
@@ -52,7 +51,16 @@
         }
         ?>
         <td><?php echo html_escape($themeName);?></td>
-        <td><?php echo '<a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit)). '">[Preview]</a>'; ?></td>
+        <td>
+        <?php if($exhibit->public): ?>
+            <img src="<?php echo img('silk-icons/tick.png'); ?>" alt="Public"/>
+        <?php endif; ?>
+        </td>
+        <td>
+        <?php if($exhibit->featured): ?>
+            <img src="<?php echo img('silk-icons/star.png'); ?>" alt="Featured"/>
+        <?php endif; ?>
+        </td>
         <td>
         <?php if (exhibit_builder_user_can_edit($exhibit)): ?>
         <?php echo link_to($exhibit, 'edit', 'Edit', array('class'=>'edit')); ?>
