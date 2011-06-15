@@ -1,6 +1,8 @@
 <?php head(array('title'=>'Browse Exhibits', 'bodyclass'=>'exhibits')); ?>
 <h1>Browse Exhibits (<?php echo $total_records; ?> total)</h1>
-<p id="add-exhibit" class="add-button"><a class="add" href="<?php echo html_escape(uri('exhibits/add')); ?>">Add Exhibit</a></p>
+<?php if (has_permission('ExhibitBuilder_Exhibits','add')): ?>
+    <p id="add-exhibit" class="add-button"><a class="add" href="<?php echo html_escape(uri('exhibits/add')); ?>">Add Exhibit</a></p>
+<?php endif; ?>
 <div id="primary">
     
 <?php if (!count($exhibits)): ?> 
@@ -30,9 +32,7 @@
         <th>Tags</th>
         <th>Theme</th>
         <th>Preview</th>
-        <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
         <th>Edit?</th>
-        <?php endif; ?>
         <th>Delete?</th>
     </tr>
     </thead>
