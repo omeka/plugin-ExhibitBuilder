@@ -143,12 +143,13 @@ function exhibit_builder_setup_acl($acl)
         'add', 'editSelf', 'editAll', 'deleteSelf', 'deleteAll',
         'showNotPublic', 'add-page', 'edit-page-content',
         'edit-page-metadata', 'delete-page', 'add-section',
-        'edit-section', 'delete-section', 'section-list', 'page-list')
+        'edit-section', 'delete-section', 'section-list', 'page-list', 
+        'tags')
     );
     $acl->loadResourceList($resourceList);
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
-        array('show', 'summary', 'showitem', 'browse'));
+        array('show', 'summary', 'showitem', 'browse', 'tags'));
 
     // Allow contributors everything but editAll and deleteAll.
     $acl->deny('contributor', 'ExhibitBuilder_Exhibits',
