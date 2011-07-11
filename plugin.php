@@ -9,8 +9,10 @@
 
 if (!defined('EXHIBIT_PLUGIN_DIR')) {
     define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
-    define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' 
-        . basename(dirname(__FILE__)));
+    if (defined('WEB_PLUGIN')) {
+        define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' 
+            . basename(dirname(__FILE__)));
+    }
     define('EXHIBIT_LAYOUTS_DIR_NAME', 'exhibit_layouts');
     define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR 
         . '/views/shared/exhibit_layouts');
