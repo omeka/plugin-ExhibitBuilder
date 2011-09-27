@@ -328,13 +328,13 @@ function exhibit_builder_purify_html($request, $purifier)
         
         case 'edit-page-content':
             // page-content-form
-            if (is_array($post['Text'])) {
+            if (isset($post['Text']) && is_array($post['Text'])) {
                 // All of the 'Text' entries are HTML.
                 foreach ($post['Text'] as $key => $text) {
                     $post['Text'][$key] = $purifier->purify($text);
                 }            
             }
-            if (is_array($post['Caption'])) {
+            if (isset($post['Caption']) && is_array($post['Caption'])) {
                 foreach ($post['Caption'] as $key => $text) {
                     $post['Caption'][$key] = $purifier->purify($text);
                 }

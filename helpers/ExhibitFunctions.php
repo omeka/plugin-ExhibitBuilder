@@ -219,7 +219,8 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
     
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
     if ($orderOnForm) {
-        $html .= __v()->formHidden('Item['.$orderOnForm.']', $item->id, array('size'=>2));
+        $id = ($item and $item->exists()) ? $item->id: null;
+        $html .= __v()->formHidden('Item['.$orderOnForm.']', $id, array('size'=>2));
     }
     
     $html .= '</div>';

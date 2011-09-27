@@ -6,7 +6,7 @@
         			<span class="handle"><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>
         		    <span class="input">
         		        <?php
-        		            if ($fromExhibitPage):
+        		            if (isset($fromExhibitPage)):
         		                $exhibitSectionId = $exhibitSection->id;
         		                $exhibitPageId = $exhibitPage->id;
     		                    echo text(array('name'=>"Pages[$exhibitSectionId][$exhibitPageId][order]",'size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order'), $exhibitPage->order); 
