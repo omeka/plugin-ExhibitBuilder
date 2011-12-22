@@ -1,9 +1,5 @@
 <?php
-    if ($exhibitPage->title) {
-        $exhibitPageTitle = $actionName . ' Page: "' . $exhibitPage->title . '"';
-    } else {
-        $exhibitPageTitle = $actionName . ' Page';
-    }
+$exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 ?>
 <?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
@@ -87,7 +83,10 @@
 
 <div id="page-builder">
 	<div id="exhibits-breadcrumb">
-		<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
+		<a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt;
+        <?php echo html_escape($exhibitPageTitle); ?>
 	</div>
     
     <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
@@ -109,11 +108,11 @@
                  </ul>
             </div>
 
-    <button id="page_metadata_form" name="page_metadata_form" type="submit">Edit Page Metadata</button>
+    <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>
         </div>
     
 	<div id="layout-all">
-	    <h2>Page Content</h2>
+	    <h2><?php echo __('Page Content'); ?></h2>
 	<div id="layout-form">
 	<?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
 	</div>
@@ -121,8 +120,9 @@
 	</div>
     <fieldset>
 		<p id="exhibit-builder-save-changes">
-			<input id="section_form" name="section_form" type="submit" value="Save and Return to Section" /> or 
-			<input id="page_form" name="page_form" type="submit" value="Save and Add Another Page" /> or <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a>
+            <input id="section_form" name="section_form" type="submit" value="<?php echo __('Save and Return to Section'); ?>" /> <?php echo __('or'); ?> 
+            <input id="page_form" name="page_form" type="submit" value="<?php echo __('Save and Add Another Page'); ?>" /> <?php echo __('or'); ?>
+            <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>"><?php echo __('Cancel'); ?></a>
 		</p>
 	</fieldset>
 	<fieldset>

@@ -1,8 +1,8 @@
 <?php
 if ($exhibit->title) {
-    $exhibitTitle = $actionName . ' Exhibit: "' . $exhibit->title . '"';
+    $exhibitTitle = __('Edit Exhibit: "%s"', $exhibit->title);
 } else {
-    $exhibitTitle = $actionName . ' Exhibit';
+    $exhibitTitle = ($actionName == 'Add') ? __('Add Exhibit') : __('Edit Exhibit');
 }
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
@@ -18,10 +18,10 @@ if ($exhibit->title) {
         var sectionListSortableOptions = {axis:'y', forcePlaceholderSize: true};
         var sectionListOrderInputSelector = '.section-info input';
         
-	var sectionListDeleteLinksSelector = '.section-delete a';
-	var sectionListDeleteConfirmationText = 'Are you sure you want to delete this section?';
+        var sectionListDeleteLinksSelector = '.section-delete a';
+        var sectionListDeleteConfirmationText = <?php echo js_escape(__('Are you sure you want to delete this section?')); ?>;
         var sectionListFormSelector = '#exhibit-metadata-form';
-	var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
+        var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
         makeSortable(sectionList, 
                      sectionListSortableOptions,
                      sectionListOrderInputSelector,
@@ -33,7 +33,7 @@ if ($exhibit->title) {
         var pageListSortableOptions = {axis:'y', connectWith:'.page-list'};
         var pageListOrderInputSelector = '.page-info input';
         var pageListDeleteLinksSelector = '.page-delete a';
-        var pageListDeleteConfirmationText = 'Are you sure you want to delete this page?';
+        var pageListDeleteConfirmationText = <?php echo js_escape(__('Are you sure you want to delete this page?')); ?>;
         var pageListFormSelector = '#exhibit-metadata-form';
         var pageListCallback = Omeka.ExhibitBuilder.addStyling;
         
@@ -84,7 +84,8 @@ if ($exhibit->title) {
 
 <div id="primary">
     <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape($actionName . ' Exhibit'); ?>
+        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <?php echo html_escape($exhibitTitle); ?>
     </div>
 
 <?php echo flash();?>
@@ -92,61 +93,62 @@ if ($exhibit->title) {
     <form id="exhibit-metadata-form" method="post" class="exhibit-builder">
 
         <fieldset>
-            <legend>Exhibit Metadata</legend>
+            <legend><?php echo __('Exhibit Metadata'); ?></legend>
             <div class="field">
-            <?php echo text(array('name'=>'title', 'class'=>'textinput', 'id'=>'title'), $exhibit->title, 'Exhibit Title'); ?>
+            <?php echo text(array('name'=>'title', 'class'=>'textinput', 'id'=>'title'), $exhibit->title, __('Title')); ?>
             <?php echo form_error('title'); ?>
             </div>
             <div class="field">
-            <?php echo text(array('name'=>'slug', 'id'=>'slug', 'class'=>'textinput'), $exhibit->slug, 'Exhibit Slug (no spaces or special characters)'); ?>
+            <?php echo text(array('name'=>'slug', 'id'=>'slug', 'class'=>'textinput'), $exhibit->slug, __('Slug')); ?>
+            <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
             <?php echo form_error('slug'); ?>
             </div>
             <div class="field">
-            <?php echo text(array('name'=>'credits', 'id'=>'credits', 'class'=>'textinput'), $exhibit->credits,'Exhibit Credits'); ?>
+            <?php echo text(array('name'=>'credits', 'id'=>'credits', 'class'=>'textinput'), $exhibit->credits, __('Credits')); ?>
             </div>
             <div class="field">
-            <?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $exhibit->description, 'Exhibit Description'); ?>
+            <?php echo textarea(array('name'=>'description', 'id'=>'description', 'class'=>'textinput','rows'=>'10','cols'=>'40'), $exhibit->description, __('Description')); ?>
             </div>   
             <?php $exhibitTagList = join(', ', pluck('name', $exhibit->Tags)); ?>
             <div class="field">
-            <?php echo text(array('name'=>'tags', 'id'=>'tags', 'class'=>'textinput'), $exhibitTagList, 'Exhibit Tags'); ?>
+            <?php echo text(array('name'=>'tags', 'id'=>'tags', 'class'=>'textinput'), $exhibitTagList, __('Tags')); ?>
             </div>
             <div class="field">
-                <label for="featured">Exhibit is featured:</label>
+                <label for="featured"><?php echo __('Featured'); ?></label>
                 <div class="radio"><?php echo checkbox(array('name'=>'featured', 'id'=>'featured'), $exhibit->featured); ?></div>
             </div>
             <div class="field">
-                <label for="featured">Exhibit is public:</label>
+                <label for="featured"><?php echo __('Public'); ?></label>
                 <div class="radio"><?php echo checkbox(array('name'=>'public', 'id'=>'public'), $exhibit->public); ?></div>
             </div>
             <div class="field">
-                <label for="theme">Exhibit Theme</label>            
-                <?php $values = array('' => 'Current Public Theme') + exhibit_builder_get_ex_themes(); ?>
+                <label for="theme"><?php echo __('Theme'); ?></label>            
+                <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
                 <div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?>
                 <?php if ($theme && $theme->hasConfig): ?><a href="<?php echo html_escape(uri("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button">Configure</a><?php endif;?>
                 </div>
             </div>
         </fieldset>
         <fieldset>
-            <legend>Exhibit Sections and Pages</legend>
+            <legend><?php echo __('Sections and Pages'); ?></legend>
             <div id="section-list-container">
                 <?php if (!$exhibit->Sections): ?>
-                    <p>There are no sections.</p>
+                    <p><?php echo __('There are no sections.'); ?></p>
                 <?php else: ?>
-                <p id="reorder-instructions">To reorder sections or pages, click and drag the section or page up or down to the preferred location.</p>
+                <p id="reorder-instructions"><?php echo __('To reorder sections or pages, click and drag the section or page up or down to the preferred location.'); ?></p>
                 <?php endif; ?>
                 <ul class="section-list">
                     <?php common('section-list', compact('exhibit'), 'exhibits'); ?>
                 </ul>
             </div>
             <div id="section-add">
-                <input type="submit" name="add_section" id="add-section" value="Add Section" />
+                <input type="submit" name="add_section" id="add-section" value="<?php echo __('Add Section'); ?>" />
             </div>
         </fieldset>
         <fieldset>
             <p id="exhibit-builder-save-changes">
-                <input type="submit" name="save_exhibit" id="save_exhibit" value="Save Changes" /> or 
-                <a href="<?php echo html_escape(uri('exhibits')); ?>" class="cancel">Cancel</a>
+                <input type="submit" name="save_exhibit" id="save_exhibit" value="<?php echo __('Save Changes'); ?>" /> <?php echo __('or'); ?> 
+                <a href="<?php echo html_escape(uri('exhibits')); ?>" class="cancel"><?php echo __('Cancel'); ?></a>
             </p>
         </fieldset>
     </form>     

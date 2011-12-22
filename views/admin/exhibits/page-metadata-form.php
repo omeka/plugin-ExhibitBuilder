@@ -1,4 +1,7 @@
-<?php head(array('title'=>'Exhibit Page', 'bodyclass'=>'exhibits')); ?>
+<?php
+$title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page');
+head(array('title'=> $title, 'bodyclass'=>'exhibits'));
+?>
 
 <h1><?php echo html_escape($actionName); ?> Page</h1>
 
@@ -42,25 +45,31 @@
 <form method="post" id="choose-layout">
 	
     <div id="exhibits-breadcrumb">
-    	<a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt; <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt; <?php echo html_escape($actionName . ' Page'); ?>
-    </div>	
+    	<a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt;
+        <?php echo html_escape($title); ?>
+    </div>
 
     <fieldset>
-        <legend>Page Metadata</legend>
+        <legend><?php echo __('Page Metadata'); ?></legend>
         <?php echo flash(); ?>
-        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitPage->title, 'Page Title'); ?></div>
-        <div class="field"><?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitPage->slug, 'Page Slug (no spaces or special characters)'); ?></div>
+        <div class="field"><?php echo text(array('name'=>'title', 'id'=>'title', 'class'=>'textinput'), $exhibitPage->title, __('Title')); ?></div>
+        <div class="field">
+            <?php echo text(array('name'=>'slug','id'=>'slug','class'=>'textinput'), $exhibitPage->slug, __('Slug')); ?>
+            <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
+        </div>
     </fieldset>		
 		
 	<fieldset id="layouts">
-		<legend>Layouts</legend>
+		<legend><?php echo __('Layouts'); ?></legend>
 		
 		<div id="chosen_layout">
 		<?php
 		if ($exhibitPage->layout) {
 	        echo exhibit_builder_exhibit_layout($exhibitPage->layout, false);
 		} else {
-		    echo '<p>' . html_escape('Choose a layout by selecting a thumbnail on the right.') . '</p>';
+		    echo '<p>' . __('Choose a layout by selecting a thumbnail on the right.') . '</p>';
 		}
 		?>
 	    </div>
@@ -75,8 +84,8 @@
 		</div>
 	</fieldset> 
 	<fieldset>
-	<p id="exhibit-builder-save-changes"><input type="submit" name="save_page_metadata" id="page_metadata_form" value="Save Changes"/> or 
-	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>">Cancel</a></p>
+	<p id="exhibit-builder-save-changes"><input type="submit" name="save_page_metadata" id="page_metadata_form" value="<?php echo __('Save Changes'); ?>"/> <?php echo __('or'); ?> 
+	    <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>"><?php echo __('Cancel'); ?></a></p>
 	</fieldset>
 	
 </form>
