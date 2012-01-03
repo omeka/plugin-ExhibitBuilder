@@ -202,20 +202,20 @@ function exhibit_builder_admin_header($request)
 
 /**
  * Appends an Exhibits section to admin dashboard
- * 
+ * s
  * @return void
  **/
 function exhibit_builder_dashboard()
 {
 ?>
     <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
-	<dt class="exhibits"><a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a></dt>
+	<dt class="exhibits"><a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a></dt>
 	<dd class="exhibits">
 		<ul>
-			<li><a class="browse-exhibits" href="<?php echo html_escape(uri('exhibits')); ?>">Browse Exhibits</a></li>
-			<li><a class="add-exhibit" href="<?php echo html_escape(uri('exhibits/add/')); ?>">Create an Exhibit</a></li>
+			<li><a class="browse-exhibits" href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Browse Exhibits'); ?></a></li>
+			<li><a class="add-exhibit" href="<?php echo html_escape(uri('exhibits/add/')); ?>"><?php echo __('Create an Exhibit'); ?></a></li>
 		</ul>
-		<p>Create and manage exhibits that display items from the archive.</p>
+		<p><?php echo __('Create and manage exhibits that display items from the archive.'); ?></p>
 	</dd>
 	<?php endif;
 }
@@ -228,7 +228,7 @@ function exhibit_builder_dashboard()
  **/
 function exhibit_builder_public_main_nav($navArray) 
 {
-    $navArray['Browse Exhibits'] = uri('exhibits');
+    $navArray[__('Browse Exhibits')] = uri('exhibits');
     return $navArray;
 }
 
@@ -241,7 +241,7 @@ function exhibit_builder_public_main_nav($navArray)
 function exhibit_builder_admin_nav($navArray)
 {
     if (has_permission('ExhibitBuilder_Exhibits', 'browse')) {
-        $navArray += array('Exhibits'=> uri('exhibits'));
+        $navArray += array(__('Exhibits') => uri('exhibits'));
     }
     return $navArray;
 }

@@ -84,7 +84,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      
             return $this->renderExhibit(compact('exhibit', 'exhibitSection', 'item'), 'item');
         } else {
-            $this->flash('This item is not used within this exhibit.');
+            $this->flash(__('This item is not used within this exhibit.'));
             $this->redirect->gotoUrl('403');
         }
     }
@@ -251,7 +251,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         
         // Abort if no specific theme is selected.
         if ($themeName == '') {
-            $this->flashError("You must specifically select a theme in order to configure it.");
+            $this->flashError(__('You must specifically select a theme in order to configure it.'));
             $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             return;
         }
@@ -291,7 +291,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 $exhibit->setThemeOptions($newOptions);
                 $exhibit->save();
                 
-                $this->flashSuccess('The theme settings were successfully saved!');
+                $this->flashSuccess(__('The theme settings were successfully saved!'));
                 $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             }
         }

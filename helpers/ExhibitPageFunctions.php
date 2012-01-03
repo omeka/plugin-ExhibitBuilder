@@ -149,8 +149,12 @@ function exhibit_builder_page_nav($exhibitSection = null, $linkTextType = 'title
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_next_exhibit_page($text = "Next Page &rarr;", $props = array(), $exhibitPage = null)
+function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(), $exhibitPage = null)
 {
+    if ($text === null) {
+        $text = __('Next Page &rarr;');
+    }
+    
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
@@ -179,8 +183,12 @@ function exhibit_builder_link_to_next_exhibit_page($text = "Next Page &rarr;", $
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
  **/
-function exhibit_builder_link_to_previous_exhibit_page($text = "&larr; Previous Page", $props = array(), $exhibitPage = null)
+function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = array(), $exhibitPage = null)
 {
+    if ($text === null) {
+        $text = __('&larr; Previous Page');
+    }
+    
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }

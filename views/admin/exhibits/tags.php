@@ -1,6 +1,9 @@
-<?php head(); ?>
+<?php
+$title = __('Browse Exhibits by Tag');
+head('title' => $title, 'bodyclass' => 'exhibits');
+?>
 
-<h1><?php echo __('Exhibit Tags'); ?></h1>
+<h1><?php echo $title; ?></h1>
 
 <div id="primary">
 <?php if (!empty($tags)): ?>

@@ -214,7 +214,11 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         
         $html .= '</div>' . "\n";      
     } else {
-        $html .= '<p class="attach-item-link">There is no item attached. <a href="#" class="button">Attach an Item</a></p>' . "\n";
+        
+        $html .= '<p class="attach-item-link">'
+               . __('There is no item attached.')
+               . ' <a href="#" class="button">'
+               . __('Attach an Item') .'</a></p>' . "\n";
     }
     
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
