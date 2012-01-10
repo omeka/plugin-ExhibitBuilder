@@ -29,7 +29,7 @@ add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard'
 add_plugin_hook('config_form', 'exhibit_builder_config_form');
 add_plugin_hook('config', 'exhibit_builder_config');
 add_plugin_hook('initialize', 'exhibit_builder_initialize');
-
+add_plugin_hook('item_browse_sql', 'exhibit_builder_item_browse_sql');
 
 // This hook is defined in the HtmlPurifier plugin, meaning this will only work
 // if that plugin is enabled.
