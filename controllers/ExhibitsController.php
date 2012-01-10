@@ -463,8 +463,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             } catch (Exception $e) {
                 $this->flashError($e->getMessage());
             }
+            return $success;
         }
-        return $success;
     }
     
     /**

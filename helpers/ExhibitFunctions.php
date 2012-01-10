@@ -204,8 +204,8 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . item('Dublin Core', 'Title') . '</h2>' . "\n";
-        if ($file = $item->Files[0]) {
-            $html .=  display_file($file, array('linkToFile'=>false, 'imgAttributes' => array('alt' => item('Dublin Core', 'Title'))));
+        if (item_has_files()) {
+            $html .=  display_file($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => item('Dublin Core', 'Title'))));
         } 
         
         if ($includeCaption) {
