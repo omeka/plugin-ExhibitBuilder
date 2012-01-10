@@ -159,7 +159,7 @@ Omeka.ExhibitBuilder = function() {
         // Only add a Remove Item link to the layout item container if it has an item
         if (layoutItemContainer.find('div.item-select-inner').size()) {
             var removeItemLink = jQuery('<a></a>');
-    		removeItemLink.html('Remove This Item');
+    		removeItemLink.html(this.removeItemText);
     		removeItemLink.addClass('remove_item delete-item');
     		removeItemLink.css('cursor', 'pointer');
     		removeItemLink.prepend('<img src="'+this.removeItemBackgroundImageUri+'" /> ');

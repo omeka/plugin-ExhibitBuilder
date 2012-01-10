@@ -266,8 +266,12 @@ function exhibit_builder_layout_form_text($order, $label = 'Text')
  * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_caption($order, $label = 'Caption') 
+function exhibit_builder_layout_form_caption($order, $label = null) 
 {
+    if ($label === null) {
+        $label = __('Caption');
+    }
+
     $html = '<div class="caption-container">' . "\n";
     $html .= '<p>' . html_escape($label) . '</p>' . "\n";
     $html .= '<div class="caption">' . "\n";
@@ -434,12 +438,12 @@ function exhibit_builder_display_random_featured_exhibit()
 {
     $html = '<div id="featured-exhibit">';
     $featuredExhibit = exhibit_builder_random_featured_exhibit();
-    $html .= '<h2>Featured Exhibit</h2>';
+    $html .= '<h2>' . __('Featured Exhibit') . '</h2>';
     if ($featuredExhibit) {
        $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>'."\n";
        $html .= '<p>'.snippet_by_word_count(exhibit('description', array(), $featuredExhibit)).'</p>';
     } else {
-       $html .= '<p>You have no featured exhibits.</p>';
+       $html .= '<p>' . __('You have no featured exhibits.') . '</p>';
     }
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_display_random_featured_exhibit', $html);

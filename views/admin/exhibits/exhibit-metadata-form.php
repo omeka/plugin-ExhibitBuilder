@@ -125,7 +125,7 @@ if ($exhibit->title) {
                 <label for="theme"><?php echo __('Theme'); ?></label>            
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
                 <div class="select"><?php echo __v()->formSelect('theme', $exhibit->theme, array('id'=>'theme'), $values); ?>
-                <?php if ($theme && $theme->hasConfig): ?><a href="<?php echo html_escape(uri("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button">Configure</a><?php endif;?>
+                <?php if ($theme && $theme->hasConfig): ?><a href="<?php echo html_escape(uri("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a><?php endif;?>
                 </div>
             </div>
         </fieldset>

@@ -35,15 +35,15 @@ class Exhibit extends Omeka_Record
 	protected function _validate()
 	{
 		if (!strlen((string)$this->title)) {
-			$this->addError('title', 'Exhibit must be given a title.');
+			$this->addError('title', __('An exhibit must be given a title.'));
 		}
 		
 		if (strlen((string)$this->title) > 255) {
-			$this->addError('title', 'Title for an exhibit must be 255 characters or less.');
+			$this->addError('title', __('The title for an exhibit must be 255 characters or less.'));
 		}
 		
 		if (strlen((string)$this->theme) > 30) {
-			$this->addError('theme', 'The name of your theme must be 30 characters or less.');
+			$this->addError('theme', __('The name of your theme must be 30 characters or less.'));
 		}
 	}
 	
@@ -63,9 +63,9 @@ class Exhibit extends Omeka_Record
 		$this->_mixins[] = new Relatable($this);
 		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');
 		$this->_mixins[] = new Sluggable($this, array(
-            'slugEmptyErrorMessage'=>'Exhibit must be given a valid slug.',
-            'slugLengthErrorMessage'=>'The slug for your exhibit must be 30 characters or less.',
-            'slugUniqueErrorMessage'=>'Your URL slug is already in use by another exhibit.  Please choose another.'));	
+            'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
+            'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
+            'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));	
 	}
 		
 	protected function beforeSaveForm($post)

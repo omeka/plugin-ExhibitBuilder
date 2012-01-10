@@ -29,15 +29,15 @@ class ExhibitSection extends Omeka_Record
         $this->_mixins[] = new Orderable($this, 'ExhibitPage', 'section_id', 'Pages');
         $this->_mixins[] = new Sluggable($this, array(
             'parentIdFieldName'=>'exhibit_id',
-            'slugEmptyErrorMessage'=>'Slug must be given for each section of an exhibit.',
-            'slugLengthErrorMessage'=>'The slug for your exhibit section must be 30 characters or less.',
-            'slugUniqueErrorMessage'=>'Slugs for sections of an exhibit must be unique within that exhibit.  Please modify the slug so that it is unique.'));
+            'slugEmptyErrorMessage' => __('A slug must be given for each section of an exhibit.'),
+            'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
+            'slugUniqueErrorMessage' => __('This section slug has already been used in this exhibit.  Please modify the slug so that it is unique.')));
     }
 
     protected function _validate()
     {
         if (!strlen($this->title)) {
-            $this->addError('title', 'Sections of an exhibit must be given a title.');
+            $this->addError('title', __('Sections of an exhibit must be given a title.'));
         }
         
         if (empty($this->exhibit_id) or !is_numeric($this->exhibit_id)) {
@@ -45,7 +45,7 @@ class ExhibitSection extends Omeka_Record
         }
         
         if (empty($this->order) or !is_numeric($this->order)) {
-            $this->addError('order', 'Exhibit section must be properly ordered with an exhibit.');
+            $this->addError('order', 'Exhibit sections must be properly ordered within an exhibit.');
         }
     }
 

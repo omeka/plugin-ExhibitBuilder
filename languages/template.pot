@@ -1,3 +1,106 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Exhibit Builder\n"
+"Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
+"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Gallery Full Left"
+msgstr ""
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size "
+"image and text block."
+msgstr ""
+
+msgid "Gallery Full Right"
+msgstr ""
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
+"size image and text block."
+msgstr ""
+
+msgid "Gallery Thumbnails Text Bottom"
+msgstr ""
+
+msgid "Displays a block of text below a gallery of up to 12 items."
+msgstr ""
+
+msgid "Gallery Thumbnails Text Top"
+msgstr ""
+
+msgid "Displays a block of text above a gallery of up to 12 items."
+msgstr ""
+
+msgid "Gallery Thumbnails"
+msgstr ""
+
+msgid "Displays a gallery of up to 16 items."
+msgstr ""
+
+msgid "Image List Left Thumbs"
+msgstr ""
+
+msgid ""
+"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
+"right."
+msgstr ""
+
+msgid "Image List Left"
+msgstr ""
+
+msgid ""
+"Displays up to 8 full-size images on the left with up to 8 text blocks on "
+"the right."
+msgstr ""
+
+msgid "Image List Right Thumbs"
+msgstr ""
+
+msgid ""
+"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
+"left."
+msgstr ""
+
+msgid "Image List Right"
+msgstr ""
+
+msgid ""
+"Displays up to 8 full-size images on the right with up to 8 text blocks on "
+"the left."
+msgstr ""
+
+msgid "Text Image Left"
+msgstr ""
+
+msgid "Displays a full page of text, with a full-size image floated left."
+msgstr ""
+
+msgid "Text Image Right"
+msgstr ""
+
+msgid "Displays a full page of text, with a full-size image floated right."
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Displays a full page of text without items."
+msgstr ""
+
 #: config_form.php:3
 msgid "Use Exhibit Browse Page For Homepage?"
 msgstr ""
@@ -26,7 +129,7 @@ msgstr ""
 
 #: functions.php:212 functions.php:244
 #: views/admin/exhibits/exhibit-metadata-form.php:87
-#: views/admin/exhibits/page-content-form.php:86
+#: views/admin/exhibits/page-content-form.php:87
 #: views/admin/exhibits/page-metadata-form.php:48
 #: views/admin/exhibits/section-metadata-form.php:43
 msgid "Exhibits"
@@ -50,7 +153,20 @@ msgid "There is no item attached."
 msgstr ""
 
 #: helpers/ExhibitFunctions.php:221
+#: views/admin/exhibits/page-content-form.php:57
 msgid "Attach an Item"
+msgstr ""
+
+#: helpers/ExhibitFunctions.php:272
+msgid "Caption"
+msgstr ""
+
+#: helpers/ExhibitFunctions.php:441
+msgid "Featured Exhibit"
+msgstr ""
+
+#: helpers/ExhibitFunctions.php:446
+msgid "You have no featured exhibits."
 msgstr ""
 
 #: helpers/ExhibitPageFunctions.php:155
@@ -59,6 +175,64 @@ msgstr ""
 
 #: helpers/ExhibitPageFunctions.php:189
 msgid "&larr; Previous Page"
+msgstr ""
+
+#: models/Exhibit.php:38
+msgid "An exhibit must be given a title."
+msgstr ""
+
+#: models/Exhibit.php:42
+msgid "The title for an exhibit must be 255 characters or less."
+msgstr ""
+
+#: models/Exhibit.php:46
+msgid "The name of your theme must be 30 characters or less."
+msgstr ""
+
+#: models/Exhibit.php:66
+msgid "Exhibits must be given a valid slug."
+msgstr ""
+
+#: models/Exhibit.php:67 models/ExhibitPage.php:31
+#: models/ExhibitSection.php:33
+msgid "A slug must be 30 characters or less."
+msgstr ""
+
+#: models/Exhibit.php:68
+msgid ""
+"Your URL slug is already in use by another exhibit.  Please choose another."
+msgstr ""
+
+#: models/ExhibitPage.php:30
+msgid "A slug must be given for each page of an exhibit."
+msgstr ""
+
+#: models/ExhibitPage.php:32
+msgid ""
+"This page slug has already been used in this section.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+
+#: models/ExhibitPage.php:47
+msgid "A layout must be provided for each exhibit page."
+msgstr ""
+
+#: models/ExhibitPage.php:51
+msgid "Exhibit pages must be given a title."
+msgstr ""
+
+#: models/ExhibitSection.php:32
+msgid "A slug must be given for each section of an exhibit."
+msgstr ""
+
+#: models/ExhibitSection.php:34
+msgid ""
+"This section slug has already been used in this exhibit.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+
+#: models/ExhibitSection.php:40
+msgid "Sections of an exhibit must be given a title."
 msgstr ""
 
 #: views/admin/exhibits/browse.php:7
@@ -163,20 +337,32 @@ msgstr ""
 msgid "Edit Page Content: \"%s\""
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:111
+#: views/admin/exhibits/page-content-form.php:25
+msgid "Remove This Item"
+msgstr ""
+
+#: views/admin/exhibits/page-content-form.php:60
+msgid "Attach Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-content-form.php:100
+msgid "Page Layout"
+msgstr ""
+
+#: views/admin/exhibits/page-content-form.php:112
 #: views/admin/exhibits/page-metadata-form.php:2
 msgid "Edit Page"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:115
+#: views/admin/exhibits/page-content-form.php:116
 msgid "Page Content"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:123
+#: views/admin/exhibits/page-content-form.php:124
 msgid "Save and Return to Section"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:124
+#: views/admin/exhibits/page-content-form.php:125
 msgid "Save and Add Another Page"
 msgstr ""
 

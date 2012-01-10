@@ -21,7 +21,8 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 		
 		// Set the remove item background image uri
 		exhibitBuilder.removeItemBackgroundImageUri = <?php echo js_escape(img('silk-icons/delete.png')); ?>;
-		
+
+        exhibitBuilder.removeItemText = <?php echo js_escape(__('Remove This Item')); ?>;        
 		// Get the paginated items
 		exhibitBuilder.getItems();
 
@@ -53,10 +54,10 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
      		autoOpen: false,
      		width: 820,
      		height: 500,
-     		title: 'Attach an Item',
+            title: <?php echo js_escape(__('Attach an Item')); ?>,
      		modal: true,
      		buttons: {
-     			"Attach Selected Item": function() { 
+                <?php echo js_escape(__('Attach Selected Item')); ?>: function() { 
                     exhibitBuilder.attachSelectedItem();
      				jQuery(this).dialog('close'); 
      			} 
@@ -96,15 +97,15 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
     
     <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
         <div id="page-metadata-list">
-        <h2>Page Layout</h2>
+        <h2><?php echo __('Page Layout'); ?></h2>
             <div id="layout-metadata">
                 <?php 
                     $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif"); 
                 	echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
                 ?>
                 <ul>
-                 <li><strong><?php echo $layoutName; ?></strong></li>
-                 <li><?php echo $layoutDescription; ?></li>
+                 <li><strong><?php echo __($layoutName); ?></strong></li>
+                 <li><?php echo __($layoutDescription); ?></li>
                  </ul>
             </div>
 

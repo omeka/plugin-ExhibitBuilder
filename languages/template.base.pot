@@ -1,0 +1,90 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Exhibit Builder\n"
+"Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
+"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Gallery Full Left"
+msgstr ""
+
+msgid "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size image and text block."
+msgstr ""
+
+msgid "Gallery Full Right"
+msgstr ""
+
+msgid "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-size image and text block."
+msgstr ""
+
+msgid "Gallery Thumbnails Text Bottom"
+msgstr ""
+
+msgid "Displays a block of text below a gallery of up to 12 items."
+msgstr ""
+
+msgid "Gallery Thumbnails Text Top"
+msgstr ""
+
+msgid "Displays a block of text above a gallery of up to 12 items."
+msgstr ""
+
+msgid "Gallery Thumbnails"
+msgstr ""
+
+msgid "Displays a gallery of up to 16 items."
+msgstr ""
+
+msgid "Image List Left Thumbs"
+msgstr ""
+
+msgid "Displays up to 8 thumbnails on the left with up to 8 text blocks on the right."
+msgstr ""
+
+msgid "Image List Left"
+msgstr ""
+
+msgid "Displays up to 8 full-size images on the left with up to 8 text blocks on the right."
+msgstr ""
+
+msgid "Image List Right Thumbs"
+msgstr ""
+
+msgid "Displays up to 8 thumbnails on the right with up to 8 text blocks on the left."
+msgstr ""
+
+msgid "Image List Right"
+msgstr ""
+
+msgid "Displays up to 8 full-size images on the right with up to 8 text blocks on the left."
+msgstr ""
+
+msgid "Text Image Left"
+msgstr ""
+
+msgid "Displays a full page of text, with a full-size image floated left."
+msgstr ""
+
+msgid "Text Image Right"
+msgstr ""
+
+msgid "Displays a full page of text, with a full-size image floated right."
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Displays a full page of text without items."
+msgstr ""

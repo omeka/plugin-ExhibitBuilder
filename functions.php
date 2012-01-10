@@ -376,6 +376,7 @@ function exhibit_builder_config()
 
 function exhibit_builder_initialize()
 {
+    add_translation_source(dirname(__FILE__) . '/languages');
     Zend_Controller_Front::getInstance()->registerPlugin(new ExhibitBuilderControllerPlugin);
 }
 
