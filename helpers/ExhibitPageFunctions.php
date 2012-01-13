@@ -205,7 +205,10 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     if ($previousPage = $exhibitPage->previous()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $previousPage);
     } elseif ($previousSection = $exhibitSection->previous()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection);
+        if ($pages = $previousSection->Pages) {
+            $page = end($pages);
+            return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection, $page);
+        }
     }      
 }
 
