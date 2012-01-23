@@ -380,6 +380,70 @@ function exhibit_builder_initialize()
     Zend_Controller_Front::getInstance()->registerPlugin(new ExhibitBuilderControllerPlugin);
 }
 
+/**
+ * Hooks into item_browse_sql to return items in a particular exhibit. The
+ * passed exhibit can either be an Exhibit object or a specific exhibit ID.
+ *
+ * @return Omeka_Db_Select
+ */
+function exhibit_builder_item_browse_sql($select, $params)
+{
+    $db = get_db();
+
+    if ($request = Zend_Controller_Front::getInstance()->getRequest()) {
+        $exhibit = $request->get('exhibit') ? $request->get('exhibit') : null;
+    }
+
+    $exhibit = isset($params['exhibit']) ? $params['exhibit'] : $exhibit;
+
+    if ($exhibit) {
+        $select->joinInner(
+            array('isp' => $db->ExhibitPageEntry),
+            'isp.item_id = i.id',
+            array()
+            );
+
+        $select->joinInner(
+            array('sp' => $db->ExhibitPage),
+            'sp.id = isp.page_id',
+            array()
+            );
+
+        $select->joinInner(
+            array('s' => $db->ExhibitSection),
+            's.id = sp.section_id',
+            array()
+            );
+
+        $select->joinInner(
+            array('e' => $db->Exhibit),
+            'e.id = s.exhibit_id',
+            array()
+            );
+
+        if ($exhibit instanceof Exhibit) {
+            $select->where('e.id = ?', $exhibit->id);
+        } elseif (is_numeric($exhibit)) {
+            $select->where('e.id = ?', $exhibit);
+        }
+    }
+
+    return $select;
+}
+
+/**
+ * Form element for advanced search.
+ */
+function exhibit_builder_append_to_advanced_search()
+{
+    $html = '<div class="field">'
+          . __v()->formLabel('exhibit', __('Search by Exhibit'))
+          . '<div class="inputs">'
+          . _select_from_table('Exhibit', array('name' => 'exhibit'))
+          . '</div></div>';
+    echo $html;
+}
+
 class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
 {
     /**
