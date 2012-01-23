@@ -148,6 +148,10 @@ msgstr ""
 msgid "Create and manage exhibits that display items from the archive."
 msgstr ""
 
+#: functions.php:440
+msgid "Search by Exhibit"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:219
 msgid "There is no item attached."
 msgstr ""
