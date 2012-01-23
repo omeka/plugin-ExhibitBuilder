@@ -431,6 +431,19 @@ function exhibit_builder_item_browse_sql($select, $params)
     return $select;
 }
 
+/**
+ * Form element for advanced search.
+ */
+function exhibit_builder_append_to_advanced_search()
+{
+    $html = '<div class="field">'
+          . __v()->formLabel('exhibit', __('Search by Exhibit'))
+          . '<div class="inputs">'
+          . _select_from_table('Exhibit', array('name' => 'exhibit'))
+          . '</div></div>';
+    echo $html;
+}
+
 class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
 {
     /**
