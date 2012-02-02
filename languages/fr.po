@@ -1,0 +1,486 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# 
+# Translators:
+# Julien Sicot <julien.sicot@gmail.com>, 2012.
+#   <thierry.pasquier@emf.ccsti.eu>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka\n"
+"Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
+"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"PO-Revision-Date: 2012-02-02 09:27+0000\n"
+"Last-Translator: Julien Sicot <julien.sicot@gmail.com>\n"
+"Language-Team: French (http://www.transifex.net/projects/p/omeka/team/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+msgid "Gallery Full Left"
+msgstr "Double colonne - Galerie à droite"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
+" image and text block."
+msgstr ""
+"Affiche une galerie de 8 vignettes, avec à gauche 1 colonne plus large pour "
+"une grande image et un bloc de texte."
+
+msgid "Gallery Full Right"
+msgstr "Double colonne - Galerie à gauche"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
+"size image and text block."
+msgstr ""
+"Affiche une gallerie de 8 vignettes, avec à droite 1 colonne plus large pour"
+" une grande image et un bloc de texte."
+
+msgid "Gallery Thumbnails Text Bottom"
+msgstr "Galerie de vignettes - Texte en bas"
+
+msgid "Displays a block of text below a gallery of up to 12 items."
+msgstr ""
+"Affiche un bloc de texte en-dessous d'une galerie de 12 contenus au plus."
+
+msgid "Gallery Thumbnails Text Top"
+msgstr "Galerie de vignettes - Texte en haut"
+
+msgid "Displays a block of text above a gallery of up to 12 items."
+msgstr ""
+"Affiche un bloc de texte au-dessus d'une galerie de 12 contenus au plus."
+
+msgid "Gallery Thumbnails"
+msgstr "Galerie de vignettes"
+
+msgid "Displays a gallery of up to 16 items."
+msgstr "Affiche une galerie de 16 contenus au plus."
+
+msgid "Image List Left Thumbs"
+msgstr "Liste - Vignettes alignées à gauche"
+
+msgid ""
+"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
+"right."
+msgstr "Affiche jusqu'à 8 blocs de texte avec vignettes alignées à gauche."
+
+msgid "Image List Left"
+msgstr "Liste - Images alignées à gauche"
+
+msgid ""
+"Displays up to 8 full-size images on the left with up to 8 text blocks on "
+"the right."
+msgstr "Affiche jusqu'à 8 blocs de texte avec images alignées à gauche."
+
+msgid "Image List Right Thumbs"
+msgstr "Liste - Vignettes alignées à droite"
+
+msgid ""
+"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
+"left."
+msgstr "Affiche jusqu'à 8 blocs de texte avec vignettes alignées à droite."
+
+msgid "Image List Right"
+msgstr "Liste - Images alignées à droite"
+
+msgid ""
+"Displays up to 8 full-size images on the right with up to 8 text blocks on "
+"the left."
+msgstr "Affiche jusqu'à 8 blocs de texte avec images alignées à droite."
+
+msgid "Text Image Left"
+msgstr "Texte - Image à gauche"
+
+msgid "Displays a full page of text, with a full-size image floated left."
+msgstr ""
+"Affiche une page de texte, avec une image de grande taille alignée à gauche."
+
+msgid "Text Image Right"
+msgstr "Texte - Image à droite"
+
+msgid "Displays a full page of text, with a full-size image floated right."
+msgstr ""
+"Affiche une page de texte, avec une image de grande taille alignée à droite."
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "Displays a full page of text without items."
+msgstr "Affiche une pleine page de texte sans contenu."
+
+#: config_form.php:3
+msgid "Use Exhibit Browse Page For Homepage?"
+msgstr ""
+"Utiliser la page \"Parcourir les expositions\" comme page d'accueil du site "
+"?"
+
+#: config_form.php:9
+msgid "If checked, Omeka will use the exhibit browse page for the homepage."
+msgstr ""
+"Si coché, Omeka utilisera la page \"Parcourir les expositions\" comme page "
+"d'accueil du site."
+
+#: config_form.php:14
+msgid "Sorting Exhibits"
+msgstr "Trier les expositions"
+
+#: config_form.php:19
+msgid ""
+"The default method by which you wish to sort the listing of exhibits on the "
+"exhibits/browse page. Default is 'Date Added'."
+msgstr ""
+"La méthode par défaut que vous souhaitez utiliser pour trier la liste des "
+"expositions sur la page \"Parcourir les exposition\". Par défaut 'Date' est "
+"utilisé."
+
+#: controllers/ExhibitsController.php:87
+msgid "This item is not used within this exhibit."
+msgstr "Ce contenu n'est pas utilisé dans cette exposition."
+
+#: controllers/ExhibitsController.php:254
+msgid "You must specifically select a theme in order to configure it."
+msgstr "Vous devez sélectionner un thème puis le configurer."
+
+#: functions.php:212 functions.php:244
+#: views/admin/exhibits/exhibit-metadata-form.php:87
+#: views/admin/exhibits/page-content-form.php:87
+#: views/admin/exhibits/page-metadata-form.php:48
+#: views/admin/exhibits/section-metadata-form.php:43
+msgid "Exhibits"
+msgstr "Expositions."
+
+#: functions.php:215 functions.php:231 views/admin/exhibits/browse.php:2
+#: views/public/exhibits/browse.php:2
+msgid "Browse Exhibits"
+msgstr "Parcourir les expositions."
+
+#: functions.php:216
+msgid "Create an Exhibit"
+msgstr "Créer une exposition"
+
+#: functions.php:218
+msgid "Create and manage exhibits that display items from the archive."
+msgstr ""
+"Créer et gérer des expositions à partir de contenus extraits de l'archive."
+
+#: functions.php:440
+msgid "Search by Exhibit"
+msgstr "Recherche par exposition"
+
+#: helpers/ExhibitFunctions.php:219
+msgid "There is no item attached."
+msgstr "Aucun contenu associé."
+
+#: helpers/ExhibitFunctions.php:221
+#: views/admin/exhibits/page-content-form.php:57
+msgid "Attach an Item"
+msgstr "Associer un contenu"
+
+#: helpers/ExhibitFunctions.php:272
+msgid "Caption"
+msgstr "Légende"
+
+#: helpers/ExhibitFunctions.php:441
+msgid "Featured Exhibit"
+msgstr "Mettre en avant cette exposition"
+
+#: helpers/ExhibitFunctions.php:446
+msgid "You have no featured exhibits."
+msgstr "Vous n'avez pas mis en avant d'expositions."
+
+#: helpers/ExhibitPageFunctions.php:155
+msgid "Next Page &rarr;"
+msgstr "Page suivante &rarr;"
+
+#: helpers/ExhibitPageFunctions.php:189
+msgid "&larr; Previous Page"
+msgstr "&larr; Page précédente"
+
+#: models/Exhibit.php:38
+msgid "An exhibit must be given a title."
+msgstr "Une exposition doit posséder un titre."
+
+#: models/Exhibit.php:42
+msgid "The title for an exhibit must be 255 characters or less."
+msgstr "Le titre d'une exposition ne doit pas excéder 255 caractères."
+
+#: models/Exhibit.php:46
+msgid "The name of your theme must be 30 characters or less."
+msgstr "Le nom de votre thème ne ne doit pas excéder 30 caractères."
+
+#: models/Exhibit.php:66
+msgid "Exhibits must be given a valid slug."
+msgstr "Une exposition doit avoir un identifiant valide."
+
+#: models/Exhibit.php:67 models/ExhibitPage.php:31
+#: models/ExhibitSection.php:33
+msgid "A slug must be 30 characters or less."
+msgstr "Un identifiant ne doit pas dépasser 30 caractères"
+
+#: models/Exhibit.php:68
+msgid ""
+"Your URL slug is already in use by another exhibit.  Please choose another."
+msgstr ""
+"L'identifiant dans l'URL a déjà été attribué à une autre exposition. Merci "
+"d'en choisir un autre."
+
+#: models/ExhibitPage.php:30
+msgid "A slug must be given for each page of an exhibit."
+msgstr "Un identifiant doit être attribué à chaque page d'une exposition."
+
+#: models/ExhibitPage.php:32
+msgid ""
+"This page slug has already been used in this section.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+"Cet identifiant de page a déjà été utilisé dans cette section. Merci de le "
+"modifier pour qu'il soit unique."
+
+#: models/ExhibitPage.php:47
+msgid "A layout must be provided for each exhibit page."
+msgstr "Une gabarit doit être sélectionné pour chaque page de l'exposition."
+
+#: models/ExhibitPage.php:51
+msgid "Exhibit pages must be given a title."
+msgstr "Les pages de l'exposition doivent posséder un titre."
+
+#: models/ExhibitSection.php:32
+msgid "A slug must be given for each section of an exhibit."
+msgstr "Un identifiant doit être attribué à chaque section d'une exposition."
+
+#: models/ExhibitSection.php:34
+msgid ""
+"This section slug has already been used in this exhibit.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+"Cet identifiant de section a déjà été utilisé dans cette exposition. Merci "
+"de le modifier pour qu'il soit unique."
+
+#: models/ExhibitSection.php:40
+msgid "Sections of an exhibit must be given a title."
+msgstr "Les sections de l'exposition doivent posséder un titre."
+
+#: views/admin/exhibits/browse.php:7
+#: views/admin/exhibits/exhibit-metadata-form.php:5
+msgid "Add Exhibit"
+msgstr "Ajouter une exposition"
+
+#: views/admin/exhibits/browse.php:13
+msgid "There are no exhibits yet."
+msgstr "Il n'y a pas encore d'exposition. "
+
+#: views/admin/exhibits/browse.php:16
+msgid "Add an exhibit."
+msgstr "Ajouter une exposition"
+
+#: views/admin/exhibits/browse.php:35
+#: views/admin/exhibits/exhibit-metadata-form.php:125
+msgid "Theme"
+msgstr "Thème"
+
+#: views/admin/exhibits/browse.php:39
+msgid "Delete?"
+msgstr "Supprimer ?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:3
+#, php-format
+msgid "Edit Exhibit: \"%s\""
+msgstr "Modifier l'exposition \"%s\""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:5
+msgid "Edit Exhibit"
+msgstr "Modifier l'exposition"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:22
+msgid "Are you sure you want to delete this section?"
+msgstr "Êtes-vous sur de vouloir supprimer cette section ?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:36
+#: views/admin/exhibits/section-metadata-form.php:18
+msgid "Are you sure you want to delete this page?"
+msgstr "Êtes-vous sur de vouloir supprimer cette page ?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:96
+msgid "Exhibit Metadata"
+msgstr "Métadonnées de l'exposition"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:102
+#: views/admin/exhibits/page-metadata-form.php:59
+#: views/admin/exhibits/section-metadata-form.php:58
+msgid "Slug"
+msgstr "Identifiant"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:103
+#: views/admin/exhibits/page-metadata-form.php:60
+#: views/admin/exhibits/section-metadata-form.php:59
+msgid "No spaces or special characters allowed."
+msgstr "Les espaces et caractères spéciaux ne sont pas autorisés."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:107
+#: views/public/exhibits/summary.php:9
+msgid "Credits"
+msgstr "Crédits"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:126
+msgid "Current Public Theme"
+msgstr "Thème public courant"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+msgid "Sections and Pages"
+msgstr "Sections et pages"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:136
+msgid "There are no sections."
+msgstr "Il n'y a pas de section."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:138
+msgid ""
+"To reorder sections or pages, click and drag the section or page up or down "
+"to the preferred location."
+msgstr ""
+"Pour réorganiser les sections et les pages, cliquez et déplacez la section "
+"ou la page à l'emplacement désiré."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:145
+#: views/admin/exhibits/section-metadata-form.php:5
+msgid "Add Section"
+msgstr "Ajouter une section"
+
+#: views/admin/exhibits/items.php:1
+msgid "Show Search Form"
+msgstr "Afficher le formulaire de recherche"
+
+#: views/admin/exhibits/items.php:21
+#, php-format
+msgid "There are no items to choose from.  Please refine your search or %s."
+msgstr ""
+"Il n'y a pas de contenu à sélectionner. Merci d'affiner votre recherche ou  "
+"%s."
+
+#: views/admin/exhibits/items.php:21
+msgid "add some items"
+msgstr "Ajouter des contenus"
+
+#: views/admin/exhibits/page-content-form.php:2
+#, php-format
+msgid "Edit Page Content: \"%s\""
+msgstr "Modifier le contenu de la page \"%s\""
+
+#: views/admin/exhibits/page-content-form.php:25
+msgid "Remove This Item"
+msgstr "Supprimer ce contenu"
+
+#: views/admin/exhibits/page-content-form.php:60
+msgid "Attach Selected Item"
+msgstr "Ajouter le contenu sélectionné"
+
+#: views/admin/exhibits/page-content-form.php:100
+msgid "Page Layout"
+msgstr "Gabarit de page"
+
+#: views/admin/exhibits/page-content-form.php:112
+#: views/admin/exhibits/page-metadata-form.php:2
+msgid "Edit Page"
+msgstr "Modifier la page"
+
+#: views/admin/exhibits/page-content-form.php:116
+msgid "Page Content"
+msgstr "Contenu de la page"
+
+#: views/admin/exhibits/page-content-form.php:124
+msgid "Save and Return to Section"
+msgstr "Enregistrer et retourner à la section"
+
+#: views/admin/exhibits/page-content-form.php:125
+msgid "Save and Add Another Page"
+msgstr "Enregistrer et ajouter une autre page"
+
+#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/section-metadata-form.php:77
+msgid "Add Page"
+msgstr "Ajouter une page"
+
+#: views/admin/exhibits/page-metadata-form.php:55
+msgid "Page Metadata"
+msgstr "Métadonnées de la page"
+
+#: views/admin/exhibits/page-metadata-form.php:65
+msgid "Layouts"
+msgstr "Gabarits"
+
+#: views/admin/exhibits/page-metadata-form.php:72
+msgid "Choose a layout by selecting a thumbnail on the right."
+msgstr "Choisir un gabarit en sélectionnant une vignette à droite. "
+
+#: views/admin/exhibits/section-list.php:10
+#: views/admin/exhibits/section-metadata-form.php:5
+msgid "Edit Section"
+msgstr "Modifier cette section"
+
+#: views/admin/exhibits/section-list.php:11
+msgid "Delete Section"
+msgstr "Supprimer cette section"
+
+#: views/admin/exhibits/section-list.php:25
+msgid "Add a Page"
+msgstr "Ajouter une page"
+
+#: views/admin/exhibits/section-metadata-form.php:3
+#, php-format
+msgid "Edit Section: \"%s\""
+msgstr "Modifier la section \"%s\""
+
+#: views/admin/exhibits/section-metadata-form.php:55
+msgid "Section Metadata"
+msgstr "Métadonnées de la section"
+
+#: views/admin/exhibits/section-metadata-form.php:64
+msgid "Pages in this Section"
+msgstr "Pages dans cette section"
+
+#: views/admin/exhibits/section-metadata-form.php:66
+msgid ""
+"To reorder pages, click and drag the page thumbnail up or down to the "
+"preferred location."
+msgstr ""
+"Pour réorganiser les les pages, cliquez et déplacez la vignette de la page "
+"vers le haut ou le bas à l'enplacement désiré."
+
+#: views/admin/exhibits/section-metadata-form.php:68
+msgid "There are no pages in this section."
+msgstr "Il n'y a pas de page dans cette section."
+
+#: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
+msgid "Browse Exhibits by Tag"
+msgstr ""
+"\t\n"
+"Parcourir les expositions par tags"
+
+#: views/admin/exhibits/tags.php:14
+msgid "There are no tags to display. You must first tag some exhibits."
+msgstr ""
+"Aucun tag à afficher. Vous devez d'abord en attribuer à certaines "
+"expositions."
+
+#: views/public/exhibits/browse.php:30
+msgid "There are no exhibits available yet."
+msgstr "Il n'y a pas encore d'exposition disponible."
+
+#: views/public/exhibits/summary.php:14
+msgid "Sections"
+msgstr "Sections"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
+msgid "Primary"
+msgstr "Premier niveau"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:12
+msgid "Secondary"
+msgstr "Second niveau"
+
+

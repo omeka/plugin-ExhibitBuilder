@@ -1,0 +1,492 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# 
+# Translators:
+# Nicolaie Constantinescu <kosson@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka\n"
+"Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
+"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"PO-Revision-Date: 2012-01-30 17:15+0000\n"
+"Last-Translator: Nicolaie Constantinescu <kosson@gmail.com>\n"
+"Language-Team: Romanian (http://www.transifex.net/projects/p/omeka/team/ro/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1))\n"
+
+msgid "Gallery Full Left"
+msgstr "Galeria cu totul la stânga"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
+" image and text block."
+msgstr ""
+"Afișarea unei galerii de 8 iconuri având o coloană stângă cu o dimensiune "
+"egală cu cea a unei imagini mărite și a unui bloc de text."
+
+msgid "Gallery Full Right"
+msgstr "Galeria cu totul la dreapta"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
+"size image and text block."
+msgstr ""
+"Afișarea unei galerii de 8 iconuri având o coloană dreapta cu o dimensiune "
+"egală cu cea a unei imagini mărite și a unui bloc de text."
+
+msgid "Gallery Thumbnails Text Bottom"
+msgstr "Iconurile galeriei cu text la bază"
+
+msgid "Displays a block of text below a gallery of up to 12 items."
+msgstr ""
+"Afișează un bloc de text dedesubtul unei galerii de până la 12 elemente "
+"afișate."
+
+msgid "Gallery Thumbnails Text Top"
+msgstr "Iconurile galeriei cu textul în partea superioară"
+
+msgid "Displays a block of text above a gallery of up to 12 items."
+msgstr ""
+"Afișează un bloc de text deasupra unei galerii de până la 12 elemente "
+"afișate."
+
+msgid "Gallery Thumbnails"
+msgstr "Iconurile galeriei"
+
+msgid "Displays a gallery of up to 16 items."
+msgstr "Afișează o galerie de până la 16 elemente."
+
+msgid "Image List Left Thumbs"
+msgstr "Lista cu iconurile imaginilor la stânga "
+
+msgid ""
+"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
+"right."
+msgstr ""
+"Afișează până la 8 iconuri la stânga cu până la 8 blocuri de text în "
+"dreapta."
+
+msgid "Image List Left"
+msgstr "Lista imaginilor în stânga"
+
+msgid ""
+"Displays up to 8 full-size images on the left with up to 8 text blocks on "
+"the right."
+msgstr ""
+"Afișează până la 8 imagini la dimensiune mare în stânga cu 8 blocuri de text"
+" la dreapta."
+
+msgid "Image List Right Thumbs"
+msgstr "Lista cu iconurile imaginilor la dreapta"
+
+msgid ""
+"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
+"left."
+msgstr ""
+"Afișează până la 8 iconuri la dreapta cu până la 8 blocuri de text în "
+"stânga."
+
+msgid "Image List Right"
+msgstr "Lista imaginilor în dreapta"
+
+msgid ""
+"Displays up to 8 full-size images on the right with up to 8 text blocks on "
+"the left."
+msgstr ""
+"Afișează până la 8 imagini la dimensiune mare în dreapta cu 8 blocuri de "
+"text la stânga."
+
+msgid "Text Image Left"
+msgstr "Text și o imagine în stânga"
+
+msgid "Displays a full page of text, with a full-size image floated left."
+msgstr ""
+"Afișează o pagină numai cu text și doar o singură imagine poziționată la "
+"stânga."
+
+msgid "Text Image Right"
+msgstr "Text și o imagine în dreapta"
+
+msgid "Displays a full page of text, with a full-size image floated right."
+msgstr ""
+"Afișează o pagină numai cu text și doar o singură imagine poziționată la "
+"dreapta."
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Displays a full page of text without items."
+msgstr "Afișează o pagină întreagă de text fără niciun alt element."
+
+#: config_form.php:3
+msgid "Use Exhibit Browse Page For Homepage?"
+msgstr "Vrei să folosești pagina de expoziție ca primă pagină a siteului?"
+
+#: config_form.php:9
+msgid "If checked, Omeka will use the exhibit browse page for the homepage."
+msgstr ""
+"Dacă este bifat, Omeka va folosi pagina expoziței ca pagină principală "
+"pentru site."
+
+#: config_form.php:14
+msgid "Sorting Exhibits"
+msgstr "Sortarea expozițiilor"
+
+#: config_form.php:19
+msgid ""
+"The default method by which you wish to sort the listing of exhibits on the "
+"exhibits/browse page. Default is 'Date Added'."
+msgstr ""
+"Metoda standard prin care ai dori să sortezi lista cu expoziții din pagina "
+"de vizitare a acestora. Implicit este „Data adăugării”."
+
+#: controllers/ExhibitsController.php:87
+msgid "This item is not used within this exhibit."
+msgstr "Înregistrarea nu este utilizată în această expoziție."
+
+#: controllers/ExhibitsController.php:254
+msgid "You must specifically select a theme in order to configure it."
+msgstr "Trebuie să selectezi o temă pentru a proceda la configurarea ei."
+
+#: functions.php:212 functions.php:244
+#: views/admin/exhibits/exhibit-metadata-form.php:87
+#: views/admin/exhibits/page-content-form.php:87
+#: views/admin/exhibits/page-metadata-form.php:48
+#: views/admin/exhibits/section-metadata-form.php:43
+msgid "Exhibits"
+msgstr "Expoziții"
+
+#: functions.php:215 functions.php:231 views/admin/exhibits/browse.php:2
+#: views/public/exhibits/browse.php:2
+msgid "Browse Exhibits"
+msgstr "Treci prin expoziții"
+
+#: functions.php:216
+msgid "Create an Exhibit"
+msgstr "Creează o expoziție"
+
+#: functions.php:218
+msgid "Create and manage exhibits that display items from the archive."
+msgstr ""
+"Creează și gestionează expoziții care afișează înregistrări din arhivă."
+
+#: functions.php:440
+msgid "Search by Exhibit"
+msgstr "Caută după expoziție"
+
+#: helpers/ExhibitFunctions.php:219
+msgid "There is no item attached."
+msgstr "Nu există nicio înregistrare care să fie atașată."
+
+#: helpers/ExhibitFunctions.php:221
+#: views/admin/exhibits/page-content-form.php:57
+msgid "Attach an Item"
+msgstr "Atașează o înregistrare"
+
+#: helpers/ExhibitFunctions.php:272
+msgid "Caption"
+msgstr "Legendă"
+
+#: helpers/ExhibitFunctions.php:441
+msgid "Featured Exhibit"
+msgstr "Expoziție constituită"
+
+#: helpers/ExhibitFunctions.php:446
+msgid "You have no featured exhibits."
+msgstr "Nu ai nicio expoziție constituită."
+
+#: helpers/ExhibitPageFunctions.php:155
+msgid "Next Page &rarr;"
+msgstr "Pagina următoare &rarr;"
+
+#: helpers/ExhibitPageFunctions.php:189
+msgid "&larr; Previous Page"
+msgstr "&larr; Pagina anterioară"
+
+#: models/Exhibit.php:38
+msgid "An exhibit must be given a title."
+msgstr "O expoziție trebuie să aibe un titlu."
+
+#: models/Exhibit.php:42
+msgid "The title for an exhibit must be 255 characters or less."
+msgstr ""
+"Titlul pentru o expoziție trebuie să aibe 255 de caractere sau mai puțin."
+
+#: models/Exhibit.php:46
+msgid "The name of your theme must be 30 characters or less."
+msgstr "Numele temei tale trebuie să fie sub 30 de caractere."
+
+#: models/Exhibit.php:66
+msgid "Exhibits must be given a valid slug."
+msgstr "Expozițiilor trebuie să le fie dată o terminație validă."
+
+#: models/Exhibit.php:67 models/ExhibitPage.php:31
+#: models/ExhibitSection.php:33
+msgid "A slug must be 30 characters or less."
+msgstr "O terminație trebuie să aibe 30 de caractere sau mai puțin."
+
+#: models/Exhibit.php:68
+msgid ""
+"Your URL slug is already in use by another exhibit.  Please choose another."
+msgstr ""
+"Terminația pentru URL-ul tău este deja folosită de altă expoziție. Te rog să"
+" olosești alta."
+
+#: models/ExhibitPage.php:30
+msgid "A slug must be given for each page of an exhibit."
+msgstr "Pentru fiecare pagină a expoziției trebuie să fie emisă o terminație."
+
+#: models/ExhibitPage.php:32
+msgid ""
+"This page slug has already been used in this section.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+"Terminația pentru această pagină a fost deja utilizată în această secțiune. "
+"Te rog să modifici terminația pentru a o face unică."
+
+#: models/ExhibitPage.php:47
+msgid "A layout must be provided for each exhibit page."
+msgstr "Trebuie făcută o machetă pentru fiecare pagină de expoziție."
+
+#: models/ExhibitPage.php:51
+msgid "Exhibit pages must be given a title."
+msgstr "Trebuie să dai un titlu expoziției."
+
+#: models/ExhibitSection.php:32
+msgid "A slug must be given for each section of an exhibit."
+msgstr "Trebuie pusă o terminație pentru fiecare secțiune a unei expoziții."
+
+#: models/ExhibitSection.php:34
+msgid ""
+"This section slug has already been used in this exhibit.  Please modify the "
+"slug so that it is unique."
+msgstr ""
+"Această terminație pentru secțiune deja este utilizată în expoziția aceasta."
+" Modifică terminația astfel încât să fie unică."
+
+#: models/ExhibitSection.php:40
+msgid "Sections of an exhibit must be given a title."
+msgstr "Secțiunilor expoziției trebuie să le fie dat un titlu."
+
+#: views/admin/exhibits/browse.php:7
+#: views/admin/exhibits/exhibit-metadata-form.php:5
+msgid "Add Exhibit"
+msgstr "Adaugă o expoziție"
+
+#: views/admin/exhibits/browse.php:13
+msgid "There are no exhibits yet."
+msgstr "Încă nu există nicio expoziție."
+
+#: views/admin/exhibits/browse.php:16
+msgid "Add an exhibit."
+msgstr "Adaugă o expoziție."
+
+#: views/admin/exhibits/browse.php:35
+#: views/admin/exhibits/exhibit-metadata-form.php:125
+msgid "Theme"
+msgstr "Temă"
+
+#: views/admin/exhibits/browse.php:39
+msgid "Delete?"
+msgstr "Ștergi?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:3
+#, php-format
+msgid "Edit Exhibit: \"%s\""
+msgstr "Editează expoziția: \"%s\""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:5
+msgid "Edit Exhibit"
+msgstr "Editează expoziția"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:22
+msgid "Are you sure you want to delete this section?"
+msgstr "Ești sigur că vrei să ștergi această secțiune?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:36
+#: views/admin/exhibits/section-metadata-form.php:18
+msgid "Are you sure you want to delete this page?"
+msgstr "Ești sigur că vrei să ștergi această pagină?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:96
+msgid "Exhibit Metadata"
+msgstr "Metadatele expoziției"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:102
+#: views/admin/exhibits/page-metadata-form.php:59
+#: views/admin/exhibits/section-metadata-form.php:58
+msgid "Slug"
+msgstr "Terminație"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:103
+#: views/admin/exhibits/page-metadata-form.php:60
+#: views/admin/exhibits/section-metadata-form.php:59
+msgid "No spaces or special characters allowed."
+msgstr "Nu sunt permise spații sau caractere speciale."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:107
+#: views/public/exhibits/summary.php:9
+msgid "Credits"
+msgstr "Mulțumiri"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:126
+msgid "Current Public Theme"
+msgstr "Tema publică curentă"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+msgid "Sections and Pages"
+msgstr "Secțiuni și pagini"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:136
+msgid "There are no sections."
+msgstr "Nu există secțiuni."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:138
+msgid ""
+"To reorder sections or pages, click and drag the section or page up or down "
+"to the preferred location."
+msgstr ""
+"Pentru a reordona secțiunile sau paginile, clic și trage secțiunea sau "
+"pagina în sus sau în jos în locația preferată."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:145
+#: views/admin/exhibits/section-metadata-form.php:5
+msgid "Add Section"
+msgstr "Adaugă o secțiune"
+
+#: views/admin/exhibits/items.php:1
+msgid "Show Search Form"
+msgstr "Afișează formularul de căutare"
+
+#: views/admin/exhibits/items.php:21
+#, php-format
+msgid "There are no items to choose from.  Please refine your search or %s."
+msgstr ""
+"Nu există înregistrări din care să alegi. Fă o căutare mai elaborată sau %s."
+
+#: views/admin/exhibits/items.php:21
+msgid "add some items"
+msgstr "adaugă niște înregistrări"
+
+#: views/admin/exhibits/page-content-form.php:2
+#, php-format
+msgid "Edit Page Content: \"%s\""
+msgstr "Editează conținutul paginii: \"%s\""
+
+#: views/admin/exhibits/page-content-form.php:25
+msgid "Remove This Item"
+msgstr "Elimină această înregistrare"
+
+#: views/admin/exhibits/page-content-form.php:60
+msgid "Attach Selected Item"
+msgstr "Atașează înregistrarea selectată"
+
+#: views/admin/exhibits/page-content-form.php:100
+msgid "Page Layout"
+msgstr "Machetare pagină"
+
+#: views/admin/exhibits/page-content-form.php:112
+#: views/admin/exhibits/page-metadata-form.php:2
+msgid "Edit Page"
+msgstr "Editare pagină"
+
+#: views/admin/exhibits/page-content-form.php:116
+msgid "Page Content"
+msgstr "Conținutul paginii"
+
+#: views/admin/exhibits/page-content-form.php:124
+msgid "Save and Return to Section"
+msgstr "Salvează și mergi înapoi la secțiune"
+
+#: views/admin/exhibits/page-content-form.php:125
+msgid "Save and Add Another Page"
+msgstr "Salvează și adaugă o altă pagină"
+
+#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/section-metadata-form.php:77
+msgid "Add Page"
+msgstr "Adaugă pagină"
+
+#: views/admin/exhibits/page-metadata-form.php:55
+msgid "Page Metadata"
+msgstr "Metadatele paginii"
+
+#: views/admin/exhibits/page-metadata-form.php:65
+msgid "Layouts"
+msgstr "Machete"
+
+#: views/admin/exhibits/page-metadata-form.php:72
+msgid "Choose a layout by selecting a thumbnail on the right."
+msgstr "Alege o machetă prin selectarea unei pictograme din dreapta."
+
+#: views/admin/exhibits/section-list.php:10
+#: views/admin/exhibits/section-metadata-form.php:5
+msgid "Edit Section"
+msgstr "Editează secțiunea"
+
+#: views/admin/exhibits/section-list.php:11
+msgid "Delete Section"
+msgstr "Șterge secțiunea"
+
+#: views/admin/exhibits/section-list.php:25
+msgid "Add a Page"
+msgstr "Adaugă o pagină"
+
+#: views/admin/exhibits/section-metadata-form.php:3
+#, php-format
+msgid "Edit Section: \"%s\""
+msgstr "Editează secțiunea: \"%s\""
+
+#: views/admin/exhibits/section-metadata-form.php:55
+msgid "Section Metadata"
+msgstr "Metadatele secțiunii"
+
+#: views/admin/exhibits/section-metadata-form.php:64
+msgid "Pages in this Section"
+msgstr "Pagini în această secțiune"
+
+#: views/admin/exhibits/section-metadata-form.php:66
+msgid ""
+"To reorder pages, click and drag the page thumbnail up or down to the "
+"preferred location."
+msgstr ""
+"Pentru a reordona paginile, clic și trage pictogramele acestora ăn sus sau "
+"în jos în locația preferată."
+
+#: views/admin/exhibits/section-metadata-form.php:68
+msgid "There are no pages in this section."
+msgstr "Nu există pagini în această secțiune."
+
+#: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
+msgid "Browse Exhibits by Tag"
+msgstr "Vizitează expozițiile alegând etichete"
+
+#: views/admin/exhibits/tags.php:14
+msgid "There are no tags to display. You must first tag some exhibits."
+msgstr ""
+"Nu există etichete afișate. Mai întâi trebuie să adaugi câteva la niște "
+"expoziții."
+
+#: views/public/exhibits/browse.php:30
+msgid "There are no exhibits available yet."
+msgstr "Nu există nicio expoziție."
+
+#: views/public/exhibits/summary.php:14
+msgid "Sections"
+msgstr "Secțiuni"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
+msgid "Primary"
+msgstr "Primar"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:12
+msgid "Secondary"
+msgstr "Secundar"
+
+
