@@ -139,14 +139,7 @@ function exhibit_builder_setup_acl($acl)
      * That means that admin and super users can both manipulate exhibits completely,
      * but researcher/contributor cannot. 
      */
-    $resourceList = array('ExhibitBuilder_Exhibits' => array(
-        'add', 'editSelf', 'editAll', 'deleteSelf', 'deleteAll',
-        'showNotPublic', 'add-page', 'edit-page-content',
-        'edit-page-metadata', 'delete-page', 'add-section',
-        'edit-section', 'delete-section', 'section-list', 'page-list', 
-        'tags')
-    );
-    $acl->loadResourceList($resourceList);
+    $acl->addResource('ExhibitBuilder_Exhibits');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
         array('show', 'summary', 'showitem', 'browse', 'tags'));
