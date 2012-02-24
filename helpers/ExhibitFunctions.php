@@ -574,7 +574,7 @@ function exhibit_builder_user_can_edit($exhibit = null, $user = null)
     $canEditSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editSelf');
     $canEditOthers = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editAll');
 
-    return (($exhibit->wasAddedBy($user) && $canEditSelf) || $canEditOthers);    
+    return (($exhibit->isOwnedBy($user) && $canEditSelf) || $canEditOthers);    
 }
 
 /**
@@ -597,7 +597,7 @@ function exhibit_builder_user_can_delete($exhibit = null, $user = null)
     $canDeleteSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteSelf');
     $canDeleteAll = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteAll');
 
-    return (($exhibit->wasAddedBy($user) && $canDeleteSelf) || $canDeleteAll);
+    return (($exhibit->isOwnedBy($user) && $canDeleteSelf) || $canDeleteAll);
 }
 
 /**

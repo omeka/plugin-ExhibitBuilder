@@ -25,10 +25,12 @@ class Exhibit extends Omeka_Record
 	public $credits;
     public $featured = 0;
     public $public = 1;
-	
 	public $theme;
 	public $theme_options;
 	public $slug;
+    public $added;
+    public $modified;
+    public $owner_id;
 	
 	protected $_related = array('Sections'=>'loadOrderedChildren', 'Tags'=>'getTags');
 
@@ -60,14 +62,32 @@ class Exhibit extends Omeka_Record
 	public function construct()
 	{
 		$this->_mixins[] = new Taggable($this);
-		$this->_mixins[] = new Relatable($this);
+		$this->_mixins[] = new Ownable($this);
 		$this->_mixins[] = new Orderable($this, 'ExhibitSection', 'exhibit_id', 'Sections');
 		$this->_mixins[] = new Sluggable($this, array(
             'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));	
 	}
-		
+
+    /**
+     * Set added and modified timestamps for the exhibit.
+     */
+    protected function beforeInsert()
+    {
+        $now = Zend_Date::now()->toString(self::DATE_FORMAT);
+        $this->added = $now;
+        $this->modified = $now;
+    }
+    
+    /**
+     * Set modified timestamp for the exhibit.
+     */
+    protected function beforeUpdate()
+    {
+        $this->modified = Zend_Date::now()->toString(self::DATE_FORMAT);
+    }
+    
 	protected function beforeSaveForm($post)
 	{					
             //Whether or not the exhibit is featured
@@ -83,8 +103,7 @@ class Exhibit extends Omeka_Record
 	protected function afterSaveForm($post)
 	{
 		//Add the tags after the form has been saved
-		$current_user = Omeka_Context::getInstance()->getCurrentUser();		
-		$this->applyTagString($post['tags'], $current_user->Entity, true);
+		$this->applyTagString($post['tags']);
 		
 		// Save the new page orderings for each section
 		$pagesBySection = $post['Pages'];
