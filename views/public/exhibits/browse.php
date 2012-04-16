@@ -16,7 +16,7 @@ head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
     <?php $exhibitCount = 0; ?>
     <?php while(loop_exhibits()): ?>
     	<?php $exhibitCount++; ?>
-    	<div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
+    	<div class="exhibit<?php if ($exhibitCount%2==1) echo '-even'; else echo '-odd'; ?>">
     		<h2><?php echo link_to_exhibit(); ?></h2>
     		<div class="description"><?php echo exhibit('description'); ?></div>
     		<p class="tags"><?php echo tag_string(get_current_exhibit(), uri('exhibits/browse/tag/')); ?></p>
