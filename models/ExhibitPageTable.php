@@ -1,50 +1,71 @@
 <?php
 /**
  * ExhibitPage table class
- * 
+ *
  * @version $Id$
  * @copyright Center for History and New Media, 2007-20009
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package Omeka
  * @author CHNM
  **/
- 
+
 class ExhibitPageTable extends Omeka_Db_Table
 {
-    protected $_name = 'section_pages';
-    
-    public function findPrevious($page, $section = null)
+//@TODO: update the table name. part of the upgrade script! was section_pages
+    protected $_name = 'exhibit_pages';
+
+    public function applySearchFilters($select, $params)
     {
-        return $this->findNearby($page, 'previous', $section);
+        if(isset($params['parent'])) {
+            if(is_numeric($params['parent'])) {
+                $this->filterByParentId($params['parent']);
+            } else if(get_class($params['parent'] == 'ExhibitPage')) {
+                $parent = $params['parent'];
+                $this->filterByParentId($select, $parent->id);
+            }
+        }
+
+        if(isset($params['exhibit'])) {
+            if(is_numeric($params['exhibit'])) {
+                $this->filterByExhibitId($params['exhibit']);
+            } else if(get_class($params['exhibit'] == 'Exhibit')) {
+                $exhibit = $params['exhibit'];
+                $this->filterByExhibitId($select, $exhibit->id);
+            }
+        }
+
+        if(isset($params['topOnly'])) {
+            $this->filterByTopOnly($select);
+        }
     }
-    
-    public function findNext($page, $section = null)
+
+    public function findPrevious($page)
     {
-        return $this->findNearby($page, 'next', $section);
+        return $this->findNearby($page, 'previous');
     }
-    
-    protected function findNearby($page, $position = 'next', $section = null)
+
+    public function findNext($page)
+    {
+        return $this->findNearby($page, 'next');
+    }
+
+    protected function findNearby($page, $position = 'next')
     {
         $select = $this->getSelect();
+        $select->where('e.parent_id = ? ', $page->parent_id);
         $select->limit(1);
-        
-        if (!$section) {
-            $section = exhibit_builder_get_current_section();
-        }
-        
+
         switch ($position) {
             case 'next':
-                $select->where('e.section_id = ?', (int) $section->id);
                 $select->where('e.order > ?', (int) $page->order);
                 $select->order('e.order ASC');
                 break;
-                
+
             case 'previous':
-                $select->where('e.section_id = ?', (int) $section->id);
                 $select->where('e.order < ?', (int) $page->order);
                 $select->order('e.order DESC');
                 break;
-                
+
             default:
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
                 break;
@@ -52,7 +73,7 @@ class ExhibitPageTable extends Omeka_Db_Table
 
         return $this->fetchObject($select);
     }
-    
+
     public function findBySlug($slug)
     {
         $db = $this->getDb();
@@ -60,6 +81,22 @@ class ExhibitPageTable extends Omeka_Db_Table
         $select->from(array('e'=>$db->ExhibitPage), array('e.*'));
         $select->where("e.slug = ?");
         $select->limit(1);
-        return $this->fetchObject($select, array($slug));       
+        return $this->fetchObject($select, array($slug));
+    }
+
+    protected function filterByParentId($select, $parentId)
+    {
+        $select->where('e.parent_id = ?', $parentId);
+    }
+
+    protected function filterByExhibitId($select, $exhibitId)
+    {
+        $select->where('e.exhibit_id = ?', $exhibitId);
+
+    }
+
+    protected function filterByTopOnly($select)
+    {
+        $select->where('e.parent_id IS NULL');
     }
 }

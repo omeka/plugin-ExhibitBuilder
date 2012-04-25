@@ -45,13 +45,13 @@ function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    
+
     if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
         $text = '';
     } else {
         $text = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->text;
     }
-    
+
     return $text;
 }
 
@@ -67,13 +67,13 @@ function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage =
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    
+
     if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
         $caption = '';
     } else {
-        $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;        
+        $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;
     }
-    
+
     return $caption;
 }
 
@@ -89,7 +89,7 @@ function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = nu
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    
+
     if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
         $item = null;
     } else {
@@ -98,16 +98,16 @@ function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = nu
             $item = null;
         }
     }
-    
+
     return $item;
 }
 
 /**
  * Returns the HTML code of the exhibit page navigation
- * 
+ *
  * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
- * @param string $linkTextType The type of page information should be used for the link text.  
- * If 'order', it uses the page order as the link text.  
+ * @param string $linkTextType The type of page information should be used for the link text.
+ * If 'order', it uses the page order as the link text.
  * If 'title' or any other value, it uses the page title as the link text.
  * @return string
  **/
@@ -130,7 +130,7 @@ function exhibit_builder_page_nav($exhibitSection = null, $linkTextType = 'title
                 default:
                     $linkText = $exhibitPage->title;
                     break;
-                
+
             }
             $html .= '<li'. (exhibit_builder_is_current_page($exhibitPage) ? ' class="current"' : '').'><a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibitSection->Exhibit, $exhibitSection, $exhibitPage)) . '">'. html_escape($linkText) .'</a></li>' . "\n";
         }
@@ -154,18 +154,18 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
     if ($text === null) {
         $text = __('Next Page &rarr;');
     }
-    
+
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    
+
     $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
     $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
-    
+
     if(!isset($props['class'])) {
         $props['class'] = 'next-page';
     }
-    
+
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
     if ($nextPage = $exhibitPage->next()) {
@@ -188,18 +188,18 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     if ($text === null) {
         $text = __('&larr; Previous Page');
     }
-    
+
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
 
     $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
     $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
-    
+
     if(!isset($props['class'])) {
         $props['class'] = 'previous-page';
     }
-    
+
     // If page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous exhibit section, if it exists.
     if ($previousPage = $exhibitPage->previous()) {
@@ -209,12 +209,12 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
             $page = end($pages);
             return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousSection, $page);
         }
-    }      
+    }
 }
 
 /**
  * Returns whether an exhibit page has an item
- * 
+ *
  * @todo Needs optimization (shouldn't return the item object every time it's checked).
  * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
@@ -226,9 +226,9 @@ function exhibit_builder_exhibit_page_has_item($exhibitPageEntryIndex = 1, $exhi
 }
 
 /**
- * Returns an item at the specified page entry index of an exhibit page.  
+ * Returns an item at the specified page entry index of an exhibit page.
  * If no item exists on the page, it returns false.
- * 
+ *
  * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
  * @return Item|boolean
  **/
@@ -281,12 +281,12 @@ function set_exhibit_pages_for_loop($exhibitPages)
  * @param ExhibitSection|null $exhibitSection If null, it uses the current section
  * @return void
  **/
-function set_exhibit_pages_for_loop_by_section($exhibitSection = null) 
-{   
+function set_exhibit_pages_for_loop_by_section($exhibitSection = null)
+{
     if (!$exhibitSection) {
         $exhibitSection = exhibit_builder_get_current_section();
     }
-        
+
     if ($exhibitSection) {
         set_exhibit_pages_for_loop($exhibitSection->Pages);
     }
@@ -294,7 +294,7 @@ function set_exhibit_pages_for_loop_by_section($exhibitSection = null)
 
 /**
  * Get the set of exhibit pages for the current loop.
- * 
+ *
  * @return array
  **/
 function get_exhibit_pages_for_loop()
@@ -304,7 +304,7 @@ function get_exhibit_pages_for_loop()
 
 /**
  * Loops through exhibit pages assigned to the view.
- * 
+ *
  * @return mixed The current exhibit page
  */
 function loop_exhibit_pages()
@@ -314,12 +314,12 @@ function loop_exhibit_pages()
 
 /**
  * Determine whether or not there are any exhibit pages in the database.
- * 
+ *
  * @return boolean
  **/
 function has_exhibit_pages()
 {
-    return (total_exhibit_pages() > 0);    
+    return (total_exhibit_pages() > 0);
 }
 
 /**
@@ -337,9 +337,9 @@ function has_exhibit_pages_for_loop()
   *
   * @return integer
   **/
- function total_exhibit_pages() 
- {	
- 	return get_db()->getTable('ExhibitPage')->count();
+ function total_exhibit_pages()
+ {
+     return get_db()->getTable('ExhibitPage')->count();
  }
 
 /**
@@ -355,10 +355,19 @@ function exhibit_page($propertyName, $options = array(), $exhibitPage = null)
     if (!$exhibitPage) {
         $exhibitPage = get_current_exhibit_page();
     }
-    $propertyName = Inflector::underscore($propertyName);        
-	if (property_exists(get_class($exhibitPage), $propertyName)) {
-	    return html_escape($exhibitPage->$propertyName);
-	} else {
-	    return null;
-	}
+    $propertyName = Inflector::underscore($propertyName);
+    if (property_exists(get_class($exhibitPage), $propertyName)) {
+        return html_escape($exhibitPage->$propertyName);
+    } else {
+        return null;
+    }
+}
+
+function exhibit_builder_child_pages($exhibitPage)
+{
+    if(!$exhibitPage) {
+        $exhibitPage = get_current_exhibit_page();
+    }
+
+
 }
