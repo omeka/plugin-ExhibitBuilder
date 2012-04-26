@@ -41,6 +41,7 @@ function exhibit_builder_is_current_exhibit($exhibit)
  * @param ExhibitPage|null $exhibitPage
  * @return string
  **/
+
 function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props = array(), $exhibitPage = null)
 {
     if (!$exhibit) {
@@ -101,6 +102,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
     return $html;
 }
 
+
 /**
  * Returns an array of exhibits
  *
@@ -133,6 +135,7 @@ function exhibit_builder_get_exhibit_by_id($exhibitId)
 {
     return get_db()->getTable('Exhibit')->find($exhibitId);
 }
+
 
 /**
  * Returns the HTML code of the item attach section of the exhibit form
@@ -200,7 +203,7 @@ function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #')
 function exhibit_builder_layout_form_text($order, $label = 'Text')
 {
     $html = '<div class="textfield exhibit-form-element">';
-    $html .= textarea(array('name'=>'Text['.$order.']','rows'=>'15','cols'=>'70','class'=>'textinput'), exhibit_builder_page_text($order));
+    $html .= __v()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70','class'=>'textinput') );
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_layout_form_text', $html, $order, $label);
     return $html;
@@ -223,7 +226,7 @@ function exhibit_builder_layout_form_caption($order, $label = null)
     $html .= '<p>' . html_escape($label) . '</p>' . "\n";
     $html .= '<div class="caption">' . "\n";
     $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
-    $html .= textarea(array('name'=>'Caption['.$order.']','rows'=>'4','cols'=>'30','class'=>'textinput'), exhibit_builder_page_caption($order));
+    $html .= __v()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30','class'=>'textinput') );
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
 
@@ -295,7 +298,6 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
     $html = apply_filters('exhibit_builder_exhibit_layout', $html, $layout, $input);
     return $html;
 }
-
 
 /**
  * Returns the web path to the layout css
