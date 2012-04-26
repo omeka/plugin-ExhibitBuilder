@@ -109,6 +109,16 @@ function exhibit_builder_uninstall()
  */
 function exhibit_builder_upgrade($oldVersion, $newVersion)
 {
+
+    if(version_compare($oldVersion, '2.0-dev', '<')) {
+        $db = get_db();
+        $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NOT NULL AFTER `id` ";
+        $sql .= "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id` ";
+
+        $sql .= "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id`";
+        $sql .= "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages` ";
+    }
+
     // Transition to upgrade model for EB
     if (version_compare($oldVersion, '0.6', '<') )
     {

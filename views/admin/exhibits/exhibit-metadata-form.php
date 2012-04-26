@@ -147,19 +147,19 @@ if ($exhibit->title) {
             </div>
         </fieldset>
         <fieldset>
-            <legend><?php echo __('Sections and Pages'); ?></legend>
-            <div id="section-list-container">
-                <?php if (!$exhibit->Sections): ?>
-                    <p><?php echo __('There are no sections.'); ?></p>
+            <legend><?php echo __('Pages'); ?></legend>
+            <div id="pages-list-container">
+                <?php if (!$exhibit->TopPages): ?>
+                    <p><?php echo __('There are no pages.'); ?></p>
                 <?php else: ?>
-                <p id="reorder-instructions"><?php echo __('To reorder sections or pages, click and drag the section or page up or down to the preferred location.'); ?></p>
+                <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
                 <?php endif; ?>
-                <ul class="section-list">
-                    <?php common('section-list', compact('exhibit'), 'exhibits'); ?>
+                <ul class="page-list">
+                    <?php common('page-list', compact('exhibit'), 'exhibits'); ?>
                 </ul>
             </div>
-            <div id="section-add">
-                <input type="submit" name="add_section" id="add-section" value="<?php echo __('Add Section'); ?>" />
+            <div id="page-add">
+                <input type="submit" name="add_page" id="add-page" value="<?php echo __('Add Page'); ?>" />
             </div>
         </fieldset>
         <fieldset>

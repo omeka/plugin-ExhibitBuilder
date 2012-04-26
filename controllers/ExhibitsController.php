@@ -214,10 +214,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         try {
             $retVal = $exhibit->saveForm($_POST);
             if ($retVal) {
-                if (array_key_exists('add_section',$_POST)) {
-                    //forward to addSection & unset the POST vars
+                if (array_key_exists('add_page',$_POST)) {
+                    //forward to addPage & unset the POST vars
                     unset($_POST);
-                    $this->redirect->goto('add-section', null, null, array('id'=>$exhibit->id) );
+                    $this->redirect->goto('add-page', null, null, array('id'=>$exhibit->id) );
                     return;
                 } else if (array_key_exists('save_exhibit', $_POST)) {
                     $this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
@@ -301,22 +301,31 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
 
     /**
-     * Add a page to a section
+     * Add a page to an exhibit
      *
-     * 1st URL param = 'id' for the section that will contain the page
+     * 1st URL param = 'id' for the exhibit that will contain the page
      *
      **/
     public function addPageAction()
     {
-        $exhibitSection = $this->findById(null,'ExhibitSection');
-        $exhibit = $exhibitSection->Exhibit;
-
+        $db = get_db();
+        $request = $this->getRequest();
+        $exhibitId = $request->getParam('id');
+        //check if a parent page is coming in
+        $parentId = $request->getParam('parent');
         $exhibitPage = new ExhibitPage;
-        $exhibitPage->section_id = $exhibitSection->id;
-
+        $exhibitPage->exhibit_id = $exhibitId;
+        $exhibit = $db->getTable('Exhibit')->find($exhibitId);
         //Set the order for the new page
-        $numPages = $exhibitSection->getPageCount();
-        $exhibitPage->order = $numPages + 1;
+        if($parentId) {
+            $exhibitPage->parent_id = $parentId;
+            $parent = $db->getTable('ExhibitPage')->find($parentId);
+            $childCount = $parent->countChildPages();
+        } else {
+            $childCount = $exhibit->countTopPages();
+        }
+
+        $exhibitPage->order = $childCount +1;
 
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
@@ -329,9 +338,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function editPageContentAction()
     {
+        $db = get_db();
         $exhibitPage = $this->findById(null,'ExhibitPage');
-        $exhibitSection = $exhibitPage->Section;
-        $exhibit = $exhibitSection->Exhibit;
+        $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
+
 
         if (!exhibit_builder_user_can_edit($exhibit)) {
             throw new Omeka_Controller_Exception_403;
@@ -385,10 +395,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         if (!empty($_POST)) {
             try {
                 $success = $exhibitPage->saveForm($_POST);
+                return true;
             } catch (Exception $e) {
                 $this->flashError($e->getMessage());
+                return false;
             }
-            return $success;
         }
     }
 

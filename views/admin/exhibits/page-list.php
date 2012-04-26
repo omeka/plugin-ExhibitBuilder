@@ -1,19 +1,13 @@
-<?php if ($exhibitSection->Pages): ?>
-<?php foreach( $exhibitSection->Pages as $key => $exhibitPage ): ?>
+<?php if ($exhibit->TopPages): ?>
+<?php foreach( $exhibit->TopPages as $key => $exhibitPage ): ?>
         <li id="page_<?php echo html_escape($exhibitPage->id); ?>" class="exhibit-page-item">
             <div class="page-info">
                 <span class="left">
                     <span class="handle"><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>
                     <span class="input">
                         <?php
-                            if (isset($fromExhibitPage)):
-                                $exhibitSectionId = $exhibitSection->id;
-                                $exhibitPageId = $exhibitPage->id;
-                                echo $this->formText("Pages[$exhibitSectionId][$exhibitPageId][order]", $exhibitPage->order, array('size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order')  );
-
-                            else:
-                                echo $this->formText("Pages[$key][order]", $exhibitPage->order, array('size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order')  );
-                            endif;
+                         $parentId = $exhibitPage->parent_id ? $exhibitPage->parent_id : $key;
+                         echo $this->formText("Pages[$parentId][{$exhibitPage->id}][order]", $exhibitPage->order, array('size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order')  );
                         ?></span>
                     <span class="page-title"><?php echo html_escape(snippet($exhibitPage->title, 0, 40, '')); ?></span>
                 </span>

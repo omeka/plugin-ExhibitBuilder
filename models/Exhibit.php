@@ -62,7 +62,7 @@ class Exhibit extends Omeka_Record
     {
         $this->_mixins[] = new Taggable($this);
         $this->_mixins[] = new Ownable($this);
-        $this->_mixins[] = new Orderable($this, 'ExhibitPage', 'exhibit_direct_parent_id', 'ExhibitPages');
+        $this->_mixins[] = new Orderable($this, 'ExhibitPage', 'exhibit_id', 'ExhibitPages');
         $this->_mixins[] = new Sluggable($this, array(
             'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
@@ -105,8 +105,8 @@ class Exhibit extends Omeka_Record
         $this->applyTagString($post['tags']);
 
         // Save the new page orderings for each section
-        $pagesBySection = $post['Pages'];
-        foreach($pagesBySection as $sectionId => $pagesInfos) {
+        $pagesByParent = $post['Pages'];
+        foreach($pagesByParent as $parentId => $pagesInfos) {
 
              // Rewrite the page order data, so that pages are ordered 1,2,3, ... etc.
              $rawPageOrdersByPageId = array();
@@ -120,12 +120,14 @@ class Exhibit extends Omeka_Record
                  $pageOrder++;
                  $pageOrdersByPageId[$pageId] = $pageOrder;
              }
-
+print_r($pagesByParent);
+die();
              // Save the new page orders
              foreach($pageOrdersByPageId as $pageId => $pageOrder) {
                  $exhibitPage = $this->getDb()->getTable('ExhibitPage')->find($pageId);
-                 $exhibitPage->section_id = $sectionId; // Change the section if necessary
-                 $exhibitPage->order = $pageOrder; // Change the page order
+                 //@TODO: figure out null for top level, but also work with arbitrary levels of nesting later
+                 $exhibitPage->parent_id = null; // Change the parent page if necessary
+                 $exhibitPage->order = $pageOrdersByPageId[$pageId]; // Change the page order
                  $exhibitPage->save();
              }
         }
@@ -134,16 +136,15 @@ class Exhibit extends Omeka_Record
     public function getTopPages()
     {
         $db = $this->getDb();
-        return $this->getTable('ExhibitPage')->findBy(array('exhibit_direct_parent_id'=>$this->id));
+        return $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id, 'topOnly'=>true));
+    }
 
-    }
-    public function getSections()
+    public function countTopPages()
     {
-        //return $this->Sections;
         $db = $this->getDb();
-        $sql = "SELECT s.* FROM $db->ExhibitSection s WHERE s.exhibit_id = ?";
-        return $this->getTable('ExhibitSection')->fetchObjects($sql, array((int) $this->id));
+        return $this->getTable('ExhibitPage')->count(array('exhibit_id'=>$this->id, 'topOnly'=>true));
     }
+
 
     public function getTopPageBySlug($slug)
     {

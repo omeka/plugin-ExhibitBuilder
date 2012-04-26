@@ -99,4 +99,5 @@ class ExhibitPageTable extends Omeka_Db_Table
     {
         $select->where('e.parent_id IS NULL');
     }
+
 }

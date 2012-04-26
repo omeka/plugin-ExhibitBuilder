@@ -16,7 +16,6 @@ class ExhibitPage extends Omeka_Record
 {
     public $parent_id; //@TODO: change this in database, and add to update scripts
     public $exhibit_id; //@TODO: change this in database, and add to update scripts
-    public $exhibit_direct_parent_id; //used with the Orderable mixin @TODO: change this in database, and add to update scripts
     public $layout;
     public $slug;
     public $title;
@@ -91,7 +90,7 @@ class ExhibitPage extends Omeka_Record
         return $this->getTable()->findBy(array('parent'=>$this->id));
     }
 
-    public function hasChildPages()
+    public function countChildPages()
     {
         return $this->getTable()->count(array('parent'=>$this->id));
     }

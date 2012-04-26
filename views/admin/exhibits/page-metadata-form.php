@@ -47,7 +47,6 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <div id="exhibits-breadcrumb">
         <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
         <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-        <a href="<?php echo html_escape(uri('exhibits/edit-section/' . $exhibitSection['id']));?>"><?php echo html_escape($exhibitSection['title']); ?></a>  &gt;
         <?php echo html_escape($title); ?>
     </div>
 
