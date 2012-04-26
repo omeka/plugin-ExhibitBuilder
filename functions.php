@@ -2,13 +2,13 @@
 
 /**
  * Installs the plugin, creating the tables in the database and setting plugin options
- * 
+ *
  * @return void
  **/
-function exhibit_builder_install() 
-{	
-	$db = get_db();
-	$db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
+function exhibit_builder_install()
+{
+    $db = get_db();
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `title` varchar(255) collate utf8_unicode_ci default NULL,
       `description` text collate utf8_unicode_ci,
@@ -26,7 +26,7 @@ function exhibit_builder_install()
       KEY `public` (`public`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-	$db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `title` varchar(255) collate utf8_unicode_ci default NULL,
       `description` text collate utf8_unicode_ci,
@@ -46,7 +46,7 @@ function exhibit_builder_install()
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-    
+
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `section_id` int(10) unsigned NOT NULL,
@@ -60,7 +60,7 @@ function exhibit_builder_install()
 
     // Legacy upgrade code
     $checkIfTitleExists = $db->fetchOne("SHOW COLUMNS FROM `{$db->prefix}section_pages` LIKE 'title'");
-     
+
     if ($checkIfTitleExists == null) {
         $db->query("ALTER TABLE `{$db->prefix}section_pages` ADD `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, ADD `slug` VARCHAR( 30 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;");
         $newSectionPages = $db->fetchAll("SELECT * FROM `{$db->prefix}section_pages`");
@@ -68,23 +68,23 @@ function exhibit_builder_install()
         foreach($newSectionPages as $newPage) {
             $pageNum = $newPage['order'];
             $pageTitle = 'Page '. $pageNum;
-            $slug = generate_slug($pageTitle); 
+            $slug = generate_slug($pageTitle);
             $id = $newPage['id'];
             $db->query("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
         }
     }
-    
+
     // Set the initial options
     set_option('exhibit_builder_use_browse_exhibits_for_homepage', '0');
 }
 
 /**
  * Uninstalls the plugin, deleting the tables from the database, as well as any plugin options
- * 
+ *
  * @return void
  **/
-function exhibit_builder_uninstall() 
-{   
+function exhibit_builder_uninstall()
+{
     // drop the tables
     $db = get_db();
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibits`";
@@ -95,7 +95,7 @@ function exhibit_builder_uninstall()
     $db->query($sql);
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
     $db->query($sql);
-    
+
     // delete plugin options
     delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
     delete_option('exhibit_builder_sort_browse');
@@ -116,7 +116,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `theme_options` text collate utf8_unicode_ci default NULL AFTER `theme`";
         $db->query($sql);
     }
-    
+
     if (version_compare($oldVersion, '0.6', '<=') )
     {
         $db = get_db();
@@ -126,12 +126,12 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
 }
 
 /**
- * Modify the ACL to include an 'ExhibitBuilder_Exhibits' resource.  
- * 
+ * Modify the ACL to include an 'ExhibitBuilder_Exhibits' resource.
+ *
  * Requires the module name as part of the ACL resource in order to avoid naming
  * conflicts with pre-existing controllers, e.g. an ExhibitBuilder_ItemsController
  * would not rely on the existing Items ACL resource.
- * 
+ *
  * @return void
  **/
 function exhibit_builder_setup_acl($acl)
@@ -140,7 +140,7 @@ function exhibit_builder_setup_acl($acl)
      * NOTE: unless explicitly denied, super users and admins have access to all
      * of the defined resources and privileges.  Other user levels will not by default.
      * That means that admin and super users can both manipulate exhibits completely,
-     * but researcher/contributor cannot. 
+     * but researcher/contributor cannot.
      */
     $acl->addResource('ExhibitBuilder_Exhibits');
 
@@ -155,10 +155,10 @@ function exhibit_builder_setup_acl($acl)
 
 /**
  * Add the routes from routes.ini in this plugin folder.
- * 
+ *
  * @return void
  **/
-function exhibit_builder_routes($router) 
+function exhibit_builder_routes($router)
 {
      $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
      DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
@@ -166,7 +166,7 @@ function exhibit_builder_routes($router)
 
 /**
  * Displays the CSS layout for the exhibit in the header
- * 
+ *
  * @return void
  **/
 function exhibit_builder_public_header()
@@ -179,7 +179,7 @@ function exhibit_builder_public_header()
 
 /**
  * Displays the CSS style and javascript for the exhibit in the admin header
- * 
+ *
  * @return void
  **/
 function exhibit_builder_admin_header($request)
@@ -205,24 +205,24 @@ function exhibit_builder_dashboard()
 {
 ?>
     <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
-	<dt class="exhibits"><a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a></dt>
-	<dd class="exhibits">
-		<ul>
-			<li><a class="browse-exhibits" href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Browse Exhibits'); ?></a></li>
-			<li><a class="add-exhibit" href="<?php echo html_escape(uri('exhibits/add/')); ?>"><?php echo __('Create an Exhibit'); ?></a></li>
-		</ul>
-		<p><?php echo __('Create and manage exhibits that display items from the archive.'); ?></p>
-	</dd>
-	<?php endif;
+    <dt class="exhibits"><a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a></dt>
+    <dd class="exhibits">
+        <ul>
+            <li><a class="browse-exhibits" href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Browse Exhibits'); ?></a></li>
+            <li><a class="add-exhibit" href="<?php echo html_escape(uri('exhibits/add/')); ?>"><?php echo __('Create an Exhibit'); ?></a></li>
+        </ul>
+        <p><?php echo __('Create and manage exhibits that display items from the archive.'); ?></p>
+    </dd>
+    <?php endif;
 }
 
 /**
  * Adds the Browse Exhibits link to the public main navigation
  *
- * @param array $navArray The array of navigation links 
+ * @param array $navArray The array of navigation links
  * @return array
  **/
-function exhibit_builder_public_main_nav($navArray) 
+function exhibit_builder_public_main_nav($navArray)
 {
     $navArray[__('Browse Exhibits')] = uri('exhibits');
     return $navArray;
@@ -231,7 +231,7 @@ function exhibit_builder_public_main_nav($navArray)
 /**
  * Adds the Exhibits link to the admin navigation
  *
- * @param array $navArray The array of admin navigation links  
+ * @param array $navArray The array of admin navigation links
  * @return array
  **/
 function exhibit_builder_admin_nav($navArray)
@@ -276,7 +276,7 @@ function exhibit_builder_public_theme_name($themeName)
     }
 
     $request = Zend_Controller_Front::getInstance()->getRequest();
-    
+
     if ($request->getModuleName() == 'exhibit-builder') {
         $slug = $request->getParam('slug');
         $exhibit = get_db()->getTable('Exhibit')->findBySlug($slug);
@@ -290,10 +290,10 @@ function exhibit_builder_public_theme_name($themeName)
 /**
  * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
  * enabled.
- * 
+ *
  * @param Zend_Controller_Request_Http $request
  * @param HTMLPurifier $purifier The purifier object that was built from the configuration
- * provided on the configuration form of the HtmlPurifier plugin.  
+ * provided on the configuration form of the HtmlPurifier plugin.
  * @return void
  **/
 function exhibit_builder_purify_html($request, $purifier)
@@ -302,15 +302,15 @@ function exhibit_builder_purify_html($request, $purifier)
     if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
         return;
     }
-    
+
     $post = $request->getPost();
-    
+
     switch ($request->getActionName()) {
         // exhibit-metadata-form
         case 'add':
         case 'edit':
-        
-        // section-metadata-form    
+
+        // section-metadata-form
         case 'add-section':
         case 'edit-section':
             // The description field on both of these forms should be HTML.
@@ -321,14 +321,14 @@ function exhibit_builder_purify_html($request, $purifier)
         case 'edit-page-metadata':
             // Skip the page-metadata-form.
             break;
-        
+
         case 'edit-page-content':
             // page-content-form
             if (isset($post['Text']) && is_array($post['Text'])) {
                 // All of the 'Text' entries are HTML.
                 foreach ($post['Text'] as $key => $text) {
                     $post['Text'][$key] = $purifier->purify($text);
-                }            
+                }
             }
             if (isset($post['Caption']) && is_array($post['Caption'])) {
                 foreach ($post['Caption'] as $key => $text) {
@@ -336,18 +336,18 @@ function exhibit_builder_purify_html($request, $purifier)
                 }
             }
             break;
-        
+
         default:
             // Don't process anything by default.
             break;
     }
-    
+
     $request->setPost($post);
 }
 
 /**
- * Returns the select dropdown for the exhibits 
- * 
+ * Returns the select dropdown for the exhibits
+ *
  * @param array $props Optional
  * @param string|null $value Optional
  * @param string|null $label Optional
@@ -435,7 +435,7 @@ function exhibit_builder_append_to_advanced_search()
     $html = '<div class="field">'
           . __v()->formLabel('exhibit', __('Search by Exhibit'))
           . '<div class="inputs">'
-          . _select_from_table('Exhibit', array('name' => 'exhibit'))
+          . get_table_options('Exhibit', array('name' => 'exhibit'))
           . '</div></div>';
     echo $html;
 }
@@ -452,20 +452,20 @@ class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
         $router = Omeka_Context::getInstance()->getFrontController()->getRouter();
         if (get_option('exhibit_builder_use_browse_exhibits_for_homepage') == '1' && !is_admin_theme()) {
             $router->addRoute(
-                'exhibit_builder_show_home_page', 
+                'exhibit_builder_show_home_page',
                 new Zend_Controller_Router_Route(
-                    '/:page', 
+                    '/:page',
                     array(
-                        'module'       => 'exhibit-builder', 
-                        'controller'   => 'exhibits', 
+                        'module'       => 'exhibit-builder',
+                        'controller'   => 'exhibits',
                         'action'       => 'browse',
-                        'page'         => 1 
+                        'page'         => 1
                     ),
                     array(
                         'page'  => '\d+'
                     )
                 )
             );
-        } 
+        }
     }
 }
