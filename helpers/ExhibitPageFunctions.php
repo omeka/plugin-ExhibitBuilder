@@ -105,30 +105,30 @@ function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = nu
 /**
  * Returns the HTML code of the exhibit page navigation
  *
- * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
+ * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
  * @param string $linkTextType The type of page information should be used for the link text.
  * If 'order', it uses the page order as the link text.
  * If 'title' or any other value, it uses the page title as the link text.
  * @return string
  **/
-function exhibit_builder_page_nav($exhibitSection = null, $linkTextType = 'title')
+function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
 {
     $linkTextType = Inflector::underscore($linkTextType);
-    if (!$exhibitSection) {
-        if (!($exhibitSection = exhibit_builder_get_current_section())) {
+    if (!$exhibitPage) {
+        if (!($exhibitPage = exhibit_builder_get_current_page())) {
             return;
         }
     }
-    if ($exhibitSection->hasPages()) {
+    if ($exhibitPage->hasChildPages()) {
         $html = '<ul class="exhibit-page-nav">' . "\n";
-        foreach ($exhibitSection->Pages as $exhibitPage) {
+        foreach ($exhibitPage->getChildPages() as $subPage) {
             switch($linkTextType) {
                 case 'order':
-                    $linkText = $exhibitPage->order;
+                    $linkText = $subPage->order;
                     break;
                 case 'title':
                 default:
-                    $linkText = $exhibitPage->title;
+                    $linkText = $subPage->title;
                     break;
 
             }
@@ -159,8 +159,7 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
         $exhibitPage = exhibit_builder_get_current_page();
     }
 
-    $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
+    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitPage->exhibit_id);
 
     if(!isset($props['class'])) {
         $props['class'] = 'next-page';
@@ -169,9 +168,9 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
     // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
     // a link to the first page on the next exhibit section, if it exists.
     if ($nextPage = $exhibitPage->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitSection, $nextPage);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextPage);
     } elseif ($nextSection = $exhibitSection->next()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextSection);
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props);
     }
 }
 
@@ -192,9 +191,7 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-
-    $exhibitSection = exhibit_builder_get_exhibit_section_by_id($exhibitPage->section_id);
-    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitSection->exhibit_id);
+    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitPage->exhibit_id);
 
     if(!isset($props['class'])) {
         $props['class'] = 'previous-page';
@@ -281,15 +278,13 @@ function set_exhibit_pages_for_loop($exhibitPages)
  * @param ExhibitSection|null $exhibitSection If null, it uses the current section
  * @return void
  **/
-function set_exhibit_pages_for_loop_by_section($exhibitSection = null)
+function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
 {
-    if (!$exhibitSection) {
-        $exhibitSection = exhibit_builder_get_current_section();
+    if (!$exhibitPage) {
+        $exhibitPage = exhibit_builder_get_current_page();
     }
 
-    if ($exhibitSection) {
-        set_exhibit_pages_for_loop($exhibitSection->Pages);
-    }
+    set_exhibit_pages_for_loop($exhibitPage->getChildPages());
 }
 
 /**

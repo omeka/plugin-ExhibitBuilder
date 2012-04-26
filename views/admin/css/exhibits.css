@@ -7,7 +7,7 @@
     background-image:url("../../../../../application/views/scripts/images/silk-icons/delete.png");
 }
 
-.delete-section, .delete-page {
+.delete-page {
     background-position: 12px 50%;
     padding-left: 32px;
     background-repeat: no-repeat;
@@ -47,14 +47,6 @@
 }
 
 /* Exhibit Sections and Pages */
-#section-list-container {
-    clear:both;
-}
-
-.section-list {
-    width:512px;
-    float:left;
-}
 
 #reorder-instructions {
     float:right; width: 280px; font-size:11px;color: #888;
@@ -62,16 +54,6 @@
 
 .page-list .layout-name {
     display:none;
-}
-
-.section-list li {
-    background:#e9f6da;
-    margin-bottom:15px;
-    position:relative;
-    display:block; 
-    clear:both;
-    width:auto;
-    padding:15px;
 }
 
 /* Class used by jQuery UI drag/drop */
@@ -86,63 +68,19 @@
 }
 li.ui-state-highlight {
     background: green !important;
-    
+
 }
 .ui-sortable-helper * {
     opacity:0.7;
 }
 
-/* Clears floats in .section-list li */
-.section-list li:after,
+
 .page-list li:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
-}
-.section-list li .left {
-    display:block; 
-    float:left; 
-    width: 60%;
-}
-
-.section-title img {
-    position:absolute;
-    top: 12px;
-    left:6px;
-
-}
-    
-.section-list input {
-    padding:4px 0; 
-    width:1em;
-} 
-
-.section-list .section-title {
-    font-size:1.5em;
-}
-
-.section-info {
-    margin-bottom:12px;
-}
-.section-list input {
-    display:none;
-}
-
-.section-actions {
-    text-align:left;
-    margin:20px 0;
-}
-
-.section-actions a {
-    background-color: rgba(255,255,255,0.5) !important;
-    padding:10px 10px 10px 34px;
-}
-
-.section-pages-info {
-    clear:both; 
-    padding-top:12px;   
 }
 
 .page-list {
@@ -157,10 +95,10 @@ li.ui-state-highlight {
 }
 
 .page-list .right {
-    display:block; 
-    float:right; 
+    display:block;
+    float:right;
     text-align:right;
-    width:30%; 
+    width:30%;
     padding:4px 0;
     font-size:88%;
 }
@@ -181,22 +119,13 @@ li.ui-state-highlight {
     margin:0;
 }
 
-#section-add {
-    clear:both;
-}
-#section-add input {
-    float:none;
-    margin:0;
-}
-
-/* Section Metadata */
-.section-delete a, .page-delete a {
-    text-decoration:none; 
+.page-delete a {
+    text-decoration:none;
     color:red;
 }
 
-.section-edit a, .page-edit a {
-    text-decoration:none; 
+.page-edit a {
+    text-decoration:none;
     color:#38c;
 }
 
@@ -215,12 +144,12 @@ table#exhibits {
 
 /* Page Metadata */
 #layouts .layout {
-    display:block; 
-    float:left; 
-    text-align:center; 
-    border:1px solid #ccc; 
-    margin-right:18px; 
-    margin-bottom:18px; 
+    display:block;
+    float:left;
+    text-align:center;
+    border:1px solid #ccc;
+    margin-right:18px;
+    margin-bottom:18px;
     padding:6px 0;
     width:100px;
 }
@@ -259,9 +188,9 @@ table#exhibits {
 
 .remove_item {
     position:absolute;
-    top:0; 
-    right:0; 
-    z-index:10000; 
+    top:0;
+    right:0;
+    z-index:10000;
     padding: 4px 8px;
     font-size:12px;
     font-weight:bold;
@@ -304,7 +233,7 @@ table#exhibits {
 /* choose layout */
 
 #layouts #layout-thumbs {
-    width:512px; 
+    width:512px;
 }
 
 #layouts .layout {
@@ -321,9 +250,9 @@ table#exhibits {
 #chosen_layout img {
     float:right;
 }
-            
+
 #chosen_layout div.current-layout{
-    width:295px; 
+    width:295px;
 }
 
 #chosen_layout div.layout-name {
@@ -334,10 +263,10 @@ table#exhibits {
 }
 
 .current-layout {
-    margin-bottom:18px; 
+    margin-bottom:18px;
     background:#fff;
     padding:15px;
-    float:right; 
+    float:right;
     background:#A2C9E8;
     border:1px solid #6BA8DA;
 }
@@ -347,45 +276,29 @@ table#exhibits {
 }
 
 #layout-form .primary, #layout-form .secondary {
-    float:none; 
-    display:block; 
-    width:100%;
-    overflow:hidden; 
-    clear:both;
-}
-
-#section-meta {
+    float:none;
     display:block;
-    float:left; 
-    width: 450px;
-}
-
-#section-description {
-    display:block; 
-    float:right;
-    width:450px;
-}
-
-#section-pages {
+    width:100%;
+    overflow:hidden;
     clear:both;
 }
 
 #page-links input {
-    background:#fff; 
-    color:#555; 
+    background:#fff;
+    color:#555;
     border:none;
 }
 
 button.cancel {
-    background:#fff; 
-    border:none; 
-    color:#38c; 
-    display:inline; 
+    background:#fff;
+    border:none;
+    color:#38c;
+    display:inline;
     text-align:left;
     cursor:pointer;
-    margin:0; 
-    padding:0; 
-    font-size:1em; 
+    margin:0;
+    padding:0;
+    font-size:1em;
     text-indent:0;
 }
 

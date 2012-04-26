@@ -9,7 +9,6 @@
  * @author CHNM
  **/
 
-require_once 'ExhibitSection.php';
 require_once 'Tag.php';
 require_once 'Taggings.php';
 require_once 'Taggable.php';

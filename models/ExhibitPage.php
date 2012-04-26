@@ -91,6 +91,11 @@ class ExhibitPage extends Omeka_Record
         return $this->getTable()->findBy(array('parent'=>$this->id));
     }
 
+    public function hasChildPages()
+    {
+        return $this->getTable()->count(array('parent'=>$this->id));
+    }
+
     protected function _delete()
     {
         if ($this->ExhibitPageEntry) {

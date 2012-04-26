@@ -10,11 +10,11 @@
 if (!defined('EXHIBIT_PLUGIN_DIR')) {
     define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
     if (defined('WEB_PLUGIN')) {
-        define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/' 
+        define('WEB_EXHIBIT_PLUGIN_DIR', WEB_PLUGIN . '/'
             . basename(dirname(__FILE__)));
     }
     define('EXHIBIT_LAYOUTS_DIR_NAME', 'exhibit_layouts');
-    define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR 
+    define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR
         . '/views/shared/exhibit_layouts');
 }
 
@@ -42,9 +42,8 @@ add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('theme_options', 'exhibit_builder_theme_options');
 add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
 
-// Helper functions for exhibits, exhibit sections, and exhibit pages
+// Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
-require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitSectionFunctions.php';
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitPageFunctions.php';
 
 require_once EXHIBIT_PLUGIN_DIR . '/functions.php';
