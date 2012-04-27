@@ -7,7 +7,7 @@
                     <span class="input">
                         <?php
                          $parentId = $exhibitPage->parent_id ? $exhibitPage->parent_id : $key;
-                         echo $this->formText("Pages[$parentId][{$exhibitPage->id}][order]", $exhibitPage->order, array('size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order')  );
+                         echo $this->formText("Pages[{$exhibitPage->id}][order]", $exhibitPage->order, array('size'=>2, 'id' => 'page-' . $exhibitPage->id . '-order')  );
                         ?></span>
                     <span class="page-title"><?php echo html_escape(snippet($exhibitPage->title, 0, 40, '')); ?></span>
                 </span>

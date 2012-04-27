@@ -103,40 +103,43 @@ class Exhibit extends Omeka_Record
     {
         //Add the tags after the form has been saved
         $this->applyTagString($post['tags']);
+        $pages = $post['Pages'];
+        $this->savePagesParentOrder(null, $pages);
+    }
 
-        // Save the new page orderings for each section
-        $pagesByParent = $post['Pages'];
-        foreach($pagesByParent as $parentId => $pagesInfos) {
 
-             // Rewrite the page order data, so that pages are ordered 1,2,3, ... etc.
-             $rawPageOrdersByPageId = array();
-             foreach($pagesInfos as $pageId => $pageInfo) {
-                 $rawPageOrdersByPageId[$pageId] = $pageInfo['order'];
-             }
-             asort($rawPageOrdersByPageId, SORT_NUMERIC);
-             $pageOrder = 0;
-             $pageOrdersByPageId = array();
-             foreach($rawPageOrdersByPageId as $pageId => $rawPageOrder) {
-                 $pageOrder++;
-                 $pageOrdersByPageId[$pageId] = $pageOrder;
-             }
-print_r($pagesByParent);
-die();
-             // Save the new page orders
-             foreach($pageOrdersByPageId as $pageId => $pageOrder) {
-                 $exhibitPage = $this->getDb()->getTable('ExhibitPage')->find($pageId);
-                 //@TODO: figure out null for top level, but also work with arbitrary levels of nesting later
-                 $exhibitPage->parent_id = null; // Change the parent page if necessary
-                 $exhibitPage->order = $pageOrdersByPageId[$pageId]; // Change the page order
-                 $exhibitPage->save();
-             }
-        }
+    /**
+     * Updates page parents and orders
+     */
+
+    private function savePagesParentOrder($parentId, $pages)
+    {
+         foreach($pages as $pageId => $pageInfo) {
+             $rawPageOrdersByPageId[$pageId] = $pageInfo['order'];
+         }
+
+         asort($rawPageOrdersByPageId, SORT_NUMERIC);
+         $pageOrder = 0;
+         $pageOrdersByPageId = array();
+         foreach($rawPageOrdersByPageId as $pageId => $rawPageOrder) {
+             $pageOrder++;
+             $pageOrdersByPageId[$pageId] = $pageOrder;
+         }
+
+            // Save the new page orders
+         foreach($pageOrdersByPageId as $pageId => $pageOrder) {
+             $exhibitPage = $this->getDb()->getTable('ExhibitPage')->find($pageId);
+             //@TODO: figure out null for top level, but also work with arbitrary levels of nesting later
+             $exhibitPage->parent_id = $parentId; // Change the parent page if necessary
+             $exhibitPage->order = $pageOrdersByPageId[$pageId]; // Change the page order
+             $exhibitPage->save();
+         }
     }
 
     public function getTopPages()
     {
         $db = $this->getDb();
-        return $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id, 'topOnly'=>true));
+        return $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id, 'topOnly'=>true, 'sort_field'=>'order'));
     }
 
     public function countTopPages()
@@ -151,40 +154,15 @@ die();
 
     }
 
-    public function getSectionBySlug($slug)
-    {
-        $db = $this->getDb();
-        $sql = "SELECT s.* FROM $db->ExhibitSection s WHERE s.slug = ? AND s.exhibit_id = ?";
-
-        return $this->getTable('ExhibitSection')->fetchObject($sql, array(strtolower($slug), (int) $this->id));
-    }
-
     public function getFirstTopPage()
     {
 
-    }
-
-    public function getFirstSection()
-    {
-        $table = $this->getTable('ExhibitSection');
-        $select = $table->getSelect()->where("e.exhibit_id = ?", $this->id)->where("e.`order` = ?", 1)->limit(1);
-        return $table->fetchObject($select);
     }
 
 
     public function getPagesCount($topOnly = true)
     {
         return $this->getTable('ExhibitPage')->count(array('exhibit'=>$this->id, 'topOnly'=>$topOnly));
-    }
-
-    /**
-     * The number of sections in the exhibit
-     *
-     * @return int
-     **/
-    public function getSectionCount()
-    {
-        return $this->getChildCount();
     }
 
     /**
