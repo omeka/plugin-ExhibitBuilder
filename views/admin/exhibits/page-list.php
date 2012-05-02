@@ -25,7 +25,11 @@ jQuery('#pagetree').tree({
     data: treedata,
     dragAndDrop: true,
     autoOpen: true,
-    selectable: true
+    selectable: true,
+    onCreateLi: function(node, $li) {
+        // Add 'icon' span before title
+        $li.find('.title').before('<span><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>');
+    }
 });
 
 jQuery('#pagetree').bind('tree.move',
