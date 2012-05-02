@@ -12,70 +12,10 @@ if ($exhibit->title) {
 //<![CDATA[
     var listSorter = {};
 
-    function makeSectionListDraggable()
-    {
-        var sectionList = jQuery('.section-list');
-        var sectionListSortableOptions = {axis:'y', forcePlaceholderSize: true};
-        var sectionListOrderInputSelector = '.section-info input';
-
-        var sectionListDeleteLinksSelector = '.section-delete a';
-        var sectionListDeleteConfirmationText = <?php echo js_escape(__('Are you sure you want to delete this section?')); ?>;
-        var sectionListFormSelector = '#exhibit-metadata-form';
-        var sectionListCallback = Omeka.ExhibitBuilder.addStyling;
-        makeSortable(sectionList,
-                     sectionListSortableOptions,
-                     sectionListOrderInputSelector,
-                     sectionListDeleteLinksSelector,
-                     sectionListDeleteConfirmationText,
-                     sectionListFormSelector,
-                     sectionListCallback);
-
-        var pageListSortableOptions = {axis:'y', connectWith:'.page-list'};
-        var pageListOrderInputSelector = '.page-info input';
-        var pageListDeleteLinksSelector = '.page-delete a';
-        var pageListDeleteConfirmationText = <?php echo js_escape(__('Are you sure you want to delete this page?')); ?>;
-        var pageListFormSelector = '#exhibit-metadata-form';
-        var pageListCallback = Omeka.ExhibitBuilder.addStyling;
-
-        var pageLists = jQuery('.page-list');
-        jQuery.each(pageLists, function(index, pageList) {
-            makeSortable(jQuery(pageList),
-                         pageListSortableOptions,
-                         pageListOrderInputSelector,
-                         pageListDeleteLinksSelector,
-                         pageListDeleteConfirmationText,
-                         pageListFormSelector,
-                         pageListCallback);
-
-            // Make sure the order inputs for pages change the names to reflect their new
-            // section when moved to another section
-            jQuery(pageList).bind('sortreceive', function(event, ui) {
-                var pageItem = jQuery(ui.item);
-                var orderInput = pageItem.find(pageListOrderInputSelector);
-                var pageId = orderInput.attr('name').match(/(\d+)/g)[1];
-                var nSectionId = pageItem.closest('li.exhibit-section-item').attr('id').match(/(\d+)/g)[0];
-                var nInputName = 'Pages['+ nSectionId + ']['+ pageId  + '][order]';
-                orderInput.attr('name', nInputName);
-            });
-        });
-    }
-
     jQuery(window).load(function() {
         Omeka.ExhibitBuilder.wysiwyg();
         Omeka.ExhibitBuilder.addStyling();
 
-        makeSectionListDraggable();
-
-        // Fixes jQuery UI sortable bug in IE7, where dragging a nested sortable would
-        // also drag its container. See http://dev.jqueryui.com/ticket/4333
-        jQuery(".page-list li").hover(
-            function(){
-                jQuery(".section-list").sortable("option", "disabled", true);
-            },
-            function(){
-                jQuery(".section-list").sortable("option", "disabled", false);
-            }
-        );
     });
 //]]>
 </script>

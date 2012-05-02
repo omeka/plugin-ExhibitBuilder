@@ -14,6 +14,7 @@ require_once 'ExhibitPageTable.php';
 
 class ExhibitPage extends Omeka_Record
 {
+    public $id;
     public $parent_id; //@TODO: change this in database, and add to update scripts
     public $exhibit_id; //@TODO: change this in database, and add to update scripts
     public $layout;
@@ -87,7 +88,7 @@ class ExhibitPage extends Omeka_Record
 
     public function getChildPages()
     {
-        return $this->getTable()->findBy(array('parent'=>$this->id));
+        return $this->getTable()->findBy(array('parent'=>$this->id, 'sort_field'=>'order'));
     }
 
     public function countChildPages()
@@ -149,4 +150,31 @@ class ExhibitPage extends Omeka_Record
     {
         return $this->ExhibitPageEntry;
     }
+
+
+    /**
+     * Creates the JSON for use by tree.jquery.js http://mbraak.github.com/jqTree/#tutorial
+     *
+     */
+
+    public function toTreeJson($returnEncoded = true)
+    {
+        $node = new StdClass();
+        $node->label = $this->title;
+        $node->id = $this->id;
+        $childPages = $this->getChildPages();
+        $node->children = array();
+        foreach($childPages as $childPage) {
+            $node->children[] = $childPage->toTreeJson(false);
+        }
+        if($returnEncoded) {
+            return json_encode($node);
+        } else {
+            return $node;
+        }
+
+
+
+    }
+
 }

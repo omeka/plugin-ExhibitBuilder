@@ -451,6 +451,37 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         return false;
     }
 
+
+    public function updatePageOrderAction()
+    {
+
+        $pages = json_decode($_POST['data'], true);
+
+        try {
+            $this->updatePageChildrenOrders($pages, null);
+            $response = array('ok'=>'updated');
+        } catch(Exception $e) {
+            $response = array('error'=>$e->getMessage());
+        }
+        $this->_helper->json($pages);
+    }
+
+    private function updatePageChildrenOrders($pages, $parent_id)
+    {
+_log(print_r($pages, true));
+        foreach($pages as $index=>$page) {
+            $exPage = $this->findById($page['id'], 'ExhibitPage');
+            $exPage->parent_id = $parent_id;
+            $exPage->order = $index + 1;
+            $exPage->save();
+            if(!empty($page['children'])) {
+                $this->updatePageChildrenOrders($page['children'], $exPage->id);
+            }
+        }
+        die();
+    }
+
+
     /////END AJAX-ONLY ACTIONS
 }
 

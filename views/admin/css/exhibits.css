@@ -49,7 +49,7 @@
 /* Exhibit Sections and Pages */
 
 #reorder-instructions {
-    float:right; width: 280px; font-size:11px;color: #888;
+    font-size:11px;color: #888;
 }
 
 .page-list .layout-name {

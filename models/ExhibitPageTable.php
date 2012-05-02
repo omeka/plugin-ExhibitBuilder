@@ -18,7 +18,7 @@ class ExhibitPageTable extends Omeka_Db_Table
     {
         if(isset($params['parent'])) {
             if(is_numeric($params['parent'])) {
-                $this->filterByParentId($params['parent']);
+                $this->filterByParentId($select, $params['parent']);
             } else if(get_class($params['parent'] == 'ExhibitPage')) {
                 $parent = $params['parent'];
                 $this->filterByParentId($select, $parent->id);
