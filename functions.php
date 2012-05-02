@@ -444,10 +444,11 @@ function exhibit_builder_item_browse_sql($select, $params)
  */
 function exhibit_builder_append_to_advanced_search()
 {
+    $view = __v();
     $html = '<div class="field">'
-          . __v()->formLabel('exhibit', __('Search by Exhibit'))
+          . $view->formLabel('exhibit', __('Search by Exhibit'))
           . '<div class="inputs">'
-          . get_table_options('Exhibit', array('name' => 'exhibit'))
+          . $view->formSelect('exhibit', @$_GET['exhibit'], array(), get_table_options('Exhibit'))
           . '</div></div>';
     echo $html;
 }
