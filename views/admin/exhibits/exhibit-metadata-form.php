@@ -6,7 +6,7 @@ if ($exhibit->title) {
 }
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
-<?php echo js('listsort'); ?>
+
 
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[

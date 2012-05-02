@@ -7,13 +7,15 @@
         $treeData .= ', ';
     }
 }
-$treeData .= "]";
+$treeData .= "] ;";
 ?>
 
 <div id="pagetree"></div>
 
 <script type='text/javascript'>
 <?php echo $treeData; ?>
+
+var webRoot = "<?php echo WEB_ROOT; ?>";
 
 function handleSuccess(response, status, jqxhr ) {
     //TODO: something if status is fail!fail!fail!
@@ -30,7 +32,7 @@ jQuery('#pagetree').bind('tree.move',
     function(event) {
         data = {data : jQuery('#pagetree').tree('toJson') };
 
-        jQuery.post('http://localhost/Omeka/admin/exhibits/update-page-order', data, handleSuccess );
+        jQuery.post(webRoot + '/admin/exhibits/update-page-order', data, handleSuccess );
 });
 
 
