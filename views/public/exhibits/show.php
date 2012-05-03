@@ -1,7 +1,7 @@
 <?php head(array('title' => html_escape(exhibit('title') . ' : '. exhibit_page('title')), 'bodyid'=>'exhibit','bodyclass'=>'show')); ?>
 <div id="primary">
     <h1><?php echo link_to_exhibit(); ?></h1>
-
+<p>sho page</p>
     <div id="nav-container">
         <?php echo exhibit_builder_page_nav();?>
     </div>

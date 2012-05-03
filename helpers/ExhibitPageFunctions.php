@@ -119,7 +119,7 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
             return;
         }
     }
-    if ($exhibitPage->hasChildPages()) {
+    if ($exhibitPage->countChildPages() != 0) {
         $html = '<ul class="exhibit-page-nav">' . "\n";
         foreach ($exhibitPage->getChildPages() as $subPage) {
             switch($linkTextType) {
@@ -285,6 +285,17 @@ function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
     }
 
     set_exhibit_pages_for_loop($exhibitPage->getChildPages());
+}
+
+function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
+{
+    if(!$exhibit) {
+        $exhibit = get_current_exhibit();
+    }
+
+    set_exhibit_pages_for_loop($exhibit->TopPages);
+
+
 }
 
 /**

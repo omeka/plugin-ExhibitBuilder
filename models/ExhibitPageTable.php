@@ -79,9 +79,9 @@ class ExhibitPageTable extends Omeka_Db_Table
         $db = $this->getDb();
         $select = new Omeka_Db_Select;
         $select->from(array('e'=>$db->ExhibitPage), array('e.*'));
-        $select->where("e.slug = ?");
+        $select->where("e.slug = ?", $slug);
         $select->limit(1);
-        return $this->fetchObject($select, array($slug));
+        return $this->fetchObject($select);
     }
 
     protected function filterByParentId($select, $parentId)

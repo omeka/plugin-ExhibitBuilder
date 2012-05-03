@@ -123,27 +123,41 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $this->errorAction();
         }
 
-        $sectionSlug = $this->_getParam('section_slug');
-        $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
+        $params = $this->getRequest()->getParams();
+        unset($params['action']);
+        unset($params['controller']);
+        unset($params['module']);
+        //loop through the page slugs to make sure each one actually exists
+        //then render the last one
+        //pass all the pages into the view so the breadcrumb can be built there
+        unset($params['slug']); // don't need the exhibit slug
+        $parentPages = array();
+        $pageTable = $this->getDb()->getTable('ExhibitPage');
 
-        if ($exhibitSection) {
-            $pageSlug = $this->_getParam('page_slug');
-            $exhibitPage = $exhibitSection->getPageBySlug($pageSlug);
-            if (!$exhibitPage) {
-                if ($pageSlug == '') {
-                    $exhibitPage = $exhibitSection->getPageByOrder(1);
+        foreach($params as $level=>$slug) {
+            if(!empty($slug)) {
+                $page = $pageTable->findBySlug($slug);
+                if($page) {
+                    $parentPages[] = $page;
+                } else {
+                    $this->errorAction();
                 }
             }
-            if (!$exhibitPage) {
+        }
+        $exhibitPage = array_pop($parentPages);
+
+        //make sure each page really does have the next child page
+        for($i=0 ; $i < count($parentPages) - 2; $i++) {
+            $currPage = $parentPages[$i];
+            $nextPage = $parentPages[$i + 1];
+            if($nextPage->parent_id != $currPage->id) {
                 $this->errorAction();
             }
-        } else {
-            $this->errorAction();
         }
 
-        fire_plugin_hook('show_exhibit', $exhibit, $exhibitSection, $exhibitPage);
+        fire_plugin_hook('show_exhibit', $exhibit, $exhibitPage);
 
-        $this->renderExhibit(compact('exhibit', 'exhibitSection', 'exhibitPage'));
+        $this->renderExhibit(compact('exhibit', 'parentPages', 'exhibitPage'));
     }
 
     public function summaryAction()

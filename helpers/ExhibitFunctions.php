@@ -68,11 +68,11 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
     $exhibitPageSlug = ($exhibitPage instanceof ExhibitPage) ? $exhibitPage->slug : $exhibitPage;
 
-    //If there is no section slug available, we want to build a URL for the summary page
+    //If there is no page slug available, we want to build a URL for the summary page
     if (empty($exhibitPageSlug)) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $uri = public_uri(array('slug'=>$exhibitSlug, 'page_slug'=>$exhibitPageSlug), 'exhibitShow');
+        $uri = public_uri(array('slug'=>$exhibitSlug, 'page_slug_1'=>$exhibitPageSlug), 'exhibitShow');
     }
     return $uri;
 }
