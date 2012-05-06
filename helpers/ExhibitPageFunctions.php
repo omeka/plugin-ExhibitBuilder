@@ -121,29 +121,31 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
     }
 
     $exhibit = get_db()->getTable('Exhibit')->find($exhibitPage->exhibit_id);
+    $html = '<ul class="exhibit-page-nav">' . "\n";
+    $pagesTrail = $exhibitPage->getParentTrail();
 
-    if ($exhibitPage->countChildPages() != 0) {
-        $html = '<ul class="exhibit-page-nav">' . "\n";
-        foreach ($exhibitPage->getChildPages() as $subPage) {
-            switch($linkTextType) {
-                case 'order':
-                    $linkText = $subPage->order;
-                    break;
-                case 'title':
-                default:
-                    $linkText = $subPage->title;
-                    break;
+    $html .= '<li>';
+    $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
+    $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
 
-            }
-            $html .= '<li'. (exhibit_builder_is_current_page($exhibitPage) ? ' class="current"' : '').'>';
-            $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitPage)) . '">';
-            $html .= html_escape($linkText) .'</a></li>' . "\n";
+    foreach ($pagesTrail as $page) {
+        switch($linkTextType) {
+            case 'order':
+                $linkText = $page->order;
+                break;
+            case 'title':
+            default:
+                $linkText = $page->title;
+                break;
         }
-        $html .= '</ul>' . "\n";
-        $html = apply_filters('exhibit_builder_page_nav', $html, $linkTextType);
-        return $html;
+        $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'>';
+        $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit, $page)) . '">';
+        $html .= html_escape($linkText) .'</a></li>' . "\n";
     }
-    return false;
+    $html .= '</ul>' . "\n";
+    $html = apply_filters('exhibit_builder_page_nav', $html, $linkTextType);
+    return $html;
+
 }
 
 /**
@@ -404,24 +406,16 @@ function exhibit_builder_child_pages($exhibitPage = null)
         $exhibitPage = get_current_exhibit_page();
     }
 
+    return $exhibitPage->getChildPages();
 }
 
 function exhibit_builder_page_loop_children($exhibitPage = null)
 {
-    if(!$exhibitPage) {
-        $exhibitPage = get_current_exhibit_page();
-    }
-    if(!__v()->exhibitPageLoopHierarchy) {
-        __v()->exhibitPageLoopHierarchy = array();
-    }
-
-    array_push(__v()->exhibitPageLoopHierarchy, $exhibitPage);
-    $childPages = $exhibitPage->getChildPages();
+    $childPages = exhibit_builder_child_pages($exhibitPage);
 
     foreach($childPages as $exhibitPage) {
         exhibit_builder_render_page_summary($exhibitPage);
     }
-
 }
 
 function exhibit_builder_render_page_summary($exhibitPage = null)

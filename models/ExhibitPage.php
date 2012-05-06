@@ -103,6 +103,9 @@ class ExhibitPage extends Omeka_Record
     {
         $previous = $this->previous();
         if($previous) {
+            if($previousLastChildPage = $previous->getLastChildPage()) {
+                return $previousLastChildPage;
+            }
             return $previous;
         } else {
             $parent = $this->getParent();
@@ -135,6 +138,20 @@ class ExhibitPage extends Omeka_Record
     public function countChildPages()
     {
         return $this->getTable()->count(array('parent'=>$this->id));
+    }
+
+    public function getParentTrail()
+    {
+        $trail = array();
+        $trail[] = $this;
+        $page = $this;
+        while ($page->parent_id) {
+            $page = $page->getParent();
+            $trail[] = $page;
+        }
+        $trail = array_reverse($trail);
+        return $trail;
+
     }
 
     protected function _delete()

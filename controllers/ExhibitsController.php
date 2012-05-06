@@ -479,7 +479,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     private function updatePageChildrenOrders($pages, $parent_id)
     {
-_log(print_r($pages, true));
         foreach($pages as $index=>$page) {
             $exPage = $this->findById($page['id'], 'ExhibitPage');
             $exPage->parent_id = $parent_id;
@@ -489,7 +488,6 @@ _log(print_r($pages, true));
                 $this->updatePageChildrenOrders($page['children'], $exPage->id);
             }
         }
-        die();
     }
 
 
