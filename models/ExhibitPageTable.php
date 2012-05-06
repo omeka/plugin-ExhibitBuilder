@@ -52,7 +52,12 @@ class ExhibitPageTable extends Omeka_Db_Table
     protected function findNearby($page, $position = 'next')
     {
         $select = $this->getSelect();
-        $select->where('e.parent_id = ? ', $page->parent_id);
+        if($page->parent_id) {
+            $select->where('e.parent_id = ? ', $page->parent_id);
+        } else {
+            $select->where('e.exhibit_id = ? ', $page->exhibit_id);
+        }
+
         $select->limit(1);
 
         switch ($position) {
@@ -68,6 +73,33 @@ class ExhibitPageTable extends Omeka_Db_Table
 
             default:
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
+                break;
+        }
+
+        return $this->fetchObject($select);
+    }
+
+    public function findEndChild($page, $position = 'first')
+    {
+        $select = $this->getSelect();
+        $select->where('e.parent_id = ? ', $page->id);
+        $select->where('e.exhibit_id = ? ', $page->exhibit_id);
+
+
+        $select->limit(1);
+
+        switch ($position) {
+            case 'first':
+                $select->where('e.order = 1');
+                $select->order('e.order ASC');
+                break;
+
+            case 'last':
+                $select->order('e.order DESC');
+                break;
+
+            default:
+                throw new Exception( 'Invalid position provided to ExhibitPageTable::findEndChild()!' );
                 break;
         }
 

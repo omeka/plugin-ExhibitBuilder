@@ -11,7 +11,8 @@
     <?php exhibit_builder_render_exhibit_page(); ?>
 
     <div id="exhibit-page-navigation">
-           <?php echo exhibit_builder_link_to_previous_exhibit_page(); ?>
+        <?php echo exhibit_builder_link_to_previous_exhibit_page(); ?>
+        <?php echo exhibit_builder_link_to_parent_exhibit_page(); ?>
         <?php echo exhibit_builder_link_to_next_exhibit_page(); ?>
     </div>
 </div>

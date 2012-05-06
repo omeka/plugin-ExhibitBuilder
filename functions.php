@@ -185,6 +185,7 @@ function exhibit_builder_public_header()
         // Add the stylesheet for the layout
         echo '<link rel="stylesheet" media="screen" href="' . html_escape($layoutCssHref) . '" /> ';
     }
+    queue_css('exhibits');
 }
 
 /**

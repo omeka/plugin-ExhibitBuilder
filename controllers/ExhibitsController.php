@@ -74,15 +74,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             return $this->errorAction();
         }
 
-        $sectionSlug = $this->_getParam('section_slug');
-        $exhibitSection = $exhibit->getSectionBySlug($sectionSlug);
-
         if ($item && $exhibit->hasItem($item) ) {
 
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
 
-            return $this->renderExhibit(compact('exhibit', 'exhibitSection', 'item'), 'item');
+            return $this->renderExhibit(compact('exhibit', 'item'), 'item');
         } else {
             $this->flash(__('This item is not used within this exhibit.'));
             $this->redirect->gotoUrl('403');

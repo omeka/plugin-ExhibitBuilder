@@ -81,6 +81,61 @@ class ExhibitPage extends Omeka_Record
         return $this->getDb()->getTable('ExhibitPage')->findNext($this);
     }
 
+    public function firstChildOrNext()
+    {
+        if($firstChild = $this->getFirstChildPage()) {
+            return $firstChild;
+        } else {
+            //see if there's a next page on the same level
+            $next = $this->next();
+            if($next) {
+                if($nextFirstChildPage = $next->getFirstChildPage()) {
+                    return $nextFirstChildPage;
+                }
+                return $next;
+            }
+            //no next on same level, so bump up one level and go to next page
+            $parent = $this->getParent();
+            if(!$parent) {
+                return false;
+            }
+            $parentNext = $parent->next();
+            if($parentNext) {
+                $parentNextFirstChild = $parentNext->getFirstChildPage();
+                if($parentNextFirstChild) {
+                    return $parentNextFirstChild;
+                }
+                return $parentNext;
+            }
+            return $parent;
+        }
+    }
+
+    public function previousOrParentLastChild()
+    {
+        $previous = $this->previous();
+        if($previous) {
+            if($previousLastChildPage = $previous->getLastChildPage()) {
+                return $previousLastChildPage;
+            }
+            return $previous;
+        } else {
+            $parent = $this->getParent();
+            if(!$parent) {
+                return false;
+            }
+            $parentPrevious = $parent->previous();
+            if($parentPrevious) {
+                $parentPreviousLastChild = $parentPrevious->getLastChildPage();
+                if($parentPreviousLastChild) {
+                    return $parentPreviousLastChild;
+                }
+                return $parentPrevious;
+            }
+            return $parent;
+        }
+    }
+
     public function getParent()
     {
         return $this->getTable()->find($this->parent_id);
@@ -89,6 +144,16 @@ class ExhibitPage extends Omeka_Record
     public function getChildPages()
     {
         return $this->getTable()->findBy(array('parent'=>$this->id, 'sort_field'=>'order'));
+    }
+
+    public function getFirstChildPage()
+    {
+        return $this->getTable()->findEndChild($this, 'first');
+    }
+
+    public function getLastChildPage()
+    {
+        return $this->getTable()->findEndChild($this, 'last');
     }
 
     public function countChildPages()

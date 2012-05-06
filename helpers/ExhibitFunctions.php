@@ -102,6 +102,30 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
     return $html;
 }
 
+/**
+ * Returns a URI to the exhibit item
+ *
+ * @deprecated since 1.1 ?????????????????????????????????????????????????????????????????????????
+ * @param Item $item
+ * @param Exhibit|null $exhibit If null, will use the current exhibit.
+ * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
+ * @return string
+ **/
+function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
+{
+    if (!$exhibit) {
+        $exhibit = exhibit_builder_get_current_exhibit();
+    }
+
+    //If the exhibit has a theme associated with it
+    if (!empty($exhibit->theme)) {
+        return uri(array('slug'=>$exhibit->slug, 'item_id'=>$item->id), 'exhibitItem');
+    } else {
+        return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
+    }
+}
+
+
 
 /**
  * Returns an array of exhibits
