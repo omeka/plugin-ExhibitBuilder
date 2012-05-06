@@ -421,19 +421,23 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function deletePageAction()
     {
         $exhibitPage = $this->findById(null,'ExhibitPage');
-
-        if (!exhibit_builder_user_can_delete($exhibitSection->Exhibit)) {
+        $exhibit = $exhibitPage->getExhibit();
+        if (!exhibit_builder_user_can_delete($exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
 
         $exhibitPage->delete();
+        $this->render('page-list');
 
+        /*
+          looks like it is always by AJAX?
         if ($this->getRequest()->isXmlHttpRequest()) {
             $this->render('page-list');
         } else {
             //@TODO: what should the new redirect be?
             $this->redirect->goto('edit-section', null, null, array('id' => $exhibitSection->id) );
         }
+        */
     }
 
     public function pageListAction()

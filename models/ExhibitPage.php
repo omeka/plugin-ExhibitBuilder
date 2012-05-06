@@ -154,6 +154,11 @@ class ExhibitPage extends Omeka_Record
 
     }
 
+    public function getExhibit()
+    {
+        return $this->getTable('Exhibit')->find($this->exhibit_id);
+    }
+
     protected function _delete()
     {
         if ($this->ExhibitPageEntry) {
@@ -161,12 +166,17 @@ class ExhibitPage extends Omeka_Record
                 $ip->delete();
             }
         }
-    }
 
-    protected function afterDelete()
-    {
-        $section = $this->Section;
-        $section->reorderChildren();
+        //bump all child pages up to being children of the parent
+        $childPages = $this->getChildPages();
+        foreach($childPages as $child) {
+            if($this->parent_id) {
+                $child->parent_id = $this->parent_id;
+            } else {
+                $child->parent_id = NULL;
+            }
+            $child->save();
+        }
     }
 
     /**
