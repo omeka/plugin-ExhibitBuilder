@@ -12,8 +12,8 @@ ul.tree li.closed > ul {
     display: none;
 }
 
-ul.tree li {
-    margin-left: 0;
+ul.tree li.empty {
+    margin-left: 12px;
 }
 
 ul.tree a.toggler {

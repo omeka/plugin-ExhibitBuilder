@@ -209,7 +209,7 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
 
     // If page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous parent page, or the exhibit if at top level
-    if ($previousPage = $exhibitPage->previousOrParentLastChild()) {
+    if ($previousPage = $exhibitPage->previousOrParent()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousPage);
     }
 }

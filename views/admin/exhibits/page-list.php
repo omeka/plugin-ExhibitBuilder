@@ -26,16 +26,31 @@ jQuery('#pagetree').tree({
     dragAndDrop: true,
     autoOpen: true,
     selectable: true,
-    onCreateLi: function(node, $li) {
+    onCreateLi: function(node, li) {
+
+        if(node.children.length === 0) {
+            li.addClass('empty');
+        }
+
+
         // Add 'icon' span before title
-        $li.find('.title').before('<span><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>');
+        title = li.find('.title');
+        title.before('<span><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>');
+
+        editUrl = "<?php echo html_escape(uri('exhibits/edit-page-content/')); ?>" + node.id;
+        deleteUrl = "<?php echo html_escape(uri('exhibits/delete-page/')); ?>" + node.id;
+        actionsHTML = '<span class="right">';
+        actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="edit"><?php echo __('Edit'); ?></a></span>';
+        actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="delete-page"><?php echo __('Delete'); ?></a></span>';
+        actionsHTML += '</span>';
+        title.after(actionsHTML);
+
     }
 });
 
 jQuery('#pagetree').bind('tree.move',
     function(event) {
         data = {data : jQuery('#pagetree').tree('toJson') };
-
         jQuery.post(webRoot + '/admin/exhibits/update-page-order', data, handleSuccess );
 });
 

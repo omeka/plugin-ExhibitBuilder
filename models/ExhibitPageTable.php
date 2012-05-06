@@ -75,7 +75,6 @@ class ExhibitPageTable extends Omeka_Db_Table
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
                 break;
         }
-
         return $this->fetchObject($select);
     }
 

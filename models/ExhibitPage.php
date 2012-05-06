@@ -89,50 +89,26 @@ class ExhibitPage extends Omeka_Record
             //see if there's a next page on the same level
             $next = $this->next();
             if($next) {
-                if($nextFirstChildPage = $next->getFirstChildPage()) {
-                    return $nextFirstChildPage;
-                }
                 return $next;
             }
             //no next on same level, so bump up one level and go to next page
             $parent = $this->getParent();
-            if(!$parent) {
-                return false;
+            if($parent) {
+                return $parent->next();
             }
-            $parentNext = $parent->next();
-            if($parentNext) {
-                $parentNextFirstChild = $parentNext->getFirstChildPage();
-                if($parentNextFirstChild) {
-                    return $parentNextFirstChild;
-                }
-                return $parentNext;
-            }
-            return $parent;
         }
     }
 
-    public function previousOrParentLastChild()
+    public function previousOrParent()
     {
         $previous = $this->previous();
         if($previous) {
-            if($previousLastChildPage = $previous->getLastChildPage()) {
-                return $previousLastChildPage;
-            }
             return $previous;
         } else {
             $parent = $this->getParent();
-            if(!$parent) {
-                return false;
+            if($parent) {
+                return $parent;
             }
-            $parentPrevious = $parent->previous();
-            if($parentPrevious) {
-                $parentPreviousLastChild = $parentPrevious->getLastChildPage();
-                if($parentPreviousLastChild) {
-                    return $parentPreviousLastChild;
-                }
-                return $parentPrevious;
-            }
-            return $parent;
         }
     }
 
