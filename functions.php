@@ -130,6 +130,10 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
     if(version_compare($oldVersion, '2.0', '<')) {
         $db = get_db();
 
+        $sql = "RENAME TABLE `{$db->prefix}item_section_pages` TO `{$db->prefix}exhibit_page_entries` ";
+        $db->query($sql);
+
+
         //alter the section_pages table into revised exhibit_pages table
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NULL AFTER `id` ";
         $db->query($sql);
