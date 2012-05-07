@@ -66,13 +66,23 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
         $exhibit = exhibit_builder_get_current_exhibit();
     }
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
-    $exhibitPageSlug = ($exhibitPage instanceof ExhibitPage) ? $exhibitPage->slug : $exhibitPage;
 
     //If there is no page slug available, we want to build a URL for the summary page
-    if (empty($exhibitPageSlug)) {
+    if (empty($exhibitPage)) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $uri = public_uri(array('slug'=>$exhibitSlug, 'page_slug_1'=>$exhibitPageSlug), 'exhibitShow');
+        $pagesTrail = $exhibitPage->getParentTrail();
+        $options = array();
+        $options['slug'] = $exhibitSlug;
+        foreach($pagesTrail as $index=>$page) {
+            $adjustedIndex = $index + 1;
+            $options["page_slug_$adjustedIndex"] = $page->slug;
+        }
+        //something mysterious in the router tries to add an additional slug if it doesn't get an empty at the end
+        $unsetIndex = $adjustedIndex + 1;
+        $options["page_slug_$unsetIndex" ] = "";
+
+        $uri = public_uri($options, 'exhibitShow');
     }
     return $uri;
 }

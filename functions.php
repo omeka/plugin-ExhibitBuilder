@@ -160,7 +160,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $sectionToPage->slug = $section['slug'];
             $sectionToPage->order = $section['order'];
             $sectionToPage->forceSave();
-            $sectionIdMap[$section['id']] = $sectionToPage->id;
+            $sectionIdMap[$section['id']] = array('pageId' =>$sectionToPage->id, 'exhibitId'=>$section['exhibit_id']);
 
             //slap the section's description into a text entry for the page
             $entry = new ExhibitPageEntry();
@@ -168,13 +168,14 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $entry->order = 1;
             $entry->text = $section['description'];
             $entry->forceSave();
-
         }
 
-
-        foreach($sectionIdMap as $sectionId=>$pageId) {
-            $sql = "UPDATE `{$db->prefix}exhibit_pages` SET parent_id = $pageId WHERE section_id = $sectionId ";
-
+        //map the old section ids to the new page ids, and slap in the correct exhibit id.
+        foreach($sectionIdMap as $sectionId=>$data) {
+            $pageId = $data['pageId'];
+            $exhibitId = $data['exhibitId'];
+            //probably a more sophisticated way to do the updates, but my SQL skills aren't up to it
+            $sql = "UPDATE `{$db->prefix}exhibit_pages` SET parent_id = $pageId, exhibit_id = $exhibit_id WHERE section_id = $sectionId ";
             $db->query($sql);
         }
 

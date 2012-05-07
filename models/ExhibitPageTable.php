@@ -53,9 +53,12 @@ class ExhibitPageTable extends Omeka_Db_Table
     {
         $select = $this->getSelect();
         if($page->parent_id) {
+            _log($page->parent_id);
             $select->where('e.parent_id = ? ', $page->parent_id);
         } else {
+            _log($page->title);
             $select->where('e.exhibit_id = ? ', $page->exhibit_id);
+            $select->where('e.parent_id IS NULL');
         }
 
         $select->limit(1);
@@ -75,6 +78,7 @@ class ExhibitPageTable extends Omeka_Db_Table
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findNearby()!' );
                 break;
         }
+        _log($select);
         return $this->fetchObject($select);
     }
 

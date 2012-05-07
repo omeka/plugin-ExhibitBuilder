@@ -121,8 +121,8 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
     <fieldset>
         <p id="exhibit-builder-save-changes">
             <input id="continue" name="continue" type="submit" value="<?php echo __('Save'); ?>" /> <?php echo __('or'); ?>
-            <input id="page_form" name="page_form" type="submit" value="<?php echo __('Save and Add Another Page'); ?>" /> <?php echo __('or'); ?>
-            <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>"><?php echo __('Cancel'); ?></a>
+            <input id="page_form" name="page_form" type="submit" value="<?php echo __('Save and Add Another Page'); ?>" />
+
         </p>
     </fieldset>
     <fieldset>

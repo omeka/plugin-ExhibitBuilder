@@ -94,7 +94,11 @@ class ExhibitPage extends Omeka_Record
             //no next on same level, so bump up one level and go to next page
             $parent = $this->getParent();
             if($parent) {
-                return $parent->next();
+                _log('returning next parent');
+                $parentNext = $parent->next();
+                _log($parentNext->title);
+                _log($parent->title);
+                return $parentNext;
             }
         }
     }

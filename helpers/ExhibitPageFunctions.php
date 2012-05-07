@@ -123,7 +123,6 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
     $exhibit = get_db()->getTable('Exhibit')->find($exhibitPage->exhibit_id);
     $html = '<ul class="exhibit-page-nav">' . "\n";
     $pagesTrail = $exhibitPage->getParentTrail();
-
     $html .= '<li>';
     $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
@@ -233,7 +232,8 @@ function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = arra
 
     if($exhibitPage->parent_id) {
         $parentPage = $exhibitPage->getParent();
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $parentPage);
+        $link = exhibit_builder_link_to_exhibit($exhibit, $text, $props, $parentPage);
+        return $link;
     } else {
         return '';
     }
