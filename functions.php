@@ -96,6 +96,9 @@ function exhibit_builder_uninstall()
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
     $db->query($sql);
 
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_pages`";
+    $db->query($sql);
+
     // delete plugin options
     delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
     delete_option('exhibit_builder_sort_browse');
@@ -137,7 +140,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NOT NULL AFTER `id` ";
         $sql .= "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id` ";
 
-        $sql .= "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id`";
+        $sql .= "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id` ";
         $sql .= "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages` ";
 
         $db->query($sql);
