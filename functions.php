@@ -138,11 +138,15 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
 
         //alter the section_pages table into revised exhibit_pages table
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NOT NULL AFTER `id` ";
-        $sql .= "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id` ";
+        $db->query($sql);
 
-        $sql .= "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id` ";
+        $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id` ";
+        $db->query($sql);
+
+        $sql = "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id` ";
+        $db->query($sql);
+
         $sql .= "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages` ";
-
         $db->query($sql);
 
 
