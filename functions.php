@@ -130,12 +130,6 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
     if(version_compare($oldVersion, '2.0', '<')) {
         $db = get_db();
 
-
-        //grab all the data about sections and pages that'll need to be remapped
-        $pages = $db->getTable('SectionPage')->findAll();
-        $sections = $db->getTable('Section')->findAll();
-
-
         //alter the section_pages table into revised exhibit_pages table
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NOT NULL AFTER `id` ";
         $db->query($sql);
@@ -143,45 +137,50 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id` ";
         $db->query($sql);
 
-        $sql = "ALTER TABLE `{$db->prefix}section_pages` DROP `section_id` ";
-        $db->query($sql);
-
         $sql .= "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages` ";
         $db->query($sql);
 
 
-        //move the existing sections into top-level pages
-        $sectionPageIdMap = array();
-        foreach($sections as $section) {
-            $sectionToPage = new ExhibitPage();
-            $sectionToPage->exhibit_id = $section->exhibit_id;
-            $sectionToPage->title = $section->title;
-            $sectionToPage->slug = $section->slug;
-            $sectionToPage->order = $section->order;
-            $sectionToPage->layout = 'text';
-            $sectionToPage->save();
+        //dig up all the data about sections so I can turn them into ExhibitPages
+        $sql = "SELECT * FROM `{$db->prefix}sections` ";
+        $result = $db->query($sql);
+        $sectionData = $result->fetchAll();
 
-            //remember the map between section id and new page id to switch over the pages below
-            $sectionPageIdMap[$section->id] = $sectionToPage->id;
+        $sectionIdMap = array();
+        foreach($sectionData as $section) {
+            $sectionToPage = new ExhibitPage();
+            $sectionToPage->title = $section['title'];
+            $sectionToPage->parent_id = null;
+            $sectionToPage->exhibit_id = $section['exhibit_id'];
+            $sectionToPage->layout = 'text';
+            $sectionToPage->slug = $section['slug'];
+            $sectionToPage->order = $section['order'];
+            $sectionToPage->forceSave();
+            $sectionIdMap[$section['id']] = $sectionToPage->id;
 
             //slap the section's description into a text entry for the page
             $entry = new ExhibitPageEntry();
             $entry->page_id = $sectionToPage->id;
             $entry->order = 1;
-            $entry->text = $section->description;
-            $entry->save();
+            $entry->text = $section['description'];
+            $entry->forceSave();
+
         }
 
-        foreach($pages as $page) {
-            $section = $db->getTable('Section')->find($page->section_id);
-            $page->parent_id = $sectionPageIdMap[$section->id];
-            $page->exhibit_id = $section->exhibit_id;
-            $page->save();
+
+        foreach($sectionIdMap as $sectionId=>$pageId) {
+            $sql = "UPDATE `{$db->prefix}exhibit_pages` SET parent_id = $pageId WHERE section_id = $sectionId ";
+
+            $db->query($sql);
         }
 
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` DROP COLUMN IF EXISTS `section_id` ";
+
+        $db->query($sql);
 
         //finally kill the sections for good. Kill pussycat! Kill!
-        $sql = 'DROP TABLE `{$db->prefix}sections`';
+        $sql = "DROP TABLE `{$db->prefix}sections`";
+
         $db->query($sql);
 
     }
