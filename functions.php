@@ -174,7 +174,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $db->query($sql);
         }
 
-        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` DROP COLUMN IF EXISTS `section_id` ";
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` DROP `section_id` ";
 
         $db->query($sql);
 
