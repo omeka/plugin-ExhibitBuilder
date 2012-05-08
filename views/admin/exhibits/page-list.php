@@ -17,6 +17,26 @@ $treeData .= "] ;";
 
 var webRoot = "<?php echo WEB_ROOT; ?>";
 
+function countMaxDepth(depth, node) {
+    index = 0;
+    prevDepth = depth;
+    depth++;
+    if(node.children) {
+        node.children.forEach(function(el, index, array) {
+            depth = countMaxDepth(depth, el);
+            if(!depth) {
+                return false;
+            }
+        });
+    }
+    console.log(depth);
+    if(depth >6) {
+        alert("Can't have more than six child pages.'");
+        return false;
+    }
+    return prevDepth;
+}
+
 function handleSuccess(response, status, jqxhr ) {
     //TODO: something if status is fail!fail!fail!
 }
@@ -26,6 +46,7 @@ jQuery('#pagetree').tree({
     dragAndDrop: true,
     autoOpen: true,
     selectable: true,
+
     onCreateLi: function(node, li) {
 
         if(node.children.length === 0) {
@@ -39,7 +60,7 @@ jQuery('#pagetree').tree({
 
         editUrl = "<?php echo html_escape(uri('exhibits/edit-page-content/')); ?>" + node.id;
         deleteUrl = "<?php echo html_escape(uri('exhibits/delete-page/')); ?>" + node.id;
-        actionsHTML = '<span class="right">';
+        actionsHTML = '<span>';
         actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="edit"><?php echo __('Edit'); ?></a></span>';
         actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="delete-page"><?php echo __('Delete'); ?></a></span>';
         actionsHTML += '</span>';
@@ -51,25 +72,17 @@ jQuery('#pagetree').tree({
 jQuery('#pagetree').bind('tree.move',
     function(event) {
         data = {data : jQuery('#pagetree').tree('toJson') };
-        jQuery.post(webRoot + '/admin/exhibits/update-page-order', data, handleSuccess );
+        console.log(data.data);
+        valid = countMaxDepth(1, JSON.parse(data.data)[0]);
+        //make sure the depth never gets beyond 6 (or whatever arbitrary depth we decide on)
+
+        if(valid) {
+            jQuery.post(webRoot + '/admin/exhibits/update-page-order', data, handleSuccess );
+        }
+
 });
 
 
 </script>
-
-<p>TODO: add back in deleting the page, and editing the page content</p>
-<p>styling and the nifty icon</p>
-<span class="handle"><img src="<?php echo html_escape(img('silk-icons/page_go.png')); ?>" alt="Move" /></span>
-
-
-
-<!--
-                <span class="right">
-                    <span class="page-edit"><a href="<?php echo html_escape(uri('exhibits/edit-page-content/'.$exhibitPage->id)); ?>" class="edit"><?php echo __('Edit'); ?></a></span>
-                    <span class="page-delete"><a href="<?php echo html_escape(uri('exhibits/delete-page/'.$exhibitPage->id)); ?>" class="delete-page"><?php echo __('Delete'); ?></a></span>
-                </span>
-
-
--->
 
 <?php endif; ?>

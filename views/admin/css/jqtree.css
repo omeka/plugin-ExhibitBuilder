@@ -8,9 +8,11 @@ ul.tree ul {
     margin-left: 12px;
 }
 
+
 ul.tree li.closed > ul {
     display: none;
 }
+
 
 ul.tree li.empty {
     margin-left: 12px;
@@ -24,7 +26,10 @@ ul.tree a.toggler {
     text-indent: -9999px;
 }
 
-ul.tree span,
+ul.tree span {
+    cursor: crosshairs;
+}
+
 ul.tree a {
     cursor: pointer;
 }
