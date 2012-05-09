@@ -50,10 +50,10 @@ class Exhibit extends Omeka_Record
 
     protected function _delete()
     {
-        //Just delete the sections and the cascade will take care of the rest
-        $sections = $this->TopPages;
-        foreach ($sections as $section) {
-            $section->delete();
+        //get all the pages and delete them
+        $pages = $this->getTable()->findBy(array('exhibit_id'=>$this->id));
+        foreach($pages as $page) {
+            $page->delete();
         }
         $this->deleteTaggings();
     }

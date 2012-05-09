@@ -88,7 +88,7 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </fieldset>
     <fieldset>
     <p id="exhibit-builder-save-changes"><input type="submit" name="save_page_metadata" id="page_metadata_form" value="<?php echo __('Save Changes'); ?>"/> <?php echo __('or'); ?>
-        <a href="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-section', 'id'=>$exhibitPage->section_id))); ?>"><?php echo __('Cancel'); ?></a></p>
+        <?php echo __('Cancel'); ?></a></p>
     </fieldset>
 
 </form>

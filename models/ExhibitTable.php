@@ -131,7 +131,7 @@ class ExhibitTable extends Omeka_Db_Table
 
     protected function _getColumnPairs()
     {
-        return array('e.id', 'e.title');
+        return array('exhibits.id', 'exhibits.title');
     }
 
     /**
@@ -147,9 +147,9 @@ class ExhibitTable extends Omeka_Db_Table
 
         //Force a preview of the public collections
         if ($isPublic) {
-            $select->where('e.public = 1');
+            $select->where('exhibits.public = 1');
         } else {
-            $select->where('e.public = 0');
+            $select->where('exhibits.public = 0');
         }
     }
 
@@ -166,9 +166,9 @@ class ExhibitTable extends Omeka_Db_Table
 
         //filter items based on featured (only value of 'true' will return featured collections)
         if ($isFeatured) {
-            $select->where('e.featured = 1');
+            $select->where('exhibits.featured = 1');
         } else {
-            $select->where('e.featured = 0');
+            $select->where('exhibits.featured = 0');
         }
     }
 }

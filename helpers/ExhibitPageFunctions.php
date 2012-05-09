@@ -171,8 +171,8 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
         $props['class'] = 'next-page';
     }
 
-    // if page object exists, grab link to next exhibit page if exists. If it doesn't, grab
-    // a link to the first page on the next exhibit section, if it exists.
+    // if page object exists, grab link to the first child page if exists. If it doesn't, grab
+    // a link to the next page
     if ($nextPage = $exhibitPage->firstChildOrNext()) {
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextPage);
     } elseif ($exhibitPage->parent_id) {
@@ -306,9 +306,9 @@ function set_exhibit_pages_for_loop($exhibitPages)
 }
 
 /**
- * Sets the exhibit pages for loop by the exhibit section
+ * Sets the exhibit child pages for loop by their parent
  *
- * @param ExhibitSection|null $exhibitSection If null, it uses the current section
+ * @param ExhibitPage|null $exhibitPage If null, it uses the current page
  * @return void
  **/
 function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)

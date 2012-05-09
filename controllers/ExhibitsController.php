@@ -248,7 +248,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
         $this->view->assign(compact('exhibit', 'actionName', 'theme'));
 
-        //@duplication see ExhibitsController::processSectionForm()
         //If the form submission was invalid
         if (!$this->getRequest()->isXmlHttpRequest()) {
             $this->render('exhibit-metadata-form');
@@ -326,7 +325,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $parentId = $request->getParam('parent');
         $exhibitPage = new ExhibitPage;
         $exhibitPage->exhibit_id = $exhibitId;
-        $exhibit = $db->getTable('Exhibit')->find($exhibitId);
+        $exhibit = $exhibitPage->getExhibit();
         //Set the order for the new page
         if($parentId) {
             $exhibitPage->parent_id = $parentId;
@@ -365,14 +364,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
-        if ($success and array_key_exists('section_form', $_POST)) {
-            //Return to the section form
-            return $this->redirect->goto('edit-section', null, null, array('id'=>$exhibitSection->id));
-        } else if ($success and array_key_exists('page_metadata_form', $_POST)) {
+        if ($success and array_key_exists('page_metadata_form', $_POST)) {
            return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
         } else if (array_key_exists('page_form',$_POST)) {
-            //Forward to the addPage action (id is the section id)
-            return $this->redirect->goto('add-page', null, null, array('id'=>$exhibitPage->Section->id));
+            //Forward to the addPage action (id is the exhibit)
+            return $this->redirect->goto('add-page', null, null, array('id'=>$exhibitPage->exhibit_id));
         }
 
         $this->view->layoutName = $layoutName;
@@ -384,8 +380,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function editPageMetadataAction()
     {
         $exhibitPage = $this->findById(null,'ExhibitPage');
-        $exhibitSection = $exhibitPage->Section;
-        $exhibit = $exhibitSection->Exhibit;
+
+        $exhibit = $exhibitPage->getExhibit();
 
         if (!exhibit_builder_user_can_edit($exhibit)) {
             throw new Omeka_Controller_Exception_403;
@@ -402,7 +398,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     protected function processPageForm($exhibitPage, $actionName, $exhibit = null)
     {
-        $this->view->assign(compact('exhibit', 'exhibitSection', 'exhibitPage', 'actionName'));
+        $this->view->assign(compact('exhibit', 'exhibitPage', 'actionName'));
         if (!empty($_POST)) {
             try {
                 $success = $exhibitPage->saveForm($_POST);
@@ -414,10 +410,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
     }
 
-    /**
-     * @internal There's a lot of duplication between this and deleteSectionAction().  Is that a problem?
-     * Not anymore! Die sections! Die!
-     **/
     public function deletePageAction()
     {
         $exhibitPage = $this->findById(null,'ExhibitPage');
@@ -427,23 +419,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
 
         $exhibitPage->delete();
-        $this->render('page-list');
-
-        /*
-          looks like it is always by AJAX?
-        if ($this->getRequest()->isXmlHttpRequest()) {
-            $this->render('page-list');
-        } else {
-            //@TODO: what should the new redirect be?
-            $this->redirect->goto('edit-section', null, null, array('id' => $exhibitSection->id) );
-        }
-        */
-    }
-
-    public function pageListAction()
-    {
-        $this->view->exhibitSection = $this->findById(null, 'ExhibitSection');
-        $this->render('page-list');
+        $this->redirect->gotoUrl('exhibits/edit/' . $exhibit->id );
     }
 
     protected function findOrNew()

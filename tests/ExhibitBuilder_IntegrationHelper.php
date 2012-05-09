@@ -7,19 +7,19 @@
 class ExhibitBuilder_IntegrationHelper
 {
     const PLUGIN_NAME = 'ExhibitBuilder';
-    
+
     public function setUpPlugin()
-    {        
+    {
         $pluginHelper = new Omeka_Test_Helper_Plugin;
         $this->_addPluginHooksAndFilters($pluginHelper->pluginBroker, self::PLUGIN_NAME);
         $pluginHelper->setUp(self::PLUGIN_NAME);
     }
-        
+
     public function _addPluginHooksAndFilters($pluginBroker, $pluginName)
-    {   
+    {
         // Set the current plugin so the add_plugin_hook function works
         $pluginBroker->setCurrentPluginDirName($pluginName);
-        
+
         // Add plugin hooks
         add_plugin_hook('install', 'exhibit_builder_install');
         add_plugin_hook('uninstall', 'exhibit_builder_uninstall');
@@ -32,12 +32,12 @@ class ExhibitBuilder_IntegrationHelper
         add_plugin_hook('config', 'exhibit_builder_config');
         add_plugin_hook('initialize', 'exhibit_builder_initialize');
         add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
-        
+
         // Add plugin filters
         add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
-        add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');     
+        add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
     }
-    
+
     public function createNewExhibit($isPublic, $isFeatured, $title, $description, $credits, $slug='')
     {
         $exhibit = new Exhibit;
@@ -55,7 +55,7 @@ class ExhibitBuilder_IntegrationHelper
 
         return $exhibit;
     }
-	
+
     public function createNewExhibits($numberPublicNotFeatured = 5, $numberPublicFeatured = 5, $numberPrivateNotFeatured = 5, $numberPrivateFeatured = 5)
     {
         $exhibits = array();
@@ -74,28 +74,15 @@ class ExhibitBuilder_IntegrationHelper
 
         return $exhibits;
     }
-	
-    public function createNewExhibitSection($exhibit, $title, $description, $slug = '', $order = 1)
-    {
-        $exhibitSection = new ExhibitSection;
-        $exhibitSection->exhibit_id = $exhibit->id;
-        $exhibitSection->title = $title;
-        $exhibitSection->description = $description;
-        $exhibitSection->order = $order;
 
-        if ($slug != '') {
-            $exhibitSection->slug = $slug;
-        }
 
-        $exhibitSection->save();
-
-        return $exhibitSection;
-    }
-	
-    public function createNewExhibitPage($exhibitSection, $title, $slug = '', $order = 1, $layout = 'text')
+    public function createNewExhibitPage($exhibit, $parentPage = null, $title, $slug = '', $order = 1, $layout = 'text')
     {
         $exhibitPage = new ExhibitPage;
-        $exhibitPage->section_id = $exhibitSection->id;
+        $exhibitPage->exhibit_id = $exhibit->id;
+        if($parentPage) {
+            $exhibitPage->parent_id = $parentPage->id;
+        }
         $exhibitPage->title = $title;
         $exhibitPage->layout = $layout;
         $exhibitPage->order = $order;
@@ -108,7 +95,7 @@ class ExhibitBuilder_IntegrationHelper
 
         return $exhibitPage;
     }
-	
+
     public function createNewExhibitPageEntry($exhibitPage, $text = '', $order = 1, $item = null, $caption = '')
     {
         $exhibitPageEntry = new ExhibitPageEntry;
@@ -125,7 +112,7 @@ class ExhibitBuilder_IntegrationHelper
 
         return $exhibitPageEntry;
     }
-	
+
     public function createNewItem($isPublic = true, $title = 'Item Title', $titleIsHtml = true)
     {
         $item = insert_item(array('public' => $isPublic),

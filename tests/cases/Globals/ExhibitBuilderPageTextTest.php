@@ -5,7 +5,7 @@
 class ExhibitBuilderPageTextTest extends Omeka_Test_AppTestCase
 {
     protected $_isAdminTest = false;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -15,10 +15,7 @@ class ExhibitBuilderPageTextTest extends Omeka_Test_AppTestCase
         $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
 
-        $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug', 1);
-        $this->assertTrue($exhibitSection->exists());
-
-        $exhibitPage = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title' , 'exhibitpageslug', 1, 'text');
+        $exhibitPage = $this->helper->createNewExhibitPage($exhibit, null, 'Exhibit Page Title' , 'exhibitpageslug', 1, 'text');
         $this->assertTrue($exhibitPage->exists());
 
         $this->maxExhibitPageEntries = 7;
@@ -26,45 +23,35 @@ class ExhibitBuilderPageTextTest extends Omeka_Test_AppTestCase
             $exhibitPageEntry = $this->helper->createNewExhibitPageEntry($exhibitPage, 'Exhibit Page Entry '.$i, $i, null);
             $this->assertTrue($exhibitPageEntry->exists());
         }
-        
-        $this->dispatch('exhibits/show/exhibitslug/exhibitsectionslug');
+
+        $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
     }
 
     /**
      * Tests whether exhibit_builder_page_text() returns the correct value when the exhibit page is specified
      *
-     * @uses exhibit_builder_page_text(), get_current_exhibit_section()
+     * @uses exhibit_builder_page_text()
      */
-    public function testExhibitBuilderPageTextWhenExhibitPageIsSpecified() 
+    public function testExhibitBuilderPageTextWhenExhibitPageIsSpecified()
     {
-        $exhibitSection = get_current_exhibit_section();
-
-        $exhibitPages = $exhibitSection->getPages();
-        $this->assertEquals(1, count($exhibitPages));
-        
-        $exhibitPage = $exhibitPages[0];
+        $exhibitPage = get_current_exhibit_page();
         $this->assertTrue($exhibitPage->exists());
-        
+
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $this->assertEquals('Exhibit Page Entry '.$i, exhibit_builder_page_text($i, $exhibitPage));
         }
     }
-    
+
     /**
      * Tests whether exhibit_builder_page_text() returns the correct value when the exhibit page is not specified
      *
-     * @uses exhibit_builder_page_text(), get_current_exhibit_section(), set_current_exhibit_page
+     * @uses exhibit_builder_page_text(), set_current_exhibit_page
      */
-    public function testExhibitBuilderPageTextWhenExhibitPageIsNotSpecified() 
+    public function testExhibitBuilderPageTextWhenExhibitPageIsNotSpecified()
     {
-        $exhibitSection = get_current_exhibit_section();
-         
-        $exhibitPages = $exhibitSection->getPages();
-        $this->assertEquals(1, count($exhibitPages));
-        
-        $exhibitPage = $exhibitPages[0];
+        $exhibitPage = get_current_exhibit_page();
         $this->assertTrue($exhibitPage->exists());
-        
+
         set_current_exhibit_page($exhibitPage);
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $this->assertEquals('Exhibit Page Entry '.$i, exhibit_builder_page_text($i));

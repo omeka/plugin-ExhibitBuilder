@@ -31,7 +31,7 @@ class ExhibitPage extends Omeka_Record
             'parentIdFieldName' => 'parent_id',
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
-            'slugUniqueErrorMessage' => __('This page slug has already been used in this section.  Please modify the slug so that it is unique.')));
+            'slugUniqueErrorMessage' => __('This page slug has already been used.  Please modify the slug so that it is unique.')));
     }
 
     /**
@@ -39,7 +39,7 @@ class ExhibitPage extends Omeka_Record
      * 1) must have a layout
      * 2) Must have a title
      * 3) must be properly ordered
-     * 4) Must be associated with a section
+
      *
      * @return void
      **/
@@ -51,10 +51,6 @@ class ExhibitPage extends Omeka_Record
 
         if (!strlen($this->title)) {
             $this->addError('title', __('Exhibit pages must be given a title.'));
-        }
-
-        if (empty($this->order) or !is_numeric($this->order)) {
-            $this->addError('order', 'Exhibit page must be ordered within its section.');
         }
 
     }

@@ -11,7 +11,7 @@
 
 class ExhibitPageTable extends Omeka_Db_Table
 {
-//@TODO: update the table name. part of the upgrade script! was section_pages
+
     protected $_name = 'exhibit_pages';
 
     public function applySearchFilters($select, $params)
@@ -53,23 +53,23 @@ class ExhibitPageTable extends Omeka_Db_Table
     {
         $select = $this->getSelect();
         if($page->parent_id) {
-            $select->where('e.parent_id = ? ', $page->parent_id);
+            $select->where('exhibit_pages.parent_id = ? ', $page->parent_id);
         } else {
-            $select->where('e.exhibit_id = ? ', $page->exhibit_id);
-            $select->where('e.parent_id IS NULL');
+            $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
+            $select->where('exhibit_pages.parent_id IS NULL');
         }
 
         $select->limit(1);
 
         switch ($position) {
             case 'next':
-                $select->where('e.order > ?', (int) $page->order);
-                $select->order('e.order ASC');
+                $select->where('exhibit_pages.order > ?', (int) $page->order);
+                $select->order('exhibit_pages.order ASC');
                 break;
 
             case 'previous':
-                $select->where('e.order < ?', (int) $page->order);
-                $select->order('e.order DESC');
+                $select->where('exhibit_pages.order < ?', (int) $page->order);
+                $select->order('exhibit_pages.order DESC');
                 break;
 
             default:
@@ -82,20 +82,20 @@ class ExhibitPageTable extends Omeka_Db_Table
     public function findEndChild($page, $position = 'first')
     {
         $select = $this->getSelect();
-        $select->where('e.parent_id = ? ', $page->id);
-        $select->where('e.exhibit_id = ? ', $page->exhibit_id);
+        $select->where('exhibit_pages.parent_id = ? ', $page->id);
+        $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
 
 
         $select->limit(1);
 
         switch ($position) {
             case 'first':
-                $select->where('e.order = 1');
-                $select->order('e.order ASC');
+                $select->where('exhibit_pages.order = 1');
+                $select->order('exhibit_pages.order ASC');
                 break;
 
             case 'last':
-                $select->order('e.order DESC');
+                $select->order('exhibit_pages.order DESC');
                 break;
 
             default:
@@ -109,27 +109,26 @@ class ExhibitPageTable extends Omeka_Db_Table
     public function findBySlug($slug)
     {
         $db = $this->getDb();
-        $select = new Omeka_Db_Select;
-        $select->from(array('e'=>$db->ExhibitPage), array('e.*'));
-        $select->where("e.slug = ?", $slug);
+        $select = $this->getSelectForFindBy();
+        $select->where("exhibit_pages.slug = ?", $slug);
         $select->limit(1);
         return $this->fetchObject($select);
     }
 
     protected function filterByParentId($select, $parentId)
     {
-        $select->where('e.parent_id = ?', $parentId);
+        $select->where('exhibit_pages.parent_id = ?', $parentId);
     }
 
     protected function filterByExhibitId($select, $exhibitId)
     {
-        $select->where('e.exhibit_id = ?', $exhibitId);
+        $select->where('exhibit_pages.exhibit_id = ?', $exhibitId);
 
     }
 
     protected function filterByTopOnly($select)
     {
-        $select->where('e.parent_id IS NULL');
+        $select->where('exhibit_pages.parent_id IS NULL');
     }
 
 }

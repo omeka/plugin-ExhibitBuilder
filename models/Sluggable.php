@@ -83,13 +83,13 @@ class Sluggable extends Omeka_Record_Mixin
 
         }
 
-        //If the record is persistent, get the count of sections
+        //If the record is persistent, get the count of pages
         //with that slug that aren't this particular record
         if($this->exists()) {
             $select->where('id != ?', $this->record->id);
         }
 
-        //If there are no other sections with that particular slug, then it is unique
+        //If there are no other pages with that particular slug, then it is unique
         $count = (int) $db->fetchOne($select);
         return ($count == 0);
     }

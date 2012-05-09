@@ -90,10 +90,6 @@ li.ui-state-highlight {
     min-height:2em;
 }
 
-.page-list:empty:after {
-    content: "There are no pages in this section. Drop a page here to add one.";
-}
-
 .page-list .right {
     display:block;
     float:right;
@@ -300,12 +296,6 @@ button.cancel {
     padding:0;
     font-size:1em;
     text-indent:0;
-}
-
-#layout-form .section {
-    overflow: hidden;
-    margin:20px;
-    zoom: 1;
 }
 
 #show-or-hide-search {

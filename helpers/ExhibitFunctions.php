@@ -115,10 +115,9 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 /**
  * Returns a URI to the exhibit item
  *
- * @deprecated since 1.1 ?????????????????????????????????????????????????????????????????????????
+ * @deprecated since 1.1
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
- * @param ExhibitSection|null $exhibitSection If null, will use the current exhibit section
  * @return string
  **/
 function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
@@ -677,7 +676,7 @@ function exhibit($propertyName, $options = array(), $exhibit = null)
 }
 
 /**
-* Returns a link to an exhibit, exhibit section, or exhibit page.
+* Returns a link to an exhibit, or exhibit page.
 * @uses exhibit_builder_link_to_exhibit
 *
 * @param string|null $text The text of the link
@@ -706,10 +705,10 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
             return;
         }
     }
-    //@TODO: adjust the CSS classes for these changes. _section replaced with _top_page
+
     $html = '<ul class="exhibit-top-pages-nav">';
     foreach ($exhibit->TopPages as $exhibitPage) {
-        $html .= '<li class="exhibit-top-page' . (exhibit_builder_is_current_top_page($exhibitPage) ? ' current' : '') . '"><a class="exhibit-section-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitPage)) . '">' . html_escape($exhibitPage->title) . '</a>';
+        $html .= '<li class="exhibit-top-page' . (exhibit_builder_is_current_top_page($exhibitPage) ? ' current' : '') . '"><a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitPage)) . '">' . html_escape($exhibitPage->title) . '</a>';
         if ($showAllPages || exhibit_builder_is_current_top_page($exhibitPage)) {
             $html .= exhibit_builder_page_nav($exhibitPage);
         }

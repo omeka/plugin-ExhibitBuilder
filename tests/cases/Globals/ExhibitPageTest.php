@@ -5,7 +5,7 @@
 class ExhibitPageTest extends Omeka_Test_AppTestCase
 {
     protected $_isAdminTest = false;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -18,24 +18,22 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
      *
      * @uses exhibit_page()
      **/
-    public function testCanRetrieveCorrectExhibitPageValue() 
+    public function testCanRetrieveCorrectExhibitPageValue()
     {
         $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
-        
-        $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug', 1);
-        $this->assertTrue($exhibitSection->exists());
-            
-        $exhibitPage = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title' , 'exhibitpageslug', 1, 'text');
+
+
+        $exhibitPage = $this->helper->createNewExhibitPage($exhibit, null, 'Exhibit Page Title' , 'exhibitpageslug', 1, 'text');
         $this->assertTrue($exhibitPage->exists());
-        
+
         $maxExhibitPageEntries = 7;
         for($i = 1; $i <= $maxExhibitPageEntries; $i++) {
             $exhibitPageEntry = $this->helper->createNewExhibitPageEntry($exhibitPage, 'Exhibit Page Entry', $i, null);
             $this->assertTrue($exhibitPageEntry->exists());
         }
-        
-        $this->dispatch('exhibits/show/exhibitslug/exhibitsectionslug');
+
+        $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
 
         $exhibitPage = get_current_exhibit_page();
         $this->assertTrue($exhibitPage->exists());
@@ -53,8 +51,6 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
 
         // Exhibit Page Slug
         $this->assertEquals('exhibitpageslug', exhibit_page('Slug'));
-        
-        // Exhibit Page Section Id
-        $this->assertEquals($exhibitSection->id, exhibit_page('Section Id'));
+
     }
 }

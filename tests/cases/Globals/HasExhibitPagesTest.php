@@ -16,19 +16,16 @@ class HasExhibitPagesTest extends Omeka_Test_AppTestCase
      *
      * @uses has_exhibit_pages
      */
-    public function testHasExhibitPages() 
+    public function testHasExhibitPages()
     {
         $exhibit = $this->helper->createNewExhibit(true, false, 'Exhibit Title', 'Exhibit Description', 'Exhibit Credits', 'exhibitslug');
         $this->assertTrue($exhibit->exists());
-
-        $exhibitSection = $this->helper->createNewExhibitSection($exhibit, 'Exhibit Section Title', 'Exhibit Section Description', 'exhibitsectionslug', 1);
-        $this->assertTrue($exhibitSection->exists());
 
         $this->assertFalse(has_exhibit_pages(), 'Should not have exhibit pages!');
 
         $maxExhibitPageCount = 4;
         for($i = 1; $i <= $maxExhibitPageCount; $i++) {
-            $exhibitPage = $this->helper->createNewExhibitPage($exhibitSection, 'Exhibit Page Title' . $i , 'exhibitpageslug' . $i, $i, 'text');
+            $exhibitPage = $this->helper->createNewExhibitPage($exhibit, null, 'Exhibit Page Title' . $i , 'exhibitpageslug' . $i, $i, 'text');
             $this->assertTrue($exhibitPage->exists());
         }
 

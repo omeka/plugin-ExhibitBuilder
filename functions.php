@@ -26,18 +26,8 @@ function exhibit_builder_install()
       KEY `public` (`public`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}sections` (
-      `id` int(10) unsigned NOT NULL auto_increment,
-      `title` varchar(255) collate utf8_unicode_ci default NULL,
-      `description` text collate utf8_unicode_ci,
-      `exhibit_id` int(10) unsigned NOT NULL,
-      `order` tinyint(3) unsigned NOT NULL,
-      `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
-      PRIMARY KEY  (`id`),
-      KEY `slug` (`slug`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}items_section_pages` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_section_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `item_id` int(10) unsigned default NULL,
       `page_id` int(10) unsigned NOT NULL,
@@ -47,32 +37,16 @@ function exhibit_builder_install()
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}section_pages` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
-      `section_id` int(10) unsigned NOT NULL,
+      `exhibit_id` int(10) unsigned NOT NULL,
+      `parent_id` int(10) unsigned,
       `title` varchar(255) collate utf8_unicode_ci NOT NULL,
       `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-
-
-    // Legacy upgrade code
-    $checkIfTitleExists = $db->fetchOne("SHOW COLUMNS FROM `{$db->prefix}section_pages` LIKE 'title'");
-
-    if ($checkIfTitleExists == null) {
-        $db->query("ALTER TABLE `{$db->prefix}section_pages` ADD `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL, ADD `slug` VARCHAR( 30 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;");
-        $newSectionPages = $db->fetchAll("SELECT * FROM `{$db->prefix}section_pages`");
-
-        foreach($newSectionPages as $newPage) {
-            $pageNum = $newPage['order'];
-            $pageTitle = 'Page '. $pageNum;
-            $slug = generate_slug($pageTitle);
-            $id = $newPage['id'];
-            $db->query("UPDATE `{$db->prefix}section_pages` SET title='$pageTitle', slug='$slug' WHERE id='$id'");
-        }
-    }
 
     // Set the initial options
     set_option('exhibit_builder_use_browse_exhibits_for_homepage', '0');
@@ -89,13 +63,8 @@ function exhibit_builder_uninstall()
     $db = get_db();
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibits`";
     $db->query($sql);
-    $sql = "DROP TABLE IF EXISTS `{$db->prefix}sections`";
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_page_entries`";
     $db->query($sql);
-    $sql = "DROP TABLE IF EXISTS `{$db->prefix}items_section_pages`";
-    $db->query($sql);
-    $sql = "DROP TABLE IF EXISTS `{$db->prefix}section_pages`";
-    $db->query($sql);
-
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_pages`";
     $db->query($sql);
 
@@ -380,13 +349,6 @@ function exhibit_builder_purify_html($request, $purifier)
         // exhibit-metadata-form
         case 'add':
         case 'edit':
-
-        // section-metadata-form
-        case 'add-section':
-        case 'edit-section':
-            // The description field on both of these forms should be HTML.
-            $post['description'] = $purifier->purify($post['description']);
-            break;
 
         case 'add-page':
         case 'edit-page-metadata':
