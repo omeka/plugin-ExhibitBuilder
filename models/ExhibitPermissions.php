@@ -30,8 +30,8 @@ class ExhibitPermissions
         }
 
         if(!$hasPermission)
-        {
-            $sql->where('e.public = 1');
+        {	$db = get_db();
+            $sql->where("exhibits.public = 1");
         }
     }
 }

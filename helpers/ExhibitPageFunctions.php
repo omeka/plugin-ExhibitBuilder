@@ -134,6 +134,7 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
                 $linkText = $page->order;
                 break;
             case 'title':
+            case 'Title':
             default:
                 $linkText = $page->title;
                 break;

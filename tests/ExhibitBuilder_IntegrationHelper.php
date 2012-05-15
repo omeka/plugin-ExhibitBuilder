@@ -76,7 +76,7 @@ class ExhibitBuilder_IntegrationHelper
     }
 
 
-    public function createNewExhibitPage($exhibit, $parentPage = null, $title, $slug = '', $order = 1, $layout = 'text')
+    public function createNewExhibitPage($exhibit, $parentPage = null, $title, $slug = '', $order = 1, $layout = 'text', $parentId = null)
     {
         $exhibitPage = new ExhibitPage;
         $exhibitPage->exhibit_id = $exhibit->id;

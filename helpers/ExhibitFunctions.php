@@ -68,7 +68,7 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
 
     //If there is no page slug available, we want to build a URL for the summary page
-    if (empty($exhibitPage)) {
+    if (!$exhibitPage) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
         $pagesTrail = $exhibitPage->getAncestors();

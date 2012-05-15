@@ -35,11 +35,11 @@ class ExhibitTable extends Omeka_Db_Table
                 case 'sort':
                     switch($paramValue) {
                         case 'alpha':
-                            $select->order("e.title ASC");
+                            $select->order("exhibits.title ASC");
                             break;
 
                         case 'recent':
-                            $select->order("e.id DESC");
+                            $select->order("exhibits.id DESC");
                             break;
                     }
                     break;
@@ -61,8 +61,8 @@ class ExhibitTable extends Omeka_Db_Table
     {
         $db = $this->getDb();
         $select = new Omeka_Db_Select;
-        $select->from(array('e'=>$db->Exhibit), array('e.*'));
-        $select->where("e.slug = ?");
+        $select->from(array('exhibits'=>$db->Exhibit), array('exhibits.*'));
+        $select->where("exhibits.slug = ?");
         $select->limit(1);
         new ExhibitPermissions($select);
         return $this->fetchObject($select, array($slug));
@@ -78,7 +78,7 @@ class ExhibitTable extends Omeka_Db_Table
         $db = $this->getDb();
 
         $select = new Omeka_Db_Select;
-        $select->from(array('e'=>$db->Exhibit), "COUNT(DISTINCT(e.id))");
+        $select->from(array('exhibits'=>$db->Exhibit), "COUNT(DISTINCT(exhibits.id))");
         new ExhibitPermissions($select);
 
         $this->applySearchFilters($select, $params);
@@ -91,8 +91,8 @@ class ExhibitTable extends Omeka_Db_Table
         $db = $this->getDb();
 
         $select = new Omeka_Db_Select;
-        $select->from(array('e'=>$db->Exhibit), array('e.*'));
-        $select->where("e.id = ?");
+        $select->from(array('exhibits'=>$db->Exhibit), array('exhibits.*'));
+        $select->where("exhibits.id = ?");
 
         new ExhibitPermissions($select);
 

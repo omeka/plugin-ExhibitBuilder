@@ -16,12 +16,14 @@ class ExhibitBuilderPageNavTest extends Omeka_Test_AppTestCase
         $this->assertTrue($this->exhibit->exists());
 
         $maxPageCount = 4;
+        $parentId = null;
         for($i = 1; $i <= $maxPageCount; $i++) {
-            $exhibitPage = $this->helper->createNewExhibitPage($this->exhibit, null, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, $i, 'text');
+            $exhibitPage = $this->helper->createNewExhibitPage($this->exhibit, null, 'Exhibit Page Title ' . $i, 'exhibitpageslug' . $i, 1, 'text', $parentId);
             $this->assertTrue($exhibitPage->exists());
+            $parentId = $exhibitPage->id;
         }
 
-        $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug/exhibitpageslug2');
+        $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug1/exhibitpageslug2');
 
         $this->basePageUrl = public_uri('exhibits/show/exhibitslug/exhibitpageslug1/exhibitpageslug2');
     }
@@ -39,19 +41,19 @@ class ExhibitBuilderPageNavTest extends Omeka_Test_AppTestCase
         $html .= '<ul class="exhibit-page-nav">' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '1' . '">Exhibit Page Title 1</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl  . '">Exhibit Page Title 1</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li class="current">';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '2' . '">Exhibit Page Title 2</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl  . '">Exhibit Page Title 2</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '3' . '">Exhibit Page Title 3</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl  . '">Exhibit Page Title 3</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '4' . '">Exhibit Page Title 4</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '">Exhibit Page Title 4</a>';
         $html .= '</li>' . "\n";
 
         $html .= '</ul>' . "\n";
@@ -67,19 +69,19 @@ class ExhibitBuilderPageNavTest extends Omeka_Test_AppTestCase
         $html .= '<ul class="exhibit-page-nav">' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '1' . '">1</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '">1</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li class="current">';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '2' . '">2</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '">2</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '3' . '">3</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '">3</a>';
         $html .= '</li>' . "\n";
 
         $html .= '<li>';
-        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '4' . '">4</a>';
+        $html .= '<a class="exhibit-page-title" href="' . $this->basePageUrl . '">4</a>';
         $html .= '</li>' . "\n";
 
         $html .= '</ul>' . "\n";

@@ -27,7 +27,7 @@ function exhibit_builder_install()
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_section_pages` (
+    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_entries` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `item_id` int(10) unsigned default NULL,
       `page_id` int(10) unsigned NOT NULL,
