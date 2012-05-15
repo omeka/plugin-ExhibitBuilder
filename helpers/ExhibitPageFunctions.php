@@ -122,7 +122,8 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
 
     $exhibit = get_db()->getTable('Exhibit')->find($exhibitPage->exhibit_id);
     $html = '<ul class="exhibit-page-nav">' . "\n";
-    $pagesTrail = $exhibitPage->getParentTrail();
+    $pagesTrail = $exhibitPage->getAncestors();
+    $pagesTrail[] = $exhibitPage;
     $html .= '<li>';
     $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
@@ -215,6 +216,15 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     }
 }
 
+/**
+ * Returns a link to the parent exhibit page
+ *
+ * @param string $text The label for the previous page link
+ * @param array $props
+ * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
+ * @return string
+ *
+ */
 function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = array(), $exhibitPage = null)
 {
     if ($text === null) {
@@ -400,6 +410,14 @@ function exhibit_page($propertyName, $options = array(), $exhibitPage = null)
     }
 }
 
+/**
+ * Return a page's child pages
+ * @since 2.0
+ * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page
+ * @return array
+ *
+ */
+
 function exhibit_builder_child_pages($exhibitPage = null)
 {
     if(!$exhibitPage) {
@@ -408,6 +426,13 @@ function exhibit_builder_child_pages($exhibitPage = null)
 
     return $exhibitPage->getChildPages();
 }
+
+/**
+ * Loops through and renders a page's child pages
+ *
+ * @since 2.0
+ * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page
+ */
 
 function exhibit_builder_page_loop_children($exhibitPage = null)
 {
@@ -418,6 +443,9 @@ function exhibit_builder_page_loop_children($exhibitPage = null)
     }
 }
 
+/**
+ * Renders a page's summary info according to the page-summary.php template
+ */
 function exhibit_builder_render_page_summary($exhibitPage = null)
 {
     if(!$exhibitPage) {

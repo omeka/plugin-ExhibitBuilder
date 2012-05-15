@@ -71,7 +71,8 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
     if (empty($exhibitPage)) {
         $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
-        $pagesTrail = $exhibitPage->getParentTrail();
+        $pagesTrail = $exhibitPage->getAncestors();
+        $pagesTrail[] = $exhibitPage;
         $options = array();
         $options['slug'] = $exhibitSlug;
         foreach($pagesTrail as $index=>$page) {

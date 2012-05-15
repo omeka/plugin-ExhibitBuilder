@@ -34,6 +34,10 @@ class ExhibitPageTable extends Omeka_Db_Table
             }
         }
 
+        if(isset($params['order'])) {
+            $this->filterByOrder($select, $params['order']);
+        }
+
         if(isset($params['topOnly'])) {
             $this->filterByTopOnly($select);
         }
@@ -108,11 +112,23 @@ class ExhibitPageTable extends Omeka_Db_Table
 
     public function findBySlug($slug)
     {
-        $db = $this->getDb();
         $select = $this->getSelectForFindBy();
         $select->where("exhibit_pages.slug = ?", $slug);
         $select->limit(1);
         return $this->fetchObject($select);
+    }
+
+    public function findSiblingsAfter($parent_id, $order)
+    {
+        $select = $this->getSelect();
+        if($parent_id) {
+            $select->where('exhibit_pages.parent_id = ? ', $parent_id);
+        } else {
+            $select->where('exhibit_pages.parent_id IS NULL');
+        }
+
+        $select->where('exhibit_pages.order > ? ', $order);
+        return $this->fetchObjects($select);
     }
 
     protected function filterByParentId($select, $parentId)
@@ -129,6 +145,11 @@ class ExhibitPageTable extends Omeka_Db_Table
     protected function filterByTopOnly($select)
     {
         $select->where('exhibit_pages.parent_id IS NULL');
+    }
+
+    protected function filterByOrder($select, $order)
+    {
+        $select->where('exhibit_pages.order = ? ', $order);
     }
 
 }

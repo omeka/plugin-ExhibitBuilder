@@ -1,5 +1,21 @@
 <?php head(array('title' => html_escape(exhibit('title') . ' : '. exhibit_page('title')), 'bodyid'=>'exhibit','bodyclass'=>'show')); ?>
 <div id="primary">
+
+<?php
+
+$request = Omeka_Context::getInstance()->getFrontController()->getRequest();
+$exhibit_slug = $request->getParam('slug');
+$section_slug = $request->getParam('section_slug');
+$page_slug = $request->getParam('page_slug');
+
+echo $exhibit_slug;
+echo $section_slug;
+echo $page_slug;
+
+
+?>
+
+
     <h1><?php echo link_to_exhibit(); ?></h1>
     <div id="nav-container">
         <?php echo exhibit_builder_page_nav();?>

@@ -320,22 +320,26 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $db = get_db();
         $request = $this->getRequest();
-        $exhibitId = $request->getParam('id');
+        $exhibitId = $request->getParam('exhibit');
         //check if a parent page is coming in
-        $parentId = $request->getParam('parent');
+        $previousPageId = $request->getParam('previous');
         $exhibitPage = new ExhibitPage;
         $exhibitPage->exhibit_id = $exhibitId;
         $exhibit = $exhibitPage->getExhibit();
+
         //Set the order for the new page
-        if($parentId) {
-            $exhibitPage->parent_id = $parentId;
-            $parent = $db->getTable('ExhibitPage')->find($parentId);
-            $childCount = $parent->countChildPages();
+
+        if($previousPageId) {
+            //set the order to be right after the previous one. Page's beforeSave method will bump up later page orders as needed
+            $previousPage = $db->getTable('ExhibitPage')->find($previousPageId);
+            $exhibitPage->parent_id = $previousPage->parent_id;
+            $exhibitPage->order = $previousPage->order + 1;
         } else {
             $childCount = $exhibit->countTopPages();
+            $exhibitPage->order = $childCount +1;
         }
 
-        $exhibitPage->order = $childCount +1;
+
 
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
@@ -368,7 +372,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
            return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
         } else if (array_key_exists('page_form',$_POST)) {
             //Forward to the addPage action (id is the exhibit)
-            return $this->redirect->goto('add-page', null, null, array('id'=>$exhibitPage->exhibit_id));
+            return $this->redirect->goto('add-page', null, null, array('exhibit'=>$exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
         }
 
         $this->view->layoutName = $layoutName;

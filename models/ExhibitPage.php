@@ -55,6 +55,23 @@ class ExhibitPage extends Omeka_Record
 
     }
 
+    /**
+     * Check if we're trying to save a page on top of a page with the same order and parent.
+     * If so, bump later siblings up in order
+     */
+
+    protected function beforeSave()
+    {
+        $table = $this->getTable();
+        if($table->count(array('order'=>$this->order, 'parent'=>$this->parent_id)) != 0) {
+            $laterSiblings = $table->findSiblingsAfter($this->parent_id, $this->order - 1 );
+            foreach($laterSiblings as $sibling) {
+                $sibling->order = $sibling->order + 1;
+                $sibling->save();
+            }
+        }
+    }
+
     protected function beforeSaveForm($post)
     {
         //Whether or not the exhibit is featured
@@ -137,17 +154,22 @@ class ExhibitPage extends Omeka_Record
         return $this->getTable()->count(array('parent'=>$this->id));
     }
 
-    public function getParentTrail()
+    /**
+     * Get the ancestors of the page
+     *
+     * @return array
+     */
+
+    public function getAncestors()
     {
-        $trail = array();
-        $trail[] = $this;
+        $ancestors = array();
         $page = $this;
         while ($page->parent_id) {
             $page = $page->getParent();
-            $trail[] = $page;
+            $ancestors[] = $page;
         }
-        $trail = array_reverse($trail);
-        return $trail;
+        $ancestors = array_reverse($ancestors);
+        return $ancestors;
 
     }
 
@@ -219,7 +241,8 @@ class ExhibitPage extends Omeka_Record
 
     /**
      * Creates the JSON for use by tree.jquery.js http://mbraak.github.com/jqTree/#tutorial
-     *
+     * @param bool $returnEncoded
+     * @return mixed string JSON or StdClass Object
      */
 
     public function toTreeJson($returnEncoded = true)
