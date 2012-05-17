@@ -30,8 +30,8 @@ function countMaxDepth(depth, node) {
         });
     }
     console.log(depth);
-    if(depth >6) {
-        alert("Can't have more than six child pages.'");
+    if(depth >3) {
+        alert("Can't have more than three child pages.'");
         return false;
     }
     return prevDepth;
