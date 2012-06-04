@@ -53,14 +53,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         if (!$exhibitSlug) {
             $exhibitSlug = $this->_getParam('slug');
         }
-        $exhibit = $this->getTable('Exhibit')->findBySlug($exhibitSlug);
+        $exhibit = $this->_helper->db->getTable()->findBySlug($exhibitSlug);
         return $exhibit;
     }
 
     public function tagsAction()
     {
         $params = array_merge($this->_getAllParams(), array('type'=>'Exhibit'));
-        $tags = $this->getTable('Tag')->findBy($params);
+        $tags = $this->_helper->db->getTable('Tag')->findBy($params);
         $this->view->assign(compact('tags'));
     }
 
@@ -108,7 +108,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $itemId = (int)$this->_getParam('item_id');
         $orderOnForm = (int)$this->_getParam('order_on_form');
-        $item = get_db()->getTable('Item')->find($itemId);
+        $item = $this->_helper->db->getTable('Item')->find($itemId);
         $this->view->item = $item;
         $this->view->orderOnForm = $orderOnForm;
     }
@@ -129,7 +129,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         //pass all the pages into the view so the breadcrumb can be built there
         unset($params['slug']); // don't need the exhibit slug
         $parentPages = array();
-        $pageTable = $this->getDb()->getTable('ExhibitPage');
+        $pageTable = $this->_helper->db->getTable('ExhibitPage');
 
         foreach($params as $level=>$slug) {
             if(!empty($slug)) {
@@ -318,7 +318,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
      **/
     public function addPageAction()
     {
-        $db = get_db();
+        $db = $this->_helper->db->getDb();
         $request = $this->getRequest();
         $exhibitId = $request->getParam('exhibit');
         //check if a parent page is coming in
@@ -352,7 +352,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function editPageContentAction()
     {
-        $db = get_db();
+        $db = $this->_helper->db->getDb();
         $exhibitPage = $this->findById(null,'ExhibitPage');
         $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
 
