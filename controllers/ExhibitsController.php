@@ -71,7 +71,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
         $exhibit = $this->_findByExhibitSlug();
         if (!$exhibit) {
-            return $this->errorAction();
+            throw new Omeka_Controller_Exception_404;
         }
 
         if ($item && $exhibit->hasItem($item) ) {
@@ -117,7 +117,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $exhibit = $this->_findByExhibitSlug();
         if (!$exhibit) {
-            $this->errorAction();
+            throw new Omeka_Controller_Exception_404;
         }
 
         $params = $this->getRequest()->getParams();
@@ -137,7 +137,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 if($page) {
                     $parentPages[] = $page;
                 } else {
-                    $this->errorAction();
+                    throw new Omeka_Controller_Exception_404;
                 }
             }
         }
@@ -148,7 +148,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
             $currPage = $parentPages[$i];
             $nextPage = $parentPages[$i + 1];
             if($nextPage->parent_id != $currPage->id) {
-                $this->errorAction();
+                throw new Omeka_Controller_Exception_404;
             }
         }
 
@@ -161,7 +161,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $exhibit = $this->_findByExhibitSlug();
         if (!$exhibit) {
-            $this->errorAction();
+            throw new Omeka_Controller_Exception_404;
         }
 
         fire_plugin_hook('show_exhibit', $exhibit);
