@@ -139,13 +139,13 @@ class Exhibit extends Omeka_Record
     public function getTopPages()
     {
         $db = $this->getDb();
-        return $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id, 'topOnly'=>true, 'sort_field'=>'order'));
+        return $this->getTable('ExhibitPage')->findBy(array('exhibit'=>$this->id, 'topOnly'=>true, 'sort_field'=>'order'));
     }
 
     public function countTopPages()
     {
         $db = $this->getDb();
-        return $this->getTable('ExhibitPage')->count(array('exhibit_id'=>$this->id, 'topOnly'=>true));
+        return $this->getTable('ExhibitPage')->count(array('exhibit'=>$this->id, 'topOnly'=>true));
     }
 
 

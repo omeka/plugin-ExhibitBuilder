@@ -19,7 +19,7 @@ class ExhibitPageTable extends Omeka_Db_Table
         if(isset($params['parent'])) {
             if(is_numeric($params['parent'])) {
                 $this->filterByParentId($select, $params['parent']);
-            } else if(get_class($params['parent'] == 'ExhibitPage')) {
+            } else if($params['parent'] instanceof ExhibitPage) {
                 $parent = $params['parent'];
                 $this->filterByParentId($select, $parent->id);
             }
@@ -27,8 +27,8 @@ class ExhibitPageTable extends Omeka_Db_Table
 
         if(isset($params['exhibit'])) {
             if(is_numeric($params['exhibit'])) {
-                $this->filterByExhibitId($params['exhibit']);
-            } else if(get_class($params['exhibit'] == 'Exhibit')) {
+                $this->filterByExhibitId($select, $params['exhibit']);
+            } else if($params['exhibit'] instanceof Exhibit) {
                 $exhibit = $params['exhibit'];
                 $this->filterByExhibitId($select, $exhibit->id);
             }
@@ -139,7 +139,6 @@ class ExhibitPageTable extends Omeka_Db_Table
     protected function filterByExhibitId($select, $exhibitId)
     {
         $select->where('exhibit_pages.exhibit_id = ?', $exhibitId);
-
     }
 
     protected function filterByTopOnly($select)
