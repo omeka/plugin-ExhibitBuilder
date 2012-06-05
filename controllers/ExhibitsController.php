@@ -81,8 +81,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
             return $this->renderExhibit(compact('exhibit', 'item'), 'item');
         } else {
-            $this->flash(__('This item is not used within this exhibit.'));
-            $this->redirect->gotoUrl('403');
+            $this->_helper->flashMessenger(__('This item is not used within this exhibit.'), 'error');
+            throw new Omeka_Controller_Exception_403;
         }
     }
 
@@ -228,16 +228,16 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 if (array_key_exists('add_page',$_POST)) {
                     //forward to addPage & unset the POST vars
                     unset($_POST);
-                    $this->redirect->goto('add-page', null, null, array('id'=>$exhibit->id) );
+                    $this->_helper->redirector('add-page', null, null, array('id'=>$exhibit->id) );
                     return;
                 } else if (array_key_exists('save_exhibit', $_POST)) {
-                    $this->redirect->goto('edit', null, null, array('id' => $exhibit->id));
+                    $this->_helper->redirector('edit', null, null, array('id' => $exhibit->id));
                 }
             }
         } catch (Omeka_Validator_Exception $e) {
-            $this->flashValidationErrors($e);
+            $this->_helper->flashMessenger($e);
         } catch (Exception $e) {
-            $this->flash($e->getMessage());
+            $this->_helper->flashMessenger($e->getMessage());
         }
 
         if ($themeName = $exhibit->theme) {
@@ -261,8 +261,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
         // Abort if no specific theme is selected.
         if ($themeName == '') {
-            $this->flashError(__('You must specifically select a theme in order to configure it.'));
-            $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
+            $this->_helper->flashMessenger(__('You must specifically select a theme in order to configure it.'), 'error');
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             return;
         }
 
@@ -301,8 +301,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 $exhibit->setThemeOptions($newOptions);
                 $exhibit->save();
 
-                $this->flashSuccess(__('The theme settings were successfully saved!'));
-                $this->redirect->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
+                $this->_helper->_flashMessenger(__('The theme settings were successfully saved!'), 'success');
+                $this->_helper->redirector->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
             }
         }
 
@@ -343,8 +343,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
-            $this->flashSuccess("Changes to the exhibit's page were successfully saved!");
-            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$exhibitPage->id));
+            $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
+            return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
         $this->render('page-metadata-form');
@@ -369,10 +369,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
         if ($success and array_key_exists('page_metadata_form', $_POST)) {
-           return $this->redirect->goto('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
+           return $this->_helper->redirector('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
         } else if (array_key_exists('page_form',$_POST)) {
             //Forward to the addPage action (id is the exhibit)
-            return $this->redirect->goto('add-page', null, null, array('exhibit'=>$exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
+            return $this->_helper->redirector('add-page', null, null, array('exhibit'=>$exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
         }
 
         $this->view->layoutName = $layoutName;
@@ -394,7 +394,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
         if ($success) {
-            return $this->redirect->goto('edit-page-content', null, null, array('id'=>$exhibitPage->id));
+            return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
         $this->render('page-metadata-form');
@@ -408,7 +408,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
                 $success = $exhibitPage->saveForm($_POST);
                 return true;
             } catch (Exception $e) {
-                $this->flashError($e->getMessage());
+                $this->_helper->flashMessenger($e->getMessage(), 'error');
                 return false;
             }
         }
@@ -423,7 +423,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
 
         $exhibitPage->delete();
-        $this->redirect->gotoUrl('exhibits/edit/' . $exhibit->id );
+        $this->_helper->redirector->gotoUrl('exhibits/edit/' . $exhibit->id );
     }
 
     protected function findOrNew()
