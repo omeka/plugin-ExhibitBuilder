@@ -99,7 +99,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
     if(version_compare($oldVersion, '2.0', '<')) {
         $db = get_db();
 
-        $sql = "RENAME TABLE `{$db->prefix}item_section_pages` TO `{$db->prefix}exhibit_page_entries` ";
+        $sql = "RENAME TABLE `{$db->prefix}items_section_pages` TO `{$db->prefix}exhibit_page_entries` ";
         $db->query($sql);
 
 
@@ -112,7 +112,6 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
 
         $sql = "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages` ";
         $db->query($sql);
-
 
         //dig up all the data about sections so I can turn them into ExhibitPages
         $sql = "SELECT * FROM `{$db->prefix}sections` ";
@@ -139,12 +138,13 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $entry->forceSave();
         }
 
+
         //map the old section ids to the new page ids, and slap in the correct exhibit id.
         foreach($sectionIdMap as $sectionId=>$data) {
             $pageId = $data['pageId'];
             $exhibitId = $data['exhibitId'];
             //probably a more sophisticated way to do the updates, but my SQL skills aren't up to it
-            $sql = "UPDATE `{$db->prefix}exhibit_pages` SET parent_id = $pageId, exhibit_id = $exhibit_id WHERE section_id = $sectionId ";
+            $sql = "UPDATE `{$db->prefix}exhibit_pages` SET parent_id = $pageId, exhibit_id = $exhibitId WHERE section_id = $sectionId ";
             $db->query($sql);
         }
 
