@@ -4,7 +4,7 @@ head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-ite
 ?>
 <div id="primary">
 
-	<h1 class="item-title"><?php echo item('Dublin Core', 'Title'); ?></h1>
+	<h1 class="item-title"><?php echo item(array('Dublin Core', 'Title')); ?></h1>
 	
 	<?php echo show_item_metadata(); ?>
 	
