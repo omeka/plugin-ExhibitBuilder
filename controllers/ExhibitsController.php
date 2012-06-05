@@ -67,7 +67,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function showitemAction()
     {
         $itemId = $this->_getParam('item_id');
-        $item = $this->findById($itemId, 'Item');
+        $item = $this->_helper->db->findById($itemId, 'Item');
 
         $exhibit = $this->_findByExhibitSlug();
         if (!$exhibit) {
@@ -197,7 +197,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function editAction()
     {
-        $exhibit = $this->findById();
+        $exhibit = $this->_helper->db->findById();
         if (!exhibit_builder_user_can_edit($exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
@@ -207,7 +207,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function deleteAction()
     {
-        $exhibit = $this->findById();
+        $exhibit = $this->_helper->db->findById();
         if (!exhibit_builder_user_can_delete($exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
@@ -256,7 +256,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function themeConfigAction()
     {
-        $exhibit = $this->findById();
+        $exhibit = $this->_helper->db->findById();
         $themeName = (string)$exhibit->theme;
 
         // Abort if no specific theme is selected.
@@ -353,7 +353,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     public function editPageContentAction()
     {
         $db = $this->_helper->db->getDb();
-        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
         $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
 
 
@@ -383,7 +383,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function editPageMetadataAction()
     {
-        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
 
         $exhibit = $exhibitPage->getExhibit();
 
@@ -416,7 +416,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
 
     public function deletePageAction()
     {
-        $exhibitPage = $this->findById(null,'ExhibitPage');
+        $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
         $exhibit = $exhibitPage->getExhibit();
         if (!exhibit_builder_user_can_delete($exhibit)) {
             throw new Omeka_Controller_Exception_403;
@@ -429,7 +429,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     protected function findOrNew()
     {
         try {
-            $exhibit = $this->findById();
+            $exhibit = $this->_helper->db->findById();
         } catch (Exception $e) {
             $exhibit = new Exhibit;
         }
@@ -464,7 +464,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     private function updatePageChildrenOrders($pages, $parent_id)
     {
         foreach($pages as $index=>$page) {
-            $exPage = $this->findById($page['id'], 'ExhibitPage');
+            $exPage = $this->_helper->db->findById($page['id'], 'ExhibitPage');
             $exPage->parent_id = $parent_id;
             $exPage->order = $index + 1;
             $exPage->save();
