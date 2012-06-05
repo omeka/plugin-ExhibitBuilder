@@ -320,7 +320,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
     {
         $db = $this->_helper->db->getDb();
         $request = $this->getRequest();
-        $exhibitId = $request->getParam('exhibit');
+        $exhibitId = $request->getParam('id');
         //check if a parent page is coming in
         $previousPageId = $request->getParam('previous');
         $exhibitPage = new ExhibitPage;
