@@ -24,7 +24,7 @@ class Mixin_Order extends Omeka_Record_Mixin
     public function loadOrderedChildren()
     {
         $id = (int) $this->_record->id;
-        $db = $this->getDb();
+        $db = $this->_record->getDb();
         $target = $this->childClass;
 
         $sql = "
@@ -33,7 +33,7 @@ class Mixin_Order extends Omeka_Record_Mixin
         WHERE s.{$this->childFk} = $id
         ORDER BY s.`order` ASC";
 
-        $children = $this->getTable($target)->fetchObjects($sql);
+        $children = $db->getTable($target)->fetchObjects($sql);
 
         //Now index them according to their order
         $indexed = array();

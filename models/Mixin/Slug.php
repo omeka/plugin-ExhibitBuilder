@@ -69,7 +69,7 @@ class Mixin_Slug extends Omeka_Record_Mixin
 
     public function slugIsUnique($slug)
     {
-        $db = $this->getDb();
+        $db = $this->_record->getDb();
 
         $select = $this->_record->getTable()->getSelect();
         $select->reset(Zend_Db_Select::COLUMNS)->from(array(), 'COUNT(DISTINCT(id))');
@@ -85,7 +85,7 @@ class Mixin_Slug extends Omeka_Record_Mixin
 
         //If the record is persistent, get the count of pages
         //with that slug that aren't this particular record
-        if($this->exists()) {
+        if($this->_record->exists()) {
             $select->where('id != ?', $this->_record->id);
         }
 
