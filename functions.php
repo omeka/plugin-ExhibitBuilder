@@ -427,26 +427,20 @@ function exhibit_builder_item_browse_sql($select, $params)
 
     if ($exhibit) {
         $select->joinInner(
-            array('isp' => $db->ExhibitPageEntry),
-            'isp.item_id = items.id',
+            array('epe' => $db->ExhibitPageEntry),
+            'epe.item_id = items.id',
             array()
             );
 
         $select->joinInner(
-            array('sp' => $db->ExhibitPage),
-            'sp.id = isp.page_id',
-            array()
-            );
-
-        $select->joinInner(
-            array('s' => $db->ExhibitSection),
-            's.id = sp.section_id',
+            array('ep' => $db->ExhibitPage),
+            'ep.id = epe.page_id',
             array()
             );
 
         $select->joinInner(
             array('e' => $db->Exhibit),
-            'e.id = s.exhibit_id',
+            'e.id = ep.exhibit_id',
             array()
             );
 
