@@ -21,7 +21,7 @@ class ExhibitTable extends Omeka_Db_Table
                 case 'tag':
                 case 'tags':
                     $tags = explode(',', $paramValue);
-                    $select->joinInner(array('tg'=>$db->Taggings), 'tg.relation_id = e.id', array());
+                    $select->joinInner(array('tg'=>$db->Taggings), 'tg.relation_id = exhibits.id', array());
                     $select->joinInner(array('t'=>$db->Tag), "t.id = tg.tag_id", array());
                     foreach ($tags as $k => $tag) {
                         $select->where('t.name = ?', trim($tag));

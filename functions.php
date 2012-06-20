@@ -428,7 +428,7 @@ function exhibit_builder_item_browse_sql($select, $params)
     if ($exhibit) {
         $select->joinInner(
             array('isp' => $db->ExhibitPageEntry),
-            'isp.item_id = i.id',
+            'isp.item_id = items.id',
             array()
             );
 
