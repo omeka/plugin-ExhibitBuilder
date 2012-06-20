@@ -26,8 +26,8 @@ class ExhibitPage extends Omeka_Record
 
     public function construct()
     {
-        $this->_mixins[] = new Orderable($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
-        $this->_mixins[] = new Sluggable($this, array(
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
+        $this->_mixins[] = new Mixin_Slug($this, array(
             'parentIdFieldName' => 'parent_id',
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),

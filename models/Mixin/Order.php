@@ -2,21 +2,20 @@
 /**
  * @copyright Roy Rosenzweig Center for History and New Media, 2007-2010
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
+ * @package ExhibitBuilder
  * @access private
  */
 
 /**
- * @package Omeka
+ * @package ExhibitBuilder
  * @subpackage Mixins
- * @author CHNM
  * @copyright Roy Rosenzweig Center for History and New Media, 2007-2010
  */
-class Orderable extends Omeka_Record_Mixin
+class Mixin_Order extends Omeka_Record_Mixin
 {
     public function __construct($record, $childClass, $childFk, $childPluralized)
     {
-        $this->record = $record;
+        parent::__construct($record);
         $this->childClass = $childClass;
         $this->childFk = $childFk;
         $this->pluralized = $childPluralized;
@@ -24,7 +23,7 @@ class Orderable extends Omeka_Record_Mixin
 
     public function loadOrderedChildren()
     {
-        $id = (int) $this->record->id;
+        $id = (int) $this->_record->id;
         $db = $this->getDb();
         $target = $this->childClass;
 
@@ -82,7 +81,7 @@ class Orderable extends Omeka_Record_Mixin
         $target = $this->childClass;
 
         $table = $db->$target;
-        $parentId = $this->record->id;
+        $parentId = $this->_record->id;
 
         //I found this hot solution on the comments for this page:
         //http://dev.mysql.com/doc/refman/5.0/en/update.html
@@ -97,7 +96,7 @@ class Orderable extends Omeka_Record_Mixin
 
     public function addChild(Omeka_Record $child)
     {
-        if (!$this->record->exists()) {
+        if (!$this->_record->exists()) {
             throw new Omeka_Record_Exception(__('Cannot add a child to a record that does not exist yet!'));
         }
 
@@ -107,7 +106,7 @@ class Orderable extends Omeka_Record_Mixin
 
         $fk = $this->childFk;
 
-        $child->$fk = $this->record->id;
+        $child->$fk = $this->_record->id;
 
         $new_order = $this->getChildCount() + 1;
 
@@ -126,6 +125,6 @@ class Orderable extends Omeka_Record_Mixin
         SELECT COUNT(*)
         FROM {$db->$target}
         WHERE $this->childFk = ?";
-        return $db->fetchOne($sql, array($this->record->id));
+        return $db->fetchOne($sql, array($this->_record->id));
     }
 }

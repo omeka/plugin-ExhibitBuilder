@@ -3,17 +3,17 @@
  * The only requirement for a record to use this mixin is that it needs a
  * field named 'slug'.
  *
- * @version $Id$
  * @copyright Center for History and New Media, 2007-2009
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- * @author CHNM
- **/
+ * @package ExhibitBuilder
+ */
 
-class Sluggable extends Omeka_Record_Mixin
+class Mixin_Slug extends Omeka_Record_Mixin
 {
     function __construct($record, $options = array())
     {
+        parent::__construct($record);
+
         $defaultOptions = array(
             'parentIdFieldName'=>null,
             'slugMaxLength'=>30,
@@ -29,13 +29,13 @@ class Sluggable extends Omeka_Record_Mixin
 
         $this->parentIdFieldName = $this->options['parentIdFieldName'];
 
-        $this->record = $record;
+        $this->_record = $record;
     }
 
     private function getParentId()
     {
         if ($this->parentIdFieldName) {
-            return $this->record->{$this->parentIdFieldName};
+            return $this->_record->{$this->parentIdFieldName};
         }
     }
 
@@ -44,25 +44,25 @@ class Sluggable extends Omeka_Record_Mixin
         $seedValue = '';
 
         // Create a slug if one was not specified.
-        if (trim($this->record->slug) == '') {
-            $seedValue = $this->record->{$this->options['slugSeedFieldName']};
+        if (trim($this->_record->slug) == '') {
+            $seedValue = $this->_record->{$this->options['slugSeedFieldName']};
         } else {
-            $seedValue = $this->record->slug;
+            $seedValue = $this->_record->slug;
         }
-        $this->record->slug = generate_slug($seedValue);
+        $this->_record->slug = generate_slug($seedValue);
     }
 
     public function afterValidate()
     {
-        if(trim($this->record->slug) == '') {
+        if(trim($this->_record->slug) == '') {
             $this->addError('slug', $this->options['slugEmptyErrorMessage']);
         }
 
-        if(!$this->slugIsUnique($this->record->slug)) {
+        if(!$this->slugIsUnique($this->_record->slug)) {
             $this->addError('slug', $this->options['slugUniqueErrorMessage']);
         }
 
-        if(strlen($this->record->slug) > $this->options['slugMaxLength']) {
+        if(strlen($this->_record->slug) > $this->options['slugMaxLength']) {
             $this->addError('slug', $this->options['slugLengthErrorMessage']);
         }
     }
@@ -71,7 +71,7 @@ class Sluggable extends Omeka_Record_Mixin
     {
         $db = $this->getDb();
 
-        $select = $this->record->getTable()->getSelect();
+        $select = $this->_record->getTable()->getSelect();
         $select->reset(Zend_Db_Select::COLUMNS)->from(array(), 'COUNT(DISTINCT(id))');
         $select->where('slug = ?', $slug);
 
@@ -86,7 +86,7 @@ class Sluggable extends Omeka_Record_Mixin
         //If the record is persistent, get the count of pages
         //with that slug that aren't this particular record
         if($this->exists()) {
-            $select->where('id != ?', $this->record->id);
+            $select->where('id != ?', $this->_record->id);
         }
 
         //If there are no other pages with that particular slug, then it is unique

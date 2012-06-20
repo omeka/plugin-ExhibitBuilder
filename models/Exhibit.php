@@ -9,14 +9,6 @@
  * @author CHNM
  **/
 
-require_once 'Tag.php';
-require_once 'Taggings.php';
-require_once 'Taggable.php';
-require_once 'ExhibitTable.php';
-require_once 'Orderable.php';
-require_once 'ExhibitPermissions.php';
-require_once 'Sluggable.php';
-
 class Exhibit extends Omeka_Record
 {
     public $title;
@@ -60,10 +52,10 @@ class Exhibit extends Omeka_Record
 
     public function construct()
     {
-        $this->_mixins[] = new Taggable($this);
-        $this->_mixins[] = new Ownable($this);
-        $this->_mixins[] = new Orderable($this, 'ExhibitPage', 'exhibit_id', 'ExhibitPages');
-        $this->_mixins[] = new Sluggable($this, array(
+        $this->_mixins[] = new Mixin_Tag($this);
+        $this->_mixins[] = new Mixin_Owner($this);
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPage', 'exhibit_id', 'ExhibitPages');
+        $this->_mixins[] = new Mixin_Slug($this, array(
             'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));
