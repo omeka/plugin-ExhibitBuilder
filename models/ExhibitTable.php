@@ -11,6 +11,13 @@
 
 class ExhibitTable extends Omeka_Db_Table
 {
+    public function getSelect()
+    {
+        $select = parent::getSelect();
+        $permissions = new PublicPermissions('ExhibitBuilder_Exhibits');
+        $permissions->apply($select, 'exhibits', null);
+        return $select;
+    }
 
     public function applySearchFilters($select, $params)
     {
@@ -51,52 +58,15 @@ class ExhibitTable extends Omeka_Db_Table
                     break;
             }
         }
-
-        new ExhibitPermissions($select);
-
         return $select;
     }
 
     public function findBySlug($slug)
     {
-        $db = $this->getDb();
-        $select = new Omeka_Db_Select;
-        $select->from(array('exhibits'=>$db->Exhibit), array('exhibits.*'));
+        $select = $this->getSelect();
         $select->where("exhibits.slug = ?");
         $select->limit(1);
-        new ExhibitPermissions($select);
         return $this->fetchObject($select, array($slug));
-    }
-
-    /**
-     * Override Omeka_Table::count() to retrieve a permissions-limited
-     *
-     * @return void
-     **/
-    public function count($params = array())
-    {
-        $db = $this->getDb();
-
-        $select = new Omeka_Db_Select;
-        $select->from(array('exhibits'=>$db->Exhibit), "COUNT(DISTINCT(exhibits.id))");
-        new ExhibitPermissions($select);
-
-        $this->applySearchFilters($select, $params);
-
-        return $db->fetchOne($select);
-    }
-
-    public function find($id)
-    {
-        $db = $this->getDb();
-
-        $select = new Omeka_Db_Select;
-        $select->from(array('exhibits'=>$db->Exhibit), array('exhibits.*'));
-        $select->where("exhibits.id = ?");
-
-        new ExhibitPermissions($select);
-
-        return $this->fetchObject($select, array($id));
     }
 
     public function exhibitHasItem($exhibit_id, $item_id)
@@ -121,10 +91,8 @@ class ExhibitTable extends Omeka_Db_Table
      **/
     public function findRandomFeatured()
     {
-        $db = $this->getDb();
-
-        $select = new Omeka_Db_Select;
-        $select->from(array('e'=>$db->Exhibit))->where("e.featured = 1")->order("RAND()")->limit(1);
+        $select = $this->getSelect();
+        $select->where("exhibits.featured = 1")->order("RAND()")->limit(1);
 
         return $this->fetchObject($select);
     }
