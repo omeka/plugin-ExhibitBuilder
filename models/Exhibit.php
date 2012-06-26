@@ -59,36 +59,8 @@ class Exhibit extends Omeka_Record
             'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));
-    }
-
-    /**
-     * Set added and modified timestamps for the exhibit.
-     */
-    protected function beforeInsert()
-    {
-        $now = Zend_Date::now()->toString(self::DATE_FORMAT);
-        $this->added = $now;
-        $this->modified = $now;
-    }
-
-    /**
-     * Set modified timestamp for the exhibit.
-     */
-    protected function beforeUpdate()
-    {
-        $this->modified = Zend_Date::now()->toString(self::DATE_FORMAT);
-    }
-
-    protected function beforeSaveForm($post)
-    {
-            //Whether or not the exhibit is featured
-            $this->featured = (bool) $post['featured'];
-    }
-
-    protected function setFromPost($post)
-    {
-        unset($post['featured']);
-            return parent::setFromPost($post);
+        $this->_mixins[] = new Mixin_Timestamp($this);
+        $this->_mixins[] = new Mixin_PublicFeatured($this);
     }
 
     protected function afterSaveForm($post)
@@ -99,11 +71,9 @@ class Exhibit extends Omeka_Record
         $this->savePagesParentOrder(null, $pages);
     }
 
-
     /**
      * Updates page parents and orders
      */
-
     private function savePagesParentOrder($parentId, $pages)
     {
          foreach($pages as $pageId => $pageInfo) {
