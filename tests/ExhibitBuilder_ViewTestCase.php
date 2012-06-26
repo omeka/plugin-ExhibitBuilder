@@ -13,7 +13,15 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
     {
         $this->view = new Omeka_View;
         Zend_Registry::set('view', $this->view);
-        Omeka_Context::getInstance()->setDb($this->getMock('Omeka_Db', null, array(null)));
+
+        $bootstrap = new Omeka_Test_Bootstrap;
+        $bootstrap->getContainer()->db = $this->getMock('Omeka_Db', null, array(null));
+        Zend_Registry::set('bootstrap', $bootstrap);
+    }
+
+    public function tearDown()
+    {
+        Zend_Registry::_unsetInstance();
     }
 
     /**
@@ -48,12 +56,5 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
             $exhibitPages[] = $exhibitPage;
         }
         return $exhibitPages;
-    }
-
-    public function tearDown()
-    {
-        Zend_Registry::_unsetInstance();
-        Omeka_Context::resetInstance();
-        parent::tearDown();
     }
 }

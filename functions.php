@@ -290,7 +290,7 @@ function exhibit_builder_admin_nav($navArray)
  */
 function exhibit_builder_theme_options($themeOptions, $themeName)
 {
-    if (Omeka_Context::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
+    if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
         if ($exhibit = exhibit_builder_get_current_exhibit()) {
             $exhibitThemeOptions = $exhibit->getThemeOptions();
         }
@@ -477,7 +477,7 @@ class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
     */
     public function routeStartup(Zend_Controller_Request_Abstract $request)
     {
-        $router = Omeka_Context::getInstance()->getFrontController()->getRouter();
+        $router = Zend_Registry::get('bootstrap')->getResource('Router');
         if (get_option('exhibit_builder_use_browse_exhibits_for_homepage') == '1' && !is_admin_theme()) {
             $router->addRoute(
                 'exhibit_builder_show_home_page',

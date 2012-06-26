@@ -29,7 +29,7 @@ class TotalExhibitsTest extends Omeka_Test_AppTestCase
     public function testCanGetExhibitCountForAdmin()
     {
         $this->user = $this->db->getTable('User')->find(1);
-        Omeka_Context::getInstance()->setCurrentUser($this->user);
+        Zend_Registry::get('bootstrap')->getContainer()->currentuser = $this->user;
 
         $actualTotalCount = total_exhibits();
         $this->assertEquals($this->expectedTotalCount, $actualTotalCount);
