@@ -68,7 +68,7 @@ function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage =
         $exhibitPage = exhibit_builder_get_current_page();
     }
 
-    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
+    if (!$exhibitPage || count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
         $caption = '';
     } else {
         $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;
