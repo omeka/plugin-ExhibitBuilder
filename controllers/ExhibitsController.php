@@ -86,24 +86,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
         }
     }
 
-    /**
-     *
-     * @return void
-     **/
-    public function itemsAction()
-    {
-        $results = $this->_helper->searchItems();
-
-        // Build the pagination.
-        $pagination = array(
-            'per_page'=>$results['per_page'],
-            'page'=>$results['page'],
-            'total_results'=> $results['total_results']);
-        Zend_Registry::set('pagination', $pagination);
-
-        $this->view->items = $results['items'];
-    }
-
     public function itemContainerAction()
     {
         $itemId = (int)$this->_getParam('item_id');

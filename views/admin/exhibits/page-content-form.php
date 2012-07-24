@@ -17,7 +17,7 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
         exhibitBuilder.itemContainerUri = <?php echo js_escape(uri('exhibits/item-container')); ?>;
 
         // Set the paginated exhibit items uri
-        exhibitBuilder.paginatedItemsUri = <?php echo js_escape(uri('exhibits/items')); ?>;
+        exhibitBuilder.paginatedItemsUri = <?php echo js_escape(uri('exhibit-builder/items/browse')); ?>;
 
         // Set the remove item background image uri
         exhibitBuilder.removeItemBackgroundImageUri = <?php echo js_escape(img('silk-icons/delete.png')); ?>;
