@@ -127,7 +127,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $sectionToPage->layout = 'text';
             $sectionToPage->slug = $section['slug'];
             $sectionToPage->order = $section['order'];
-            $sectionToPage->forceSave();
+            $sectionToPage->save();
             $sectionIdMap[$section['id']] = array('pageId' =>$sectionToPage->id, 'exhibitId'=>$section['exhibit_id']);
 
             //slap the section's description into a text entry for the page
@@ -135,7 +135,7 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
             $entry->page_id = $sectionToPage->id;
             $entry->order = 1;
             $entry->text = $section['description'];
-            $entry->forceSave();
+            $entry->save();
         }
 
 
