@@ -14,7 +14,7 @@ class ExhibitTable extends Omeka_Db_Table
     public function getSelect()
     {
         $select = parent::getSelect();
-        $permissions = new PublicPermissions('ExhibitBuilder_Exhibits');
+        $permissions = new Omeka_Db_Select_PublicPermissions('ExhibitBuilder_Exhibits');
         $permissions->apply($select, 'exhibits', null);
         return $select;
     }
