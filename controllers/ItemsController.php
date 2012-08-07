@@ -5,7 +5,7 @@
  * @package Omeka
  */
 
-class ExhibitBuilder_ItemsController extends Omeka_Controller_Action
+class ExhibitBuilder_ItemsController extends Omeka_Controller_AbstractActionController
 {
     public function init()
     {

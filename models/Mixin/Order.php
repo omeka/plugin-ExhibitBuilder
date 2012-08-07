@@ -11,7 +11,7 @@
  * @subpackage Mixins
  * @copyright Roy Rosenzweig Center for History and New Media, 2007-2010
  */
-class Mixin_Order extends Omeka_Record_Mixin
+class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
 {
     public function __construct($record, $childClass, $childFk, $childPluralized)
     {

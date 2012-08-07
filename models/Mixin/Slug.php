@@ -8,7 +8,7 @@
  * @package ExhibitBuilder
  */
 
-class Mixin_Slug extends Omeka_Record_Mixin
+class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 {
     function __construct($record, $options = array())
     {

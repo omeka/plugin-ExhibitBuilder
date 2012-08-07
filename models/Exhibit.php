@@ -9,7 +9,7 @@
  * @author CHNM
  **/
 
-class Exhibit extends Omeka_Record
+class Exhibit extends Omeka_Record_AbstractRecord
 {
     public $title;
     public $description;

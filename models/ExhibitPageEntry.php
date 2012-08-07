@@ -11,7 +11,7 @@
 
 require_once 'ExhibitPageEntryTable.php';
 
-class ExhibitPageEntry extends Omeka_Record
+class ExhibitPageEntry extends Omeka_Record_AbstractRecord
 {
     public $item_id;
     public $page_id;

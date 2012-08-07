@@ -107,7 +107,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
     }
 
     $uri = exhibit_builder_exhibit_item_uri($item);
-    $text = (!empty($text) ? $text : strip_formatting(item(array('Dublin Core', 'Title'))));
+    $text = (!empty($text) ? $text : strip_formatting(metadata('item', array('Dublin Core', 'Title'))));
     $html = '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
     $html = apply_filters('exhibit_builder_link_to_exhibit_item', $html, $text, $props, $item);
     return $html;
@@ -187,9 +187,9 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         set_current_item($item);
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
-        $html .= '<h2 class="title">' . item(array('Dublin Core', 'Title')) . '</h2>' . "\n";
+        $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
         if (item_has_files()) {
-            $html .=  display_file($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => item(array('Dublin Core', 'Title')))));
+            $html .=  display_file($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => metadata('item', array('Dublin Core', 'Title')))));
         }
 
         if ($includeCaption) {
@@ -455,7 +455,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
 
     // Default alt text is the
     if(!isset($displayFileOptions['imgAttributes']['alt'])) {
-        $displayFilesOptions['imgAttributes']['alt'] = item(array('Dublin Core', 'Title'), array(), $item);
+        $displayFilesOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
     }
 
     // Pass null as the 3rd arg so that it doesn't output the item-file div.

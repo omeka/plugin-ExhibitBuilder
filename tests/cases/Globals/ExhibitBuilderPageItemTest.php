@@ -42,7 +42,7 @@ class ExhibitBuilderPageItemTest extends Omeka_Test_AppTestCase
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $item = exhibit_builder_page_item($i, $exhibitPage);
             $this->assertTrue($item->exists());
-            $itemTitle = item(array('Dublin Core', 'Title'), array(), $item);
+            $itemTitle = metadata($item, array('Dublin Core', 'Title'));
             $this->assertEquals('Item Title '. $i, $itemTitle);
         }
     }
@@ -63,7 +63,7 @@ class ExhibitBuilderPageItemTest extends Omeka_Test_AppTestCase
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $item = exhibit_builder_page_item($i);
             $this->assertTrue($item->exists());
-            $itemTitle = item(array('Dublin Core', 'Title'), array(), $item);
+            $itemTitle = metadata($item, array('Dublin Core', 'Title'));
             $this->assertEquals('Item Title '. $i, $itemTitle);
         }
     }

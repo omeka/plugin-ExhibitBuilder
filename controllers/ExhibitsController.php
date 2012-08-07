@@ -11,7 +11,7 @@
 
 require_once 'Exhibit.php';
 
-class ExhibitBuilder_ExhibitsController extends Omeka_Controller_Action
+class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionController
 {
     protected $session;
 

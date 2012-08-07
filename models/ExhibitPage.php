@@ -12,7 +12,7 @@
 require_once 'ExhibitPageEntry.php';
 require_once 'ExhibitPageTable.php';
 
-class ExhibitPage extends Omeka_Record
+class ExhibitPage extends Omeka_Record_AbstractRecord
 {
     public $id;
     public $parent_id; //@TODO: change this in database, and add to update scripts
