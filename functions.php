@@ -179,6 +179,7 @@ function exhibit_builder_setup_acl($acl)
      * That means that admin and super users can both manipulate exhibits completely,
      * but researcher/contributor cannot.
      */
+    $acl = $acl['acl'];
     $acl->addResource('ExhibitBuilder_Exhibits');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
@@ -197,8 +198,9 @@ function exhibit_builder_setup_acl($acl)
  **/
 function exhibit_builder_routes($router)
 {
-     $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
-     DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
+    $router = $router['router'];
+    $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
+    DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
 }
 
 /**
