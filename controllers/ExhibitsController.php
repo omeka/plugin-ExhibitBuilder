@@ -77,7 +77,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         if ($item && $exhibit->hasItem($item) ) {
 
             //Plugin hooks
-            fire_plugin_hook('show_exhibit_item',  $item, $exhibit);
+            fire_plugin_hook('show_exhibit_item',  array('item' => $item, 'exhibit' => $exhibit));
 
             return $this->renderExhibit(compact('exhibit', 'item'), 'item');
         } else {
@@ -134,7 +134,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             }
         }
 
-        fire_plugin_hook('show_exhibit', $exhibit, $exhibitPage);
+        fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit, 'exhibitPage' => $exhibitPage));
 
         $this->renderExhibit(compact('exhibit', 'parentPages', 'exhibitPage'));
     }
@@ -146,7 +146,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             throw new Omeka_Controller_Exception_404;
         }
 
-        fire_plugin_hook('show_exhibit', $exhibit);
+        fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit));
         $this->renderExhibit(compact('exhibit'), 'summary');
     }
 

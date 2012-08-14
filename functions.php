@@ -79,8 +79,10 @@ function exhibit_builder_uninstall()
  * @param string $oldVersion Previous plugin version
  * @param string $newVersion Current version; to be upgraded to
  */
-function exhibit_builder_upgrade($oldVersion, $newVersion)
+function exhibit_builder_upgrade($args)
 {
+    $oldVersion = $args['old_version'];
+    $newVersion = $args['new_version'];
     // Transition to upgrade model for EB
     if (version_compare($oldVersion, '0.6', '<') )
     {
@@ -171,8 +173,9 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
  *
  * @return void
  **/
-function exhibit_builder_setup_acl($acl)
+function exhibit_builder_setup_acl($args)
 {
+    $acl = $args['acl'];
     /*
      * NOTE: unless explicitly denied, super users and admins have access to all
      * of the defined resources and privileges.  Other user levels will not by default.
@@ -195,10 +198,11 @@ function exhibit_builder_setup_acl($acl)
  *
  * @return void
  **/
-function exhibit_builder_routes($router)
+function exhibit_builder_routes($args)
 {
-     $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
-     DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
+    $router = $args['router'];
+    $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
+        DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
 }
 
 /**
@@ -220,8 +224,9 @@ function exhibit_builder_public_header()
  *
  * @return void
  **/
-function exhibit_builder_admin_header($request)
+function exhibit_builder_admin_header($args)
 {
+    $request = $args['request'];
     $module = $request->getModuleName();
     $controller = $request->getControllerName();
 
@@ -288,8 +293,9 @@ function exhibit_builder_admin_nav($navArray)
  * @param string $themeOptions Serialized array of theme options
  * @param string $themeName Name of theme to get options for (ignored by ExhibitBuilder)
  */
-function exhibit_builder_theme_options($themeOptions, $themeName)
+function exhibit_builder_theme_options($themeOptions, $args)
 {
+    $themeName = $args['theme_name'];
     if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
         if ($exhibit = exhibit_builder_get_current_exhibit()) {
             $exhibitThemeOptions = $exhibit->getThemeOptions();
@@ -336,8 +342,10 @@ function exhibit_builder_public_theme_name($themeName)
  * provided on the configuration form of the HtmlPurifier plugin.
  * @return void
  **/
-function exhibit_builder_purify_html($request, $purifier)
+function exhibit_builder_purify_html($args)
 {
+    $request = $args['request'];
+    $purifier = $args['purifier'];
     // Make sure that we only bother with the Exhibits controller in the ExhibitBuilder module.
     if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
         return;
@@ -415,8 +423,10 @@ function exhibit_builder_initialize()
  *
  * @return Omeka_Db_Select
  */
-function exhibit_builder_item_browse_sql($select, $params)
+function exhibit_builder_item_browse_sql($args)
 {
+    $select = $args['select'];
+    $params = $args['params'];
     $db = get_db();
 
     if ($request = Zend_Controller_Front::getInstance()->getRequest()) {

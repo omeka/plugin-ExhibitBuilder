@@ -109,7 +109,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
     $uri = exhibit_builder_exhibit_item_uri($item);
     $text = (!empty($text) ? $text : strip_formatting(metadata('item', array('Dublin Core', 'Title'))));
     $html = '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
-    $html = apply_filters('exhibit_builder_link_to_exhibit_item', $html, $text, $props, $item);
+    $html = apply_filters('exhibit_builder_link_to_exhibit_item', $html, array('text' => $text, 'props' => $props, 'item' => $item));
     return $html;
 }
 
@@ -239,7 +239,7 @@ function exhibit_builder_layout_form_text($order, $label = 'Text')
     $html = '<div class="textfield exhibit-form-element">';
     $html .= __v()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70','class'=>'textinput') );
     $html .= '</div>';
-    $html = apply_filters('exhibit_builder_layout_form_text', $html, $order, $label);
+    $html = apply_filters('exhibit_builder_layout_form_text', $html, array('order' => $order, 'label' => $label));
     return $html;
 }
 
@@ -264,7 +264,7 @@ function exhibit_builder_layout_form_caption($order, $label = null)
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
 
-    $html = apply_filters('exhibit_builder_layout_form_caption', $html, $order, $label);
+    $html = apply_filters('exhibit_builder_layout_form_caption', $html, array('order' => $order, 'label' => $label));
     return $html;
 }
 
@@ -329,7 +329,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
     }
     $html .= '<div class="layout-name">'.html_escape($layout).'</div>';
     $html .= '</div>';
-    $html = apply_filters('exhibit_builder_exhibit_layout', $html, $layout, $input);
+    $html = apply_filters('exhibit_builder_exhibit_layout', $html, array('layout' => $layout, 'input' => $input));
     return $html;
 }
 
@@ -397,7 +397,7 @@ function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props 
             $html .= '</div>' . "\n";
         }
     }
-    $html = apply_filters('exhibit_builder_display_exhibit_thumbnail_gallery', $html, $start, $end, $props, $thumbnailType);
+    $html = apply_filters('exhibit_builder_display_exhibit_thumbnail_gallery', $html, array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
     return $html;
 }
 
@@ -467,7 +467,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
         $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
 
-    $html = apply_filters('exhibit_builder_exhibit_display_item', $html, $displayFilesOptions, $linkProperties, $item);
+    $html = apply_filters('exhibit_builder_exhibit_display_item', $html, array('display_files_options' => $displayFilesOptions, 'link_properties' => $linkProperties, 'item' => $item));
 
     return $html;
 }
@@ -486,7 +486,7 @@ function exhibit_builder_exhibit_display_caption($index = 1)
         $html .= '</div>'."\n";
     }
 
-    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, $index);
+    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, array('index' => $index));
 
     return $html;
 }
@@ -504,7 +504,7 @@ function exhibit_builder_exhibit_thumbnail($item, $props = array('class'=>'perma
     $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_thumbnail($props, $index, $item);
     $html .= '</a>';
-    $html = apply_filters('exhibit_builder_exhibit_thumbnail', $html, $item, $props, $index);
+    $html = apply_filters('exhibit_builder_exhibit_thumbnail', $html, array('item' => $item, 'props' => $props, 'index' => $index));
     return $html;
 }
 
@@ -522,7 +522,7 @@ function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permal
     $html = '<a href="' . html_escape($uri) . '">';
     $html .= item_fullsize($props, $index, $item);
     $html .= '</a>';
-    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, $item, $props, $index);
+    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, array('item' => $item, 'props' => $props, 'index' => $index));
     return $html;
 }
 
@@ -717,7 +717,7 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
     }
     $html .= '</ul>';
     //@TODO: update the filter
-    $html = apply_filters('exhibit_builder_top_page_nav', $html, $exhibit, $showAllPages);
+    $html = apply_filters('exhibit_builder_top_page_nav', $html, array('exhibit' => $exhibit, 'show_all_pages' => $showAllPages));
     return $html;
 }
 
