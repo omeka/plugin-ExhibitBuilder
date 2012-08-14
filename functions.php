@@ -76,11 +76,15 @@ function exhibit_builder_uninstall()
 /**
  * Upgrades ExhibitBuilder's tables to be compatible with a new version.
  *
- * @param string $oldVersion Previous plugin version
- * @param string $newVersion Current version; to be upgraded to
+ * @param array $args Contains the following keys/value pairs:
+ * 'old_version' => string $oldVersion Previous plugin version
+ * 'new_version' => string $newVersion Current version; to be upgraded to
  */
-function exhibit_builder_upgrade($oldVersion, $newVersion)
+function exhibit_builder_upgrade($args)
 {
+    $oldVersion = $args['old_version'];
+    $newVersion = $args['new_version'];
+    
     // Transition to upgrade model for EB
     if (version_compare($oldVersion, '0.6', '<') )
     {
@@ -169,9 +173,11 @@ function exhibit_builder_upgrade($oldVersion, $newVersion)
  * conflicts with pre-existing controllers, e.g. an ExhibitBuilder_ItemsController
  * would not rely on the existing Items ACL resource.
  *
+ * @param array $args Contains the following keys/value pairs:
+ * 'acl' => Zend_Acl
  * @return void
  **/
-function exhibit_builder_setup_acl($acl)
+function exhibit_builder_setup_acl($args)
 {
     /*
      * NOTE: unless explicitly denied, super users and admins have access to all
@@ -179,7 +185,7 @@ function exhibit_builder_setup_acl($acl)
      * That means that admin and super users can both manipulate exhibits completely,
      * but researcher/contributor cannot.
      */
-    $acl = $acl['acl'];
+    $acl = $args['acl'];
     $acl->addResource('ExhibitBuilder_Exhibits');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
@@ -194,11 +200,13 @@ function exhibit_builder_setup_acl($acl)
 /**
  * Add the routes from routes.ini in this plugin folder.
  *
+ * @param array $args Contains the following keys/value pairs:
+ * 'router' => Zend_Controller_Router_Rewrite
  * @return void
  **/
-function exhibit_builder_routes($router)
+function exhibit_builder_routes($args)
 {
-    $router = $router['router'];
+    $router = $args['router'];
     $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
     DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
 }
@@ -219,11 +227,13 @@ function exhibit_builder_public_header()
 
 /**
  * Displays the CSS style and javascript for the exhibit in the admin header
- *
+ * @param array $args Contains the following keys/value pairs:
+ * 'request' => Zend_Controller_Request_Http
  * @return void
  **/
-function exhibit_builder_admin_header($request)
+function exhibit_builder_admin_header($args)
 {
+    $request = $args['request'];
     $module = $request->getModuleName();
     $controller = $request->getControllerName();
 
@@ -288,10 +298,12 @@ function exhibit_builder_admin_nav($navArray)
  * Intercepts get_theme_option calls to allow theme settings on a per-Exhibit basis.
  *
  * @param string $themeOptions Serialized array of theme options
- * @param string $themeName Name of theme to get options for (ignored by ExhibitBuilder)
+ * @param array $args Contains the following keys/value pairs:
+ *  'theme_name' => string $themeName Name of theme to get options for (ignored by ExhibitBuilder)
  */
-function exhibit_builder_theme_options($themeOptions, $themeName)
+function exhibit_builder_theme_options($themeOptions, $args)
 {
+    $themeName = $args['theme_name'];
     if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
         if ($exhibit = exhibit_builder_get_current_exhibit()) {
             $exhibitThemeOptions = $exhibit->getThemeOptions();
@@ -333,13 +345,17 @@ function exhibit_builder_public_theme_name($themeName)
  * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
  * enabled.
  *
- * @param Zend_Controller_Request_Http $request
- * @param HTMLPurifier $purifier The purifier object that was built from the configuration
+ * @param array $args Contains the following keys/value pairs:
+ * 'request' => Zend_Controller_Request_Http $request
+ * 'purifier' => HTMLPurifier $purifier The purifier object that was built from the configuration
  * provided on the configuration form of the HtmlPurifier plugin.
  * @return void
  **/
-function exhibit_builder_purify_html($request, $purifier)
+function exhibit_builder_purify_html($args)
 {
+    $request = $args['request'];
+    $purifier = $args['purifier'];
+    
     // Make sure that we only bother with the Exhibits controller in the ExhibitBuilder module.
     if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
         return;
@@ -415,10 +431,16 @@ function exhibit_builder_initialize()
  * Hooks into item_browse_sql to return items in a particular exhibit. The
  * passed exhibit can either be an Exhibit object or a specific exhibit ID.
  *
+ * @param array $args Contains the following keys/value pairs:
+ * 'select' => Omeka_Db_Select
+ * 'params' => array
  * @return Omeka_Db_Select
  */
-function exhibit_builder_item_browse_sql($select, $params)
+function exhibit_builder_item_browse_sql($args)
 {
+    $select = $args['select'];    
+    $params = $args['params'];
+
     $db = get_db();
 
     if ($request = Zend_Controller_Front::getInstance()->getRequest()) {
