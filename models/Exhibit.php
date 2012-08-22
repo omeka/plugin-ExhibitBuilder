@@ -63,6 +63,22 @@ class Exhibit extends Omeka_Record_AbstractRecord
         $this->_mixins[] = new Mixin_PublicFeatured($this);
     }
 
+    /**
+     * Get a property about the exhibit for display.
+     *
+     * @param string $property Property to retrieve.
+     * @return mixed
+     */
+    public function getProperty($property)
+    {
+        $property = Inflector::underscore($property);
+        if (property_exists('Exhibit', $property)) {
+            return $this->$property;
+        } else {
+            throw new InvalidArgumentException(__("'%s' is an invalid special value.", $property));
+        }
+    }
+
     protected function afterSaveForm($post)
     {
         //Add the tags after the form has been saved

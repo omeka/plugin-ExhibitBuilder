@@ -413,7 +413,7 @@ function exhibit_builder_display_random_featured_exhibit()
     $html .= '<h2>' . __('Featured Exhibit') . '</h2>';
     if ($featuredExhibit) {
        $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>'."\n";
-       $html .= '<p>'.snippet_by_word_count(exhibit('description', array(), $featuredExhibit)).'</p>';
+       $html .= '<p>'.snippet_by_word_count(metadata($featuredExhibit, 'description')).'</p>';
     } else {
        $html .= '<p>' . __('You have no featured exhibits.') . '</p>';
     }
@@ -654,27 +654,6 @@ function has_exhibits_for_loop()
  {
      return get_db()->getTable('Exhibit')->count();
  }
-
-/**
-* Gets a property from an exhibit
-*
-* @param string $propertyName
-* @param array $options
-* @param Exhibit $exhibit  The exhibit
-* @return mixed The exhibit property value
-**/
-function exhibit($propertyName, $options = array(), $exhibit = null)
-{
-    if (!$exhibit) {
-        $exhibit = get_current_exhibit();
-    }
-    $propertyName = Inflector::underscore($propertyName);
-    if (property_exists(get_class($exhibit), $propertyName)) {
-        return $exhibit->$propertyName;
-    } else {
-        return null;
-    }
-}
 
 /**
 * Returns a link to an exhibit, or exhibit page.

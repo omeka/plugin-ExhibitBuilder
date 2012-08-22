@@ -24,15 +24,15 @@ class ExhibitTest extends Omeka_Test_AppTestCase
         $this->dispatch('exhibits/show/exhibit-title');
 
         // Exhibit Title
-        $this->assertEquals('Exhibit Title', exhibit('Title'));
+        $this->assertEquals('Exhibit Title', metadata('exhibit', 'Title'));
 
         // Exhibit Description
-        $this->assertEquals('Exhibit Description', exhibit('Description'));
+        $this->assertEquals('Exhibit Description', metadata('exhibit', 'Description'));
 
         // Exhibit Credits
-        $this->assertEquals('Jim Safley', exhibit('Credits'));
+        $this->assertEquals('Jim Safley', metadata('exhibit', 'Credits'));
 
         // Exhibit Slug
-        $this->assertEquals('exhibit-title', exhibit('slug'));    
+        $this->assertEquals('exhibit-title', metadata('exhibit', 'slug'));    
     }
 }

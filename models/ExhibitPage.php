@@ -35,6 +35,22 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     }
 
     /**
+     * Get a property about the exhibit for display.
+     *
+     * @param string $property Property to retrieve.
+     * @return mixed
+     */
+    public function getProperty($property)
+    {
+        $property = Inflector::underscore($property);
+        if (property_exists('ExhibitPage', $property)) {
+            return $this->$property;
+        } else {
+            throw new InvalidArgumentException(__("'%s' is an invalid special value.", $property));
+        }
+    }
+
+    /**
      * In order to validate:
      * 1) must have a layout
      * 2) Must have a title

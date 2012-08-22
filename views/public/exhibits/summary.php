@@ -1,15 +1,15 @@
-<?php head(array('title' => html_escape('Summary of ' . exhibit('title')),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
+<?php head(array('title' => 'Summary of ' . metadata('exhibit', 'title'),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
 
 <div id="primary">
 
-<h1><?php echo html_escape(exhibit('title')); ?></h1>
+<h1><?php echo metadata('exhibit', 'title'); ?></h1>
 <?php echo exhibit_builder_page_nav(); ?>
 
 <h2><?php echo __('Description'); ?></h2>
-<?php echo exhibit('description'); ?>
+<?php echo metadata('exhibit', 'description', array('no_escape' => true)); ?>
 
 <h2><?php echo __('Credits'); ?></h2>
-<p><?php echo html_escape(exhibit('credits')); ?></p>
+<p><?php echo metadata('exhibit', 'credits'); ?></p>
 
 <div id="exhibit-pages">
     <?php set_exhibit_pages_for_loop_by_exhibit(); ?>

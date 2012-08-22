@@ -391,27 +391,6 @@ function has_exhibit_pages_for_loop()
  }
 
 /**
-* Gets a property from an exhibit page
-*
-* @param string $propertyName
-* @param array $options
-* @param Exhibit $exhibitPage  The exhibit page
-* @return mixed The exhibit page property value
-**/
-function exhibit_page($propertyName, $options = array(), $exhibitPage = null)
-{
-    if (!$exhibitPage) {
-        $exhibitPage = get_current_exhibit_page();
-    }
-    $propertyName = Inflector::underscore($propertyName);
-    if (property_exists(get_class($exhibitPage), $propertyName)) {
-        return html_escape($exhibitPage->$propertyName);
-    } else {
-        return null;
-    }
-}
-
-/**
  * Return a page's child pages
  * @since 2.0
  * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page

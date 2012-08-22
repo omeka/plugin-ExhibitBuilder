@@ -14,9 +14,9 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
     }
 
     /**
-     * Tests whether exhibit_page() returns the correct value.
+     * Tests whether metadata() returns the correct value for an exhibit page.
      *
-     * @uses exhibit_page()
+     * @uses metadata()
      **/
     public function testCanRetrieveCorrectExhibitPageValue()
     {
@@ -41,16 +41,16 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
         $this->assertEquals('exhibitpageslug', $exhibitPage->slug);
 
         // Exhibit Page Title
-        $this->assertEquals('Exhibit Page Title', exhibit_page('Title'));
+        $this->assertEquals('Exhibit Page Title', metadata('exhibitPage', 'Title'));
 
         // Exhibit Page Layout
-        $this->assertEquals('text', exhibit_page('Layout'));
+        $this->assertEquals('text', metadata('exhibitPage', 'Layout'));
 
         // Exhibit Page Order
-        $this->assertEquals(1, exhibit_page('Order'));
+        $this->assertEquals(1, metadata('exhibitPage', 'Order'));
 
         // Exhibit Page Slug
-        $this->assertEquals('exhibitpageslug', exhibit_page('Slug'));
+        $this->assertEquals('exhibitpageslug', metadata('exhibitPage', 'Slug'));
 
     }
 }
