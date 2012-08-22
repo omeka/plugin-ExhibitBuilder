@@ -39,7 +39,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         }
     }
 
-    public function beforeValidate()
+    public function beforeSave()
     {
         $seedValue = '';
 
@@ -50,10 +50,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
             $seedValue = $this->_record->slug;
         }
         $this->_record->slug = generate_slug($seedValue);
-    }
 
-    public function afterValidate()
-    {
         if(trim($this->_record->slug) == '') {
             $this->addError('slug', $this->options['slugEmptyErrorMessage']);
         }
