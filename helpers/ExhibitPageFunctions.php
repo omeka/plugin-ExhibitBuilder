@@ -144,7 +144,7 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
         $html .= html_escape($linkText) .'</a></li>' . "\n";
     }
     $html .= '</ul>' . "\n";
-    $html = apply_filters('exhibit_builder_page_nav', $html, $linkTextType);
+    $html = apply_filters('exhibit_builder_page_nav', $html, array('link_text_type' => $linkTextType));
     return $html;
 
 }
