@@ -212,8 +212,10 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      *
      * @return void
      **/
-    public function afterSaveForm($post)
+    public function afterSaveForm($args)
     {
+        $post = $args['post'];
+        
         $textCount = count($post['Text']);
         $itemCount = count($post['Item']);
         $highCount = ($textCount > $itemCount) ? $textCount : $itemCount;
@@ -233,7 +235,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $ip->caption = (string) $caption;
             $ip->item_id = (int) is_numeric($item_id) ? $item_id : null;
             $ip->order = (int) $i;
-            $ip->forceSave();
+            $ip->save();
         }
     }
 

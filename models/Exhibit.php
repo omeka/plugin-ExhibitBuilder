@@ -79,9 +79,10 @@ class Exhibit extends Omeka_Record_AbstractRecord
         }
     }
 
-    protected function afterSaveForm($post)
+    protected function afterSaveForm($args)
     {
         //Add the tags after the form has been saved
+        $post = $args['post'];
         $this->applyTagString($post['tags']);
         $pages = $post['Pages'];
         $this->savePagesParentOrder(null, $pages);
