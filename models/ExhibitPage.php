@@ -88,18 +88,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
-    protected function beforeSaveForm($post)
-    {
-        //Whether or not the exhibit is featured
-        $this->featured = (bool) $post['featured'];
-    }
-
-    protected function setFromPost($post)
-    {
-        unset($post['featured']);
-        return parent::setFromPost($post);
-    }
-
     public function previous()
     {
         return $this->getDb()->getTable('ExhibitPage')->findPrevious($this);
