@@ -81,7 +81,7 @@ if ($exhibit->title) {
             <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
             <?php endif; ?>
             <ul class="page-list">
-                <?php common('page-list', compact('exhibit'), 'exhibits'); ?>
+                <?php common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
             </ul>
         </div>
         <div id="page-add">
@@ -91,7 +91,9 @@ if ($exhibit->title) {
     </div>
     <div id="save" class="three columns omega panel">
         <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>
-        <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button')); ?>
+        <?php if ($exhibit->exists()): ?>
+            <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button')); ?>
+        <?php endif; ?>
         <div id="public-featured">
             <div class="public">
                 <label for="public"><?php echo __('Public'); ?>:</label> 
