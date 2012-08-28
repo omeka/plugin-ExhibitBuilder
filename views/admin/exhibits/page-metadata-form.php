@@ -2,11 +2,54 @@
 $title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page');
 head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
+<?php echo flash(); ?>
+<form method="post" id="choose-layout">
+    <div id="exhibits-breadcrumb">
+        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <?php echo html_escape($title); ?>
+    </div>
+    <div class="seven columns alpha">
+    <fieldset>
+        <legend><?php echo __('Page Metadata'); ?></legend>
+        <div class="field">
+            <?php echo $this->formLabel('title', __('Title')); ?>
+            <?php echo $this->formText('title', $exhibitPage->title, array('id'=>'title', 'class'=>'textinput') ); ?>
+        </div>
+        <div class="field">
+            <?php echo $this->formLabel('slug', __('Slug')); ?>
+            <?php echo $this->formText('slug', $exhibitPage->slug, array('id'=>'slug','class'=>'textinput') ); ?>
+            <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
+        </div>
+    </fieldset>
 
-<h1><?php echo html_escape($actionName); ?> Page</h1>
+    <fieldset id="layouts">
+        <legend><?php echo __('Layouts'); ?></legend>
 
-<div id="primary">
-
+        <div id="layout-thumbs">
+        <?php
+            $layouts = exhibit_builder_get_ex_layouts();
+            foreach ($layouts as $layout) {
+                echo exhibit_builder_exhibit_layout($layout);
+            }
+        ?>
+        </div>
+    </fieldset>
+    </div>
+    <div id="save" class="three columns omega panel">
+        <?php echo $this->formSubmit('save_page_metadata', __('Save Changes'), array('class'=>'submit big green button')); ?>
+        <h4><?php echo __('Layout'); ?></h4>
+        <div id="chosen_layout">
+        <?php
+        if ($exhibitPage->layout) {
+            echo exhibit_builder_exhibit_layout($exhibitPage->layout, false);
+        } else {
+            echo '<p>' . __('Choose a layout by selecting a thumbnail on the right.') . '</p>';
+        }
+        ?>
+        </div>
+    </div>
+</form>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 
@@ -22,6 +65,7 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 
             // Remove the old chosen layout
             jQuery('#chosen_layout').find('div.layout').remove()
+            jQuery('#chosen_layout').find('p').remove();
 
             // Copy the chosen layout
             var copyLayout = jQuery(this).clone();
@@ -30,7 +74,7 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             copyLayout.find('input').remove();
 
             // Change the id of the copy
-            copyLayout.attr('id', 'chosen_' + copyLayout.attr('id'));
+            copyLayout.attr('id', 'chosen_' + copyLayout.attr('id')).removeClass('current-layout');
 
             // Append the copy layout to the chosen_layout div
             copyLayout.appendTo('#chosen_layout');
@@ -41,56 +85,4 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     }
 //]]>
 </script>
-
-<form method="post" id="choose-layout">
-
-    <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-        <?php echo html_escape($title); ?>
-    </div>
-
-    <fieldset>
-        <legend><?php echo __('Page Metadata'); ?></legend>
-        <?php echo flash(); ?>
-        <div class="field">
-            <?php echo $this->formLabel('title', __('Title')); ?>
-            <?php echo $this->formText('title', $exhibitPage->title, array('id'=>'title', 'class'=>'textinput') ); ?>
-        </div>
-        <div class="field">
-            <?php echo $this->formLabel('slug', __('Slug')); ?>
-            <?php echo $this->formText('slug', $exhibitPage->slug, array('id'=>'slug','class'=>'textinput') ); ?>
-            <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
-        </div>
-    </fieldset>
-
-    <fieldset id="layouts">
-        <legend><?php echo __('Layouts'); ?></legend>
-
-        <div id="chosen_layout">
-        <?php
-        if ($exhibitPage->layout) {
-            echo exhibit_builder_exhibit_layout($exhibitPage->layout, false);
-        } else {
-            echo '<p>' . __('Choose a layout by selecting a thumbnail on the right.') . '</p>';
-        }
-        ?>
-        </div>
-
-        <div id="layout-thumbs">
-        <?php
-            $layouts = exhibit_builder_get_ex_layouts();
-            foreach ($layouts as $layout) {
-                echo exhibit_builder_exhibit_layout($layout);
-            }
-        ?>
-        </div>
-    </fieldset>
-    <fieldset>
-    <p id="exhibit-builder-save-changes"><input type="submit" name="save_page_metadata" id="page_metadata_form" value="<?php echo __('Save Changes'); ?>"/> <?php echo __('or'); ?>
-        <?php echo __('Cancel'); ?></a></p>
-    </fieldset>
-
-</form>
-</div>
 <?php foot(); ?>

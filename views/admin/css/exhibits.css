@@ -241,28 +241,7 @@ table#exhibits {
     display:none;
 }
 
-#chosen_layout,
-#chosen_layout div.current-layout,
-#chosen_layout img {
-    float:right;
-}
-
-#chosen_layout div.current-layout{
-    width:295px;
-}
-
-#chosen_layout div.layout-name {
-    font-family: Georgia,Times,"Times New Roman",serif;
-    color: #446677;
-    font-size: 1.8em;
-    margin-bottom: 1.2em;
-}
-
 .current-layout {
-    margin-bottom:18px;
-    background:#fff;
-    padding:15px;
-    float:right;
     background:#A2C9E8;
     border:1px solid #6BA8DA;
 }

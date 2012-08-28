@@ -3,6 +3,52 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 ?>
 <?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
+<?php echo flash(); ?>
+
+<div id="page-builder">
+    <div id="exhibits-breadcrumb">
+        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <?php echo html_escape($exhibitPageTitle); ?>
+    </div>
+    <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
+        <div class="seven columns alpha">
+            <div id="page-metadata-list">
+            <h2><?php echo __('Page Layout'); ?></h2>
+                <div id="layout-metadata">
+                    <?php
+                        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif");
+                        echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
+                    ?>
+                    <ul>
+                     <li><strong><?php echo __($layoutName); ?></strong></li>
+                     <li><?php echo __($layoutDescription); ?></li>
+                     </ul>
+                </div>
+
+                <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>
+            </div>
+            <div id="layout-all">
+                <h2><?php echo __('Page Content'); ?></h2>
+            <div id="layout-form">
+            <?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
+            </div>
+
+            </div>
+            <fieldset>
+            <?php echo __v()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>
+            </fieldset>
+        </div>
+        <div id="save" class="three columns omega panel">
+            <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
+            <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+        </div>
+    </form>
+    <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
+    <div id="search-items" style="display:none;">
+        <div id="item-select"></div>
+    </div>
+</div>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 
@@ -77,58 +123,4 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
     });
 //]]>
 </script>
-<h1><?php echo html_escape($exhibitPageTitle); ?></h1>
-
-<div id="primary">
-<?php echo flash(); ?>
-
-<div id="page-builder">
-    <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-        <?php echo html_escape($exhibitPageTitle); ?>
-    </div>
-
-    <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
-    <div id="search-items" style="display:none;">
-        <div id="item-select"></div>
-    </div>
-
-    <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
-        <div id="page-metadata-list">
-        <h2><?php echo __('Page Layout'); ?></h2>
-            <div id="layout-metadata">
-                <?php
-                    $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif");
-                    echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
-                ?>
-                <ul>
-                 <li><strong><?php echo __($layoutName); ?></strong></li>
-                 <li><?php echo __($layoutDescription); ?></li>
-                 </ul>
-            </div>
-
-    <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>
-        </div>
-
-    <div id="layout-all">
-        <h2><?php echo __('Page Content'); ?></h2>
-    <div id="layout-form">
-    <?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
-    </div>
-
-    </div>
-    <fieldset>
-        <p id="exhibit-builder-save-changes">
-            <input id="continue" name="continue" type="submit" value="<?php echo __('Save'); ?>" /> <?php echo __('or'); ?>
-            <input id="page_form" name="page_form" type="submit" value="<?php echo __('Save and Add Another Page'); ?>" />
-
-        </p>
-    </fieldset>
-    <fieldset>
-    <?php echo __v()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>
-    </fieldset>
-    </form>
-</div>
-</div>
 <?php foot(); ?>
