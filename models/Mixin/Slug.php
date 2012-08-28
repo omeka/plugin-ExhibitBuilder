@@ -52,15 +52,15 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         $this->_record->slug = generate_slug($seedValue);
 
         if(trim($this->_record->slug) == '') {
-            $this->addError('slug', $this->options['slugEmptyErrorMessage']);
+            $this->_record->addError('slug', $this->options['slugEmptyErrorMessage']);
         }
 
         if(!$this->slugIsUnique($this->_record->slug)) {
-            $this->addError('slug', $this->options['slugUniqueErrorMessage']);
+            $this->_record->addError('slug', $this->options['slugUniqueErrorMessage']);
         }
 
         if(strlen($this->_record->slug) > $this->options['slugMaxLength']) {
-            $this->addError('slug', $this->options['slugLengthErrorMessage']);
+            $this->_record->addError('slug', $this->options['slugLengthErrorMessage']);
         }
     }
 
