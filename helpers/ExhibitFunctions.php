@@ -237,7 +237,7 @@ function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #')
 function exhibit_builder_layout_form_text($order, $label = 'Text')
 {
     $html = '<div class="textfield exhibit-form-element">';
-    $html .= __v()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70','class'=>'textinput') );
+    $html .= __v()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70'));
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_layout_form_text', $html, array('order' => $order, 'label' => $label));
     return $html;
@@ -260,7 +260,7 @@ function exhibit_builder_layout_form_caption($order, $label = null)
     $html .= '<p>' . html_escape($label) . '</p>' . "\n";
     $html .= '<div class="caption">' . "\n";
     $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
-    $html .= __v()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30','class'=>'textinput') );
+    $html .= __v()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30'));
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
 

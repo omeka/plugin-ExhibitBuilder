@@ -14,11 +14,11 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <legend><?php echo __('Page Metadata'); ?></legend>
         <div class="field">
             <?php echo $this->formLabel('title', __('Title')); ?>
-            <?php echo $this->formText('title', $exhibitPage->title, array('id'=>'title', 'class'=>'textinput') ); ?>
+            <?php echo $this->formText('title', $exhibitPage->title); ?>
         </div>
         <div class="field">
             <?php echo $this->formLabel('slug', __('Slug')); ?>
-            <?php echo $this->formText('slug', $exhibitPage->slug, array('id'=>'slug','class'=>'textinput') ); ?>
+            <?php echo $this->formText('slug', $exhibitPage->slug); ?>
             <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
         </div>
     </fieldset>
