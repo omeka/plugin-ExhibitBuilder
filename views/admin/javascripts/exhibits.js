@@ -255,20 +255,12 @@ Omeka.ExhibitBuilder = function() {
         }
         return false;
     };
-    
-    this.addStyling = function() {
-        jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
-    }
 }
 
 Omeka.ExhibitBuilder.wysiwyg = function() {
     Omeka.wysiwyg();
 }
 
-Omeka.ExhibitBuilder.addStyling = function() {
-	jQuery('.order-input').css({'border':'none', 'background':'#fff','color':'#333'});
-	jQuery('.section-list, .page-list').css({'cursor':'move'});
-}
 
 Omeka.ExhibitBuilder.addNumbers = function() {
     jQuery('#layout-form .exhibit-form-element').each(function(i){

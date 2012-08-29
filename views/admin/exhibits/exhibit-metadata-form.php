@@ -5,6 +5,10 @@ if ($exhibit->title) {
     $exhibitTitle = ($actionName == 'Add') ? __('Add Exhibit') : __('Edit Exhibit');
 }
 ?>
+<?php
+    queue_js('tree.jquery');
+    queue_css('jqtree');
+?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
     <div id="exhibits-breadcrumb">
         <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
@@ -92,7 +96,7 @@ if ($exhibit->title) {
     <div id="save" class="three columns omega panel">
         <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>
         <?php if ($exhibit->exists()): ?>
-            <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button')); ?>
+            <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
         <?php endif; ?>
         <div id="public-featured">
             <div class="public">
@@ -108,12 +112,8 @@ if ($exhibit->title) {
 </form>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
-    var listSorter = {};
-
     jQuery(window).load(function() {
         Omeka.ExhibitBuilder.wysiwyg();
-        Omeka.ExhibitBuilder.addStyling();
-
     });
 //]]>
 </script>

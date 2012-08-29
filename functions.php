@@ -234,8 +234,6 @@ function exhibit_builder_admin_header($args)
     if ($module == 'exhibit-builder' && $controller == 'exhibits') {
         queue_css('exhibits', 'screen');
         queue_js(array('tiny_mce/tiny_mce', 'exhibits'));
-        queue_js('tree.jquery');
-        queue_css('jqtree');
     } else if ($module == 'default' && $controller == 'index') {
         queue_css('exhibits-dashboard');
     }
