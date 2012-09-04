@@ -24,7 +24,21 @@ class Exhibit extends Omeka_Record_AbstractRecord
     public $owner_id;
 
     protected $_related = array('TopPages'=>'getTopPages', 'Tags'=>'getTags');
-
+    
+    public function _initializeMixins()
+    {
+        $this->_mixins[] = new Mixin_Tag($this);
+        $this->_mixins[] = new Mixin_Owner($this);
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPage', 'exhibit_id', 'ExhibitPages');
+        $this->_mixins[] = new Mixin_Slug($this, array(
+            'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
+            'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
+            'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));
+        $this->_mixins[] = new Mixin_Timestamp($this);
+        $this->_mixins[] = new Mixin_PublicFeatured($this);
+        $this->_mixins[] = new Mixin_Search($this);
+    }
+    
     protected function _validate()
     {
         if (!strlen((string)$this->title)) {
@@ -50,19 +64,6 @@ class Exhibit extends Omeka_Record_AbstractRecord
         $this->deleteTaggings();
     }
 
-    public function construct()
-    {
-        $this->_mixins[] = new Mixin_Tag($this);
-        $this->_mixins[] = new Mixin_Owner($this);
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPage', 'exhibit_id', 'ExhibitPages');
-        $this->_mixins[] = new Mixin_Slug($this, array(
-            'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
-            'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
-            'slugUniqueErrorMessage' => __('Your URL slug is already in use by another exhibit.  Please choose another.')));
-        $this->_mixins[] = new Mixin_Timestamp($this);
-        $this->_mixins[] = new Mixin_PublicFeatured($this);
-    }
-
     /**
      * Get a property about the exhibit for display.
      *
@@ -79,6 +80,15 @@ class Exhibit extends Omeka_Record_AbstractRecord
         }
     }
 
+    protected function afterSave()
+    {
+        if (!$this->public) {
+            $this->setSearchTextPrivate();
+        }
+        $this->setSearchTextTitle($this->title);
+        $this->addSearchText($this->description);
+    }
+    
     protected function afterSaveForm($args)
     {
         //Add the tags after the form has been saved
@@ -193,5 +203,12 @@ class Exhibit extends Omeka_Record_AbstractRecord
 
         $themeOptionsArray = unserialize($this->theme_options);
         return $themeOptionsArray[$themeName];
+    }
+    
+    public function getRecordUrl()
+    {
+        $urlHelper = new Omeka_View_Helper_Url;
+        $route = array('slug' => $this->slug);
+        return $urlHelper->url($route, 'exhibitSimple');
     }
 }

@@ -24,7 +24,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     protected $_related = array('ExhibitPageEntry'=>'loadOrderedChildren');
 
-    public function construct()
+    public function _initializeMixins()
     {
         $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
         $this->_mixins[] = new Mixin_Slug($this, array(
@@ -280,9 +280,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         } else {
             return $node;
         }
-
-
-
     }
     
     public function getRecordUrl()
