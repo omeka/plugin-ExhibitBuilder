@@ -224,9 +224,9 @@ function exhibit_builder_public_header()
  *
  * @return void
  **/
-function exhibit_builder_admin_header($args)
+function exhibit_builder_admin_header()
 {
-    $request = $args['request'];
+    $request = Zend_Controller_Front::getInstance()->getRequest();
     $module = $request->getModuleName();
     $controller = $request->getControllerName();
 
