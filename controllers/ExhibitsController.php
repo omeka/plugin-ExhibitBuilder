@@ -103,6 +103,13 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         $params = $this->getRequest()->getParams();
+        
+        // Redirect to the public theme if accessing the page via admin theme.
+        if (is_admin_theme()) {
+            $url = WEB_ROOT . "/exhibits/show/{$params[slug]}/{$params[page_slug_1]}";
+            $this->_helper->redirector->goToUrl($url);
+        }
+        
         unset($params['action']);
         unset($params['controller']);
         unset($params['module']);
@@ -112,7 +119,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         unset($params['slug']); // don't need the exhibit slug
         $parentPages = array();
         $pageTable = $this->_helper->db->getTable('ExhibitPage');
-
+        
         foreach($params as $level=>$slug) {
             if(!empty($slug)) {
                 $page = $pageTable->findBySlug($slug);

@@ -20,7 +20,20 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
     public $order;
     
     protected $_related = array('Item'=>'getItem');
-
+    
+    public function afterSave()
+    {
+        $page = $this->getPage();
+        
+        // Build the page's search text.
+        $text = '';
+        foreach ($page->ExhibitPageEntry as $entry) {
+            $text .= "{$entry->text} {$entry->caption} ";
+        }
+        
+        Mixin_Search::saveSearchText('ExhibitPage', $page->id, $text, $page->title, $page->getExhibit()->public);
+    }
+    
     protected function getItem()
     {
         if ($this->item_id) {

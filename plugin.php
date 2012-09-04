@@ -42,6 +42,8 @@ add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('theme_options', 'exhibit_builder_theme_options');
 add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
 
+add_filter('search_record_types', 'exhibit_builder_search_record_types');
+
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitPageFunctions.php';

@@ -476,6 +476,12 @@ function exhibit_builder_append_to_advanced_search()
     echo $html;
 }
 
+function exhibit_builder_search_record_types($recordTypes)
+{
+    $recordTypes[] = 'ExhibitPage';
+    return $recordTypes;
+}
+
 class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
 {
     /**

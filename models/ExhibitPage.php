@@ -32,6 +32,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('This page slug has already been used.  Please modify the slug so that it is unique.')));
+        $this->_mixins[] = new Mixin_Search($this);
     }
 
     /**
@@ -85,6 +86,19 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
                 $sibling->order = $sibling->order + 1;
                 $sibling->save();
             }
+        }
+    }
+    
+    protected function afterSave()
+    {
+        $exhibit = $this->getExhibit();
+        if (!$exhibit->public) {
+            $this->setSearchTextPrivate();
+        }
+        $this->setSearchTextTitle($this->title);
+        foreach ($this->ExhibitPageEntry as $entry) {
+            $this->addSearchText($entry->text);
+            $this->addSearchText($entry->caption);
         }
     }
 
@@ -270,5 +284,11 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
 
     }
-
+    
+    public function getRecordUrl()
+    {
+        $urlHelper = new Omeka_View_Helper_Url;
+        $route = array('slug' => $this->getExhibit()->slug, 'page_slug_1' => $this->slug);
+        return $urlHelper->url($route, 'exhibitShow');
+    }
 }
