@@ -282,10 +282,14 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
     
-    public function getRecordUrl()
+    public function getRecordUrl($action)
     {
-        $urlHelper = new Omeka_View_Helper_Url;
-        $route = array('slug' => $this->getExhibit()->slug, 'page_slug_1' => $this->slug);
-        return $urlHelper->url($route, 'exhibitShow');
+        if ('show' == $action) {
+            $urlHelper = new Omeka_View_Helper_Url;
+            $route = array('slug' => $this->getExhibit()->slug, 'page_slug_1' => $this->slug);
+            return $urlHelper->url($route, 'exhibitShow');
+        }
+        return parent::getRecordUrl($action);
+        
     }
 }

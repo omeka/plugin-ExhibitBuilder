@@ -205,10 +205,13 @@ class Exhibit extends Omeka_Record_AbstractRecord
         return $themeOptionsArray[$themeName];
     }
     
-    public function getRecordUrl()
+    public function getRecordUrl($action)
     {
-        $urlHelper = new Omeka_View_Helper_Url;
-        $route = array('slug' => $this->slug);
-        return $urlHelper->url($route, 'exhibitSimple');
+        if ('show' == $action) {
+            $urlHelper = new Omeka_View_Helper_Url;
+            $route = array('slug' => $this->slug);
+            return $urlHelper->url($route, 'exhibitSimple');
+        }
+        return parent::getRecordUrl($action);
     }
 }
