@@ -96,6 +96,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $this->setSearchTextPrivate();
         }
         $this->setSearchTextTitle($this->title);
+        $this->addSearchText($this->title);
         foreach ($this->ExhibitPageEntry as $entry) {
             $this->addSearchText($entry->text);
             $this->addSearchText($entry->caption);
