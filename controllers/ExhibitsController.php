@@ -236,7 +236,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         if ($themeName = $exhibit->theme) {
-            $theme = Theme::getAvailable($themeName);
+            $theme = Theme::getTheme($themeName);
         } else {
             $theme = null;
         }
@@ -261,7 +261,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             return;
         }
 
-        $theme = Theme::getAvailable($themeName);
+        $theme = Theme::getTheme($themeName);
         $previousOptions = $exhibit->getThemeOptions();
 
         $form = new Omeka_Form_ThemeConfiguration(array(
