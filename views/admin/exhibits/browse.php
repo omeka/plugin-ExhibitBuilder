@@ -56,7 +56,7 @@ head(array('title'=>$title, 'bodyclass'=>'exhibits'));
         if ($exhibit->theme==null) {
             $themeName = __('Current Public Theme');
         } else {
-            $theme = Theme::getAvailable($exhibit->theme);
+            $theme = Theme::getTheme($exhibit->theme);
             $themeName = !empty($theme->title) ? $theme->title : $exhibit->theme;
         }
         ?>
