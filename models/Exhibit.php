@@ -206,7 +206,7 @@ class Exhibit extends Omeka_Record_AbstractRecord
         return $themeOptionsArray[$themeName];
     }
     
-    public function getRecordUrl($action)
+    public function getRecordUrl($action = 'show')
     {
         if ('show' == $action) {
             $urlHelper = new Omeka_View_Helper_Url;
