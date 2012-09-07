@@ -277,7 +277,7 @@ function exhibit_builder_get_ex_themes()
 {
     $themeNames = array();
 
-    $themes = apply_filters('browse_themes', Theme::getAvailable());
+    $themes = apply_filters('browse_themes', Theme::getAllThemes());
     foreach ($themes as $themeDir => $theme) {
         $title = !empty($theme->title) ? $theme->title : $themeDir;
         $themeNames[$themeDir] = $title;
