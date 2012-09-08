@@ -99,7 +99,7 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
 function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $item = null)
 {
     if (!$item) {
-        $item = get_current_item();
+        $item = get_current_record('item');
     }
 
     if (!isset($props['class'])) {
@@ -184,7 +184,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
     $html = '<div class="item-select-outer exhibit-form-element">';
 
     if ($item and $item->exists()) {
-        set_current_item($item);
+        set_current_record('item', $item);
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
@@ -442,7 +442,7 @@ function exhibit_builder_random_featured_exhibit()
 function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array(), $item = null)
 {
     if (!$item) {
-        $item = get_current_item();
+        $item = get_current_record('item');
     }
 
     // Always just display the first file (may change this in future).
@@ -622,7 +622,7 @@ function get_exhibits_for_loop()
  */
 function loop_exhibits()
 {
-    return loop_records('exhibits', get_exhibits_for_loop(), 'set_current_exhibit');
+    return loop('exhibits', get_exhibits_for_loop());
 }
 
 /**

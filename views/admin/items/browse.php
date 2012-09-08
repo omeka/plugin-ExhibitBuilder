@@ -17,10 +17,10 @@
 
 </div>
 <div id="item-list">
-<?php if (!has_items_for_loop()): ?>
+<?php if (!has_loop_records('items')): ?>
     <p><?php echo __('There are no items to choose from.  Please refine your search or %s.', '<a href="' . html_escape(uri('items/add')) .'">' . __('add some items') .'</a>') ?></p>
 <?php endif; ?>
-<?php while($item = loop_items()): ?>
+<?php foreach (loop('items') as $item): ?>
     <?php echo exhibit_builder_exhibit_form_item($item, null, null, false); ?>
-<?php endwhile; ?>
+<?php endforeach; ?>
 </div>

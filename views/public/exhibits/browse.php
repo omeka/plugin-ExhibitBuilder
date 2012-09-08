@@ -14,14 +14,14 @@ head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 	
     <div id="exhibits">	
     <?php $exhibitCount = 0; ?>
-    <?php while(loop_exhibits()): ?>
+    <?php foreach (loop_exhibits() as $exhibit): ?>
     	<?php $exhibitCount++; ?>
     	<div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
     		<h2><?php echo link_to_exhibit(); ?></h2>
     		<div class="description"><?php echo metadata('exhibit', 'description', array('no_escape' => true)); ?></div>
     		<p class="tags"><?php echo tag_string(get_current_exhibit(), uri('exhibits/browse/tag/')); ?></p>
     	</div>
-    <?php endwhile; ?>
+    <?php endforeach; ?>
     </div>
     
     <div class="pagination"><?php echo pagination_links(); ?></div>

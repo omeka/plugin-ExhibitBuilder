@@ -143,7 +143,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit, 'exhibitPage' => $exhibitPage));
 
-        $this->renderExhibit(compact('exhibit', 'parentPages', 'exhibitPage'));
+        $this->renderExhibit(array(
+            'exhibit' => $exhibit, 
+            'parentPages' => $parentPages, 
+            'exhibit_page' => $exhibitPage));
     }
 
     public function summaryAction()

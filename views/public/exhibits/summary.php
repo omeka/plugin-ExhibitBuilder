@@ -13,9 +13,9 @@
 
 <div id="exhibit-pages">
     <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-    <?php while(loop_exhibit_pages()): ?>
+    <?php foreach (loop_exhibit_pages() as $exhibitPages): ?>
     <?php exhibit_builder_render_page_summary(); ?>
-    <?php endwhile; ?>
+    <?php endforeach; ?>
 </div>
 </div>
 <?php foot(); ?>

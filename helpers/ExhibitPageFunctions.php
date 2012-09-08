@@ -7,7 +7,7 @@
  **/
 function exhibit_builder_get_current_page()
 {
-    return __v()->exhibitPage;
+    return __v()->exhibit_page;
 }
 
 /**
@@ -18,7 +18,7 @@ function exhibit_builder_get_current_page()
  **/
 function exhibit_builder_set_current_page($exhibitPage = null)
 {
-    __v()->exhibitPage = $exhibitPage;
+    __v()->exhibit_page = $exhibitPage;
 }
 
 /**
@@ -277,7 +277,7 @@ function exhibit_builder_use_exhibit_page_item($exhibitPageEntryIndex = 1)
 {
     $item = exhibit_builder_page_item($exhibitPageEntryIndex);
     if ($item instanceof Item) {
-        set_current_item($item);
+        set_current_record('item', $item);
         return $item;
     }
     return false;
@@ -313,7 +313,7 @@ function set_current_exhibit_page(ExhibitPage $exhibitPage)
  **/
 function set_exhibit_pages_for_loop($exhibitPages)
 {
-    __v()->exhibitPages = $exhibitPages;
+    __v()->exhibit_pages = $exhibitPages;
 }
 
 /**
@@ -347,7 +347,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
  **/
 function get_exhibit_pages_for_loop()
 {
-    return __v()->exhibitPages;
+    return __v()->exhibit_pages;
 }
 
 /**
@@ -357,7 +357,7 @@ function get_exhibit_pages_for_loop()
  */
 function loop_exhibit_pages()
 {
-    return loop_records('exhibitPages', get_exhibit_pages_for_loop(), 'set_current_exhibit_page');
+    return loop('exhibit_pages', get_exhibit_pages_for_loop());
 }
 
 /**
@@ -377,7 +377,7 @@ function has_exhibit_pages()
 function has_exhibit_pages_for_loop()
 {
     $view = __v();
-    return ($view->exhibitPages and count($view->exhibitPages));
+    return ($view->exhibit_pages and count($view->exhibit_pages));
 }
 
 /**

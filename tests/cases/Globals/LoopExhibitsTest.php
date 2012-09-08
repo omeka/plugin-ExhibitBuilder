@@ -17,7 +17,7 @@ class LoopExhibitsTest extends ExhibitBuilder_ViewTestCase
         $this->view->exhibits = $exhibits;
 
         $exhibitsCount = 0;
-        while (loop_exhibits()) {
+        foreach (loop_exhibits() as $exhibit) {
                 $exhibit = $this->view->exhibit;
                 $this->assertTrue(in_array($exhibit, $exhibits));
                 $exhibitsCount++;

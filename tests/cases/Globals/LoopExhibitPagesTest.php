@@ -17,8 +17,8 @@ class LoopExhibitPagesTest extends ExhibitBuilder_ViewTestCase
         $this->view->exhibitPages = $exhibitPages;
 
         $exhibitPageCount = 0;
-        while (loop_exhibit_pages()) {
-            $exhibitPage = $this->view->exhibitPage;
+        foreach (loop_exhibit_pages() as $exhibitPages) {
+            $exhibitPage = $this->view->exhibit_page;
             $this->assertTrue(in_array($exhibitPage, $exhibitPages));
             $exhibitPageCount++;
         }
