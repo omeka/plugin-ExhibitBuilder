@@ -11,31 +11,7 @@ class ExhibitBuilder_IntegrationHelper
     public function setUpPlugin()
     {
         $pluginHelper = new Omeka_Test_Helper_Plugin;
-        $this->_addPluginHooksAndFilters($pluginHelper->pluginBroker, self::PLUGIN_NAME);
         $pluginHelper->setUp(self::PLUGIN_NAME);
-    }
-
-    public function _addPluginHooksAndFilters($pluginBroker, $pluginName)
-    {
-        // Set the current plugin so the add_plugin_hook function works
-        $pluginBroker->setCurrentPluginDirName($pluginName);
-
-        // Add plugin hooks
-        add_plugin_hook('install', 'exhibit_builder_install');
-        add_plugin_hook('uninstall', 'exhibit_builder_uninstall');
-        add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
-        add_plugin_hook('define_routes', 'exhibit_builder_routes');
-        add_plugin_hook('public_theme_header', 'exhibit_builder_public_header');
-        add_plugin_hook('admin_theme_header', 'exhibit_builder_admin_header');
-        add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
-        add_plugin_hook('config_form', 'exhibit_builder_config_form');
-        add_plugin_hook('config', 'exhibit_builder_config');
-        add_plugin_hook('initialize', 'exhibit_builder_initialize');
-        add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
-
-        // Add plugin filters
-        add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
-        add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
     }
 
     public function createNewExhibit($isPublic, $isFeatured, $title, $description, $credits, $slug='')
