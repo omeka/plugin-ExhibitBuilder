@@ -7,7 +7,7 @@ head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 	<?php if (count($exhibits) > 0): ?>
 	
 	<ul class="navigation" id="secondary-nav">
-	    <?php echo nav(array(__('Browse All') => uri('exhibits'), __('Browse by Tag') => uri('exhibits/tags'))); ?>
+	    <?php echo nav(array(__('Browse All') => url('exhibits'), __('Browse by Tag') => url('exhibits/tags'))); ?>
     </ul>	
 	
     <div class="pagination"><?php echo pagination_links(); ?></div>
@@ -19,7 +19,7 @@ head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
     	<div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
     		<h2><?php echo link_to_exhibit(); ?></h2>
     		<div class="description"><?php echo metadata('exhibit', 'description', array('no_escape' => true)); ?></div>
-    		<p class="tags"><?php echo tag_string(get_current_exhibit(), uri('exhibits/browse/tag/')); ?></p>
+    		<p class="tags"><?php echo tag_string(get_current_exhibit(), url('exhibits/browse/tag/')); ?></p>
     	</div>
     <?php endforeach; ?>
     </div>

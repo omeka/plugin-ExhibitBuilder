@@ -69,7 +69,7 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
 
     //If there is no page slug available, we want to build a URL for the summary page
     if (!$exhibitPage) {
-        $uri = public_uri(array('slug'=>$exhibitSlug), 'exhibitSimple');
+        $uri = public_url(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
         $pagesTrail = $exhibitPage->getAncestors();
         $pagesTrail[] = $exhibitPage;
@@ -83,7 +83,7 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
         $unsetIndex = $adjustedIndex + 1;
         $options["page_slug_$unsetIndex" ] = "";
 
-        $uri = public_uri($options, 'exhibitShow');
+        $uri = public_url($options, 'exhibitShow');
     }
     return $uri;
 }
@@ -129,9 +129,9 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
 
     //If the exhibit has a theme associated with it
     if (!empty($exhibit->theme)) {
-        return uri(array('slug'=>$exhibit->slug, 'item_id'=>$item->id), 'exhibitItem');
+        return url(array('slug'=>$exhibit->slug, 'item_id'=>$item->id), 'exhibitItem');
     } else {
-        return uri(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
+        return url(array('controller'=>'items','action'=>'show','id'=>$item->id), 'id');
     }
 }
 

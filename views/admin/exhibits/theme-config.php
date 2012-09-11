@@ -13,7 +13,7 @@ if ($exhibit->title) {
 
 <div id="primary">
     <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape('Configure Theme for Exhibit'); ?>
+        <a href="<?php echo html_escape(url('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape('Configure Theme for Exhibit'); ?>
     </div>
     <h2><?php echo $theme->title; ?> Configuration</h2>    
 <?php flash(); ?>

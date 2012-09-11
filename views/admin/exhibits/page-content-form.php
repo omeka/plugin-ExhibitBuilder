@@ -7,11 +7,11 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 
 <div id="page-builder">
     <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-        <a href="<?php echo html_escape(uri('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
         <?php echo html_escape($exhibitPageTitle); ?>
     </div>
-    <form id="page-form" method="post" action="<?php echo html_escape(uri(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
+    <form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
         <div class="seven columns alpha">
             <div id="page-metadata-list">
             <h2><?php echo __('Page Layout'); ?></h2>
@@ -60,10 +60,10 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
         exhibitBuilder.addStyling();
 
         // Set the exhibit item uri
-        exhibitBuilder.itemContainerUri = <?php echo js_escape(uri('exhibits/item-container')); ?>;
+        exhibitBuilder.itemContainerUri = <?php echo js_escape(url('exhibits/item-container')); ?>;
 
         // Set the paginated exhibit items uri
-        exhibitBuilder.paginatedItemsUri = <?php echo js_escape(uri('exhibit-builder/items/browse')); ?>;
+        exhibitBuilder.paginatedItemsUri = <?php echo js_escape(url('exhibit-builder/items/browse')); ?>;
 
         // Set the remove item background image uri
         exhibitBuilder.removeItemBackgroundImageUri = <?php echo js_escape(img('silk-icons/delete.png')); ?>;

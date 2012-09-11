@@ -6,8 +6,8 @@ head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'tags'));
 <h1><?php echo $title; ?></h1>
 <ul class="navigation exhibit-tags" id="secondary-nav">
     <?php echo nav(array(
-        __('Browse All') => uri('exhibits/browse'),
-        __('Browse by Tag') => uri('exhibits/tags')
+        __('Browse All') => url('exhibits/browse'),
+        __('Browse by Tag') => url('exhibits/tags')
     )); ?>
 </ul>
 

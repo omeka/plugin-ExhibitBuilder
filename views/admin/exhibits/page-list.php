@@ -53,8 +53,8 @@ jQuery('#pagetree').tree({
 
         title = li.find('.jqtree-title');
 
-        editUrl = "<?php echo html_escape(uri('exhibits/edit-page-content/')); ?>" + node.id;
-        deleteUrl = "<?php echo html_escape(uri('exhibits/delete-page/')); ?>" + node.id;
+        editUrl = "<?php echo html_escape(url('exhibits/edit-page-content/')); ?>" + node.id;
+        deleteUrl = "<?php echo html_escape(url('exhibits/delete-page/')); ?>" + node.id;
         actionsHTML = '<span class="page-actions">';
         actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="edit"><?php echo __('Edit'); ?></a></span>';
         actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="delete-page"><?php echo __('Delete'); ?></a></span>';

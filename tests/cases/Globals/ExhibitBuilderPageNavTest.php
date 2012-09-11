@@ -25,7 +25,7 @@ class ExhibitBuilderPageNavTest extends Omeka_Test_AppTestCase
 
         $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug1/exhibitpageslug2');
 
-        $this->basePageUrl = public_uri('exhibits/show/exhibitslug/exhibitpageslug1/exhibitpageslug2');
+        $this->basePageUrl = public_url('exhibits/show/exhibitslug/exhibitpageslug1/exhibitpageslug2');
     }
 
 

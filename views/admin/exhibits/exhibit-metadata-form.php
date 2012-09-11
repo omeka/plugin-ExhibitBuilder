@@ -11,7 +11,7 @@ if ($exhibit->title) {
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
     <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(uri('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
         <?php echo html_escape($exhibitTitle); ?>
     </div>
 
@@ -71,7 +71,7 @@ if ($exhibit->title) {
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
                 <?php echo __v()->formSelect('theme', $exhibit->theme, array(), $values); ?>
                 <?php if ($theme && $theme->hasConfig): ?>
-                    <a href="<?php echo html_escape(uri("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
+                    <a href="<?php echo html_escape(url("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
                 <?php endif;?>
             </div>
         </div>
