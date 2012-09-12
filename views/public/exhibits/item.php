@@ -12,7 +12,7 @@ head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-ite
 		<?php echo display_files_for_item(); ?>
 	</div>
 	
-	<?php if ( item_belongs_to_collection() ): ?>
+	<?php if (metadata('item', 'Collection Name')): ?>
         <div id="collection" class="field">
             <h2><?php echo __('Collection'); ?></h2>
             <div class="field-value"><p><?php echo link_to_collection_for_item(); ?></p></div>

@@ -203,7 +203,7 @@ class Exhibit extends Omeka_Record_AbstractRecord
         }
 
         $themeOptionsArray = unserialize($this->theme_options);
-        return $themeOptionsArray[$themeName];
+        return @$themeOptionsArray[$themeName];
     }
     
     public function getRecordUrl($action = 'show')
