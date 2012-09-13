@@ -50,19 +50,21 @@ class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
         return $indexed;
     }
 
-    public function afterSaveForm($post)
+    public function afterSave($args)
     {
-        $form = $post[$this->pluralized];
+        if (isset($args['post'])) {
+            $post = $args['post'];
+            $form = $post[$this->pluralized];
+            if (!empty($form)) {
+                
+                $children = $this->loadOrderedChildren();
 
-        if (!empty($form)) {
-
-            $children = $this->loadOrderedChildren();
-
-            //Change the order of the sections
-            foreach ($form as $key => $entry) {
-                $child = $children[$key];
-                $child->order = (int)$entry['order'];
-                $child->save();
+                //Change the order of the sections
+                foreach ($form as $key => $entry) {
+                    $child = $children[$key];
+                    $child->order = (int)$entry['order'];
+                    $child->save();
+                }
             }
         }
     }

@@ -77,7 +77,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      * If so, bump later siblings up in order
      */
 
-    protected function beforeSave()
+    protected function beforeSave($args)
     {
         $table = $this->getTable();
         if($table->count(array('order'=>$this->order, 'parent'=>$this->parent_id)) != 0) {
@@ -89,7 +89,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
     
-    protected function afterSave()
+    protected function afterSave($args)
     {
         $exhibit = $this->getExhibit();
         if (!$exhibit->public) {
@@ -100,6 +100,32 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         foreach ($this->ExhibitPageEntry as $entry) {
             $this->addSearchText($entry->text);
             $this->addSearchText($entry->caption);
+        }
+        
+        if (isset($args['post'])) {
+            $post = $args['post'];
+            
+            $textCount = count($post['Text']);
+            $itemCount = count($post['Item']);
+            $highCount = ($textCount > $itemCount) ? $textCount : $itemCount;
+
+            $entries = $this->ExhibitPageEntry;
+            for ($i=1; $i <= $highCount; $i++) {
+                $ip = $entries[$i];
+
+                if (!$ip) {
+                    $ip = new ExhibitPageEntry;
+                    $ip->page_id = $this->id;
+                }
+                $text = $post['Text'][$i];
+                $item_id = $post['Item'][$i];
+                $caption = $post['Caption'][$i];
+                $ip->text = (string) $text;
+                $ip->caption = (string) $caption;
+                $ip->item_id = (int) is_numeric($item_id) ? $item_id : null;
+                $ip->order = (int) $i;
+                $ip->save();
+            }
         }
     }
 
@@ -214,43 +240,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
                 $child->parent_id = NULL;
             }
             $child->save();
-        }
-    }
-
-    /**
-     * Page Form POST will look like:
-     *
-     * Text[1] = 'Text inserted <a href="foobar.com">With HTML</a>'
-     * Item[2] = 35		(integer ID)
-     * Item[3] = 64
-     * Text[3] = 'This is commentary for the Item with ID # 64'
-     *
-     * @return void
-     **/
-    public function afterSaveForm($args)
-    {
-        $post = $args['post'];
-        
-        $textCount = count($post['Text']);
-        $itemCount = count($post['Item']);
-        $highCount = ($textCount > $itemCount) ? $textCount : $itemCount;
-
-        $entries = $this->ExhibitPageEntry;
-        for ($i=1; $i <= $highCount; $i++) {
-            $ip = $entries[$i];
-
-            if (!$ip) {
-                $ip = new ExhibitPageEntry;
-                $ip->page_id = $this->id;
-            }
-            $text = $post['Text'][$i];
-            $item_id = $post['Item'][$i];
-            $caption = $post['Caption'][$i];
-            $ip->text = (string) $text;
-            $ip->caption = (string) $caption;
-            $ip->item_id = (int) is_numeric($item_id) ? $item_id : null;
-            $ip->order = (int) $i;
-            $ip->save();
         }
     }
 

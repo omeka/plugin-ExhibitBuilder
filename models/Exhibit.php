@@ -80,7 +80,7 @@ class Exhibit extends Omeka_Record_AbstractRecord
         }
     }
 
-    protected function afterSave()
+    protected function afterSave($args)
     {
         if (!$this->public) {
             $this->setSearchTextPrivate();
@@ -88,15 +88,14 @@ class Exhibit extends Omeka_Record_AbstractRecord
         $this->setSearchTextTitle($this->title);
         $this->addSearchText($this->title);
         $this->addSearchText($this->description);
-    }
-    
-    protected function afterSaveForm($args)
-    {
-        //Add the tags after the form has been saved
-        $post = $args['post'];
-        $this->applyTagString($post['tags']);
-        $pages = $post['Pages'];
-        $this->savePagesParentOrder(null, $pages);
+        
+        if (isset($args['post'])) {
+            //Add the tags after the form has been saved
+            $post = $args['post'];
+            $this->applyTagString($post['tags']);
+            $pages = $post['Pages'];
+            $this->savePagesParentOrder(null, $pages);
+        }
     }
 
     /**

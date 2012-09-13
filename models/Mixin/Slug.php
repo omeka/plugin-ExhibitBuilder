@@ -39,7 +39,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         }
     }
 
-    public function beforeSave()
+    public function beforeSave($args)
     {
         $seedValue = '';
 

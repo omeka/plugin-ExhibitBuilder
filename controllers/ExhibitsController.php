@@ -220,22 +220,25 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
      **/
     protected function processExhibitForm($exhibit, $actionName)
     {
-        try {
-            $retVal = $exhibit->saveForm($_POST);
-            if ($retVal) {
-                if (array_key_exists('add_page',$_POST)) {
-                    //forward to addPage & unset the POST vars
-                    unset($_POST);
-                    $this->_helper->redirector('add-page', null, null, array('id'=>$exhibit->id) );
-                    return;
-                } else if (array_key_exists('save_exhibit', $_POST)) {
-                    $this->_helper->redirector('edit', null, null, array('id' => $exhibit->id));
+        if ($this->getRequest()->isPost()) {
+            $exhibit->setPostData($_POST);
+            try {
+                $retVal = $exhibit->save();
+                if ($retVal) {
+                    if (array_key_exists('add_page',$_POST)) {
+                        //forward to addPage & unset the POST vars
+                        unset($_POST);
+                        $this->_helper->redirector('add-page', null, null, array('id'=>$exhibit->id) );
+                        return;
+                    } else if (array_key_exists('save_exhibit', $_POST)) {
+                        $this->_helper->redirector('edit', null, null, array('id' => $exhibit->id));
+                    }
                 }
+            } catch (Omeka_Validator_Exception $e) {
+                $this->_helper->flashMessenger($e);
+            } catch (Exception $e) {
+                $this->_helper->flashMessenger($e->getMessage());
             }
-        } catch (Omeka_Validator_Exception $e) {
-            $this->_helper->flashMessenger($e);
-        } catch (Exception $e) {
-            $this->_helper->flashMessenger($e->getMessage());
         }
 
         if ($themeName = $exhibit->theme) {
@@ -401,9 +404,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     protected function processPageForm($exhibitPage, $actionName, $exhibit = null)
     {
         $this->view->assign(compact('exhibit', 'exhibitPage', 'actionName'));
-        if (!empty($_POST)) {
+        if ($this->getRequest()->isPost()) {
+            $exhibitPage->setPostData($_POST);
             try {
-                $success = $exhibitPage->saveForm($_POST);
+                $success = $exhibitPage->save();
                 return true;
             } catch (Exception $e) {
                 $this->_helper->flashMessenger($e->getMessage(), 'error');

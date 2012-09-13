@@ -21,7 +21,7 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
     
     protected $_related = array('Item'=>'getItem');
     
-    public function afterSave()
+    public function afterSave($args)
     {
         // Build the page's search text.
         $page = $this->getPage();
