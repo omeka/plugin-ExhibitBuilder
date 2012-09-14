@@ -102,7 +102,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $this->addSearchText($entry->caption);
         }
         
-        if (isset($args['post'])) {
+        if ($args['post']) {
             $post = $args['post'];
             
             $textCount = count($post['Text']);

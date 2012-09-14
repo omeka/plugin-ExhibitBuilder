@@ -52,7 +52,7 @@ class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
 
     public function afterSave($args)
     {
-        if (isset($args['post'])) {
+        if ($args['post']) {
             $post = $args['post'];
             $form = $post[$this->pluralized];
             if (!empty($form)) {

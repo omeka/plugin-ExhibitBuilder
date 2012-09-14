@@ -89,7 +89,7 @@ class Exhibit extends Omeka_Record_AbstractRecord
         $this->addSearchText($this->title);
         $this->addSearchText($this->description);
         
-        if (isset($args['post'])) {
+        if ($args['post']) {
             //Add the tags after the form has been saved
             $post = $args['post'];
             $this->applyTagString($post['tags']);
