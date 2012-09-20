@@ -6,8 +6,8 @@ if ($exhibit->title) {
 }
 ?>
 <?php
-    queue_js('tree.jquery');
-    queue_css('jqtree');
+    queue_js_file('tree.jquery');
+    queue_css_file('jqtree');
 ?>
 <?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
     <div id="exhibits-breadcrumb">

@@ -342,7 +342,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
 function exhibit_builder_layout_css($fileName = 'layout')
 {
     if ($exhibitPage = exhibit_builder_get_current_page()) {
-        return css($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
+        return css_src($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
     }
 }
 

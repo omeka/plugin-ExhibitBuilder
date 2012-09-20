@@ -216,7 +216,7 @@ function exhibit_builder_public_header()
         // Add the stylesheet for the layout
         echo '<link rel="stylesheet" media="screen" href="' . html_escape($layoutCssHref) . '" /> ';
     }
-    queue_css('exhibits');
+    queue_css_file('exhibits');
 }
 
 /**
@@ -232,10 +232,10 @@ function exhibit_builder_admin_header()
 
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
     if ($module == 'exhibit-builder' && $controller == 'exhibits') {
-        queue_css('exhibits', 'screen');
-        queue_js(array('tiny_mce/tiny_mce', 'exhibits'));
+        queue_css_file('exhibits', 'screen');
+        queue_js_file(array('tiny_mce/tiny_mce', 'exhibits'));
     } else if ($module == 'default' && $controller == 'index') {
-        queue_css('exhibits-dashboard');
+        queue_css_file('exhibits-dashboard');
     }
 }
 
