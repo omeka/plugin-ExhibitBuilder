@@ -1,7 +1,7 @@
 <?php
 $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 ?>
-<?php head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
+<?php echo head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
 
 <?php echo flash(); ?>
 
@@ -36,7 +36,7 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
 
             </div>
             <fieldset>
-            <?php echo __v()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>
+            <?php echo get_view()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>
             </fieldset>
         </div>
         <div id="save" class="three columns omega panel">
@@ -123,4 +123,4 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
     });
 //]]>
 </script>
-<?php foot(); ?>
+<?php echo foot(); ?>

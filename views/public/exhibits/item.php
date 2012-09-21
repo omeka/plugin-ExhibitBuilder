@@ -1,6 +1,6 @@
 <?php
 $title = html_escape(__('Item #%s', $item->id));
-head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-item-show'));
+echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-item-show'));
 ?>
 <div id="primary">
 
@@ -32,4 +32,4 @@ head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-ite
 	</div>
 	
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

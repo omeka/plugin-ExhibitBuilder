@@ -1,4 +1,4 @@
-<?php head(array('title' => 'Summary of ' . metadata('exhibit', 'title'),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
+<?php echo head(array('title' => 'Summary of ' . metadata('exhibit', 'title'),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
 
 <div id="primary">
 
@@ -18,4 +18,4 @@
     <?php endforeach; ?>
 </div>
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

@@ -1,6 +1,6 @@
 <?php
 $title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page');
-head(array('title'=> $title, 'bodyclass'=>'exhibits'));
+echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
 <?php echo flash(); ?>
 <form method="post" id="choose-layout">
@@ -85,4 +85,4 @@ head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     }
 //]]>
 </script>
-<?php foot(); ?>
+<?php echo foot(); ?>

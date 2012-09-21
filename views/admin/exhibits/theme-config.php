@@ -5,7 +5,7 @@ if ($exhibit->title) {
     $exhibitTitle = 'Configure Theme for Exhibit';
 }
 ?>
-<?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
+<?php echo head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
 <?php echo js_src('tiny_mce/tiny_mce'); ?>
 <?php echo js_src('themes'); ?>
 
@@ -19,4 +19,4 @@ if ($exhibit->title) {
 <?php flash(); ?>
 <?php echo $form; ?>
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

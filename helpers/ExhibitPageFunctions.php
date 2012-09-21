@@ -7,7 +7,7 @@
  **/
 function exhibit_builder_get_current_page()
 {
-    return __v()->exhibit_page;
+    return get_view()->exhibit_page;
 }
 
 /**
@@ -18,7 +18,7 @@ function exhibit_builder_get_current_page()
  **/
 function exhibit_builder_set_current_page($exhibitPage = null)
 {
-    __v()->exhibit_page = $exhibitPage;
+    get_view()->exhibit_page = $exhibitPage;
 }
 
 /**
@@ -313,7 +313,7 @@ function set_current_exhibit_page(ExhibitPage $exhibitPage)
  **/
 function set_exhibit_pages_for_loop($exhibitPages)
 {
-    __v()->exhibit_pages = $exhibitPages;
+    get_view()->exhibit_pages = $exhibitPages;
 }
 
 /**
@@ -347,7 +347,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
  **/
 function get_exhibit_pages_for_loop()
 {
-    return __v()->exhibit_pages;
+    return get_view()->exhibit_pages;
 }
 
 /**
@@ -376,7 +376,7 @@ function has_exhibit_pages()
  */
 function has_exhibit_pages_for_loop()
 {
-    $view = __v();
+    $view = get_view();
     return ($view->exhibit_pages and count($view->exhibit_pages));
 }
 

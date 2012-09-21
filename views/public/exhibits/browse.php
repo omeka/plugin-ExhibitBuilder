@@ -1,6 +1,6 @@
 <?php
 $title = __('Browse Exhibits');
-head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
+echo head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 ?>
 <div id="primary">
     <h1><?php echo $title; ?> <?php echo __('(%s total)', $total_records); ?></h1>
@@ -30,4 +30,4 @@ head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 	<p><?php echo __('There are no exhibits available yet.'); ?></p>
 	<?php endif; ?>
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

@@ -1,6 +1,6 @@
 <?php
 $title = __('Browse Exhibits by Tag');
-head('title' => $title, 'bodyclass' => 'exhibits');
+echo head('title' => $title, 'bodyclass' => 'exhibits');
 ?>
 
 <h1><?php echo $title; ?></h1>
@@ -14,4 +14,4 @@ head('title' => $title, 'bodyclass' => 'exhibits');
 	<h2><?php echo __('There are no tags to display. You must first tag some exhibits.'); ?></h2>
 <?php endif; ?>
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

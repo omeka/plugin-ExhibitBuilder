@@ -9,7 +9,7 @@ if ($exhibit->title) {
     queue_js_file('tree.jquery');
     queue_css_file('jqtree');
 ?>
-<?php head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
+<?php echo head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
     <div id="exhibits-breadcrumb">
         <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
         <?php echo html_escape($exhibitTitle); ?>
@@ -69,7 +69,7 @@ if ($exhibit->title) {
             </div>
             <div class="five columns omega inputs">
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
-                <?php echo __v()->formSelect('theme', $exhibit->theme, array(), $values); ?>
+                <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
                 <?php if ($theme && $theme->hasConfig): ?>
                     <a href="<?php echo html_escape(url("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
                 <?php endif;?>
@@ -85,7 +85,7 @@ if ($exhibit->title) {
             <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
             <?php endif; ?>
             <ul class="page-list">
-                <?php common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
+                <?php echo common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
             </ul>
         </div>
         <div id="page-add">
@@ -117,4 +117,4 @@ if ($exhibit->title) {
     });
 //]]>
 </script>
-<?php foot(); ?>
+<?php echo foot(); ?>

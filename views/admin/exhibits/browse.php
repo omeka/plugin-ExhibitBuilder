@@ -1,6 +1,6 @@
 <?php
 $title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_records);
-head(array('title'=>$title, 'bodyclass'=>'exhibits'));
+echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 ?>
 
 <?php if (has_permission('ExhibitBuilder_Exhibits','add')): ?>
@@ -68,4 +68,4 @@ head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 </table>
 <div class="pagination"><?php echo pagination_links(); ?></div>
 <?php endif; ?>
-<?php foot(); ?>
+<?php echo foot(); ?>

@@ -1,4 +1,4 @@
-<?php head(array('title' => metadata('exhibit', 'title') . ' : '. metadata('exhibit_page', 'title'), 'bodyid'=>'exhibit','bodyclass'=>'show')); ?>
+<?php echo head(array('title' => metadata('exhibit', 'title') . ' : '. metadata('exhibit_page', 'title'), 'bodyid'=>'exhibit','bodyclass'=>'show')); ?>
 <div id="primary">
 
 
@@ -17,4 +17,4 @@
         <?php echo exhibit_builder_link_to_next_exhibit_page(); ?>
     </div>
 </div>
-<?php foot(); ?>
+<?php echo foot(); ?>

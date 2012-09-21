@@ -6,7 +6,7 @@
  **/
 function exhibit_builder_get_current_exhibit()
 {
-    return __v()->exhibit;
+    return get_view()->exhibit;
 }
 
 /**
@@ -17,7 +17,7 @@ function exhibit_builder_get_current_exhibit()
  **/
 function exhibit_builder_set_current_exhibit($exhibit = null)
 {
-    __v()->exhibit = $exhibit;
+    get_view()->exhibit = $exhibit;
 }
 
 /**
@@ -208,7 +208,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
     if ($orderOnForm) {
         $id = ($item and $item->exists()) ? $item->id: null;
-        $html .= __v()->formHidden('Item['.$orderOnForm.']', $id, array('size'=>2));
+        $html .= get_view()->formHidden('Item['.$orderOnForm.']', $id, array('size'=>2));
     }
 
     $html .= '</div>';
@@ -237,7 +237,7 @@ function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #')
 function exhibit_builder_layout_form_text($order, $label = 'Text')
 {
     $html = '<div class="textfield exhibit-form-element">';
-    $html .= __v()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70'));
+    $html .= get_view()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70'));
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_layout_form_text', $html, array('order' => $order, 'label' => $label));
     return $html;
@@ -260,7 +260,7 @@ function exhibit_builder_layout_form_caption($order, $label = null)
     $html .= '<p>' . html_escape($label) . '</p>' . "\n";
     $html .= '<div class="caption">' . "\n";
     $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
-    $html .= __v()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30'));
+    $html .= get_view()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30'));
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
 
@@ -602,7 +602,7 @@ function set_current_exhibit(Exhibit $exhibit)
  **/
 function set_exhibits_for_loop($exhibits)
 {
-    __v()->exhibits = $exhibits;
+    get_view()->exhibits = $exhibits;
 }
 
 /**
@@ -612,7 +612,7 @@ function set_exhibits_for_loop($exhibits)
  **/
 function get_exhibits_for_loop()
 {
-    return __v()->exhibits;
+    return get_view()->exhibits;
 }
 
 /**
@@ -641,7 +641,7 @@ function has_exhibits()
  */
 function has_exhibits_for_loop()
 {
-    $view = __v();
+    $view = get_view();
     return ($view->exhibits and count($view->exhibits));
 }
 
