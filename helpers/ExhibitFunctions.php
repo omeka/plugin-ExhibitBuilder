@@ -49,7 +49,7 @@ function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props =
     }
     $uri = exhibit_builder_exhibit_uri($exhibit, $exhibitPage);
     $text = !empty($text) ? $text : html_escape($exhibit->title);
-    return '<a href="' . html_escape($uri) .'" '. _tag_attributes($props) . '>' . $text . '</a>';
+    return '<a href="' . html_escape($uri) .'" '. tag_attributes($props) . '>' . $text . '</a>';
 }
 
 /**
@@ -108,7 +108,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 
     $uri = exhibit_builder_exhibit_item_uri($item);
     $text = (!empty($text) ? $text : strip_formatting(metadata('item', array('Dublin Core', 'Title'))));
-    $html = '<a href="' . html_escape($uri) . '" '. _tag_attributes($props) . '>' . $text . '</a>';
+    $html = '<a href="' . html_escape($uri) . '" '. tag_attributes($props) . '>' . $text . '</a>';
     $html = apply_filters('exhibit_builder_link_to_exhibit_item', $html, array('text' => $text, 'props' => $props, 'item' => $item));
     return $html;
 }
