@@ -189,7 +189,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
         if (item_has_files()) {
-            $html .=  display_file($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => metadata('item', array('Dublin Core', 'Title')))));
+            $html .=  file_markup($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => metadata('item', array('Dublin Core', 'Title')))));
         }
 
         if ($includeCaption) {
@@ -462,7 +462,7 @@ function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $l
     $fileWrapperClass = null;
     $file = $item->Files[$fileIndex];
     if ($file) {
-        $html = display_file($file, $displayFilesOptions, $fileWrapperClass);
+        $html = file_markup($file, $displayFilesOptions, $fileWrapperClass);
     } else {
         $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
