@@ -9,7 +9,7 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibi
 	<?php echo show_item_metadata(); ?>
 	
 	<div id="itemfiles">
-		<?php echo display_files_for_item(); ?>
+		<?php echo files_for_item(); ?>
 	</div>
 	
 	<?php if (metadata('item', 'Collection Name')): ?>
