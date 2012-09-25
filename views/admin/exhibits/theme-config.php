@@ -6,8 +6,8 @@ if ($exhibit->title) {
 }
 ?>
 <?php echo head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
-<?php echo js_src('tiny_mce/tiny_mce'); ?>
-<?php echo js_src('themes'); ?>
+<?php echo js_tag('tiny_mce/tiny_mce'); ?>
+<?php echo js_tag('themes'); ?>
 
 <h1><?php echo html_escape($exhibitTitle); ?></h1>
 
