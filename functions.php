@@ -247,7 +247,7 @@ function exhibit_builder_admin_header()
 function exhibit_builder_dashboard()
 {
 ?>
-    <?php if (has_permission('ExhibitBuilder_Exhibits','browse')): ?>
+    <?php if (is_allowed('ExhibitBuilder_Exhibits','browse')): ?>
     <dt class="exhibits"><a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a></dt>
     <dd class="exhibits">
         <ul>
@@ -279,7 +279,7 @@ function exhibit_builder_public_main_nav($navArray)
  **/
 function exhibit_builder_admin_nav($navArray)
 {
-    if (has_permission('ExhibitBuilder_Exhibits', 'browse')) {
+    if (is_allowed('ExhibitBuilder_Exhibits', 'browse')) {
         $navArray += array(__('Exhibits') => url('exhibits'));
     }
     return $navArray;
