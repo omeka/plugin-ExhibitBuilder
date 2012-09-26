@@ -1,6 +1,5 @@
 <?php
 
-require_once HELPERS;
 require_once EXHIBIT_BUILDER_DIR . '/models/Exhibit.php';
 require_once EXHIBIT_BUILDER_DIR . '/models/ExhibitPage.php';
 
