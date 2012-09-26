@@ -11,6 +11,6 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'tags')
     )); ?>
 </ul>
 
-<?php echo tag_cloud($tags,uri('exhibits/browse')); ?>
+<?php echo tag_cloud($tags, 'exhibits/browse'); ?>
 </div>
 <?php echo foot(); ?>

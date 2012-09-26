@@ -22,7 +22,7 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibi
 	<?php if (item_has_tags()): ?>
 	<div class="tags">
 		<h2><?php echo __('Tags'); ?></h2>
-	   <?php echo item_tags_as_string(); ?>	
+	   <?php echo tag_string('item'); ?>
 	</div>
 	<?php endif;?>
 	
