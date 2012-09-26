@@ -434,3 +434,21 @@ function exhibit_builder_render_page_summary($exhibitPage = null)
     set_current_exhibit_page($exhibitPage);
     include(EXHIBIT_PLUGIN_DIR . '/views/public/exhibits/page-summary.php');
 }
+
+
+/**
+ * Generate a URL slug from a piece of text.
+ *
+ * Trims whitespace, replaces disallowed characters with hyphens,
+ * converts the resulting string to lowercase, and trims at 30 characters.
+ *
+ * @param string $text
+ * @return string
+ */
+function exhibit_builder_generate_slug($text)
+{
+    // Remove characters other than alphanumeric, hyphen, underscore.
+    $slug = preg_replace('/[^a-z0-9\-_]/', '-', strtolower(trim($text)));
+    // Trim down to 30 characters.
+    return substr($slug, 0, 30);
+}

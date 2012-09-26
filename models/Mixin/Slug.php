@@ -49,7 +49,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         } else {
             $seedValue = $this->_record->slug;
         }
-        $this->_record->slug = generate_slug($seedValue);
+        $this->_record->slug = exhibit_builder_generate_slug($seedValue);
 
         if(trim($this->_record->slug) == '') {
             $this->_record->addError('slug', $this->options['slugEmptyErrorMessage']);
