@@ -19,11 +19,11 @@ class ExhibitBuilderIsCurrentPageTest extends ExhibitBuilder_ViewTestCase
         $this->assertFalse(exhibit_builder_is_current_page($exhibitPageOne));
         $this->assertFalse(exhibit_builder_is_current_page($exhibitPageTwo));
 
-        $this->view->exhibitPage = $exhibitPageOne;
+        $this->view->exhibit_page = $exhibitPageOne;
         $this->assertTrue(exhibit_builder_is_current_page($exhibitPageOne));
         $this->assertFalse(exhibit_builder_is_current_page($exhibitPageTwo));
 
-        $this->view->exhibitPage = $exhibitPageTwo;
+        $this->view->exhibit_page = $exhibitPageTwo;
         $this->assertFalse(exhibit_builder_is_current_page($exhibitPageOne));
         $this->assertTrue(exhibit_builder_is_current_page($exhibitPageTwo));
     }

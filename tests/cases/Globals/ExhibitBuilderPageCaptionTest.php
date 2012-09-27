@@ -35,7 +35,7 @@ class ExhibitBuilderPageCaptionTest extends Omeka_Test_AppTestCase
     public function testExhibitBuilderPageTextWhenExhibitPageIsSpecified()
     {
 
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
         $this->assertTrue($exhibitPage->exists());
 
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
@@ -46,14 +46,14 @@ class ExhibitBuilderPageCaptionTest extends Omeka_Test_AppTestCase
     /**
      * Tests whether exhibit_builder_page_text() returns the correct value when the exhibit page is not specified
      *
-     * @uses exhibit_builder_page_text(), set_current_exhibit_page
+     * @uses exhibit_builder_page_text()
      **/
     public function testExhibitBuilderPageTextWhenExhibitPageIsNotSpecified()
     {
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
         $this->assertTrue($exhibitPage->exists());
 
-        set_current_exhibit_page($exhibitPage);
+        set_current_record('exhibit_page', $exhibitPage);
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $this->assertEquals('Exhibit Page Caption '.$i, exhibit_builder_page_caption($i));
         }

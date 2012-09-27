@@ -271,7 +271,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
         return;
     }
 
-    $exhibitPage = exhibit_builder_get_current_page();
+    $exhibitPage = get_current_record('exhibit_page');
     $isSelected = ($exhibitPage->layout == $layout) and $layout;
 
     $html = '';
@@ -296,7 +296,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
  **/
 function exhibit_builder_layout_css($fileName = 'layout')
 {
-    if ($exhibitPage = exhibit_builder_get_current_page()) {
+    if ($exhibitPage = get_current_record('exhibit_page', false)) {
         return css_src($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
     }
 }
@@ -310,7 +310,7 @@ function exhibit_builder_layout_css($fileName = 'layout')
 function exhibit_builder_render_exhibit_page($exhibitPage = null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
     if ($exhibitPage->layout) {
      include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$exhibitPage->layout.DIRECTORY_SEPARATOR.'layout.php';

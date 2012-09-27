@@ -1,27 +1,6 @@
 <?php
 
 /**
- * Returns the current page.
- *
- * @return ExhibitPage|null
- **/
-function exhibit_builder_get_current_page()
-{
-    return get_view()->exhibit_page;
-}
-
-/**
- * Sets the current exhibit page.
- *
- * @param ExhibitPage|null $exhibitPage
- * @return void
- **/
-function exhibit_builder_set_current_page($exhibitPage = null)
-{
-    get_view()->exhibit_page = $exhibitPage;
-}
-
-/**
  * Returns whether an exhibit page is the current exhibit page.
  *
  * @param ExhibitPage|null $exhibitPage
@@ -29,7 +8,7 @@ function exhibit_builder_set_current_page($exhibitPage = null)
  **/
 function exhibit_builder_is_current_page($exhibitPage)
 {
-    $currentExhibitPage = exhibit_builder_get_current_page();
+    $currentExhibitPage = get_current_record('exhibit_page', false);
     return ($exhibitPage === $currentExhibitPage || ($exhibitPage && $currentExhibitPage && $exhibitPage->id == $currentExhibitPage->id));
 }
 
@@ -43,7 +22,7 @@ function exhibit_builder_is_current_page($exhibitPage)
 function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
     if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
@@ -65,7 +44,7 @@ function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null
 function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
     if (!$exhibitPage || count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
@@ -87,7 +66,7 @@ function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage =
 function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
     if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
@@ -115,7 +94,7 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
 {
     $linkTextType = Inflector::underscore($linkTextType);
     if (!$exhibitPage) {
-        if (!($exhibitPage = exhibit_builder_get_current_page())) {
+        if (!($exhibitPage = get_current_record('exhibit_page', false))) {
             return;
         }
     }
@@ -164,7 +143,7 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
     }
 
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
@@ -202,7 +181,7 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     }
 
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
@@ -233,7 +212,7 @@ function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = arra
     }
 
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
@@ -284,39 +263,6 @@ function exhibit_builder_use_exhibit_page_item($exhibitPageEntryIndex = 1)
 }
 
 /**
-* Gets the current exhibit page
-*
-* @return ExhibitPage|null
-**/
-function get_current_exhibit_page()
-{
-    return exhibit_builder_get_current_page();
-}
-
-/**
- * Sets the current exhibit page
- *
- * @see loop_exhibit_pages()
- * @param ExhibitPage
- * @return void
- **/
-function set_current_exhibit_page(ExhibitPage $exhibitPage)
-{
-   exhibit_builder_set_current_page($exhibitPage);
-}
-
-/**
- * Sets the exhibit pages for loop
- *
- * @param array $exhibitPages
- * @return void
- **/
-function set_exhibit_pages_for_loop($exhibitPages)
-{
-    get_view()->exhibit_pages = $exhibitPages;
-}
-
-/**
  * Sets the exhibit child pages for loop by their parent
  *
  * @param ExhibitPage|null $exhibitPage If null, it uses the current page
@@ -325,10 +271,10 @@ function set_exhibit_pages_for_loop($exhibitPages)
 function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = exhibit_builder_get_current_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
-    set_exhibit_pages_for_loop($exhibitPage->getChildPages());
+    set_loop_records('exhibit_page', $exhibitPage->getChildPages());
 }
 
 function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
@@ -337,58 +283,8 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
         $exhibit = get_current_record('exhibit');
     }
 
-    set_exhibit_pages_for_loop($exhibit->TopPages);
+    set_loop_records('exhibit_page', $exhibit->TopPages);
 }
-
-/**
- * Get the set of exhibit pages for the current loop.
- *
- * @return array
- **/
-function get_exhibit_pages_for_loop()
-{
-    return get_view()->exhibit_pages;
-}
-
-/**
- * Loops through exhibit pages assigned to the view.
- *
- * @return mixed The current exhibit page
- */
-function loop_exhibit_pages()
-{
-    return loop('exhibit_pages', get_exhibit_pages_for_loop());
-}
-
-/**
- * Determine whether or not there are any exhibit pages in the database.
- *
- * @return boolean
- **/
-function has_exhibit_pages()
-{
-    return (total_exhibit_pages() > 0);
-}
-
-/**
- * Determines whether there are any exhibit pages for loop.
- * @return boolean
- */
-function has_exhibit_pages_for_loop()
-{
-    $view = get_view();
-    return ($view->exhibit_pages and count($view->exhibit_pages));
-}
-
-/**
-  * Returns the total number of exhibit pages in the database
-  *
-  * @return integer
-  **/
- function total_exhibit_pages()
- {
-     return get_db()->getTable('ExhibitPage')->count();
- }
 
 /**
  * Return a page's child pages
@@ -401,7 +297,7 @@ function has_exhibit_pages_for_loop()
 function exhibit_builder_child_pages($exhibitPage = null)
 {
     if(!$exhibitPage) {
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
 
     return $exhibitPage->getChildPages();
@@ -429,9 +325,9 @@ function exhibit_builder_page_loop_children($exhibitPage = null)
 function exhibit_builder_render_page_summary($exhibitPage = null)
 {
     if(!$exhibitPage) {
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
     }
-    set_current_exhibit_page($exhibitPage);
+    set_current_record('exhibit_page', $exhibitPage);
     include(EXHIBIT_PLUGIN_DIR . '/views/public/exhibits/page-summary.php');
 }
 

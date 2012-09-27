@@ -36,7 +36,7 @@ class ExhibitBuilderPageItemTest extends Omeka_Test_AppTestCase
     {
         $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
 
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
         $this->assertTrue($exhibitPage->exists());
 
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
@@ -50,16 +50,16 @@ class ExhibitBuilderPageItemTest extends Omeka_Test_AppTestCase
     /**
      * Tests whether exhibit_builder_page_item() returns the correct item when the exhibit page is not specified
      *
-     * @uses exhibit_builder_page_text(), set_current_exhibit_page
+     * @uses exhibit_builder_page_text()
      **/
     public function testExhibitBuilderPageItemWhenExhibitPageIsNotSpecified()
     {
         $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
 
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
         $this->assertTrue($exhibitPage->exists());
 
-        set_current_exhibit_page($exhibitPage);
+        set_current_record('exhibit_page', $exhibitPage);
         for($i = 1; $i <= $this->maxExhibitPageEntries; $i++) {
             $item = exhibit_builder_page_item($i);
             $this->assertTrue($item->exists());

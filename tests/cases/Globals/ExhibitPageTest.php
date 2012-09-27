@@ -35,7 +35,7 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
 
         $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
 
-        $exhibitPage = get_current_exhibit_page();
+        $exhibitPage = get_current_record('exhibit_page');
         $this->assertTrue($exhibitPage->exists());
         $this->assertEquals('Exhibit Page Title', $exhibitPage->title);
         $this->assertEquals('exhibitpageslug', $exhibitPage->slug);

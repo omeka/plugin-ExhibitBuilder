@@ -13,7 +13,7 @@
 
 <div id="exhibit-pages">
     <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-    <?php foreach (loop_exhibit_pages() as $exhibitPages): ?>
+    <?php foreach (loop('exhibit_page') as $exhibitPages): ?>
     <?php exhibit_builder_render_page_summary(); ?>
     <?php endforeach; ?>
 </div>
