@@ -1,24 +1,4 @@
 <?php
-/**
- * Returns the current exhibit.
- *
- * @return Exhibit|null
- **/
-function exhibit_builder_get_current_exhibit()
-{
-    return get_view()->exhibit;
-}
-
-/**
- * Sets the current exhibit.
- *
- * @param Exhibit|null $exhibit
- * @return void
- **/
-function exhibit_builder_set_current_exhibit($exhibit = null)
-{
-    get_view()->exhibit = $exhibit;
-}
 
 /**
  * Returns whether an exhibit is the current exhibit.
@@ -28,7 +8,7 @@ function exhibit_builder_set_current_exhibit($exhibit = null)
  **/
 function exhibit_builder_is_current_exhibit($exhibit)
 {
-    $currentExhibit = exhibit_builder_get_current_exhibit();
+    $currentExhibit = get_current_record('exhibit', false);
     return ($exhibit == $currentExhibit || ($exhibit && $currentExhibit && $exhibit->id == $currentExhibit->id));
 }
 
@@ -45,7 +25,7 @@ function exhibit_builder_is_current_exhibit($exhibit)
 function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props = array(), $exhibitPage = null)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
     $uri = exhibit_builder_exhibit_uri($exhibit, $exhibitPage);
     $text = !empty($text) ? $text : html_escape($exhibit->title);
@@ -63,7 +43,7 @@ function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props =
 function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
 
@@ -124,7 +104,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
 
     //If the exhibit has a theme associated with it
@@ -135,19 +115,6 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
     }
 }
 
-
-
-/**
- * Returns an array of exhibits
- *
- * @param array $params
- * @return array
- **/
-function exhibit_builder_get_exhibits($params = array())
-{
-    return get_db()->getTable('Exhibit')->findBy($params);
-}
-
 /**
  * Returns an array of recent exhibits
  *
@@ -156,20 +123,8 @@ function exhibit_builder_get_exhibits($params = array())
  **/
 function exhibit_builder_recent_exhibits($num = 10)
 {
-    return exhibit_builder_get_exhibits(array('sort'=>'recent','limit'=>$num));
+    return get_records('Exhibit', array('sort'=>'recent','limit'=>$num));
 }
-
-/**
- * Returns an Exhibit by id
- *
- * @param int $exhibitId The id of the exhibit
- * @return Exhibit
- **/
-function exhibit_builder_get_exhibit_by_id($exhibitId)
-{
-    return get_db()->getTable('Exhibit')->find($exhibitId);
-}
-
 
 /**
  * Returns the HTML code of the item attach section of the exhibit form
@@ -536,7 +491,7 @@ function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permal
 function exhibit_builder_user_can_edit($exhibit = null, $user = null)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
     if (!$user) {
         $user = current_user();
@@ -559,7 +514,7 @@ function exhibit_builder_user_can_edit($exhibit = null, $user = null)
 function exhibit_builder_user_can_delete($exhibit = null, $user = null)
 {
     if (!$exhibit) {
-        $exhibit = exhibit_builder_get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
     if (!$user) {
         $user = current_user();
@@ -571,89 +526,6 @@ function exhibit_builder_user_can_delete($exhibit = null, $user = null)
 
     return (($exhibit->isOwnedBy($user) && $canDeleteSelf) || $canDeleteAll);
 }
-
-/**
-* Gets the current exhibit
-*
-* @return Exhibit|null
-**/
-function get_current_exhibit()
-{
-    return exhibit_builder_get_current_exhibit();
-}
-
-/**
- * Sets the current exhibit
- *
- * @see loop_exhibits()
- * @param Exhibit
- * @return void
- **/
-function set_current_exhibit(Exhibit $exhibit)
-{
-   exhibit_builder_set_current_exhibit($exhibit);
-}
-
-/**
- * Sets the exhibits for loop
- *
- * @param array $exhibits
- * @return void
- **/
-function set_exhibits_for_loop($exhibits)
-{
-    get_view()->exhibits = $exhibits;
-}
-
-/**
- * Get the set of exhibits for the current loop.
- *
- * @return array
- **/
-function get_exhibits_for_loop()
-{
-    return get_view()->exhibits;
-}
-
-/**
- * Loops through exhibits assigned to the view.
- *
- * @return mixed The current exhibit
- */
-function loop_exhibits()
-{
-    return loop('exhibits', get_exhibits_for_loop());
-}
-
-/**
- * Determine whether or not there are any exhibits in the database.
- *
- * @return boolean
- **/
-function has_exhibits()
-{
-    return (total_exhibits() > 0);
-}
-
-/**
- * Determines whether there are any exhibits for loop.
- * @return boolean
- */
-function has_exhibits_for_loop()
-{
-    $view = get_view();
-    return ($view->exhibits and count($view->exhibits));
-}
-
-/**
-  * Returns the total number of exhibits in the database
-  *
-  * @return integer
-  **/
- function total_exhibits()
- {
-     return get_db()->getTable('Exhibit')->count();
- }
 
 /**
 * Returns a link to an exhibit, or exhibit page.
@@ -681,7 +553,7 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
 function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
 {
     if (!$exhibit) {
-        if (!($exhibit = exhibit_builder_get_current_exhibit())) {
+        if (!($exhibit = get_current_record('exhibit', false))) {
             return;
         }
     }
@@ -699,7 +571,3 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
     $html = apply_filters('exhibit_builder_top_page_nav', $html, array('exhibit' => $exhibit, 'show_all_pages' => $showAllPages));
     return $html;
 }
-
-
-
-

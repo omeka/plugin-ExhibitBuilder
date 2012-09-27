@@ -295,7 +295,7 @@ function exhibit_builder_theme_options($themeOptions, $args)
 {
     $themeName = $args['theme_name'];
     if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
-        if ($exhibit = exhibit_builder_get_current_exhibit()) {
+        if ($exhibit = get_current_record('exhibit', false)) {
             $exhibitThemeOptions = $exhibit->getThemeOptions();
         }
     }

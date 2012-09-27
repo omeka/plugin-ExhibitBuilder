@@ -167,7 +167,7 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
         $exhibitPage = exhibit_builder_get_current_page();
     }
 
-    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitPage->exhibit_id);
+    $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
     if(!isset($props['class'])) {
         $props['class'] = 'next-page';
@@ -204,7 +204,7 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitPage->exhibit_id);
+    $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
     if(!isset($props['class'])) {
         $props['class'] = 'previous-page';
@@ -235,7 +235,7 @@ function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = arra
     if (!$exhibitPage) {
         $exhibitPage = exhibit_builder_get_current_page();
     }
-    $exhibit = exhibit_builder_get_exhibit_by_id($exhibitPage->exhibit_id);
+    $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
     if(!isset($props['class'])) {
         $props['class'] = 'parent-page';
@@ -334,7 +334,7 @@ function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
 function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 {
     if(!$exhibit) {
-        $exhibit = get_current_exhibit();
+        $exhibit = get_current_record('exhibit');
     }
 
     set_exhibit_pages_for_loop($exhibit->TopPages);

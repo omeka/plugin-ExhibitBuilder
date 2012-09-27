@@ -15,11 +15,10 @@ class ExhibitBuilder_404Test extends Omeka_Test_AppTestCase
     /**
      * Tests to make sure the exhibits controller will return a 404 error for a bad exhibit slug
      *
-     * @uses exhibit_builder_get_exhibits
      **/
     public function testError404WithBadExhibitSlug()
     {
-        $exhibits = exhibit_builder_get_exhibits();
+        $exhibits = get_records('Exhibit');
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
         $exhibit->slug = 'goodexhibitslug';
@@ -36,11 +35,10 @@ class ExhibitBuilder_404Test extends Omeka_Test_AppTestCase
     /**
      * Tests to make sure the exhibits controller will not return a 404 error for a good exhibit slug
      *
-     * @uses exhibit_builder_get_exhibits
      **/
     public function testNoError404WithGoodExhibitSlug()
     {
-        $exhibits = exhibit_builder_get_exhibits();
+        $exhibits = get_records('Exhibit');
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
         $exhibit->slug = 'goodexhibitslug';
@@ -57,11 +55,10 @@ class ExhibitBuilder_404Test extends Omeka_Test_AppTestCase
     /**
      * Tests to make sure the exhibits controller will return a 404 error for a bad exhibit page slug
      *
-     * @uses exhibit_builder_get_exhibits
      **/
     public function testError404WithBadExhibitPageSlug()
     {
-        $exhibits = exhibit_builder_get_exhibits();
+        $exhibits = get_records('Exhibit');
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
         $exhibit->slug = 'goodexhibitslug';
@@ -87,11 +84,10 @@ class ExhibitBuilder_404Test extends Omeka_Test_AppTestCase
     /**
      * Tests to make sure the exhibits controller will return a 404 error for a bad exhibit page slug
      *
-     * @uses exhibit_builder_get_exhibits
      **/
     public function testNoError404WithGoodExhibitPageSlug()
     {
-        $exhibits = exhibit_builder_get_exhibits();
+        $exhibits = get_records('Exhibit');
         $this->assertEquals(1, count($exhibits));
         $exhibit = $exhibits[0];
         $exhibit->slug = 'goodexhibitslug';
