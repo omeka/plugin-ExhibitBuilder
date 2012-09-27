@@ -14,11 +14,11 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <legend><?php echo __('Page Metadata'); ?></legend>
         <div class="field">
             <?php echo $this->formLabel('title', __('Title')); ?>
-            <?php echo $this->formText('title', $exhibitPage->title); ?>
+            <?php echo $this->formText('title', $exhibit_page->title); ?>
         </div>
         <div class="field">
             <?php echo $this->formLabel('slug', __('Slug')); ?>
-            <?php echo $this->formText('slug', $exhibitPage->slug); ?>
+            <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
         </div>
     </fieldset>
@@ -41,8 +41,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <h4><?php echo __('Layout'); ?></h4>
         <div id="chosen_layout">
         <?php
-        if ($exhibitPage->layout) {
-            echo exhibit_builder_exhibit_layout($exhibitPage->layout, false);
+        if ($layout = $exhibit_page->layout) {
+            echo exhibit_builder_exhibit_layout($layout, false);
         } else {
             echo '<p>' . __('Choose a layout by selecting a thumbnail on the right.') . '</p>';
         }

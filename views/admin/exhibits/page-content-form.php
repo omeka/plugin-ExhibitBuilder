@@ -1,7 +1,7 @@
 <?php
-$exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
+$title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('no_escape', true)));
 ?>
-<?php echo head(array('title'=> html_escape($exhibitPageTitle), 'bodyclass'=>'exhibits')); ?>
+<?php echo head(array('title'=> html_escape($title), 'bodyclass'=>'exhibits')); ?>
 
 <?php echo flash(); ?>
 
@@ -9,34 +9,34 @@ $exhibitPageTitle = __('Edit Page Content: "%s"', $exhibitPage->title);
     <div id="exhibits-breadcrumb">
         <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
         <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-        <?php echo html_escape($exhibitPageTitle); ?>
+        <?php echo html_escape($title); ?>
     </div>
-    <form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id'=>$exhibitPage->id))); ?>">
+    <form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
         <div class="seven columns alpha">
             <div id="page-metadata-list">
-            <h2><?php echo __('Page Layout'); ?></h2>
+                <h2><?php echo __('Page Layout'); ?></h2>
                 <div id="layout-metadata">
-                    <?php
-                        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$exhibitPage->layout/layout.gif");
-                        echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($exhibitPage->layout) . '"/>';
-                    ?>
+                <?php
+                    $layout = metadata('exhibit_page', 'layout', array('no_escape' => true));
+                    $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$layout/layout.gif");
+                    echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($layout) . '"/>';
+                ?>
                     <ul>
-                     <li><strong><?php echo __($layoutName); ?></strong></li>
-                     <li><?php echo __($layoutDescription); ?></li>
-                     </ul>
+                        <li><strong><?php echo __($layoutName); ?></strong></li>
+                        <li><?php echo __($layoutDescription); ?></li>
+                    </ul>
                 </div>
 
                 <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>
             </div>
             <div id="layout-all">
                 <h2><?php echo __('Page Content'); ?></h2>
-            <div id="layout-form">
-            <?php exhibit_builder_render_layout_form($exhibitPage->layout); ?>
-            </div>
-
+                <div id="layout-form">
+                    <?php exhibit_builder_render_layout_form($layout); ?>
+                </div>
             </div>
             <fieldset>
-            <?php echo get_view()->formHidden('slug', $exhibitPage->slug); // Put this here to fool the form into not overriding the slug. ?>
+            <?php echo get_view()->formHidden('slug', $exhibit_page->slug); // Put this here to fool the form into not overriding the slug. ?>
             </fieldset>
         </div>
         <div id="save" class="three columns omega panel">
