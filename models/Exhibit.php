@@ -57,7 +57,7 @@ class Exhibit extends Omeka_Record_AbstractRecord
     protected function _delete()
     {
         //get all the pages and delete them
-        $pages = $this->getTable()->findBy(array('exhibit_id'=>$this->id));
+        $pages = $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id));
         foreach($pages as $page) {
             $page->delete();
         }
