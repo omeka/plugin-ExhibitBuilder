@@ -348,6 +348,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
+        $this->view->exhibit_page = $exhibitPage;
         $this->render('page-metadata-form');
     }
 
@@ -376,6 +377,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             return $this->_helper->redirector('add-page', null, null, array('exhibit'=>$exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
         }
 
+        $this->view->exhibit_page = $exhibitPage;
         $this->view->layoutName = $layoutName;
         $this->view->layoutDescription = $layoutDescription;
 
@@ -398,6 +400,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
         }
 
+        $this->view->exhibit_page = $exhibitPage;
         $this->render('page-metadata-form');
     }
 
