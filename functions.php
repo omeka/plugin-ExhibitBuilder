@@ -342,7 +342,7 @@ function exhibit_builder_public_theme_name($themeName)
  **/
 function exhibit_builder_purify_html($args)
 {
-    $request = $args['request'];
+    $request = Zend_Controller_Front::getInstance()->getRequest();
     $purifier = $args['purifier'];
     // Make sure that we only bother with the Exhibits controller in the ExhibitBuilder module.
     if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
