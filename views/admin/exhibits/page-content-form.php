@@ -56,9 +56,6 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
 
         var exhibitBuilder = new Omeka.ExhibitBuilder();
 
-        // Add styling
-        exhibitBuilder.addStyling();
-
         // Set the exhibit item uri
         exhibitBuilder.itemContainerUri = <?php echo js_escape(url('exhibits/item-container')); ?>;
 

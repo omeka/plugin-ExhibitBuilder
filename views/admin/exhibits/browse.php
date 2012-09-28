@@ -43,10 +43,10 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
             <?php endif; ?>
             </span>
             <ul class="action-links group">
-                <?php if (exhibit_builder_user_can_edit($exhibit)): ?>
+                <?php if (is_allowed($exhibit, 'edit')): ?>
                 <li><?php echo link_to($exhibit, 'edit', __('Edit'), array('class'=>'edit')); ?></li>
                 <?php endif; ?>
-                <?php if (exhibit_builder_user_can_delete($exhibit)): ?>
+                <?php if (is_allowed($exhibit, 'delete')): ?>
                 <li><?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'delete-confirm')) ?></li>
                 <?php endif; ?>
             </ul>

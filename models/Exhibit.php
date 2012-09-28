@@ -9,7 +9,7 @@
  * @author CHNM
  **/
 
-class Exhibit extends Omeka_Record_AbstractRecord
+class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Interface
 {
     public $title;
     public $description;
@@ -213,5 +213,15 @@ class Exhibit extends Omeka_Record_AbstractRecord
             return $urlHelper->url($route, 'exhibitSimple');
         }
         return parent::getRecordUrl($action);
+    }
+
+    /**
+     * Required by Zend_Acl_Resource_Interface.
+     *
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return 'ExhibitBuilder_Exhibits';
     }
 }

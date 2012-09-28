@@ -482,52 +482,6 @@ function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permal
 }
 
 /**
- * Returns true if a given user can edit a given exhibit.
- *
- * @param Exhibit|null $exhibit If null, will use the current exhibit
- * @param User|null $user If null, will use the current user.
- * @return boolean
- **/
-function exhibit_builder_user_can_edit($exhibit = null, $user = null)
-{
-    if (!$exhibit) {
-        $exhibit = get_current_record('exhibit');
-    }
-    if (!$user) {
-        $user = current_user();
-    }
-    $acl = get_acl();
-
-    $canEditSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editSelf');
-    $canEditOthers = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'editAll');
-
-    return (($exhibit->isOwnedBy($user) && $canEditSelf) || $canEditOthers);
-}
-
-/**
- * Returns true if a given user can delete a given exhibit.
- *
- * @param Exhibit|null $exhibit If null, will use the current exhibit
- * @param User|null $user If null, will use the current user.
- * @return boolean
- **/
-function exhibit_builder_user_can_delete($exhibit = null, $user = null)
-{
-    if (!$exhibit) {
-        $exhibit = get_current_record('exhibit');
-    }
-    if (!$user) {
-        $user = current_user();
-    }
-    $acl = get_acl();
-
-    $canDeleteSelf = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteSelf');
-    $canDeleteAll = $acl->isAllowed($user, 'ExhibitBuilder_Exhibits', 'deleteAll');
-
-    return (($exhibit->isOwnedBy($user) && $canDeleteSelf) || $canDeleteAll);
-}
-
-/**
 * Returns a link to an exhibit, or exhibit page.
 * @uses exhibit_builder_link_to_exhibit
 *

@@ -188,9 +188,13 @@ function exhibit_builder_setup_acl($args)
         array('show', 'summary', 'showitem', 'browse', 'tags'));
 
     // Allow contributors everything but editAll and deleteAll.
-    $acl->deny('contributor', 'ExhibitBuilder_Exhibits',
-        array('editAll', 'deleteAll'));
-    $acl->allow('contributor', 'ExhibitBuilder_Exhibits');
+    $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
+        array('add', 'add-page', 'delete-page', 'edit-page-content',
+            'edit-page-metadata', 'item-container', 'theme-config',
+            'update-page-order', 'editSelf', 'deleteSelf'));
+
+    $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),
+        new Omeka_Acl_Assert_Ownership);
 }
 
 /**

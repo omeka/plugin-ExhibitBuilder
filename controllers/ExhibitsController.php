@@ -17,11 +17,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
     public function init()
     {
-        if (version_compare(OMEKA_VERSION, '2.0-dev', '>=')) {
-            $this->_helper->db->setDefaultModelName('Exhibit');
-        } else {
-            $this->_modelClass = 'Exhibit';
-        }
+        $this->_helper->db->setDefaultModelName('Exhibit');
+
         $this->_browseRecordsPerPage = 10;
 
         require_once 'Zend/Session.php';
@@ -196,21 +193,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     public function editAction()
     {
         $exhibit = $this->_helper->db->findById();
-        if (!exhibit_builder_user_can_edit($exhibit)) {
-            throw new Omeka_Controller_Exception_403;
-        }
 
         return $this->processExhibitForm($exhibit, 'Edit');
-    }
-
-    public function deleteAction()
-    {
-        $exhibit = $this->_helper->db->findById();
-        if (!exhibit_builder_user_can_delete($exhibit)) {
-            throw new Omeka_Controller_Exception_403;
-        }
-
-        return parent::deleteAction();
     }
 
     /**
@@ -358,7 +342,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
 
 
-        if (!exhibit_builder_user_can_edit($exhibit)) {
+        if (!$this->_helper->acl->isAllowed('edit', $exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
 
@@ -388,7 +372,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
         $exhibit = $exhibitPage->getExhibit();
 
-        if (!exhibit_builder_user_can_edit($exhibit)) {
+        if (!$this->_helper->acl->isAllowed('edit', $exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
 
@@ -421,7 +405,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     {
         $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
         $exhibit = $exhibitPage->getExhibit();
-        if (!exhibit_builder_user_can_delete($exhibit)) {
+        if (!$this->_helper->acl->isAllowed('delete', $exhibit)) {
             throw new Omeka_Controller_Exception_403;
         }
 
