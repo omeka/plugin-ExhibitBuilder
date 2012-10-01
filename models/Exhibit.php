@@ -212,7 +212,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             $route = array('slug' => $this->slug);
             return $urlHelper->url($route, 'exhibitSimple');
         }
-        return parent::getRecordUrl($action);
+        return array('module' => 'exhibit-builder', 'controller' => 'exhibits', 
+                     'action' => $action, 'id' => $this->id);
     }
 
     /**

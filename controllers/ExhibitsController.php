@@ -95,18 +95,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     public function showAction()
     {
         $exhibit = $this->_findByExhibitSlug();
+        
         if (!$exhibit) {
             throw new Omeka_Controller_Exception_404;
         }
-
+        
         $params = $this->getRequest()->getParams();
-        
-        // Redirect to the public theme if accessing the page via admin theme.
-        if (is_admin_theme()) {
-            $url = WEB_ROOT . "/exhibits/show/{$params[slug]}/{$params[page_slug_1]}";
-            $this->_helper->redirector->goToUrl($url);
-        }
-        
         unset($params['action']);
         unset($params['controller']);
         unset($params['module']);
