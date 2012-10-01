@@ -184,59 +184,18 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
     }
 
-    public function addAction()
+    protected function _redirectAfterAdd($exhibit)
     {
-        $exhibit = new Exhibit;
-        return $this->processExhibitForm($exhibit, 'Add');
-    }
-
-    public function editAction()
-    {
-        $exhibit = $this->_helper->db->findById();
-
-        return $this->processExhibitForm($exhibit, 'Edit');
-    }
-
-    /**
-     * This is where all the redirects and page rendering goes
-     *
-     * @return mixed
-     **/
-    protected function processExhibitForm($exhibit, $actionName)
-    {
-        if ($this->getRequest()->isPost()) {
-            $exhibit->setPostData($_POST);
-            try {
-                $retVal = $exhibit->save();
-                if ($retVal) {
-                    if (array_key_exists('add_page',$_POST)) {
-                        //forward to addPage & unset the POST vars
-                        unset($_POST);
-                        $this->_helper->redirector('add-page', null, null, array('id'=>$exhibit->id) );
-                        return;
-                    } else if (array_key_exists('save_exhibit', $_POST)) {
-                        $this->_helper->redirector('edit', null, null, array('id' => $exhibit->id));
-                    }
-                }
-            } catch (Omeka_Validator_Exception $e) {
-                $this->_helper->flashMessenger($e);
-            } catch (Exception $e) {
-                $this->_helper->flashMessenger($e->getMessage());
-            }
-        }
-
-        if ($themeName = $exhibit->theme) {
-            $theme = Theme::getTheme($themeName);
+        if (array_key_exists('add_page', $_POST)) {
+            $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibit->id), 'exhibitStandard');
         } else {
-            $theme = null;
+            $this->_helper->redirector->gotoRoute();
         }
+    }
 
-        $this->view->assign(compact('exhibit', 'actionName', 'theme'));
-
-        //If the form submission was invalid
-        if (!$this->getRequest()->isXmlHttpRequest()) {
-            $this->render('exhibit-metadata-form');
-        }
+    protected function _redirectAfterEdit($exhibit)
+    {
+        $this->_redirectAfterAdd($exhibit);
     }
 
     public function themeConfigAction()

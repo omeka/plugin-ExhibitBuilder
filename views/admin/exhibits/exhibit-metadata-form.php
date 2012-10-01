@@ -1,22 +1,3 @@
-<?php
-if ($exhibit->title) {
-    $exhibitTitle = __('Edit Exhibit: "%s"', $exhibit->title);
-} else {
-    $exhibitTitle = ($actionName == 'Add') ? __('Add Exhibit') : __('Edit Exhibit');
-}
-?>
-<?php
-    queue_js_file('tree.jquery');
-    queue_css_file('jqtree');
-?>
-<?php echo head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
-    <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-        <?php echo html_escape($exhibitTitle); ?>
-    </div>
-
-<?php echo flash();?>
-
 <form id="exhibit-metadata-form" method="post" class="exhibit-builder">
     <div class="seven columns alpha">
     <fieldset>
@@ -69,10 +50,14 @@ if ($exhibit->title) {
             </div>
             <div class="five columns omega inputs">
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
-                <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
+                <div class="three columns alpha">
+                    <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
+                </div>
+                <div class="two columns omega">
                 <?php if ($theme && $theme->hasConfig): ?>
                     <a href="<?php echo html_escape(url("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
                 <?php endif;?>
+                </div>
             </div>
         </div>
     </fieldset>
@@ -117,4 +102,3 @@ if ($exhibit->title) {
     });
 //]]>
 </script>
-<?php echo foot(); ?>
