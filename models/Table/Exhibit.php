@@ -1,15 +1,16 @@
 <?php
 /**
- * Exhibit table class
- *
- * @version $Id$
- * @copyright Center for History and New Media, 2007-2009
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- * @author CHNM
- **/
-
-class ExhibitTable extends Omeka_Db_Table
+ * @package ExhibitBuilder
+ */
+ 
+/**
+ * Exhibit table class.
+ *
+ * @package ExhibitBuilder
+ */
+class Table_Exhibit extends Omeka_Db_Table
 {
     public function getSelect()
     {

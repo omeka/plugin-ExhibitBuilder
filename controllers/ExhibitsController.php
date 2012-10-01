@@ -1,28 +1,22 @@
 <?php
 /**
- * ExhibitController class
- *
- * @version $Id$
- * @copyright Center for History and New Media, 2007-20009
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- * @author CHNM
- **/
+ * @package ExhibitBuilder
+ */
 
-require_once 'Exhibit.php';
-
+/**
+ * Controller for Exhibits.
+ *
+ * @package ExhibitBuilder
+ */
 class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionController
 {
-    protected $session;
-
     public function init()
     {
         $this->_helper->db->setDefaultModelName('Exhibit');
 
         $this->_browseRecordsPerPage = 10;
-
-        require_once 'Zend/Session.php';
-        $this->session = new Zend_Session_Namespace('Exhibit');
     }
 
     public function browseAction()

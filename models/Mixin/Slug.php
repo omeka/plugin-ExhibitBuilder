@@ -1,13 +1,18 @@
 <?php
 /**
- * The only requirement for a record to use this mixin is that it needs a
- * field named 'slug'.
- *
- * @copyright Center for History and New Media, 2007-2009
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
-
+ 
+/**
+ * Mixin for "sluggable" records.
+ * 
+ * The only requirement for a record to use this mixin is that it needs a
+ * field named 'slug'.
+ *
+ * @package ExhibitBuilder
+ */
 class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 {
     function __construct($record, $options = array())

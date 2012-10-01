@@ -1,19 +1,17 @@
 <?php
 /**
- * ExhibitPage table class
- *
- * @version $Id$
- * @copyright Center for History and New Media, 2007-20009
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- * @author CHNM
- **/
-
-class ExhibitPageTable extends Omeka_Db_Table
+ * @package ExhibitBuilder
+ */
+ 
+/**
+ * ExhibitPage table class.
+ *
+ * @package ExhibitBuilder
+ */
+class Table_ExhibitPage extends Omeka_Db_Table
 {
-
-    protected $_name = 'exhibit_pages';
-
     public function applySearchFilters($select, $params)
     {
         if(isset($params['parent'])) {

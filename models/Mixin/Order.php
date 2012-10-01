@@ -1,15 +1,15 @@
 <?php
 /**
- * @copyright Roy Rosenzweig Center for History and New Media, 2007-2010
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
- * @access private
  */
 
 /**
+ * Order mixin.
+ * 
  * @package ExhibitBuilder
  * @subpackage Mixins
- * @copyright Roy Rosenzweig Center for History and New Media, 2007-2010
  */
 class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
 {

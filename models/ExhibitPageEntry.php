@@ -1,16 +1,15 @@
 <?php
 /**
- * ExhibitPageEntry class
- * 
- * @version $Id$
- * @copyright Center for History and New Media, 2007-20009
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- * @package Omeka
- * @author CHNM
- **/
-
-require_once 'ExhibitPageEntryTable.php';
-
+ * @package ExhibitBuilder
+ */
+ 
+/**
+ * ExhibitPageEntry model.
+ * 
+ * @package ExhibitBuilder
+ */
 class ExhibitPageEntry extends Omeka_Record_AbstractRecord
 {
     public $item_id;
