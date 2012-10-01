@@ -238,8 +238,6 @@ function exhibit_builder_admin_header()
     if ($module == 'exhibit-builder' && $controller == 'exhibits') {
         queue_css_file('exhibits', 'screen');
         queue_js_file(array('tiny_mce/tiny_mce', 'exhibits'));
-    } else if ($module == 'default' && $controller == 'index') {
-        queue_css_file('exhibits-dashboard');
     }
 }
 
