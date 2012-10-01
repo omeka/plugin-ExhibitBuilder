@@ -44,7 +44,7 @@ function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null
 function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
-        $exhibitPage = get_current_record('exhibit_page');
+        $exhibitPage = get_current_record('exhibit_page', false);
     }
 
     if (!$exhibitPage || count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
