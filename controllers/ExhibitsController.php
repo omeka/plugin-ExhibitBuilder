@@ -177,7 +177,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         if (array_key_exists('add_page', $_POST)) {
             $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibit->id), 'exhibitStandard');
         } else {
-            $this->_helper->redirector->gotoRoute();
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
         }
     }
 
