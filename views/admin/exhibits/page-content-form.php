@@ -20,10 +20,8 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
                 $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$layout/layout.gif");
                 echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($layout) . '"/>';
             ?>
-                <ul>
-                    <li><strong><?php echo __($layoutName); ?></strong></li>
-                    <li><?php echo __($layoutDescription); ?></li>
-                </ul>
+                <strong><?php echo __($layoutName); ?></strong>
+                <p><?php echo __($layoutDescription); ?></p>
             </div>
 
             <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>

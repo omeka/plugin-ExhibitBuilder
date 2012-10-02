@@ -1,5 +1,5 @@
 <?php
-$title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page');
+$title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page "%s"', $exhibit_page->title);
 echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
 <?php echo flash(); ?>
