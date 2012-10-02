@@ -17,10 +17,6 @@ $treeData .= "] ;";
 
 var webRoot = "<?php echo WEB_ROOT; ?>";
 
-function handleSuccess(response, status, jqxhr ) {
-    //TODO: something if status is fail!fail!fail!
-}
-
 function countParents(node) {
     if (node.parent) {
         return 1 + countParents(node.parent);
@@ -81,11 +77,14 @@ jQuery('#pagetree').tree({
     }
 });
 
-jQuery('#pagetree').bind('tree.move',
-    function(event) {
-        data = {data : jQuery('#pagetree').tree('toJson') };
-        console.log(data.data);
-        jQuery.post(webRoot + '/admin/exhibits/update-page-order', data, handleSuccess );
+jQuery('#pagetree').bind('tree.move', function(event) {
+    event.preventDefault();
+    event.move_info.do_move();
+    data = {data : jQuery(this).tree('toJson') };
+    jQuery.post(webRoot + '/admin/exhibits/update-page-order', data)
+    // Todo: implement success and error handlers for user feedback
+        .success(function() {})
+        .error(function() {});
 });
 
 </script>
