@@ -19,7 +19,7 @@ echo head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
     	<div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
     		<h2><?php echo link_to_exhibit(); ?></h2>
     		<div class="description"><?php echo metadata('exhibit', 'description', array('no_escape' => true)); ?></div>
-    		<p class="tags"><?php echo tag_string('exhibit', 'exhibits/browse/tag/'); ?></p>
+    		<p class="tags"><?php echo tag_string('exhibit', 'exhibits'); ?></p>
     	</div>
     <?php endforeach; ?>
     </div>

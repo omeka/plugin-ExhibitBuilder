@@ -51,7 +51,7 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
                 <?php endif; ?>
             </ul>
         </td>
-        <td><?php echo tag_string($exhibit, url('exhibits/browse/tag/')); ?></td>
+        <td><?php echo tag_string($exhibit, 'exhibits'); ?></td>
         <?php
         if ($exhibit->theme==null) {
             $themeName = __('Current Public Theme');
