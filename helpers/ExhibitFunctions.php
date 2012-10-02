@@ -146,7 +146,16 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
         if (item_has_files()) {
-            $html .=  file_markup($item->Files[0], array('linkToFile'=>false, 'imgAttributes' => array('alt' => metadata('item', array('Dublin Core', 'Title')))));
+            foreach ($item->Files as $file) {
+                $html .=  file_markup(
+                    $file,
+                    array(
+                        'imageSize' => 'square_thumbnail',
+                        'linkToFile' => false
+                    ),
+                    array('class' => 'admin-thumb panel')
+                );
+            }
         }
 
         if ($includeCaption) {
