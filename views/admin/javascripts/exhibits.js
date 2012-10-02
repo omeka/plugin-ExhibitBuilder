@@ -12,12 +12,12 @@ Omeka.ExhibitBuilder = function() {
     * Load paginated search
     */
     this.loadPaginatedSearch = function() {
-    	// Make each of the pagination links fire an additional ajax request
-    	jQuery('#pagination a').bind('click', {exhibitBuilder: this}, function(event){    	    
-    	    event.stopPropagation();
-    	    event.data.exhibitBuilder.getItems(jQuery(event.target).attr('href'));
-    	    return false;
-    	});
+        // Make each of the pagination links fire an additional ajax request
+        jQuery('#pagination a').bind('click', {exhibitBuilder: this}, function(event){          
+            event.stopPropagation();
+            event.data.exhibitBuilder.getItems(jQuery(event.target).attr('href'));
+            return false;
+        });
 
         // Setup layout item Containers
         this.setupLayoutItemContainers();
@@ -25,12 +25,12 @@ Omeka.ExhibitBuilder = function() {
         // Setup search item Containers
         this.setupSearchItemContainers();
 
-    	// Make the search form respond with ajax power
-    	jQuery('#search').bind('submit', {exhibitBuilder:this}, function(event){
-    	    event.stopPropagation();
-    	    event.data.exhibitBuilder.searchItems(jQuery('#search'));
-    	    return false;
-    	});
+        // Make the search form respond with ajax power
+        jQuery('#search').bind('submit', {exhibitBuilder:this}, function(event){
+            event.stopPropagation();
+            event.data.exhibitBuilder.searchItems(jQuery('#search'));
+            return false;
+        });
     };
     
     jQuery(document).bind('omeka:loaditems', 
@@ -43,8 +43,8 @@ Omeka.ExhibitBuilder = function() {
     * Setup the item containers located in the main layout
     */
     this.setupLayoutItemContainers = function() {
-    	var exhibitBuilder = this;
-    	var layoutItemContainers = jQuery('#layout-form div.item-select-outer');
+        var exhibitBuilder = this;
+        var layoutItemContainers = jQuery('#layout-form div.item-select-outer');
         jQuery.each(layoutItemContainers, function(index, rawLayoutItemContainer) {
             var layoutItemContainer = jQuery(rawLayoutItemContainer);
             exhibitBuilder.setupLayoutItemContainer(layoutItemContainer);
@@ -63,13 +63,13 @@ Omeka.ExhibitBuilder = function() {
         layoutItemContainer.find('.item_id').hide();
         
         // Attach Item Dialog Link
-     	layoutItemContainer.find('.attach-item-link').click(function(){
-     	    jQuery(this).parent().addClass('item-targeted');
-     		jQuery('#search-items').dialog('open');
-     		return false;
-     	});
-     	
-     	jQuery(layoutItemContainer).trigger("exhibitbuilder:attachitem");
+        layoutItemContainer.find('.attach-item-link').click(function(){
+            jQuery(this).parent().addClass('item-targeted');
+            jQuery('#search-items').dialog('open');
+            return false;
+        });
+        
+        jQuery(layoutItemContainer).trigger("exhibitbuilder:attachitem");
         
     };
     
@@ -100,7 +100,7 @@ Omeka.ExhibitBuilder = function() {
     /*
     * Use AJAX request to retrieve the list of items that can be used in the exhibit.
     */
-    this.getItems = function(uri, parameters) {		     
+    this.getItems = function(uri, parameters) {          
          
          if (!uri || uri.length == 0) {
              uri = this.paginatedItemsUri;
@@ -125,8 +125,8 @@ Omeka.ExhibitBuilder = function() {
                 //Omeka.Search.activateSearchButtons();
                 
                 if (fireEvents) {
-        	        jQuery(document).trigger("omeka:loaditems");
-        	    }
+                    jQuery(document).trigger("omeka:loaditems");
+                }
            }
          });
     };
@@ -159,12 +159,12 @@ Omeka.ExhibitBuilder = function() {
         // Only add a Remove Item link to the layout item container if it has an item
         if (layoutItemContainer.find('div.item-select-inner').size()) {
             var removeItemLink = jQuery('<a></a>');
-    		removeItemLink.html(this.removeItemText);
-    		removeItemLink.addClass('remove_item delete-item');
-    		removeItemLink.css('cursor', 'pointer');
-    		removeItemLink.prepend('<img src="'+this.removeItemBackgroundImageUri+'" /> ');
-    		
-    		// Put the 'delete' as background to anything with a 'remove_item' class
+            removeItemLink.html(this.removeItemText);
+            removeItemLink.addClass('remove_item delete-item');
+            removeItemLink.css('cursor', 'pointer');
+            removeItemLink.prepend('<img src="'+this.removeItemBackgroundImageUri+'" /> ');
+            
+            // Put the 'delete' as background to anything with a 'remove_item' class
             // removeItemLink.css({
             //     'backgroundImage' : 'url(' + this.removeItemBackgroundImageUri + ')',
             //     ''
@@ -196,10 +196,10 @@ Omeka.ExhibitBuilder = function() {
     */
     this.attachSelectedItem = function() {
         var selectedItemContainer = jQuery('.item-selected');
-        var selectedItemId = this.getItemIdFromItemContainer(selectedItemContainer);        		
+        var selectedItemId = this.getItemIdFromItemContainer(selectedItemContainer);                
         var targetedItemContainer = jQuery('.item-targeted');
-        var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);		
-        this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);	        
+        var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);      
+        this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);         
     }
     
     /*

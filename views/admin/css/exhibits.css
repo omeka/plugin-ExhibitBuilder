@@ -62,14 +62,6 @@
     width:100px;
 }
 
-#page-builder {
-    width:785px;
-    margin:18px;
-    clear:both;
-}
-
-#page-builder #pagination {margin-left:18px;}
-
 #page-form {
     clear: both;
 }
@@ -173,7 +165,6 @@
 }
 
 #show-or-hide-search {
-    font-size: 1.5em;
     display: block;
     padding:20px;
 }
