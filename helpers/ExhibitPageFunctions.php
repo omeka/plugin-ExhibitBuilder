@@ -90,14 +90,10 @@ function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = nu
  * Returns the HTML code of the exhibit page navigation
  *
  * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
- * @param string $linkTextType The type of page information should be used for the link text.
- * If 'order', it uses the page order as the link text.
- * If 'title' or any other value, it uses the page title as the link text.
  * @return string
  **/
-function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
+function exhibit_builder_page_nav($exhibitPage = null)
 {
-    $linkTextType = Inflector::underscore($linkTextType);
     if (!$exhibitPage) {
         if (!($exhibitPage = get_current_record('exhibit_page', false))) {
             return;
@@ -113,22 +109,13 @@ function exhibit_builder_page_nav($exhibitPage = null, $linkTextType = 'title')
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
 
     foreach ($pagesTrail as $page) {
-        switch($linkTextType) {
-            case 'order':
-                $linkText = $page->order;
-                break;
-            case 'title':
-            case 'Title':
-            default:
-                $linkText = $page->title;
-                break;
-        }
+        $linkText = $page->title;
         $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'>';
         $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit, $page)) . '">';
         $html .= html_escape($linkText) .'</a></li>' . "\n";
     }
     $html .= '</ul>' . "\n";
-    $html = apply_filters('exhibit_builder_page_nav', $html, array('link_text_type' => $linkTextType));
+    $html = apply_filters('exhibit_builder_page_nav', $html);
     return $html;
 
 }

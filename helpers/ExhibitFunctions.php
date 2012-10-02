@@ -64,11 +64,8 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
             $adjustedIndex = $index + 1;
             $options["page_slug_$adjustedIndex"] = $page->slug;
         }
-        //something mysterious in the router tries to add an additional slug if it doesn't get an empty at the end
-        $unsetIndex = $adjustedIndex + 1;
-        $options["page_slug_$unsetIndex" ] = "";
 
-        $uri = public_url($options, 'exhibitShow');
+        $uri = public_url($options, 'exhibitShow', array(), true);
     }
     return $uri;
 }

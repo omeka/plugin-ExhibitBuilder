@@ -1,17 +1,19 @@
 <?php
 /**
- * @version $Id$
- * @copyright Center for History and New Media, 2010
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
- **/
+ * @package ExhibitBuilder
+ */
+
+/**
+ * Testing helper for Exhibit Builder.
+ */
 class ExhibitBuilder_IntegrationHelper
 {
-    const PLUGIN_NAME = 'ExhibitBuilder';
-
     public function setUpPlugin()
     {
         $pluginHelper = new Omeka_Test_Helper_Plugin;
-        $pluginHelper->setUp(self::PLUGIN_NAME);
+        $pluginHelper->setUp('ExhibitBuilder');
     }
 
     public function createNewExhibit($isPublic, $isFeatured, $title, $description, $credits, $slug='')
@@ -52,7 +54,7 @@ class ExhibitBuilder_IntegrationHelper
     }
 
 
-    public function createNewExhibitPage($exhibit, $parentPage = null, $title, $slug = '', $order = 1, $layout = 'text', $parentId = null)
+    public function createNewExhibitPage($exhibit, $parentPage = null, $title, $slug = '', $order = 1, $layout = 'text')
     {
         $exhibitPage = new ExhibitPage;
         $exhibitPage->exhibit_id = $exhibit->id;
