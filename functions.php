@@ -286,9 +286,12 @@ function exhibit_builder_public_main_nav($navArray)
  **/
 function exhibit_builder_admin_nav($navArray)
 {
-    if (is_allowed('ExhibitBuilder_Exhibits', 'browse')) {
-        $navArray += array(__('Exhibits') => url('exhibits'));
-    }
+    $navArray[] = array(
+        'label' => __('Exhibits'),
+        'uri' => url('exhibits'),
+        'resource' => 'ExhibitBuilder_Exhibits',
+        'privilege' => 'browse'
+    );
     return $navArray;
 }
 

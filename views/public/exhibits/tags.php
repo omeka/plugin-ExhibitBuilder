@@ -6,9 +6,16 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'tags')
 <h1><?php echo $title; ?></h1>
 <ul class="navigation exhibit-tags" id="secondary-nav">
     <?php echo nav(array(
-        __('Browse All') => url('exhibits/browse'),
-        __('Browse by Tag') => url('exhibits/tags')
-    )); ?>
+            array(
+                'label' => __('Browse All'),
+                'uri' => url('exhibits/browse')
+            ),
+            array(
+                'label' => __('Browse by Tag'),
+                'uri' => url('exhibits/tags')
+            )
+        )
+    ); ?>
 </ul>
 
 <?php echo tag_cloud($tags, 'exhibits/browse'); ?>

@@ -7,7 +7,16 @@ echo head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 	<?php if (count($exhibits) > 0): ?>
 	
 	<ul class="navigation" id="secondary-nav">
-	    <?php echo nav(array(__('Browse All') => url('exhibits'), __('Browse by Tag') => url('exhibits/tags'))); ?>
+	    <?php echo nav(array(
+            array(
+                'label' => __('Browse All'),
+                'uri' => url('exhibits')
+            ),
+            array(
+                'label' => __('Browse by Tag'),
+                'uri' => url('exhibits/tags')
+            )
+        )); ?>
     </ul>	
 	
     <div class="pagination"><?php echo pagination_links(); ?></div>
