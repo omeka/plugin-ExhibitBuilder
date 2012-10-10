@@ -488,8 +488,8 @@ function exhibit_builder_append_to_advanced_search()
 
 function exhibit_builder_search_record_types($recordTypes)
 {
-    $recordTypes[] = 'Exhibit';
-    $recordTypes[] = 'ExhibitPage';
+    $recordTypes['Exhibit'] = __('Exhibits');
+    $recordTypes['ExhibitPage'] = __('Exhibit Pages');
     return $recordTypes;
 }
 
