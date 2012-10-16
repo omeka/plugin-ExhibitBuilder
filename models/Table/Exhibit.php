@@ -29,12 +29,12 @@ class Table_Exhibit extends Omeka_Db_Table
                 case 'tag':
                 case 'tags':
                     $tags = explode(',', $paramValue);
-                    $select->joinInner(array('tg'=>$db->Taggings), 'tg.relation_id = exhibits.id', array());
+                    $select->joinInner(array('tg'=>$db->RecordsTags), 'tg.record_id = exhibits.id', array());
                     $select->joinInner(array('t'=>$db->Tag), "t.id = tg.tag_id", array());
                     foreach ($tags as $k => $tag) {
                         $select->where('t.name = ?', trim($tag));
                     }
-                    $select->where("tg.type = ? ", array('Exhibit'));
+                    $select->where("tg.record_type = ? ", array('Exhibit'));
                     break;
                 case 'limit':
                     $select->limit($paramValue);
