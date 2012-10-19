@@ -1,5 +1,5 @@
 <?php
-$title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_records);
+$title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_results);
 echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 ?>
 

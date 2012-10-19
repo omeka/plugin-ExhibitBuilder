@@ -3,7 +3,7 @@ $title = __('Browse Exhibits');
 echo head(array('title'=>$title, 'bodyid' => 'exhibit', 'bodyclass'=>'browse'));
 ?>
 <div id="primary">
-    <h1><?php echo $title; ?> <?php echo __('(%s total)', $total_records); ?></h1>
+    <h1><?php echo $title; ?> <?php echo __('(%s total)', $total_results); ?></h1>
 	<?php if (count($exhibits) > 0): ?>
 	
 	<ul class="navigation" id="secondary-nav">
