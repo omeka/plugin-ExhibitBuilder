@@ -274,7 +274,11 @@ function exhibit_builder_dashboard()
  **/
 function exhibit_builder_public_main_nav($navArray)
 {
-    $navArray[__('Browse Exhibits')] = url('exhibits');
+    $navArray[] = array(
+        'label' => __('Browse Exhibits'),
+        'uri' => url('exhibits'),
+        'visible' => true
+    );
     return $navArray;
 }
 
