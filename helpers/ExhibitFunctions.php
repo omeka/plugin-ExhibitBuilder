@@ -468,7 +468,7 @@ function exhibit_builder_exhibit_thumbnail($item, $props = array('class'=>'perma
 {
     $uri = exhibit_builder_exhibit_item_uri($item);
     $html = '<a href="' . html_escape($uri) . '">';
-    $html .= item_thumbnail($props, $index, $item);
+    $html .= item_image('thumbnail', $props, $index, $item);
     $html .= '</a>';
     $html = apply_filters('exhibit_builder_exhibit_thumbnail', $html, array('item' => $item, 'props' => $props, 'index' => $index));
     return $html;
@@ -486,7 +486,7 @@ function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permal
 {
     $uri = exhibit_builder_exhibit_item_uri($item);
     $html = '<a href="' . html_escape($uri) . '">';
-    $html .= item_fullsize($props, $index, $item);
+    $html .= item_image('fullsize', $props, $index, $item);
     $html .= '</a>';
     $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, array('item' => $item, 'props' => $props, 'index' => $index));
     return $html;
