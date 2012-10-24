@@ -34,30 +34,13 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     }
 
     /**
-     * Get a property about the exhibit for display.
-     *
-     * @param string $property Property to retrieve.
-     * @return mixed
-     */
-    public function getProperty($property)
-    {
-        $property = Inflector::underscore($property);
-        if (property_exists('ExhibitPage', $property)) {
-            return $this->$property;
-        } else {
-            throw new InvalidArgumentException(__("'%s' is an invalid special value.", $property));
-        }
-    }
-
-    /**
      * In order to validate:
      * 1) must have a layout
      * 2) Must have a title
      * 3) must be properly ordered
-
-     *
+     * 
      * @return void
-     **/
+     */
     protected function _validate()
     {
         if (empty($this->layout)) {
@@ -74,7 +57,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      * Check if we're trying to save a page on top of a page with the same order and parent.
      * If so, bump later siblings up in order
      */
-
     protected function beforeSave($args)
     {
         $table = $this->getTable();
