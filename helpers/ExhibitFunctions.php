@@ -145,7 +145,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
-        if (item_has_files()) {
+        if (metadata('item', 'has files')) {
             foreach ($item->Files as $file) {
                 $html .=  file_markup(
                     $file,

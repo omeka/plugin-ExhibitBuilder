@@ -19,7 +19,7 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibi
         </div>
     <?php endif; ?>
     
-	<?php if (item_has_tags()): ?>
+	<?php if (metadata('item', 'has tags')): ?>
 	<div class="tags">
 		<h2><?php echo __('Tags'); ?></h2>
 	   <?php echo tag_string('item'); ?>
@@ -28,7 +28,7 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibi
 	
 	<div id="citation" class="field">
     	<h2><?php echo __('Citation'); ?></h2>
-    	<p id="citation-value" class="field-value"><?php echo item_citation(); ?></p>
+    	<p id="citation-value" class="field-value"><?php echo metadata('item', 'citation', array('no_escape' => true)); ?></p>
 	</div>
 	
 </div>
