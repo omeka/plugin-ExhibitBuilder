@@ -482,9 +482,9 @@ function exhibit_builder_item_browse_sql($args)
 function exhibit_builder_append_to_advanced_search()
 {
     $view = get_view();
-    $html = '<div class="field">'
+    $html = '<div class="field"><div class="two columns alpha">'
           . $view->formLabel('exhibit', __('Search by Exhibit'))
-          . '<div class="inputs">'
+          . '</div><div class="five columns omega inputs">'
           . $view->formSelect('exhibit', @$_GET['exhibit'], array(), get_table_options('Exhibit'))
           . '</div></div>';
     echo $html;
