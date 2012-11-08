@@ -23,7 +23,7 @@ add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public head', 'exhibit_builder_public_header');
 add_plugin_hook('admin_head', 'exhibit_builder_admin_header');
-add_plugin_hook('admin_append_to_dashboard_primary', 'exhibit_builder_dashboard');
+add_plugin_hook('admin_dashboard', 'exhibit_builder_dashboard');
 add_plugin_hook('config_form', 'exhibit_builder_config_form');
 add_plugin_hook('config', 'exhibit_builder_config');
 add_plugin_hook('initialize', 'exhibit_builder_initialize');
