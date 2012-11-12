@@ -242,7 +242,7 @@ function exhibit_builder_admin_header()
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
     if ($module == 'exhibit-builder' && $controller == 'exhibits') {
         queue_css_file('exhibits', 'screen');
-        queue_js_file(array('tiny_mce/tiny_mce', 'exhibits'));
+        queue_js_file(array('vendor/tiny_mce/tiny_mce', 'exhibits'));
     }
 }
 

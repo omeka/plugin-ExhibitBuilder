@@ -6,17 +6,12 @@ if ($exhibit->title) {
 }
 ?>
 <?php echo head(array('title'=> html_escape($exhibitTitle), 'bodyclass'=>'exhibits')); ?>
-<?php echo js_tag('tiny_mce/tiny_mce'); ?>
 <?php echo js_tag('themes'); ?>
 
-<h1><?php echo html_escape($exhibitTitle); ?></h1>
-
-<div id="primary">
-    <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(url('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape('Configure Theme for Exhibit'); ?>
-    </div>
-    <h2><?php echo $theme->title; ?> Configuration</h2>    
+<div id="exhibits-breadcrumb">
+    <a href="<?php echo html_escape(url('exhibits')); ?>">Exhibits</a> &gt; <?php echo html_escape('Configure Theme for Exhibit'); ?>
+</div>
+<h2><?php echo $theme->title; ?> Configuration</h2>
 <?php flash(); ?>
 <?php echo $form; ?>
-</div>
 <?php echo foot(); ?>
