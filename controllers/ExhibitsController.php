@@ -205,6 +205,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             'themeName' => $themeName,
             'themeOptions' => $previousOptions
         ));
+        $form->removeDecorator('Form');
 
         $themeConfigIni = $theme->path . DIRECTORY_SEPARATOR . 'config.ini';
 
@@ -235,6 +236,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
                 $this->_helper->_flashMessenger(__('The theme settings were successfully saved!'), 'success');
                 $this->_helper->redirector->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
+            } else {
+                $this->_helper->_flashMessenger(__('There was an error on the form. Please try again.'), 'error');
             }
         }
 
