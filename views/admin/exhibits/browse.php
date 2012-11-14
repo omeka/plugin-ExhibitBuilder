@@ -28,7 +28,7 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
         $browseHeadings[__('Tags')] = null;
         $browseHeadings[__('Theme')] = null;
         $browseHeadings[__('Date Added')] = 'added';
-        echo browse_headings($browseHeadings); ?>
+        echo browse_sort_links($browseHeadings, array('link_tag' => 'th scope="col"', 'list_tag' => '')); ?>
     </tr>
     </thead>
     <tbody>
