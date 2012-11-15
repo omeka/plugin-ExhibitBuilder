@@ -23,7 +23,6 @@ add_plugin_hook('define_acl', 'exhibit_builder_setup_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_routes');
 add_plugin_hook('public head', 'exhibit_builder_public_header');
 add_plugin_hook('admin_head', 'exhibit_builder_admin_header');
-add_plugin_hook('admin_dashboard', 'exhibit_builder_dashboard');
 add_plugin_hook('config_form', 'exhibit_builder_config_form');
 add_plugin_hook('config', 'exhibit_builder_config');
 add_plugin_hook('initialize', 'exhibit_builder_initialize');
@@ -39,7 +38,7 @@ add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
 add_filter('theme_options', 'exhibit_builder_theme_options');
 add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
-
+add_filter('admin_dashboard_stats', 'exhibit_builder_dashboard_stats');
 add_filter('search_record_types', 'exhibit_builder_search_record_types');
 
 // Helper functions for exhibits and exhibit pages

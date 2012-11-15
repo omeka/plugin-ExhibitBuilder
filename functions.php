@@ -251,19 +251,12 @@ function exhibit_builder_admin_header()
  * s
  * @return void
  **/
-function exhibit_builder_dashboard()
+function exhibit_builder_dashboard_stats($stats)
 {
-?>
-    <?php if (is_allowed('ExhibitBuilder_Exhibits','browse')): ?>
-    <dt class="exhibits"><a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a></dt>
-    <dd class="exhibits">
-        <ul>
-            <li><a class="browse-exhibits" href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Browse Exhibits'); ?></a></li>
-            <li><a class="add-exhibit" href="<?php echo html_escape(url('exhibits/add/')); ?>"><?php echo __('Create an Exhibit'); ?></a></li>
-        </ul>
-        <p><?php echo __('Create and manage exhibits that display items from the archive.'); ?></p>
-    </dd>
-    <?php endif;
+    if (is_allowed('ExhibitBuilder_Exhibits', 'browse')) {
+        $stats[] = array(link_to('exhibits', array(), total_records('Exhibits')), __('exhibits'));
+    }
+    return $stats;
 }
 
 /**
