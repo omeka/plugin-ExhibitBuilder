@@ -7,6 +7,7 @@
         <property name="pot.base" location="${lang.dir}/template.base.pot"/>
         <tempfile property="pot.temp" suffix=".pot"/>
         <tempfile property="pot.duplicates" suffix="-duplicates.pot" />
+        <copy file="${pot.base}" tofile="${pot.temp}"/>
         <apply executable="xgettext" relative="true" parallel="true" verbose="true">
             <arg value="-L"/>
             <arg value="php"/>
@@ -14,6 +15,7 @@
             <arg value="-k__"/>
             <arg value="--flag=__:1:pass-php-format"/>
             <arg value="--omit-header"/>
+            <arg value="-j"/>
             <arg value="-F"/>
             <arg value="-o"/>
             <arg file="${pot.temp}"/>
@@ -33,13 +35,7 @@
             <arg file="${pot.temp}" />
             <arg file="${pot.duplicates}" />
         </exec>
-        <exec executable="msgcat">
-            <arg value="-o"/>
-            <arg file="${pot.file}"/>
-            <arg file="${pot.base}"/>
-            <arg file="${pot.temp}"/>
-        </exec>
-        <delete file="${pot.temp}" quiet="true" />
+        <move file="${pot.temp}" tofile="${pot.file}"/>
         <delete file="${pot.duplicates}" quiet="true" />
     </target>
 
