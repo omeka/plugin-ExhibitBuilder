@@ -35,11 +35,13 @@ function exhibit_builder_install()
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_entries` (
       `id` int(10) unsigned NOT NULL auto_increment,
       `item_id` int(10) unsigned default NULL,
+      `file_id` int(10) unsigned default NULL,
       `page_id` int(10) unsigned NOT NULL,
       `text` text collate utf8_unicode_ci,
       `caption` text collate utf8_unicode_ci,
       `order` tinyint(3) unsigned NOT NULL,
-      PRIMARY KEY  (`id`)
+      PRIMARY KEY  (`id`),
+      KEY `page_id_order` (`page_id`, `order`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
@@ -50,11 +52,9 @@ function exhibit_builder_install()
       `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
-      PRIMARY KEY  (`id`)
+      PRIMARY KEY  (`id`),
+      KEY `exhibit_id_order` (`exhibit_id`, `order`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-
-    // Set the initial options
-    set_option('exhibit_builder_use_browse_exhibits_for_homepage', '0');
 }
 
 /**
@@ -74,7 +74,6 @@ function exhibit_builder_uninstall()
     $db->query($sql);
 
     // delete plugin options
-    delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
     delete_option('exhibit_builder_sort_browse');
 }
 
@@ -88,27 +87,25 @@ function exhibit_builder_upgrade($args)
 {
     $oldVersion = $args['old_version'];
     $newVersion = $args['new_version'];
+
+    $db = get_db();
+    
     // Transition to upgrade model for EB
     if (version_compare($oldVersion, '0.6', '<') )
     {
-        $db = get_db();
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD COLUMN `theme_options` text collate utf8_unicode_ci default NULL AFTER `theme`";
         $db->query($sql);
     }
 
     if (version_compare($oldVersion, '0.6', '<=') )
     {
-        $db = get_db();
         $sql = "ALTER TABLE `{$db->prefix}items_section_pages` ADD COLUMN `caption` text collate utf8_unicode_ci default NULL AFTER `text`";
         $db->query($sql);
     }
 
-    if(version_compare($oldVersion, '2.0', '<')) {
-        $db = get_db();
-
+    if(version_compare($oldVersion, '2.0-dev', '<')) {
         $sql = "RENAME TABLE `{$db->prefix}items_section_pages` TO `{$db->prefix}exhibit_page_entries` ";
         $db->query($sql);
-
 
         //alter the section_pages table into revised exhibit_pages table
         $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NULL AFTER `id` ";
@@ -159,14 +156,24 @@ function exhibit_builder_upgrade($args)
 
         $db->query($sql);
 
-        //finally kill the sections for good. Kill pussycat! Kill!
+        //finally kill the sections for good.
         $sql = "DROP TABLE `{$db->prefix}sections`";
 
         $db->query($sql);
-
     }
 
+    if(version_compare($oldVersion, '2.0', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_page_entries` ADD `file_id` INT UNSIGNED DEFAULT NULL AFTER `item_id`";
+        $db->query($sql);
 
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_page_entries` ADD INDEX `page_id_order` (`page_id`, `order`)";
+        $db->query($sql);
+
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD INDEX `exhibit_id_order` (`exhibit_id`, `order`)";
+        $db->query($sql);
+        
+        delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
+    }
 }
 
 /**
@@ -419,7 +426,6 @@ function exhibit_builder_config()
 function exhibit_builder_initialize()
 {
     add_translation_source(dirname(__FILE__) . '/languages');
-    Zend_Controller_Front::getInstance()->registerPlugin(new ExhibitBuilderControllerPlugin);
 }
 
 /**
@@ -488,34 +494,4 @@ function exhibit_builder_search_record_types($recordTypes)
     $recordTypes['Exhibit'] = __('Exhibit');
     $recordTypes['ExhibitPage'] = __('Exhibit Page');
     return $recordTypes;
-}
-
-class ExhibitBuilderControllerPlugin extends Zend_Controller_Plugin_Abstract
-{
-    /**
-    *
-    * @param Zend_Controller_Request_Abstract $request
-    * @return void
-    */
-    public function routeStartup(Zend_Controller_Request_Abstract $request)
-    {
-        $router = Zend_Registry::get('bootstrap')->getResource('Router');
-        if (get_option('exhibit_builder_use_browse_exhibits_for_homepage') == '1' && !is_admin_theme()) {
-            $router->addRoute(
-                'exhibit_builder_show_home_page',
-                new Zend_Controller_Router_Route(
-                    '/:page',
-                    array(
-                        'module'       => 'exhibit-builder',
-                        'controller'   => 'exhibits',
-                        'action'       => 'browse',
-                        'page'         => 1
-                    ),
-                    array(
-                        'page'  => '\d+'
-                    )
-                )
-            );
-        }
-    }
 }
