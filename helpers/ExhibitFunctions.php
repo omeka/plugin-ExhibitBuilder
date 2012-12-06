@@ -351,19 +351,21 @@ function exhibit_builder_render_layout_form($layout)
  * @param string $thumbnailType The type of thumbnail to display
  * @return string HTML output
  **/
-function exhibit_builder_display_exhibit_thumbnail_gallery($start, $end, $props = array(), $thumbnailType = 'square_thumbnail')
+function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thumbnailType = 'square_thumbnail')
 {
     $html = '';
-    for ($i=(int)$start; $i <= (int)$end; $i++) {
-        if (exhibit_builder_use_exhibit_page_item($i)) {
+    for ($i = (int)$start; $i <= (int)$end; $i++) {
+        if ($attachment = exhibit_builder_page_attachment($i)) {
             $html .= "\n" . '<div class="exhibit-item">';
-            $thumbnail = item_image($thumbnailType, $props);
-            $html .= exhibit_builder_link_to_exhibit_item($thumbnail);
-            $html .= exhibit_builder_exhibit_display_caption($i);
+            if (isset($attachment['file'])) {
+                $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
+                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, array(), $attachment['item']);
+            }
+            $html .= exhibit_builder_attachment_caption($attachment);
             $html .= '</div>' . "\n";
         }
     }
-    $html = apply_filters('exhibit_builder_display_exhibit_thumbnail_gallery', $html, array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
+    $html = apply_filters('exhibit_builder_thumbnail_gallery', $html, array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
     return $html;
 }
 
@@ -398,98 +400,52 @@ function exhibit_builder_random_featured_exhibit()
     return get_db()->getTable('Exhibit')->findRandomFeatured();
 }
 
-/**
- * Returns the html code an exhibit item
- *
- * @param array $displayFilesOptions
- * @param array $linkProperties
- * @return string
- **/
-function exhibit_builder_exhibit_display_item($displayFilesOptions = array(), $linkProperties = array(), $item = null)
+function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties)
 {
-    if (!$item) {
-        $item = get_current_record('item');
+    $item = null;
+    $file = null;
+
+    if (isset($attachment['item'])) {
+        $item = $attachment['item'];
     }
 
-    // Always just display the first file (may change this in future).
-    $fileIndex = 0;
-
-    // Default link href points to the exhibit item page.
-    if (!isset($displayFilesOptions['linkAttributes']['href'])) {
-        $displayFilesOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
+    if (isset($attachment['file'])) {
+        $file = $attachment['file'];
     }
 
-    // Default alt text is the
-    if(!isset($displayFileOptions['imgAttributes']['alt'])) {
-        $displayFilesOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
+    if (!isset($options['linkAttributes']['href'])) {
+        $options['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
     }
 
-    // Pass null as the 3rd arg so that it doesn't output the item-file div.
-    $fileWrapperClass = null;
-    $file = $item->Files[$fileIndex];
+    if (!isset($options['imgAttributes']['alt'])) {
+        $options['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
+    }
+    
     if ($file) {
-        $html = file_markup($file, $displayFilesOptions, $fileWrapperClass);
+        $html = file_markup($file, $options, null);
     } else {
         $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
+    $html .= exhibit_builder_attachment_caption($attachment);
 
-    $html = apply_filters('exhibit_builder_exhibit_display_item', $html, array('display_files_options' => $displayFilesOptions, 'link_properties' => $linkProperties, 'item' => $item));
-
-    return $html;
+    return apply_filters('exhibit_builder_attachment_markup', $html,
+        compact('attachment', 'fileOptions', 'linkProperties')
+    );
 }
 
-/**
- * Returns the caption at a given index
- *
- * @param index
- **/
-function exhibit_builder_exhibit_display_caption($index = 1)
+function exhibit_builder_attachment_caption($attachment)
 {
-    $html = '';
-    if ($caption = exhibit_builder_page_caption($index)) {
-        $html .= '<div class="exhibit-item-caption">'."\n";
-        $html .= $caption."\n";
-        $html .= '</div>'."\n";
+    if (!isset($attachment['caption'])) {
+        return false;
     }
 
-    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, array('index' => $index));
+    $html = '<div class="exhibit-item-caption">'
+          . $attachment['caption']
+          . '</div>';
 
-    return $html;
-}
-/**
- * Returns the HTML code for an exhibit thumbnail image.
- *
- * @param Item $item
- * @param array $props
- * @param int $index The index of the image for the item
- * @return string
- **/
-function exhibit_builder_exhibit_thumbnail($item, $props = array('class'=>'permalink'), $index = 0)
-{
-    $uri = exhibit_builder_exhibit_item_uri($item);
-    $html = '<a href="' . html_escape($uri) . '">';
-    $html .= item_image('thumbnail', $props, $index, $item);
-    $html .= '</a>';
-    $html = apply_filters('exhibit_builder_exhibit_thumbnail', $html, array('item' => $item, 'props' => $props, 'index' => $index));
-    return $html;
-}
-
-/**
- * Returns the HTML code for an exhibit fullsize image.
- *
- * @param Item $item
- * @param array $props
- * @param int $index The index of the image for the item
- * @return string
- **/
-function exhibit_builder_exhibit_fullsize($item, $props = array('class'=>'permalink'), $index = 0)
-{
-    $uri = exhibit_builder_exhibit_item_uri($item);
-    $html = '<a href="' . html_escape($uri) . '">';
-    $html .= item_image('fullsize', $props, $index, $item);
-    $html .= '</a>';
-    $html = apply_filters('exhibit_builder_exhibit_fullsize', $html, array('item' => $item, 'props' => $props, 'index' => $index));
-    return $html;
+    return apply_filters('exhibit_builder_caption', $html, array(
+        'attachment' => $attachment
+    ));
 }
 
 /**

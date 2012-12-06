@@ -86,6 +86,48 @@ function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = nu
     return $item;
 }
 
+function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0, $exhibitPage = null)
+{
+    if (!$exhibitPage) {
+        $exhibitPage = get_current_record('exhibit_page');
+    }
+
+    $entries = $exhibitPage->ExhibitPageEntry;
+
+    if (!isset($entries[$entryIndex])) {
+        return null;
+    }
+    
+    $entry = $entries[$entryIndex];
+    $attachment = array();
+    if ($item = $entry->Item) {
+        $attachment['item'] = $item; 
+        
+        if ($file = $entry->File) {
+            $attachment['file'] = $file;
+        } else if (isset($item->Files[$fallbackFileIndex])) {
+            $attachment['file'] = $item->Files[$fallbackFileIndex];
+        }
+    }
+
+    if ($caption = $entry->caption) {
+        $attachment['caption'] = $caption;
+    }
+
+    return $attachment;    
+}
+
+function exhibit_builder_use_attachment($attachment)
+{
+    if (isset($attachment['item'])) {
+        set_current_record('item', $attachment['item']);
+    }
+
+    if (isset($attachment['file'])) {
+        set_current_record('file', $attachment['file']);
+    }
+}
+
 /**
  * Returns the HTML code of the exhibit page navigation
  *
@@ -221,37 +263,6 @@ function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = arra
     }
 
 
-}
-
-
-/**
- * Returns whether an exhibit page has an item
- *
- * @todo Needs optimization (shouldn't return the item object every time it's checked).
- * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
- * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
- * @return boolean
- **/
-function exhibit_builder_exhibit_page_has_item($exhibitPageEntryIndex = 1, $exhibitPage = null)
-{
-    return (boolean)exhibit_builder_page_item($exhibitPageEntryIndex, $exhibitPage);
-}
-
-/**
- * Returns an item at the specified page entry index of an exhibit page.
- * If no item exists on the page, it returns false.
- *
- * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
- * @return Item|boolean
- **/
-function exhibit_builder_use_exhibit_page_item($exhibitPageEntryIndex = 1)
-{
-    $item = exhibit_builder_page_item($exhibitPageEntryIndex);
-    if ($item instanceof Item) {
-        set_current_record('item', $item);
-        return $item;
-    }
-    return false;
 }
 
 /**

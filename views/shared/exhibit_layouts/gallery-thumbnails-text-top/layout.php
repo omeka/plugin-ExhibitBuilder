@@ -5,6 +5,6 @@
 		</div>
 	</div>
 	<div class="secondary">
-	    <?php echo exhibit_builder_display_exhibit_thumbnail_gallery(1, 12, array('class'=>'permalink')); ?>
+	    <?php echo exhibit_builder_thumbnail_gallery(1, 12, array('class'=>'permalink')); ?>
 	</div>
 </div>

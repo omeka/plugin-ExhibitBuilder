@@ -14,11 +14,15 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
 {
     public $item_id;
     public $page_id;
+    public $file_id;
     public $text;
     public $caption;
     public $order;
     
-    protected $_related = array('Item'=>'getItem');
+    protected $_related = array(
+        'Item' => 'getItem',
+        'File' => 'getFile'
+    );
     
     public function afterSave($args)
     {
@@ -35,6 +39,15 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
     {
         if ($this->item_id) {
             return $this->getTable('Item')->find($this->item_id);
+        }
+    }
+
+    protected function getFile()
+    {
+        if ($this->file_id) {
+            return $this->getTable('File')->find($this->file_id);
+        } else {
+            return null;
         }
     }
     
