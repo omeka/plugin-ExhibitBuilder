@@ -97,9 +97,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
                     $ip = new ExhibitPageEntry;
                     $ip->page_id = $this->id;
                 }
-                $text = $post['Text'][$i];
-                $item_id = $post['Item'][$i];
-                $caption = $post['Caption'][$i];
+                $text = @$post['Text'][$i];
+                $item_id = @$post['Item'][$i];
+                $caption = @$post['Caption'][$i];
                 $ip->text = (string) $text;
                 $ip->caption = (string) $caption;
                 $ip->item_id = (int) is_numeric($item_id) ? $item_id : null;

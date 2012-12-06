@@ -54,9 +54,8 @@ class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
     {
         if ($args['post']) {
             $post = $args['post'];
-            $form = $post[$this->pluralized];
-            if (!empty($form)) {
-                
+            if (!empty($post[$this->pluralized])) {
+                $form = $post[$this->pluralized];
                 $children = $this->loadOrderedChildren();
 
                 //Change the order of the sections
