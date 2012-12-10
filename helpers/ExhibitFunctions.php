@@ -144,7 +144,7 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
         set_current_record('item', $item);
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
-        $html .= '<h2 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h2>' . "\n";
+        $html .= '<h4 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h4>' . "\n";
         if (metadata('item', 'has files')) {
             foreach ($item->Files as $file) {
                 $html .=  file_markup(
@@ -152,10 +152,13 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
                     array(
                         'imageSize' => 'square_thumbnail',
                         'linkToFile' => false
-                    ),
-                    array('class' => 'admin-thumb panel')
+                    )
                 );
             }
+        }
+        
+        if ($orderOnForm) {
+            $html .= '<div class="exhibit-form-element-number">' . $orderOnForm . '</div>';
         }
 
         if ($includeCaption) {
@@ -284,7 +287,12 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
 
     $exhibitPage = get_current_record('exhibit_page');
     $isSelected = ($exhibitPage->layout == $layout) and $layout;
-
+    $iniPath = EXHIBIT_LAYOUTS_DIR . DIRECTORY_SEPARATOR. "$layout" . DIRECTORY_SEPARATOR . "layout.ini";
+    if (file_exists($iniPath) && is_readable($iniPath)) {
+        $layoutIni = new Zend_Config_Ini($iniPath, 'layout');
+        $layoutName = $layoutIni->name;
+    }
+    
     $html = '';
     $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">';
     $html .= '<img src="'. html_escape($imgFile) .'" />';
@@ -293,7 +301,7 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
         $html .= '<input type="radio" name="layout" value="'. html_escape($layout) .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
         $html .= '</div>';
     }
-    $html .= '<div class="layout-name">'.html_escape($layout).'</div>';
+    $html .= '<div class="layout-name">'.html_escape($layoutName).'</div>';
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_exhibit_layout', $html, array('layout' => $layout, 'input' => $input));
     return $html;
