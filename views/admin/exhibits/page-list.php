@@ -52,8 +52,8 @@ jQuery('#pagetree').tree({
         editUrl = "<?php echo html_escape(url('exhibits/edit-page-content/')); ?>" + node.id;
         deleteUrl = "<?php echo html_escape(url('exhibits/delete-page/')); ?>" + node.id;
         actionsHTML = '<span class="page-actions">';
-        actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="edit"><?php echo __('Edit'); ?></a></span>';
-        actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="delete-page"><?php echo __('Delete'); ?></a></span>';
+        actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="blue edit button"><?php echo __('Edit'); ?></a></span>';
+        actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="red delete-page button"><?php echo __('Delete'); ?></a></span>';
         actionsHTML += '</span>';
         title.after(actionsHTML);
     },
