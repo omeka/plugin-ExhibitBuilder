@@ -18,7 +18,7 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
     
 <?php else: ?>
 
-<div class="pagination"><?php echo pagination_links(); ?></div>
+<?php echo pagination_links(); ?>
 
 <table id="exhibits" class="full">
     <thead>
@@ -66,6 +66,6 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 <?php endforeach; ?>
 </tbody>
 </table>
-<div class="pagination"><?php echo pagination_links(); ?></div>
+<?php echo pagination_links(); ?>
 <?php endif; ?>
 <?php echo foot(); ?>
