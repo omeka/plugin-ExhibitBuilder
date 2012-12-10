@@ -1,7 +1,3 @@
-ul.jqtree-tree {
-    margin-left: 12px;
-}
-
 ul.jqtree-tree,
 ul.jqtree-tree ul {
     list-style: none outside;
@@ -11,8 +7,7 @@ ul.jqtree-tree ul {
 
 ul.jqtree-tree ul {
     display: block;
-    margin-left: 12px;
-    margin-right: 0;
+    margin: 0;
 }
 
 ul.jqtree-tree li.jqtree-closed > ul {
