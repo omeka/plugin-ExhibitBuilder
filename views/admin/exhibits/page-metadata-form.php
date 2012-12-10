@@ -13,13 +13,21 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <fieldset>
         <legend><?php echo __('Page Metadata'); ?></legend>
         <div class="field">
+            <div class="two columns alpha">
             <?php echo $this->formLabel('title', __('Title')); ?>
+            </div>
+            <div class="inputs five columns omega">
             <?php echo $this->formText('title', $exhibit_page->title); ?>
+            </div>
         </div>
         <div class="field">
-            <?php echo $this->formLabel('slug', __('Slug')); ?>
-            <?php echo $this->formText('slug', $exhibit_page->slug); ?>
-            <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('slug', __('Slug')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <?php echo $this->formText('slug', $exhibit_page->slug); ?>
+                <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
+            </div>
         </div>
     </fieldset>
 
@@ -38,8 +46,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </div>
     <div id="save" class="three columns omega panel">
         <?php echo $this->formSubmit('save_page_metadata', __('Save Changes'), array('class'=>'submit big green button')); ?>
-        <h4><?php echo __('Layout'); ?></h4>
         <div id="chosen_layout">
+        <h4><?php echo __('Layout'); ?></h4>
         <?php
         if ($layout = $exhibit_page->layout) {
             echo exhibit_builder_exhibit_layout($layout, false);
