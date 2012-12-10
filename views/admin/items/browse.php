@@ -1,18 +1,15 @@
-<a href="" id="show-or-hide-search" class="show-form"><?php echo __('Show Search Form'); ?></a>
-<div id="page-search-form">
+<a href="" id="show-or-hide-search" class="show-form blue button"><?php echo __('Show Search Form'); ?></a>
+<div id="page-search-form" class="container-twelve">
 <?php
     $uri = url(array('controller'=>'exhibits', 'action'=>'items', 'page' => null));
     $formAttributes = array('id'=>'search');
     echo items_search_form($formAttributes);
 ?>
 </div>
-<div id="pagination" class="pagination">
 <?php     
      echo pagination_links(array('url' => url(array('controller' => 'exhibits',
       'action'=>'items', 'page' => null)))); 
 ?>
-
-</div>
 <div id="item-list">
 <?php if (!has_loop_records('items')): ?>
     <p><?php echo __('There are no items to choose from.  Please refine your search or %s.', '<a href="' . html_escape(url('items/add')) .'">' . __('add some items') .'</a>') ?></p>
