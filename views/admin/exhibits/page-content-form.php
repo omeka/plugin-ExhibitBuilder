@@ -36,9 +36,11 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
         <?php echo get_view()->formHidden('slug', $exhibit_page->slug); // Put this here to fool the form into not overriding the slug. ?>
         </fieldset>
     </div>
-    <div id="save" class="three columns omega panel">
-        <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
-        <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+    <div class="three columns omega">
+        <div id="save" class="panel">
+            <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
+            <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+        </div>
     </div>
 </form>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
@@ -57,9 +59,6 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
 
         // Set the paginated exhibit items uri
         exhibitBuilder.paginatedItemsUri = <?php echo js_escape(url('exhibit-builder/items/browse')); ?>;
-
-        // Set the remove item background image uri
-        exhibitBuilder.removeItemBackgroundImageUri = <?php echo js_escape(img('silk-icons/delete.png')); ?>;
 
         exhibitBuilder.removeItemText = <?php echo js_escape(__('Remove This Item')); ?>;
         // Get the paginated items
@@ -93,7 +92,7 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
              autoOpen: false,
              width: 820,
              height: 500,
-            title: <?php echo js_escape(__('Attach an Item')); ?>,
+             title: <?php echo js_escape(__('Attach an Item')); ?>,
              modal: true,
              buttons: {
                 <?php echo js_escape(__('Attach Selected Item')); ?>: function() {
