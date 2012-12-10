@@ -6,7 +6,6 @@ Omeka.ExhibitBuilder = function() {
     
     this.paginatedItemsUri = ''; // Used to get a paginated list of items for the item search
     this.itemContainerUri = ''; // Used to get a single item container
-    this.removeItemBackgroundImageUri = ''; // Used to specify the background image for the remove item link
     
     /*
     * Load paginated search
@@ -160,14 +159,11 @@ Omeka.ExhibitBuilder = function() {
         if (layoutItemContainer.find('div.item-select-inner').size()) {
             var removeItemLink = jQuery('<a></a>');
             removeItemLink.html(this.removeItemText);
-            removeItemLink.addClass('remove_item delete-item');
+            removeItemLink.addClass('remove_item delete-item red button');
             removeItemLink.css('cursor', 'pointer');
-            removeItemLink.prepend('<img src="'+this.removeItemBackgroundImageUri+'" /> ');
             
             // Put the 'delete' as background to anything with a 'remove_item' class
             // removeItemLink.css({
-            //     'backgroundImage' : 'url(' + this.removeItemBackgroundImageUri + ')',
-            //     ''
             //     'padding-left': '20px'
             //     });            
 
