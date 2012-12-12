@@ -2,17 +2,13 @@
 $title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_results);
 echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 ?>
-
-<?php if (is_allowed('ExhibitBuilder_Exhibits','add')): ?>
-    <a class="add-exhibit button small green" href="<?php echo html_escape(url('exhibits/add')); ?>"><?php echo __('Add Exhibit'); ?></a>
-<?php endif; ?>
     
 <?php if (!count($exhibits)): ?> 
     <div id="no-exhibits">
-    <p><?php echo __('There are no exhibits yet.'); ?></p>
+    <h2><?php echo __('There are no exhibits yet.'); ?></h2>
     
     <?php if (is_allowed('ExhibitBuilder_Exhibits','add')): ?>
-        <a href="<?php echo html_escape(url('exhibits/add')); ?>"><?php echo __('Add an exhibit.'); ?></a></p>
+        <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="big green add button"><?php echo __('Add an Exhibit'); ?></a></p>
     <?php endif; ?>
     </div>
     
