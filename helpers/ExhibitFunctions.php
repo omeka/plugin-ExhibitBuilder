@@ -155,10 +155,6 @@ function exhibit_builder_exhibit_form_attachment($item = null, $file = null, $ca
             }
         }
         
-        if ($order) {
-            $html .= '<div class="exhibit-form-element-number">' . $order . '</div>';
-        }
-
         if ($caption !== false) {
             $html .= exhibit_builder_layout_form_caption($order, $caption);
         }
