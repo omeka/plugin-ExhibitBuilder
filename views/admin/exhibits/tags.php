@@ -1,17 +1,15 @@
 <?php
 $title = __('Browse Exhibits by Tag');
-echo head('title' => $title, 'bodyclass' => 'exhibits');
+echo head(array('title' => $title, 'bodyclass' => 'exhibits'));
 ?>
-
-<h1><?php echo $title; ?></h1>
 
 <div id="primary">
 <?php if (!empty($tags)): ?>
-	<?php
-	echo tag_cloud($tags, 'exhibits/browse/');
-	?>
+    <?php
+    echo tag_cloud($tags, 'exhibits/browse/');
+    ?>
 <?php else: ?>
-	<h2><?php echo __('There are no tags to display. You must first tag some exhibits.'); ?></h2>
+    <h2><?php echo __('There are no tags to display. You must first tag some exhibits.'); ?></h2>
 <?php endif; ?>
 </div>
 <?php echo foot(); ?>
