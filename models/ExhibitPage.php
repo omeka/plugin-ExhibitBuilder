@@ -98,12 +98,14 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
                     $ip->page_id = $this->id;
                 }
                 $text = @$post['Text'][$i];
-                $item_id = @$post['Item'][$i];
+                $item_id = (int) @$post['Item'][$i];
+                $file_id = (int) @$post['File'][$i];
                 $caption = @$post['Caption'][$i];
-                $ip->text = (string) $text;
-                $ip->caption = (string) $caption;
-                $ip->item_id = (int) is_numeric($item_id) ? $item_id : null;
-                $ip->order = (int) $i;
+                $ip->text = $text ? $text : null;
+                $ip->caption = $caption ? $caption : null;
+                $ip->item_id = $item_id ? $item_id : null;
+                $ip->file_id = $file_id ? $file_id : null;
+                $ip->order = $i;
                 $ip->save();
             }
         }

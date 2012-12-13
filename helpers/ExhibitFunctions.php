@@ -144,14 +144,21 @@ function exhibit_builder_exhibit_form_attachment($item = null, $file = null, $ca
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
         $html .= '<h4 class="title">' . metadata($item, array('Dublin Core', 'Title')) . '</h4>' . "\n";
         if (metadata($item, 'has files')) {
-            foreach ($item->Files as $displayFile) {
-                $html .=  file_markup(
-                    $displayFile,
-                    array(
-                        'imageSize' => 'square_thumbnail',
-                        'linkToFile' => false
-                    )
-                );
+            if ($file) {
+                $html .= '<div class="item-file">' 
+                    . file_image('square_thumbnail', array(), $file)
+                    . '</div>';
+            } else {
+                foreach ($item->Files as $displayFile) {
+                    if ($displayFile->hasThumbnail()) {
+                        $html .= '<div class="item-file">'
+                            . file_image('square_thumbnail', array(), $displayFile)
+                            . '</div>';
+                    }
+                }
+            }
+            if ($order) {
+                $html .= exhibit_builder_layout_form_file($order, $item, $file);
             }
         }
         
@@ -172,7 +179,6 @@ function exhibit_builder_exhibit_form_attachment($item = null, $file = null, $ca
         $itemId = ($item) ? $item->id : null;
         $fileId = ($file) ? $file->id : null;
         $html .= get_view()->formHidden("Item[$order]", $itemId);
-        $html .= get_view()->formHidden("File[$order]", $fileId);
     }
 
     $html .= '</div>';
@@ -240,6 +246,29 @@ function exhibit_builder_layout_form_caption($order, $caption = null)
 
     $html = apply_filters('exhibit_builder_layout_form_caption', $html, array('order' => $order, 'caption' => $caption));
     return $html;
+}
+
+
+function exhibit_builder_layout_form_file($order, $item, $currentFile = null)
+{
+    $options = array('' => __('Select a File'));
+    $files = $item->Files;
+    if (!$files || count($files) == 1) {
+        return '';
+    }
+
+    foreach ($files as $file) {
+        $label = metadata($file, array('Dublin Core', 'Title'), array('no_escape' => true));
+        if (!$label) {
+            $label = $file->original_filename;
+        }
+
+        $options[$file->id] = $label;
+    }
+
+    $currentId = $currentFile ? $currentFile->id : null;
+
+    return get_view()->formSelect("File[$order]", $currentId, array('multiple' => false), $options);
 }
 
 /**
