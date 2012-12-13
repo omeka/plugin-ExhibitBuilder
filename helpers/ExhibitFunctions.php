@@ -431,7 +431,7 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
     }
     
     if ($file) {
-        $html = file_markup($file, $options, null);
+        $html = file_markup($file, $fileOptions, null);
     } else if($item) {
         $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
