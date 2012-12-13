@@ -14,6 +14,12 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
     
 <?php else: ?>
 
+<?php if (is_allowed('ExhibitBuilder_Exhibits', 'add')): ?>
+<div class="table-actions">
+    <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="small green add button"><?php echo __('Add an Exhibit'); ?></a>
+</div>
+<?php endif; ?>
+
 <?php echo pagination_links(); ?>
 
 <table id="exhibits" class="full">
