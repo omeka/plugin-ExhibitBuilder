@@ -1,2 +1,2 @@
 <?php
-echo exhibit_builder_exhibit_form_item($item, $orderOnForm);
+echo exhibit_builder_exhibit_form_attachment($item, $file, null, $orderOnForm);

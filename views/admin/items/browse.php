@@ -15,6 +15,6 @@
     <p><?php echo __('There are no items to choose from.  Please refine your search or %s.', '<a href="' . html_escape(url('items/add')) .'">' . __('add some items') .'</a>') ?></p>
 url<?php endif; ?>
 <?php foreach (loop('items') as $item): ?>
-    <?php echo exhibit_builder_exhibit_form_item($item, null, null, false); ?>
+    <?php echo exhibit_builder_exhibit_form_attachment($item, null, false); ?>
 <?php endforeach; ?>
 </div>

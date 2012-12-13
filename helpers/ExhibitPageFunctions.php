@@ -39,53 +39,6 @@ function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null
     return $text;
 }
 
-/**
- * Returns the caption of an exhibit page entry
- *
- * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
- * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
- * @return string
- **/
-function exhibit_builder_page_caption($exhibitPageEntryIndex = 1, $exhibitPage = null)
-{
-    if (!$exhibitPage) {
-        $exhibitPage = get_current_record('exhibit_page', false);
-    }
-
-    if (!$exhibitPage || count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
-        $caption = '';
-    } else {
-        $caption = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->caption;
-    }
-
-    return $caption;
-}
-
-/**
- * Returns an item of an exhibit page entry
- *
- * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
- * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
- * @return Item
- **/
-function exhibit_builder_page_item($exhibitPageEntryIndex = 1, $exhibitPage = null)
-{
-    if (!$exhibitPage) {
-        $exhibitPage = get_current_record('exhibit_page');
-    }
-
-    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
-        $item = null;
-    } else {
-        $item = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->Item;
-        if (!$item || !$item->exists()) {
-            $item = null;
-        }
-    }
-
-    return $item;
-}
-
 function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0, $exhibitPage = null)
 {
     if (!$exhibitPage) {
@@ -99,33 +52,29 @@ function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0
     }
     
     $entry = $entries[$entryIndex];
-    $attachment = array();
-    if ($item = $entry->Item) {
-        $attachment['item'] = $item; 
-        
-        if ($file = $entry->File) {
-            $attachment['file'] = $file;
+
+    $item = null;
+    $file = null;
+    $file_specified = false;
+    $caption = null;
+
+    if (($item = $entry->Item)) { 
+        if (($file = $entry->File)) {
+            $file_specified = true;
         } else if (isset($item->Files[$fallbackFileIndex])) {
-            $attachment['file'] = $item->Files[$fallbackFileIndex];
+            $file = $item->Files[$fallbackFileIndex];
         }
     }
 
-    if ($caption = $entry->caption) {
-        $attachment['caption'] = $caption;
-    }
+    $caption = $entry->caption;
 
-    return $attachment;    
+    return compact(array('item', 'file', 'file_specified', 'caption'));    
 }
 
 function exhibit_builder_use_attachment($attachment)
 {
-    if (isset($attachment['item'])) {
-        set_current_record('item', $attachment['item']);
-    }
-
-    if (isset($attachment['file'])) {
-        set_current_record('file', $attachment['file']);
-    }
+    set_current_record('item', $attachment['item']);
+    set_current_record('file', $attachment['file']);
 }
 
 /**

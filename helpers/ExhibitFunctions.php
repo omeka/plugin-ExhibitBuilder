@@ -133,22 +133,20 @@ function exhibit_builder_recent_exhibits($num = 10)
  *
  * @param Item $item
  * @param int $orderOnForm
- * @param string $label
  * @return string
  **/
-function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = null, $includeCaption = true)
+function exhibit_builder_exhibit_form_attachment($item = null, $file = null, $caption = null, $order = null)
 {
     $html = '<div class="item-select-outer exhibit-form-element">';
 
-    if ($item and $item->exists()) {
-        set_current_record('item', $item);
+    if ($item) {
         $html .= '<div class="item-select-inner">' . "\n";
         $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
-        $html .= '<h4 class="title">' . metadata('item', array('Dublin Core', 'Title')) . '</h4>' . "\n";
-        if (metadata('item', 'has files')) {
-            foreach ($item->Files as $file) {
+        $html .= '<h4 class="title">' . metadata($item, array('Dublin Core', 'Title')) . '</h4>' . "\n";
+        if (metadata($item, 'has files')) {
+            foreach ($item->Files as $displayFile) {
                 $html .=  file_markup(
-                    $file,
+                    $displayFile,
                     array(
                         'imageSize' => 'square_thumbnail',
                         'linkToFile' => false
@@ -157,17 +155,16 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
             }
         }
         
-        if ($orderOnForm) {
-            $html .= '<div class="exhibit-form-element-number">' . $orderOnForm . '</div>';
+        if ($order) {
+            $html .= '<div class="exhibit-form-element-number">' . $order . '</div>';
         }
 
-        if ($includeCaption) {
-            $html .= exhibit_builder_layout_form_caption($orderOnForm);
+        if ($caption !== false) {
+            $html .= exhibit_builder_layout_form_caption($order, $caption);
         }
 
         $html .= '</div>' . "\n";
     } else {
-
         $html .= '<p class="attach-item-link">'
                . __('There is no item attached.')
                . ' <a href="#" class="button">'
@@ -175,9 +172,11 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
     }
 
     // If this is ordered on the form, make sure the generated form element indicates its order on the form.
-    if ($orderOnForm) {
-        $id = ($item and $item->exists()) ? $item->id: null;
-        $html .= get_view()->formHidden('Item['.$orderOnForm.']', $id, array('size'=>2));
+    if ($order) {
+        $itemId = ($item) ? $item->id : null;
+        $fileId = ($file) ? $file->id : null;
+        $html .= get_view()->formHidden("Item[$order]", $itemId);
+        $html .= get_view()->formHidden("File[$order]", $fileId);
     }
 
     $html .= '</div>';
@@ -188,12 +187,24 @@ function exhibit_builder_exhibit_form_item($item, $orderOnForm = null, $label = 
  * Returns the HTML code for an item on a layout form
  *
  * @param int $order The order of the item
- * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_item($order, $label = 'Enter an Item ID #')
+function exhibit_builder_layout_form_item($order)
 {
-    return exhibit_builder_exhibit_form_item(exhibit_builder_page_item($order), $order, $label);
+    $attachment = exhibit_builder_page_attachment($order);
+    $item = null;
+    $file = null;
+    $caption = null;
+
+    if ($attachment) {
+        $item = $attachment['item'];
+        if ($attachment['file_specified']) {
+            $file = $attachment['file'];
+        }
+        $caption = $attachment['caption'];
+    }
+
+    return exhibit_builder_exhibit_form_attachment($item, $file, $caption, $order);
 }
 
 /**
@@ -219,21 +230,19 @@ function exhibit_builder_layout_form_text($order, $label = 'Text')
  * @param string $label
  * @return string
  **/
-function exhibit_builder_layout_form_caption($order, $label = null)
+function exhibit_builder_layout_form_caption($order, $caption = null)
 {
-    if ($label === null) {
-        $label = __('Caption');
-    }
+    $label = __('Caption');
 
     $html = '<div class="caption-container">' . "\n";
     $html .= '<p>' . html_escape($label) . '</p>' . "\n";
     $html .= '<div class="caption">' . "\n";
     $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
-    $html .= get_view()->formTextarea("Caption[$order]", exhibit_builder_page_caption($order), array('rows'=>'4','cols'=>'30'));
+    $html .= get_view()->formTextarea("Caption[$order]", $caption, array('rows'=>'4','cols'=>'30'));
     $html .= '</div>' . "\n";
     $html .= '</div>' . "\n";
 
-    $html = apply_filters('exhibit_builder_layout_form_caption', $html, array('order' => $order, 'label' => $label));
+    $html = apply_filters('exhibit_builder_layout_form_caption', $html, array('order' => $order, 'caption' => $caption));
     return $html;
 }
 
@@ -365,7 +374,7 @@ function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thum
     for ($i = (int)$start; $i <= (int)$end; $i++) {
         if ($attachment = exhibit_builder_page_attachment($i)) {
             $html .= "\n" . '<div class="exhibit-item">';
-            if (isset($attachment['file'])) {
+            if ($attachment['file']) {
                 $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
                 $html .= exhibit_builder_link_to_exhibit_item($thumbnail, array(), $attachment['item']);
             }
@@ -410,16 +419,12 @@ function exhibit_builder_random_featured_exhibit()
 
 function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties)
 {
-    $item = null;
-    $file = null;
-
-    if (isset($attachment['item'])) {
-        $item = $attachment['item'];
+    if (!$attachment) {
+        return '';
     }
 
-    if (isset($attachment['file'])) {
-        $file = $attachment['file'];
-    }
+    $item = $attachment['item'];
+    $file = $attachment['file'];
 
     if (!isset($options['linkAttributes']['href'])) {
         $options['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
@@ -431,9 +436,10 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
     
     if ($file) {
         $html = file_markup($file, $options, null);
-    } else {
+    } else if($item) {
         $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
     }
+
     $html .= exhibit_builder_attachment_caption($attachment);
 
     return apply_filters('exhibit_builder_attachment_markup', $html,
@@ -443,8 +449,8 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
 
 function exhibit_builder_attachment_caption($attachment)
 {
-    if (!isset($attachment['caption'])) {
-        return false;
+    if (!is_string($attachment['caption']) || $attachment['caption'] == '') {
+        return '';
     }
 
     $html = '<div class="exhibit-item-caption">'

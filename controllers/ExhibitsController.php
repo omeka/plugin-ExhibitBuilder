@@ -80,9 +80,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     public function itemContainerAction()
     {
         $itemId = (int)$this->_getParam('item_id');
+        $fileId = (int)$this->_getParam('file_id');
         $orderOnForm = (int)$this->_getParam('order_on_form');
+
         $item = $this->_helper->db->getTable('Item')->find($itemId);
+        $file = $this->_helper->db->getTable('File')->find($fileId);
+
         $this->view->item = $item;
+        $this->view->file = $file;
         $this->view->orderOnForm = $orderOnForm;
     }
 
