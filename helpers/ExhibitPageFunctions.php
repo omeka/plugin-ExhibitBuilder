@@ -6,39 +6,54 @@
  */
 
 /**
- * Returns whether an exhibit page is the current exhibit page.
+ * Return whether an exhibit page is the current exhibit page.
  *
  * @param ExhibitPage|null $exhibitPage
  * @return boolean
- **/
+ */
 function exhibit_builder_is_current_page($exhibitPage)
 {
     $currentExhibitPage = get_current_record('exhibit_page', false);
-    return ($exhibitPage === $currentExhibitPage || ($exhibitPage && $currentExhibitPage && $exhibitPage->id == $currentExhibitPage->id));
+    return ($exhibitPage === $currentExhibitPage
+        || ($exhibitPage && $currentExhibitPage && $exhibitPage->id == $currentExhibitPage->id));
 }
 
 /**
- * Returns the text of the exhibit page entry
+ * Return the text of the given exhibit page entry.
  *
- * @param int $exhibitPageEntryIndex The i-th page entry, where i = 1, 2, 3, ...
- * @param ExhibitPage|null $exhibitPage If null, it will use the current exhibit page
+ * @param int $entryIndex Page entry index, defaults to 1
+ * @param ExhibitPage|null $exhibitPage If null, uses the current exhibit page
  * @return string
- **/
-function exhibit_builder_page_text($exhibitPageEntryIndex = 1, $exhibitPage=null)
+ */
+function exhibit_builder_page_text($entryIndex = 1, $exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
 
-    if (count($exhibitPage->ExhibitPageEntry) < $exhibitPageEntryIndex) {
+    if (count($exhibitPage->ExhibitPageEntry) < $entryIndex) {
         $text = '';
     } else {
-        $text = $exhibitPage->ExhibitPageEntry[(int) $exhibitPageEntryIndex]->text;
+        $text = $exhibitPage->ExhibitPageEntry[(int) $entryIndex]->text;
     }
 
     return $text;
 }
 
+/**
+ * Return the data for an attached item/file.
+ *
+ * @param int $entryIndex Page entry index, defaults to 1
+ * @param int $fallbackFileIndex File index to choose if no file was picked
+ *  specifically. Defaults to 0, the first file for the item
+ * @param ExhibitPage|null Page to use, if null, the current page is used
+ * @return array|null Null if no such entry exists. If one does, returns an
+ *  array, with the following keys:
+ *   * item: the attached Item object
+ *   * file: the File to be displayed (null if no file exists)
+ *   * file_specified: boolean, whether the file was user-selected or auto-picked
+ *   * caption: a string, the attachment's caption
+ */
 function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0, $exhibitPage = null)
 {
     if (!$exhibitPage) {
@@ -68,9 +83,15 @@ function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0
 
     $caption = $entry->caption;
 
-    return compact(array('item', 'file', 'file_specified', 'caption'));    
+    return compact(array('item', 'file', 'file_specified', 'caption'));
 }
 
+/**
+ * Register the item/file from an attachment as the current records to work on.
+ *
+ * @see exhibit_builder_page_attachment
+ * @param array $attachment
+ */
 function exhibit_builder_use_attachment($attachment)
 {
     set_current_record('item', $attachment['item']);
@@ -78,11 +99,11 @@ function exhibit_builder_use_attachment($attachment)
 }
 
 /**
- * Returns the HTML code of the exhibit page navigation
+ * Return the markup for the exhibit page navigation.
  *
- * @param ExhibitPage|null $exhibitPage If null, will use the current exhibit page
+ * @param ExhibitPage|null $exhibitPage If null, uses the current exhibit page
  * @return string
- **/
+ */
 function exhibit_builder_page_nav($exhibitPage = null)
 {
     if (!$exhibitPage) {
@@ -112,14 +133,14 @@ function exhibit_builder_page_nav($exhibitPage = null)
 }
 
 /**
- * Returns a link to the next exhibit page
+ * Return a link to the next exhibit page
  *
- * @param string $text The label for the next page link
- * @param array $props
+ * @param string $text Link text
+ * @param array $props Link attributes
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
- **/
-function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(), $exhibitPage = null)
+ */
+function exhibit_builder_link_to_next_page($text = null, $props = array(), $exhibitPage = null)
 {
     if ($text === null) {
         $text = __('Next Page &rarr;');
@@ -150,14 +171,14 @@ function exhibit_builder_link_to_next_exhibit_page($text = null, $props = array(
 }
 
 /**
- * Returns a link to the previous exhibit page
+ * Return a link to the previous exhibit page
  *
- * @param string $text The label for the previous page link
- * @param array $props
+ * @param string $text Link text
+ * @param array $props Link attributes
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
- **/
-function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = array(), $exhibitPage = null)
+ */
+function exhibit_builder_link_to_previous_page($text = null, $props = array(), $exhibitPage = null)
 {
     if ($text === null) {
         $text = __('&larr; Previous Page');
@@ -180,15 +201,14 @@ function exhibit_builder_link_to_previous_exhibit_page($text = null, $props = ar
 }
 
 /**
- * Returns a link to the parent exhibit page
+ * Return a link to the parent exhibit page
  *
- * @param string $text The label for the previous page link
- * @param array $props
+ * @param string $text Link text
+ * @param array $props Link attributes
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page
  * @return string
- *
  */
-function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = array(), $exhibitPage = null)
+function exhibit_builder_link_to_parent_page($text = null, $props = array(), $exhibitPage = null)
 {
     if ($text === null) {
         $text = __('&uarr; Up');
@@ -210,16 +230,13 @@ function exhibit_builder_link_to_parent_exhibit_page($text = null, $props = arra
     } else {
         return '';
     }
-
-
 }
 
 /**
- * Sets the exhibit child pages for loop by their parent
+ * Set a page's children as the pages for looping.
  *
- * @param ExhibitPage|null $exhibitPage If null, it uses the current page
- * @return void
- **/
+ * @param ExhibitPage|null $exhibitPage If null, uses the current page
+ */
 function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
 {
     if (!$exhibitPage) {
@@ -229,6 +246,11 @@ function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
     set_loop_records('exhibit_page', $exhibitPage->getChildPages());
 }
 
+/**
+ * Set a exhibit's pages as the pages for looping.
+ *
+ * @param Exhibit|null If null, uses the current exhibit
+ */
 function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 {
     if(!$exhibit) {
@@ -239,13 +261,11 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 }
 
 /**
- * Return a page's child pages
- * @since 2.0
- * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page
- * @return array
- *
+ * Get the children of a page.
+ * 
+ * @param ExhibitPage $exhibitPage The exhibit page. If null, uses the current page.
+ * @return array[ExhibitPage]
  */
-
 function exhibit_builder_child_pages($exhibitPage = null)
 {
     if(!$exhibitPage) {
@@ -256,12 +276,10 @@ function exhibit_builder_child_pages($exhibitPage = null)
 }
 
 /**
- * Loops through and renders a page's child pages
+ * Loop through and render all of a page's child pages
  *
- * @since 2.0
  * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page
  */
-
 function exhibit_builder_page_loop_children($exhibitPage = null)
 {
     $childPages = exhibit_builder_child_pages($exhibitPage);
@@ -272,7 +290,7 @@ function exhibit_builder_page_loop_children($exhibitPage = null)
 }
 
 /**
- * Renders a page's summary info according to the page-summary.php template
+ * Render a page's summary info according to the page-summary.php template
  */
 function exhibit_builder_render_page_summary($exhibitPage = null)
 {

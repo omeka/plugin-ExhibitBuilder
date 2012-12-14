@@ -58,9 +58,6 @@ Omeka.ExhibitBuilder = function() {
         // Add delete buttons to the layout item container
         this.addDeleteButtonsToLayoutItemContainer(layoutItemContainer);
         
-        // Hide the item id information
-        layoutItemContainer.find('.item_id').hide();
-        
         // Attach Item Dialog Link
         layoutItemContainer.find('.attach-item-link').click(function(){
             jQuery(this).parent().addClass('item-targeted');
@@ -90,10 +87,6 @@ Omeka.ExhibitBuilder = function() {
     this.setupSearchItemContainer = function(searchItemContainer) {
         // Add selection highlighting to the search item container
         this.addSelectionHighlightingToSearchItemContainer(searchItemContainer);
-    
-        // Hide the item id information
-        searchItemContainer.find('.item_id').hide();
-    
     };
     
     /*
@@ -192,7 +185,7 @@ Omeka.ExhibitBuilder = function() {
     */
     this.attachSelectedItem = function() {
         var selectedItemContainer = jQuery('.item-selected');
-        var selectedItemId = this.getItemIdFromItemContainer(selectedItemContainer);                
+        var selectedItemId = selectedItemContainer.data('itemId');
         var targetedItemContainer = jQuery('.item-targeted');
         var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);      
         this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);         

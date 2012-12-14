@@ -36,9 +36,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 
         <div id="layout-thumbs">
         <?php
-            $layouts = exhibit_builder_get_ex_layouts();
+            $layouts = exhibit_builder_get_layouts();
             foreach ($layouts as $layout) {
-                echo exhibit_builder_exhibit_layout($layout);
+                echo exhibit_builder_layout($layout);
             }
         ?>
         </div>
@@ -50,7 +50,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <h4><?php echo __('Layout'); ?></h4>
         <?php
         if ($layout = $exhibit_page->layout) {
-            echo exhibit_builder_exhibit_layout($layout, false);
+            echo exhibit_builder_layout($layout, false);
         } else {
             echo '<p>' . __('Choose a layout by selecting a thumbnail on the right.') . '</p>';
         }

@@ -164,18 +164,13 @@
     width: 99%;
 }
 
-.item-file,
-.caption-container {
+.item-file {
     float:left;
     width: 10%;
 }
 
 .caption-container {
     clear: left;
-}
-
-#layout-form label {
-    display:none;
 }
 
 #page-search-form,

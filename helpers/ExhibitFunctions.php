@@ -6,27 +6,27 @@
  */
 
 /**
- * Returns whether an exhibit is the current exhibit.
+ * Return whether an exhibit is the current exhibit.
  *
- * @param Exhibit|null $exhibit
+ * @param Exhibit $exhibit
  * @return boolean
- **/
+ */
 function exhibit_builder_is_current_exhibit($exhibit)
 {
     $currentExhibit = get_current_record('exhibit', false);
-    return ($exhibit == $currentExhibit || ($exhibit && $currentExhibit && $exhibit->id == $currentExhibit->id));
+    return ($exhibit == $currentExhibit
+        || ($exhibit && $currentExhibit && $exhibit->id == $currentExhibit->id));
 }
 
 /**
- * Returns a link to the exhibit
+ * Return a link to an exhibit.
  *
- * @param Exhibit $exhibit|null If null, it uses the current exhibit
- * @param string|null $text The text of the link
- * @param array $props
- * @param ExhibitPage|null $exhibitPage
+ * @param Exhibit $exhibit If null, it uses the current exhibit
+ * @param string $text The text of the link
+ * @param array $props Link attributes
+ * @param ExhibitPage $exhibitPage A specific page to link to
  * @return string
- **/
-
+ */
 function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props = array(), $exhibitPage = null)
 {
     if (!$exhibit) {
@@ -38,13 +38,12 @@ function exhibit_builder_link_to_exhibit($exhibit = null, $text = null, $props =
 }
 
 /**
- * Returns a URI to the exhibit
+ * Return a URI to an exhibit.
  *
- * @param Exhibit $exhibit|null If null, it uses the current exhibit.
- * @param ExhibitPage|null $exhibitPage
- * @internal This relates to: ExhibitsController::showAction(), ExhibitsController::summaryAction()
+ * @param Exhibit $exhibit If null, it uses the current exhibit.
+ * @param ExhibitPage $exhibitPage A specific page to link to
  * @return string
- **/
+ */
 function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
 {
     if (!$exhibit) {
@@ -71,13 +70,13 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
 }
 
 /**
- * Returns a link to the item within the exhibit.
+ * Return a link to an item within an exhibit.
  *
- * @param string|null $text
- * @param array $props
- * @param Item|null $item If null, will use the current item.
+ * @param string $text Link text (by default, the item title is used)
+ * @param array $props Link attributes
+ * @param Item $item If null, will use the current item.
  * @return string
- **/
+ */
 function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $item = null)
 {
     if (!$item) {
@@ -96,13 +95,12 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 }
 
 /**
- * Returns a URI to the exhibit item
- *
- * @deprecated since 1.1
+ * Return a URL to an item within an exhibit.
+ * 
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
  * @return string
- **/
+ */
 function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
 {
     if (!$exhibit) {
@@ -118,79 +116,22 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
 }
 
 /**
- * Returns an array of recent exhibits
+ * Return an array of recent exhibits
  *
  * @param int $num The maximum number of exhibits to return
  * @return array
- **/
+ */
 function exhibit_builder_recent_exhibits($num = 10)
 {
     return get_records('Exhibit', array('sort'=>'recent'), $num);
 }
 
 /**
- * Returns the HTML code of the item attach section of the exhibit form
+ * Get the HTML for an item attachment on a layout form.
  *
- * @param Item $item
- * @param int $orderOnForm
+ * @param int $order The index of this layout element.
  * @return string
- **/
-function exhibit_builder_exhibit_form_attachment($item = null, $file = null, $caption = null, $order = null)
-{
-    $html = '<div class="item-select-outer exhibit-form-element">';
-
-    if ($item) {
-        $html .= '<div class="item-select-inner">' . "\n";
-        $html .= '<div class="item_id">' . html_escape($item->id) . '</div>' . "\n";
-        $html .= '<h4 class="title">' . metadata($item, array('Dublin Core', 'Title')) . '</h4>' . "\n";
-        if (metadata($item, 'has files')) {
-            if ($file) {
-                $html .= '<div class="item-file">' 
-                    . file_image('square_thumbnail', array(), $file)
-                    . '</div>';
-            } else {
-                foreach ($item->Files as $displayFile) {
-                    if ($displayFile->hasThumbnail()) {
-                        $html .= '<div class="item-file">'
-                            . file_image('square_thumbnail', array(), $displayFile)
-                            . '</div>';
-                    }
-                }
-            }
-            if ($order) {
-                $html .= exhibit_builder_layout_form_file($order, $item, $file);
-            }
-        }
-        
-        if ($caption !== false) {
-            $html .= exhibit_builder_layout_form_caption($order, $caption);
-        }
-
-        $html .= '</div>' . "\n";
-    } else {
-        $html .= '<p class="attach-item-link">'
-               . __('There is no item attached.')
-               . ' <a href="#" class="button">'
-               . __('Attach an Item') .'</a></p>' . "\n";
-    }
-
-    // If this is ordered on the form, make sure the generated form element indicates its order on the form.
-    if ($order) {
-        $itemId = ($item) ? $item->id : null;
-        $fileId = ($file) ? $file->id : null;
-        $html .= get_view()->formHidden("Item[$order]", $itemId);
-    }
-
-    $html .= '</div>';
-    return $html;
-}
-
-/**
- * Returns the HTML code for an item on a layout form
- *
- * @param int $order The order of the item
- * @return string
- **/
+ */
 function exhibit_builder_layout_form_item($order)
 {
     $attachment = exhibit_builder_page_attachment($order);
@@ -206,50 +147,119 @@ function exhibit_builder_layout_form_item($order)
         $caption = $attachment['caption'];
     }
 
-    return exhibit_builder_exhibit_form_attachment($item, $file, $caption, $order);
+    return exhibit_builder_form_attachment($item, $file, $caption, $order);
 }
 
 /**
- * Returns the HTML code for a textarea on a layout form
+ * Get the HTML for a text input on a layout form
  *
- * @param int $order The order of the item
- * @param string $label
+ * @param int $order The index of this layout element.
  * @return string
- **/
-function exhibit_builder_layout_form_text($order, $label = 'Text')
+ */
+function exhibit_builder_layout_form_text($order)
 {
     $html = '<div class="textfield exhibit-form-element">';
-    $html .= get_view()->formTextarea("Text[$order]", exhibit_builder_page_text($order), array('rows'=>'15','cols'=>'70'));
+    $html .= get_view()->formTextarea("Text[$order]",
+        exhibit_builder_page_text($order), array('rows' => '15','cols' => '70'));
     $html .= '</div>';
-    $html = apply_filters('exhibit_builder_layout_form_text', $html, array('order' => $order, 'label' => $label));
+    $html = apply_filters('exhibit_builder_layout_form_text', $html,
+        array('order' => $order));
     return $html;
 }
 
 /**
- * Returns the HTML code for a caption on a layout form
+ * Get the HTML for "attach an item" section of the exhibit form
  *
- * @param int $order The order of the item
- * @param string $label
+ * @param Item $item The currently attached item, if any
+ * @param File $file The currently attached file, if any
+ * @param string|boolean $caption The current caption. If false, don't display
+ *  the caption form.
+ * @param int $order Layout form order. If omitted, don't output form elements
  * @return string
- **/
-function exhibit_builder_layout_form_caption($order, $caption = null)
+ */
+function exhibit_builder_form_attachment($item = null, $file = null, $caption = null, $order = null)
+{
+    $html = '<div class="item-select-outer exhibit-form-element">';
+
+    if ($item) {
+        $html .= '<div class="item-select-inner">'
+               . '<div class="item_id">' . html_escape($item->id) . '</div>'
+               . '<h4 class="title">'
+               . metadata($item, array('Dublin Core', 'Title'))
+               . '</h4>';
+        if (metadata($item, 'has files')) {
+            if ($file) {
+                $html .= '<div class="item-file">' 
+                    . file_image('square_thumbnail', array(), $file)
+                    . '</div>';
+            } else {
+                foreach ($item->Files as $displayFile) {
+                    if ($displayFile->hasThumbnail()) {
+                        $html .= '<div class="item-file">'
+                            . file_image('square_thumbnail', array(), $displayFile)
+                            . '</div>';
+                    }
+                }
+            }
+            if ($order) {
+                $html .= exhibit_builder_form_file($order, $item, $file);
+            }
+        }
+        
+        if ($caption !== false) {
+            $html .= exhibit_builder_form_caption($order, $caption);
+        }
+
+        $html .= '</div>' . "\n";
+    } else {
+        $html .= '<p class="attach-item-link">'
+               . __('There is no item attached.')
+               . ' <a href="#" class="button">'
+               . __('Attach an Item') .'</a></p>' . "\n";
+    }
+
+    // If an order was passed, this is an input on a layout form, so include the
+    // form element to indicate what file is attached here.
+    if ($order) {
+        $itemId = ($item) ? $item->id : null;
+        $html .= get_view()->formHidden("Item[$order]", $itemId);
+    }
+
+    $html .= '</div>';
+    return $html;
+}
+
+/**
+ * Get the HTML for a caption form input.
+ *
+ * @param int $order The order of the attachment for this caption
+ * @param string $caption The existing caption, if any
+ * @return string
+ */
+function exhibit_builder_form_caption($order, $caption = null)
 {
     $label = __('Caption');
 
-    $html = '<div class="caption-container">' . "\n";
-    $html .= '<p>' . html_escape($label) . '</p>' . "\n";
-    $html .= '<div class="caption">' . "\n";
-    $html .= '<label for="Caption['.$order.']">'.$label.'</label>' . "\n";
-    $html .= get_view()->formTextarea("Caption[$order]", $caption, array('rows'=>'4','cols'=>'30'));
-    $html .= '</div>' . "\n";
-    $html .= '</div>' . "\n";
+    $html = '<div class="caption-container">'
+          . '<label for="Caption-' . $order.'">' . $label . '</label>'
+          . get_view()->formTextarea("Caption[$order]", $caption,
+                array('rows'=>'4','cols'=>'30'))
+          . '</div>';
 
-    $html = apply_filters('exhibit_builder_layout_form_caption', $html, array('order' => $order, 'caption' => $caption));
+    $html = apply_filters('exhibit_builder_form_caption', $html,
+        array('order' => $order, 'caption' => $caption));
     return $html;
 }
 
-
-function exhibit_builder_layout_form_file($order, $item, $currentFile = null)
+/**
+ * Get the HTML for choosing a file for an attachment.
+ *
+ * @param int $order The order of the attachment for this caption
+ * @param Item $item The item for this attachment
+ * @param File $currentFile The currently attached file
+ * @return string
+ */
+function exhibit_builder_form_file($order, $item, $currentFile = null)
 {
     $options = array('' => __('Select a File'));
     $files = $item->Files;
@@ -258,7 +268,8 @@ function exhibit_builder_layout_form_file($order, $item, $currentFile = null)
     }
 
     foreach ($files as $file) {
-        $label = metadata($file, array('Dublin Core', 'Title'), array('no_escape' => true));
+        $label = metadata($file, array('Dublin Core', 'Title'),
+            array('no_escape' => true));
         if (!$label) {
             $label = $file->original_filename;
         }
@@ -268,15 +279,16 @@ function exhibit_builder_layout_form_file($order, $item, $currentFile = null)
 
     $currentId = $currentFile ? $currentFile->id : null;
 
-    return get_view()->formSelect("File[$order]", $currentId, array('multiple' => false), $options);
+    return get_view()->formSelect("File[$order]", $currentId,
+        array('multiple' => false), $options);
 }
 
 /**
- * Returns an array of available themes
+ * Get an array of available themes
  *
  * @return array
- **/
-function exhibit_builder_get_ex_themes()
+ */
+function exhibit_builder_get_themes()
 {
     $themeNames = array();
 
@@ -290,26 +302,26 @@ function exhibit_builder_get_ex_themes()
 }
 
 /**
- * Returns an array of available exhibit layouts
+ * Get an array of available exhibit layouts
  *
  * @return array
- **/
-function exhibit_builder_get_ex_layouts()
+ */
+function exhibit_builder_get_layouts()
 {
-    $it = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR, true);
-    $array = $it->getValid();
+    $iterator = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR, true);
+    $array = $iterator->getValid();
     natsort($array);
     return $array;
 }
 
 /**
- * Returns the HTML code for an exhibit layout
+ * Get the HTML code for choosing an exhibit layout
  *
  * @param string $layout The layout name
  * @param boolean $input Whether or not to include the input to select the layout
  * @return string
- **/
-function exhibit_builder_exhibit_layout($layout, $input = true)
+ */
+function exhibit_builder_layout($layout, $input = true)
 {
     //Load the thumbnail image
     try {
@@ -321,54 +333,55 @@ function exhibit_builder_exhibit_layout($layout, $input = true)
 
     $exhibitPage = get_current_record('exhibit_page');
     $isSelected = ($exhibitPage->layout == $layout) and $layout;
-    $iniPath = EXHIBIT_LAYOUTS_DIR . DIRECTORY_SEPARATOR. "$layout" . DIRECTORY_SEPARATOR . "layout.ini";
+    $iniPath = EXHIBIT_LAYOUTS_DIR . "/$layout/layout.ini";
     if (file_exists($iniPath) && is_readable($iniPath)) {
         $layoutIni = new Zend_Config_Ini($iniPath, 'layout');
         $layoutName = $layoutIni->name;
     }
     
-    $html = '';
-    $html .= '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">';
-    $html .= '<img src="'. html_escape($imgFile) .'" />';
+    $html = '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">'
+          . '<img src="'. html_escape($imgFile) .'" />';
+
     if ($input) {
-        $html .= '<div class="input">';
-        $html .= '<input type="radio" name="layout" value="'. html_escape($layout) .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>';
-        $html .= '</div>';
+        $html .= '<div class="input">'
+               . '<input type="radio" name="layout" value="'. html_escape($layout) .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>'
+               . '</div>';
     }
-    $html .= '<div class="layout-name">'.html_escape($layoutName).'</div>';
-    $html .= '</div>';
-    $html = apply_filters('exhibit_builder_exhibit_layout', $html, array('layout' => $layout, 'input' => $input));
-    return $html;
+
+    $html .= '<div class="layout-name">' . html_escape($layoutName) . '</div>'
+           . '</div>';
+           
+    return apply_filters('exhibit_builder_layout', $html,
+        array('layout' => $layout, 'input' => $input));
 }
 
 /**
- * Returns the web path to the layout css
+ * Return the web path to the layout css
  *
- * @param string $fileName The name of the CSS file (does not include file extension)
+ * @param string $fileName The name of the CSS file (without file extension)
  * @return string
- **/
+ */
 function exhibit_builder_layout_css($fileName = 'layout')
 {
     if ($exhibitPage = get_current_record('exhibit_page', false)) {
-        return css_src($fileName, EXHIBIT_LAYOUTS_DIR_NAME . DIRECTORY_SEPARATOR . $exhibitPage->layout);
+        return css_src($fileName, EXHIBIT_LAYOUTS_DIR_NAME . '/' . $exhibitPage->layout);
     }
 }
 
 /**
- * Displays an exhibit page
+ * Display an exhibit page
  *
  * @param ExhibitPage $exhibitPage If null, will use the current exhibit page.
- * @return void
- **/
+ */
 function exhibit_builder_render_exhibit_page($exhibitPage = null)
 {
     if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
     if ($exhibitPage->layout) {
-     include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$exhibitPage->layout.DIRECTORY_SEPARATOR.'layout.php';
+        include EXHIBIT_LAYOUTS_DIR . '/' . $exhibitPage->layout . '/layout.php';
     } else {
-     echo "This page does not have a layout.";
+        echo "This page does not have a layout.";
     }
 }
 
@@ -377,10 +390,10 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
  *
  * @param string The name of the layout
  * @return void
- **/
+ */
 function exhibit_builder_render_layout_form($layout)
 {
-    include EXHIBIT_LAYOUTS_DIR.DIRECTORY_SEPARATOR.$layout.DIRECTORY_SEPARATOR.'form.php';
+    include EXHIBIT_LAYOUTS_DIR . '/' . $layout . '/form.php';
 }
 
 /**
@@ -407,15 +420,16 @@ function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thum
             $html .= '</div>' . "\n";
         }
     }
-    $html = apply_filters('exhibit_builder_thumbnail_gallery', $html, array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
-    return $html;
+    
+    return apply_filters('exhibit_builder_thumbnail_gallery', $html,
+        array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
 }
 
 /**
- * Returns the HTML of a random featured exhibit
+ * Return the HTML for summarizing a random featured exhibit
  *
  * @return string
- **/
+ */
 function exhibit_builder_display_random_featured_exhibit()
 {
     $html = '<div id="featured-exhibit">';
@@ -423,7 +437,7 @@ function exhibit_builder_display_random_featured_exhibit()
     $html .= '<h2>' . __('Featured Exhibit') . '</h2>';
     if ($featuredExhibit) {
        $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>'."\n";
-       $html .= '<p>'.snippet_by_word_count(metadata($featuredExhibit, 'description')).'</p>';
+       $html .= '<p>'.snippet_by_word_count(metadata($featuredExhibit, 'description', array('no_escape' => true))).'</p>';
     } else {
        $html .= '<p>' . __('You have no featured exhibits.') . '</p>';
     }
@@ -433,15 +447,24 @@ function exhibit_builder_display_random_featured_exhibit()
 }
 
 /**
- * Returns a random featured exhibit
+ * Return a random featured exhibit.
  *
- * @return Exhibit
- **/
+ * @return Exhibit|null
+ */
 function exhibit_builder_random_featured_exhibit()
 {
     return get_db()->getTable('Exhibit')->findRandomFeatured();
 }
 
+/**
+ * Return HTML for displaying an attached item on an exhibit page.
+ *
+ * @see exhibit_builder_page_attachment for attachment array contents
+ * @param array $attachment The attachment.
+ * @param array $fileOptions Options for file_markup when displaying a file
+ * @param array $linkProperties Attributes for use when linking to an item
+ * @return string
+ */
 function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties)
 {
     if (!$attachment) {
@@ -451,12 +474,12 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
     $item = $attachment['item'];
     $file = $attachment['file'];
 
-    if (!isset($options['linkAttributes']['href'])) {
-        $options['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
+    if (!isset($fileOptions['linkAttributes']['href'])) {
+        $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
     }
 
-    if (!isset($options['imgAttributes']['alt'])) {
-        $options['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
+    if (!isset($fileOptions['imgAttributes']['alt'])) {
+        $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
     }
     
     if ($file) {
@@ -472,6 +495,13 @@ function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkPrope
     );
 }
 
+/**
+ * Return HTML for displaying an attachment's caption.
+ *
+ * @see exhibit_builder_page_attachment for attachment array contents
+ * @param array $attachment The attachment
+ * @return string
+ */
 function exhibit_builder_attachment_caption($attachment)
 {
     if (!is_string($attachment['caption']) || $attachment['caption'] == '') {
@@ -496,7 +526,7 @@ function exhibit_builder_attachment_caption($attachment)
 * @param ExhibitPage|null $exhibitPage
 * @param Exhibit $exhibit|null If null, it uses the current exhibit
 * @return string
-**/
+*/
 function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $exhibit = null)
 {
     return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitPage);
@@ -509,7 +539,7 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
  * @param Exhibit|null $exhibit If null, will use the current exhibit
  * @param boolean $showAllPages
  * @return string
- **/
+ */
 function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
 {
     if (!$exhibit) {
@@ -527,7 +557,8 @@ function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
         $html .= '</li>';
     }
     $html .= '</ul>';
-    //@TODO: update the filter
-    $html = apply_filters('exhibit_builder_top_page_nav', $html, array('exhibit' => $exhibit, 'show_all_pages' => $showAllPages));
+
+    $html = apply_filters('exhibit_builder_nested_nav', $html,
+        array('exhibit' => $exhibit, 'show_all_pages' => $showAllPages));
     return $html;
 }

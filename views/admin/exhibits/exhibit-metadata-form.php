@@ -49,7 +49,7 @@
                 <?php echo $this->formLabel('theme', __('Theme')); ?>
             </div>
             <div class="five columns omega inputs">
-                <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_ex_themes(); ?>
+                <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_themes(); ?>
                 <div class="three columns alpha">
                     <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
                 </div>
