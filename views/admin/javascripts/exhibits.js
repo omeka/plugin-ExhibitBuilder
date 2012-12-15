@@ -219,19 +219,6 @@ Omeka.ExhibitBuilder = function() {
     };
 
     /*
-    * Get the id of the item (if any) in the item container
-    */
-    this.getItemIdFromItemContainer = function(itemContainer) {
-        // for some weird reason, itemContainer.find('.item_id').first(); does not work, 
-        // so we assume that their is only one item id div in the item container
-        var itemIdDiv = itemContainer.find('.item_id');
-        if (itemIdDiv) {
-            return itemIdDiv.text();
-        }
-        return false;
-    };
-    
-    /*
     * Get the order of the item (if any) in the item container
     */
     this.getItemOrderFromItemContainer = function(itemContainer) {
