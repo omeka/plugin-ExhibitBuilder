@@ -22,6 +22,10 @@
     display:none;
 }
 
+.page-list ul {
+    margin-top: 15px;
+}
+
 .page-list li:after {
     content: ".";
     display: block;
@@ -44,7 +48,6 @@
 .page-list li {
     display:block;
     padding:0;
-    margin: 8px 0;
 }
 
 .page-list .jqtree-title {

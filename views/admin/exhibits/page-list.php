@@ -1,92 +1,27 @@
 <?php if ($exhibit->TopPages): ?>
 <?php $pageCount = count($exhibit->TopPages); ?>
-<?php $treeData = "var treedata = [ "; ?>
-<?php foreach($exhibit->TopPages as $index=>$page) {
-    $treeData .= $page->toTreeJson();
-    if($index < $pageCount) {
-        $treeData .= ', ';
-    }
-}
-$treeData .= "] ;";
-?>
 
-<div id="pagetree"></div>
+    <?php foreach($exhibit->TopPages as $index=>$page): ?>
 
-<script type='text/javascript'>
-<?php echo $treeData; ?>
+        <?php 
+            $pageId = $page['id']; 
+            $pageOrder = $page['order'];
+        ?>
 
-var webRoot = "<?php echo WEB_ROOT; ?>";
+        <li class="page">
+            <div class="sortable-item">
+            <a href="../edit-page-content/<?php echo $pageId; ?>"><?php echo $page->title; ?></a>
+            <?php echo $this->formHidden("pages[$pageId][order]", $pageOrder, array('size'=>2, 'class' => 'page-order')); ?>
+            <a id="return-element-link-<?php echo html_escape($pageId); ?>" href="" class="undo-delete"><?php echo __('Undo'); ?></a>
+            <a id="remove-element-link-<?php echo html_escape($pageId); ?>" href="" class="delete-element"><?php echo __('Remove'); ?></a>
+            </div>
+        </li>
+    
+    <?php endforeach; ?>
 
-function countParents(node) {
-    if (node.parent) {
-        return 1 + countParents(node.parent);
-    } else {
-        return 0;
-    }
-}
-
-function countChildren(node) {
-    if (node.children.length === 0) {
-        return 0;
-    }
-
-    childrenCounts = [];
-    for (var i = 0; i < node.children.length; i++) {
-        childrenCounts[i] = 1 + countChildren(node.children[i]);
-    }
-    return Math.max.apply(Math, childrenCounts);
-}
-        
-jQuery('#pagetree').tree({
-    data: treedata,
-    dragAndDrop: true,
-    autoOpen: true,
-
-    onCreateLi: function (node, li) {
-        if(node.children.length === 0) {
-            li.addClass('empty');
-        }
-
-        title = li.find('.jqtree-title');
-
-        editUrl = "<?php echo html_escape(url('exhibits/edit-page-content/')); ?>" + node.id;
-        deleteUrl = "<?php echo html_escape(url('exhibits/delete-page/')); ?>" + node.id;
-        actionsHTML = '<span class="page-actions">';
-        actionsHTML += '<span class="page-edit"><a href="' + editUrl + '" class="blue edit button"><?php echo __('Edit'); ?></a></span>';
-        actionsHTML += '<span class="page-delete"><a href="' + deleteUrl + '" class="red delete-page button"><?php echo __('Delete'); ?></a></span>';
-        actionsHTML += '</span>';
-        title.after(actionsHTML);
-    },
-
-    onCanMoveTo: function (moved_node, target_node, position) {
-        var currentDepth = countChildren(moved_node) + 1, targetDepth;
-        if (position === 'none') {
-            return false;
-        }
-        if (position === 'inside') {
-            targetDepth = countParents(target_node);
-        } else {
-            targetDepth = countParents(target_node) - 1;
-        }
-
-        return currentDepth + targetDepth <= 3;
-    },
-
-    onIsMoveHandle: function (element) {
-        return element.is('.jqtree-title');
-    }
-});
-
-jQuery('#pagetree').bind('tree.move', function(event) {
-    event.preventDefault();
-    event.move_info.do_move();
-    data = {data : jQuery(this).tree('toJson') };
-    jQuery.post(webRoot + '/admin/exhibits/update-page-order', data)
-    // Todo: implement success and error handlers for user feedback
-        .success(function() {})
-        .error(function() {});
-});
-
+<script type="text/javascript">
+Omeka.addReadyCallback(Omeka.ExhibitBuilder.enableSorting);
+Omeka.addReadyCallback(Omeka.ExhibitBuilder.addHideButtons);
+Omeka.addReadyCallback(Omeka.ExhibitBuilder.setUpFormSubmission);
 </script>
-
 <?php endif; ?>

@@ -50,14 +50,10 @@
             </div>
             <div class="five columns omega inputs">
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_themes(); ?>
-                <div class="three columns alpha">
-                    <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
-                </div>
-                <div class="two columns omega">
+                <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
                 <?php if ($theme && $theme->hasConfig): ?>
                     <a href="<?php echo html_escape(url("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
                 <?php endif;?>
-                </div>
             </div>
         </div>
     </fieldset>
@@ -69,9 +65,10 @@
             <?php else: ?>
             <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
             <?php endif; ?>
-            <ul class="page-list">
+            <ul id="page-list" class="sortable">
                 <?php echo common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
             </ul>
+            <?php echo $this->formHidden("pages_hidden", ""); ?>
         </div>
         <div id="page-add">
             <input type="submit" name="add_page" id="add-page" value="<?php echo __('Add Page'); ?>" />
@@ -95,6 +92,7 @@
         </div>
     </div>
 </form>
+
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     jQuery(window).load(function() {

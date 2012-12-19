@@ -392,15 +392,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     public function updatePageOrderAction()
     {
 
-        $pages = json_decode($_POST['data'], true);
+        $pages = $this->getRequest()->getPost('pages');
 
         try {
+            foreach ($pages as $id => $page) {
+                $pageRecord = $db->getTable('ExhibitPage')->find($id);
+                $pageRecord->order = $page['order'];
+                $pageRecord->save();
+            }
             $this->updatePageChildrenOrders($pages, null);
             $response = array('ok'=>'updated');
         } catch(Exception $e) {
             $response = array('error'=>$e->getMessage());
         }
-        $this->_helper->json($pages);
+        $this->_helper->$pages;
     }
 
     private function updatePageChildrenOrders($pages, $parent_id)
