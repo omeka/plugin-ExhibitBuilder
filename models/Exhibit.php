@@ -80,6 +80,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             $this->applyTagString($post['tags']);
             $pages = $post['pages'];
             $this->savePagesParentOrder(null, $pages);
+            print_r($post);
+            exit;
         }
         
 
