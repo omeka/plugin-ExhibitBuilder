@@ -440,11 +440,7 @@ function exhibit_builder_item_browse_sql($args)
     $params = $args['params'];
     $db = get_db();
 
-    if ($request = Zend_Controller_Front::getInstance()->getRequest()) {
-        $exhibit = $request->get('exhibit') ? $request->get('exhibit') : null;
-    }
-
-    $exhibit = isset($params['exhibit']) ? $params['exhibit'] : $exhibit;
+    $exhibit = isset($params['exhibit']) ? $params['exhibit'] : null;
 
     if ($exhibit) {
         $select->joinInner(
