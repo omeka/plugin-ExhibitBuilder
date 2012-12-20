@@ -68,7 +68,6 @@
             <ul id="page-list" class="sortable">
                 <?php echo common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
             </ul>
-            <?php echo $this->formHidden("pages_hidden", ""); ?>
         </div>
         <div id="page-add">
             <input type="submit" name="add_page" id="add-page" value="<?php echo __('Add Page'); ?>" />
