@@ -44,7 +44,18 @@
 .page-list li {
     display:block;
     padding:0;
-    margin: 8px 0;
+}
+
+#pagetree div {;
+    margin-bottom: 4px;
+}
+
+#pagetree div:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
 .page-list .jqtree-title {
@@ -54,6 +65,10 @@
 
 .page-actions {
     float: right;
+}
+
+.page-actions .button {
+    margin-bottom: 0;
 }
 
 /* Page Metadata */
