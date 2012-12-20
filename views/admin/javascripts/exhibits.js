@@ -261,10 +261,17 @@ Omeka.ExhibitBuilder.enableSorting = function () {
         containment: '#content',
         toArray: true,
         update: function (event, ui) {
-            jQuery(this).find('.page-order').each(function (index) {
-                jQuery(this).val(index + 1);
-            });
-            jQuery(this).nestedSortable('toHierarchy', { startDepthCount: 0 });
+          var list = jQuery(this);
+          list.find('li.page').each(function (index) {
+              var page = jQuery(this);
+              page.find('.page-order').val(index + 1);
+              var pageParent = page.parents('li');
+              var pageParentId = null;
+              if (pageParent.length > 0) {
+                pageParentId = pageParent.attr('id').match(/[0-9]+/);
+              }
+              page.find('.page-parent-id').val(pageParentId);
+          });
         }
     });
 };
@@ -289,35 +296,4 @@ Omeka.ExhibitBuilder.addHideButtons = function () {
         .mousedown(function (event) {
             event.stopPropagation();
         });
-};
-
-Omeka.ExhibitBuilder.setUpFormSubmission = function () {
-    jQuery('#exhibit-metadata-form').submit(function (event) {
-        // add ids to li elements so that we can pull out the parent/child relationships
-        jQuery('#page-list li').each(function (index) {
-            temp_id = index + 1;
-            jQuery(this).attr('id', "list_" + temp_id);
-        });
-        var parentChildData = jQuery("#page-list").nestedSortable('toArray', { startDepthCount: 0 });
-        var pageData = [];
-        jQuery('div.sortable-item > input[type="hidden"]').each(function (index) {
-            var pageInfo = {};
-            pageNameAttr = jQuery(this).attr('name');
-            
-            pageInfo.id = parseInt(pageNameAttr.match(/[0-9]+/));
-            pageInfo.order = parseInt(parentChildData[index + 1].item_id, 10);
-            temp_parent_id = parseInt(parentChildData[index + 1].parent_id, 10);
-            if (!temp_parent_id) {
-                pageInfo.parent_id = temp_parent_id;
-            } else {
-                parent_name = jQuery('#list_' + temp_parent_id + ' input[type="hidden"]').attr('name');
-                real_parent_id = parseInt(parent_name.match(/[0-9]+/));
-                pageInfo.parent_id = real_parent_id;
-            }
-            pageData.push(pageInfo);
-        });
-        
-        // store link data in hidden element
-        jQuery('#pages_hidden').val(JSON.stringify(pageData)); 
-    });
 };
