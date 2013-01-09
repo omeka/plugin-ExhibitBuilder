@@ -29,7 +29,7 @@ function exhibit_builder_install()
       PRIMARY KEY  (`id`),
       UNIQUE KEY `slug` (`slug`),
       KEY `public` (`public`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
 
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_entries` (
@@ -42,7 +42,7 @@ function exhibit_builder_install()
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`),
       KEY `page_id_order` (`page_id`, `order`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
       `id` int(10) unsigned NOT NULL auto_increment,
@@ -54,7 +54,7 @@ function exhibit_builder_install()
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`),
       KEY `exhibit_id_order` (`exhibit_id`, `order`)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 }
 
 /**
