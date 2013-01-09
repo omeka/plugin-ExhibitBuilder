@@ -6,10 +6,16 @@
  */
 
 /**
- * Installs the plugin, creating the tables in the database and setting plugin options
- *
- * @return void
- **/
+ * Add EB's translations directory for all requests.
+ */
+function exhibit_builder_initialize()
+{
+    add_translation_source(dirname(__FILE__) . '/languages');
+}
+
+/**
+ * Install the plugin, creating the tables in the database.
+ */
 function exhibit_builder_install()
 {
     $db = get_db();
@@ -30,7 +36,6 @@ function exhibit_builder_install()
       UNIQUE KEY `slug` (`slug`),
       KEY `public` (`public`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-
 
     $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_entries` (
       `id` int(10) unsigned NOT NULL auto_increment,
@@ -58,10 +63,8 @@ function exhibit_builder_install()
 }
 
 /**
- * Uninstalls the plugin, deleting the tables from the database, as well as any plugin options
- *
- * @return void
- **/
+ * Uninstall the plugin.
+ */
 function exhibit_builder_uninstall()
 {
     // drop the tables
@@ -80,8 +83,9 @@ function exhibit_builder_uninstall()
 /**
  * Upgrades ExhibitBuilder's tables to be compatible with a new version.
  *
- * @param string $oldVersion Previous plugin version
- * @param string $newVersion Current version; to be upgraded to
+ * @param array $args expected keys:
+ *  'old_version' => Previous plugin version
+ *  'new_version' => Current version; to be upgraded to
  */
 function exhibit_builder_upgrade($args)
 {
@@ -177,17 +181,35 @@ function exhibit_builder_upgrade($args)
 }
 
 /**
+ * Display the configuration form.
+ */
+function exhibit_builder_config_form()
+{
+    include 'config_form.php';
+}
+
+/**
+ * Process the configuration form.
+ */
+function exhibit_builder_config()
+{
+    set_option('exhibit_builder_use_browse_exhibits_for_homepage', (int)(boolean)$_POST['exhibit_builder_use_browse_exhibits_for_homepage']);
+    set_option('exhibit_builder_sort_browse', $_POST['exhibit_builder_sort_browse']);
+}
+
+/**
  * Modify the ACL to include an 'ExhibitBuilder_Exhibits' resource.
  *
  * Requires the module name as part of the ACL resource in order to avoid naming
  * conflicts with pre-existing controllers, e.g. an ExhibitBuilder_ItemsController
  * would not rely on the existing Items ACL resource.
  *
- * @return void
- **/
-function exhibit_builder_setup_acl($args)
+ * @param array $args Zend_Acl in the 'acl' key
+ */
+function exhibit_builder_define_acl($args)
 {
     $acl = $args['acl'];
+
     /*
      * NOTE: unless explicitly denied, super users and admins have access to all
      * of the defined resources and privileges.  Other user levels will not by default.
@@ -212,9 +234,9 @@ function exhibit_builder_setup_acl($args)
 /**
  * Add the routes from routes.ini in this plugin folder.
  *
- * @return void
- **/
-function exhibit_builder_routes($args)
+ * @param array $args Router object in 'router' key
+ */
+function exhibit_builder_define_routes($args)
 {
     $router = $args['router'];
     $router->addConfig(new Zend_Config_Ini(EXHIBIT_PLUGIN_DIR .
@@ -222,11 +244,9 @@ function exhibit_builder_routes($args)
 }
 
 /**
- * Displays the CSS layout for the exhibit in the header
- *
- * @return void
- **/
-function exhibit_builder_public_header()
+ * Display the CSS layout for the exhibit in the public head
+ */
+function exhibit_builder_public_head()
 {
     if ($layoutCssHref = exhibit_builder_layout_css()) {
         // Add the stylesheet for the layout
@@ -236,11 +256,9 @@ function exhibit_builder_public_header()
 }
 
 /**
- * Displays the CSS style and javascript for the exhibit in the admin header
- *
- * @return void
- **/
-function exhibit_builder_admin_header()
+ * Display the CSS style and javascript for the exhibit in the admin head
+ */
+function exhibit_builder_admin_head()
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
     $module = $request->getModuleName();
@@ -254,10 +272,11 @@ function exhibit_builder_admin_header()
 }
 
 /**
- * Appends an Exhibits section to admin dashboard
- * s
- * @return void
- **/
+ * Append an Exhibits section to admin dashboard
+ * 
+ * @param array $stats Array of "statistics" displayed on dashboard
+ * @return array
+ */
 function exhibit_builder_dashboard_stats($stats)
 {
     if (is_allowed('ExhibitBuilder_Exhibits', 'browse')) {
@@ -271,7 +290,7 @@ function exhibit_builder_dashboard_stats($stats)
  *
  * @param array $navArray The array of navigation links
  * @return array
- **/
+ */
 function exhibit_builder_public_main_nav($navArray)
 {
     $navArray[] = array(
@@ -287,7 +306,7 @@ function exhibit_builder_public_main_nav($navArray)
  *
  * @param array $navArray The array of admin navigation links
  * @return array
- **/
+ */
 function exhibit_builder_admin_nav($navArray)
 {
     $navArray[] = array(
@@ -300,21 +319,24 @@ function exhibit_builder_admin_nav($navArray)
 }
 
 /**
- * Intercepts get_theme_option calls to allow theme settings on a per-Exhibit basis.
+ * Intercept get_theme_option calls to allow theme settings on a per-Exhibit basis.
  *
  * @param string $themeOptions Serialized array of theme options
- * @param string $themeName Name of theme to get options for (ignored by ExhibitBuilder)
+ * @param string $args Unused here
  */
 function exhibit_builder_theme_options($themeOptions, $args)
 {
-    $themeName = $args['theme_name'];
-    if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder' && function_exists('__v')) {
-        if ($exhibit = get_current_record('exhibit', false)) {
-            $exhibitThemeOptions = $exhibit->getThemeOptions();
+    if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder') {
+        try {
+            if ($exhibit = get_current_record('exhibit', false)) {
+                $exhibitThemeOptions = $exhibit->getThemeOptions();
+                if (!empty($exhibitThemeOptions)) {
+                    return serialize($exhibitThemeOptions);
+                }
+            }
+        } catch (Zend_Exception $e) {
+            // no view available
         }
-    }
-    if (!empty($exhibitThemeOptions)) {
-        return serialize($exhibitThemeOptions);
     }
     return $themeOptions;
 }
@@ -349,11 +371,8 @@ function exhibit_builder_public_theme_name($themeName)
  * Custom hook from the HtmlPurifier plugin that will only fire when that plugin is
  * enabled.
  *
- * @param Zend_Controller_Request_Http $request
- * @param HTMLPurifier $purifier The purifier object that was built from the configuration
- * provided on the configuration form of the HtmlPurifier plugin.
- * @return void
- **/
+ * @param $args: 'purifier' => HTMLPurifier The purifier object.
+ */
 function exhibit_builder_purify_html($args)
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
@@ -399,42 +418,12 @@ function exhibit_builder_purify_html($args)
 }
 
 /**
- * Returns the select dropdown for the exhibits
- *
- * @param array $props Optional
- * @param string|null $value Optional
- * @param string|null $label Optional
- * @param array $search Optional
- * @return string
- **/
-function exhibit_builder_select_exhibit($props = array(), $value = null, $label = null, $search = array())
-{
-    return _select_from_table('Exhibit', $props, $value, $label, $search);
-}
-
-function exhibit_builder_config_form()
-{
-    include 'config_form.php';
-}
-
-function exhibit_builder_config()
-{
-    set_option('exhibit_builder_use_browse_exhibits_for_homepage', (int)(boolean)$_POST['exhibit_builder_use_browse_exhibits_for_homepage']);
-    set_option('exhibit_builder_sort_browse', $_POST['exhibit_builder_sort_browse']);
-}
-
-function exhibit_builder_initialize()
-{
-    add_translation_source(dirname(__FILE__) . '/languages');
-}
-
-/**
  * Hooks into item_browse_sql to return items in a particular exhibit. The
  * passed exhibit can either be an Exhibit object or a specific exhibit ID.
  *
  * @return Omeka_Db_Select
  */
-function exhibit_builder_item_browse_sql($args)
+function exhibit_builder_items_browse_sql($args)
 {
     $select = $args['select'];
     $params = $args['params'];
@@ -474,7 +463,7 @@ function exhibit_builder_item_browse_sql($args)
 /**
  * Form element for advanced search.
  */
-function exhibit_builder_append_to_advanced_search()
+function exhibit_builder_items_search()
 {
     $view = get_view();
     $html = '<div class="field"><div class="two columns alpha">'
