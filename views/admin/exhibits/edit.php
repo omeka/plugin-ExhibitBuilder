@@ -1,6 +1,5 @@
 <?php
-    queue_js_file('tree.jquery');
-    queue_css_file('jqtree');
+    queue_js_file(array('vendor/jquery.nestedSortable', 'navigation'));
     $title = __('Edit Exhibit "%s"', $exhibit->title);
 
     echo head(array('title' => html_escape($title), 'bodyclass' => 'exhibits'));

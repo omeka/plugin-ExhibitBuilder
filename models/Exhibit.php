@@ -24,7 +24,9 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public $modified;
     public $owner_id;
 
-    protected $_related = array('TopPages'=>'getTopPages', 'Tags'=>'getTags');
+    protected $_related = array(
+        'Pages' => 'getPages', 'TopPages' => 'getTopPages', 'Tags' => 'getTags'
+    );
     
     public function _initializeMixins()
     {
@@ -78,36 +80,65 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             //Add the tags after the form has been saved
             $post = $args['post'];
             $this->applyTagString($post['tags']);
-            $pages = $post['Pages'];
-            $this->savePagesParentOrder(null, $pages);
+            if (isset($post['pages-hidden'])) {
+                parse_str($post['pages-hidden'], $pageData);
+                $this->_savePages($pageData['page']);
+            }
+
+            if (isset($post['pages-delete-hidden'])) {
+                $pagesToDelete = explode(',', $post['pages-delete-hidden']);
+                foreach ($pagesToDelete as $id) {
+                    $page = $this->getTable('ExhibitPage')->find($id);
+                    if ($page) {
+                        $page->delete();
+                    }
+                }
+            }
         }
     }
 
     /**
-     * Updates page parents and orders
+     * Save the order and parent data for the existing pages.
+     *
+     * @param array Page parent data array
      */
-    private function savePagesParentOrder($parentId, $pages)
+    protected function _savePages($pageData)
     {
-         foreach($pages as $pageId => $pageInfo) {
-             $rawPageOrdersByPageId[$pageId] = $pageInfo['order'];
-         }
+        $orders = array();
+        $ordersByParent = array();
+        foreach ($pageData as $pageId => $parentId) {
+            if ($parentId == 'null') {
+                $pageData[$pageId] = null;
+            }
+            
+            if (!isset($ordersByParent[$parentId])) {
+                $order = $ordersByParent[$parentId] = 0;
+            } else {
+                $order = ++$ordersByParent[$parentId];
+            }
+            
+            $orders[$pageId] = $order;
+        }
 
-         asort($rawPageOrdersByPageId, SORT_NUMERIC);
-         $pageOrder = 0;
-         $pageOrdersByPageId = array();
-         foreach($rawPageOrdersByPageId as $pageId => $rawPageOrder) {
-             $pageOrder++;
-             $pageOrdersByPageId[$pageId] = $pageOrder;
-         }
+        $pages = $this->getPages();
+        foreach ($pages as $page) {
+            $id = $page->id;
+            if (array_key_exists($id, $pageData)) {
+                $page->parent_id = $pageData[$id];
+                $page->order = $orders[$id];
+                $page->save();
+            }
+        }
+    }
 
-            // Save the new page orders
-         foreach($pageOrdersByPageId as $pageId => $pageOrder) {
-             $exhibitPage = $this->getDb()->getTable('ExhibitPage')->find($pageId);
-             //@TODO: figure out null for top level, but also work with arbitrary levels of nesting later
-             $exhibitPage->parent_id = $parentId; // Change the parent page if necessary
-             $exhibitPage->order = $pageOrdersByPageId[$pageId]; // Change the page order
-             $exhibitPage->save();
-         }
+    /**
+     * Get all the pages for this Exhibit.
+     *
+     * @return array
+     */
+    public function getPages()
+    {
+        return $this->getTable('ExhibitPage')->findBy(array('exhibit' => $this->id, 'sort_field' => 'order'));
     }
 
     public function getTopPages()

@@ -229,30 +229,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     {
         return $this->ExhibitPageEntry;
     }
-
-
-    /**
-     * Creates the JSON for use by tree.jquery.js http://mbraak.github.com/jqTree/#tutorial
-     * @param bool $returnEncoded
-     * @return mixed string JSON or StdClass Object
-     */
-
-    public function toTreeJson($returnEncoded = true)
-    {
-        $node = new StdClass();
-        $node->label = $this->title;
-        $node->id = $this->id;
-        $childPages = $this->getChildPages();
-        $node->children = array();
-        foreach($childPages as $childPage) {
-            $node->children[] = $childPage->toTreeJson(false);
-        }
-        if($returnEncoded) {
-            return json_encode($node);
-        } else {
-            return $node;
-        }
-    }
     
     public function getRecordUrl($action = 'show')
     {

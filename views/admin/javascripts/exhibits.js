@@ -6,7 +6,7 @@ Omeka.ExhibitBuilder = function() {
     
     this.paginatedItemsUri = ''; // Used to get a paginated list of items for the item search
     this.itemContainerUri = ''; // Used to get a single item container
-    
+
     /*
     * Load paginated search
     */
@@ -244,3 +244,48 @@ Omeka.ExhibitBuilder.addNumbers = function() {
         jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
     });
 }
+
+
+/**
+ * Enable drag and drop sorting for elements.
+ */
+Omeka.ExhibitBuilder.enableSorting = function () {
+    jQuery('.sortable').nestedSortable({
+        listType: 'ul',
+        items: 'li.page',
+        handle: '.sortable-item',
+        forcePlaceholderSize: true,
+        forceHelperSize: true,
+        toleranceElement: '> div',
+        placeholder: 'ui-sortable-highlight',
+        containment: '#content'
+    });
+};
+
+Omeka.ExhibitBuilder.activateDeleteLinks = function () {
+    jQuery('#page-list .delete-toggle').click(function (event) {
+        event.preventDefault();
+        header = jQuery(this).parent();
+        if (jQuery(this).hasClass('delete-element')) {
+            jQuery(this).removeClass('delete-element').addClass('undo-delete');
+            header.addClass('deleted');
+        } else {
+            jQuery(this).removeClass('undo-delete').addClass('delete-element');
+            header.removeClass('deleted');
+        }
+    });
+};
+
+Omeka.ExhibitBuilder.setUpFormSubmission = function () {
+    jQuery('#exhibit-metadata-form').submit(function (event) {
+        // add ids to li elements so that we can pull out the parent/child relationships
+        var listData = jQuery('#page-list').nestedSortable('serialize');
+        var deletedIds = [];
+        jQuery('#page-list .deleted').each(function () {
+            deletedIds.push(jQuery(this).parent().attr('id').match(/_(.*)/)[1]);
+        });
+        
+        jQuery('#pages-hidden').val(listData);
+        jQuery('#pages-delete-hidden').val(deletedIds.join(','));
+    });
+};

@@ -5,6 +5,33 @@
  * @package ExhibitBuilder
  */
 
+
+/**
+ * Recursively list the pages under a page for editing.
+ *
+ * @param ExhibitPage $page A page to list.
+ * @return string
+ */
+function exhibit_builder_edit_page_list($page)
+{
+    $pageId = html_escape($page->id);
+    $html = '<li class="page" id="page_' . $pageId . '">'
+          . '<div class="sortable-item">'
+          . '<a href="../edit-page-content/' . $pageId . '">' . html_escape($page->title) . '</a>'
+          . '<a class="delete-toggle delete-element" href="#">' . __('Delete') . '</a>'
+          . '</div>';
+
+    if (($children = $page->getChildPages())) {
+        $html .= '<ul>';
+        foreach ($children as $child) {
+            $html .= exhibit_builder_edit_page_list($child);
+        }
+        $html .= '</ul>';
+    }
+    $html .= '</li>';
+    return $html;
+}
+
 /**
  * Return whether an exhibit is the current exhibit.
  *
