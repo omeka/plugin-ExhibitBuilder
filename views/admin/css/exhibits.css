@@ -15,48 +15,12 @@
 }
 
 #reorder-instructions {
-    font-size:11px;color: #888;
+    font-size:11px;
+    color: #888;
 }
 
-.page-list .layout-name {
-    display:none;
-}
-
-.page-list ul {
-    margin-top: 15px;
-}
-
-.page-list li:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-}
-
-.page-list {
-    line-height:2em;
-    padding:0;
-    margin:1em 0;
-    min-height:2em;
-}
-
-.page-list img {
-    vertical-align: text-bottom;
-}
-
-.page-list li {
-    display:block;
-    padding:0;
-}
-
-.page-list .jqtree-title {
-    background-repeat: no-repeat;
-    background-position: 2px 50%;
-}
-
-.page-actions {
-    float: right;
+#page-list .undo-delete {
+    display: inline;
 }
 
 /* Page Metadata */

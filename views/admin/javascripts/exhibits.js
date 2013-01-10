@@ -258,66 +258,34 @@ Omeka.ExhibitBuilder.enableSorting = function () {
         forceHelperSize: true,
         toleranceElement: '> div',
         placeholder: 'ui-sortable-highlight',
-        containment: '#content',
-        toArray: true,
-        update: function (event, ui) {
-            jQuery(this).find('.page-order').each(function (index) {
-                jQuery(this).val(index + 1);
-            });
-            jQuery(this).nestedSortable('toHierarchy', { startDepthCount: 0 });
-        }
+        containment: '#content'
     });
 };
 
-/**
- * Add link that collapses and expands content.
- */
-Omeka.ExhibitBuilder.addHideButtons = function () {
-    jQuery('.sortable .drawer-contents').each(function () {
-        if( jQuery(this).prev().hasClass("sortable-item") ) {
-            jQuery(this).hide();
+Omeka.ExhibitBuilder.activateDeleteLinks = function () {
+    jQuery('#page-list .delete-toggle').click(function (event) {
+        event.preventDefault();
+        header = jQuery(this).parent();
+        if (jQuery(this).hasClass('delete-element')) {
+            jQuery(this).removeClass('delete-element').addClass('undo-delete');
+            header.addClass('deleted');
+        } else {
+            jQuery(this).removeClass('undo-delete').addClass('delete-element');
+            header.removeClass('deleted');
         }
     });
-    jQuery('div.sortable-item').each(function () {
-        jQuery(this).append('<div class="drawer"></div>');
-    });
-    jQuery('.drawer').click( function (event) {
-            event.preventDefault();
-            jQuery(event.target).parent().next().toggle();
-            jQuery(this).toggleClass('opened');
-        })
-        .mousedown(function (event) {
-            event.stopPropagation();
-        });
 };
 
 Omeka.ExhibitBuilder.setUpFormSubmission = function () {
     jQuery('#exhibit-metadata-form').submit(function (event) {
         // add ids to li elements so that we can pull out the parent/child relationships
-        jQuery('#page-list li').each(function (index) {
-            temp_id = index + 1;
-            jQuery(this).attr('id', "list_" + temp_id);
-        });
-        var parentChildData = jQuery("#page-list").nestedSortable('toArray', { startDepthCount: 0 });
-        var pageData = [];
-        jQuery('div.sortable-item > input[type="hidden"]').each(function (index) {
-            var pageInfo = {};
-            pageNameAttr = jQuery(this).attr('name');
-            
-            pageInfo.id = parseInt(pageNameAttr.match(/[0-9]+/));
-            pageInfo.order = parseInt(parentChildData[index + 1].item_id, 10);
-            temp_parent_id = parseInt(parentChildData[index + 1].parent_id, 10);
-            if (!temp_parent_id) {
-                pageInfo.parent_id = temp_parent_id;
-            } else {
-                parent_name = jQuery('#list_' + temp_parent_id + ' input[type="hidden"]').attr('name');
-                real_parent_id = parseInt(parent_name.match(/[0-9]+/));
-                pageInfo.parent_id = real_parent_id;
-            }
-            pageData.push(pageInfo);
+        var listData = jQuery('#page-list').nestedSortable('serialize');
+        var deletedIds = [];
+        jQuery('#page-list .deleted').each(function () {
+            deletedIds.push(jQuery(this).parent().attr('id').match(/_(.*)/)[1]);
         });
         
-        // store link data in hidden element
-        jQuery('#pages_hidden').val(JSON.stringify(pageData)); 
+        jQuery('#pages-hidden').val(listData);
+        jQuery('#pages-delete-hidden').val(deletedIds.join(','));
     });
 };

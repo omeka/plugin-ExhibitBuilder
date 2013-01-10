@@ -63,12 +63,9 @@
             <?php if (!$exhibit->TopPages): ?>
                 <p><?php echo __('There are no pages.'); ?></p>
             <?php else: ?>
-            <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
-            <?php endif; ?>
-            <ul id="page-list" class="sortable">
+                <p id="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
                 <?php echo common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
-            </ul>
-            <?php echo $this->formHidden("pages_hidden", ""); ?>
+            <?php endif; ?>
         </div>
         <div id="page-add">
             <input type="submit" name="add_page" id="add-page" value="<?php echo __('Add Page'); ?>" />
