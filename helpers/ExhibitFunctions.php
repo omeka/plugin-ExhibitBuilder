@@ -240,7 +240,7 @@ function exhibit_builder_form_attachment($item = null, $file = null, $caption = 
         $html = '<div class="item-select-outer exhibit-form-element">'
               . '<p class="attach-item-link">'
               . __('There is no item attached.')
-              . ' <a href="#" class="button">'
+              . ' <a href="#" class="green button">'
               . __('Attach an Item') .'</a></p>' . "\n";
     }
 

@@ -85,18 +85,25 @@
 
 #item-list .item-file {
     width: 5%;
-    margin: 0 10px 0 0;
+    margin: 10px 10px 0 0;
     line-height: 1em;
     border: 1px solid #D6D5C2;
     overflow: auto;
 }
-
+    
+    .primary .item-file {
+        margin-bottom: 20px;
+    }
+    
 #item-list .item-file img { 
     float: left; 
 }
 
+.item-select-inner div:nth-of-type(8) { margin-right: 0; }
+
+.item-select-inner select { margin: 0 0 20px 0; }
+
 .item-select-outer {
-    cursor:pointer;
     padding: 12px;
     border:1px dotted #eee;
     border-width: 0 0 1px;
@@ -110,15 +117,13 @@
     border: 1px solid #8EBDE3;
 }
 
-.remove_item {
+.remove_item, .attach-item-link .button {
     position:absolute;
     top:0;
     right:0;
     z-index:100;
-    padding: 4px 8px;
-    font-size:12px;
     font-weight:bold;
-    background:#fff;
+    line-height: 1.5em;
     margin: 0 !important;
     box-shadow: 0 0 3px #999;
         -webkit-box-shadow: 0 0 3px #999;
@@ -142,6 +147,13 @@
 
 .caption-container {
     clear: left;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.caption-container label { 
+    display: inline-block;
+    margin-bottom: 10px; 
 }
 
 #page-search-form,
@@ -253,12 +265,7 @@
 
 .attach-item-link {
     float: left;
-    margin-bottom:0;
-}
-.attach-item-link .button {
-    float:left;
-    display: block;
-    margin: 20px 0;
+    margin-bottom: 10px;
 }
 
 #page-metadata-list {

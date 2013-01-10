@@ -65,6 +65,8 @@ Omeka.ExhibitBuilder = function() {
             return false;
         });
         
+        Omeka.ExhibitBuilder.addNumbers();
+        
         jQuery(layoutItemContainer).trigger("exhibitbuilder:attachitem");
         
     };
@@ -241,7 +243,9 @@ Omeka.ExhibitBuilder.wysiwyg = function() {
 Omeka.ExhibitBuilder.addNumbers = function() {
     jQuery('#layout-form .exhibit-form-element').each(function(i){
         var number = i+1;
-        jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
+        if (jQuery(this).find('.exhibit-form-element-number').length == 0) {
+            jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
+        }
     });
 }
 
