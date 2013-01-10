@@ -388,40 +388,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         return false;
     }
 
-
-    public function updatePageOrderAction()
-    {
-
-        $pages = $this->getRequest()->getPost('pages');
-
-        try {
-            foreach ($pages as $id => $page) {
-                $pageRecord = $db->getTable('ExhibitPage')->find($id);
-                $pageRecord->order = $page['order'];
-                $pageRecord->save();
-            }
-            $this->updatePageChildrenOrders($pages, null);
-            $response = array('ok'=>'updated');
-        } catch(Exception $e) {
-            $response = array('error'=>$e->getMessage());
-        }
-        $this->_helper->$pages;
-    }
-
-    private function updatePageChildrenOrders($pages, $parent_id)
-    {
-        foreach($pages as $index=>$page) {
-            $exPage = $this->_helper->db->findById($page['id'], 'ExhibitPage');
-            $exPage->parent_id = $parent_id;
-            $exPage->order = $index + 1;
-            $exPage->save();
-            if(!empty($page['children'])) {
-                $this->updatePageChildrenOrders($page['children'], $exPage->id);
-            }
-        }
-    }
-
-
     /////END AJAX-ONLY ACTIONS
 }
 
