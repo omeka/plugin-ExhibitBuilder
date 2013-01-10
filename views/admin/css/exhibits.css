@@ -23,6 +23,8 @@
     display: inline;
 }
 
+.page ul { margin-top: 15px; }
+
 .page-actions .button {
     margin-bottom: 0;
 }
@@ -123,7 +125,7 @@
     right:0;
     z-index:100;
     font-weight:bold;
-    line-height: 1.5em;
+    line-height: 25px;
     margin: 0 !important;
     box-shadow: 0 0 3px #999;
         -webkit-box-shadow: 0 0 3px #999;
