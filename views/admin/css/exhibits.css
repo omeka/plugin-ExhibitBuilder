@@ -7,27 +7,17 @@
     font-size: 14px;
 }
 
-.delete-page {
-    background-position: 12px 50%;
-    padding-left: 32px;
-    background-repeat: no-repeat;
-    text-decoration: none;
-}
-
 #reorder-instructions {
     font-size:11px;
     color: #888;
 }
 
+/* override for core's .undo-delete hiding */
 #page-list .undo-delete {
     display: inline;
 }
 
 .page ul { margin-top: 15px; }
-
-.page-actions .button {
-    margin-bottom: 0;
-}
 
 /* Page Metadata */
 #layouts .layout {
@@ -48,7 +38,7 @@
 
 #layout-all {
     width: auto;
-    clear:both;
+    clear: both;
 }
 
 #item-select {
@@ -143,7 +133,7 @@
 }
 
 .item-file {
-    float:left;
+    float: left;
     width: 10%;
 }
 
@@ -161,11 +151,11 @@
 #page-search-form,
 #page-search-form .textinput,
 #page-submits {
-    clear:both;
+    clear: both;
 }
 
 #page-search-form .textinput {
-    overflow:hidden;
+    overflow: hidden;
 }
 
 #page-search-form input[type=submit] {
@@ -262,8 +252,6 @@
         -moz-box-shadow: 0 0 3px #999;
         -o-box-shadow: 0 0 3px #999;
 }
-/* Delete Link Styles */
-
 
 .attach-item-link {
     float: left;
@@ -271,18 +259,21 @@
 }
 
 #page-metadata-list {
-    overflow:hidden; zoom:1;
-    margin-bottom:20px;
-    padding-bottom:19px;
-    border-bottom:1px dotted #ccc;
+    overflow: hidden;
+    zoom: 1;
+    margin-bottom: 20px;
+    padding-bottom: 19px;
+    border-bottom: 1px dotted #ccc;
 }
+
 #page-metadata-list img {
-    float:left;
+    float: left;
 }
 
 #page-metadata-list ul {
     margin-left: 100px;
 }
+
 button#page_metadata_form {
-    float:none;
+    float: none;
 }
