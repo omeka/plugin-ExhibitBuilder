@@ -258,11 +258,12 @@ Omeka.ExhibitBuilder.enableSorting = function () {
         listType: 'ul',
         items: 'li.page',
         handle: '.sortable-item',
+        revert: 200,
         forcePlaceholderSize: true,
         forceHelperSize: true,
         toleranceElement: '> div',
         placeholder: 'ui-sortable-highlight',
-        containment: '#content'
+        containment: 'document'
     });
 };
 
