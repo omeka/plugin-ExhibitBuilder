@@ -20,7 +20,7 @@ add_plugin_hook('config', 'exhibit_builder_config');
 add_plugin_hook('initialize', 'exhibit_builder_initialize');
 add_plugin_hook('define_acl', 'exhibit_builder_define_acl');
 add_plugin_hook('define_routes', 'exhibit_builder_define_routes');
-add_plugin_hook('public head', 'exhibit_builder_public_head');
+add_plugin_hook('public_head', 'exhibit_builder_public_head');
 add_plugin_hook('admin_head', 'exhibit_builder_admin_head');
 add_plugin_hook('items_browse_sql', 'exhibit_builder_items_browse_sql');
 add_plugin_hook('admin_items_search', 'exhibit_builder_items_search');
