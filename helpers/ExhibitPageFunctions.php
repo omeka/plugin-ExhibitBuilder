@@ -79,6 +79,9 @@ function exhibit_builder_page_attachment($entryIndex = 1, $fallbackFileIndex = 0
         } else if (isset($item->Files[$fallbackFileIndex])) {
             $file = $item->Files[$fallbackFileIndex];
         }
+    } else {
+        // If there's no item, nothing is attached.
+        return null;
     }
 
     $caption = $entry->caption;
