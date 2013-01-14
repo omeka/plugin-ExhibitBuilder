@@ -6,7 +6,7 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibi
 
     <h1 class="item-title"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
     
-    <?php echo show_item_metadata(); ?>
+    <?php echo all_element_texts('item'); ?>
     
     <div id="itemfiles">
         <?php echo files_for_item(); ?>
