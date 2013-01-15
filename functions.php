@@ -248,11 +248,10 @@ function exhibit_builder_define_routes($args)
  */
 function exhibit_builder_public_head()
 {
-    if ($layoutCssHref = exhibit_builder_layout_css()) {
-        // Add the stylesheet for the layout
-        echo '<link rel="stylesheet" media="screen" href="' . html_escape($layoutCssHref) . '" /> ';
-    }
     queue_css_file('exhibits');
+    if ($layoutCssHref = exhibit_builder_layout_css()) {
+        queue_css_url($layoutCssHref);
+    }
 }
 
 /**
