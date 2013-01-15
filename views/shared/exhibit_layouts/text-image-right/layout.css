@@ -1,6 +1,5 @@
-.text-image-right {overflow:hidden; zoom:1;}
-.text-image-right .exhibit-item {
-    float:right; 
+.text-image-right .image-right {
+    float: right; 
     width: 48%; 
     margin-left:2%;
     margin-bottom:2%;
