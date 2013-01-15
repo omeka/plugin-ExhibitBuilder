@@ -1,6 +1,4 @@
-<?php echo head(array('title' => 'Summary of ' . metadata('exhibit', 'title'),'bodyid'=>'exhibit','bodyclass'=>'summary')); ?>
-
-<div id="primary">
+<?php echo head(array('title' => metadata('exhibit', 'title'), 'bodyid'=>'exhibit', 'bodyclass'=>'summary')); ?>
 
 <h1><?php echo metadata('exhibit', 'title'); ?></h1>
 <?php echo exhibit_builder_page_nav(); ?>
@@ -16,6 +14,5 @@
     <?php foreach (loop('exhibit_page') as $exhibitPages): ?>
     <?php exhibit_builder_render_page_summary(); ?>
     <?php endforeach; ?>
-</div>
 </div>
 <?php echo foot(); ?>
