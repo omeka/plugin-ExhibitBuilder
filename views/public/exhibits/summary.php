@@ -9,10 +9,10 @@
 <h2><?php echo __('Credits'); ?></h2>
 <p><?php echo metadata('exhibit', 'credits'); ?></p>
 
-<div id="exhibit-pages">
+<ul id="exhibit-pages">
     <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-    <?php foreach (loop('exhibit_page') as $exhibitPages): ?>
-    <?php exhibit_builder_render_page_summary(); ?>
+    <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
+    <?php echo exhibit_builder_page_summary($exhibitPage); ?>
     <?php endforeach; ?>
-</div>
+</ul>
 <?php echo foot(); ?>

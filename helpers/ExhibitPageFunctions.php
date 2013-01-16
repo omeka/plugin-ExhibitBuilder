@@ -279,29 +279,29 @@ function exhibit_builder_child_pages($exhibitPage = null)
 }
 
 /**
- * Loop through and render all of a page's child pages
- *
- * @param ExhibitPage $exhibitPage The exhibit page. Null gets the current exhibit page
+ * Get a list item for a page, containing a sublist of all its children.
  */
-function exhibit_builder_page_loop_children($exhibitPage = null)
+function exhibit_builder_page_summary($exhibitPage = null)
 {
-    $childPages = exhibit_builder_child_pages($exhibitPage);
-
-    foreach($childPages as $exhibitPage) {
-        exhibit_builder_render_page_summary($exhibitPage);
-    }
-}
-
-/**
- * Render a page's summary info according to the page-summary.php template
- */
-function exhibit_builder_render_page_summary($exhibitPage = null)
-{
-    if(!$exhibitPage) {
+    if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
-    set_current_record('exhibit_page', $exhibitPage);
-    include(EXHIBIT_PLUGIN_DIR . '/views/public/exhibits/page-summary.php');
+
+    $html = '<li>'
+          . '<h3><a href="' . exhibit_builder_exhibit_uri(get_current_record('exhibit'), $exhibitPage) . '">'
+          . metadata($exhibitPage, 'title') .'</a></h3>';
+
+    $children = $exhibitPage->getChildPages();
+    if ($children) {
+        $html .= '<ul>';
+        foreach ($children as $child) {
+            $html .= exhibit_builder_page_summary($child);
+            release_object($child);
+        }
+        $html .= '</ul>';
+    }
+    $html .= '</li>';
+    return $html;
 }
 
 
