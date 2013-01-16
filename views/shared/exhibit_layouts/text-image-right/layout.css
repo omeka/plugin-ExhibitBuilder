@@ -8,3 +8,7 @@
 .exhibit-item img {
     max-width: 100%;
 }
+
+.exhibit-item-caption p {
+    margin-bottom: 0;
+}
