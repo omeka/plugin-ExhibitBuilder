@@ -25,8 +25,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formLabel('slug', __('Slug')); ?>
             </div>
             <div class="inputs five columns omega">
+                <p class="explanation"><?php echo __('No spaces or special characters allowed'); ?></p>
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
-                <p class="explanation"><?php echo __('No spaces or special characters allowed.'); ?></p>
             </div>
         </div>
     </fieldset>
