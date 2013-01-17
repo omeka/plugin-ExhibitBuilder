@@ -105,8 +105,9 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
          });
     });
 
+    Omeka.wysiwyg();
+
     jQuery(window).load(function() {
-        Omeka.ExhibitBuilder.wysiwyg();
         Omeka.ExhibitBuilder.addNumbers();
     });
     jQuery(document).bind('exhibitbuilder:attachitem', function (event) {
