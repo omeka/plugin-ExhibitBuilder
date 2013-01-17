@@ -13,7 +13,7 @@ Omeka.ExhibitBuilder = function() {
     this.loadPaginatedSearch = function() {
         var eb = this;
         // Make each of the pagination links fire an additional ajax request
-        jQuery('.pagination a').click(function (event) {
+        jQuery('.pagination a, #view-all-items').click(function (event) {
             event.preventDefault();
             eb.getItems(jQuery(this).attr('href'));
         });

@@ -1,4 +1,6 @@
+<?php echo item_search_filters(); ?>
 <a href="" id="show-or-hide-search" class="show-form blue button"><?php echo __('Show Search Form'); ?></a>
+<a href="<?php echo url(); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
 <div id="page-search-form" class="container-twelve">
 <?php
     $uri = url(array('controller'=>'exhibits', 'action'=>'items', 'page' => null));
