@@ -11,11 +11,17 @@ Omeka.ExhibitBuilder = function() {
     * Load paginated search
     */
     this.loadPaginatedSearch = function() {
+        var eb = this;
         // Make each of the pagination links fire an additional ajax request
-        jQuery('#pagination a').bind('click', {exhibitBuilder: this}, function(event){          
-            event.stopPropagation();
-            event.data.exhibitBuilder.getItems(jQuery(event.target).attr('href'));
-            return false;
+        jQuery('.pagination a').click(function (event) {
+            event.preventDefault();
+            eb.getItems(jQuery(this).attr('href'));
+        });
+
+        jQuery('.pagination form').submit(function (event) {
+            event.preventDefault();
+            var url = jQuery(this).attr('action') + '?' + jQuery(this).serialize();
+            eb.getItems(url);
         });
 
         // Setup layout item Containers
