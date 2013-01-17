@@ -90,8 +90,8 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
         // Search Items Dialog Box
          jQuery('#search-items').dialog({
              autoOpen: false,
-             width: 820,
-             height: 500,
+             width: Math.min(jQuery(window).width() - 100, 820),
+             height: Math.min(jQuery(window).height() - 50, 500),
              title: <?php echo js_escape(__('Attach an Item')); ?>,
              modal: true,
              buttons: {
