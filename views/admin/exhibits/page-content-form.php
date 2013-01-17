@@ -99,7 +99,9 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
                     exhibitBuilder.attachSelectedItem();
                      jQuery(this).dialog('close');
                  }
-             }
+             },
+             open: function() { jQuery('body').css('overflow', 'hidden'); },
+             beforeClose: function() { jQuery('body').css('overflow', 'inherit'); }
          });
     });
 
