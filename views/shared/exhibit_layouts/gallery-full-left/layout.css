@@ -1,5 +1,3 @@
-/* CSS for the gallery-full-left layout */
-
 .primary,
 .secondary {
     float:left; 
@@ -13,9 +11,13 @@
 }
 
 .gallery .exhibit-item {
-    float:left; 
-    margin-right:2%; 
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1%; 
     width: 48%;
+    /* IE 7 */
+    *display: inline;
+    zoom: 1;
 }
 
 .exhibit-item {
