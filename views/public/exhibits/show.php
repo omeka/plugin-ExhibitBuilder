@@ -5,7 +5,7 @@ echo head(array(
     'bodyclass' => 'show'));
 ?>
 
-<nav id="exhibit-parent-pages">
+<nav id="exhibit-pages">
     <?php echo exhibit_builder_page_nav(); ?>
 </nav>
 
