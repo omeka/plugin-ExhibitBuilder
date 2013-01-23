@@ -128,13 +128,13 @@ function exhibit_builder_page_nav($exhibitPage = null)
         $pageParent = $page->getParent();
         $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages()); 
 
-        $html .= (count($pageSiblings) > 1 ? "<li>\n<ul>\n" : '');
+        $html .= "<li>\n<ul>\n";
         foreach ($pageSiblings as $pageSibling) {
             $html .= '<li' . ($pageSibling->id == $page->id ? ' class="current"' : '') . '>';
             $html .= '<a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling)) . '">';
             $html .= html_escape($pageSibling->title) . "</a></li>\n";
         }
-        $html .= (count($pageSiblings) > 1 ? "</ul>\n</li>\n" : '');
+        $html .= "</ul>\n</li>\n";
     }
     $html .= '</ul>' . "\n";
     $html = apply_filters('exhibit_builder_page_nav', $html);
