@@ -145,32 +145,37 @@ function exhibit_builder_page_nav($exhibitPage = null)
  */
 function exhibit_builder_link_to_next_page($text = null, $props = array(), $exhibitPage = null)
 {
-    if ($text === null) {
-        $text = __('Next Page &rarr;');
-    }
-
     if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
 
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
-    if(!isset($props['class'])) {
-        $props['class'] = 'next-page';
-    }
+    $targetPage = null;
 
     // if page object exists, grab link to the first child page if exists. If it doesn't, grab
     // a link to the next page
     if ($nextPage = $exhibitPage->firstChildOrNext()) {
-        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextPage);
+        $targetPage = $nextPage;
     } elseif ($exhibitPage->parent_id) {
         $parentPage = $exhibitPage->getParent();
         $nextParentPage = $parentPage->next();
-        if($nextParentPage) {
-            return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $nextParentPage);
+        if ($nextParentPage) {
+            $targetPage = $nextPage;
         }
-
     }
+
+    if ($targetPage) {
+        if (!isset($props['class'])) {
+            $props['class'] = 'next-page';
+        }
+        if ($text === null) {
+            $text = metadata($targetPage, 'title') . ' &rarr;';
+        }
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $targetPage);
+    }
+
+    return null;
 }
 
 /**
@@ -183,24 +188,24 @@ function exhibit_builder_link_to_next_page($text = null, $props = array(), $exhi
  */
 function exhibit_builder_link_to_previous_page($text = null, $props = array(), $exhibitPage = null)
 {
-    if ($text === null) {
-        $text = __('&larr; Previous Page');
-    }
-
     if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
-    if(!isset($props['class'])) {
-        $props['class'] = 'previous-page';
-    }
-
     // If page object exists, grab link to previous exhibit page if exists. If it doesn't, grab
     // a link to the last page on the previous parent page, or the exhibit if at top level
     if ($previousPage = $exhibitPage->previousOrParent()) {
+        if(!isset($props['class'])) {
+            $props['class'] = 'previous-page';
+        }
+        if ($text === null) {
+            $text = '&larr; ' . metadata($previousPage, 'title');
+        }
         return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $previousPage);
     }
+
+    return null;
 }
 
 /**
@@ -213,26 +218,23 @@ function exhibit_builder_link_to_previous_page($text = null, $props = array(), $
  */
 function exhibit_builder_link_to_parent_page($text = null, $props = array(), $exhibitPage = null)
 {
-    if ($text === null) {
-        $text = __('&uarr; Up');
-    }
-
     if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
-    if(!isset($props['class'])) {
-        $props['class'] = 'parent-page';
-    }
-
     if($exhibitPage->parent_id) {
         $parentPage = $exhibitPage->getParent();
-        $link = exhibit_builder_link_to_exhibit($exhibit, $text, $props, $parentPage);
-        return $link;
-    } else {
-        return '';
+        if(!isset($props['class'])) {
+            $props['class'] = 'parent-page';
+        }
+        if ($text === null) {
+            $text = '&uarr; ' . metadata($parentPage, 'title');
+        }
+        return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $parentPage);
     }
+
+    return null;
 }
 
 /**
