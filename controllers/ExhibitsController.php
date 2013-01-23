@@ -312,7 +312,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
            return $this->_helper->redirector('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
         } else if (array_key_exists('page_form',$_POST)) {
             //Forward to the addPage action (id is the exhibit)
-            return $this->_helper->redirector('add-page', null, null, array('exhibit'=>$exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
+            return $this->_helper->redirector('add-page', null, null, array('id' => $exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
         }
 
         $this->view->layoutName = $layoutName;
