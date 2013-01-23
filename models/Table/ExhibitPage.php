@@ -92,7 +92,6 @@ class Table_ExhibitPage extends Omeka_Db_Table
 
         switch ($position) {
             case 'first':
-                $select->where('exhibit_pages.order = 1');
                 $select->order('exhibit_pages.order ASC');
                 break;
 
