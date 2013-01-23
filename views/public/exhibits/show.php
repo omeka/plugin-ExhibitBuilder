@@ -4,11 +4,15 @@ echo head(array(
     'bodyid' => 'exhibit',
     'bodyclass' => 'show'));
 ?>
-<h1><span class="exhibit-name"><?php echo link_to_exhibit(); ?></span>: <span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></span></h2>
 
+<nav id="exhibit-parent-pages">
+    <?php echo exhibit_builder_page_nav(); ?>
+</nav>
 
-<nav id="exhibit-pages">
-    <?php echo exhibit_builder_page_nav();?>
+<h1><span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></h1>
+
+<nav id="exhibit-child-pages">
+    <?php echo exhibit_builder_child_page_nav(); ?>
 </nav>
 
 <?php exhibit_builder_render_exhibit_page(); ?>

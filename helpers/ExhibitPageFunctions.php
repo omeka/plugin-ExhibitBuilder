@@ -116,23 +116,47 @@ function exhibit_builder_page_nav($exhibitPage = null)
     }
 
     $exhibit = get_db()->getTable('Exhibit')->find($exhibitPage->exhibit_id);
-    $html = '<ul class="exhibit-page-nav">' . "\n";
+    $html = '<ul class="exhibit-page-nav navigation">' . "\n";
     $pagesTrail = $exhibitPage->getAncestors();
     $pagesTrail[] = $exhibitPage;
     $html .= '<li>';
-    $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
+    $html .= '<a class="exhibit-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
-
     foreach ($pagesTrail as $page) {
         $linkText = $page->title;
-        $html .= '<li'. (exhibit_builder_is_current_page($page) ? ' class="current"' : '').'>';
-        $html .= '<a class="exhibit-page-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit, $page)) . '">';
-        $html .= html_escape($linkText) .'</a></li>' . "\n";
+        $pageExhibit = $page->getExhibit();
+        $pageParent = $page->getParent();
+        $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages()); 
+
+        $html .= (count($pageSiblings) > 1 ? "<li>\n<ul>\n" : '');
+        foreach ($pageSiblings as $pageSibling) {
+            $html .= '<li' . ($pageSibling->id == $page->id ? ' class="current"' : '') . '>';
+            $html .= '<a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling)) . '">';
+            $html .= html_escape($pageSibling->title) . "</a></li>\n";
+        }
+        $html .= (count($pageSiblings) > 1 ? "</ul>\n</li>\n" : '');
     }
     $html .= '</ul>' . "\n";
     $html = apply_filters('exhibit_builder_page_nav', $html);
     return $html;
+}
 
+/**
+ * Return the markup for the exhibit child page navigation.
+ *
+ * @param ExhibitPage|null $exhibitPage If null, uses the current exhibit page
+ * @return string
+ */
+
+function exhibit_builder_child_page_nav($exhibitPage = null)
+{
+    $children = exhibit_builder_child_pages($exhibitPage);
+    $html = '<ul class="exhibit-child-nav navigation">' . "\n";
+    foreach ($children as $child) {
+        $html .= '<li><a href="' . html_escape($child->slug) . '">' . html_escape($child->title) . '</a></li>';
+    }
+    $html .= '</ul>' . "\n";
+    return $html;
 }
 
 /**
