@@ -4,18 +4,21 @@ echo head(array(
     'bodyid' => 'exhibit',
     'bodyclass' => 'show'));
 ?>
-<h1><?php echo link_to_exhibit(); ?></h1>
-<div id="nav-container">
-    <?php echo exhibit_builder_page_nav();?>
-</div>
+<h1><span class="exhibit-name"><?php echo link_to_exhibit(); ?></span>: <span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></span></h2>
 
-<h2><?php echo metadata('exhibit_page', 'title'); ?></h2>
+
+<nav id="exhibit-pages">
+    <?php echo exhibit_builder_page_nav();?>
+</nav>
 
 <?php exhibit_builder_render_exhibit_page(); ?>
 
+<?php if (exhibit_builder_link_to_previous_page() || exhibit_builder_link_to_parent_page() || exhibit_builder_link_to_next_page()): ?>
 <div id="exhibit-page-navigation">
     <?php echo exhibit_builder_link_to_previous_page(); ?>
     <?php echo exhibit_builder_link_to_parent_page(); ?>
     <?php echo exhibit_builder_link_to_next_page(); ?>
 </div>
+<?php endif; ?>
+
 <?php echo foot(); ?>
