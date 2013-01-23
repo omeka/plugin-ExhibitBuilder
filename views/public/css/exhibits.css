@@ -10,7 +10,8 @@
 #exhibit-page-navigation {
     clear: both;
     width: 100%;
-    margin-bottom: 1em;
+    margin: 1em 0;
+    line-height: 1.2;
 }
 
 #exhibit-page-navigation div {
