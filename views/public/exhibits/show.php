@@ -19,9 +19,21 @@ echo head(array(
 
 <?php if (exhibit_builder_link_to_previous_page() || exhibit_builder_link_to_parent_page() || exhibit_builder_link_to_next_page()): ?>
 <div id="exhibit-page-navigation">
-    <?php echo exhibit_builder_link_to_previous_page(); ?>
-    <?php echo exhibit_builder_link_to_parent_page(); ?>
-    <?php echo exhibit_builder_link_to_next_page(); ?>
+    <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>
+    <div id="exhibit-nav-prev">
+    <?php echo $prevLink; ?>
+    </div>
+    <?php endif; ?>
+    <?php if ($nextLink = exhibit_builder_link_to_next_page()): ?>
+    <div id="exhibit-nav-next">
+    <?php echo $nextLink; ?>
+    </div>
+    <?php endif; ?>
+    <?php if ($upLink = exhibit_builder_link_to_parent_page()): ?>
+    <div id="exhibit-nav-up">
+    <?php echo $upLink; ?>
+    </div>
+    <?php endif; ?>
 </div>
 <?php endif; ?>
 
