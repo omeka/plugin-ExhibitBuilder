@@ -3,21 +3,26 @@
 <h1><?php echo metadata('exhibit', 'title'); ?></h1>
 <?php echo exhibit_builder_page_nav(); ?>
 
+<?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
 <div class="exhibit-description">
-    <?php echo metadata('exhibit', 'description', array('no_escape' => true)); ?>
+    <?php echo $exhibitDescription; ?>
 </div>
+<?php endif; ?>
 
+<?php if (($exhibitCredits = metadata('exhibit', 'credits'))): ?>
 <div class="exhibit-credits">
-    <?php if (($credits = metadata('exhibit', 'credits'))): ?>
-    <h2><?php echo __('Credits'); ?></h2>
-    <p><?php echo $credits; ?></p>
-    <?php endif; ?>
+    <h3><?php echo __('Credits'); ?></h3>
+    <p><?php echo $exhibitCredits; ?></p>
 </div>
+<?php endif; ?>
 
-<ul id="exhibit-pages">
-    <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-    <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
-    <?php echo exhibit_builder_page_summary($exhibitPage); ?>
-    <?php endforeach; ?>
-</ul>
+<nav id="exhibit-pages">
+    <ul>
+        <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
+        <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
+        <?php echo exhibit_builder_page_summary($exhibitPage); ?>
+        <?php endforeach; ?>
+    </ul>
+</nav>
+
 <?php echo foot(); ?>

@@ -3,7 +3,8 @@ $title = __('Browse Exhibits by Tag');
 echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'tags'));
 ?>
 <h1><?php echo $title; ?></h1>
-<ul class="navigation exhibit-tags" id="secondary-nav">
+
+<nav class="navigation exhibit-tags" id="secondary-nav">
     <?php echo nav(array(
             array(
                 'label' => __('Browse All'),
@@ -15,7 +16,8 @@ echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'tags')
             )
         )
     ); ?>
-</ul>
+</nav>
 
 <?php echo tag_cloud($tags, 'exhibits/browse'); ?>
+
 <?php echo foot(); ?>
