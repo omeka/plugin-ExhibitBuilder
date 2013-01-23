@@ -557,34 +557,3 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
 {
     return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitPage);
 }
-
-
-/**
- * Returns the HTML for a nested navigation for exhibit pages
- *
- * @param Exhibit|null $exhibit If null, will use the current exhibit
- * @param boolean $showAllPages
- * @return string
- */
-function exhibit_builder_nested_nav($exhibit = null, $showAllPages = false)
-{
-    if (!$exhibit) {
-        if (!($exhibit = get_current_record('exhibit', false))) {
-            return;
-        }
-    }
-
-    $html = '<ul class="exhibit-top-pages-nav">';
-    foreach ($exhibit->TopPages as $exhibitPage) {
-        $html .= '<li class="exhibit-top-page' . (exhibit_builder_is_current_top_page($exhibitPage) ? ' current' : '') . '"><a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $exhibitPage)) . '">' . html_escape($exhibitPage->title) . '</a>';
-        if ($showAllPages || exhibit_builder_is_current_top_page($exhibitPage)) {
-            $html .= exhibit_builder_page_nav($exhibitPage);
-        }
-        $html .= '</li>';
-    }
-    $html .= '</ul>';
-
-    $html = apply_filters('exhibit_builder_nested_nav', $html,
-        array('exhibit' => $exhibit, 'show_all_pages' => $showAllPages));
-    return $html;
-}
