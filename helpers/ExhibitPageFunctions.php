@@ -233,6 +233,38 @@ function exhibit_builder_link_to_previous_page($text = null, $props = array(), $
 }
 
 /**
+ * Return a trail of parent pages, ending in the current page's name.
+ *
+ * @param ExhibitPage|null $exhibitPage The page to print the trail to.
+ * @return string
+ */
+function exhibit_builder_page_trail($exhibitPage = null)
+{
+    if (!$exhibitPage) {
+        $exhibitPage = get_current_record('exhibit_page');
+    }
+    $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
+
+    $currentPage = $exhibitPage;
+    $parents = array();
+    while ($currentPage->parent_id) {
+        $currentPage = $currentPage->getParent();
+        array_unshift($parents, $currentPage);
+    }
+
+    $html = '';
+    foreach ($parents as $parent) {
+        $text = metadata($parent, 'title');
+        $html .= exhibit_builder_link_to_exhibit($exhibit, $text, array(), $parent);
+        $html .= '<br>';
+        release_object($parent);
+    }
+
+    $html .= metadata($exhibitPage, 'title');
+    return $html;
+}
+
+/**
  * Return a link to the parent exhibit page
  *
  * @param string $text Link text

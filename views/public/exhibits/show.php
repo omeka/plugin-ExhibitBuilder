@@ -29,11 +29,9 @@ echo head(array(
     <?php echo $nextLink; ?>
     </div>
     <?php endif; ?>
-    <?php if ($upLink = exhibit_builder_link_to_parent_page()): ?>
     <div id="exhibit-nav-up">
-    <?php echo $upLink; ?>
+    <?php echo exhibit_builder_page_trail(); ?>
     </div>
-    <?php endif; ?>
 </div>
 <?php endif; ?>
 
