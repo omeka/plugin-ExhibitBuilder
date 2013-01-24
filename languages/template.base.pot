@@ -1,5 +1,5 @@
 # Translation for the Exhibit Builder plugin for Omeka.
-# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# Copyright (C) 2013 Roy Rosenzweig Center for History and New Media
 # This file is distributed under the same license as the Omeka package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exhibit Builder\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
-"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

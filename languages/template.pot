@@ -1,5 +1,5 @@
 # Translation for the Exhibit Builder plugin for Omeka.
-# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# Copyright (C) 2013 Roy Rosenzweig Center for History and New Media
 # This file is distributed under the same license as the Omeka package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Exhibit Builder\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
-"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,109 +102,99 @@ msgid "Displays a full page of text without items."
 msgstr ""
 
 #: config_form.php:3
-msgid "Use Exhibit Browse Page For Homepage?"
-msgstr ""
-
-#: config_form.php:9
-msgid "If checked, Omeka will use the exhibit browse page for the homepage."
-msgstr ""
-
-#: config_form.php:14
 msgid "Sorting Exhibits"
 msgstr ""
 
-#: config_form.php:19
+#: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
 msgstr ""
 
-#: controllers/ExhibitsController.php:87
+#: controllers/ExhibitsController.php:75
 msgid "This item is not used within this exhibit."
 msgstr ""
 
-#: controllers/ExhibitsController.php:254
+#: controllers/ExhibitsController.php:201
 msgid "You must specifically select a theme in order to configure it."
 msgstr ""
 
-#: functions.php:212 functions.php:244
-#: views/admin/exhibits/exhibit-metadata-form.php:87
-#: views/admin/exhibits/page-content-form.php:87
-#: views/admin/exhibits/page-metadata-form.php:48
-#: views/admin/exhibits/section-metadata-form.php:43
-msgid "Exhibits"
+#: functions.php:282
+msgid "exhibits"
 msgstr ""
 
-#: functions.php:215 functions.php:231 views/admin/exhibits/browse.php:2
+#: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr ""
 
-#: functions.php:216
-msgid "Create an Exhibit"
+#: functions.php:312 views/admin/exhibits/add.php:6
+#: views/admin/exhibits/edit.php:8
+#: views/admin/exhibits/page-content-form.php:9
+#: views/admin/exhibits/page-metadata-form.php:8
+msgid "Exhibits"
 msgstr ""
 
-#: functions.php:218
-msgid "Create and manage exhibits that display items from the archive."
-msgstr ""
-
-#: functions.php:440
+#: functions.php:469
 msgid "Search by Exhibit"
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:219
+#: functions.php:478
+msgid "Exhibit"
+msgstr ""
+
+#: functions.php:479
+msgid "Exhibit Page"
+msgstr ""
+
+#: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:221
-#: views/admin/exhibits/page-content-form.php:57
+#: helpers/ExhibitFunctions.php:244
+#: views/admin/exhibits/page-content-form.php:95
 msgid "Attach an Item"
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:272
+#: helpers/ExhibitFunctions.php:267
 msgid "Caption"
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:441
+#: helpers/ExhibitFunctions.php:290
+msgid "Select a File"
+msgstr ""
+
+#: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:446
+#: helpers/ExhibitFunctions.php:468
 msgid "You have no featured exhibits."
 msgstr ""
 
-#: helpers/ExhibitPageFunctions.php:155
-msgid "Next Page &rarr;"
-msgstr ""
-
-#: helpers/ExhibitPageFunctions.php:189
-msgid "&larr; Previous Page"
-msgstr ""
-
-#: models/Exhibit.php:38
-msgid "An exhibit must be given a title."
-msgstr ""
-
-#: models/Exhibit.php:42
-msgid "The title for an exhibit must be 255 characters or less."
-msgstr ""
-
-#: models/Exhibit.php:46
-msgid "The name of your theme must be 30 characters or less."
-msgstr ""
-
-#: models/Exhibit.php:66
+#: models/Exhibit.php:37
 msgid "Exhibits must be given a valid slug."
 msgstr ""
 
-#: models/Exhibit.php:67 models/ExhibitPage.php:31
-#: models/ExhibitSection.php:33
+#: models/Exhibit.php:38 models/ExhibitPage.php:31
 msgid "A slug must be 30 characters or less."
 msgstr ""
 
-#: models/Exhibit.php:68
+#: models/Exhibit.php:39
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
+msgstr ""
+
+#: models/Exhibit.php:48
+msgid "An exhibit must be given a title."
+msgstr ""
+
+#: models/Exhibit.php:52
+msgid "The title for an exhibit must be 255 characters or less."
+msgstr ""
+
+#: models/Exhibit.php:56
+msgid "The name of your theme must be 30 characters or less."
 msgstr ""
 
 #: models/ExhibitPage.php:30
@@ -213,8 +203,8 @@ msgstr ""
 
 #: models/ExhibitPage.php:32
 msgid ""
-"This page slug has already been used in this section.  Please modify the "
-"slug so that it is unique."
+"This page slug has already been used.  Please modify the slug so that it is "
+"unique."
 msgstr ""
 
 #: models/ExhibitPage.php:47
@@ -225,115 +215,78 @@ msgstr ""
 msgid "Exhibit pages must be given a title."
 msgstr ""
 
-#: models/ExhibitSection.php:32
-msgid "A slug must be given for each section of an exhibit."
+#: models/Mixin/Order.php:101
+msgid "Cannot add a child to a record that does not exist yet!"
 msgstr ""
 
-#: models/ExhibitSection.php:34
-msgid ""
-"This section slug has already been used in this exhibit.  Please modify the "
-"slug so that it is unique."
+#: models/Mixin/Order.php:105
+#, php-format
+msgid "Child must be an instance of \"%s\""
 msgstr ""
 
-#: models/ExhibitSection.php:40
-msgid "Sections of an exhibit must be given a title."
-msgstr ""
-
-#: views/admin/exhibits/browse.php:7
-#: views/admin/exhibits/exhibit-metadata-form.php:5
+#: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
 msgstr ""
 
-#: views/admin/exhibits/browse.php:13
+#: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
 msgstr ""
 
-#: views/admin/exhibits/browse.php:16
-msgid "Add an exhibit."
+#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+msgid "Add an Exhibit"
 msgstr ""
 
-#: views/admin/exhibits/browse.php:35
-#: views/admin/exhibits/exhibit-metadata-form.php:125
+#: views/admin/exhibits/browse.php:31
+#: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
 msgstr ""
 
-#: views/admin/exhibits/browse.php:39
-msgid "Delete?"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:3
-#, php-format
-msgid "Edit Exhibit: \"%s\""
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:5
-msgid "Edit Exhibit"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:22
-msgid "Are you sure you want to delete this section?"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:36
-#: views/admin/exhibits/section-metadata-form.php:18
-msgid "Are you sure you want to delete this page?"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:96
-msgid "Exhibit Metadata"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:102
-#: views/admin/exhibits/page-metadata-form.php:59
-#: views/admin/exhibits/section-metadata-form.php:58
-msgid "Slug"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:103
-#: views/admin/exhibits/page-metadata-form.php:60
-#: views/admin/exhibits/section-metadata-form.php:59
-msgid "No spaces or special characters allowed."
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:107
-#: views/public/exhibits/summary.php:9
-msgid "Credits"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:126
+#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:133
-msgid "Sections and Pages"
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:136
-msgid "There are no sections."
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:138
-msgid ""
-"To reorder sections or pages, click and drag the section or page up or down "
-"to the preferred location."
-msgstr ""
-
-#: views/admin/exhibits/exhibit-metadata-form.php:145
-#: views/admin/exhibits/section-metadata-form.php:5
-msgid "Add Section"
-msgstr ""
-
-#: views/admin/exhibits/items.php:1
-msgid "Show Search Form"
-msgstr ""
-
-#: views/admin/exhibits/items.php:21
+#: views/admin/exhibits/edit.php:3
 #, php-format
-msgid "There are no items to choose from.  Please refine your search or %s."
+msgid "Edit Exhibit \"%s\""
 msgstr ""
 
-#: views/admin/exhibits/items.php:21
-msgid "add some items"
+#: views/admin/exhibits/exhibit-metadata-form.php:4
+msgid "Exhibit Metadata"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:15
+#: views/admin/exhibits/page-metadata-form.php:25
+msgid "Slug"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:18
+#: views/admin/exhibits/page-metadata-form.php:28
+msgid "No spaces or special characters allowed"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:24
+#: views/public/exhibits/summary.php:14
+msgid "Credits"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:61
+msgid "Pages"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:64
+msgid "There are no pages."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:66
+msgid ""
+"To reorder pages, click and drag the page up or down to the preferred "
+"location."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/page-metadata-form.php:2
+msgid "Add Page"
 msgstr ""
 
 #: views/admin/exhibits/page-content-form.php:2
@@ -341,102 +294,79 @@ msgstr ""
 msgid "Edit Page Content: \"%s\""
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:25
-msgid "Remove This Item"
-msgstr ""
-
-#: views/admin/exhibits/page-content-form.php:60
-msgid "Attach Selected Item"
-msgstr ""
-
-#: views/admin/exhibits/page-content-form.php:100
+#: views/admin/exhibits/page-content-form.php:16
 msgid "Page Layout"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:112
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/page-content-form.php:27
 msgid "Edit Page"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:116
+#: views/admin/exhibits/page-content-form.php:30
 msgid "Page Content"
 msgstr ""
 
-#: views/admin/exhibits/page-content-form.php:124
-msgid "Save and Return to Section"
-msgstr ""
-
-#: views/admin/exhibits/page-content-form.php:125
+#: views/admin/exhibits/page-content-form.php:42
 msgid "Save and Add Another Page"
 msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:2
-#: views/admin/exhibits/section-metadata-form.php:77
-msgid "Add Page"
+#: views/admin/exhibits/page-content-form.php:63
+msgid "Remove This Item"
 msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:55
+#: views/admin/exhibits/page-content-form.php:98
+msgid "Attach Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-metadata-form.php:2
+#, php-format
+msgid "Edit Page \"%s\""
+msgstr ""
+
+#: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
 msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:65
+#: views/admin/exhibits/page-metadata-form.php:35
 msgid "Layouts"
 msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:72
+#: views/admin/exhibits/page-metadata-form.php:50
+msgid "Layout"
+msgstr ""
+
+#: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr ""
-
-#: views/admin/exhibits/section-list.php:10
-#: views/admin/exhibits/section-metadata-form.php:5
-msgid "Edit Section"
-msgstr ""
-
-#: views/admin/exhibits/section-list.php:11
-msgid "Delete Section"
-msgstr ""
-
-#: views/admin/exhibits/section-list.php:25
-msgid "Add a Page"
-msgstr ""
-
-#: views/admin/exhibits/section-metadata-form.php:3
-#, php-format
-msgid "Edit Section: \"%s\""
-msgstr ""
-
-#: views/admin/exhibits/section-metadata-form.php:55
-msgid "Section Metadata"
-msgstr ""
-
-#: views/admin/exhibits/section-metadata-form.php:64
-msgid "Pages in this Section"
-msgstr ""
-
-#: views/admin/exhibits/section-metadata-form.php:66
-msgid ""
-"To reorder pages, click and drag the page thumbnail up or down to the "
-"preferred location."
-msgstr ""
-
-#: views/admin/exhibits/section-metadata-form.php:68
-msgid "There are no pages in this section."
 msgstr ""
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
 msgstr ""
 
-#: views/admin/exhibits/tags.php:14
+#: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
 msgstr ""
 
-#: views/public/exhibits/browse.php:30
-msgid "There are no exhibits available yet."
+#: views/admin/exhibits/theme-config.php:16
+#, php-format
+msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr ""
 
-#: views/public/exhibits/summary.php:14
-msgid "Sections"
+#: views/admin/items/browse.php:2
+msgid "Show Search Form"
+msgstr ""
+
+#: views/admin/items/browse.php:17
+msgid "add some items"
+msgstr ""
+
+#: views/admin/items/browse.php:17
+#, php-format
+msgid "There are no items to choose from.  Please refine your search or %s."
+msgstr ""
+
+#: views/public/exhibits/browse.php:40
+msgid "There are no exhibits available yet."
 msgstr ""
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:4
@@ -445,6 +375,6 @@ msgid "Primary"
 msgstr ""
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:11
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:12
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:11
 msgid "Secondary"
 msgstr ""

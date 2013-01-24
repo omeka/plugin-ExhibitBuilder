@@ -5,19 +5,20 @@
 # Translators:
 # Julien Sicot <julien.sicot@gmail.com>, 2012.
 #   <thierry.pasquier@emf.ccsti.eu>, 2012.
+#   <wikitipiac@laposte.net>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2012-01-09 21:49-0500\n"
-"PO-Revision-Date: 2012-02-02 09:27+0000\n"
-"Last-Translator: Julien Sicot <julien.sicot@gmail.com>\n"
-"Language-Team: French (http://www.transifex.net/projects/p/omeka/team/fr/)\n"
+"PO-Revision-Date: 2012-04-22 13:57+0000\n"
+"Last-Translator: thierry <thierry.pasquier@emf.ccsti.eu>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Gallery Full Left"
 msgstr "Double colonne - Galerie à droite"
@@ -25,9 +26,7 @@ msgstr "Double colonne - Galerie à droite"
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
 " image and text block."
-msgstr ""
-"Affiche une galerie de 8 vignettes, avec à gauche 1 colonne plus large pour "
-"une grande image et un bloc de texte."
+msgstr "Affiche une gallerie de 8 vignettes, avec à gauche 1 colonne plus large pour une grande image et un bloc de texte."
 
 msgid "Gallery Full Right"
 msgstr "Double colonne - Galerie à gauche"
@@ -35,23 +34,19 @@ msgstr "Double colonne - Galerie à gauche"
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
 "size image and text block."
-msgstr ""
-"Affiche une gallerie de 8 vignettes, avec à droite 1 colonne plus large pour"
-" une grande image et un bloc de texte."
+msgstr "Affiche une gallerie de 8 vignettes, avec à droite 1 colonne plus large pour une grande image et un bloc de texte."
 
 msgid "Gallery Thumbnails Text Bottom"
 msgstr "Galerie de vignettes - Texte en bas"
 
 msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr ""
-"Affiche un bloc de texte en-dessous d'une galerie de 12 contenus au plus."
+msgstr "Affiche un bloc de texte en-dessous d'une galerie de 12 contenus au plus."
 
 msgid "Gallery Thumbnails Text Top"
 msgstr "Galerie de vignettes - Texte en haut"
 
 msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr ""
-"Affiche un bloc de texte au-dessus d'une galerie de 12 contenus au plus."
+msgstr "Affiche un bloc de texte au-dessus d'une galerie de 12 contenus au plus."
 
 msgid "Gallery Thumbnails"
 msgstr "Galerie de vignettes"
@@ -95,15 +90,13 @@ msgid "Text Image Left"
 msgstr "Texte - Image à gauche"
 
 msgid "Displays a full page of text, with a full-size image floated left."
-msgstr ""
-"Affiche une page de texte, avec une image de grande taille alignée à gauche."
+msgstr "Affiche une page de texte, avec une image de grande taille alignée à gauche."
 
 msgid "Text Image Right"
 msgstr "Texte - Image à droite"
 
 msgid "Displays a full page of text, with a full-size image floated right."
-msgstr ""
-"Affiche une page de texte, avec une image de grande taille alignée à droite."
+msgstr "Affiche une page de texte, avec une image de grande taille alignée à droite."
 
 msgid "Text"
 msgstr "Texte"
@@ -113,15 +106,11 @@ msgstr "Affiche une pleine page de texte sans contenu."
 
 #: config_form.php:3
 msgid "Use Exhibit Browse Page For Homepage?"
-msgstr ""
-"Utiliser la page \"Parcourir les expositions\" comme page d'accueil du site "
-"?"
+msgstr "Utiliser la page \"Parcourir les expositions\" comme page d'accueil du site ?"
 
 #: config_form.php:9
 msgid "If checked, Omeka will use the exhibit browse page for the homepage."
-msgstr ""
-"Si coché, Omeka utilisera la page \"Parcourir les expositions\" comme page "
-"d'accueil du site."
+msgstr "Si coché, Omeka utilisera la page \"Parcourir les expositions\" comme page d'accueil du site."
 
 #: config_form.php:14
 msgid "Sorting Exhibits"
@@ -131,10 +120,7 @@ msgstr "Trier les expositions"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr ""
-"La méthode par défaut que vous souhaitez utiliser pour trier la liste des "
-"expositions sur la page \"Parcourir les exposition\". Par défaut 'Date' est "
-"utilisé."
+msgstr "La méthode par défaut que vous souhaitez utiliser pour trier la liste des expositions sur la page \"Parcourir les exposition\". Par défaut 'Date' est utilisé."
 
 #: controllers/ExhibitsController.php:87
 msgid "This item is not used within this exhibit."
@@ -150,7 +136,7 @@ msgstr "Vous devez sélectionner un thème puis le configurer."
 #: views/admin/exhibits/page-metadata-form.php:48
 #: views/admin/exhibits/section-metadata-form.php:43
 msgid "Exhibits"
-msgstr "Expositions."
+msgstr "Expositions"
 
 #: functions.php:215 functions.php:231 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -163,8 +149,7 @@ msgstr "Créer une exposition"
 
 #: functions.php:218
 msgid "Create and manage exhibits that display items from the archive."
-msgstr ""
-"Créer et gérer des expositions à partir de contenus extraits de l'archive."
+msgstr "Créer et gérer des expositions à partir de contenus extraits de l'archive."
 
 #: functions.php:440
 msgid "Search by Exhibit"
@@ -223,9 +208,7 @@ msgstr "Un identifiant ne doit pas dépasser 30 caractères"
 #: models/Exhibit.php:68
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr ""
-"L'identifiant dans l'URL a déjà été attribué à une autre exposition. Merci "
-"d'en choisir un autre."
+msgstr "L'identifiant dans l'URL a déjà été attribué à une autre exposition. Merci d'en choisir un autre."
 
 #: models/ExhibitPage.php:30
 msgid "A slug must be given for each page of an exhibit."
@@ -235,9 +218,7 @@ msgstr "Un identifiant doit être attribué à chaque page d'une exposition."
 msgid ""
 "This page slug has already been used in this section.  Please modify the "
 "slug so that it is unique."
-msgstr ""
-"Cet identifiant de page a déjà été utilisé dans cette section. Merci de le "
-"modifier pour qu'il soit unique."
+msgstr "Cet identifiant de page a déjà été utilisé dans cette section. Merci de le modifier pour qu'il soit unique."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
@@ -255,9 +236,7 @@ msgstr "Un identifiant doit être attribué à chaque section d'une exposition."
 msgid ""
 "This section slug has already been used in this exhibit.  Please modify the "
 "slug so that it is unique."
-msgstr ""
-"Cet identifiant de section a déjà été utilisé dans cette exposition. Merci "
-"de le modifier pour qu'il soit unique."
+msgstr "Cet identifiant de section a déjà été utilisé dans cette exposition. Merci de le modifier pour qu'il soit unique."
 
 #: models/ExhibitSection.php:40
 msgid "Sections of an exhibit must be given a title."
@@ -340,9 +319,7 @@ msgstr "Il n'y a pas de section."
 msgid ""
 "To reorder sections or pages, click and drag the section or page up or down "
 "to the preferred location."
-msgstr ""
-"Pour réorganiser les sections et les pages, cliquez et déplacez la section "
-"ou la page à l'emplacement désiré."
+msgstr "Pour réorganiser les sections et les pages, cliquez et déplacez la section ou la page à l'emplacement désiré."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:145
 #: views/admin/exhibits/section-metadata-form.php:5
@@ -356,9 +333,7 @@ msgstr "Afficher le formulaire de recherche"
 #: views/admin/exhibits/items.php:21
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr ""
-"Il n'y a pas de contenu à sélectionner. Merci d'affiner votre recherche ou  "
-"%s."
+msgstr "Il n'y a pas de contenu à sélectionner. Merci d'affiner votre recherche ou  %s."
 
 #: views/admin/exhibits/items.php:21
 msgid "add some items"
@@ -445,9 +420,7 @@ msgstr "Pages dans cette section"
 msgid ""
 "To reorder pages, click and drag the page thumbnail up or down to the "
 "preferred location."
-msgstr ""
-"Pour réorganiser les les pages, cliquez et déplacez la vignette de la page "
-"vers le haut ou le bas à l'enplacement désiré."
+msgstr "Pour réorganiser les les pages, cliquez et déplacez la vignette de la page vers le haut ou le bas à l'enplacement désiré."
 
 #: views/admin/exhibits/section-metadata-form.php:68
 msgid "There are no pages in this section."
@@ -455,15 +428,11 @@ msgstr "Il n'y a pas de page dans cette section."
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr ""
-"\t\n"
-"Parcourir les expositions par tags"
+msgstr "\t\nParcourir les expositions par tags"
 
 #: views/admin/exhibits/tags.php:14
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr ""
-"Aucun tag à afficher. Vous devez d'abord en attribuer à certaines "
-"expositions."
+msgstr "Aucun tag à afficher. Vous devez d'abord en attribuer à certaines expositions."
 
 #: views/public/exhibits/browse.php:30
 msgid "There are no exhibits available yet."
@@ -482,5 +451,3 @@ msgstr "Premier niveau"
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:12
 msgid "Secondary"
 msgstr "Second niveau"
-
-
