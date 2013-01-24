@@ -166,7 +166,7 @@ function exhibit_builder_upgrade($args)
         $db->query($sql);
     }
 
-    if(version_compare($oldVersion, '2.0', '<')) {
+    if(version_compare($oldVersion, '2.0-dev2', '<')) {
         $sql = "ALTER TABLE `{$db->prefix}exhibit_page_entries` ADD `file_id` INT UNSIGNED DEFAULT NULL AFTER `item_id`";
         $db->query($sql);
 
