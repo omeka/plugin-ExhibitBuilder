@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012.
+# Benjamin  <benjamin@deichman.no>, 2012.
+#   <boutrosboutrosboutros@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
@@ -11,114 +12,114 @@ msgstr ""
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2013-01-24 04:39+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/omeka/language/pt_BR/)\n"
+"Language-Team: Norwegian (http://www.transifex.com/projects/p/omeka/language/no/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: no\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Gallery Full Left"
-msgstr "Alinhar Galeria à Esquerda"
+msgstr "Galleri venstre"
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
 " image and text block."
-msgstr "Exibe uma galeria com 8 miniaturas, com uma coluna mais larga à esquerda para uma imagem em tamanho real e um bloco de texto"
+msgstr "Vis et galleri med 8 miniatyrbilder, med en bredere venstrekolonne for 1 bilde i fullstørrelse med tilhørende tekst."
 
 msgid "Gallery Full Right"
-msgstr "Alinhar Galeria à Direita"
+msgstr "Galleri høyre"
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
 "size image and text block."
-msgstr "Exibe uma galeria com 8 miniaturas, com uma coluna mais larga à direita para uma imagem em tamanho real e um bloco de texto"
+msgstr "Vis et galleri med 8 miniatyrbilder, med en bredere høyrekolonne for 1 bilde i fullstørrelse og tilhørende tekst."
 
 msgid "Gallery Thumbnails Text Bottom"
-msgstr "Texto abaixo da Galeria de Miniaturas"
+msgstr "Galleri minibilder bunntekst"
 
 msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Exibe um bloco de texto abaixo de uma galeria com no máximo 12 itens."
+msgstr "Viser en tekstblokk under et galleri med opp til 12 bilder."
 
 msgid "Gallery Thumbnails Text Top"
-msgstr "Texto acima da Galeria de Miniaturas"
+msgstr "Galleri minibilder topptekst"
 
 msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Exibe um bloco de texto acima de uma galeria com no máximo 12 itens."
+msgstr "Viser en tekstblokk over et galleri med opp til 12 bilder."
 
 msgid "Gallery Thumbnails"
-msgstr "Miniaturas da Galeria"
+msgstr "Galleri minibilder"
 
 msgid "Displays a gallery of up to 16 items."
-msgstr "Exibe um grupo de 16 itens."
+msgstr "Viser et galleri med opp til 16 bilder"
 
 msgid "Image List Left Thumbs"
-msgstr "Miniaturas a esquerda com texto em bloco"
+msgstr "Bildeliste venstre minibilder"
 
 msgid ""
 "Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
 "right."
-msgstr "Exibe até 8 miniaturas à esquerda e até 8 blocos de texto à direita."
+msgstr "Viser opp til 9 minibilder på venstre side med opp til 8 tekstblokker på høyresiden."
 
 msgid "Image List Left"
-msgstr "Imagens em tamanho real à esquerda com texto à direita"
+msgstr "Bildeliste venstre"
 
 msgid ""
 "Displays up to 8 full-size images on the left with up to 8 text blocks on "
 "the right."
-msgstr "Exibe até 8 imagens em tamanho real à esquerda e até 8 blocos de texto à direita."
+msgstr "Viser opp til 8 bilder i fullstørrelse til venstre med opp til 8 tekstblokker på høyresiden."
 
 msgid "Image List Right Thumbs"
-msgstr "Miniaturas à direita com texto em bloco"
+msgstr "Bildeliste høyre minibilder"
 
 msgid ""
 "Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
 "left."
-msgstr "Exibe até 8 miniaturas a direita e até 8 blocos de texto à esquerda."
+msgstr "Viser opp til 8 minibilder til høyre med opp til 8 tekstblokker på venstresiden"
 
 msgid "Image List Right"
-msgstr "Imagens em tamanho real à direita com texto à esquerda"
+msgstr "Bildeliste høyre"
 
 msgid ""
 "Displays up to 8 full-size images on the right with up to 8 text blocks on "
 "the left."
-msgstr "Exibe até 8 imagens em tamanho real à direita e até 8 blocos de texto à esquerda."
+msgstr "Viser opp til 8 bilder i fullstørrelse til høyre med opp til 8 tekstblokker på venstresiden."
 
 msgid "Text Image Left"
-msgstr "Página de texto com imagem à esquerda"
+msgstr "Tekstbilde venstre"
 
 msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Exibe uma página inteira de texto, com uma imagem em tamanho real flutuando à esquerda."
+msgstr "Viser en fullside med tekst, med et bilde i fullstørrelse flytende til venstre."
 
 msgid "Text Image Right"
-msgstr "Página de texto com imagem à direita"
+msgstr "Tekstbilde høyre"
 
 msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Exibe uma página inteira de texto, com uma imagem em tamanho real flutuando à direita."
+msgstr "Viser en fullside med tekst, med et bilde i fullstørrelse flytende til høyre."
 
 msgid "Text"
-msgstr "Texto"
+msgstr "Tekst"
 
 msgid "Displays a full page of text without items."
-msgstr "Exibe uma página inteira de texto sem itens."
+msgstr "Viser en helside med tekst uten andre elementer."
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Listando Exposições"
+msgstr "Sorter utstillinger"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "O método padrão usado para ordenar as listagens de exposições na página de exposições ou de navegação. Padrão é por \"Data Adicionada\"."
+msgstr "Standardmetode for hvordan utstillinger er sorter på bla i utstillinger-siden. Standardvalg er 'Dato lagt til'."
 
 #: controllers/ExhibitsController.php:75
 msgid "This item is not used within this exhibit."
-msgstr "Este item não é usado nesta exposição."
+msgstr "Dette elementet er ikke i bruk i denne utstillingen."
 
 #: controllers/ExhibitsController.php:201
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Você precisa selecionar um tema em específico para poder configurá-lo."
+msgstr "Du må spesifikt velge et tema for å kunne endre oppsettet på det."
 
 #: functions.php:282
 msgid "exhibits"
@@ -127,18 +128,18 @@ msgstr ""
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Ver Exposições"
+msgstr "Utstillinger"
 
 #: functions.php:312 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8
 #: views/admin/exhibits/page-content-form.php:9
 #: views/admin/exhibits/page-metadata-form.php:8
 msgid "Exhibits"
-msgstr "Exposições"
+msgstr "Utstillinger"
 
 #: functions.php:469
 msgid "Search by Exhibit"
-msgstr "Procurar por Exposição"
+msgstr "Søk i utstillinger"
 
 #: functions.php:478
 msgid "Exhibit"
@@ -150,16 +151,16 @@ msgstr ""
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
-msgstr "Nenhum item foi anexado."
+msgstr "Ingen ressurser lagt til"
 
 #: helpers/ExhibitFunctions.php:244
 #: views/admin/exhibits/page-content-form.php:95
 msgid "Attach an Item"
-msgstr "Anexar um Item"
+msgstr "Legg til en ressurs"
 
 #: helpers/ExhibitFunctions.php:267
 msgid "Caption"
-msgstr "Legenda"
+msgstr "Bildetekst"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
@@ -167,40 +168,40 @@ msgstr ""
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
-msgstr "Exposição em Destaque"
+msgstr "Fremhevet utstilling"
 
 #: helpers/ExhibitFunctions.php:468
 msgid "You have no featured exhibits."
-msgstr "Você não tem exposições em destaque."
+msgstr "Du har ingen fremhevede utstillinger"
 
 #: models/Exhibit.php:37
 msgid "Exhibits must be given a valid slug."
-msgstr "Exposições necessitam de um slug válido."
+msgstr "Utstillinger må gis en gyldig lenkestreng."
 
 #: models/Exhibit.php:38 models/ExhibitPage.php:31
 msgid "A slug must be 30 characters or less."
-msgstr "Um slug tem no máximo 30 caracteres."
+msgstr "En lenkestreng må være 30 tegn eller mindre."
 
 #: models/Exhibit.php:39
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Seu slug da URL já está em uso por outra exposição. Por favor escolha outro."
+msgstr "Denne lenkestrengen er allerede i bruk av en annen utstilling. Vennligst velg en annen."
 
 #: models/Exhibit.php:48
 msgid "An exhibit must be given a title."
-msgstr "É necessário dar um nome à Exposição."
+msgstr "En utstilling må ha en tittel."
 
 #: models/Exhibit.php:52
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "O título de uma exposição pode ter no máximo 255 caracteres."
+msgstr "Tittelen på utstillingen må være under 255 tegn."
 
 #: models/Exhibit.php:56
 msgid "The name of your theme must be 30 characters or less."
-msgstr "O nome do seu tema pode ter no máximo 30 caracteres."
+msgstr "Navn på tema må være 30 tegn eller mindre."
 
 #: models/ExhibitPage.php:30
 msgid "A slug must be given for each page of an exhibit."
-msgstr "É necessário usar um slug para cada página de uma exposição."
+msgstr "Lenkestreng må angis for hver side i en utstilling."
 
 #: models/ExhibitPage.php:32
 msgid ""
@@ -210,11 +211,11 @@ msgstr ""
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
-msgstr "Cada página de exposição deve ter um layout."
+msgstr "Hver side i en utstilling må gis en utforming"
 
 #: models/ExhibitPage.php:51
 msgid "Exhibit pages must be given a title."
-msgstr "Páginas de exposição precisam de um título."
+msgstr "Utstillingssider må ha en tittel."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
@@ -227,11 +228,11 @@ msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Adicionar Exposição"
+msgstr "Legg til utstilling"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Ainda não nenhuma exposição."
+msgstr "Det finnes ingen utstillinger ennå."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
@@ -245,7 +246,7 @@ msgstr "Tema"
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Tema Público Atual"
+msgstr "Nåværende tema"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
@@ -254,12 +255,12 @@ msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Exibir Metadata"
+msgstr "Utstilling metadata"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 #: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
-msgstr "Slug"
+msgstr "Lenkestreng"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
@@ -269,7 +270,7 @@ msgstr ""
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Bidragsytere"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
@@ -288,36 +289,36 @@ msgstr ""
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
 msgid "Add Page"
-msgstr "Adicionar Página"
+msgstr "Legg til side"
 
 #: views/admin/exhibits/page-content-form.php:2
 #, php-format
 msgid "Edit Page Content: \"%s\""
-msgstr "Editar Conteúdo da Página: \"%s\""
+msgstr "Rediger sideinnhold: \"%s\""
 
 #: views/admin/exhibits/page-content-form.php:16
 msgid "Page Layout"
-msgstr "Layout da página"
+msgstr "Sideoppsett"
 
 #: views/admin/exhibits/page-content-form.php:27
 msgid "Edit Page"
-msgstr "Editar Página"
+msgstr "Endre side"
 
 #: views/admin/exhibits/page-content-form.php:30
 msgid "Page Content"
-msgstr "Conteúdo da Página"
+msgstr "Sideinnhold"
 
 #: views/admin/exhibits/page-content-form.php:42
 msgid "Save and Add Another Page"
-msgstr "Salvar e Adicionar Outra Página"
+msgstr "Lagre og legg til en ny side"
 
 #: views/admin/exhibits/page-content-form.php:63
 msgid "Remove This Item"
-msgstr "Remover este Item"
+msgstr "Fjern dette elementet"
 
 #: views/admin/exhibits/page-content-form.php:98
 msgid "Attach Selected Item"
-msgstr "Anexar Item Selecionado"
+msgstr "Legg til valgt ressurs"
 
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
@@ -326,11 +327,11 @@ msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
-msgstr "Metadata da Página"
+msgstr "Metadata på side"
 
 #: views/admin/exhibits/page-metadata-form.php:35
 msgid "Layouts"
-msgstr "Layouts"
+msgstr "Utseendemaler"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
@@ -338,15 +339,15 @@ msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Escolha um layout selecionando uma miniatura à direita."
+msgstr "Velg et utseende fra minibildene til høyre"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Ver Exposições por Marcador"
+msgstr "Bla i utstillinger etter stikkord"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Não há marcadores para mostrar. Você precisa primeiro marcar algumas exposições."
+msgstr "Ingen sider å vise. Du må først velge noen utstillinger."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
@@ -355,27 +356,27 @@ msgstr ""
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
-msgstr "Exibir o Formulário de Busca"
+msgstr "Vis søkeskjema"
 
 #: views/admin/items/browse.php:17
 msgid "add some items"
-msgstr "adicionar alguns itens"
+msgstr "legg til noen ressurser"
 
 #: views/admin/items/browse.php:17
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Nenhum item para escolher.  Por favor refine sua busca ou %s."
+msgstr "Ingen ressurser å velge fra.  Vennligst utvid søket eller %s."
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Ainda não há nenhuma exposição disponível."
+msgstr "Ingen utstillinger tilgjengelige"
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:4
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:4
 msgid "Primary"
-msgstr "Primário"
+msgstr "Primær"
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:11
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:11
 msgid "Secondary"
-msgstr "Secundário"
+msgstr "Sekundær"

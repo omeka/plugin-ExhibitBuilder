@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012.
+#   <rubenalcarazmartinez@gmail.com>, 2013.
+#   <sergi.blanes@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
@@ -11,114 +12,114 @@ msgstr ""
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2013-01-24 04:39+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/omeka/language/pt_BR/)\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/projects/p/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ca_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Gallery Full Left"
-msgstr "Alinhar Galeria à Esquerda"
+msgstr "Galeria d'imatges amb un quadre de text a la cantonada inferior esquerra."
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
 " image and text block."
-msgstr "Exibe uma galeria com 8 miniaturas, com uma coluna mais larga à esquerda para uma imagem em tamanho real e um bloco de texto"
+msgstr "Mostra una galeria amb 8 miniatures amb 1 columna més ampla a l'esquerra, la qual inclou una imatge a tamany real i un bloc de text."
 
 msgid "Gallery Full Right"
-msgstr "Alinhar Galeria à Direita"
+msgstr "Galeria d'imatges amb un quadre de text a la cantonada inferior dreta."
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
 "size image and text block."
-msgstr "Exibe uma galeria com 8 miniaturas, com uma coluna mais larga à direita para uma imagem em tamanho real e um bloco de texto"
+msgstr "Mostra una galeria amb 8 miniatures amb 1 columna més ampla a la dreta, la qual inclou una imatge a tamany real i un bloc de text."
 
 msgid "Gallery Thumbnails Text Bottom"
-msgstr "Texto abaixo da Galeria de Miniaturas"
+msgstr "Galeria de miniatures amb un bloc de text a la part inferior."
 
 msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Exibe um bloco de texto abaixo de uma galeria com no máximo 12 itens."
+msgstr "Mostra un bloc de text a sota d'una galeria que inclou un màxim de 12 ítems"
 
 msgid "Gallery Thumbnails Text Top"
-msgstr "Texto acima da Galeria de Miniaturas"
+msgstr "Galeria de miniatures amb un bloc de text a la part superior."
 
 msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Exibe um bloco de texto acima de uma galeria com no máximo 12 itens."
+msgstr "Mostra un bloc de text per sobre de la galeria que inclou un màxim de 12 ítems."
 
 msgid "Gallery Thumbnails"
-msgstr "Miniaturas da Galeria"
+msgstr "Galeria amb 16 miniatures."
 
 msgid "Displays a gallery of up to 16 items."
-msgstr "Exibe um grupo de 16 itens."
+msgstr "Mostra una galeria amb un màxim de 16 ítems."
 
 msgid "Image List Left Thumbs"
-msgstr "Miniaturas a esquerda com texto em bloco"
+msgstr "Miniatures a l'esquerra i text al costat dret"
 
 msgid ""
 "Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
 "right."
-msgstr "Exibe até 8 miniaturas à esquerda e até 8 blocos de texto à direita."
+msgstr "Mostra fins a 8 miniatures a l'esquerra i fins a 8 blocs de text a la dreta."
 
 msgid "Image List Left"
-msgstr "Imagens em tamanho real à esquerda com texto à direita"
+msgstr "Llista d'imatges a l'esquerra"
 
 msgid ""
 "Displays up to 8 full-size images on the left with up to 8 text blocks on "
 "the right."
-msgstr "Exibe até 8 imagens em tamanho real à esquerda e até 8 blocos de texto à direita."
+msgstr "Mostra fins a 8 imatges a tamany complet a l'esquerra i fins a 8 blocs de text a la dreta."
 
 msgid "Image List Right Thumbs"
-msgstr "Miniaturas à direita com texto em bloco"
+msgstr "Miniatures a la dreta i text al costat esquerra"
 
 msgid ""
 "Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
 "left."
-msgstr "Exibe até 8 miniaturas a direita e até 8 blocos de texto à esquerda."
+msgstr "Mostra fins a 8 miniatures a la dreta i un màxim de 8 blocs de text a l'esquerra."
 
 msgid "Image List Right"
-msgstr "Imagens em tamanho real à direita com texto à esquerda"
+msgstr "Imatges a mida completa a la dreta i blocs de text a l'esquerra"
 
 msgid ""
 "Displays up to 8 full-size images on the right with up to 8 text blocks on "
 "the left."
-msgstr "Exibe até 8 imagens em tamanho real à direita e até 8 blocos de texto à esquerda."
+msgstr "Mostra fins a 8 imatges a tamany complet a la dreta i fins a 8 blocs de text a l'esquerra."
 
 msgid "Text Image Left"
-msgstr "Página de texto com imagem à esquerda"
+msgstr "Text complet amb una imatge a mida completa a l'esquerra"
 
 msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Exibe uma página inteira de texto, com uma imagem em tamanho real flutuando à esquerda."
+msgstr "Mostra un pàgina sencera amb text, acompanyada d'una imatge a mida completa a l'esquerra."
 
 msgid "Text Image Right"
-msgstr "Página de texto com imagem à direita"
+msgstr "Text complet amb una imatge a mida completa a la dreta"
 
 msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Exibe uma página inteira de texto, com uma imagem em tamanho real flutuando à direita."
+msgstr "Mostra una pàgina sencera amb text, acompanyada d'una imatge a mida completa a la dreta."
 
 msgid "Text"
-msgstr "Texto"
+msgstr "Text"
 
 msgid "Displays a full page of text without items."
-msgstr "Exibe uma página inteira de texto sem itens."
+msgstr "Mostra una pàgina sencera amb text però sense ítems"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Listando Exposições"
+msgstr "Ordenació de les exposicions"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "O método padrão usado para ordenar as listagens de exposições na página de exposições ou de navegação. Padrão é por \"Data Adicionada\"."
+msgstr "El criteri per defecte que s'utilitza per llistar les exposicions a la pàgina 'Navega per les exposicions'. El criteri per defecte és 'Data d'incorporació'."
 
 #: controllers/ExhibitsController.php:75
 msgid "This item is not used within this exhibit."
-msgstr "Este item não é usado nesta exposição."
+msgstr "Aquest ítem no s'utilitza dins aquesta exposició."
 
 #: controllers/ExhibitsController.php:201
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Você precisa selecionar um tema em específico para poder configurá-lo."
+msgstr "És obligatori especificar la plantilla per a poder configurar-la."
 
 #: functions.php:282
 msgid "exhibits"
@@ -127,18 +128,18 @@ msgstr ""
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Ver Exposições"
+msgstr "Navega per les exposicions"
 
 #: functions.php:312 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8
 #: views/admin/exhibits/page-content-form.php:9
 #: views/admin/exhibits/page-metadata-form.php:8
 msgid "Exhibits"
-msgstr "Exposições"
+msgstr "Exposicions"
 
 #: functions.php:469
 msgid "Search by Exhibit"
-msgstr "Procurar por Exposição"
+msgstr "Cerca per exposició"
 
 #: functions.php:478
 msgid "Exhibit"
@@ -150,16 +151,16 @@ msgstr ""
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
-msgstr "Nenhum item foi anexado."
+msgstr "No hi ha cap ítem adjunt."
 
 #: helpers/ExhibitFunctions.php:244
 #: views/admin/exhibits/page-content-form.php:95
 msgid "Attach an Item"
-msgstr "Anexar um Item"
+msgstr "Adjunta un ítem"
 
 #: helpers/ExhibitFunctions.php:267
 msgid "Caption"
-msgstr "Legenda"
+msgstr "Llegenda"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
@@ -167,40 +168,40 @@ msgstr ""
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
-msgstr "Exposição em Destaque"
+msgstr "Exposició destacada"
 
 #: helpers/ExhibitFunctions.php:468
 msgid "You have no featured exhibits."
-msgstr "Você não tem exposições em destaque."
+msgstr "No hi ha cap exposició destacada"
 
 #: models/Exhibit.php:37
 msgid "Exhibits must be given a valid slug."
-msgstr "Exposições necessitam de um slug válido."
+msgstr "Les exposicions han de tenir un identificador vàlid."
 
 #: models/Exhibit.php:38 models/ExhibitPage.php:31
 msgid "A slug must be 30 characters or less."
-msgstr "Um slug tem no máximo 30 caracteres."
+msgstr "L'identificador ha de tenir 30 caràcters o menys."
 
 #: models/Exhibit.php:39
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Seu slug da URL já está em uso por outra exposição. Por favor escolha outro."
+msgstr "Aquest identificador ja s'utilitza en una altra exposició. Si us plau tria un altre."
 
 #: models/Exhibit.php:48
 msgid "An exhibit must be given a title."
-msgstr "É necessário dar um nome à Exposição."
+msgstr "Es necessari proporcionar un títol a l'exposició."
 
 #: models/Exhibit.php:52
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "O título de uma exposição pode ter no máximo 255 caracteres."
+msgstr "El títol de l'exposició ha de tenir 255 caràcters o menys."
 
 #: models/Exhibit.php:56
 msgid "The name of your theme must be 30 characters or less."
-msgstr "O nome do seu tema pode ter no máximo 30 caracteres."
+msgstr "El nom de la teva plantilla ha de tenir 30 caràcters o menys."
 
 #: models/ExhibitPage.php:30
 msgid "A slug must be given for each page of an exhibit."
-msgstr "É necessário usar um slug para cada página de uma exposição."
+msgstr "Cal proporcionar un identificador per a cada pàgina d'una exposició"
 
 #: models/ExhibitPage.php:32
 msgid ""
@@ -210,11 +211,11 @@ msgstr ""
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
-msgstr "Cada página de exposição deve ter um layout."
+msgstr "Cal proporcionar una maquetació per a cada pàgina de les exposicions."
 
 #: models/ExhibitPage.php:51
 msgid "Exhibit pages must be given a title."
-msgstr "Páginas de exposição precisam de um título."
+msgstr "Les pàgines de les exposicions han de tenir un títol."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
@@ -227,11 +228,11 @@ msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Adicionar Exposição"
+msgstr "Afegeix una exposició"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Ainda não nenhuma exposição."
+msgstr "Encara no hi ha exposicions."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
@@ -240,12 +241,12 @@ msgstr ""
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Tema"
+msgstr "Plantilla"
 
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Tema Público Atual"
+msgstr "Plantilla actual per la web pública"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
@@ -254,12 +255,12 @@ msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Exibir Metadata"
+msgstr "Metadades de l'exposició"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 #: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
-msgstr "Slug"
+msgstr "Identificador"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
@@ -269,7 +270,7 @@ msgstr ""
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Crèdits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
@@ -288,36 +289,36 @@ msgstr ""
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
 msgid "Add Page"
-msgstr "Adicionar Página"
+msgstr "Afegeix una pàgina"
 
 #: views/admin/exhibits/page-content-form.php:2
 #, php-format
 msgid "Edit Page Content: \"%s\""
-msgstr "Editar Conteúdo da Página: \"%s\""
+msgstr "Edita el contingut de la pàgina: \"%s\" "
 
 #: views/admin/exhibits/page-content-form.php:16
 msgid "Page Layout"
-msgstr "Layout da página"
+msgstr "Maquetació de la pàgina"
 
 #: views/admin/exhibits/page-content-form.php:27
 msgid "Edit Page"
-msgstr "Editar Página"
+msgstr "Edita la pàgina"
 
 #: views/admin/exhibits/page-content-form.php:30
 msgid "Page Content"
-msgstr "Conteúdo da Página"
+msgstr "Contingut de la pàgina"
 
 #: views/admin/exhibits/page-content-form.php:42
 msgid "Save and Add Another Page"
-msgstr "Salvar e Adicionar Outra Página"
+msgstr "Guarda els canvis i afegeix una nova pàgina"
 
 #: views/admin/exhibits/page-content-form.php:63
 msgid "Remove This Item"
-msgstr "Remover este Item"
+msgstr "Esborra aquest ítem"
 
 #: views/admin/exhibits/page-content-form.php:98
 msgid "Attach Selected Item"
-msgstr "Anexar Item Selecionado"
+msgstr "Adjunta l'ítem seleccionat"
 
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
@@ -326,11 +327,11 @@ msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
-msgstr "Metadata da Página"
+msgstr "Metadades de la pàgina"
 
 #: views/admin/exhibits/page-metadata-form.php:35
 msgid "Layouts"
-msgstr "Layouts"
+msgstr "MaMaquetacions"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
@@ -338,15 +339,15 @@ msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Escolha um layout selecionando uma miniatura à direita."
+msgstr "Selecciona una maquetació a partir de les miniatures de la dreta."
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Ver Exposições por Marcador"
+msgstr "Navega per les coleccions a partir de les etiquetes"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Não há marcadores para mostrar. Você precisa primeiro marcar algumas exposições."
+msgstr "No hi ha etiquetes per visualitzar. Has d'assignar etiquetes a exposicions."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
@@ -355,27 +356,27 @@ msgstr ""
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
-msgstr "Exibir o Formulário de Busca"
+msgstr "Mostra el formulari de cerca"
 
 #: views/admin/items/browse.php:17
 msgid "add some items"
-msgstr "adicionar alguns itens"
+msgstr "afegeix alguns ítems"
 
 #: views/admin/items/browse.php:17
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Nenhum item para escolher.  Por favor refine sua busca ou %s."
+msgstr "No hi ha continguts per seleccionar. Si us plau reformula la teva cerca %s."
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Ainda não há nenhuma exposição disponível."
+msgstr "Encara no hi ha cap exposició disponible."
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:4
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:4
 msgid "Primary"
-msgstr "Primário"
+msgstr "Primer nivell"
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:11
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:11
 msgid "Secondary"
-msgstr "Secundário"
+msgstr "Segon nivell"
