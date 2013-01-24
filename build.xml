@@ -9,14 +9,13 @@
         <tempfile property="pot.duplicates" suffix="-duplicates.pot" />
         <copy file="${pot.base}" tofile="${pot.temp}"/>
         <apply executable="xgettext" relative="true" parallel="true" verbose="true">
-            <arg value="-L"/>
-            <arg value="php"/>
+            <arg value="--language=php"/>
             <arg value="--from-code=utf-8"/>
-            <arg value="-k__"/>
+            <arg value="--keyword=__"/>
             <arg value="--flag=__:1:pass-php-format"/>
+            <arg value="--add-comments=/"/>
             <arg value="--omit-header"/>
-            <arg value="-j"/>
-            <arg value="-F"/>
+            <arg value="--join-existing"/>
             <arg value="-o"/>
             <arg file="${pot.temp}"/>
             <fileset dir="." includes="**/*.php **/*.phtml" excludes="tests/"/>
@@ -29,7 +28,7 @@
             <arg file="${core.pot}" />
         </exec>
         <exec executable="msgcomm">
-            <arg value="-u" />
+            <arg value="--unique" />
             <arg value="-o" />
             <arg file="${pot.temp}" />
             <arg file="${pot.temp}" />
