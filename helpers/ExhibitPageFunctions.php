@@ -260,7 +260,7 @@ function exhibit_builder_page_trail($exhibitPage = null)
         release_object($parent);
     }
 
-    $html .= metadata($exhibitPage, 'title');
+    $html .= '<span class="current-page">' . metadata($exhibitPage, 'title') . '</span>';
     return $html;
 }
 
@@ -346,8 +346,8 @@ function exhibit_builder_page_summary($exhibitPage = null)
     }
 
     $html = '<li>'
-          . '<h3><a href="' . exhibit_builder_exhibit_uri(get_current_record('exhibit'), $exhibitPage) . '">'
-          . metadata($exhibitPage, 'title') .'</a></h3>';
+          . '<a href="' . exhibit_builder_exhibit_uri(get_current_record('exhibit'), $exhibitPage) . '">'
+          . metadata($exhibitPage, 'title') .'</a>';
 
     $children = $exhibitPage->getChildPages();
     if ($children) {
