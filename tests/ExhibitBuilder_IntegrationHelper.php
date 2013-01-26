@@ -58,7 +58,7 @@ class ExhibitBuilder_IntegrationHelper
     {
         $exhibitPage = new ExhibitPage;
         $exhibitPage->exhibit_id = $exhibit->id;
-        if($parentPage) {
+        if ($parentPage) {
             $exhibitPage->parent_id = $parentPage->id;
         }
         $exhibitPage->title = $title;

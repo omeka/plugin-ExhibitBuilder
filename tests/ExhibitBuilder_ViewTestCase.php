@@ -3,15 +3,14 @@
 require_once EXHIBIT_BUILDER_DIR . '/models/Exhibit.php';
 require_once EXHIBIT_BUILDER_DIR . '/models/ExhibitPage.php';
 
-
 class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
 {
-    protected $view;
+    protected $_view;
 
     public function setUp()
     {
-        $this->view = new Omeka_View;
-        Zend_Registry::set('view', $this->view);
+        $this->_view = new Omeka_View;
+        Zend_Registry::set('view', $this->_view);
 
         $bootstrap = new Omeka_Test_Bootstrap;
         $bootstrap->getContainer()->db = $this->getMock('Omeka_Db', null, array(null));
@@ -38,8 +37,6 @@ class ExhibitBuilder_ViewTestCase extends PHPUnit_Framework_TestCase
         }
         return $exhibits;
     }
-
-
 
     /**
      * Creates an array of exhibit pages.

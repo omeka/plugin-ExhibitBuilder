@@ -2,6 +2,8 @@
 $title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_results);
 echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 ?>
+
+<?php echo flash(); ?>
     
 <?php if (!count($exhibits)): ?> 
     <div id="no-exhibits">

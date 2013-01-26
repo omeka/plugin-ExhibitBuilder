@@ -222,7 +222,7 @@ function exhibit_builder_define_acl($args)
 
     // Allow contributors everything but editAll and deleteAll.
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
-        array('add', 'add-page', 'delete-page', 'edit-page-content',
+        array('add', 'add-page', 'edit-page-content',
             'edit-page-metadata', 'item-container', 'theme-config',
             'editSelf', 'deleteSelf'));
 
@@ -263,7 +263,7 @@ function exhibit_builder_admin_head()
     $controller = $request->getControllerName();
 
     // Check if using Exhibits controller, and add the stylesheet for general display of exhibits
-    if ($module == 'exhibit-builder' && $controller == 'exhibits') {
+    if ($module == 'exhibit-builder' && ($controller == 'exhibits' || $controller == 'exhibit-pages')) {
         queue_css_file('exhibits', 'screen');
         queue_js_file(array('vendor/tiny_mce/tiny_mce', 'exhibits'));
     }
@@ -375,8 +375,11 @@ function exhibit_builder_purify_html($args)
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
     $purifier = $args['purifier'];
-    // Make sure that we only bother with the Exhibits controller in the ExhibitBuilder module.
-    if ($request->getControllerName() != 'exhibits' or $request->getModuleName() != 'exhibit-builder') {
+    
+    // Make sure that we only bother with the Exhibits or Exhibit Pages controllers in the ExhibitBuilder module.
+    $moduleName = $request->getModuleName();
+    $controllerName = $request->getControllerName();
+    if (!($moduleName == 'exhibit-builder' && ($controllerName == 'exhibits' || $controllerName == 'exhibit-pages'))) {
         return;
     }
 

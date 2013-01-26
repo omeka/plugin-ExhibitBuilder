@@ -24,7 +24,7 @@ class Table_Exhibit extends Omeka_Db_Table
     {
         $db = $this->getDb();
 
-        foreach($params as $paramName => $paramValue) {
+        foreach ($params as $paramName => $paramValue) {
             switch($paramName) {
                 case 'tag':
                 case 'tags':
@@ -73,15 +73,12 @@ class Table_Exhibit extends Omeka_Db_Table
     public function exhibitHasItem($exhibit_id, $item_id)
     {
         $db = $this->getDb();
-
         $sql = "SELECT COUNT(i.id) FROM $db->Item i
                 INNER JOIN $db->ExhibitPageEntry ip ON ip.item_id = i.id
                 INNER JOIN $db->ExhibitPage sp ON sp.id = ip.page_id
                 INNER JOIN $db->Exhibit e ON e.id = sp.exhibit_id
                 WHERE e.id = ? AND i.id = ?";
-
         $count = (int) $db->fetchOne($sql, array((int) $exhibit_id, (int) $item_id));
-
         return ($count > 0);
     }
 
@@ -94,7 +91,6 @@ class Table_Exhibit extends Omeka_Db_Table
     {
         $select = $this->getSelect();
         $select->where("exhibits.featured = 1")->order("RAND()")->limit(1);
-
         return $this->fetchObject($select);
     }
 
@@ -113,8 +109,7 @@ class Table_Exhibit extends Omeka_Db_Table
     public function filterByPublic($select, $isPublic)
     {
         $isPublic = (bool) $isPublic; // this makes sure that empty strings and unset parameters are false
-
-        //Force a preview of the public collections
+        // Force a preview of the public collections
         if ($isPublic) {
             $select->where('exhibits.public = 1');
         } else {
@@ -132,8 +127,7 @@ class Table_Exhibit extends Omeka_Db_Table
     public function filterByFeatured($select, $isFeatured)
     {
         $isFeatured = (bool) $isFeatured; // this make sure that empty strings and unset parameters are false
-
-        //filter items based on featured (only value of 'true' will return featured collections)
+        // filter items based on featured (only value of 'true' will return featured collections)
         if ($isFeatured) {
             $select->where('exhibits.featured = 1');
         } else {

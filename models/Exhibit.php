@@ -61,7 +61,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     {
         //get all the pages and delete them
         $pages = $this->getTable('ExhibitPage')->findBy(array('exhibit_id'=>$this->id));
-        foreach($pages as $page) {
+        foreach ($pages as $page) {
             $page->delete();
         }
         $this->deleteTaggings();
@@ -80,11 +80,14 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             //Add the tags after the form has been saved
             $post = $args['post'];
             $this->applyTagString($post['tags']);
+            
+            // Save pages
             if (isset($post['pages-hidden'])) {
                 parse_str($post['pages-hidden'], $pageData);
                 $this->_savePages($pageData['page']);
             }
-
+            
+            // Delete pages
             if (isset($post['pages-delete-hidden'])) {
                 $pagesToDelete = explode(',', $post['pages-delete-hidden']);
                 foreach ($pagesToDelete as $id) {
@@ -146,7 +149,6 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
         if (!$this->exists()) {
             return array();
         }
-
         return $this->getTable('ExhibitPage')->findBy(array('exhibit'=>$this->id, 'topOnly'=>true, 'sort_field'=>'order'));
     }
 
@@ -155,7 +157,6 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
         if (!$this->exists()) {
             return 0;
         }
-
         return $this->getTable('ExhibitPage')->count(array('exhibit'=>$this->id, 'topOnly'=>true));
     }
 
@@ -169,7 +170,6 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     {
 
     }
-
 
     public function getPagesCount($topOnly = true)
     {
@@ -202,7 +202,6 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             $themeOptionsArray = unserialize($this->theme_options);
             $themeOptionsArray[$themeName] = $themeOptions;
         }
-
         $this->theme_options = serialize($themeOptionsArray);
     }
 

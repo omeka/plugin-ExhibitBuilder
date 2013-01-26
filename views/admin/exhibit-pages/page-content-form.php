@@ -10,7 +10,7 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
     <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
     <?php echo html_escape($title); ?>
 </div>
-<form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
+<form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibit-pages', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
     <div class="seven columns alpha">
         <div id="page-metadata-list">
             <h2><?php echo __('Page Layout'); ?></h2>
@@ -40,6 +40,10 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
         <div id="save" class="panel">
             <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
             <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+            <?php if ($exhibit_page->exists()): ?>
+                <a href="<?php echo html_escape(public_url('exhibits/show/'. $exhibit->slug .'/'.$exhibit_page->slug)); ?>" class="big blue button" target="_blank"><?php echo __('View Public Page'); ?></a>
+                <?php echo link_to($exhibit_page, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
+            <?php endif; ?>            
         </div>
     </div>
 </form>

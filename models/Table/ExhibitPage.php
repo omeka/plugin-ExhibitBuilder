@@ -14,29 +14,26 @@ class Table_ExhibitPage extends Omeka_Db_Table
 {
     public function applySearchFilters($select, $params)
     {
-        if(isset($params['parent'])) {
-            if(is_numeric($params['parent'])) {
+        if (isset($params['parent'])) {
+            if (is_numeric($params['parent'])) {
                 $this->filterByParentId($select, $params['parent']);
-            } else if($params['parent'] instanceof ExhibitPage) {
+            } else if ($params['parent'] instanceof ExhibitPage) {
                 $parent = $params['parent'];
                 $this->filterByParentId($select, $parent->id);
             }
         }
-
-        if(isset($params['exhibit'])) {
-            if(is_numeric($params['exhibit'])) {
+        if (isset($params['exhibit'])) {
+            if (is_numeric($params['exhibit'])) {
                 $this->filterByExhibitId($select, $params['exhibit']);
-            } else if($params['exhibit'] instanceof Exhibit) {
+            } else if ($params['exhibit'] instanceof Exhibit) {
                 $exhibit = $params['exhibit'];
                 $this->filterByExhibitId($select, $exhibit->id);
             }
         }
-
-        if(isset($params['order'])) {
+        if (isset($params['order'])) {
             $this->filterByOrder($select, $params['order']);
         }
-
-        if(isset($params['topOnly'])) {
+        if (isset($params['topOnly'])) {
             $this->filterByTopOnly($select);
         }
     }
@@ -54,15 +51,13 @@ class Table_ExhibitPage extends Omeka_Db_Table
     protected function findNearby($page, $position = 'next')
     {
         $select = $this->getSelect();
-        if($page->parent_id) {
+        if ($page->parent_id) {
             $select->where('exhibit_pages.parent_id = ? ', $page->parent_id);
         } else {
             $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
             $select->where('exhibit_pages.parent_id IS NULL');
         }
-
         $select->limit(1);
-
         switch ($position) {
             case 'next':
                 $select->where('exhibit_pages.order > ?', (int) $page->order);
@@ -86,10 +81,7 @@ class Table_ExhibitPage extends Omeka_Db_Table
         $select = $this->getSelect();
         $select->where('exhibit_pages.parent_id = ? ', $page->id);
         $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
-
-
         $select->limit(1);
-
         switch ($position) {
             case 'first':
                 $select->order('exhibit_pages.order ASC');
@@ -103,7 +95,6 @@ class Table_ExhibitPage extends Omeka_Db_Table
                 throw new Exception( 'Invalid position provided to ExhibitPageTable::findEndChild()!' );
                 break;
         }
-
         return $this->fetchObject($select);
     }
 
@@ -118,12 +109,11 @@ class Table_ExhibitPage extends Omeka_Db_Table
     public function findSiblingsAfter($parent_id, $order)
     {
         $select = $this->getSelect();
-        if($parent_id) {
+        if ($parent_id) {
             $select->where('exhibit_pages.parent_id = ? ', $parent_id);
         } else {
             $select->where('exhibit_pages.parent_id IS NULL');
         }
-
         $select->where('exhibit_pages.order > ? ', $order);
         return $this->fetchObjects($select);
     }
@@ -147,5 +137,4 @@ class Table_ExhibitPage extends Omeka_Db_Table
     {
         $select->where('exhibit_pages.order = ? ', $order);
     }
-
 }

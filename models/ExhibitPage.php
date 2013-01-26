@@ -46,11 +46,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         if (empty($this->layout)) {
             $this->addError('layout', __('A layout must be provided for each exhibit page.'));
         }
-
         if (!strlen($this->title)) {
             $this->addError('title', __('Exhibit pages must be given a title.'));
         }
-
     }
 
     /**
@@ -60,9 +58,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     protected function beforeSave($args)
     {
         $table = $this->getTable();
-        if($table->count(array('order'=>$this->order, 'parent'=>$this->parent_id)) != 0) {
+        if ($table->count(array('order'=>$this->order, 'parent'=>$this->parent_id)) != 0) {
             $laterSiblings = $table->findSiblingsAfter($this->parent_id, $this->order - 1 );
-            foreach($laterSiblings as $sibling) {
+            foreach ($laterSiblings as $sibling) {
                 $sibling->order = $sibling->order + 1;
                 $sibling->save();
             }
@@ -81,7 +79,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $this->addSearchText($entry->text);
             $this->addSearchText($entry->caption);
         }
-        
         if ($args['post']) {
             $post = $args['post'];
             
@@ -92,7 +89,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $entries = $this->ExhibitPageEntry;
             for ($i=1; $i <= $highCount; $i++) {
                 $ip = $entries[$i];
-
                 if (!$ip) {
                     $ip = new ExhibitPageEntry;
                     $ip->page_id = $this->id;
@@ -123,17 +119,17 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     public function firstChildOrNext()
     {
-        if($firstChild = $this->getFirstChildPage()) {
+        if ($firstChild = $this->getFirstChildPage()) {
             return $firstChild;
         } else {
             //see if there's a next page on the same level
             $next = $this->next();
-            if($next) {
+            if ($next) {
                 return $next;
             }
             //no next on same level, so bump up one level and go to next page
             $parent = $this->getParent();
-            if($parent) {
+            if ($parent) {
                 $parentNext = $parent->next();
                 return $parentNext;
             }
@@ -143,7 +139,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public function previousOrParent()
     {
         $previous = $this->previous();
-        if($previous) {
+        if ($previous) {
             if($previousLastChildPage = $previous->getLastChildPage()) {
                 return $previousLastChildPage;
             }
@@ -215,8 +211,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
         //bump all child pages up to being children of the parent
         $childPages = $this->getChildPages();
-        foreach($childPages as $child) {
-            if($this->parent_id) {
+        foreach ($childPages as $child) {
+            if ($this->parent_id) {
                 $child->parent_id = $this->parent_id;
             } else {
                 $child->parent_id = NULL;
@@ -234,10 +230,18 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     {
         if ('show' == $action) {
             $urlHelper = new Omeka_View_Helper_Url;
-            $route = array('slug' => $this->getExhibit()->slug, 'page_slug_1' => $this->slug);
+            $route = array('slug' => $this->getExhibit()->slug, 
+                           'page_slug_1' => $this->slug);
             return public_url($route, 'exhibitShow');
+        } elseif ('delete-confirm' == $action) {
+            return array('module' => 'exhibit-builder', 
+                         'controller' => 'exhibit-pages', 
+                         'action' => 'delete-confirm', 
+                         'id' => $this->id);
         }
-        return array('module' => 'exhibit-builder', 'controller' => 'exhibits', 
-                     'action' => $action, 'id' => $this->id);
+        return array('module' => 'exhibit-builder', 
+                     'controller' => 'exhibits', 
+                     'action' => $action, 
+                     'id' => $this->id);
     }
 }
