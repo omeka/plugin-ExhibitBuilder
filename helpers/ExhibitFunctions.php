@@ -17,7 +17,7 @@ function exhibit_builder_edit_page_list($page)
     $pageId = html_escape($page->id);
     $html = '<li class="page" id="page_' . $pageId . '">'
           . '<div class="sortable-item">'
-          . '<a href="../edit-page-content/' . $pageId . '">' . html_escape($page->title) . '</a>'
+          . '<a href="' . html_escape(admin_url('exhibit-pages/edit-page-content/' . $pageId)) . '">' . html_escape($page->title) . '</a>'
           . '<a class="delete-toggle delete-element" href="#">' . __('Delete') . '</a>'
           . '</div>';
 
@@ -29,7 +29,7 @@ function exhibit_builder_edit_page_list($page)
         $html .= '</ul>';
     }
     $html .= '</li>';
-    return $html;
+    return $html;    
 }
 
 /**

@@ -10,7 +10,7 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
     <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
     <?php echo html_escape($title); ?>
 </div>
-<form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
+<form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibit-pages', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
     <div class="seven columns alpha">
         <div id="page-metadata-list">
             <h2><?php echo __('Page Layout'); ?></h2>
