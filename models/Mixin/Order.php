@@ -100,26 +100,19 @@ class Mixin_Order extends Omeka_Record_Mixin_AbstractMixin
         if (!$this->_record->exists()) {
             throw new Omeka_Record_Exception(__('Cannot add a child to a record that does not exist yet!'));
         }
-
         if (!($child instanceof $this->childClass)) {
             throw new Omeka_Record_Exception(__('Child must be an instance of "%s"', $this->childClass));
         }
-
         $fk = $this->childFk;
-
         $child->$fk = $this->_record->id;
-
         $new_order = $this->getChildCount() + 1;
-
         $child->order = $new_order;
-
         return $child;
     }
 
     public function getChildCount()
     {
         $db = $this->getDb();
-
         $target = $this->childClass;
 
         $sql = "

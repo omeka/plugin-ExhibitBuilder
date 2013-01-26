@@ -78,7 +78,7 @@ function exhibit_builder_exhibit_uri($exhibit = null, $exhibitPage = null)
     }
     $exhibitSlug = ($exhibit instanceof Exhibit) ? $exhibit->slug : $exhibit;
 
-    //If there is no page slug available, we want to build a URL for the summary page
+    // If there is no page slug available, we want to build a URL for the summary page
     if (!$exhibitPage) {
         $uri = public_url(array('slug'=>$exhibitSlug), 'exhibitSimple');
     } else {
@@ -134,7 +134,7 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
         $exhibit = get_current_record('exhibit');
     }
 
-    //If the exhibit has a theme associated with it
+    // If the exhibit has a theme associated with it
     if (!empty($exhibit->theme)) {
         return url(array('slug'=>$exhibit->slug, 'item_id'=>$item->id), 'exhibitItem');
     } else {

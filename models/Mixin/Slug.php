@@ -56,15 +56,15 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         }
         $this->_record->slug = exhibit_builder_generate_slug($seedValue);
 
-        if(trim($this->_record->slug) == '') {
+        if (trim($this->_record->slug) == '') {
             $this->_record->addError('slug', $this->options['slugEmptyErrorMessage']);
         }
 
-        if(!$this->slugIsUnique($this->_record->slug)) {
+        if (!$this->slugIsUnique($this->_record->slug)) {
             $this->_record->addError('slug', $this->options['slugUniqueErrorMessage']);
         }
 
-        if(strlen($this->_record->slug) > $this->options['slugMaxLength']) {
+        if (strlen($this->_record->slug) > $this->options['slugMaxLength']) {
             $this->_record->addError('slug', $this->options['slugLengthErrorMessage']);
         }
     }
@@ -79,7 +79,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 
         if ($this->parentIdFieldName) {
             $parentId = $this->getParentId();
-            if($parentId) {
+            if ($parentId) {
                 $select->where($this->parentIdFieldName . ' = ?', $parentId);
             }
 
@@ -87,7 +87,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 
         //If the record is persistent, get the count of pages
         //with that slug that aren't this particular record
-        if($this->_record->exists()) {
+        if ($this->_record->exists()) {
             $select->where('id != ?', $this->_record->id);
         }
 

@@ -279,9 +279,9 @@ function exhibit_builder_link_to_parent_page($text = null, $props = array(), $ex
     }
     $exhibit = get_record_by_id('Exhibit', $exhibitPage->exhibit_id);
 
-    if($exhibitPage->parent_id) {
+    if ($exhibitPage->parent_id) {
         $parentPage = $exhibitPage->getParent();
-        if(!isset($props['class'])) {
+        if (!isset($props['class'])) {
             $props['class'] = 'parent-page';
         }
         if ($text === null) {
@@ -314,7 +314,7 @@ function set_exhibit_pages_for_loop_by_parent_page($exhibitPage = null)
  */
 function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 {
-    if(!$exhibit) {
+    if (!$exhibit) {
         $exhibit = get_current_record('exhibit');
     }
 
@@ -329,7 +329,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
  */
 function exhibit_builder_child_pages($exhibitPage = null)
 {
-    if(!$exhibitPage) {
+    if (!$exhibitPage) {
         $exhibitPage = get_current_record('exhibit_page');
     }
 

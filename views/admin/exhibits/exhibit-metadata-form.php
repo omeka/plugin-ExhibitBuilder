@@ -75,6 +75,7 @@
     <div id="save" class="three columns omega panel">
         <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>
         <?php if ($exhibit->exists()): ?>
+            <a href="<?php echo html_escape(public_url('exhibits/show/'. $exhibit->slug)); ?>" class="big blue button" target="_blank"><?php echo __('View Public Page'); ?></a>
             <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
         <?php endif; ?>
         <div id="public-featured">
