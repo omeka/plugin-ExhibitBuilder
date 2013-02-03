@@ -140,12 +140,121 @@ class Table_ExhibitPage extends Omeka_Db_Table
 
     protected function filterByTopOnly($select)
     {
-        $select->where('exhibit_pages.parent_id IS NULL');
+        $select->where('exhibit_pages.parent_id IS NULL OR exhibit_pages.parent_id = 0');
     }
 
     protected function filterByOrder($select, $order)
     {
         $select->where('exhibit_pages.order = ? ', $order);
+    }
+
+
+    /**
+     *  Returns an array of pages that could be a parent for the current page.
+     *  This is used to populate a dropdown for selecting a new parent for the current page.
+     *  In particluar, a page cannot be a parent of itself, and a page cannot have one of its descendents as a parent.
+     *
+     * @param integer $pageId The id of the page whose potential parent pages are returned.
+     * @return array The potential parent pages.
+     */
+    public function findPotentialParentPages($pageId)
+    {
+        // create a page lookup table for all of the pages
+        $idToPageLookup = $this->_createIdToPageLookup();
+
+        // find all of the page's descendants
+        $descendantPages = $this->findChildrenPages($pageId, true, $idToPageLookup);
+
+        // filter out all of the descendant pages from the lookup table
+        $allPages = array_values($idToPageLookup);
+        foreach($descendantPages as $descendantPage) {
+            unset($idToPageLookup[$descendantPage->id]);
+        }
+
+        // filter out the page itself from the lookup table
+        unset($idToPageLookup[$pageId]);
+
+        // return the values of the filtered page lookup table
+        return array_values($idToPageLookup);
+    }
+
+    /**
+     * Retrieve child pages from list of pages matching page ID.
+     *
+     * Matches against the pages parameter against the page ID. Also matches all
+     * children for the same to retrieve all children of a page.
+     *
+     * @param int $parentId The id of the original parent
+     * @param array $pages The array of all pages
+     * @return array
+     */
+    public function findChildrenPages($parentId, $includeAllDescendants=false, $idToPageLookup = null, $parentToChildrenLookup = null)
+    {
+        if ((string)$parentId == '') {
+            return array();
+        }
+
+        $descendantPages = array();
+
+        if ($includeAllDescendants) {
+            // create the id to page lookup if required
+            if (!$idToPageLookup) {
+                $idToPageLookup = $this->_createIdToPageLookup();
+            }
+
+            // create the parent to children lookup if required
+            if (!$parentToChildrenLookup) {
+                $parentToChildrenLookup = $this->_createParentToChildrenLookup($idToPageLookup);
+            }
+
+            // get all of the descendant pages of the parent page
+            $childrenPages = $parentToChildrenLookup[$parentId];
+            $descendantPages = array_merge($descendantPages, $childrenPages);
+            foreach ( $childrenPages as $childPage ) {
+                if ( $allGrandChildren = $this->findChildrenPages($childPage->id, true, $idToPageLookup, $parentToChildrenLookup) ) {
+                    $descendantPages = array_merge($descendantPages, $allGrandChildren);
+                }
+            }
+        } else {
+            // only include the immediate children
+            $descendantPages = $this->findBy(array('page_parent_id'=>$parentId, 'sort'=>'order'));
+        }
+
+        return $descendantPages;
+    }
+
+    protected function _createParentToChildrenLookup($idToPageLookup)
+    {
+        // create an associative array that maps parent ids to an array of any children's ids
+        $parentToChildrenLookup = array();
+        $allPages = array_values($idToPageLookup);
+
+        // initialize the children array for all potential parents
+        foreach($allPages as $page) {
+            $parentToChildrenLookup[$page->id] = array();
+        }
+
+        // add each child to his parent's array
+        foreach($allPages as $page) {
+            $parentToChildrenLookup[$page->parent_id][] = $page;
+        }
+
+        return $parentToChildrenLookup;
+    }
+
+    protected function _createIdToPageLookup()
+    {
+        // get all of the pages
+        // this should eventually be just the id/parent_id pairs for all pages
+        $allPages = $this->findAll();
+
+        // create the page lookup
+        $idToPageLookup = array();
+        foreach($allPages as $page) {
+            $idToPageLookup[$page->id] = $page;
+        }
+
+        return $idToPageLookup;
     }
 
 }

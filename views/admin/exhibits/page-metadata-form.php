@@ -29,6 +29,14 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             </div>
         </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('parent_id', __('Parent')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <?php echo $this->formSelect('parent_id', 0, null, exhibit_builder_get_parent_options($exhibit_page)) ?>
+            </div>
+        </div>
     </fieldset>
 
     <fieldset id="layouts">

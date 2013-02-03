@@ -379,3 +379,16 @@ function exhibit_builder_generate_slug($text)
     // Trim down to 30 characters.
     return substr($slug, 0, 30);
 }
+
+function exhibit_builder_get_parent_options($page)
+{
+    $valuePairs = array(NULL => __('Main Page (No Parent)'));
+    $potentialParentPages = get_db()->getTable('ExhibitPage')->findPotentialParentPages($page->id);
+    foreach($potentialParentPages as $potentialParentPage) {
+        if (trim($potentialParentPage->title) != '') {
+            $valuePairs[$potentialParentPage->id] = $potentialParentPage->title;
+        }
+    }
+    return $valuePairs;
+}
+
