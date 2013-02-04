@@ -59,6 +59,7 @@ function exhibit_builder_install()
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`),
       KEY `exhibit_id_order` (`exhibit_id`, `order`)
+      UNIQUE KEY `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 }
 
@@ -181,6 +182,11 @@ function exhibit_builder_upgrade($args)
         $db->query($sql);
         
         delete_option('exhibit_builder_use_browse_exhibits_for_homepage');
+    }
+
+    if (version_compare($oldVersion, '2.0', '<=')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD UNIQUE INDEX `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)";
+        $db->query($sql);
     }
 }
 
