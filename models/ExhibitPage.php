@@ -233,9 +233,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public function getRecordUrl($action = 'show')
     {
         if ('show' == $action) {
-            $urlHelper = new Omeka_View_Helper_Url;
-            $route = array('slug' => $this->getExhibit()->slug, 'page_slug_1' => $this->slug);
-            return public_url($route, 'exhibitShow');
+            return exhibit_builder_exhibit_uri($this->getExhibit(), $this);
         }
         return array('module' => 'exhibit-builder', 'controller' => 'exhibits', 
                      'action' => $action, 'id' => $this->id);
