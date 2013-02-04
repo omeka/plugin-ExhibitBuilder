@@ -52,22 +52,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
 
     }
-
-    /**
-     * Check if we're trying to save a page on top of a page with the same order and parent.
-     * If so, bump later siblings up in order
-     */
-    protected function beforeSave($args)
-    {
-        $table = $this->getTable();
-        if($table->count(array('order'=>$this->order, 'parent'=>$this->parent_id)) != 0) {
-            $laterSiblings = $table->findSiblingsAfter($this->parent_id, $this->order - 1 );
-            foreach($laterSiblings as $sibling) {
-                $sibling->order = $sibling->order + 1;
-                $sibling->save();
-            }
-        }
-    }
     
     protected function afterSave($args)
     {

@@ -54,10 +54,12 @@ class Table_ExhibitPage extends Omeka_Db_Table
     protected function findNearby($page, $position = 'next')
     {
         $select = $this->getSelect();
+
+        $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
+
         if($page->parent_id) {
             $select->where('exhibit_pages.parent_id = ? ', $page->parent_id);
         } else {
-            $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
             $select->where('exhibit_pages.parent_id IS NULL');
         }
 
@@ -87,7 +89,6 @@ class Table_ExhibitPage extends Omeka_Db_Table
         $select->where('exhibit_pages.parent_id = ? ', $page->id);
         $select->where('exhibit_pages.exhibit_id = ? ', $page->exhibit_id);
 
-
         $select->limit(1);
 
         switch ($position) {
@@ -107,13 +108,18 @@ class Table_ExhibitPage extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
-    public function findBySlug($slug, $parent = null)
+    public function findBySlug($slug, $exhibit, $parent = null)
     {
+        if ($exhibit instanceof Exhibit) {
+            $exhibit = $exhibit->id;
+        }
+        
         if ($parent instanceof ExhibitPage) {
             $parent = $parent->id;
         }
         
-        $select = $this->getSelectForFindBy();
+        $select = $this->getSelect();
+        $select->where('exhibit_pages.exhibit_id = ?', $exhibit);
         $select->where('exhibit_pages.slug = ?', $slug);
         if ($parent) {
             $select->where('exhibit_pages.parent_id = ?', $parent);
@@ -122,19 +128,6 @@ class Table_ExhibitPage extends Omeka_Db_Table
         }
         $select->limit(1);
         return $this->fetchObject($select);
-    }
-
-    public function findSiblingsAfter($parent_id, $order)
-    {
-        $select = $this->getSelect();
-        if($parent_id) {
-            $select->where('exhibit_pages.parent_id = ? ', $parent_id);
-        } else {
-            $select->where('exhibit_pages.parent_id IS NULL');
-        }
-
-        $select->where('exhibit_pages.order > ? ', $order);
-        return $this->fetchObjects($select);
     }
 
     protected function filterByParentId($select, $parentId)
@@ -156,5 +149,4 @@ class Table_ExhibitPage extends Omeka_Db_Table
     {
         $select->where('exhibit_pages.order = ? ', $order);
     }
-
 }

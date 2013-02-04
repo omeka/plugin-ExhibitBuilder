@@ -113,7 +113,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $parentPage = null;
         foreach($params as $slug) {
             if(!empty($slug)) {
-                $exhibitPage = $pageTable->findBySlug($slug, $parentPage);
+                $exhibitPage = $pageTable->findBySlug($slug, $exhibit, $parentPage);
                 if($exhibitPage) {
                     $parentPage = $exhibitPage;
                 } else {

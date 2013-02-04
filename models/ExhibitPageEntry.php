@@ -70,8 +70,8 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
         }
     }
     
-	protected function getPage()
-	{
-		return $this->getTable('ExhibitPage')->find($this->page_id);
-	}   
+    protected function getPage()
+    {
+        return $this->getTable('ExhibitPage')->find($this->page_id);
+    }   
 }
