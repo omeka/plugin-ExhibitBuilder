@@ -135,12 +135,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         if (!$exhibit) {
             throw new Omeka_Controller_Exception_404;
         }
-        
-        // Redirect to the public theme if accessing the exhibit via admin theme.
-        if (is_admin_theme()) {
-            $url = WEB_ROOT . "/exhibits/show/{$exhibit->slug}";
-            $this->_helper->redirector->goToUrl($url);
-        }
 
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit));
         $this->renderExhibit(compact('exhibit'), 'summary');
