@@ -122,7 +122,11 @@ function exhibit_builder_upgrade($args)
         $db->query($sql);
 
         // Get all pre-existing slugs
-        $slugs = $db->fetchCol("SELECT `slug` FROM `{$db->prefix}exhibit_pages`");
+        $slugs = array();
+        $slugData = $db->fetchAll("SELECT `slug`, `section_id` FROM `{$db->prefix}exhibit_pages`");
+        foreach ($slugData as $slugDatum) {
+            $slugs[$slugDatum['section_id']][] = $slugDatum['slug'];
+        }
         
         // Get all the data about sections to turn them into ExhibitPages
         $sql = "SELECT * FROM `{$db->prefix}sections` ";
@@ -133,10 +137,10 @@ function exhibit_builder_upgrade($args)
         foreach($sectionData as $section) {
             // Tack a number on the end if the slug conflicts with an existing one
             $disambigNum = 1;
-            while (in_array($section['slug'], $slugs)) {
-                $section['slug'] .= ' ' . $disambigNum++;
+            $slug = $section['slug'];
+            while (in_array($slug, $slugs[$section['id']])) {
+                $slug = $section['slug'] . '-' . $disambigNum++;
             }
-            $slugs[] = $section['slug'];
 
             // Create a page for each section
             $newPageData = array(
@@ -145,7 +149,7 @@ function exhibit_builder_upgrade($args)
                 'exhibit_id' => $section['exhibit_id'],
                 'section_id' => 0,
                 'layout' => 'text',
-                'slug' => $section['slug'],
+                'slug' => $slug,
                 'order' => $section['order']
             );
             $db->getAdapter()->insert($db->ExhibitPage, $newPageData);
