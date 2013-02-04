@@ -115,7 +115,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
         }
     }
 
-    $exhibit = get_db()->getTable('Exhibit')->find($exhibitPage->exhibit_id);
+    $exhibit = $exhibitPage->getExhibit();
     $html = '<ul class="exhibit-page-nav navigation">' . "\n";
     $pagesTrail = $exhibitPage->getAncestors();
     $pagesTrail[] = $exhibitPage;
@@ -150,10 +150,15 @@ function exhibit_builder_page_nav($exhibitPage = null)
 
 function exhibit_builder_child_page_nav($exhibitPage = null)
 {
+    if (!$exhibitPage) {
+        $exhibitPage = get_current_record('exhibit_page');
+    }
+
+    $exhibit = $exhibitPage->getExhibit();
     $children = exhibit_builder_child_pages($exhibitPage);
     $html = '<ul class="exhibit-child-nav navigation">' . "\n";
     foreach ($children as $child) {
-        $html .= '<li><a href="' . html_escape($child->slug) . '">' . html_escape($child->title) . '</a></li>';
+        $html .= '<li><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $child)) . '">' . html_escape($child->title) . '</a></li>';
     }
     $html .= '</ul>' . "\n";
     return $html;

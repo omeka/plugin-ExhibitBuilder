@@ -107,10 +107,19 @@ class Table_ExhibitPage extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
-    public function findBySlug($slug)
+    public function findBySlug($slug, $parent = null)
     {
+        if ($parent instanceof ExhibitPage) {
+            $parent = $parent->id;
+        }
+        
         $select = $this->getSelectForFindBy();
-        $select->where("exhibit_pages.slug = ?", $slug);
+        $select->where('exhibit_pages.slug = ?', $slug);
+        if ($parent) {
+            $select->where('exhibit_pages.parent_id = ?', $parent);
+        } else {
+            $select->where('exhibit_pages.parent_id IS NULL');
+        }
         $select->limit(1);
         return $this->fetchObject($select);
     }

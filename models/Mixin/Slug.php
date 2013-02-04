@@ -81,8 +81,9 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
             $parentId = $this->getParentId();
             if($parentId) {
                 $select->where($this->parentIdFieldName . ' = ?', $parentId);
+            } else {
+                $select->where($this->parentIdFieldName . ' IS NULL');
             }
-
         }
 
         //If the record is persistent, get the count of pages

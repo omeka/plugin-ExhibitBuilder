@@ -107,35 +107,25 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         //then render the last one
         //pass all the pages into the view so the breadcrumb can be built there
         unset($params['slug']); // don't need the exhibit slug
-        $parentPages = array();
+
         $pageTable = $this->_helper->db->getTable('ExhibitPage');
-        
-        foreach($params as $level=>$slug) {
+
+        $parentPage = null;
+        foreach($params as $slug) {
             if(!empty($slug)) {
-                $page = $pageTable->findBySlug($slug);
-                if($page) {
-                    $parentPages[] = $page;
+                $exhibitPage = $pageTable->findBySlug($slug, $parentPage);
+                if($exhibitPage) {
+                    $parentPage = $exhibitPage;
                 } else {
                     throw new Omeka_Controller_Exception_404;
                 }
-            }
-        }
-        $exhibitPage = array_pop($parentPages);
-
-        //make sure each page really does have the next child page
-        for($i=0 ; $i < count($parentPages) - 2; $i++) {
-            $currPage = $parentPages[$i];
-            $nextPage = $parentPages[$i + 1];
-            if($nextPage->parent_id != $currPage->id) {
-                throw new Omeka_Controller_Exception_404;
             }
         }
 
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit, 'exhibitPage' => $exhibitPage));
 
         $this->renderExhibit(array(
-            'exhibit' => $exhibit, 
-            'parentPages' => $parentPages, 
+            'exhibit' => $exhibit,
             'exhibit_page' => $exhibitPage));
     }
 
