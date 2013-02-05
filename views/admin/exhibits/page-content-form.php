@@ -1,5 +1,5 @@
 <?php
-$title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('no_escape', true)));
+$title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('no_escape' => true)));
 ?>
 <?php echo head(array('title'=> html_escape($title), 'bodyclass'=>'exhibits')); ?>
 
