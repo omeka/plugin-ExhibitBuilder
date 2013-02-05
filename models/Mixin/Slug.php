@@ -15,32 +15,41 @@
  */
 class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 {
+    private $_parentFields;
+
     function __construct($record, $options = array())
     {
         parent::__construct($record);
 
         $defaultOptions = array(
-            'parentIdFieldName'=>null,
-            'slugMaxLength'=>30,
-            'slugSeedFieldName'=>'title');
+            'parentFields' => array(),
+            'slugMaxLength' => 30,
+            'slugSeedFieldName' => 'title');
 
         $errorMsgs = array(
-            'slugEmptyErrorMessage'=>'Slug must be provided.',
-            'slugLengthErrorMessage'=>'Slug must not be more than ' . $defaultOptions['slugMaxLength'] . ' characters.',
-            'slugUniqueErrorMessage'=>'Slug must be unique.');
+            'slugEmptyErrorMessage' => 'Slug must be provided.',
+            'slugLengthErrorMessage' => 'Slug must not be more than ' . $defaultOptions['slugMaxLength'] . ' characters.',
+            'slugUniqueErrorMessage' => 'Slug must be unique.');
 
         // Options passed in will override the defaults.
         $this->options = array_merge($defaultOptions, $errorMsgs, $options);
 
-        $this->parentIdFieldName = $this->options['parentIdFieldName'];
+        $this->_parentFields = $this->options['parentFields'];
 
         $this->_record = $record;
     }
 
-    private function getParentId()
+    private function _filterByParents($select)
     {
-        if ($this->parentIdFieldName) {
-            return $this->_record->{$this->parentIdFieldName};
+        if ($this->_parentFields) {
+            foreach ($this->_parentFields as $field) {
+                $parentId = $this->_record->{$field};
+                if($parentId) {
+                    $select->where($field . ' = ?', $parentId);
+                } else {
+                    $select->where($field . ' IS NULL');
+                }
+            }
         }
     }
 
@@ -77,14 +86,7 @@ class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
         $select->reset(Zend_Db_Select::COLUMNS)->from(array(), 'COUNT(DISTINCT(id))');
         $select->where('slug = ?', $slug);
 
-        if ($this->parentIdFieldName) {
-            $parentId = $this->getParentId();
-            if($parentId) {
-                $select->where($this->parentIdFieldName . ' = ?', $parentId);
-            } else {
-                $select->where($this->parentIdFieldName . ' IS NULL');
-            }
-        }
+        $this->_filterByParents($select);
 
         //If the record is persistent, get the count of pages
         //with that slug that aren't this particular record

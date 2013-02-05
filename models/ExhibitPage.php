@@ -26,7 +26,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     {
         $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
         $this->_mixins[] = new Mixin_Slug($this, array(
-            'parentIdFieldName' => 'parent_id',
+            'parentFields' => array('exhibit_id', 'parent_id'),
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('This page slug has already been used.  Please modify the slug so that it is unique.')));
