@@ -109,17 +109,26 @@ function exhibit_builder_upgrade($args)
     }
 
     if(version_compare($oldVersion, '2.0-dev', '<')) {
-        $sql = "RENAME TABLE `{$db->prefix}items_section_pages` TO `{$db->prefix}exhibit_page_entries`";
-        $db->query($sql);
+        // Automatically skip these steps if the final one is already done
+        // (would happen on retry of an earlier failed upgrade)
+        $renamesDone = (bool) $db->fetchOne("SHOW TABLES LIKE '{$db->prefix}exhibit_pages'");
+        if (!$renamesDone) {
+            $sql = "RENAME TABLE `{$db->prefix}items_section_pages` TO `{$db->prefix}exhibit_page_entries`";
+            $db->query($sql);
 
-        //alter the section_pages table into revised exhibit_pages table
-        $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NULL AFTER `id`";
-        $db->query($sql);
+            //alter the section_pages table into revised exhibit_pages table
+            $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `parent_id` INT UNSIGNED NULL AFTER `id`";
+            $db->query($sql);
 
-        $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id`";
-        $db->query($sql);
+            $sql = "ALTER TABLE `{$db->prefix}section_pages` ADD COLUMN `exhibit_id` INT UNSIGNED NOT NULL AFTER `parent_id`";
+            $db->query($sql);
 
-        $sql = "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages`";
+            $sql = "RENAME TABLE `{$db->prefix}section_pages` TO `{$db->prefix}exhibit_pages`";
+            $db->query($sql);
+        }
+
+        // Remove any broken pages or artifacts from a failed upgrade
+        $sql = "DELETE FROM `{$db->prefix}exhibit_pages` WHERE section_id = 0";
         $db->query($sql);
         
         // Get all the data about sections to turn them into ExhibitPages
