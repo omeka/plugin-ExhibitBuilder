@@ -46,6 +46,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </div>
     <div id="save" class="three columns omega panel">
         <?php echo $this->formSubmit('save_page_metadata', __('Save Changes'), array('class'=>'submit big green button')); ?>
+        <?php if ($exhibit_page->exists()): ?>
+            <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank'), $exhibit_page); ?>
+        <?php endif; ?>
         <div id="chosen_layout">
         <h4><?php echo __('Layout'); ?></h4>
         <?php

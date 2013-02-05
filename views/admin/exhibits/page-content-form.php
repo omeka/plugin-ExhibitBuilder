@@ -40,6 +40,9 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
         <div id="save" class="panel">
             <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
             <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+            <?php if ($exhibit_page->exists()): ?>
+                <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank'), $exhibit_page); ?>
+            <?php endif; ?>
         </div>
     </div>
 </form>
