@@ -268,7 +268,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
             $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
-            return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-content', 'id' => $exhibitPage->id), 'exhibitStandard');
+            return;
         }
 
         $this->render('page-metadata-form');
@@ -293,10 +294,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
         if ($success and array_key_exists('page_metadata_form', $_POST)) {
-           return $this->_helper->redirector('edit-page-metadata', null, null, array('id'=>$exhibitPage->id));
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-metadata', 'id' => $exhibitPage->id), 'exhibitStandard');
+            return;
         } else if (array_key_exists('page_form',$_POST)) {
             //Forward to the addPage action (id is the exhibit)
-            return $this->_helper->redirector('add-page', null, null, array('id' => $exhibitPage->exhibit_id, 'previous' => $exhibitPage->id));
+            $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibitPage->exhibit_id, 'previous' => $exhibitPage->id), 'exhibitStandard');
+            return;
         }
 
         $this->view->layoutName = $layoutName;
@@ -318,7 +321,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
         if ($success) {
-            return $this->_helper->redirector('edit-page-content', null, null, array('id'=>$exhibitPage->id));
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-content', 'id' => $exhibitPage->id), 'exhibitStandard');
+            return;
         }
 
         $this->render('page-metadata-form');
