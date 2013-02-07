@@ -58,7 +58,7 @@ function exhibit_builder_install()
       `layout` varchar(255) collate utf8_unicode_ci default NULL,
       `order` tinyint(3) unsigned NOT NULL,
       PRIMARY KEY  (`id`),
-      KEY `exhibit_id_order` (`exhibit_id`, `order`)
+      KEY `exhibit_id_order` (`exhibit_id`, `order`),
       UNIQUE KEY `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 }
