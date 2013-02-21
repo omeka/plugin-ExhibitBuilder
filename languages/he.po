@@ -4,13 +4,14 @@
 # 
 # Translators:
 #   <moshegrey@gmail.com>, 2012.
+# moshe nahmias <moshegrey@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-01-24 18:47+0000\n"
+"Last-Translator: moshe742 <moshegrey@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/omeka/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgstr "עליך להגדיר ערכת נושא מסויימת כדי שתהיה
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "תערוכות"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -142,11 +143,11 @@ msgstr "חיפוש על פי תצוגות"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "תערוכה"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr ""
+msgstr "עמוד תערוכה"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
@@ -163,7 +164,7 @@ msgstr "הכותרת"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "בחרו קובץ"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -206,7 +207,7 @@ msgstr "שם הקישור חייב להתקבל עבור כל עמוד בתצו�
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "קישור עמוד זה כבר נמצא בשימוש.   אנא ערכו את הקישור כדי שיהיה יחודי."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
@@ -218,12 +219,12 @@ msgstr "עמודי תצוגה חייבים לקבל כותרת."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr ""
+msgstr "לא יכול להוסיף ילד לרשומה שלא קיימת עדיין!"
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr ""
+msgstr "תהליך ילד חייב להיות משוייך אל \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -235,7 +236,7 @@ msgstr "אין עדיין תצוגות"
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "הוספת תערוכה"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -250,7 +251,7 @@ msgstr "ערכת הנושא הציבורית הנוכחית"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "עריכת תערוכה \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -264,7 +265,7 @@ msgstr "שם הקישור"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "אין להקליד רווחים או תווים מיוחדים"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -273,17 +274,17 @@ msgstr "קרדיטים"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "עמודים"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "אין עמודים."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr ""
+msgstr "כדי לסדר מחדש עמודים, לחצו וגררו את העמוד מעלה או מטה אל המיקום הרצוי."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
@@ -322,7 +323,7 @@ msgstr "קישור הפריט המסומן"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "עריכת עמוד \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -334,7 +335,7 @@ msgstr "מערכים"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "פריסה"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
@@ -351,7 +352,7 @@ msgstr "אין תגיות להצגה. עליך קודם כל להוסיף תגי
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "הגדרת ערכת הנושא &#8220;%s&#8221;"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"

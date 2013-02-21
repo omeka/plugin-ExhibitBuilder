@@ -5,13 +5,14 @@
 # Translators:
 # John Flatness <john@zerocrates.org>, 2012.
 # Peter Baan <exnihilo@xs4all.nl>, 2012.
+# Sam Alloing <>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-02-13 09:34+0000\n"
+"Last-Translator: Sam Alloing <sam.alloing@gmail.com>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/projects/p/omeka/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +124,7 @@ msgstr "U dient een specifiek thema te selecteren, om het te kunnen configureren
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "tentoonstellingen"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -143,7 +144,7 @@ msgstr "Zoeken op tentoonstelling"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Tentoonstelling"
 
 #: functions.php:479
 msgid "Exhibit Page"
@@ -164,7 +165,7 @@ msgstr "Bijschrift"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Selecteer een bestand"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -236,7 +237,7 @@ msgstr "Er zijn nog geen tentoonstellingen."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Voeg een tentoonstelling toe"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -274,7 +275,7 @@ msgstr "Credits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Pagina's"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
@@ -323,7 +324,7 @@ msgstr "Geselecteerde item bijvoegen"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Bewerk pagina \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"

@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Nicolaie Constantinescu <kosson@gmail.com>, 2012.
+# Nicolaie Constantinescu <kosson@gmail.com>, 2012-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-01-25 08:54+0000\n"
+"Last-Translator: Nicolaie Constantinescu <kosson@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/omeka/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +122,7 @@ msgstr "Trebuie să selectezi o temă pentru a proceda la configurarea ei."
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "expoziții"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -142,11 +142,11 @@ msgstr "Caută după expoziție"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Expoziție"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Pagină de expoziție"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
@@ -163,7 +163,7 @@ msgstr "Legendă"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Selectează un fișier"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -206,7 +206,7 @@ msgstr "Pentru fiecare pagină a expoziției trebuie să fie emisă o terminați
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "Această prescurtare pentru pagină a fost utilizată deja. Modifică prescurtarea pentru a fi unică."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
@@ -218,12 +218,12 @@ msgstr "Trebuie să dai un titlu expoziției."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr ""
+msgstr "Nu pot adăuga un descendent la o resursă care nu există!"
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr ""
+msgstr "Descendentul trebuie să fie o instanță a lui \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -235,7 +235,7 @@ msgstr "Încă nu există nicio expoziție."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Adaugă o expoziție"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -250,7 +250,7 @@ msgstr "Tema publică curentă"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Editează expoziția \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -264,7 +264,7 @@ msgstr "Terminație"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "Nu sunt permise caractere speciale sau spații"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -273,17 +273,17 @@ msgstr "Mulțumiri"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Pagini"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "Nu există pagini"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr ""
+msgstr "Pentru a reordona paginile, clic și trage pagina mai sus sau mai jos până la poziția dorită."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
@@ -322,7 +322,7 @@ msgstr "Atașează înregistrarea selectată"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Editează pagina \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -334,7 +334,7 @@ msgstr "Machete"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "Paginare"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
@@ -351,7 +351,7 @@ msgstr "Nu există etichete afișate. Mai întâi trebuie să adaugi câteva la 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "Configurează &#8220;%s&#8221; Temă"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"

@@ -4,13 +4,14 @@
 # 
 # Translators:
 #   <martin.sauter@gmx.ch>, 2012.
+# Martin Sauter <martin.sauter@gmx.ch>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-02-16 15:35+0000\n"
+"Last-Translator: msauter <martin.sauter@gmx.ch>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/omeka/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgstr "Sie müssen explizit ein Theme auswählen um es konfigurieren zu können
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "Ausstellungen"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -142,11 +143,11 @@ msgstr "Suche nach Ausstellungen"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Ausstellung"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Ausstellungsseite"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
@@ -163,7 +164,7 @@ msgstr "Legende"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Datei auswählen"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -206,7 +207,7 @@ msgstr "Jede Seite einer Ausstellung benötigt einen Slug."
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "Dieser Slug wird bereits für eine andere Seite verwendet. Bitte ändern Sie den Slug, damit er eindeutig ist."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
@@ -218,12 +219,12 @@ msgstr "Ausstellungsseiten benötigen einen Titel."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr ""
+msgstr "Es kann kein abhängiger Datensatz hinzugefügt werden, wenn der Datensatz noch nicht existiert."
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr ""
+msgstr "Der abhängige Datensatz muss eine Instanz von \"%s\" sein."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -235,7 +236,7 @@ msgstr "Es sind keine Ausstellungen vorhanden."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Ausstellung hinzufügen"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -250,7 +251,7 @@ msgstr "Aktuelles öffentliches Theme"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Ausstellung \"%s\" bearbeiten"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -264,7 +265,7 @@ msgstr "Slug"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "Es sind keine Leerzeichen oder Sonderzeichen erlaubt"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -273,17 +274,17 @@ msgstr "Credits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Seiten"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "Es existieren keine Seiten."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr ""
+msgstr "Um die Seitenreihenfolge zu ändern klicken Sie auf eine Seite und ziehen sie auf- bzw. abwärts auf die gewünschte Position."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
@@ -322,7 +323,7 @@ msgstr "Ausgewähltes Objekt hinzufügen"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Seite \"%s\" bearbeiten"
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -334,7 +335,7 @@ msgstr "Layouts"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
@@ -351,7 +352,7 @@ msgstr "Es können keine Schlagwörter angezeigt werden. Bitte weisen Sie zuerst
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "Das Theme &#8220;%s&#8221; konfigurieren"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"

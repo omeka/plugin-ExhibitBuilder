@@ -5,12 +5,14 @@
 # Translators:
 # Daniel Montes <danimontesgarcia@gmail.com>, 2012.
 # Dani Garcia <danimontesgarcia@gmail.com>, 2012.
+# John Flatness <john@zerocrates.org>, 2013.
+# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
+"PO-Revision-Date: 2013-02-21 02:54+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/omeka/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +125,7 @@ msgstr "Debe elegir un tema para poder configurarlo."
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "exposiciones"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -143,11 +145,11 @@ msgstr "Buscar por exposición"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Exposición"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Página de la exposición"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
@@ -164,7 +166,7 @@ msgstr "Leyenda"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Selecciona un archivo"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -236,7 +238,7 @@ msgstr "No hay exposiciones todavía."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Añade una exposición"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -251,7 +253,7 @@ msgstr "Tema público usado actualmente"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Editar la exposición \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -265,7 +267,7 @@ msgstr "Slug"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "No están permitidos los espacios ni los caracteres especiales"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -274,11 +276,11 @@ msgstr "Créditos"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Páginas"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "No hay páginas"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
@@ -323,7 +325,7 @@ msgstr "Adjuntar el elemento seleccionado"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Editar página \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -335,7 +337,7 @@ msgstr "Diseños"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "Maquetación"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
