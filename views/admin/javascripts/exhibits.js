@@ -269,7 +269,8 @@ Omeka.ExhibitBuilder.enableSorting = function () {
         forceHelperSize: true,
         toleranceElement: '> div',
         placeholder: 'ui-sortable-highlight',
-        containment: 'document'
+        containment: 'document',
+        maxLevels: 3
     });
 };
 
