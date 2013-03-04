@@ -1,0 +1,381 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2013 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# 
+# Translators:
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka\n"
+"Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
+"POT-Creation-Date: 2013-01-23 21:49-0500\n"
+"PO-Revision-Date: 2013-02-27 18:22+0000\n"
+"Last-Translator: zhangh <zhangh@unlv.nevada.edu>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/omeka/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Gallery Full Left"
+msgstr "画廊全景在左"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
+" image and text block."
+msgstr "显示一个有8张缩略图的画廊，画廊左边较宽的一列可以放一张全尺寸图片和文本块。"
+
+msgid "Gallery Full Right"
+msgstr "画廊全景在右"
+
+msgid ""
+"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
+"size image and text block."
+msgstr "显示一个有8张缩略图的画廊，画廊右边较宽的一列可以放一张全尺寸图片和文本块。"
+
+msgid "Gallery Thumbnails Text Bottom"
+msgstr "画廊缩略图文本在下"
+
+msgid "Displays a block of text below a gallery of up to 12 items."
+msgstr "在最多有12个条目的画廊下面显示一块文本。"
+
+msgid "Gallery Thumbnails Text Top"
+msgstr "画廊缩略图文本在上"
+
+msgid "Displays a block of text above a gallery of up to 12 items."
+msgstr "在最多有12个条目的画廊上面显示一块文本。"
+
+msgid "Gallery Thumbnails"
+msgstr "画廊缩略图"
+
+msgid "Displays a gallery of up to 16 items."
+msgstr "显示做多有16个条目的画廊。"
+
+msgid "Image List Left Thumbs"
+msgstr "图片列表缩略图在左"
+
+msgid ""
+"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
+"right."
+msgstr "在左面显示最多8张缩略图，在右面显示最多8个文本块。"
+
+msgid "Image List Left"
+msgstr "图片列表大图在左"
+
+msgid ""
+"Displays up to 8 full-size images on the left with up to 8 text blocks on "
+"the right."
+msgstr "在左面显示最多8张全尺寸图，在右面显示最多8个文本块。"
+
+msgid "Image List Right Thumbs"
+msgstr "图片列表缩略图在右"
+
+msgid ""
+"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
+"left."
+msgstr "在右面显示最多8张全尺寸图，在左面显示最多8个文本块。"
+
+msgid "Image List Right"
+msgstr "图片列表大图在左"
+
+msgid ""
+"Displays up to 8 full-size images on the right with up to 8 text blocks on "
+"the left."
+msgstr "在右面显示最多8张全尺寸图，在左面显示最多8个文本块。"
+
+msgid "Text Image Left"
+msgstr "文本大图在左"
+
+msgid "Displays a full page of text, with a full-size image floated left."
+msgstr "显示一整页文本，同时一张全尺寸图片浮动到左边。"
+
+msgid "Text Image Right"
+msgstr "文本大图在右"
+
+msgid "Displays a full page of text, with a full-size image floated right."
+msgstr "显示一整页文本，同时一张全尺寸图片浮动到右边。"
+
+msgid "Text"
+msgstr "文本"
+
+msgid "Displays a full page of text without items."
+msgstr "显示没有条目的一整页文本。"
+
+#: config_form.php:3
+msgid "Sorting Exhibits"
+msgstr "排序展览"
+
+#: config_form.php:7
+msgid ""
+"The default method by which you wish to sort the listing of exhibits on the "
+"exhibits/browse page. Default is 'Date Added'."
+msgstr "您想用来分类在展览/浏览页面上的展览列表的默认方法。默认为“添加日期”。"
+
+#: controllers/ExhibitsController.php:75
+msgid "This item is not used within this exhibit."
+msgstr "该条目未在此展览中使用。"
+
+#: controllers/ExhibitsController.php:201
+msgid "You must specifically select a theme in order to configure it."
+msgstr "您必须明确选定一个主题来设置它。"
+
+#: functions.php:282
+msgid "exhibits"
+msgstr "展览"
+
+#: functions.php:296 views/admin/exhibits/browse.php:2
+#: views/public/exhibits/browse.php:2
+msgid "Browse Exhibits"
+msgstr "浏览展览"
+
+#: functions.php:312 views/admin/exhibits/add.php:6
+#: views/admin/exhibits/edit.php:8
+#: views/admin/exhibits/page-content-form.php:9
+#: views/admin/exhibits/page-metadata-form.php:8
+msgid "Exhibits"
+msgstr "展览"
+
+#: functions.php:469
+msgid "Search by Exhibit"
+msgstr "按展览搜索"
+
+#: functions.php:478
+msgid "Exhibit"
+msgstr "展览"
+
+#: functions.php:479
+msgid "Exhibit Page"
+msgstr "展览页"
+
+#: helpers/ExhibitFunctions.php:242
+msgid "There is no item attached."
+msgstr "没有条目被附加了。"
+
+#: helpers/ExhibitFunctions.php:244
+#: views/admin/exhibits/page-content-form.php:95
+msgid "Attach an Item"
+msgstr "附加一个条目"
+
+#: helpers/ExhibitFunctions.php:267
+msgid "Caption"
+msgstr "图片说明"
+
+#: helpers/ExhibitFunctions.php:290
+msgid "Select a File"
+msgstr "选择文件"
+
+#: helpers/ExhibitFunctions.php:463
+msgid "Featured Exhibit"
+msgstr "专题展览"
+
+#: helpers/ExhibitFunctions.php:468
+msgid "You have no featured exhibits."
+msgstr "您没有专题展览。"
+
+#: models/Exhibit.php:37
+msgid "Exhibits must be given a valid slug."
+msgstr "展览必须给定一个有效缩略名。"
+
+#: models/Exhibit.php:38 models/ExhibitPage.php:31
+msgid "A slug must be 30 characters or less."
+msgstr "一个缩略名必须只能有30个字符或更少。"
+
+#: models/Exhibit.php:39
+msgid ""
+"Your URL slug is already in use by another exhibit.  Please choose another."
+msgstr "您的URL的缩略名已被另一个展览使用。请选择另一个。"
+
+#: models/Exhibit.php:48
+msgid "An exhibit must be given a title."
+msgstr "一个展览必须给定一个标题。"
+
+#: models/Exhibit.php:52
+msgid "The title for an exhibit must be 255 characters or less."
+msgstr "展览标题必须只能有255个字符或更少。"
+
+#: models/Exhibit.php:56
+msgid "The name of your theme must be 30 characters or less."
+msgstr "您的主题名称必须只能有30个字符或更少。"
+
+#: models/ExhibitPage.php:30
+msgid "A slug must be given for each page of an exhibit."
+msgstr "每个展览的每个页面都必须给定一个缩略名。"
+
+#: models/ExhibitPage.php:32
+msgid ""
+"This page slug has already been used.  Please modify the slug so that it is "
+"unique."
+msgstr "该页的缩略名已被使用。请修改缩略名使其具有唯一性。"
+
+#: models/ExhibitPage.php:47
+msgid "A layout must be provided for each exhibit page."
+msgstr "每个展览页面都必须给定一个布局。"
+
+#: models/ExhibitPage.php:51
+msgid "Exhibit pages must be given a title."
+msgstr "展览页面必须给定标题"
+
+#: models/Mixin/Order.php:101
+msgid "Cannot add a child to a record that does not exist yet!"
+msgstr "无法给不存在的记录添加子项！"
+
+#: models/Mixin/Order.php:105
+#, php-format
+msgid "Child must be an instance of \"%s\""
+msgstr "子项必须是\"%s\"的一个实例"
+
+#: views/admin/exhibits/add.php:2
+msgid "Add Exhibit"
+msgstr "添加展览"
+
+#: views/admin/exhibits/browse.php:8
+msgid "There are no exhibits yet."
+msgstr "尚未有展览。"
+
+#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+msgid "Add an Exhibit"
+msgstr "添加展览"
+
+#: views/admin/exhibits/browse.php:31
+#: views/admin/exhibits/exhibit-metadata-form.php:49
+msgid "Theme"
+msgstr "主题"
+
+#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/exhibit-metadata-form.php:52
+msgid "Current Public Theme"
+msgstr "当前公共主题"
+
+#: views/admin/exhibits/edit.php:3
+#, php-format
+msgid "Edit Exhibit \"%s\""
+msgstr "编辑展览\"%s\""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:4
+msgid "Exhibit Metadata"
+msgstr "展览元数据"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:15
+#: views/admin/exhibits/page-metadata-form.php:25
+msgid "Slug"
+msgstr "缩略名"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:18
+#: views/admin/exhibits/page-metadata-form.php:28
+msgid "No spaces or special characters allowed"
+msgstr "空格或特殊字符是不允许的"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:24
+#: views/public/exhibits/summary.php:14
+msgid "Credits"
+msgstr "关于作者"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:61
+msgid "Pages"
+msgstr "页面"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:64
+msgid "There are no pages."
+msgstr "没有页面。"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:66
+msgid ""
+"To reorder pages, click and drag the page up or down to the preferred "
+"location."
+msgstr "要重新排序页面，点击并上下拖曳页面至选定位置。"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/page-metadata-form.php:2
+msgid "Add Page"
+msgstr "添加页面"
+
+#: views/admin/exhibits/page-content-form.php:2
+#, php-format
+msgid "Edit Page Content: \"%s\""
+msgstr "编辑页面内容： \"%s\""
+
+#: views/admin/exhibits/page-content-form.php:16
+msgid "Page Layout"
+msgstr "页面布局"
+
+#: views/admin/exhibits/page-content-form.php:27
+msgid "Edit Page"
+msgstr "编辑页面"
+
+#: views/admin/exhibits/page-content-form.php:30
+msgid "Page Content"
+msgstr "页面内容"
+
+#: views/admin/exhibits/page-content-form.php:42
+msgid "Save and Add Another Page"
+msgstr "保存并添加另一个页面"
+
+#: views/admin/exhibits/page-content-form.php:63
+msgid "Remove This Item"
+msgstr "移除该条目"
+
+#: views/admin/exhibits/page-content-form.php:98
+msgid "Attach Selected Item"
+msgstr "附加选中条目"
+
+#: views/admin/exhibits/page-metadata-form.php:2
+#, php-format
+msgid "Edit Page \"%s\""
+msgstr "编辑页面\"%s\""
+
+#: views/admin/exhibits/page-metadata-form.php:14
+msgid "Page Metadata"
+msgstr "页面元数据"
+
+#: views/admin/exhibits/page-metadata-form.php:35
+msgid "Layouts"
+msgstr "布局"
+
+#: views/admin/exhibits/page-metadata-form.php:50
+msgid "Layout"
+msgstr "布局"
+
+#: views/admin/exhibits/page-metadata-form.php:55
+msgid "Choose a layout by selecting a thumbnail on the right."
+msgstr "从右面挑选一个缩略图来选择布局。"
+
+#: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
+msgid "Browse Exhibits by Tag"
+msgstr "用标签浏览展览"
+
+#: views/admin/exhibits/tags.php:12
+msgid "There are no tags to display. You must first tag some exhibits."
+msgstr "没有标签可以显示。您必须先给一些展览添加标签。"
+
+#: views/admin/exhibits/theme-config.php:16
+#, php-format
+msgid "Configure the &#8220;%s&#8221; Theme"
+msgstr "设置&#8220;%s&#8221;主题"
+
+#: views/admin/items/browse.php:2
+msgid "Show Search Form"
+msgstr "显示搜索表单"
+
+#: views/admin/items/browse.php:17
+msgid "add some items"
+msgstr "添加一些条目"
+
+#: views/admin/items/browse.php:17
+#, php-format
+msgid "There are no items to choose from.  Please refine your search or %s."
+msgstr "没有可以选择的条目。请修改您的搜索或%s。"
+
+#: views/public/exhibits/browse.php:40
+msgid "There are no exhibits available yet."
+msgstr "尚未有可用的展览。"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
+msgid "Primary"
+msgstr "主要"
+
+#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
+#: views/shared/exhibit_layouts/gallery-full-right/form.php:11
+msgid "Secondary"
+msgstr "次要"
