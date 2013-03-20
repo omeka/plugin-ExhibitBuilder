@@ -1,6 +1,6 @@
 <?php
 $title = html_escape(__('Item #%s', $item->id));
-echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'exhibit-item-show'));
+echo head(array('title' => $title, 'bodyclass' => 'exhibits exhibit-item-show'));
 ?>
 <h1 class="item-title"><?php echo metadata('item', array('Dublin Core', 'Title')); ?></h1>
 

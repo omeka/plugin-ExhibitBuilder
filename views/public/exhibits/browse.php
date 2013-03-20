@@ -1,6 +1,6 @@
 <?php
 $title = __('Browse Exhibits');
-echo head(array('title' => $title, 'bodyid' => 'exhibit', 'bodyclass' => 'browse'));
+echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
 ?>
 <h1><?php echo $title; ?> <?php echo __('(%s total)', $total_results); ?></h1>
 <?php if (count($exhibits) > 0): ?>
