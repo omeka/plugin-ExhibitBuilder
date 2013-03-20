@@ -116,7 +116,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
     }
 
     $exhibit = $exhibitPage->getExhibit();
-    $html = '<ul class="exhibit-page-nav navigation">' . "\n";
+    $html = '<ul class="exhibit-page-nav navigation" id="secondary-nav">' . "\n";
     $pagesTrail = $exhibitPage->getAncestors();
     $pagesTrail[] = $exhibitPage;
     $html .= '<li>';
