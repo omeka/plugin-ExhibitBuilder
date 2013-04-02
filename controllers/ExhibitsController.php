@@ -16,7 +16,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     {
         $this->_helper->db->setDefaultModelName('Exhibit');
 
-        $this->_browseRecordsPerPage = get_option('per_page_admin');
+        $this->_browseRecordsPerPage = get_option('per_page_public');
     }
 
     public function browseAction()
