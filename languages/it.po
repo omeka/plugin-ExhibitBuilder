@@ -3,8 +3,8 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-#   <alec.wiki@gmail.com>, 2012.
-# Donatella Mutti <donatella.mutti@unito.it>, 2012.
+# Alec <alec.wiki@gmail.com>, 2012
+# Donatella Mutti <donatella.mutti@unito.it>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"

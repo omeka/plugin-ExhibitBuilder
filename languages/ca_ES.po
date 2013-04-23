@@ -3,9 +3,9 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-#   <rubenalcarazmartinez@gmail.com>, 2013.
-#   <sergi.blanes@gmail.com>, 2013.
-# Sergi Montes <sergi.blanes@gmail.com>, 2013.
+# rubenalcaraz <rubenalcarazmartinez@gmail.com>, 2013
+# sergimontes <sergi.blanes@gmail.com>, 2013
+# sergimontes <sergi.blanes@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"

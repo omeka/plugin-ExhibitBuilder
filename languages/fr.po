@@ -3,10 +3,10 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Julien Sicot <julien.sicot@gmail.com>, 2012.
-#   <thierry.pasquier@emf.ccsti.eu>, 2012.
-# Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2013.
-#   <wikitipiac@laposte.net>, 2012.
+# Julien Sicot <julien.sicot@gmail.com>, 2012
+# thierry <thierry.pasquier@emf.ccsti.eu>, 2012
+# thierry <thierry.pasquier@emf.ccsti.eu>, 2013
+# symac <wikitipiac@laposte.net>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
