@@ -1,8 +1,8 @@
 [main]
-host = https://www.transifex.net
+host = https://www.transifex.com
 
 [omeka.plugin-exhibitbuilder]
 file_filter = languages/<lang>.po
 source_file = languages/template.pot
 source_lang = en
-
+minimum_perc = 10
