@@ -3,382 +3,378 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# dewulfevy <evy.dewulf@libis.kuleuven.be>, 2013
-# John Flatness <john@zerocrates.org>, 2012
-# Peter Baan <exnihilo@xs4all.nl>, 2012
-# Sam Alloing <sam.alloing@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-03-08 10:11+0000\n"
-"Last-Translator: dewulfevy <evy.dewulf@libis.kuleuven.be>\n"
-"Language-Team: Dutch (Belgium) (http://www.transifex.com/projects/p/omeka/language/nl_BE/)\n"
+"PO-Revision-Date: 2013-03-11 16:55+0000\n"
+"Last-Translator: Ahmadibrahim <ahmadbusiness@hotmail.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/omeka/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_BE\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 msgid "Gallery Full Left"
-msgstr "Galerij Volledig Links"
+msgstr "أقصى يسار مساحة العرض"
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
 " image and text block."
-msgstr "Toont een galerij van 8 miniatuurvoorbeelden, met een bredere linkerkolom voor 1 afbeelding op volledige grootte en een tekstblok."
+msgstr "يعرض مساحة عرض تحوي على 8 صور مصغّرة الحجم، ويكون العامود إلى اليسار أوسع يحوي على صورة واحدة كاملة الحجم ووحدة نصية."
 
 msgid "Gallery Full Right"
-msgstr "Galerij Volledig Rechts"
+msgstr "أقصى يمين مساحة العرض"
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
 "size image and text block."
-msgstr "Toont een galerij van 8 miniatuurvoorbeelden, met een bredere rechterkolom voor 1 afbeelding op volledige grootte en een tekstblok."
+msgstr "يعرض مساحة عرض تحوي على 8 صور مصغّرة الحجم، ويكون العامود إلى اليمين أوسع يحوي على صورة واحدة كاملة الحجم ووحدة نصية."
 
 msgid "Gallery Thumbnails Text Bottom"
-msgstr "Galerij Miniatuurvoorbeelden Tekst Beneden"
+msgstr ""
 
 msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Toont een blok tekst onder een galerij van maximaal 12 items."
+msgstr "يعرض وحدة نصية تحت مساحة عرض تحوي حتى 12 بندًا."
 
 msgid "Gallery Thumbnails Text Top"
-msgstr "Galerij Miniatuurvoorbeelden Tekst Boven"
+msgstr ""
 
 msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Toont een blok tekst boven een galerij van maximaal 12 items."
+msgstr "يعرض وحدة نصية فوق مساحة عرض تحوي حتى 12 بندًا."
 
 msgid "Gallery Thumbnails"
-msgstr "Galerij Miniatuurvoorbeelden"
+msgstr "الصور المصغّرة الحجم في مساحة العرض."
 
 msgid "Displays a gallery of up to 16 items."
-msgstr "Toont een galerij van maximaal 16 items."
+msgstr "يبين مساحة عرض تحوي حتى 16 بندًا."
 
 msgid "Image List Left Thumbs"
-msgstr "Afbeeldingenlijst Links Miniaturen"
+msgstr ""
 
 msgid ""
 "Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
 "right."
-msgstr "Toont maximaal 8 miniatuurvoorbeelden aan de linkerzijde, met maximaal 8 tekstblokken aan de rechterzijde."
+msgstr "يعرض لغاية 8 صورة مصغّرة الحجم إلى جهة اليسار ولغاية 8 وحدات نصية إلى جهة اليمين."
 
 msgid "Image List Left"
-msgstr "Afbeeldingenlijst Links"
+msgstr ""
 
 msgid ""
 "Displays up to 8 full-size images on the left with up to 8 text blocks on "
 "the right."
-msgstr "Toont maximaal 8 afbeeldingen op volledige grootte aan de linkerzijde, met maximaal 8 tekstblokken aan de rechterzijde."
+msgstr "يعرض لغاية 8 صور بالحجم الكامل إلى جهة اليسار ولغاية 8 وحدات نصية إلى جهة اليمين."
 
 msgid "Image List Right Thumbs"
-msgstr "Afbeeldingenlijst Rechts Miniaturen"
+msgstr ""
 
 msgid ""
 "Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
 "left."
-msgstr "Toont maximaal 8 miniatuurvoorbeelden aan de rechterzijde, met maximaal 8 tekstblokken aan de linkerzijde."
+msgstr "يعرض لغاية 8 صور مصغّرة الحجم إلى جهة اليمين ولغاية 8 وحدات نصية إلى جهة اليسار."
 
 msgid "Image List Right"
-msgstr "Afbeeldingenlijst Rechts"
+msgstr ""
 
 msgid ""
 "Displays up to 8 full-size images on the right with up to 8 text blocks on "
 "the left."
-msgstr "Toont maximaal 8 afbeeldingen op volledige grootte aan de rechterzijde, met maximaal 8 tekstblokken aan de linkerzijde."
+msgstr "يعرض لغاية 8 صور بالحجم الكامل إلى جهة اليمين ولغاية 8 وحدات نصية إلى جهة اليسار."
 
 msgid "Text Image Left"
-msgstr "Tekst Afbeelding Links"
+msgstr ""
 
 msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Toont een volledige pagina tekst, met een afbeelding op volledige grootte links uitgelijnd."
+msgstr "يعرض صفحة نص كاملة، بالإضافة إلى صورة بالحجم الكامل مقلوبة إلى جهة اليسار."
 
 msgid "Text Image Right"
-msgstr "Tekst Afbeelding Rechts"
+msgstr ""
 
 msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Toont een volledige pagina tekst, met een afbeelding op volledige grootte rechts uitgelijnd."
+msgstr "يعرض صفحة نص كاملة، بالإضافة إلى صورة بالحجم الكامل مقلوبة إلى جهة اليمين."
 
 msgid "Text"
-msgstr "Tekst"
+msgstr "النص"
 
 msgid "Displays a full page of text without items."
-msgstr "Toont een volledige pagina tekst zonder items."
+msgstr "يعرض صفحة نص كاملة من دون بنود."
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Tentoonstellingen sorteren"
+msgstr "ترتيب المعارض"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "De standaardmethode waarop u de lijst met tentoonstellingen wilt sorteren op de tentoonstelling/doorbladerpagina. Standaard is 'Toegevoegd op datum'."
+msgstr "الطريقة الأساسية التي ترغب بحسبها ترتيب لوائح المعارض في صفحة المعارض/التصفّح. الوضعية الأساسية هي \"التاريخ المضاف\"."
 
 #: controllers/ExhibitsController.php:75
 msgid "This item is not used within this exhibit."
-msgstr "Dit item wordt niet gebruikt in deze tentoonstelling."
+msgstr "هذا البند غير مستخدم ضمن هذا المعرض."
 
 #: controllers/ExhibitsController.php:201
 msgid "You must specifically select a theme in order to configure it."
-msgstr "U dient een specifiek thema te selecteren, om het te kunnen configureren."
+msgstr "يجب أن تختار موضوع بشكلٍ محدد لكي تتم تهيئته."
 
 #: functions.php:282
 msgid "exhibits"
-msgstr "tentoonstellingen"
+msgstr ""
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Blader door tentoonstellingen"
+msgstr "تصفح المعارض"
 
 #: functions.php:312 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8
 #: views/admin/exhibits/page-content-form.php:9
 #: views/admin/exhibits/page-metadata-form.php:8
 msgid "Exhibits"
-msgstr "Tentoonstellingen"
+msgstr "المعارض"
 
 #: functions.php:469
 msgid "Search by Exhibit"
-msgstr "Zoeken op tentoonstelling"
+msgstr "البحث بحسب المعارض"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr "Tentoonstelling"
+msgstr ""
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr "Tentoonstellingspagina"
+msgstr ""
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
-msgstr "Er is geen item bijgevoegd."
+msgstr "لا يوجد أي بند مرفق."
 
 #: helpers/ExhibitFunctions.php:244
 #: views/admin/exhibits/page-content-form.php:95
 msgid "Attach an Item"
-msgstr "Voeg een item bij."
+msgstr " إضافة بند"
 
 #: helpers/ExhibitFunctions.php:267
 msgid "Caption"
-msgstr "Bijschrift"
+msgstr ""
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr "Selecteer een bestand"
+msgstr ""
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
-msgstr "Aanbevolen tentoonstelling"
+msgstr "المعرض البارز"
 
 #: helpers/ExhibitFunctions.php:468
 msgid "You have no featured exhibits."
-msgstr "U hebt geen aanbevolen tentoonstellingen."
+msgstr "لا تتوفر لديكم أي معارض بارزة."
 
 #: models/Exhibit.php:37
 msgid "Exhibits must be given a valid slug."
-msgstr "Tentoonstellingen dienen een geldige <em>slug</em> te krijgen."
+msgstr "يجب تعيين رابط Slug صالح للمعارض."
 
 #: models/Exhibit.php:38 models/ExhibitPage.php:31
 msgid "A slug must be 30 characters or less."
-msgstr "Een <em>slug</em> moet tenminste 30 tekens lang zijn."
+msgstr "يجب أن يكون رابط Slug مؤلفًا من 30 حرفًا أو أقل."
 
 #: models/Exhibit.php:39
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Uw URL-<em>slug</em> is al in gebruik bij een andere tentoonstelling. Kies a.u.b. een andere."
+msgstr "رابط URL Slug الخاص بكم مستخدمًا أصلاً في معرض آخر. الرجاء اختيار واحدًا آخر."
 
 #: models/Exhibit.php:48
 msgid "An exhibit must be given a title."
-msgstr "Een tentoonstelling hoort een titel te krijgen."
+msgstr "يجب وضع عنوان لأي معرض."
 
 #: models/Exhibit.php:52
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "De titel van een tentoonstelling kan niet meer dan 255 tekens bevatten."
+msgstr "يجب أن يكون العنوان مؤلفًا من 255 حرفًا أو أقل."
 
 #: models/Exhibit.php:56
 msgid "The name of your theme must be 30 characters or less."
-msgstr "De naam van uw thema moet tenminste 30 tekens bevatten."
+msgstr "يجب أن يكون اسم موضوعك مؤلفًا من 30 حرفًا أو أقل."
 
 #: models/ExhibitPage.php:30
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Iedere pagina van een tentoonstelling dient een <em>slug</em> te krijgen."
+msgstr "يجب تعيين رابط Slug لكل صفحة من كل معرض."
 
 #: models/ExhibitPage.php:32
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "Deze pagina-<em>slug</em> is al gebruikt. Wijzig de <em>slug</em>, zodat deze uniek is. "
+msgstr ""
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
-msgstr "Voor elke tentoonstellingspagina moet een layout worden aangeleverd."
+msgstr "يجب تعيين تصميم لكل صفحة معرض."
 
 #: models/ExhibitPage.php:51
 msgid "Exhibit pages must be given a title."
-msgstr "Tentoonstellingspagina's moeten een titel hebben."
+msgstr " يجب أن تعطى صفحات المعارض عنوانًا."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr "Kan geen kind toevoegen aan een record dat nog niet bestaat!"
+msgstr ""
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr "Child moet een instance zijn van \"%s\""
+msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Tentoonstelling toevoegen"
+msgstr "إضافة المعرض"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Er zijn nog geen tentoonstellingen."
+msgstr "لا تتوفر أي معارض حتى الآن."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Voeg een tentoonstelling toe"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Thema"
+msgstr "موضوع"
 
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Huidige publieke thema"
+msgstr "الموضوع العام الحالي"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Bewerk tentoonstelling: \"%s\""
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Metadata tentoonstelling"
+msgstr "البيانات الوصفية الخاصة بالمعرض"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 #: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
-msgstr "Slug"
+msgstr "رابط Slug"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr "Geen spaties of speciale tekens toegestaan."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
 msgid "Credits"
-msgstr "Credits"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr "Pagina's"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr "Er zijn geen pagina's."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr "Om pagina's opnieuw te ordenen, klikt en sleept u het pagina-miniatuurvoorbeeld naar boven of beneden, naar de locatie van uw keuze."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
 msgid "Add Page"
-msgstr "Pagina toevoegen"
+msgstr "صفحة الإضافات"
 
 #: views/admin/exhibits/page-content-form.php:2
 #, php-format
 msgid "Edit Page Content: \"%s\""
-msgstr "Bewerk inhoud pagina: \"%s\""
+msgstr "تعديل محتوى الصفحة: \"%s\""
 
 #: views/admin/exhibits/page-content-form.php:16
 msgid "Page Layout"
-msgstr "Layout pagina"
+msgstr "تصميم الصفحة"
 
 #: views/admin/exhibits/page-content-form.php:27
 msgid "Edit Page"
-msgstr "Pagina bewerken"
+msgstr "تعديل الصفحة"
 
 #: views/admin/exhibits/page-content-form.php:30
 msgid "Page Content"
-msgstr "Inhoud pagina"
+msgstr "محتوى الصفحة"
 
 #: views/admin/exhibits/page-content-form.php:42
 msgid "Save and Add Another Page"
-msgstr "Opslaan en nog een pagina toevoegen"
+msgstr "حفظ وإضافة صفحة أخرى"
 
 #: views/admin/exhibits/page-content-form.php:63
 msgid "Remove This Item"
-msgstr "Verwijder dit item"
+msgstr "إزالة هذا البند"
 
 #: views/admin/exhibits/page-content-form.php:98
 msgid "Attach Selected Item"
-msgstr "Geselecteerde item bijvoegen"
+msgstr "ربط البند المختار"
 
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Bewerk pagina \"%s\""
+msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
-msgstr "Metadata pagina"
+msgstr "البيانات الوصفية الخاصة بالصفحة"
 
 #: views/admin/exhibits/page-metadata-form.php:35
 msgid "Layouts"
-msgstr "Layouts"
+msgstr "التصاميم"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr "Lay-out"
+msgstr ""
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Kies een layout door aan de rechterzijde een miniatuurvoorbeeld te selecteren."
+msgstr "إختيار إخراج عبر اختيار الصورة المصغرة في جهة اليمين."
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Blader door tentoonstellingen op tag"
+msgstr "تصفح المعارض بحسب الإشارات"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Er kunnen nog geen tags worden getoond. U dient eerst enkele tentoonstellingen van een tag te voorzien."
+msgstr "لا توجد أي إشارات لعرضها. يجب أن تضع إشارات على بعض المعارض أولاً."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configureer het &#8220;%s&#8221; thema"
+msgstr ""
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
-msgstr "Toon zoekformulier"
+msgstr "إبراز استمارة البحث"
 
 #: views/admin/items/browse.php:17
 msgid "add some items"
-msgstr "enkele item toevoegen"
+msgstr "إضافة بعض البنود"
 
 #: views/admin/items/browse.php:17
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Er zijn geen items om uit te kiezen. Verfijn uw zoekopdracht of %s."
+msgstr "لا توجد أي بنود للاختيار منها. الرجاء تضييق نطاق البحث أو %s. "
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Er zijn nog geen tentoonstellingen beschikbaar."
+msgstr "لا تتوفر أي معارض حتى الآن."
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:4
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:4
 msgid "Primary"
-msgstr "Primaire"
+msgstr "الأساسي"
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:11
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:11
 msgid "Secondary"
-msgstr "Secundaire"
+msgstr "الثانوي"
