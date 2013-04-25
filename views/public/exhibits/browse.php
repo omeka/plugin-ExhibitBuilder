@@ -5,7 +5,7 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
 <h1><?php echo $title; ?> <?php echo __('(%s total)', $total_results); ?></h1>
 <?php if (count($exhibits) > 0): ?>
 
-<nav class="navigation" id="secondary-nav">
+<nav class="navigation secondary-nav">
     <?php echo nav(array(
         array(
             'label' => __('Browse All'),
