@@ -33,6 +33,7 @@ add_filter('theme_options', 'exhibit_builder_theme_options');
 add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
 add_filter('admin_dashboard_stats', 'exhibit_builder_dashboard_stats');
 add_filter('search_record_types', 'exhibit_builder_search_record_types');
+add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
