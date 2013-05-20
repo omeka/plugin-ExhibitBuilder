@@ -497,3 +497,18 @@ function exhibit_builder_search_record_types($recordTypes)
     $recordTypes['ExhibitPage'] = __('Exhibit Page');
     return $recordTypes;
 }
+
+/**
+ * Adds exhibit title to item search filter array.
+ */
+function exhibit_builder_item_search_filters($displayArray, $params)
+{
+    $request = $params['request_array'];
+
+    if (@$request['exhibit']) {
+        $exhibit = get_record_by_id('Exhibit', $request['exhibit']);
+        $displayArray['exhibit'] = exhibit_builder_link_to_exhibit($exhibit);
+    }
+
+    return $displayArray;
+}
