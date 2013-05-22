@@ -13,8 +13,8 @@
 class ExhibitPage extends Omeka_Record_AbstractRecord
 {
     public $id;
-    public $parent_id; //@TODO: change this in database, and add to update scripts
-    public $exhibit_id; //@TODO: change this in database, and add to update scripts
+    public $parent_id;
+    public $exhibit_id;
     public $layout;
     public $slug;
     public $title;
@@ -43,14 +43,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      */
     protected function _validate()
     {
-        if (empty($this->layout)) {
-            $this->addError('layout', __('A layout must be provided for each exhibit page.'));
-        }
-
         if (!strlen($this->title)) {
             $this->addError('title', __('Exhibit pages must be given a title.'));
         }
-
     }
     
     protected function afterSave($args)

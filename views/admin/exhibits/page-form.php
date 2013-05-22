@@ -1,40 +1,50 @@
 <?php
-$title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('no_escape' => true)));
+$title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page "%s"', $exhibit_page->title);
+echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
-<?php echo head(array('title'=> html_escape($title), 'bodyclass'=>'exhibits')); ?>
-
 <?php echo flash(); ?>
-
-<div id="exhibits-breadcrumb">
-    <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-    <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-    <?php echo html_escape($title); ?>
-</div>
-<form id="page-form" method="post" action="<?php echo html_escape(url(array('module'=>'exhibit-builder', 'controller'=>'exhibits', 'action'=>'edit-page-content', 'id' => metadata('exhibit_page', 'id')))); ?>">
+<form method="post" id="choose-layout">
+    <div id="exhibits-breadcrumb">
+        <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+        <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+        <?php echo html_escape($title); ?>
+    </div>
     <div class="seven columns alpha">
-        <div id="page-metadata-list">
-            <h2><?php echo __('Page Layout'); ?></h2>
-            <div id="layout-metadata">
-            <?php
-                $layout = metadata('exhibit_page', 'layout', array('no_escape' => true));
-                $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME ."/$layout/layout.gif");
-                echo '<img src="'. html_escape($imgFile) .'" alt="' . html_escape($layout) . '"/>';
-            ?>
-                <strong><?php echo __($layoutName); ?></strong>
-                <p><?php echo __($layoutDescription); ?></p>
+    <fieldset>
+        <legend><?php echo __('Page Metadata'); ?></legend>
+        <div class="field">
+            <div class="two columns alpha">
+            <?php echo $this->formLabel('title', __('Title')); ?>
             </div>
+            <div class="inputs five columns omega">
+            <?php echo $this->formText('title', $exhibit_page->title); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('slug', __('Slug')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <p class="explanation"><?php echo __('No spaces or special characters allowed'); ?></p>
+                <?php echo $this->formText('slug', $exhibit_page->slug); ?>
+            </div>
+        </div>
+    </fieldset>
 
-            <button id="page_metadata_form" name="page_metadata_form" type="submit"><?php echo __('Edit Page'); ?></button>
+    <fieldset id="layouts">
+        <legend><?php echo __('Layouts'); ?></legend>
+
+        <div id="layout-thumbs">
+        <?php
+            $layouts = ExhibitLayout::getLayouts();
+            foreach ($layouts as $layout) {
+                echo $layout->name;
+                echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
+                echo '<input type="radio" name="layout" value="'. html_escape($layout->id) .'">';
+            }
+        ?>
         </div>
-        <div id="layout-all">
-            <h2><?php echo __('Page Content'); ?></h2>
-            <div id="layout-form">
-                <?php exhibit_builder_render_layout_form($layout); ?>
-            </div>
-        </div>
-        <fieldset>
-        <?php echo get_view()->formHidden('slug', $exhibit_page->slug); // Put this here to fool the form into not overriding the slug. ?>
-        </fieldset>
+    </fieldset>
     </div>
     <div class="three columns omega">
         <div id="save" class="panel">
@@ -46,6 +56,41 @@ $title = __('Edit Page Content: "%s"', metadata('exhibit_page', 'title', array('
         </div>
     </div>
 </form>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+
+    jQuery(document).ready(function() {
+        makeLayoutSelectable();
+    });
+
+    function makeLayoutSelectable() {
+        //Make each layout clickable
+        jQuery('div.layout').bind('click', function(e) {
+            jQuery('#layout-thumbs').find('div.current-layout').removeClass('current-layout');
+            jQuery(this).addClass('current-layout');
+
+            // Remove the old chosen layout
+            jQuery('#chosen_layout').find('div.layout').remove()
+            jQuery('#chosen_layout').find('p').remove();
+
+            // Copy the chosen layout
+            var copyLayout = jQuery(this).clone();
+
+            // Take the form input out of the copy (so no messed up forms).
+            copyLayout.find('input').remove();
+
+            // Change the id of the copy
+            copyLayout.attr('id', 'chosen_' + copyLayout.attr('id')).removeClass('current-layout');
+
+            // Append the copy layout to the chosen_layout div
+            copyLayout.appendTo('#chosen_layout');
+
+            // Check the radio input for the layout
+            jQuery(this).find('input').attr('checked', true);
+        });
+    }
+//]]>
+</script>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="search-items" style="display:none;">
     <div id="item-select"></div>

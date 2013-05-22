@@ -328,60 +328,6 @@ function exhibit_builder_get_themes()
 }
 
 /**
- * Get an array of available exhibit layouts
- *
- * @return array
- */
-function exhibit_builder_get_layouts()
-{
-    $iterator = new VersionedDirectoryIterator(EXHIBIT_LAYOUTS_DIR, true);
-    $array = $iterator->getValid();
-    natsort($array);
-    return $array;
-}
-
-/**
- * Get the HTML code for choosing an exhibit layout
- *
- * @param string $layout The layout name
- * @param boolean $input Whether or not to include the input to select the layout
- * @return string
- */
-function exhibit_builder_layout($layout, $input = true)
-{
-    //Load the thumbnail image
-    try {
-        $imgFile = web_path_to(EXHIBIT_LAYOUTS_DIR_NAME . "/$layout/layout.gif");
-    } catch (Exception $e) {
-        // Thumbnail not found, assuming this folder isn't a layout.
-        return;
-    }
-
-    $exhibitPage = get_current_record('exhibit_page');
-    $isSelected = ($exhibitPage->layout == $layout) and $layout;
-    $iniPath = EXHIBIT_LAYOUTS_DIR . "/$layout/layout.ini";
-    if (file_exists($iniPath) && is_readable($iniPath)) {
-        $layoutIni = new Zend_Config_Ini($iniPath, 'layout');
-        $layoutName = $layoutIni->name;
-    }
-    
-    $html = '<div class="layout' . ($isSelected ? ' current-layout' : '') . '" id="'. html_escape($layout) .'">'
-          . '<img src="'. html_escape($imgFile) .'" />';
-
-    if ($input) {
-        $html .= '<div class="input">'
-               . '<input type="radio" name="layout" value="'. html_escape($layout) .'" ' . ($isSelected ? 'checked="checked"' : '') . '/>'
-               . '</div>';
-    }
-
-    $html .= '<div class="layout-name">' . html_escape($layoutName) . '</div>'
-           . '</div>';
-           
-    return apply_filters('exhibit_builder_layout', $html,
-        array('layout' => $layout, 'input' => $input));
-}
-
-/**
  * Return the web path to the layout css
  *
  * @param string $fileName The name of the CSS file (without file extension)

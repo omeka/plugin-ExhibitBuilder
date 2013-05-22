@@ -19,48 +19,70 @@ function exhibit_builder_initialize()
 function exhibit_builder_install()
 {
     $db = get_db();
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
-      `id` int(10) unsigned NOT NULL auto_increment,
-      `title` varchar(255) collate utf8_unicode_ci default NULL,
-      `description` text collate utf8_unicode_ci,
-      `credits` text collate utf8_unicode_ci,
-      `featured` tinyint(1) default '0',
-      `public` tinyint(1) default '0',
-      `theme` varchar(30) collate utf8_unicode_ci default NULL,
-      `theme_options` text collate utf8_unicode_ci default NULL,
-      `slug` varchar(30) collate utf8_unicode_ci default NULL,
-      `added` timestamp NOT NULL default '0000-00-00 00:00:00',
-      `modified` timestamp NOT NULL default '0000-00-00 00:00:00',
-      `owner_id` int unsigned default NULL,
-      PRIMARY KEY  (`id`),
-      UNIQUE KEY `slug` (`slug`),
-      KEY `public` (`public`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_entries` (
-      `id` int(10) unsigned NOT NULL auto_increment,
-      `item_id` int(10) unsigned default NULL,
-      `file_id` int(10) unsigned default NULL,
-      `page_id` int(10) unsigned NOT NULL,
-      `text` text collate utf8_unicode_ci,
-      `caption` text collate utf8_unicode_ci,
-      `order` tinyint(3) unsigned NOT NULL,
-      PRIMARY KEY  (`id`),
-      KEY `page_id_order` (`page_id`, `order`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255) DEFAULT NULL,
+    `description` TEXT,
+    `credits` TEXT,
+    `featured` TINYINT(1) DEFAULT 0,
+    `public` TINYINT(1) DEFAULT 0,
+    `theme` VARCHAR(30) DEFAULT NULL,
+    `theme_options` TEXT,
+    `slug` VARCHAR(30) NOT NULL,
+    `added` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+    `modified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+    `owner_id` INT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY  (`id`),
+    UNIQUE KEY `slug` (`slug`),
+    KEY `public` (`public`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+    );
 
-    $db->query("CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
-      `id` int(10) unsigned NOT NULL auto_increment,
-      `exhibit_id` int(10) unsigned NOT NULL,
-      `parent_id` int(10) unsigned,
-      `title` varchar(255) collate utf8_unicode_ci NOT NULL,
-      `slug` varchar(30) collate utf8_unicode_ci NOT NULL,
-      `layout` varchar(255) collate utf8_unicode_ci default NULL,
-      `order` tinyint(3) unsigned NOT NULL,
-      PRIMARY KEY  (`id`),
-      KEY `exhibit_id_order` (`exhibit_id`, `order`),
-      UNIQUE KEY `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
+    $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `exhibit_id` INT UNSIGNED NOT NULL,
+    `parent_id` INT UNSIGNED DEFAULT NULL,
+    `title` VARCHAR(255) DEFAULT NULL,
+    `slug` VARCHAR(30) NOT NULL,
+    `order` SMALLINT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY  (`id`),
+    KEY `exhibit_id_order` (`exhibit_id`, `order`),
+    UNIQUE KEY `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+    );
+
+    $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `page_id` INT UNSIGNED NOT NULL,
+    `layout` VARCHAR(50) NOT NULL,
+    `options` TEXT,
+    `order` SMALLINT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `page_id_order` (`page_id`, `order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+    );
+
+    $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_block_attachments` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `block_id` INT UNSIGNED NOT NULL,
+    `item_id` INT UNSIGNED DEFAULT NULL,
+    `file_id` INT UNSIGNED DEFAULT NULL,
+    `text` MEDIUMTEXT,
+    `caption` TEXT,
+    `order` SMALLINT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `block_id_order` (`block_id`, `order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+    );
 }
 
 /**
@@ -72,9 +94,11 @@ function exhibit_builder_uninstall()
     $db = get_db();
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibits`";
     $db->query($sql);
-    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_page_entries`";
-    $db->query($sql);
     $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_pages`";
+    $db->query($sql);
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_page_blocks`";
+    $db->query($sql);
+    $sql = "DROP TABLE IF EXISTS `{$db->prefix}exhibit_block_attachments`";
     $db->query($sql);
 
     // delete plugin options
@@ -241,8 +265,8 @@ function exhibit_builder_define_acl($args)
 
     // Allow contributors everything but editAll and deleteAll.
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
-        array('add', 'add-page', 'delete-page', 'edit-page-content',
-            'edit-page-metadata', 'item-container', 'theme-config',
+        array('add', 'add-page', 'delete-page', 'edit-page',
+            'item-container', 'theme-config',
             'editSelf', 'deleteSelf'));
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),

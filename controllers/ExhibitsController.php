@@ -275,47 +275,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
             $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
-            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-content', 'id' => $exhibitPage->id), 'exhibitStandard');
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
             return;
         }
 
-        $this->render('page-metadata-form');
+        $this->render('page-form');
     }
 
-    public function editPageContentAction()
-    {
-        $db = $this->_helper->db->getDb();
-        $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
-        $exhibit = $db->getTable('Exhibit')->find($exhibitPage->exhibit_id);
-
-
-        if (!$this->_helper->acl->isAllowed('edit', $exhibit)) {
-            throw new Omeka_Controller_Exception_403;
-        }
-
-        $layoutIni = $this->layoutIni($exhibitPage->layout);
-
-        $layoutName = $layoutIni->name;
-        $layoutDescription = $layoutIni->description;
-
-        $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
-
-        if ($success and array_key_exists('page_metadata_form', $_POST)) {
-            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-metadata', 'id' => $exhibitPage->id), 'exhibitStandard');
-            return;
-        } else if (array_key_exists('page_form',$_POST)) {
-            //Forward to the addPage action (id is the exhibit)
-            $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibitPage->exhibit_id, 'previous' => $exhibitPage->id), 'exhibitStandard');
-            return;
-        }
-
-        $this->view->layoutName = $layoutName;
-        $this->view->layoutDescription = $layoutDescription;
-
-        $this->render('page-content-form');
-    }
-
-    public function editPageMetadataAction()
+    public function editPageAction()
     {
         $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
 
@@ -328,11 +295,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
 
         if ($success) {
-            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page-content', 'id' => $exhibitPage->id), 'exhibitStandard');
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
             return;
         }
 
-        $this->render('page-metadata-form');
+        $this->render('page-form');
     }
 
     protected function processPageForm($exhibitPage, $actionName, $exhibit = null)
