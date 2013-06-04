@@ -10,7 +10,7 @@
  * 
  * @package ExhibitBuilder
  */
-class ExhibitPageEntry extends Omeka_Record_AbstractRecord
+class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 {
     public $block_id;
     public $item_id;
@@ -23,17 +23,6 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
         'Item' => 'getItem',
         'File' => 'getFile'
     );
-    
-    public function afterSave($args)
-    {
-        // Build the page's search text.
-        /*$page = $this->getPage();
-        $text = "{$page->title} ";
-        foreach ($page->ExhibitPageEntry as $entry) {
-            $text .= "{$entry->text} {$entry->caption} ";
-        }
-        Mixin_Search::saveSearchText('ExhibitPage', $page->id, $text, $page->title, $page->getExhibit()->public);*/
-    }
     
     protected function getItem()
     {
@@ -66,8 +55,35 @@ class ExhibitPageEntry extends Omeka_Record_AbstractRecord
         }
     }
     
-    protected function getPage()
+    protected function getBlock()
     {
-        return $this->getTable('ExhibitPage')->find($this->page_id);
-    }   
+        return $this->getTable('ExhibitPage')->find($this->block_id);
+    }
+
+    public function setData($data)
+    {
+        if (!empty($data['text'])) {
+            $this->text = $data['text'];
+        } else {
+            $this->text = null;
+        }
+
+        if (!empty($data['item'])) {
+            $this->item_id = (int) $data['item'];
+        } else {
+            $this->item_id = null;
+        }
+
+        if (!empty($data['file'])) {
+            $this->file_id = (int) $data['file'];
+        } else {
+            $this->file_id = null;
+        }
+
+        if (!empty($data['caption'])) {
+            $this->caption = $data['caption'];
+        } else {
+            $this->caption = null;
+        }
+    }
 }

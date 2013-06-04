@@ -270,8 +270,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             $exhibitPage->order = $childCount +1;
         }
 
-
-
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
             $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
@@ -293,8 +291,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
-
         if ($success) {
+            $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
             $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
             return;
         }

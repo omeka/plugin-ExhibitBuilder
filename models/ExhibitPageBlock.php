@@ -16,20 +16,67 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
     public $layout;
     public $options;
     public $order;
+
+    protected $_related = array('ExhibitPageAttachment' => 'getAttachments');
     
-    public function afterSave($args)
+    public function _initializeMixins()
     {
-        // Build the page's search text.
-        $page = $this->getPage();
-        $text = "{$page->title} ";
-        foreach ($page->ExhibitPageEntry as $entry) {
-            $text .= "{$entry->text} {$entry->caption} ";
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageAttachment', 'block_id');
+    }
+
+    protected function _delete()
+    {
+        if ($this->ExhibitBlockAttachment) {
+            foreach ($this->ExhibitBlockAttachment as $attachment) {
+                $attachment->delete();
+            }
         }
-        Mixin_Search::saveSearchText('ExhibitPage', $page->id, $text, $page->title, $page->getExhibit()->public);
     }
     
-    protected function getPage()
+    public function getPage()
     {
         return $this->getTable('ExhibitPage')->find($this->page_id);
-    }   
+    }
+
+    public function setData($data)
+    {
+        if (!empty($data['layout'])) {
+            $this->layout = $data['layout'];
+        }
+        if (!empty($data['options'])) {
+            $this->options = $data['options'];
+        }
+        if (!empty($data['attachments'])) {
+            $this->setAttachments($data['attachments']);
+        }
+    }
+
+    public function getAttachments()
+    {
+        return $this->loadOrderedChildren();
+    }
+    
+    public function setAttachments($attachmentsData)
+    {
+        // We have to have an ID to proceed.
+        if (!$this->exists()) {
+            $this->save();
+        }
+
+        $existingAttachments = $this->getAttachments();
+        foreach ($attachmentsData as $i => $attachmentData) {
+            if (!empty($existingAttachments)) {
+                $attachment = array_pop($existingAttachments);
+            } else {
+                $attachment = new ExhibitBlockAttachment;
+                $attachment->block_id = $this->id;
+            }
+            $attachment->order = $i;
+            $attachment->setData($attachmentData);
+            $attachment->save();
+        }
+        foreach ($existingAttachments as $extraAttachment) {
+            $extraAttachment->delete();
+        }
+    }
 }

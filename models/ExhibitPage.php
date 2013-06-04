@@ -15,16 +15,15 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $id;
     public $parent_id;
     public $exhibit_id;
-    public $layout;
     public $slug;
     public $title;
     public $order;
 
-    protected $_related = array('ExhibitPageEntry'=>'loadOrderedChildren');
+    protected $_related = array('ExhibitPageBlock' => 'getPageBlocks');
 
     public function _initializeMixins()
     {
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageEntry', 'page_id', 'ExhibitPageEntry');
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageBlock', 'page_id');
         $this->_mixins[] = new Mixin_Slug($this, array(
             'parentFields' => array('exhibit_id', 'parent_id'),
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
@@ -50,44 +49,27 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     
     protected function afterSave($args)
     {
+        if ($args['post']) {
+            $post = $args['post'];
+
+            if (!empty($post['blocks'])) {
+                $this->setPageBlocks($post['blocks']);
+            }
+        }
+
+        foreach ($this->getPageBlocks() as $block) {
+            foreach ($block->getAttachments() as $attachment) {
+                $this->addSearchText($attachment->text);
+                $this->addSearchText($attachment->caption);
+            }
+        }
+
         $exhibit = $this->getExhibit();
         if (!$exhibit->public) {
             $this->setSearchTextPrivate();
         }
         $this->setSearchTextTitle($this->title);
         $this->addSearchText($this->title);
-        foreach ($this->ExhibitPageEntry as $entry) {
-            $this->addSearchText($entry->text);
-            $this->addSearchText($entry->caption);
-        }
-        
-        if ($args['post']) {
-            $post = $args['post'];
-            
-            $textCount = count($post['Text']);
-            $itemCount = count($post['Item']);
-            $highCount = ($textCount > $itemCount) ? $textCount : $itemCount;
-
-            $entries = $this->ExhibitPageEntry;
-            for ($i=1; $i <= $highCount; $i++) {
-                $ip = $entries[$i];
-
-                if (!$ip) {
-                    $ip = new ExhibitPageEntry;
-                    $ip->page_id = $this->id;
-                }
-                $text = @$post['Text'][$i];
-                $item_id = (int) @$post['Item'][$i];
-                $file_id = (int) @$post['File'][$i];
-                $caption = @$post['Caption'][$i];
-                $ip->text = $text ? $text : null;
-                $ip->caption = $caption ? $caption : null;
-                $ip->item_id = $item_id ? $item_id : null;
-                $ip->file_id = $file_id ? $file_id : null;
-                $ip->order = $i;
-                $ip->save();
-            }
-        }
     }
 
     public function previous()
@@ -165,7 +147,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      *
      * @return array
      */
-
     public function getAncestors()
     {
         $ancestors = array();
@@ -186,9 +167,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     protected function _delete()
     {
-        if ($this->ExhibitPageEntry) {
-            foreach ($this->ExhibitPageEntry as $ip) {
-                $ip->delete();
+        if ($this->ExhibitPageBlock) {
+            foreach ($this->ExhibitPageBlock as $block) {
+                $block->delete();
             }
         }
 
@@ -204,11 +185,31 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
-    public function getPageEntries()
+    public function getPageBlocks()
     {
-        return $this->ExhibitPageEntry;
+        return $this->loadOrderedChildren();
     }
-    
+
+    public function setPageBlocks($blocksData)
+    {
+        $existingBlocks = $this->getPageBlocks();
+        foreach ($blocksData as $i => $blockData) {
+            if (!empty($existingBlocks)) {
+                $block = array_pop($existingBlocks);
+            } else {
+                $block = new ExhibitPageBlock;
+                $block->page_id = $this->id;
+            }
+            $block->order = $i;
+            $block->setData($blockData);
+            $block->save();
+        }
+        // Any leftover blocks beyond the new data get erased.
+        foreach ($existingBlocks as $extraBlock) {
+            $extraBlock->delete();
+        } 
+    }
+
     public function getRecordUrl($action = 'show')
     {
         if ('show' == $action) {
