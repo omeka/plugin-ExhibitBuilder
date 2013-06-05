@@ -17,11 +17,11 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
     public $options;
     public $order;
 
-    protected $_related = array('ExhibitPageAttachment' => 'getAttachments');
+    protected $_related = array('ExhibitBlockAttachment' => 'getAttachments');
     
     public function _initializeMixins()
     {
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageAttachment', 'block_id');
+        $this->_mixins[] = new Mixin_Order($this, 'ExhibitBlockAttachment', 'block_id');
     }
 
     protected function _delete()
@@ -44,11 +44,25 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
             $this->layout = $data['layout'];
         }
         if (!empty($data['options'])) {
-            $this->options = $data['options'];
+            $this->setOptions($data['options']);
         }
         if (!empty($data['attachments'])) {
             $this->setAttachments($data['attachments']);
         }
+    }
+
+    public function getOptions()
+    {
+        if (!empty($this->options)) {
+            return json_decode($this->options, true);
+        } else {
+            return array();
+        }
+    }
+
+    public function setOptions($options)
+    {
+        $this->options = json_encode($options);
     }
 
     public function getAttachments()

@@ -30,22 +30,12 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             </div>
         </div>
     </fieldset>
-
-    <fieldset id="layouts">
-        <legend><?php echo __('Layouts'); ?></legend>
-
-        <div id="layout-thumbs">
-        <?php
-            $layouts = ExhibitLayout::getLayouts();
-            foreach ($layouts as $layout) {
-                echo $layout->name;
-                echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
-                echo '<input type="radio" name="layout" value="'. html_escape($layout->id) .'">';
-            }
-        ?>
-        </div>
+    <fieldset>
+        <legend><?php echo __('Content'); ?></legend>
+        <?php echo $this->partial('exhibits/block-form.php', array('blockId' => 0)); ?>
     </fieldset>
     </div>
+    
     <div class="three columns omega">
         <div id="save" class="panel">
             <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
