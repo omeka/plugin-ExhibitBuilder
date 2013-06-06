@@ -5,13 +5,14 @@
 # Translators:
 # stauros gkinis <gkista@yahoo.gr>, 2012
 # Stoitsis Giannis <>, 2012
+# Theodosios Filippou <tf1974@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-05-12 21:14+0000\n"
+"Last-Translator: Theodosios Filippou <tf1974@gmail.com>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/omeka/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,7 +124,7 @@ msgstr "Πρέπει να επιλέξετε συγκεκριμένα ένα θ�
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "εκθέματα"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -143,7 +144,7 @@ msgstr "Αναζήτηση ανά Έκθεμα"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Έκθεμα"
 
 #: functions.php:479
 msgid "Exhibit Page"
@@ -164,7 +165,7 @@ msgstr "Λεζάντα"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Επιλέξτε Αρχείο"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -219,12 +220,12 @@ msgstr "Οι σελίδες ενός εκθέματος πρέπει να έχο
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr ""
+msgstr "Δεν μπορεί να προστεθεί απόγονος σε μια εγγραφή που δεν υπάρχει ακόμα"
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr ""
+msgstr "Το παιδί πρέπει να είνα ένα στιγμιότυπο του \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -236,7 +237,7 @@ msgstr "Δεν υπάρχει κάποιο έκθεμα ακόμα."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Προσθήκη Εκθέματος"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -251,7 +252,7 @@ msgstr "Τρέχων Δημόσιο Θέμα"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Επεξεργασία Εκθέματος: \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -265,7 +266,7 @@ msgstr "Slug"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "Τα κενά και οι ειδικοί χαρακτήρες δεν επιτρέπονται."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -274,17 +275,17 @@ msgstr "Συντελεστές"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Σελίδες"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "Δεν υπάρχουν σελίδες."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr ""
+msgstr "Για να αλλάξετε τη σειρά των σελίδων, κάντε κλικ και σύρετε τη μικρογραφία της σελίδας πάνω ή κάτω στη θέση που επιθυμείτε."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
@@ -323,7 +324,7 @@ msgstr "Προσθήκη επιλεγμένου αντικειμένου"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Επεξεργασία σελίδας \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -335,7 +336,7 @@ msgstr "Διατάξεις"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "Διάταξη"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
@@ -352,7 +353,7 @@ msgstr "Δεν υπάρχουν tags. Πρέπει πρώτα να βάλετε 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "Ρυθμίστε το &#8220;%s&#8221; Θέμα"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
