@@ -2,6 +2,7 @@
 $formNameStem = 'blocks[' . $blockId . ']';
 ?>
 <div class="block-form">
+    <h4>Select layout</h3>
     <div class="layout-thumbs">
     <?php
         $layouts = ExhibitLayout::getLayouts();
@@ -12,5 +13,19 @@ $formNameStem = 'blocks[' . $blockId . ']';
         }
     ?>
     </div>
-    Option1: <?php echo $this->formText($formNameStem . '[options][option1]'); ?>
+    <?php echo $this->formLabel($formNameStem . '[options][file-position]', __('File position:')); ?>
+    <?php $file_position = array('Left', 'Right', 'Center (no text wrap)'); ?>
+    <?php echo $this->formSelect($formNameStem . '[options][file-position]', $formNameStem . '[options][file-position]', array(), $file_position); ?>
+    
+    <h4>Select items</h4>
+    <div class="selected-item-list">
+    <span><a href="#">Add item</a></span>
+    </div>
+    
+    <h4>Text</h4>
+    <?php echo $this->formTextArea($fornNameStem . '[options][text]'); ?>
+</div>
+
+<div class="add-block block-form">
+    <span class="add-link"><a href="#">Add new content block</a></span>
 </div>
