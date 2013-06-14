@@ -32,9 +32,35 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </fieldset>
     <fieldset>
         <legend><?php echo __('Content'); ?></legend>
+        <div class="layout-select">
+            <h4>Select layout</h3>
+            <div class="layout-thumbs">
+            <?php
+                $layouts = ExhibitLayout::getLayouts();
+                foreach ($layouts as $layout) {
+                    echo $layout->name;
+                    echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
+                    echo '<input type="radio" name="' . html_escape($formNameStem . '[layout]') . '" value="'. html_escape($layout->id) .'">';
+                }
+            ?>
+            </div>
+        </div>
         <?php echo $this->partial('exhibits/block-form.php', array('blockId' => 0)); ?>
         <div class="add-block block-form">
             <span class="add-link"><a href="#">Add new content block</a></span>
+            <div class="layout-select">
+                <h4>Select layout</h3>
+                <div class="layout-thumbs">
+                <?php
+                    $layouts = ExhibitLayout::getLayouts();
+                    foreach ($layouts as $layout) {
+                        echo $layout->name;
+                        echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
+                        echo '<input type="radio" name="' . html_escape($formNameStem . '[layout]') . '" value="'. html_escape($layout->id) .'">';
+                    }
+                ?>
+                </div>
+            </div>
         </div>
     </fieldset>
     </div>
