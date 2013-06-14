@@ -49,9 +49,9 @@ class ExhibitLayout
         }
     }
 
-    public function getViewPartial()
+    public function getViewPartial($type = 'layout')
     {
-        return VIEW_STEM . $this->id . '/layout.php';
+        return VIEW_STEM . $this->id . '/' . $type . '.php';
     }
 
     public function getIconUrl()
@@ -59,14 +59,31 @@ class ExhibitLayout
         return web_path_to(self::VIEW_STEM . '/' . $this->id . '/layout.gif');
     }
 
+    public static function getLayoutArray()
+    {
+        return apply_filters('exhibit_layouts', self::$defaultLayouts);
+    }
+    
     public static function getLayouts()
     {
         $layouts = array();
-        foreach (self::$defaultLayouts as $id => $data) {
+        foreach (self::getLayoutArray() as $id => $data) {
             $layout = new ExhibitLayout($id);
             $layout->setMetadata($data);
             $layouts[] = $layout;
         }
         return $layouts;
+    }
+
+    public static function getLayout($id)
+    {
+        $layouts = self::getLayoutArray();
+        if (isset($layouts[$id])) {
+            $layout = new ExhibitLayout($id);
+            $layout->setMetadata($layouts[$id]);
+            return $layout;
+        } else {
+            return null;
+        }
     }
 }

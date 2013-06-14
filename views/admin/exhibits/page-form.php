@@ -3,12 +3,12 @@ $title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page "%s"', $exhibit
 echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
 <?php echo flash(); ?>
-<form method="post" id="choose-layout">
-    <div id="exhibits-breadcrumb">
-        <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
-        <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
-        <?php echo html_escape($title); ?>
-    </div>
+<div id="exhibits-breadcrumb">
+    <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
+    <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
+    <?php echo html_escape($title); ?>
+</div>
+<form method="post">
     <div class="seven columns alpha">
     <fieldset>
         <legend><?php echo __('Page Metadata'); ?></legend>
@@ -33,6 +33,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <fieldset>
         <legend><?php echo __('Content'); ?></legend>
         <?php echo $this->partial('exhibits/block-form.php', array('blockId' => 0)); ?>
+        <div class="add-block block-form">
+            <span class="add-link"><a href="#">Add new content block</a></span>
+        </div>
     </fieldset>
     </div>
     

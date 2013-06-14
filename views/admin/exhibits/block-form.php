@@ -23,9 +23,5 @@ $formNameStem = 'blocks[' . $blockId . ']';
     </div>
     
     <h4>Text</h4>
-    <?php echo $this->formTextArea($fornNameStem . '[options][text]'); ?>
-</div>
-
-<div class="add-block block-form">
-    <span class="add-link"><a href="#">Add new content block</a></span>
+    <?php echo $this->formTextarea($formNameStem . '[options][text]'); ?>
 </div>
