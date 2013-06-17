@@ -93,4 +93,14 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
             $extraAttachment->delete();
         }
     }
+
+    public function getLayout()
+    {
+        return ExhibitLayout::getLayout($this->layout);
+    }
+
+    public function getFormStem()
+    {
+        return 'blocks[' . $this->id . ']';
+    }
 }

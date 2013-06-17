@@ -51,7 +51,7 @@ class ExhibitLayout
 
     public function getViewPartial($type = 'layout')
     {
-        return VIEW_STEM . $this->id . '/' . $type . '.php';
+        return self::VIEW_STEM . '/' . $this->id . '/' . $type . '.php';
     }
 
     public function getIconUrl()
