@@ -46,7 +46,7 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
             $this->addError('page_id', "Must be associated with an exhibit block.");
         }
         
-        if (empty($this->order) || !is_numeric($this->order)) {
+        if ($this->order === null || !is_numeric($this->order)) {
             $this->addError('order', "Must be ordered within the block.");
         }
         

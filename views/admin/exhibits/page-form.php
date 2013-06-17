@@ -33,10 +33,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <fieldset>
         <legend><?php echo __('Content'); ?></legend>
         <?php
-            $block = new ExhibitPageBlock;
-            $block->id = 0;
-            $block->layout = 'file-text';
+        foreach ($exhibit_page->getPageBlocks() as $block):
             echo $this->partial('exhibits/block-form.php', array('block' => $block));
+        endforeach;
         ?>
         <div class="add-block block-form">
             <span class="add-link"><a href="#">Add new content block</a></span>
