@@ -15,7 +15,6 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
     public $block_id;
     public $item_id;
     public $file_id;
-    public $text;
     public $caption;
     public $order;
     
@@ -28,6 +27,8 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
     {
         if ($this->item_id) {
             return $this->getTable('Item')->find($this->item_id);
+        } else {
+            return null;
         }
     }
 
@@ -62,12 +63,6 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 
     public function setData($data)
     {
-        if (!empty($data['text'])) {
-            $this->text = $data['text'];
-        } else {
-            $this->text = null;
-        }
-
         if (!empty($data['item'])) {
             $this->item_id = (int) $data['item'];
         } else {

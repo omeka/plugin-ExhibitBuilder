@@ -15,6 +15,7 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
     public $page_id;
     public $layout;
     public $options;
+    public $text;
     public $order;
 
     protected $_related = array('ExhibitBlockAttachment' => 'getAttachments');
@@ -45,6 +46,9 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         }
         if (!empty($data['options'])) {
             $this->setOptions($data['options']);
+        }
+        if (!empty($data['text'])) {
+            $this->text = $data['text'];
         }
         if (!empty($data['attachments'])) {
             $this->setAttachments($data['attachments']);

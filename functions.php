@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
     `page_id` INT UNSIGNED NOT NULL,
     `layout` VARCHAR(50) NOT NULL,
     `options` TEXT,
+    `text` MEDIUMTEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY `page_id_order` (`page_id`, `order`)
@@ -73,9 +74,8 @@ SQL
 CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_block_attachments` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `block_id` INT UNSIGNED NOT NULL,
-    `item_id` INT UNSIGNED DEFAULT NULL,
+    `item_id` INT UNSIGNED NOT NULL,
     `file_id` INT UNSIGNED DEFAULT NULL,
-    `text` MEDIUMTEXT,
     `caption` TEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     PRIMARY KEY (`id`),
