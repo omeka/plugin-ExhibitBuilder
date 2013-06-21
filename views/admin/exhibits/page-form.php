@@ -37,8 +37,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             echo $this->partial('exhibits/block-form.php', array('block' => $block));
         endforeach;
         ?>
-        <div class="add-block block-form">
-            <span class="add-link"><a href="#">Add new content block</a></span>
+        <div class="add-block">
+            <a class="add-link" href="#">Add new content block</a>
             <div class="layout-select">
                 <h4>Select layout</h3>
                 <div class="layout-thumbs">
@@ -66,9 +66,30 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
     </div>
 </form>
-<script type="text/javascript" charset="utf-8">
-//<![CDATA[
+<script type="text/javascript">
+jQuery(document).ready(function () {
+    jQuery('.add-link').click(function (event) {
+        event.preventDefault();
 
+        var newLayout = jQuery('input[name=new-block-layout]:checked').val();
+        if (!newLayout) {
+            return;
+        }
+        
+        jQuery.get(
+            <?php echo json_encode(url('exhibits/block-form')); ?>,
+            {
+                layout: newLayout,
+                order: jQuery('.block-form').length + 1
+            },
+            function (data) {
+                jQuery(data).insertBefore('.add-block').trigger('exhibitbuilder:attachitem');
+                jQuery('input[name=new-block-layout]').prop('checked', false);
+            },
+            'html'
+        );
+    });
+});
     jQuery(document).ready(function() {
         makeLayoutSelectable();
     });
@@ -99,7 +120,6 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             jQuery(this).find('input').attr('checked', true);
         });
     }
-//]]>
 </script>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="search-items" style="display:none;">

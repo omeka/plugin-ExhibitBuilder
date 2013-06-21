@@ -105,6 +105,6 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
 
     public function getFormStem()
     {
-        return 'blocks[' . $this->id . ']';
+        return 'blocks[' . $this->order . ']';
     }
 }

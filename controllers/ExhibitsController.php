@@ -328,6 +328,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $this->_helper->redirector->gotoUrl('exhibits/edit/' . $exhibit->id );
     }
 
+    public function blockFormAction()
+    {
+        $block = new ExhibitPageBlock;
+        $block->layout = $this->getParam('layout');
+        $block->order = $this->getParam('order');
+
+        $this->view->block = $block;
+    }
+
     protected function findOrNew()
     {
         try {
