@@ -15,4 +15,4 @@ $attachments = $block->getAttachments();
 </div>
 
 <h4>Text</h4>
-<?php echo $this->formTextarea($formStem . '[text]', $block->text); ?>
+<?php echo $this->formTextarea($formStem . '[text]', $block->text, array('rows' => 10)); ?>
