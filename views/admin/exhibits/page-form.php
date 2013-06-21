@@ -30,7 +30,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             </div>
         </div>
     </fieldset>
-    <fieldset>
+    <fieldset id="block-container">
         <legend><?php echo __('Content'); ?></legend>
         <?php
         foreach ($exhibit_page->getPageBlocks() as $block):
@@ -68,6 +68,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </form>
 <script type="text/javascript">
 jQuery(document).ready(function () {
+    var blockIndex = jQuery('.block-form').length;
     jQuery('.add-link').click(function (event) {
         event.preventDefault();
 
@@ -80,7 +81,7 @@ jQuery(document).ready(function () {
             <?php echo json_encode(url('exhibits/block-form')); ?>,
             {
                 layout: newLayout,
-                order: jQuery('.block-form').length + 1
+                order: ++blockIndex
             },
             function (data) {
                 jQuery(data).insertBefore('.add-block').trigger('exhibitbuilder:attachitem');
@@ -88,6 +89,11 @@ jQuery(document).ready(function () {
             },
             'html'
         );
+    });
+
+    jQuery('#block-container').on('click', '.remove-block', function (event) {
+        event.preventDefault();
+        jQuery(this).parent().remove();
     });
 });
     jQuery(document).ready(function() {
