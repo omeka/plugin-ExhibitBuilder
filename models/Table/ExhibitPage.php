@@ -12,6 +12,20 @@
  */
 class Table_ExhibitPage extends Omeka_Db_Table
 {
+    
+    public function getSelect()
+    {
+        $select = parent::getSelect();
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        if($request->getControllerName() == 'api') {
+            $db = $this->getDb();
+            $select->join(array('exhibits' => $db->Exhibit), 'exhibits.id = exhibit_pages.exhibit_id', array());
+            $permissions = new Omeka_Db_Select_PublicPermissions('ExhibitBuilder_Exhibits');
+            $permissions->apply($select, 'exhibits', null);
+        }
+        return $select;
+    }
+        
     public function applySearchFilters($select, $params)
     {
         if(isset($params['parent'])) {

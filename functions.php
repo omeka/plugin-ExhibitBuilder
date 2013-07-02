@@ -497,3 +497,25 @@ function exhibit_builder_search_record_types($recordTypes)
     $recordTypes['ExhibitPage'] = __('Exhibit Page');
     return $recordTypes;
 }
+
+function exhibit_builder_api_resources($apiResources)
+{
+    $apiResources['exhibits'] = array(
+        'record_type' => 'Exhibit', 
+        'actions' => array('get', 'index'), 
+        'index_params' => array('tag', 'tags', 'sort', 'public', 'featured')
+    );
+    $apiResources['exhibit_pages'] = array(
+            'record_type' => 'ExhibitPage',
+            'actions' => array('get', 'index'),
+            'index_params' => array('parent', 'exhibit', 'order', 'topOnly')
+    );    
+    
+    $apiResources['exhibit_page_entries'] = array(
+            'record_type' => 'ExhibitPageEntry',
+            'actions' => array('get', 'index'),
+            'index_params' => array('page_id', 'item_id')
+    );    
+    
+    return $apiResources;    
+}
