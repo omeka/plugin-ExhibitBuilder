@@ -300,3 +300,69 @@ button#page_metadata_form {
     padding: 20px;
     width: 100%;
 }
+
+/* New selected items interface */
+
+.selected-item-list .item {
+    background-color: #7C7E5D;
+    width: 100px;
+    display: inline-block;
+    height: 120px;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 24px;
+    font-size: 14px;
+    position: relative;
+}
+.selected-item-list .item h5 {
+    font-family: "Cabin", sans-serif; font-weight: normal;
+    margin: 0;
+    line-height: 24px; font-size: 14px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.selected-item-list .item h5 a {
+    color: #fff;
+}
+
+.edit.button {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+    background-color: #BFC19C;
+    margin-left: -10px;
+    bottom: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.edit.button a { color: #fff; }
+
+.close.button {
+    display: block;
+    position: absolute;
+    top: -4px;
+    right: -5px;
+    text-indent: -9999px;
+}
+.close.button a:after {
+    content: "+";
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 13.5px;
+    border: 1px solid #979797;
+    font-weight: normal;
+    font-family: Helvetica;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    font-size: 21px;
+}
