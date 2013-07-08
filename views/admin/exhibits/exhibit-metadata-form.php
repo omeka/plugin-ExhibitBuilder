@@ -94,7 +94,7 @@
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     jQuery(window).load(function() {
-        Omeka.ExhibitBuilder.wysiwyg();
+        Omeka.wysiwyg();
     });
 //]]>
 </script>

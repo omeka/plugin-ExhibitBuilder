@@ -66,6 +66,10 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
     </div>
 </form>
+<?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
+<div id="search-items" style="display:none;">
+    <div id="item-select"></div>
+</div>
 <script type="text/javascript">
 jQuery(document).ready(function () {
     var blockIndex = jQuery('.block-form').length;
@@ -95,44 +99,13 @@ jQuery(document).ready(function () {
         event.preventDefault();
         jQuery(this).parent().remove();
     });
-});
-    jQuery(document).ready(function() {
-        makeLayoutSelectable();
+
+    jQuery('#block-container').on('click', '.add-item', function (event) {
+        event.preventDefault();
+        jQuery(this).parent().addClass('item-targeted');
+        jQuery('#search-items').dialog('open');
     });
-
-    function makeLayoutSelectable() {
-        //Make each layout clickable
-        jQuery('div.layout').bind('click', function(e) {
-            jQuery('#layout-thumbs').find('div.current-layout').removeClass('current-layout');
-            jQuery(this).addClass('current-layout');
-
-            // Remove the old chosen layout
-            jQuery('#chosen_layout').find('div.layout').remove()
-            jQuery('#chosen_layout').find('p').remove();
-
-            // Copy the chosen layout
-            var copyLayout = jQuery(this).clone();
-
-            // Take the form input out of the copy (so no messed up forms).
-            copyLayout.find('input').remove();
-
-            // Change the id of the copy
-            copyLayout.attr('id', 'chosen_' + copyLayout.attr('id')).removeClass('current-layout');
-
-            // Append the copy layout to the chosen_layout div
-            copyLayout.appendTo('#chosen_layout');
-
-            // Check the radio input for the layout
-            jQuery(this).find('input').attr('checked', true);
-        });
-    }
-</script>
-<?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
-<div id="search-items" style="display:none;">
-    <div id="item-select"></div>
-</div>
-<script type="text/javascript" charset="utf-8">
-//<![CDATA[
+});
 
     jQuery(document).ready(function(){
 
@@ -175,7 +148,7 @@ jQuery(document).ready(function () {
          jQuery('#search-items').dialog({
              autoOpen: false,
              width: Math.min(jQuery(window).width() - 100, 820),
-             height: Math.min(jQuery(window).height() - 50, 500),
+             height: Math.min(jQuery(window).height() - 100, 500),
              title: <?php echo js_escape(__('Attach an Item')); ?>,
              modal: true,
              buttons: {
@@ -200,6 +173,5 @@ jQuery(document).ready(function () {
             tinyMCE.execCommand('mceAddControl', false, this.id);
         });
     });
-//]]>
 </script>
 <?php echo foot(); ?>

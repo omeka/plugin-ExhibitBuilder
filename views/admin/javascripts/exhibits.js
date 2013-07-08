@@ -241,11 +241,6 @@ Omeka.ExhibitBuilder = function() {
     };
 }
 
-Omeka.ExhibitBuilder.wysiwyg = function() {
-    Omeka.wysiwyg();
-}
-
-
 Omeka.ExhibitBuilder.addNumbers = function() {
     jQuery('#layout-form .exhibit-form-element').each(function(i){
         var number = i+1;

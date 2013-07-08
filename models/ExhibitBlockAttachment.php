@@ -51,8 +51,8 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
             $this->addError('order', "Must be ordered within the block.");
         }
         
-        if (!empty($this->item_id) and !is_numeric($this->item_id)) {
-            $this->addError(null, 'item_id field must be empty or a valid foreign key');
+        if (empty($this->item_id) || !is_numeric($this->item_id)) {
+            $this->addError(null, 'item_id field must be a valid foreign key');
         }
     }
     
