@@ -8,6 +8,7 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
     {
         $representation = array(
                 'id' => $record->id,
+                'url' => self::getResourceUrl("/exhibit_pages/{$record->id}"),
                 'title' => $record->title,
                 'slug' => $record->slug,
                 'layout' => $record->layout,
@@ -16,11 +17,13 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
         
         $representation['exhibit'] = array(
                 'id' => $record->exhibit_id,
+                'resource' => 'exhibits',
                 'url' => self::getResourceUrl("/exhibits/{$record->exhibit_id}")
                 );
         if($record->parent_id) {
             $representation['parent'] = array(
                     'id' => $record->parent_id,
+                    'resource' => 'exhibit_pages',
                     'url' => self::getResourceUrl("/exhibit_pages/{$record->parent_id}")
                     );            
         } else {
@@ -30,6 +33,7 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
         $entriesCount = get_db()->getTable('ExhibitPageEntry')->count(array('page_id' => $record->id));
         $representation['exhibit_page_entries'] = array(
                 'count' => $entriesCount,
+                'resource' => 'exhibit_page_entries',
                 'url' => self::getResourceUrl("/exhibit_page_entries?page_id={$record->id}")
                 );
         
