@@ -366,3 +366,35 @@ button#page_metadata_form {
     -moz-transform: rotate(45deg);
     font-size: 21px;
 }
+
+/* New item options */
+
+.direction { 
+    width: 25%; 
+    float: left;
+    clear: both;
+    font-weight: bold;
+}
+
+.item-options .inputs {
+    width: 75%;
+    float: left;
+    padding-left: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.file-select ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.file-select .item-file {
+    width: 20%;
+    overflow: auto;
+}
+
+.file-select input[type=radio] {
+    display: none;
+}
