@@ -145,7 +145,8 @@ Omeka.ExhibitBuilder = function() {
         var options = jQuery('#attachment-item-options');
         var item_id = options.find('input[name="item_id"]').val();
         var file_id = options.find('input[name="file_id"]:checked').val();
-        var caption = options.find('textarea[name="caption"]').val();
+        var captionId = options.find('textarea[name="caption"]').attr('id');
+        var caption = tinymce.get(captionId).getContent();
         data = {
             'item_id': item_id,
             'file_id': file_id,
