@@ -95,7 +95,7 @@ jQuery(document).ready(function () {
         );
     });
 
-    jQuery('#block-container').on('click', '.remove-block', function (event) {
+    jQuery('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
         event.preventDefault();
         jQuery(this).parent().remove();
     });
