@@ -144,7 +144,8 @@ Omeka.ExhibitBuilder = function() {
         jQuery.ajax({
           url: this.paginatedItemsUri,
           data: searchForm.serialize(),
-          method: 'POST',
+          dataType: 'html',
+          method: 'GET',
           complete: function(xhr, textStatus) {
               jQuery('#item-select').html(xhr.responseText);
               jQuery(document).trigger("omeka:loaditems");
