@@ -299,7 +299,7 @@ button#page_metadata_form {
 
 /* New selected items interface */
 
-.selected-item-list .item {
+.selected-item-list .attachment {
     background-color: #7C7E5D;
     width: 100px;
     display: inline-block;
@@ -311,7 +311,7 @@ button#page_metadata_form {
     font-size: 14px;
     position: relative;
 }
-.selected-item-list .item h5 {
+.selected-item-list .attachment h5 {
     font-family: "Cabin", sans-serif; font-weight: normal;
     margin: 0;
     line-height: 24px; font-size: 14px;
@@ -319,7 +319,7 @@ button#page_metadata_form {
     overflow: hidden;
 }
 
-.selected-item-list .item h5 a {
+.selected-item-list .attachment h5 a {
     color: #fff;
 }
 
