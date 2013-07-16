@@ -5,7 +5,8 @@ if (typeof Omeka === 'undefined') {
 Omeka.ExhibitBuilder = function() {
     
     this.paginatedItemsUri = ''; // Used to get a paginated list of items for the item search
-    this.itemContainerUri = ''; // Used to get a single item container
+    this.attachmentUri = ''; // Used to get a single item container
+    this.itemOptionsUri = '';
 
     /*
     * Load paginated search
@@ -23,9 +24,6 @@ Omeka.ExhibitBuilder = function() {
             var url = jQuery(this).attr('action') + '?' + jQuery(this).serialize();
             eb.getItems(url);
         });
-
-        // Setup layout item Containers
-        this.setupLayoutItemContainers();
         
         // Setup search item Containers
         this.setupSearchItemContainers();
@@ -45,44 +43,11 @@ Omeka.ExhibitBuilder = function() {
                           });
     
     /*
-    * Setup the item containers located in the main layout
-    */
-    this.setupLayoutItemContainers = function() {
-        var exhibitBuilder = this;
-        var layoutItemContainers = jQuery('#layout-form div.item-select-outer');
-        jQuery.each(layoutItemContainers, function(index, rawLayoutItemContainer) {
-            var layoutItemContainer = jQuery(rawLayoutItemContainer);
-            exhibitBuilder.setupLayoutItemContainer(layoutItemContainer);
-        });
-    };
-    
-    /*
-    * Setup an item container located in the main layout
-    */
-    this.setupLayoutItemContainer = function(layoutItemContainer) {        
-        
-        // Add delete buttons to the layout item container
-        this.addDeleteButtonsToLayoutItemContainer(layoutItemContainer);
-        
-        // Attach Item Dialog Link
-        layoutItemContainer.find('.attach-item-link').click(function(){
-            jQuery(this).parent().addClass('item-targeted');
-            jQuery('#search-items').dialog('open');
-            return false;
-        });
-        
-        Omeka.ExhibitBuilder.addNumbers();
-        
-        jQuery(layoutItemContainer).trigger("exhibitbuilder:attachitem");
-        
-    };
-    
-    /*
     * Setup the item containers located in the search box
     */
     this.setupSearchItemContainers = function() {
         var exhibitBuilder = this;
-        var searchItemContainers = jQuery('#item-select div.item-select-outer');
+        var searchItemContainers = jQuery('#item-select div.item-listing');
         jQuery.each(searchItemContainers, function(index, rawSearchItemContainer) {
             var searchItemContainer = jQuery(rawSearchItemContainer);
             exhibitBuilder.setupSearchItemContainer(searchItemContainer);
@@ -153,91 +118,57 @@ Omeka.ExhibitBuilder = function() {
     };
 
     /*
-    * Add delete buttons to the layout item containers 
-    */
-    this.addDeleteButtonsToLayoutItemContainer = function(layoutItemContainer) {
-        // Only add a Remove Item link to the layout item container if it has an item
-        if (layoutItemContainer.find('div.item-select-inner').size()) {
-            var removeItemLink = jQuery('<a></a>');
-            removeItemLink.html(this.removeItemText);
-            removeItemLink.addClass('remove_item delete-item red button');
-            removeItemLink.css('cursor', 'pointer');
-            
-            // Put the 'delete' as background to anything with a 'remove_item' class
-            // removeItemLink.css({
-            //     'padding-left': '20px'
-            //     });            
-
-            // Make the remove item link delete the item when clicked
-            removeItemLink.bind('click', {exhibitBuilder: this}, function(event) {
-                event.data.exhibitBuilder.deleteItemFromItemContainer(layoutItemContainer);
-                return;
-            });
-            layoutItemContainer.append(removeItemLink);
-        }           
-    };
-
-    /*
     * Add selection highlighting to the search item containers 
     */
     this.addSelectionHighlightingToSearchItemContainer = function(searchItemContainer) {
         searchItemContainer.bind('click', {exhibitBuilder: this}, function(event) {
-            jQuery('#item-list div.item-select-outer').removeClass('item-selected');
+            jQuery('#item-list div.item-selected').removeClass('item-selected');
             jQuery(this).addClass('item-selected');
             return;
         });
     };
-    
-    /*
-    * Attach the selected item from a search item container to a layout item container
-    */
-    this.attachSelectedItem = function() {
-        var selectedItemContainer = jQuery('.item-selected');
-        var selectedItemId = selectedItemContainer.data('itemId');
-        var targetedItemContainer = jQuery('.item-targeted');
-        var targetedItemOrder = this.getItemOrderFromItemContainer(targetedItemContainer);      
-        this.setItemForItemContainer(targetedItemContainer, selectedItemId, targetedItemOrder);         
-    }
-    
-    /*
-    * Deletes an item from the item container
-    */
-    this.deleteItemFromItemContainer = function(itemContainer) {
-        var orderOnForm = this.getItemOrderFromItemContainer(itemContainer);
-        this.setItemForItemContainer(itemContainer, 0, orderOnForm);
-        
-    };
 
-    /*
-    * Sets the item for a container.  It uses Ajax to dynamically get a new item container
-    */
-    this.setItemForItemContainer = function(itemContainer, itemId, orderOnForm) {
-        var exhibitBuilder = this;        
+    this.getItemOptionsForm = function(container, data) {
         jQuery.ajax({
-          url: this.itemContainerUri,
-          data: {'item_id': itemId, 'order_on_form': orderOnForm},
-          method: 'POST',
-          complete: function(xhr, textStatus) {
-              var newItemContainer = jQuery(xhr.responseText);
-              itemContainer.replaceWith(newItemContainer);
-              exhibitBuilder.setupLayoutItemContainer(newItemContainer);
-              
-          }
+            url: this.itemOptionsUri,
+            method: 'POST',
+            dataType: 'html',
+            data: data,
+            complete: function (xhr, textStatus) {
+                container.html(xhr.responseText);
+                container.trigger('exhibit-builder-refresh-wysiwyg');
+            }
         });
     };
 
-    /*
-    * Get the order of the item (if any) in the item container
-    */
-    this.getItemOrderFromItemContainer = function(itemContainer) {
-        // for some weird reason, itemContainer.find("input[id^='" + itemOrderPrefix + "']").first() does not work, 
-        // so we assume that their is only one input whose id begins with the 'Item-' in the item container
-        var itemOrderPrefix = 'Item-';
-        var itemOrderInput = itemContainer.find("input[id^='" + itemOrderPrefix + "']");
-        if (itemOrderInput) {
-            return itemOrderInput.attr('id').substring(itemOrderPrefix.length);
-        }
-        return false;
+    this.applyAttachment = function () {
+        var options = jQuery('#attachment-item-options');
+        var item_id = options.find('input[name="item_id"]').val();
+        var file_id = options.find('input[name="file_id"]:checked').val();
+        var caption = options.find('textarea[name="caption"]').val();
+        data = {
+            'item_id': item_id,
+            'file_id': file_id,
+            'caption': caption,
+        };
+
+        var targetedItem = jQuery('.item-targeted').removeClass('item-targeted');
+        var targetedBlock = targetedItem.parent();
+        data['block_index'] = targetedBlock.data('blockIndex');
+        data['index'] = targetedBlock.find('.attachment').length;
+        jQuery.ajax({
+            url: this.attachmentUri,
+            method: 'POST',
+            dataType: 'html',
+            data: data,
+            success: function (response) {
+                if (targetedItem.is('.attachment')) {
+                    targetedItem.replaceWith(response);
+                } else {
+                    targetedBlock.find('.selected-item-list').append(response);
+                }
+            }
+        });
     };
 }
 

@@ -49,7 +49,7 @@
     clear: both;
 }
 
-#item-list .item-select-outer {
+#item-list .item-listing {
     background: #EBEADC;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F3EC), color-stop(100%,#E9E5DA));
     background: -moz-linear-gradient(center top, #F5F3EC 0%, #E9E5DA 100%);
@@ -91,11 +91,7 @@
     float: left; 
 }
 
-.item-select-inner div:nth-of-type(8) { margin-right: 0; }
-
-.item-select-inner select { margin: 0 0 20px 0; }
-
-.item-select-outer {
+.item-listing {
     padding: 12px;
     border:1px dotted #eee;
     border-width: 0 0 1px;

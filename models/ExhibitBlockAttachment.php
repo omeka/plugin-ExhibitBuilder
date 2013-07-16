@@ -23,7 +23,7 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
         'File' => 'getFile'
     );
     
-    protected function getItem()
+    public function getItem()
     {
         if ($this->item_id) {
             return $this->getTable('Item')->find($this->item_id);
@@ -32,7 +32,7 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
         }
     }
 
-    protected function getFile()
+    public function getFile()
     {
         if ($this->file_id) {
             return $this->getTable('File')->find($this->file_id);
@@ -63,14 +63,14 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 
     public function setData($data)
     {
-        if (!empty($data['item'])) {
-            $this->item_id = (int) $data['item'];
+        if (!empty($data['item_id'])) {
+            $this->item_id = (int) $data['item_id'];
         } else {
             $this->item_id = null;
         }
 
-        if (!empty($data['file'])) {
-            $this->file_id = (int) $data['file'];
+        if (!empty($data['file_id'])) {
+            $this->file_id = (int) $data['file_id'];
         } else {
             $this->file_id = null;
         }

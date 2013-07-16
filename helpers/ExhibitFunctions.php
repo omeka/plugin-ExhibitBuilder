@@ -195,67 +195,6 @@ function exhibit_builder_layout_form_text($order)
 }
 
 /**
- * Get the HTML for "attach an item" section of the exhibit form
- *
- * @param Item $item The currently attached item, if any
- * @param File $file The currently attached file, if any
- * @param string|boolean $caption The current caption. If false, don't display
- *  the caption form.
- * @param int $order Layout form order. If omitted, don't output form elements
- * @return string
- */
-function exhibit_builder_form_attachment($item = null, $file = null, $caption = null, $order = null)
-{
-    if ($item) {
-        $html = '<div class="item-select-outer exhibit-form-element" data-item-id="' . $item->id . '">'
-              . '<div class="item-select-inner">'
-              . '<h4 class="title">'
-              . metadata($item, array('Dublin Core', 'Title'))
-              . '</h4>';
-        if (metadata($item, 'has files')) {
-            if ($file) {
-                $html .= '<div class="item-file">' 
-                    . file_image('square_thumbnail', array(), $file)
-                    . '</div>';
-            } else {
-                foreach ($item->Files as $displayFile) {
-                    if ($displayFile->hasThumbnail()) {
-                        $html .= '<div class="item-file">'
-                            . file_image('square_thumbnail', array(), $displayFile)
-                            . '</div>';
-                    }
-                }
-            }
-            if ($order) {
-                $html .= exhibit_builder_form_file($order, $item, $file);
-            }
-        }
-        
-        if ($caption !== false) {
-            $html .= exhibit_builder_form_caption($order, $caption);
-        }
-
-        $html .= '</div>' . "\n";
-    } else {
-        $html = '<div class="item-select-outer exhibit-form-element">'
-              . '<p class="attach-item-link">'
-              . __('There is no item attached.')
-              . ' <a href="#" class="green button">'
-              . __('Attach an Item') .'</a></p>' . "\n";
-    }
-
-    // If an order was passed, this is an input on a layout form, so include the
-    // form element to indicate what file is attached here.
-    if ($order) {
-        $itemId = ($item) ? $item->id : null;
-        $html .= get_view()->formHidden("Item[$order]", $itemId);
-    }
-
-    $html .= '</div>';
-    return $html;
-}
-
-/**
  * Get the HTML for a caption form input.
  *
  * @param int $order The order of the attachment for this caption

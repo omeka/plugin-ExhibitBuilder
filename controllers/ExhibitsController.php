@@ -84,18 +84,31 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
     }
 
-    public function itemContainerAction()
+    public function attachmentItemOptionsAction()
     {
-        $itemId = (int)$this->_getParam('item_id');
-        $fileId = (int)$this->_getParam('file_id');
-        $orderOnForm = (int)$this->_getParam('order_on_form');
+        if (($attachmentId = $this->_getParam('attachment_id'))) {
+            $attachment = $this->_helper->db->getTable('ExhibitBlockAttachment')->find($attachmentId);
+            $this->view->attachment = $attachment;
+        } else {
+            $itemId = $this->_getParam('item_id');
+            $item = $this->_helper->db->getTable('Item')->find($itemId);
+            $this->view->item = $item;
+        }
+    }
 
-        $item = $this->_helper->db->getTable('Item')->find($itemId);
-        $file = $this->_helper->db->getTable('File')->find($fileId);
+    public function attachmentAction()
+    {
+        $attachment = new ExhibitBlockAttachment;
+        $attachment->item_id = $this->_getParam('item_id');
+        $attachment->file_id = $this->_getParam('file_id');
+        $attachment->caption = $this->_getParam('caption');
 
-        $this->view->item = $item;
-        $this->view->file = $file;
-        $this->view->orderOnForm = $orderOnForm;
+        $block = new ExhibitPageBlock;
+        $block->order = $this->_getParam('block_index');
+
+        $this->view->attachment = $attachment;
+        $this->view->block = $block;
+        $this->view->index = (int) $this->_getParam('index');
     }
 
     public function showAction()

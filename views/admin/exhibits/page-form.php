@@ -88,7 +88,7 @@ jQuery(document).ready(function () {
                 order: ++blockIndex
             },
             function (data) {
-                jQuery(data).insertBefore('.add-block').trigger('exhibitbuilder:attachitem');
+                jQuery(data).insertBefore('.add-block').trigger('exhibit-builder-refresh-wysiwyg');
                 jQuery('input[name=new-block-layout]').prop('checked', false);
             },
             'html'
@@ -102,7 +102,7 @@ jQuery(document).ready(function () {
 
     jQuery('#block-container').on('click', '.add-item', function (event) {
         event.preventDefault();
-        jQuery(this).parent().addClass('item-targeted');
+        jQuery(this).addClass('item-targeted');
         jQuery('#search-items').dialog('open');
     });
 });
@@ -112,7 +112,8 @@ jQuery(document).ready(function () {
         var exhibitBuilder = new Omeka.ExhibitBuilder();
 
         // Set the exhibit item uri
-        exhibitBuilder.itemContainerUri = <?php echo js_escape(url('exhibits/item-container')); ?>;
+        exhibitBuilder.itemOptionsUri = <?php echo js_escape(url('exhibits/attachment-item-options')); ?>;
+        exhibitBuilder.attachmentUri = <?php echo js_escape(url('exhibits/attachment')); ?>;
 
         // Set the paginated exhibit items uri
         exhibitBuilder.paginatedItemsUri = <?php echo js_escape(url('exhibit-builder/items/browse')); ?>;
@@ -142,6 +143,13 @@ jQuery(document).ready(function () {
                 }
                 return false;
             });
+
+            jQuery('#select-item').click(function (event) {
+                event.preventDefault();
+                exhibitBuilder.getItemOptionsForm(jQuery('#attachment-item-options'),
+                    {item_id: jQuery('#search-items .item-selected').data('itemId')});
+                jQuery(document).trigger('exhibit-builder-select-item');
+            });
         });
 
         // Search Items Dialog Box
@@ -151,12 +159,14 @@ jQuery(document).ready(function () {
              height: Math.min(jQuery(window).height() - 100, 500),
              title: <?php echo js_escape(__('Attach an Item')); ?>,
              modal: true,
-             buttons: {
-                <?php echo js_escape(__('Attach Selected Item')); ?>: function() {
-                    exhibitBuilder.attachSelectedItem();
-                     jQuery(this).dialog('close');
-                 }
-             },
+             buttons: [{
+                id: 'apply-attachment',
+                text: <?php echo js_escape(__('Apply')); ?>,
+                click: function() {
+                    exhibitBuilder.applyAttachment();
+                    jQuery(this).dialog('close');
+                }
+             }],
              open: function() { jQuery('body').css('overflow', 'hidden'); },
              beforeClose: function() { jQuery('body').css('overflow', 'inherit'); }
          });
@@ -167,7 +177,7 @@ jQuery(document).ready(function () {
     jQuery(window).load(function() {
         Omeka.ExhibitBuilder.addNumbers();
     });
-    jQuery(document).bind('exhibitbuilder:attachitem', function (event) {
+    jQuery(document).bind('exhibit-builder-refresh-wysiwyg', function (event) {
         // Add tinyMCE to all textareas in the div where the item was attached.
         jQuery(event.target).find('textarea').each(function () {
             tinyMCE.execCommand('mceAddControl', false, this.id);
