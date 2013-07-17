@@ -4,7 +4,7 @@ $options = $block->getOptions();
 $attachments = $block->getAttachments();
 ?>
 <div class="file-position">
-    <?php echo $this->formLabel($formStem . '[options][file-position]', __('File position:')); ?>
+    <?php echo $this->formLabel($formStem . '[options][file-position]', __('File position')); ?>
     <?php $file_position = array('Left', 'Right', 'Center (no text wrap)'); ?>
     <?php echo $this->formSelect($formStem . '[options][file-position]', @$options['file-position'], array(), $file_position); ?>
 </div>
