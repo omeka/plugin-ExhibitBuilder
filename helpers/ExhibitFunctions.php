@@ -154,101 +154,6 @@ function exhibit_builder_recent_exhibits($num = 10)
 }
 
 /**
- * Get the HTML for an item attachment on a layout form.
- *
- * @param int $order The index of this layout element.
- * @return string
- */
-function exhibit_builder_layout_form_item($order)
-{
-    $attachment = exhibit_builder_page_attachment($order);
-    $item = null;
-    $file = null;
-    $caption = null;
-
-    if ($attachment) {
-        $item = $attachment['item'];
-        if ($attachment['file_specified']) {
-            $file = $attachment['file'];
-        }
-        $caption = $attachment['caption'];
-    }
-
-    return exhibit_builder_form_attachment($item, $file, $caption, $order);
-}
-
-/**
- * Get the HTML for a text input on a layout form
- *
- * @param int $order The index of this layout element.
- * @return string
- */
-function exhibit_builder_layout_form_text($order)
-{
-    $html = '<div class="textfield exhibit-form-element">';
-    $html .= get_view()->formTextarea("Text[$order]",
-        exhibit_builder_page_text($order), array('rows' => '15','cols' => '70'));
-    $html .= '</div>';
-    $html = apply_filters('exhibit_builder_layout_form_text', $html,
-        array('order' => $order));
-    return $html;
-}
-
-/**
- * Get the HTML for a caption form input.
- *
- * @param int $order The order of the attachment for this caption
- * @param string $caption The existing caption, if any
- * @return string
- */
-function exhibit_builder_form_caption($order, $caption = null)
-{
-    $label = __('Caption');
-
-    $html = '<div class="caption-container">'
-          . '<label for="Caption-' . $order.'">' . $label . '</label>'
-          . get_view()->formTextarea("Caption[$order]", $caption,
-                array('rows'=>'4','cols'=>'30'))
-          . '</div>';
-
-    $html = apply_filters('exhibit_builder_form_caption', $html,
-        array('order' => $order, 'caption' => $caption));
-    return $html;
-}
-
-/**
- * Get the HTML for choosing a file for an attachment.
- *
- * @param int $order The order of the attachment for this caption
- * @param Item $item The item for this attachment
- * @param File $currentFile The currently attached file
- * @return string
- */
-function exhibit_builder_form_file($order, $item, $currentFile = null)
-{
-    $options = array('' => __('Select a File'));
-    $files = $item->Files;
-    if (!$files || count($files) == 1) {
-        return '';
-    }
-
-    foreach ($files as $file) {
-        $label = metadata($file, array('Dublin Core', 'Title'),
-            array('no_escape' => true));
-        if (!$label) {
-            $label = $file->original_filename;
-        }
-
-        $options[$file->id] = $label;
-    }
-
-    $currentId = $currentFile ? $currentFile->id : null;
-
-    return get_view()->formSelect("File[$order]", $currentId,
-        array('multiple' => false), $options);
-}
-
-/**
  * Get an array of available themes
  *
  * @return array
@@ -294,17 +199,6 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     } else {
         echo "This page does not have a layout.";
     }
-}
-
-/**
- * Displays an exhibit layout form
- *
- * @param string The name of the layout
- * @return void
- */
-function exhibit_builder_render_layout_form($layout)
-{
-    include EXHIBIT_LAYOUTS_DIR . '/' . $layout . '/form.php';
 }
 
 /**

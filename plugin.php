@@ -7,9 +7,6 @@
 
 if (!defined('EXHIBIT_PLUGIN_DIR')) {
     define('EXHIBIT_PLUGIN_DIR', dirname(__FILE__));
-    define('EXHIBIT_LAYOUTS_DIR_NAME', 'exhibit_layouts');
-    define('EXHIBIT_LAYOUTS_DIR', EXHIBIT_PLUGIN_DIR
-        . '/views/shared/exhibit_layouts');
 }
 
 add_plugin_hook('install', 'exhibit_builder_install');

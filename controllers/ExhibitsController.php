@@ -360,16 +360,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         return $exhibit;
     }
 
-    protected function layoutIni($layout)
-    {
-        $iniPath = EXHIBIT_LAYOUTS_DIR . DIRECTORY_SEPARATOR. "$layout" . DIRECTORY_SEPARATOR . "layout.ini";
-        if (file_exists($iniPath) && is_readable($iniPath)) {
-            $ini = new Zend_Config_Ini($iniPath, 'layout');
-            return $ini;
-        }
-        return false;
-    }
-
     /////END AJAX-ONLY ACTIONS
 }
 
