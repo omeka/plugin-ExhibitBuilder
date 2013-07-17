@@ -296,7 +296,7 @@ button#page_metadata_form {
 .block-form h4:first-of-type { margin-top: 0; }
 
 .add-block {
-    padding: 0;
+    padding: 1em 20px;
     box-sizing: border-box;
     border: 3px dashed #e1e0c2;
     font-size: 1.5em;
@@ -305,10 +305,44 @@ button#page_metadata_form {
 
 .add-block a {
     display: inline-block;
-    padding: 20px;
     width: 100%;
+    margin-bottom: 0;
 }
 
+.layout {
+    display: inline-block;
+    overflow: auto;
+    cursor: pointer;
+    background-color: #fff;
+    margin: 0 20px;
+    padding: 5px;
+    box-shadow: 0 0 3px #ccc;
+    margin: 1em 0 1em 20px;
+}
+
+.layout:first-of-type, .layout:nth-of-type(4n) { margin-left: 0; }
+
+.layout img {
+    border: 1px solid #e7e7e7;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.selected {
+    background-color: #C4DEF2;
+    color: darkblue;
+}
+
+.layout input[type="radio"] {
+    display: none;
+}
+
+.add-block .layout-name {
+    font-size: 14px;
+    line-height: 20px;
+    clear: both;
+    display: block;
+}
 /* New selected items interface */
 
 .selected-item-list .attachment {
