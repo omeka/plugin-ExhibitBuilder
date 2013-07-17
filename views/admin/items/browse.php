@@ -1,16 +1,4 @@
 <?php echo item_search_filters(); ?>
-<a href="" id="show-or-hide-search" class="show-form blue button"><?php echo __('Show Search Form'); ?></a>
-<a href="<?php echo url(); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
-<div id="page-search-form" class="container-twelve">
-<?php
-    $uri = url(array('controller'=>'exhibits', 'action'=>'items', 'page' => null));
-    $formAttributes = array('id'=>'search');
-    echo items_search_form($formAttributes);
-?>
-</div>
-<button id="select-item"><?php echo __('Select Item'); ?></button>
-<div id="attachment-item-options">
-</div>
 <?php     
      echo pagination_links(array('url' => url(array('controller' => 'exhibits',
       'action'=>'items', 'page' => null)))); 

@@ -68,6 +68,17 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </form>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="search-items" style="display:none;">
+    <button type="button" id="show-or-hide-search" class="show-form blue"><?php echo __('Show Search Form'); ?></button>
+    <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
+    <div id="page-search-form" class="container-twelve">
+    <?php
+        $uri = url(array('controller'=>'exhibits', 'action'=>'items', 'page' => null));
+        $formAttributes = array('id'=>'search');
+        echo items_search_form($formAttributes);
+    ?>
+    </div>
+    <button type="button" id="select-item"><?php echo __('Select Item'); ?></button>
+    <div id="attachment-item-options"></div>
     <div id="item-select"></div>
 </div>
 <script type="text/javascript">
@@ -118,38 +129,34 @@ jQuery(document).ready(function () {
         // Set the paginated exhibit items uri
         exhibitBuilder.paginatedItemsUri = <?php echo js_escape(url('exhibit-builder/items/browse')); ?>;
 
-        exhibitBuilder.removeItemText = <?php echo js_escape(__('Remove This Item')); ?>;
         // Get the paginated items
         exhibitBuilder.getItems();
 
-        jQuery(document).bind('omeka:loaditems', function() {
-               // Hide the page search form
-            jQuery('#page-search-form').hide();
+        jQuery('#page-search-form').hide();
 
-            jQuery('#show-or-hide-search').click( function(){
-                var searchForm = jQuery('#page-search-form');
-                if (searchForm.is(':visible')) {
-                    searchForm.hide();
-                } else {
-                    searchForm.show();
-                }
+        jQuery('#show-or-hide-search').click( function(){
+            var searchForm = jQuery('#page-search-form');
+            if (searchForm.is(':visible')) {
+                searchForm.hide();
+            } else {
+                searchForm.show();
+            }
 
-                var showHideLink = jQuery(this);
-                showHideLink.toggleClass('show-form');
-                if (showHideLink.hasClass('show-form')) {
-                    showHideLink.text('Show Search Form');
-                } else {
-                    showHideLink.text('Hide Search Form');
-                }
-                return false;
-            });
+            var showHideLink = jQuery(this);
+            showHideLink.toggleClass('show-form');
+            if (showHideLink.hasClass('show-form')) {
+                showHideLink.text('Show Search Form');
+            } else {
+                showHideLink.text('Hide Search Form');
+            }
+            return false;
+        });
 
-            jQuery('#select-item').click(function (event) {
-                event.preventDefault();
-                exhibitBuilder.getItemOptionsForm(jQuery('#attachment-item-options'),
-                    {item_id: jQuery('#search-items .item-selected').data('itemId')});
-                jQuery(document).trigger('exhibit-builder-select-item');
-            });
+        jQuery('#select-item').click(function (event) {
+            event.preventDefault();
+            exhibitBuilder.getItemOptionsForm(jQuery('#attachment-item-options'),
+                {item_id: jQuery('#search-items .item-selected').data('itemId')});
+            jQuery(document).trigger('exhibit-builder-select-item');
         });
 
         // Search Items Dialog Box
@@ -174,9 +181,6 @@ jQuery(document).ready(function () {
 
     Omeka.wysiwyg();
 
-    jQuery(window).load(function() {
-        Omeka.ExhibitBuilder.addNumbers();
-    });
     jQuery(document).bind('exhibit-builder-refresh-wysiwyg', function (event) {
         // Add tinyMCE to all textareas in the div where the item was attached.
         jQuery(event.target).find('textarea').each(function () {
