@@ -157,6 +157,8 @@ Omeka.ExhibitBuilder = function() {
         var targetedBlock = targetedItem.parent();
         data['block_index'] = targetedBlock.data('blockIndex');
         data['index'] = targetedBlock.find('.attachment').length;
+
+        options.empty();
         jQuery.ajax({
             url: this.attachmentUri,
             method: 'POST',

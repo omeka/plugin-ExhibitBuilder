@@ -25,6 +25,7 @@ class ExhibitBuilder_View_Helper_ExhibitItemListing extends Zend_View_Helper_Abs
                 }
             }
         }
+        $html .= '<button type="button" class="select-item">' . __('Select Item') . '</button>';
         $html .= '</div>';
         return $html;
     }

@@ -77,7 +77,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         echo items_search_form($formAttributes);
     ?>
     </div>
-    <button type="button" id="select-item"><?php echo __('Select Item'); ?></button>
+    
     <div id="attachment-item-options"></div>
     <div id="item-select"></div>
 </div>
@@ -152,7 +152,7 @@ jQuery(document).ready(function () {
             return false;
         });
 
-        jQuery('#select-item').click(function (event) {
+        jQuery('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
             exhibitBuilder.getItemOptionsForm(jQuery('#attachment-item-options'),
                 {item_id: jQuery('#search-items .item-selected').data('itemId')});

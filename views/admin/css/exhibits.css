@@ -50,6 +50,7 @@
 }
 
 #item-list .item-listing {
+    position: relative;
     background: #EBEADC;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F3EC), color-stop(100%,#E9E5DA));
     background: -moz-linear-gradient(center top, #F5F3EC 0%, #E9E5DA 100%);
@@ -69,6 +70,17 @@
     background: #D1C6A8;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEEADD), color-stop(100%,#D1C6A8));
     background: -moz-linear-gradient(center top, #EEEADD 0%, #D1C6A8 100%);
+}
+
+#item-list .select-item {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 4px;
+}
+
+#item-list .item-selected .select-item {
+    display: block;
 }
 
 #item-list .title {
