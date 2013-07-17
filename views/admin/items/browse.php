@@ -1,7 +1,7 @@
 <?php echo item_search_filters(); ?>
-<?php     
-     echo pagination_links(array('url' => url(array('controller' => 'exhibits',
-      'action'=>'items', 'page' => null)))); 
+<?php
+echo pagination_links(array('url' => url(array('controller' => 'exhibits',
+    'action'=>'items', 'page' => null)))); 
 ?>
 <div id="item-list">
 <?php if (!has_loop_records('items')): ?>
@@ -11,3 +11,7 @@
     <?php echo $this->exhibitItemListing($item); ?>
 <?php endforeach; ?>
 </div>
+<?php
+echo pagination_links(array('url' => url(array('controller' => 'exhibits',
+    'action'=>'items', 'page' => null)))); 
+?>

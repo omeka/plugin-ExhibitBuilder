@@ -12,7 +12,9 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
         <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
     </a></h5>
     <?php echo $this->formHidden($stem . '[item_id]', $item->id); ?>
+    <?php if ($file): ?>
     <?php echo $this->formHidden($stem . '[file_id]', $file->id); ?>
+    <?php endif; ?>
     <?php echo $this->formHidden($stem . '[caption]', $attachment->caption); ?>
     <?php echo $this->formHidden($stem . '[order]', $attachment->order); ?>
     <span class="edit-attachment edit button"><a href="#">Edit</a></span>

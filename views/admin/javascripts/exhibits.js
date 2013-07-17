@@ -24,9 +24,6 @@ Omeka.ExhibitBuilder = function() {
             var url = jQuery(this).attr('action') + '?' + jQuery(this).serialize();
             eb.getItems(url);
         });
-        
-        // Setup search item Containers
-        this.setupSearchItemContainers();
 
         // Make the search form respond with ajax power
         jQuery('#search').bind('submit', {exhibitBuilder:this}, function(event){
@@ -41,26 +38,6 @@ Omeka.ExhibitBuilder = function() {
                           function(event){
                               event.data.exhibitBuilder.loadPaginatedSearch()
                           });
-    
-    /*
-    * Setup the item containers located in the search box
-    */
-    this.setupSearchItemContainers = function() {
-        var exhibitBuilder = this;
-        var searchItemContainers = jQuery('#item-select div.item-listing');
-        jQuery.each(searchItemContainers, function(index, rawSearchItemContainer) {
-            var searchItemContainer = jQuery(rawSearchItemContainer);
-            exhibitBuilder.setupSearchItemContainer(searchItemContainer);
-        });
-    }
-    
-    /*
-    * Setup an item container located in the search box
-    */
-    this.setupSearchItemContainer = function(searchItemContainer) {
-        // Add selection highlighting to the search item container
-        this.addSelectionHighlightingToSearchItemContainer(searchItemContainer);
-    };
     
     /*
     * Use AJAX request to retrieve the list of items that can be used in the exhibit.
@@ -114,17 +91,6 @@ Omeka.ExhibitBuilder = function() {
               jQuery('#item-select').html(xhr.responseText);
               jQuery(document).trigger("omeka:loaditems");
           }
-        });
-    };
-
-    /*
-    * Add selection highlighting to the search item containers 
-    */
-    this.addSelectionHighlightingToSearchItemContainer = function(searchItemContainer) {
-        searchItemContainer.bind('click', {exhibitBuilder: this}, function(event) {
-            jQuery('#item-list div.item-selected').removeClass('item-selected');
-            jQuery(this).addClass('item-selected');
-            return;
         });
     };
 

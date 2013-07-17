@@ -153,10 +153,14 @@ jQuery(document).ready(function () {
         });
 
         jQuery('#item-select').on('click', '.select-item', function (event) {
-            event.preventDefault();
             exhibitBuilder.getItemOptionsForm(jQuery('#attachment-item-options'),
                 {item_id: jQuery('#search-items .item-selected').data('itemId')});
             jQuery(document).trigger('exhibit-builder-select-item');
+        });
+
+        jQuery('#item-select').on('click', '.item-listing', function (event) {
+            jQuery('#item-list div.item-selected').removeClass('item-selected');
+            jQuery(this).addClass('item-selected');
         });
 
         // Search Items Dialog Box
