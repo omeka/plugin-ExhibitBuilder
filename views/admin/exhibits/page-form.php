@@ -108,6 +108,14 @@ jQuery(document).ready(function () {
             'html'
         );
     });
+    
+    jQuery('.layout').click(function (event) {
+        var thisLayout = jQuery(this).children('input[type="radio"]')[0];
+        jQuery('.layout-thumbs input[type="radio"]').attr('checked', false);
+        jQuery(thisLayout).attr('checked', true);
+        jQuery('.selected').removeClass('selected');
+        jQuery(this).addClass('selected');
+    });
 
     jQuery('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
         event.preventDefault();
