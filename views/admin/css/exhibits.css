@@ -322,6 +322,7 @@ button#page_metadata_form {
     line-height: 24px;
     font-size: 14px;
     position: relative;
+    vertical-align: top;
 }
 .selected-item-list .attachment h5 {
     font-family: "Cabin", sans-serif; font-weight: normal;
