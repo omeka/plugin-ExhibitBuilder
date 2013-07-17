@@ -104,6 +104,7 @@ jQuery(document).ready(function () {
             function (data) {
                 jQuery(data).insertBefore('.add-block').trigger('exhibit-builder-refresh-wysiwyg');
                 jQuery('input[name=new-block-layout]').prop('checked', false);
+                jQuery('.selected').removeClass('selected');
             },
             'html'
         );
