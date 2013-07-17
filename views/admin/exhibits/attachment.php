@@ -17,7 +17,6 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
     <?php endif; ?>
     <?php echo $this->formHidden($stem . '[caption]', $attachment->caption); ?>
     <?php echo $this->formHidden($stem . '[order]', $attachment->order); ?>
-    <span class="edit-attachment edit button"><a href="#">Edit</a></span>
-    <span class="remove-attachment close button"><a href="#">Close</a></span>
+    <span class="edit-attachment edit button"><a href="#"><?php echo __('Edit'); ?></a></span>
     <span class="remove-attachment close button"><a href="#"><span class="screen-reader-text"><?php echo __('Close'); ?></span></a></span>
 </div>
