@@ -365,7 +365,7 @@ button#page_metadata_form {
     text-indent: -9999px;
 }
 .close.button a:after {
-    content: "+";
+    content: "\D7";
     text-indent: 0;
     position: absolute;
     top: 0;
@@ -376,13 +376,11 @@ button#page_metadata_form {
     width: 15px;
     height: 15px;
     text-align: center;
-    line-height: 13.5px;
+    line-height: 15px;
     border: 1px solid #979797;
     font-weight: normal;
-    font-family: Helvetica;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    font-size: 21px;
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
 }
 
 /* New item options */
