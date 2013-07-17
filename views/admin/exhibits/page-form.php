@@ -38,18 +38,21 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         endforeach;
         ?>
         <div class="add-block">
-            <a class="add-link" href="#">Add new content block</a>
+            <h2>New Content Block</h2>
             <div class="layout-select">
                 <h4>Select layout</h3>
                 <div class="layout-thumbs">
                 <?php
                     $layouts = ExhibitLayout::getLayouts();
                     foreach ($layouts as $layout) {
-                        echo $layout->name;
+                        echo '<div class="layout">';
                         echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
+                        echo '<span class="layout-name">' . $layout->name . '</span>';
                         echo '<input type="radio" name="new-block-layout" value="'. html_escape($layout->id) .'">';
+                        echo '</div>';
                     }
                 ?>
+                <a class="add-link button" href="#">Add new content block</a>
                 </div>
             </div>
         </div>
