@@ -3,14 +3,14 @@
 /**
  * @package ExhibitBuilder\View\Helper
  */
-class ExhibitBuilder_View_Helper_ExhibitAttachmentForm extends Zend_View_Helper_Abstract
+class ExhibitBuilder_View_Helper_ExhibitFormAttachments extends Zend_View_Helper_Abstract
 {
     /**
-     * Return the form for making attachments to an Exhibit.
+     * Return the form for making attachments to an Exhibit block.
      * 
      * @return string
      */
-    public function exhibitAttachmentForm($block, $maxAttachments = 0)
+    public function exhibitFormAttachments($block, $maxAttachments = 0)
     {
         $attachments = $block->ExhibitBlockAttachment;
 
