@@ -1,38 +1,76 @@
 if (typeof Omeka === 'undefined') {
     Omeka = {};
 }
+Omeka.ExhibitBuilder = {};
 
-Omeka.ExhibitBuilder = function() {
-    this.attachmentUri = ''; // Used to get a single item container
-    this.itemOptionsUri = '';
+Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
+    var blockIndex = jQuery('.block-form').length;
+    jQuery('.add-link').click(function (event) {
+        event.preventDefault();
 
+        var newLayout = jQuery('input[name=new-block-layout]:checked').val();
+        if (!newLayout) return;
+
+        jQuery.get(
+            blockFormUrl,
+            {
+                layout: newLayout,
+                order: ++blockIndex
+            },
+            function (data) {
+                jQuery(data).insertBefore('.add-block').trigger('exhibit-builder-refresh-wysiwyg');
+                jQuery('input[name=new-block-layout]').prop('checked', false);
+                jQuery('.selected').removeClass('selected');
+            },
+            'html'
+        );
+    });
+    
+    jQuery('.layout').click(function (event) {
+        var thisLayout = jQuery(this).children('input[type="radio"]')[0];
+        jQuery('.layout-thumbs input[type="radio"]').attr('checked', false);
+        jQuery(thisLayout).attr('checked', true);
+        jQuery('.selected').removeClass('selected');
+        jQuery(this).addClass('selected');
+    });
+
+    jQuery('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
+        event.preventDefault();
+        jQuery(this).parent().remove();
+    });
+};
+
+Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl) {
     /*
-    * Load paginated search
-    */
-    this.loadPaginatedSearch = function() {
-        var eb = this;
-        // Make each of the pagination links fire an additional ajax request
-        jQuery('.pagination a, #view-all-items').click(function (event) {
-            event.preventDefault();
-            eb.getItems(jQuery(this).attr('href'));
-        });
-
-        jQuery('.pagination form').submit(function (event) {
-            event.preventDefault();
-            var url = jQuery(this).attr('action') + '?' + jQuery(this).serialize();
-            eb.getItems(url);
+     * Use AJAX to retrieve the list of items that can be attached.
+     */
+    function getItems(uri, parameters) {
+        var fireEvents = false;
+        jQuery.ajax({
+            url: uri,
+            data: parameters,
+            method: 'GET',
+            success: function(data) {
+                jQuery('#item-select').html(data);
+                fireEvents = true;
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                alert('Error getting items: ' . textStatus);
+            },
+            complete: function(xhr, textStatus) {
+                if (fireEvents) {
+                    jQuery(document).trigger("omeka:loaditems");
+                }
+            }
         });
     };
-    
-    jQuery(document).bind('omeka:loaditems', 
-                          {exhibitBuilder:this}, 
-                          function(event){
-                              event.data.exhibitBuilder.loadPaginatedSearch()
-                          });
 
-    this.getItemOptionsForm = function(container, data) {
+    /**
+     * Use AJAX to load the form for an attachment.
+     */
+    function loadItemOptionsForm(container, data) {
         jQuery.ajax({
-            url: this.itemOptionsUri,
+            url: itemOptionsUrl,
             method: 'POST',
             dataType: 'html',
             data: data,
@@ -43,7 +81,59 @@ Omeka.ExhibitBuilder = function() {
         });
     };
 
-    this.applyAttachment = function () {
+    // Initially load the paginated items
+    getItems(jQuery('#search').attr('action'));
+
+    // Make search and pagination use AJAX to respond.
+    jQuery('#search').submit(function(event) {
+        event.preventDefault();
+        getItems(this.action, jQuery(this).serialize());
+    });
+    jQuery('#search-items').on('click', '.pagination a, #view-all-items', function (event) {
+        event.preventDefault();
+        getItems(jQuery(this).attr('href'));
+    });
+    jQuery('#item-select').on('submit', '.pagination form', function (event) {
+        event.preventDefault();
+        getItems(jQuery(this).attr('action') + '?' + jQuery(this).serialize());
+    });
+
+    // Show/hide for the search form
+    jQuery('#page-search-form').hide();
+    jQuery('#show-or-hide-search').click(function () {
+        var searchForm = jQuery('#page-search-form');
+        if (searchForm.is(':visible')) {
+            searchForm.hide();
+        } else {
+            searchForm.show();
+        }
+
+        var showHideLink = jQuery(this);
+        showHideLink.toggleClass('show-form');
+        if (showHideLink.hasClass('show-form')) {
+            showHideLink.text('Show Search Form');
+        } else {
+            showHideLink.text('Hide Search Form');
+        }
+        return false;
+    });
+
+    // Make item listings selectable
+    jQuery('#item-select').on('click', '.item-listing', function (event) {
+        jQuery('#item-list div.item-selected').removeClass('item-selected');
+        jQuery(this).addClass('item-selected');
+    });
+
+    // Hook select buttons to item options form
+    jQuery('#item-select').on('click', '.select-item', function (event) {
+        loadItemOptionsForm(jQuery('#attachment-item-options'),
+            {item_id: jQuery('#search-items .item-selected').data('itemId')});
+        jQuery(document).trigger('exhibit-builder-select-item');
+    });
+};
+
+Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl, applyText) {
+    function applyAttachment() {
         var options = jQuery('#attachment-item-options');
         var item_id = options.find('input[name="item_id"]').val();
         var file_id = options.find('input[name="file_id"]:checked').val();
@@ -62,7 +152,7 @@ Omeka.ExhibitBuilder = function() {
 
         options.empty();
         jQuery.ajax({
-            url: this.attachmentUri,
+            url: attachmentUrl,
             method: 'POST',
             dataType: 'html',
             data: data,
@@ -75,45 +165,31 @@ Omeka.ExhibitBuilder = function() {
             }
         });
     };
-}
 
-/*
-* Use AJAX request to retrieve the list of items that can be used in the exhibit.
-*/
-Omeka.ExhibitBuilder.getItems = function(uri, parameters) {
-    if (!uri || uri.length == 0) {
-        uri = jQuery('#search').attr('action');
-    }
-
-    var fireEvents = false;
-    jQuery.ajax({
-        url: uri,
-        data: parameters,
-        method: 'GET',
-        success: function(data) {
-            jQuery('#item-select').html(data);
-            fireEvents = true;
-        },
-        error: function(xhr, textStatus, errorThrown) {
-            alert('Error getting items: ' . textStatus);
-        },
-        complete: function(xhr, textStatus) {
-            if (fireEvents) {
-                jQuery(document).trigger("omeka:loaditems");
+    // Search Items Dialog Box
+    jQuery('#search-items').dialog({
+         autoOpen: false,
+         width: Math.min(jQuery(window).width() - 100, 820),
+         height: Math.min(jQuery(window).height() - 100, 500),
+         modal: true,
+         buttons: [{
+            id: 'apply-attachment',
+            text: applyText,
+            click: function() {
+                applyAttachment();
+                jQuery(this).dialog('close');
             }
-        }
+         }],
+         open: function() { jQuery('body').css('overflow', 'hidden'); },
+         beforeClose: function() { jQuery('body').css('overflow', 'inherit'); }
     });
-};
 
-Omeka.ExhibitBuilder.addNumbers = function() {
-    jQuery('#layout-form .exhibit-form-element').each(function(i){
-        var number = i+1;
-        if (jQuery(this).find('.exhibit-form-element-number').length == 0) {
-            jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
-        }
+    jQuery('#block-container').on('click', '.add-item', function (event) {
+        event.preventDefault();
+        jQuery(this).addClass('item-targeted');
+        jQuery('#search-items').dialog('open');
     });
-};
-
+}
 
 /**
  * Enable drag and drop sorting for elements.
