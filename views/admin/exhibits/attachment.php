@@ -3,7 +3,7 @@ $item = $attachment->getItem();
 $file = $attachment->getFile();
 $stem = $block->getFormStem() . "[attachments][{$index}]";
 ?>
-<div class="attachment">
+<div class="attachment" data-attachment-index="<?php echo html_escape($index); ?>">
     <?php if ($file): ?>
     <div class="attachment-background" style="background: url(<?php echo html_escape(metadata($file, 'square_thumbnail_uri')); ?>) center / cover"></div>
     <?php endif; ?>

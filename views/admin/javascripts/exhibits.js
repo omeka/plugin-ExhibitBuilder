@@ -68,15 +68,16 @@ Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl)
     /**
      * Use AJAX to load the form for an attachment.
      */
-    function loadItemOptionsForm(container, data) {
+    this.loadItemOptionsForm = function(data) {
         jQuery.ajax({
             url: itemOptionsUrl,
             method: 'POST',
             dataType: 'html',
             data: data,
             complete: function (xhr, textStatus) {
-                container.html(xhr.responseText);
-                container.trigger('exhibit-builder-refresh-wysiwyg');
+                jQuery('#attachment-item-options')
+                    .html(xhr.responseText)
+                    .trigger('exhibit-builder-refresh-wysiwyg');
             }
         });
     };
@@ -126,8 +127,9 @@ Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl)
 
     // Hook select buttons to item options form
     jQuery('#item-select').on('click', '.select-item', function (event) {
-        loadItemOptionsForm(jQuery('#attachment-item-options'),
-            {item_id: jQuery('#search-items .item-selected').data('itemId')});
+        Omeka.ExhibitBuilder.loadItemOptionsForm(
+            {item_id: jQuery('#search-items .item-selected').data('itemId')}
+        );
         jQuery(document).trigger('exhibit-builder-select-item');
     });
 };
@@ -135,20 +137,17 @@ Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl)
 Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl, applyText) {
     function applyAttachment() {
         var options = jQuery('#attachment-item-options');
-        var item_id = options.find('input[name="item_id"]').val();
-        var file_id = options.find('input[name="file_id"]:checked').val();
-        var captionId = options.find('textarea[name="caption"]').attr('id');
-        var caption = tinymce.get(captionId).getContent();
-        data = {
-            'item_id': item_id,
-            'file_id': file_id,
-            'caption': caption,
-        };
+        data = getAttachmentData(options, false);
 
         var targetedItem = jQuery('.item-targeted').removeClass('item-targeted');
-        var targetedBlock = targetedItem.parent();
+        var targetedBlock = targetedItem.parents('.block-form');
         data['block_index'] = targetedBlock.data('blockIndex');
-        data['index'] = targetedBlock.find('.attachment').length;
+
+        if (targetedItem.is('.attachment')) {
+            data['index'] = targetedItem.data('attachment-index');
+        } else {
+            data['index'] = targetedBlock.find('.attachment').length;
+        }
 
         options.empty();
         jQuery.ajax({
@@ -165,6 +164,26 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl, applyText) {
             }
         });
     };
+
+    function getAttachmentData(container, hidden) {
+        var item_id, file_id, caption;
+
+        if (hidden) {
+            item_id = container.find('input[name*="[item_id]"]').val()
+            file_id = container.find('input[name*="[file_id]"]').val();
+            caption = container.find('input[name*="[caption]"]').val();
+        } else {
+            item_id = container.find('input[name="item_id"]').val()
+            file_id = container.find('input[name="file_id"]:checked').val();
+            caption = tinymce.get(container.find('textarea[name="caption"]').attr('id')).getContent();
+        }
+        
+        return {
+            'item_id': item_id,
+            'file_id': file_id,
+            'caption': caption,
+        };
+    }
 
     // Search Items Dialog Box
     jQuery('#search-items').dialog({
@@ -187,6 +206,16 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl, applyText) {
     jQuery('#block-container').on('click', '.add-item', function (event) {
         event.preventDefault();
         jQuery(this).addClass('item-targeted');
+        jQuery('#search-items').dialog('open');
+    });
+
+    jQuery('#block-container').on('click', '.edit-attachment a', function (event) {
+        var attachment;
+        event.preventDefault();
+
+        attachment = jQuery(this).parent().parent();
+        attachment.addClass('item-targeted');
+        Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true));
         jQuery('#search-items').dialog('open');
     });
 }

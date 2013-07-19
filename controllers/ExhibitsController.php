@@ -84,33 +84,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
     }
 
-    public function attachmentItemOptionsAction()
-    {
-        if (($attachmentId = $this->_getParam('attachment_id'))) {
-            $attachment = $this->_helper->db->getTable('ExhibitBlockAttachment')->find($attachmentId);
-            $this->view->attachment = $attachment;
-        } else {
-            $itemId = $this->_getParam('item_id');
-            $item = $this->_helper->db->getTable('Item')->find($itemId);
-            $this->view->item = $item;
-        }
-    }
-
-    public function attachmentAction()
-    {
-        $attachment = new ExhibitBlockAttachment;
-        $attachment->item_id = $this->_getParam('item_id');
-        $attachment->file_id = $this->_getParam('file_id');
-        $attachment->caption = $this->_getParam('caption');
-
-        $block = new ExhibitPageBlock;
-        $block->order = $this->_getParam('block_index');
-
-        $this->view->attachment = $attachment;
-        $this->view->block = $block;
-        $this->view->index = (int) $this->_getParam('index');
-    }
-
     public function showAction()
     {
         $exhibit = $this->_findByExhibitSlug();
@@ -349,6 +322,31 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
         $this->view->block = $block;
     }
+
+    public function attachmentAction()
+    {
+        $attachment = new ExhibitBlockAttachment;
+        $attachment->item_id = $this->_getParam('item_id');
+        $attachment->file_id = $this->_getParam('file_id');
+        $attachment->caption = $this->_getParam('caption');
+
+        $block = new ExhibitPageBlock;
+        $block->order = $this->_getParam('block_index');
+
+        $this->view->attachment = $attachment;
+        $this->view->block = $block;
+        $this->view->index = (int) $this->_getParam('index');
+    }
+
+    public function attachmentItemOptionsAction()
+    {
+        $attachment = new ExhibitBlockAttachment;
+        $attachment->item_id = $this->_getParam('item_id');
+        $attachment->file_id = $this->_getParam('file_id');
+        $attachment->caption = $this->_getParam('caption');
+        $this->view->attachment = $attachment;
+    }
+
 
     protected function findOrNew()
     {

@@ -1,12 +1,7 @@
 <?php
-if (isset($attachment)) {
-    $caption = $attachment->caption;
-    $file_id = $attachment->file_id;
-    $item = $attachment->getItem();
-} else {
-    $caption = null;
-    $file_id = null;
-}
+$item = $attachment->getItem();
+$caption = $attachment->caption;
+$file_id = $attachment->file_id;
 $files = $item->Files;
 ?>
 <?php echo $this->formHidden('item_id', $item->id); ?>
