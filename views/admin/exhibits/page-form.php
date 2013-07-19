@@ -70,14 +70,14 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </div>
 </form>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
-<div id="search-items" style="display:none;">
+<div id="search-items">
     <button type="button" id="show-or-hide-search" class="show-form blue"><?php echo __('Show Search Form'); ?></button>
     <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
     <div id="page-search-form" class="container-twelve">
     <?php
-        $uri = url(array('controller'=>'exhibits', 'action'=>'items', 'page' => null));
-        $formAttributes = array('id'=>'search');
-        echo items_search_form($formAttributes);
+        $action = url(array('module' => 'exhibit-builder',
+            'controller' => 'items', 'action' => 'browse'), 'default', array(), true);
+        echo items_search_form(array('id' => 'search'), $action);
     ?>
     </div>
     
@@ -138,11 +138,8 @@ jQuery(document).ready(function () {
         exhibitBuilder.itemOptionsUri = <?php echo js_escape(url('exhibits/attachment-item-options')); ?>;
         exhibitBuilder.attachmentUri = <?php echo js_escape(url('exhibits/attachment')); ?>;
 
-        // Set the paginated exhibit items uri
-        exhibitBuilder.paginatedItemsUri = <?php echo js_escape(url('exhibit-builder/items/browse')); ?>;
-
         // Get the paginated items
-        exhibitBuilder.getItems();
+        Omeka.ExhibitBuilder.getItems();
 
         jQuery('#page-search-form').hide();
 
@@ -173,6 +170,13 @@ jQuery(document).ready(function () {
         jQuery('#item-select').on('click', '.item-listing', function (event) {
             jQuery('#item-list div.item-selected').removeClass('item-selected');
             jQuery(this).addClass('item-selected');
+        });
+
+        // Make the search form respond with ajax power
+        jQuery('#search').submit(function(event) {
+            event.preventDefault();
+            Omeka.ExhibitBuilder.getItems(this.action,
+                jQuery(this).serialize());
         });
 
         // Search Items Dialog Box

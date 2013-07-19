@@ -3,8 +3,6 @@ if (typeof Omeka === 'undefined') {
 }
 
 Omeka.ExhibitBuilder = function() {
-    
-    this.paginatedItemsUri = ''; // Used to get a paginated list of items for the item search
     this.attachmentUri = ''; // Used to get a single item container
     this.itemOptionsUri = '';
 
@@ -24,13 +22,6 @@ Omeka.ExhibitBuilder = function() {
             var url = jQuery(this).attr('action') + '?' + jQuery(this).serialize();
             eb.getItems(url);
         });
-
-        // Make the search form respond with ajax power
-        jQuery('#search').bind('submit', {exhibitBuilder:this}, function(event){
-            event.stopPropagation();
-            event.data.exhibitBuilder.searchItems(jQuery('#search'));
-            return false;
-        });
     };
     
     jQuery(document).bind('omeka:loaditems', 
@@ -38,61 +29,6 @@ Omeka.ExhibitBuilder = function() {
                           function(event){
                               event.data.exhibitBuilder.loadPaginatedSearch()
                           });
-    
-    /*
-    * Use AJAX request to retrieve the list of items that can be used in the exhibit.
-    */
-    this.getItems = function(uri, parameters) {          
-         
-         if (!uri || uri.length == 0) {
-             uri = this.paginatedItemsUri;
-         }
-         var fireEvents = false;
-         jQuery.ajax({
-           url: uri,
-           data: parameters,
-           method: 'GET',
-
-           success: function(data) {
-             jQuery('#item-select').html(data);
-             fireEvents = true;
-           },
-
-           error: function(xhr, textStatus, errorThrown) {
-             alert('Error getting items: ' . textStatus);  
-           },
-
-           complete: function(xhr, textStatus) {
-                // Activate the buttons on the advanced search
-                //Omeka.Search.activateSearchButtons();
-                
-                if (fireEvents) {
-                    jQuery(document).trigger("omeka:loaditems");
-                }
-           }
-         });
-    };
-
-    /*
-    * Process the search form 
-    */
-    this.searchItems = function(searchForm)
-    {
-        // The advanced search form automatically puts 'items/browse' as the 
-        // action URI.  We need to hack that with Javascript to make this work.
-        // This will give it the URI exhibits/items or whatever is set in
-        // page-form.php.
-        searchForm.attr('action', this.paginatedItemsUri);
-        jQuery.ajax({
-          url: this.paginatedItemsUri,
-          data: searchForm.serialize(),
-          method: 'POST',
-          complete: function(xhr, textStatus) {
-              jQuery('#item-select').html(xhr.responseText);
-              jQuery(document).trigger("omeka:loaditems");
-          }
-        });
-    };
 
     this.getItemOptionsForm = function(container, data) {
         jQuery.ajax({
@@ -141,6 +77,34 @@ Omeka.ExhibitBuilder = function() {
     };
 }
 
+/*
+* Use AJAX request to retrieve the list of items that can be used in the exhibit.
+*/
+Omeka.ExhibitBuilder.getItems = function(uri, parameters) {
+    if (!uri || uri.length == 0) {
+        uri = jQuery('#search').attr('action');
+    }
+
+    var fireEvents = false;
+    jQuery.ajax({
+        url: uri,
+        data: parameters,
+        method: 'GET',
+        success: function(data) {
+            jQuery('#item-select').html(data);
+            fireEvents = true;
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            alert('Error getting items: ' . textStatus);
+        },
+        complete: function(xhr, textStatus) {
+            if (fireEvents) {
+                jQuery(document).trigger("omeka:loaditems");
+            }
+        }
+    });
+};
+
 Omeka.ExhibitBuilder.addNumbers = function() {
     jQuery('#layout-form .exhibit-form-element').each(function(i){
         var number = i+1;
@@ -148,7 +112,7 @@ Omeka.ExhibitBuilder.addNumbers = function() {
             jQuery(this).append('<div class="exhibit-form-element-number">'+number+'</div>'); 
         }
     });
-}
+};
 
 
 /**

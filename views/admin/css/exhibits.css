@@ -433,6 +433,10 @@ button#page_metadata_form {
 
 /* New selected items interface */
 
+#search-items {
+    display: none;
+}
+
 .selected-item-list { 
     float: left; 
     margin-right: 10px;
