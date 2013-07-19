@@ -52,6 +52,8 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         }
         if (!empty($data['attachments'])) {
             $this->setAttachments($data['attachments']);
+        } else {
+            $this->setAttachments(array());
         }
     }
 
@@ -74,7 +76,7 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         return $this->loadOrderedChildren();
     }
     
-    public function setAttachments($attachmentsData)
+    public function setAttachments($attachmentsData, $deleteExtras = true)
     {
         // We have to have an ID to proceed.
         if (!$this->exists()) {
@@ -93,8 +95,11 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
             $attachment->setData($attachmentData);
             $attachment->save();
         }
-        foreach ($existingAttachments as $extraAttachment) {
-            $extraAttachment->delete();
+
+        if ($deleteExtras) {
+            foreach ($existingAttachments as $extraAttachment) {
+                $extraAttachment->delete();
+            }
         }
     }
 

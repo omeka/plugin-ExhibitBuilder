@@ -54,6 +54,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
             if (!empty($post['blocks'])) {
                 $this->setPageBlocks($post['blocks']);
+            } else {
+                $this->setPageBlocks(array());
             }
         }
 
@@ -190,7 +192,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         return $this->loadOrderedChildren();
     }
 
-    public function setPageBlocks($blocksData)
+    public function setPageBlocks($blocksData, $deleteExtras = true)
     {
         $existingBlocks = $this->getPageBlocks();
         foreach ($blocksData as $i => $blockData) {
@@ -205,9 +207,11 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $block->save();
         }
         // Any leftover blocks beyond the new data get erased.
-        foreach ($existingBlocks as $extraBlock) {
-            $extraBlock->delete();
-        } 
+        if ($deleteExtras) {
+            foreach ($existingBlocks as $extraBlock) {
+                $extraBlock->delete();
+            }
+        }
     }
 
     public function getRecordUrl($action = 'show')

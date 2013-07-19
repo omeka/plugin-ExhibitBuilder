@@ -146,7 +146,7 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl, applyText) {
         if (targetedItem.is('.attachment')) {
             data['index'] = targetedItem.data('attachment-index');
         } else {
-            data['index'] = targetedBlock.find('.attachment').length;
+            data['index'] = targetedBlock.find('.attachment').length + 1;
         }
 
         options.empty();
