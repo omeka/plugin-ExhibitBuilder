@@ -85,8 +85,22 @@
 #item-list .select-item {
     display: none;
     position: absolute;
-    top: 8px;
-    right: 4px;
+    top: 0;
+    right: 0;
+    margin: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #B3A679, #503F20);
+    border-width: 0 0 0 1px;
+    border-color: #8A8122;
+    border-radius: 0 1px 1px 0;
+    box-shadow: none;
+    padding: 0 20px;
+}
+
+.select-item:after {
+    content: "\25B6";
+    font-size: 10px;
+    margin-left: 5px;
 }
 
 #item-list .item-selected .select-item {
