@@ -8,8 +8,12 @@ $options = $block->getOptions();
     <?php echo $this->formSelect($formStem . '[options][file-position]', @$options['file-position'], array(), $file_position); ?>
 </div>
 
-<h4><?php echo __('Items'); ?></h4>
-<?php echo $this->exhibitFormAttachments($block); ?>
+<div class="selected-items">
+    <h4><?php echo __('Items'); ?></h4>
+    <?php echo $this->exhibitFormAttachments($block); ?>
+</div>
 
-<h4><?php echo __('Text'); ?></h4>
-<?php echo $this->exhibitFormText($block); ?>
+<div class="block-text">
+    <h4><?php echo __('Text'); ?></h4>
+    <?php echo $this->exhibitFormText($block); ?>
+</div>
