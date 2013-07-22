@@ -200,12 +200,22 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         width: Math.min(jQuery(window).width() - 100, 600),
         height: Math.min(jQuery(window).height() - 100, 500),
         modal: true,
-        open: function() { jQuery('body').css('overflow', 'hidden'); },
-        beforeClose: function() {
+        create: function () {
+            jQuery(this).dialog('widget')
+                .draggable('option', {
+                    containment: 'window',
+                    scroll: false
+                });
+        },
+        open: function () {
+            jQuery('body').css('overflow', 'hidden');
+        },
+        beforeClose: function () {
             jQuery('body').css('overflow', 'inherit');
             jQuery('#attachment-item-options').empty();
         },
-        position: {my: 'center', at: 'center center+22'}
+        position: {my: 'center', at: 'center center+22'},
+        dialogClass: 'item-dialog'
     });
 
     jQuery('#apply-attachment').on('click', function (event) {

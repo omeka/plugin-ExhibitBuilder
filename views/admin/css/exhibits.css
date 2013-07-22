@@ -470,6 +470,10 @@ button#page_metadata_form {
 
 /* New selected items interface */
 
+.item-dialog {
+    z-index: 1000;
+}
+
 #search-items {
     display: none;
     padding: 10px 0;
