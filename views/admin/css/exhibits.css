@@ -42,8 +42,18 @@
 }
 
 #item-select {
-    padding: 10px 0;
+    padding: 0;
 }
+
+#item-select .pagination {
+    margin-bottom: 0;
+}
+
+#item-select .pagination li, #item-select .pagination input[type="text"] {
+    height: 26px;
+    line-height: 26px;
+}
+
 
 #item-list {
     clear: both;
@@ -109,6 +119,10 @@
     border-width: 0 0 1px;
     overflow:hidden;
     zoom:1;
+}
+
+#apply-attachment {
+    margin: 0;
 }
 
 .item-selected {
@@ -229,6 +243,7 @@
 #show-or-hide-search, #view-all-items {
     float: left;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 #page-form .exhibit-form-element {
@@ -435,6 +450,12 @@ button#page_metadata_form {
 
 #search-items {
     display: none;
+    padding: 10px 0;
+}
+
+#search-items + div {
+    margin-top: 0;
+    padding: 5px 0;
 }
 
 #search-items #attachment-options {
