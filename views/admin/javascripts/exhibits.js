@@ -194,8 +194,9 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         jQuery(attachment).addClass('item-targeted');
     }
 
+    var searchItems = jQuery('#search-items');
     // Search Items Dialog Box
-    jQuery('#search-items').dialog({
+    searchItems.dialog({
         autoOpen: false,
         width: Math.min(jQuery(window).width() - 100, 600),
         height: Math.min(jQuery(window).height() - 100, 500),
@@ -218,10 +219,14 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         dialogClass: 'item-dialog'
     });
 
+    jQuery(window).resize(function () {
+        searchItems.dialog('option', 'position', {my: 'center', at: 'center center+22'})
+    });
+
     jQuery('#apply-attachment').on('click', function (event) {
         event.preventDefault();
         applyAttachment();
-        jQuery('#search-items').dialog('close');
+        searchItems.dialog('close');
     });
 
     jQuery('#block-container').on('click', '.add-item', function (event) {
@@ -229,8 +234,7 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         targetAttachment(this);
 
         tinymce.get('attachment-caption').setContent('');
-        jQuery('#search-items').removeClass('editing-attachment');
-        jQuery('#search-items').dialog('open');
+        searchItems.removeClass('editing-attachment').dialog('open');
     });
 
     jQuery('#block-container').on('click', '.edit-attachment a', function (event) {
@@ -241,8 +245,7 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         targetAttachment(attachment);
         Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true));
         jQuery(document).trigger('exhibit-builder-select-item');
-        jQuery('#search-items').addClass('editing-attachment');
-        jQuery('#search-items').dialog('open');
+        searchItems.addClass('editing-attachment').dialog('open');
     });
 }
 
