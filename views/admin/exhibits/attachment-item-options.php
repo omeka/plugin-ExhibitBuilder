@@ -36,9 +36,4 @@ $files = $item->Files;
     <?php endif; ?>
 </div>
 <?php endif; ?>
-<div class="item-caption">
-    <p class="direction"><?php echo __('Provide a caption.'); ?></p>
-    <div class="inputs">
-        <?php echo $this->formTextarea('caption', $caption, array('rows' => 3)); ?>
-    </div>
-</div>
+

@@ -437,6 +437,18 @@ button#page_metadata_form {
     display: none;
 }
 
+#search-items #attachment-options {
+    display: none;
+}
+
+#search-items.editing-attachment #attachment-options {
+    display: block;
+}
+
+#search-items.editing-attachment #item-form {
+    display: none;
+}
+
 .selected-item-list { 
     float: left; 
     margin-right: 10px;

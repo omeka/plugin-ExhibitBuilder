@@ -71,31 +71,47 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </form>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="search-items" title="<?php echo html_escape(__('Attach an Item')); ?>">
-    <button type="button" id="show-or-hide-search" class="show-form blue"><?php echo __('Show Search Form'); ?></button>
-    <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
-    <div id="page-search-form" class="container-twelve">
-    <?php
-        $action = url(array('module' => 'exhibit-builder',
-            'controller' => 'items', 'action' => 'browse'), 'default', array(), true);
-        echo items_search_form(array('id' => 'search'), $action);
-    ?>
+    <div id="item-form">
+        <button type="button" id="show-or-hide-search" class="show-form blue"><?php echo __('Show Search Form'); ?></button>
+        <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
+        <div id="page-search-form" class="container-twelve">
+        <?php
+            $action = url(array('module' => 'exhibit-builder',
+                'controller' => 'items', 'action' => 'browse'), 'default', array(), true);
+            echo items_search_form(array('id' => 'search'), $action);
+        ?>
+        </div>
+        <div id="item-select"></div>
     </div>
-    <div id="attachment-item-options"></div>
-    <div id="item-select">
-        <?php echo $this->action('items/browse.php'); ?>
+    <div id="attachment-options">
+        <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
+        <div id="attachment-item-options"></div>
+        <div class="item-caption">
+            <p class="direction"><?php echo __('Provide a caption.'); ?></p>
+            <div class="inputs">
+                <?php echo $this->formTextarea('caption', '', array('rows' => 3, 'id' => 'attachment-caption')); ?>
+            </div>
+        </div>
+        <button type="submit" id="apply-attachment"><?php echo __('Apply'); ?></button>
     </div>
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function () {
     Omeka.ExhibitBuilder.setUpBlocks(<?php echo json_encode(url('exhibits/block-form')); ?>);
     Omeka.ExhibitBuilder.setUpItemsSelect(<?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
-    Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>, <?php echo js_escape(__('Apply')); ?>);
+    Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>);
 
     Omeka.wysiwyg();
     jQuery(document).on('exhibit-builder-refresh-wysiwyg', function (event) {
         // Add tinyMCE to all textareas in the div where the item was attached.
         jQuery(event.target).find('textarea').each(function () {
             tinyMCE.execCommand('mceAddControl', false, this.id);
+        });
+    });
+    jQuery(document).on('exhibit-builder-remove-wysiwyg', function (event) {
+        // Remove tinyMCE from all textareas in the div where the item was attached.
+        jQuery(event.target).find('textarea').each(function () {
+            tinyMCE.execCommand('mceRemoveControl', false, this.id);
         });
     });
 });

@@ -343,7 +343,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $attachment = new ExhibitBlockAttachment;
         $attachment->item_id = $this->_getParam('item_id');
         $attachment->file_id = $this->_getParam('file_id');
-        $attachment->caption = $this->_getParam('caption');
         $this->view->attachment = $attachment;
     }
 
