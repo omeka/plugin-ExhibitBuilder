@@ -304,26 +304,43 @@ button#page_metadata_form {
 .block-form {
     background-color: rgba(255,255,255,.55);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
-    padding: 50px 10px 10px;
+    padding: 40px 0 0;
     margin-bottom: 20px;
     border: 1px solid #D6D5C2;
     position: relative;
     border-radius: 2px 2px 0 0;
+    overflow: auto;
+}
+
+.block-form > div {
+    padding: 20px 10px;
+    border-bottom: 1px solid #D6D5C2;
+}
+
+.block-form > div:only-of-type, .block-form > div:last-of-type {
+    margin-bottom: 0;
+}
+
+#content .block-form h2 {
+    margin-bottom: 0;
 }
 
 .block-form h4:first-of-type { margin-top: 0; }
 
-.block-form h4 { clear: both; }
+.block-form h4 { 
+    clear: both; 
+    margin-bottom: 10px;
+}
 
 .file-position label {
     display: block;
     font-weight: bold;
     font-size: 16px;
-    margin-bottom: 1em;
+    margin-bottom: 10px;
 }
 
 .file-position select {
-    margin: 0 0 2em 0;
+    margin: 0 0;
 }
 
 .add-item { float: left; }
@@ -333,7 +350,6 @@ button#page_metadata_form {
     width: 100px;
     height: 120px;
     border: 1px dashed #D6D5C2;
-    margin-bottom: 40px;
     background-color: rgba(64, 58, 26, 0.05);
     font-weight: bold;
     font-size: 100px;
@@ -433,6 +449,12 @@ button#page_metadata_form {
     text-align: center;
 }
 
+.remove-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .remove-block:before {
     content: "\21";
     display: inline-block;
@@ -470,9 +492,13 @@ button#page_metadata_form {
     display: none;
 }
 
-.selected-item-list { 
-    float: left; 
-    margin-right: 10px;
+div.selected-items {
+    overflow: auto;
+    padding-bottom: 20px;
+}
+
+.selected-item-list:empty + .add-item a {
+    margin-bottom: 0;
 }
 
 .selected-item-list .attachment {
@@ -487,12 +513,8 @@ button#page_metadata_form {
     font-size: 14px;
     position: relative;
     vertical-align: top;
-    margin-right: 10px;
+    margin: 0 10px 10px 0;
     float: left;
-}
-
-.selected-item-list .attachment:last-child {
-    margin-right: 0;
 }
 
 .selected-item-list .attachment h5 {
