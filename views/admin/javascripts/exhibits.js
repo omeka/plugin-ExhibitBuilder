@@ -199,6 +199,7 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
     searchItems.dialog({
         autoOpen: false,
         modal: true,
+        resizable: false,
         create: function () {
             jQuery(this).dialog('widget')
                 .draggable('option', {
