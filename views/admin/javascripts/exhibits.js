@@ -204,7 +204,8 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         beforeClose: function() {
             jQuery('body').css('overflow', 'inherit');
             jQuery('#attachment-item-options').empty();
-        }
+        },
+        position: {my: 'center', at: 'center center+22'}
     });
 
     jQuery('#apply-attachment').on('click', function (event) {
