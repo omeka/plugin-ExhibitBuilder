@@ -7,10 +7,10 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
     <?php if ($file): ?>
     <div class="attachment-background" style="background: url(<?php echo html_escape(metadata($file, 'square_thumbnail_uri')); ?>) center / cover"></div>
     <?php endif; ?>
-    <h5><a href="#">
+    <h5>
         #<?php echo html_escape($item->id); ?>:
         <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
-    </a></h5>
+    </h5>
     <?php echo $this->formHidden($stem . '[item_id]', $item->id); ?>
     <?php if ($file): ?>
     <?php echo $this->formHidden($stem . '[file_id]', $file->id); ?>
