@@ -198,8 +198,6 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
     // Search Items Dialog Box
     searchItems.dialog({
         autoOpen: false,
-        width: Math.min(jQuery(window).width() - 100, 600),
-        height: Math.min(jQuery(window).height() - 100, 500),
         modal: true,
         create: function () {
             jQuery(this).dialog('widget')
@@ -209,18 +207,26 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
                 });
         },
         open: function () {
+            function refreshDialog() {
+                searchItems.dialog('option', {
+                    width: Math.min(jQuery(window).width() - 100, 600),
+                    height: Math.min(jQuery(window).height() - 100, 500),
+                    position: {my: 'center', at: 'center center+22'}
+                });
+            }
+
+            refreshDialog();
             jQuery('body').css('overflow', 'hidden');
+            jQuery(window).on('resize.ExhibitBuilder', function () {
+                refreshDialog();
+            });
         },
         beforeClose: function () {
             jQuery('body').css('overflow', 'inherit');
+            jQuery(window).off('resize.ExhibitBuilder');
             jQuery('#attachment-item-options').empty();
         },
-        position: {my: 'center', at: 'center center+22'},
         dialogClass: 'item-dialog'
-    });
-
-    jQuery(window).resize(function () {
-        searchItems.dialog('option', 'position', {my: 'center', at: 'center center+22'})
     });
 
     jQuery('#apply-attachment').on('click', function (event) {
