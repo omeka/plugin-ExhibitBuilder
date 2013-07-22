@@ -45,22 +45,16 @@ Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl)
      * Use AJAX to retrieve the list of items that can be attached.
      */
     function getItems(uri, parameters) {
-        var fireEvents = false;
         jQuery.ajax({
             url: uri,
             data: parameters,
             method: 'GET',
             success: function(data) {
                 jQuery('#item-select').html(data);
-                fireEvents = true;
+                jQuery(document).trigger("omeka:loaditems");
             },
             error: function(xhr, textStatus, errorThrown) {
                 alert('Error getting items: ' . textStatus);
-            },
-            complete: function(xhr, textStatus) {
-                if (fireEvents) {
-                    jQuery(document).trigger("omeka:loaditems");
-                }
             }
         });
     };
@@ -195,6 +189,11 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         };
     }
 
+    function targetAttachment(attachment) {
+        jQuery('.item-targeted').removeClass('item-targeted');
+        jQuery(attachment).addClass('item-targeted');
+    }
+
     // Search Items Dialog Box
     jQuery('#search-items').dialog({
         autoOpen: false,
@@ -216,7 +215,8 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
 
     jQuery('#block-container').on('click', '.add-item', function (event) {
         event.preventDefault();
-        jQuery(this).addClass('item-targeted');
+        targetAttachment(this);
+
         tinymce.get('attachment-caption').setContent('');
         jQuery('#search-items').removeClass('editing-attachment');
         jQuery('#search-items').dialog('open');
@@ -227,7 +227,7 @@ Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         event.preventDefault();
 
         attachment = jQuery(this).parent().parent();
-        attachment.addClass('item-targeted');
+        targetAttachment(attachment);
         Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true));
         jQuery(document).trigger('exhibit-builder-select-item');
         jQuery('#search-items').addClass('editing-attachment');
