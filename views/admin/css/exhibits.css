@@ -41,6 +41,16 @@
     clear: both;
 }
 
+#change-selected-item {
+    margin-bottom: 10px;
+}
+
+#change-selected-item:before {
+    content: "\25c0";
+    font-size: 10px;
+    margin-right: 5px;
+}
+
 #item-select {
     padding: 0;
 }
@@ -323,7 +333,6 @@ button#page_metadata_form {
     border: 1px solid #D6D5C2;
     position: relative;
     border-radius: 2px 2px 0 0;
-    overflow: auto;
 }
 
 .block-form > div {
@@ -354,7 +363,8 @@ button#page_metadata_form {
 }
 
 .file-position select {
-    margin: 0 0;
+    margin: 0;
+    padding-right: 40px;
 }
 
 .add-item { float: left; }
@@ -596,11 +606,15 @@ div.selected-items {
 
 /* New item options */
 
+#attachment-item-options h2 {
+    margin: 0 10px 10px 0;
+    display: block;
+}
+
 .direction { 
-    width: 25%; 
-    float: left;
     clear: both;
     font-weight: bold;
+    margin: 0;
 }
 
 .item-options .inputs {
@@ -612,14 +626,21 @@ div.selected-items {
     box-sizing: border-box;
 }
 
+.file-select {
+    overflow: auto;
+    margin: 10px 0;
+}
+
 .file-select ul {
     padding-left: 0;
     list-style-type: none;
 }
 
 .file-select .item-file {
-    width: 20%;
+    width: 80px;
     overflow: auto;
+    border: 1px solid #E7E7E7;
+    padding: 5px;
 }
 
 .file-select input[type=radio] {

@@ -5,7 +5,7 @@ $file_id = $attachment->file_id;
 $files = $item->Files;
 ?>
 <?php echo $this->formHidden('item_id', $item->id); ?>
-<h4><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title'))); ?></h4>
+<h2><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title'))); ?></h2>
 <?php if ($files): ?>
 <div class="file-select">
     <?php if (count($files) == 1): ?>
