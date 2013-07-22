@@ -1,7 +1,6 @@
 <?php
 $formStem = $block->getFormStem();
 $options = $block->getOptions();
-$attachments = $block->getAttachments();
 ?>
 <div class="file-position">
     <?php echo $this->formLabel($formStem . '[options][file-position]', __('File position')); ?>
