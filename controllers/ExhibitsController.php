@@ -124,7 +124,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         foreach ($blocks as $block) {
             $layout = $block->getLayout();
             if (!array_key_exists($layout->id, $layoutStyles)) {
-                $layoutStyles[$layout->id] = $layout->getAssetUrl('layout.css');
+                try {
+                    $layoutStyles[$layout->id] = $layout->getAssetUrl('layout.css');
+                } catch (InvalidArgumentException $e) {
+                    // no CSS for this layout
+                }
             }
         }
 
