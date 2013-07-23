@@ -59,6 +59,22 @@ Omeka.ExhibitBuilder = {};
             });
         };
 
+        function setSearchVisibility(show) {
+            var searchForm = $('#page-search-form');
+            var searchButton = $('#show-or-hide-search');
+
+            if (typeof show === 'undefined') {
+                show = !searchForm.is(':visible');
+            }
+            if (show) {
+                searchForm.show();
+                searchButton.text('Hide Search Form');
+            } else {
+                searchForm.hide();
+                searchButton.text('Show Search Form');
+            }
+        }
+
         /**
          * Use AJAX to load the form for an attachment.
          */
@@ -87,34 +103,23 @@ Omeka.ExhibitBuilder = {};
         $('#search').submit(function(event) {
             event.preventDefault();
             getItems(this.action, $(this).serialize());
+            setSearchVisibility(false);
         });
         $('#search-items').on('click', '.pagination a, #view-all-items', function (event) {
             event.preventDefault();
             getItems(this.href);
+            setSearchVisibility(false);
         });
         $('#item-select').on('submit', '.pagination form', function (event) {
             event.preventDefault();
             getItems(this.action + '?' + $(this).serialize());
+            setSearchVisibility(false);
         });
 
-        // Show/hide for the search form
-        $('#page-search-form').hide();
-        $('#show-or-hide-search').click(function () {
-            var searchForm = $('#page-search-form');
-            if (searchForm.is(':visible')) {
-                searchForm.hide();
-            } else {
-                searchForm.show();
-            }
-
-            var showHideLink = $(this);
-            showHideLink.toggleClass('show-form');
-            if (showHideLink.hasClass('show-form')) {
-                showHideLink.text('Show Search Form');
-            } else {
-                showHideLink.text('Hide Search Form');
-            }
-            return false;
+        setSearchVisibility(false);
+        $('#show-or-hide-search').click(function (event) {
+            event.preventDefault();
+            setSearchVisibility();
         });
 
         // Make item listings selectable
