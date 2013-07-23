@@ -119,11 +119,12 @@
 
 #item-list .title {
     margin: 0;
+    padding: 4px 0;
 }
 
 #item-list .item-file {
     width: 5%;
-    margin: 10px 10px 0 0;
+    margin: 0 10px 0 0;
     line-height: 1em;
     border: 1px solid #D6D5C2;
     overflow: auto;
