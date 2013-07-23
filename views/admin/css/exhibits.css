@@ -43,6 +43,20 @@
 
 #change-selected-item {
     margin-bottom: 10px;
+    background: none #F8F6F0;
+    width: 100%;
+    border-width: 0 0 1px 0;
+    box-shadow: none;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-color: #EEE;
+    color: #A28E8A;
+    text-shadow: none;
+    padding: 10px;
+    outline: none;
 }
 
 #change-selected-item:before {
@@ -501,7 +515,7 @@ button#page_metadata_form {
 
 #search-items {
     display: none;
-    padding: 10px 0;
+    padding: 10px 10px 40px;
 }
 
 #search-items + div {
@@ -515,6 +529,7 @@ button#page_metadata_form {
 
 #search-items.editing-attachment #attachment-options {
     display: block;
+    padding-top: 40px;
 }
 
 #search-items.editing-attachment #item-form {
@@ -646,4 +661,32 @@ div.selected-items {
 
 .file-select input[type=radio] {
     display: none;
+}
+
+/* jQuery UI overrides */
+
+.exhibits .ui-dialog {
+    padding: 0;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5)
+}
+
+.exhibits .ui-dialog:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0.15));
+    bottom: 0;
+    left: 0;
+}
+
+.exhibits .ui-widget-content {
+    border: 0;
+}
+
+.exhibits .ui-widget-header {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F3EC), color-stop(100%,#E9E5DA));
+    border-radius: 2px 2px 0 0;
+    padding: 10px;
 }
