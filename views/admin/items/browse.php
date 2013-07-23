@@ -11,7 +11,3 @@ echo pagination_links(array('url' => url(array('controller' => 'exhibits',
     <?php echo $this->exhibitItemListing($item); ?>
 <?php endforeach; ?>
 </div>
-<?php
-echo pagination_links(array('url' => url(array('controller' => 'exhibits',
-    'action'=>'items', 'page' => null)))); 
-?>

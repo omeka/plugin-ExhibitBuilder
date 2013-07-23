@@ -160,6 +160,10 @@
     zoom:1;
 }
 
+#item-list .item-listing:first-of-type {
+    margin-top: 0;
+}
+
 #apply-attachment {
     margin: 0;
 }
@@ -207,6 +211,18 @@
 .caption-container label { 
     display: inline-block;
     margin-bottom: 10px; 
+}
+
+#page-search-form {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    background: white;
+    z-index: 2;
+    overflow-y: scroll;
 }
 
 #page-search-form,
@@ -516,6 +532,17 @@ button#page_metadata_form {
 #search-items {
     display: none;
     padding: 10px 10px 40px;
+    position: relative;
+}
+
+#item-list {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5px;
+    overflow-y: scroll;
 }
 
 #search-items + div {
