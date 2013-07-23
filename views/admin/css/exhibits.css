@@ -223,6 +223,7 @@
     background: white;
     z-index: 2;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #page-search-form,
@@ -543,6 +544,7 @@ button#page_metadata_form {
     right: 0;
     padding: 0 5px;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #search-items + div {
