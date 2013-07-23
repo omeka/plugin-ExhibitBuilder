@@ -172,36 +172,6 @@ function exhibit_builder_get_themes()
 }
 
 /**
- * Return the web path to the layout css
- *
- * @param string $fileName The name of the CSS file (without file extension)
- * @return string
- */
-function exhibit_builder_layout_css($fileName = 'layout')
-{
-    if ($exhibitPage = get_current_record('exhibit_page', false)) {
-        return css_src($fileName, EXHIBIT_LAYOUTS_DIR_NAME . '/' . $exhibitPage->layout);
-    }
-}
-
-/**
- * Display an exhibit page
- *
- * @param ExhibitPage $exhibitPage If null, will use the current exhibit page.
- */
-function exhibit_builder_render_exhibit_page($exhibitPage = null)
-{
-    if (!$exhibitPage) {
-        $exhibitPage = get_current_record('exhibit_page');
-    }
-    if ($exhibitPage->layout) {
-        include EXHIBIT_LAYOUTS_DIR . '/' . $exhibitPage->layout . '/layout.php';
-    } else {
-        echo "This page does not have a layout.";
-    }
-}
-
-/**
  * Returns HTML for a set of linked thumbnails for the items on a given exhibit page.  Each
  * thumbnail is wrapped with a div of class = "exhibit-item"
  *
@@ -259,67 +229,6 @@ function exhibit_builder_display_random_featured_exhibit()
 function exhibit_builder_random_featured_exhibit()
 {
     return get_db()->getTable('Exhibit')->findRandomFeatured();
-}
-
-/**
- * Return HTML for displaying an attached item on an exhibit page.
- *
- * @see exhibit_builder_page_attachment for attachment array contents
- * @param array $attachment The attachment.
- * @param array $fileOptions Options for file_markup when displaying a file
- * @param array $linkProperties Attributes for use when linking to an item
- * @return string
- */
-function exhibit_builder_attachment_markup($attachment, $fileOptions, $linkProperties)
-{
-    if (!$attachment) {
-        return '';
-    }
-
-    $item = $attachment['item'];
-    $file = $attachment['file'];
-
-    if (!isset($fileOptions['linkAttributes']['href'])) {
-        $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
-    }
-
-    if (!isset($fileOptions['imgAttributes']['alt'])) {
-        $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
-    }
-    
-    if ($file) {
-        $html = file_markup($file, $fileOptions, null);
-    } else if($item) {
-        $html = exhibit_builder_link_to_exhibit_item(null, $linkProperties, $item);
-    }
-
-    $html .= exhibit_builder_attachment_caption($attachment);
-
-    return apply_filters('exhibit_builder_attachment_markup', $html,
-        compact('attachment', 'fileOptions', 'linkProperties')
-    );
-}
-
-/**
- * Return HTML for displaying an attachment's caption.
- *
- * @see exhibit_builder_page_attachment for attachment array contents
- * @param array $attachment The attachment
- * @return string
- */
-function exhibit_builder_attachment_caption($attachment)
-{
-    if (!is_string($attachment['caption']) || $attachment['caption'] == '') {
-        return '';
-    }
-
-    $html = '<div class="exhibit-item-caption">'
-          . $attachment['caption']
-          . '</div>';
-
-    return apply_filters('exhibit_builder_caption', $html, array(
-        'attachment' => $attachment
-    ));
 }
 
 /**

@@ -62,7 +62,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $this->view->assign(compact('tags'));
     }
 
-    public function showitemAction()
+    public function showItemAction()
     {
         $itemId = $this->_getParam('item_id');
         $item = $this->_helper->db->findById($itemId, 'Item');
@@ -73,11 +73,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         if ($item && $exhibit->hasItem($item) ) {
-
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  array('item' => $item, 'exhibit' => $exhibit));
 
-            return $this->renderExhibit(compact('exhibit', 'item'), 'item');
+            $this->view->assign(compact('exhibit', 'item'));
         } else {
             $this->_helper->flashMessenger(__('This item is not used within this exhibit.'), 'error');
             throw new Omeka_Controller_Exception_403;
@@ -115,11 +114,29 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             }
         }
 
+        $blocks = $exhibitPage->getPageBlocks();
+        $attachments = $exhibitPage->getAllAttachments();
+        foreach ($attachments as $attachment) {
+            $indexedAttachments[$attachment->block_id][] = $attachment;
+        }
+
+        $layoutStyles = array();
+        foreach ($blocks as $block) {
+            $layout = $block->getLayout();
+            if (!array_key_exists($layout->id, $layoutStyles)) {
+                $layoutStyles[$layout->id] = $layout->getAssetUrl('layout.css');
+            }
+        }
+
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit, 'exhibitPage' => $exhibitPage));
 
-        $this->renderExhibit(array(
+        $this->view->assign(array(
             'exhibit' => $exhibit,
-            'exhibit_page' => $exhibitPage));
+            'exhibit_page' => $exhibitPage,
+            'blocks' => $blocks,
+            'attachments' => $indexedAttachments,
+            'layout_styles' => $layoutStyles
+        ));
     }
 
     public function summaryAction()
@@ -130,28 +147,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit));
-        $this->renderExhibit(compact('exhibit'), 'summary');
-    }
-
-    /**
-     * Figure out how to render the exhibit.
-     * 1) the view needs access to the shared directories
-     * 2) if the exhibit has an associated theme, render the pages for that specific exhibit theme,
-     *      otherwise display the generic theme pages in the main public theme
-     *
-     * @return void
-     **/
-    protected function renderExhibit($vars, $toRender = 'show')
-    {
-        extract($vars);
-        $this->view->assign($vars);
-
-        /* If we don't pass a valid value to $toRender, thow an exception. */
-        if (!in_array($toRender, array('show', 'summary', 'item'))) {
-            throw new Exception( 'You gotta render some stuff because whatever!' );
-        }
-        return $this->render($toRender);
-
+        $this->view->exhibit = $exhibit;
     }
 
     protected function _redirectAfterAdd($exhibit)
@@ -345,7 +341,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $attachment->file_id = $this->_getParam('file_id');
         $this->view->attachment = $attachment;
     }
-
 
     protected function findOrNew()
     {

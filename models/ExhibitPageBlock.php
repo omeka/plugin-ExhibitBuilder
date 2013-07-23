@@ -44,12 +44,17 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         if (!empty($data['layout'])) {
             $this->layout = $data['layout'];
         }
+
         if (!empty($data['options'])) {
             $this->setOptions($data['options']);
         }
+
         if (!empty($data['text'])) {
             $this->text = $data['text'];
+        } else {
+            $this->text = null;
         }
+
         if (!empty($data['attachments'])) {
             $this->setAttachments($data['attachments']);
         } else {

@@ -261,7 +261,7 @@ function exhibit_builder_define_acl($args)
     $acl->addResource('ExhibitBuilder_Exhibits');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
-        array('show', 'summary', 'showitem', 'browse', 'tags'));
+        array('show', 'summary', 'show-item', 'browse', 'tags'));
 
     // Allow contributors everything but editAll and deleteAll.
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
@@ -291,9 +291,6 @@ function exhibit_builder_define_routes($args)
 function exhibit_builder_public_head()
 {
     queue_css_file('exhibits');
-    if ($layoutCssHref = exhibit_builder_layout_css()) {
-        queue_css_url($layoutCssHref);
-    }
 }
 
 /**

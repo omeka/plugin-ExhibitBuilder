@@ -11,10 +11,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 <form method="post">
     <div class="seven columns alpha">
     <fieldset>
-        <legend><?php echo __('Page Metadata'); ?></legend>
         <div class="field">
             <div class="two columns alpha">
-            <?php echo $this->formLabel('title', __('Title')); ?>
+            <?php echo $this->formLabel('title', __('Page Title')); ?>
             </div>
             <div class="inputs five columns omega">
             <?php echo $this->formText('title', $exhibit_page->title); ?>
@@ -22,7 +21,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <div class="field">
             <div class="two columns alpha">
-                <?php echo $this->formLabel('slug', __('Slug')); ?>
+                <?php echo $this->formLabel('slug', __('Page Slug')); ?>
             </div>
             <div class="inputs five columns omega">
                 <p class="explanation"><?php echo __('No spaces or special characters allowed'); ?></p>

@@ -192,6 +192,11 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         return $this->loadOrderedChildren();
     }
 
+    public function getAllAttachments()
+    {
+        return $this->getTable('ExhibitBlockAttachment')->findAllForPage($this);
+    }
+
     public function setPageBlocks($blocksData, $deleteExtras = true)
     {
         $existingBlocks = $this->getPageBlocks();

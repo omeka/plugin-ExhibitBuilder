@@ -1,14 +1,26 @@
-.text-image-left .image-left {
-    float: left; 
-    width: 48%; 
-    margin-right: 2%;
+.layout-file-text .exhibit-items {
+    width: 48%;
     margin-bottom: 2%;
 }
 
-.exhibit-item img {
+.layout-file-text .exhibit-items.left {
+    float: left;
+    margin-right: 2%;
+}
+
+.layout-file-text .exhibit-items.right {
+    float: right;
+    margin-left: 2%;
+}
+
+.layout-file-text .exhibit-items.center {
+    margin: 2% auto;
+}
+
+.layout-file-text .exhibit-items img {
     max-width: 100%;
 }
 
-.exhibit-item-caption p {
+.layout-file-text .exhibit-item-caption p {
     margin-bottom: 0;
 }

@@ -54,9 +54,14 @@ class ExhibitLayout
         return self::VIEW_STEM . '/' . $this->id . '/' . $type . '.php';
     }
 
+    public function getAssetUrl($name)
+    {
+        return web_path_to(self::VIEW_STEM . '/' . $this->id . '/' . $name);
+    }
+
     public function getIconUrl()
     {
-        return web_path_to(self::VIEW_STEM . '/' . $this->id . '/layout.gif');
+        return $this->getAssetUrl('layout.gif');
     }
 
     public static function getLayoutArray()

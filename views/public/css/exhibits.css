@@ -31,3 +31,7 @@
     margin: 0 auto;
     text-align: center;
 }
+
+.exhibit-block {
+    clear: both;
+}
