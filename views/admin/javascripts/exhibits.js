@@ -233,6 +233,13 @@ Omeka.ExhibitBuilder = {};
             },
             dialogClass: 'item-dialog'
         });
+        
+        $('#attachment-item-options').on('click','.file-select .item-file', function(event) {
+            $('.file-select input[type="radio"]').prop('checked', false);
+            $(this).find('input[type="radio"]').prop('checked', true);
+            $('.selected').removeClass('selected');
+            $(this).addClass('selected');
+        });
 
         $('#apply-attachment').on('click', function (event) {
             event.preventDefault();
