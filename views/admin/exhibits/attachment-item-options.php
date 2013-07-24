@@ -27,7 +27,7 @@ $files = $item->Files;
                 <label>
                     <?php echo file_image('square_thumbnail', array(), $file); ?>
                     <input id="file-<?php echo $index; ?>" type="radio" name="file_id" value="<?php echo html_escape($file->id); ?>" <?php if ($file_id == $file->id) echo 'checked'; ?>>
-                    <?php echo metadata($file, 'display_title'); ?>
+                    <div class="file-title"><?php echo metadata($file, 'display_title'); ?></div>
                 </label>
             </li>
             <?php endforeach; ?>
