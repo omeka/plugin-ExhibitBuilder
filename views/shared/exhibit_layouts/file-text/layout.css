@@ -1,6 +1,10 @@
 .layout-file-text .exhibit-items {
-    width: 48%;
+    width: 23%;
     margin-bottom: 2%;
+}
+
+.layout-file-text .exhibit-items.fullsize {
+    width: 48%;
 }
 
 .layout-file-text .exhibit-items.left {
@@ -11,10 +15,6 @@
 .layout-file-text .exhibit-items.right {
     float: right;
     margin-left: 2%;
-}
-
-.layout-file-text .exhibit-items.center {
-    margin: 2% auto;
 }
 
 .layout-file-text .exhibit-items img {
