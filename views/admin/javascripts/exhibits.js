@@ -28,7 +28,6 @@ Omeka.ExhibitBuilder = {};
         });
         
         $('.layout').click(function (event) {
-            $('.layout-thumbs input[type="radio"]').prop('checked', false);
             $(this).children('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
@@ -235,7 +234,6 @@ Omeka.ExhibitBuilder = {};
         });
         
         $('#attachment-item-options').on('click','.file-select .item-file', function(event) {
-            $('.file-select input[type="radio"]').prop('checked', false);
             $(this).find('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
