@@ -683,9 +683,16 @@ div.selected-items {
 
 .file-select .item-file {
     width: 80px;
-    overflow: auto;
+    height: 110px;
     border: 1px solid #E7E7E7;
     padding: 5px;
+}
+
+.item-file .file-title {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .file-select input[type=radio] {
@@ -697,17 +704,6 @@ div.selected-items {
 .exhibits .ui-dialog {
     padding: 0;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5)
-}
-
-.exhibits .ui-dialog:after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0.15));
-    bottom: 0;
-    left: 0;
 }
 
 .exhibits .ui-widget-content {
