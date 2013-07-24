@@ -21,7 +21,7 @@ if ($file_id === null && $files) {
             <li class="item-file <?php if ($selected) echo 'selected'; ?>">
                 <label>
                     <?php echo file_image('square_thumbnail', array(), $file); ?>
-                    <input id="file-<?php echo $index; ?>" type="radio" name="file_id" value="<?php echo html_escape($file->id); ?>" <?php if ($selected) echo 'checked'; ?>>
+                    <input id="file-<?php echo $index; ?>" type="radio" name="file_id" title="<?php echo metadata($file, 'display_title'); ?>" value="<?php echo html_escape($file->id); ?>" <?php if ($selected) echo 'checked'; ?>>
                     <div class="file-title"><?php echo metadata($file, 'display_title'); ?></div>
                 </label>
             </li>
