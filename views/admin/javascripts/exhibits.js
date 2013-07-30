@@ -5,6 +5,20 @@ Omeka.ExhibitBuilder = {};
 
 (function ($) {
     Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
+        function sortAttachments(ancestor) {
+            $(ancestor).find('.selected-item-list').sortable({
+                items: '> .attachment',
+                revert: 200,
+                placeholder: 'ui-sortable-highlight',
+                tolerance: 'pointer',
+                stop: function () {
+                    $(this).find('input[name*="[order]"]').each(function(index) {
+                        $(this).val(index + 1);
+                    });
+                }
+            });
+        }
+        
         var blockIndex = $('.block-form').length;
         $('.add-link').click(function (event) {
             event.preventDefault();
@@ -19,7 +33,11 @@ Omeka.ExhibitBuilder = {};
                     order: ++blockIndex
                 },
                 function (data) {
-                    $(data).insertBefore('.add-block').trigger('exhibit-builder-refresh-wysiwyg');
+                    $(data)
+                        .insertBefore('.add-block')
+                        .trigger('exhibit-builder-refresh-wysiwyg')
+                        .trigger('exhibit-builder-add-block')
+                        ;
                     $('input[name=new-block-layout]').prop('checked', false);
                     $('.selected').removeClass('selected');
                 },
@@ -37,6 +55,12 @@ Omeka.ExhibitBuilder = {};
             event.preventDefault();
             $(this).parent().remove();
         });
+
+        $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
+            sortAttachments(this);
+        });
+
+        sortAttachments('#block-container');
     };
 
     Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl) {
@@ -155,7 +179,7 @@ Omeka.ExhibitBuilder = {};
             if (targetedItem.is('.attachment')) {
                 data['index'] = targetedItem.data('attachment-index');
             } else {
-                data['index'] = targetedBlock.find('.attachment').length + 1;
+                data['index'] = targetedBlock.find('.attachment').length;
             }
 
             $.ajax({

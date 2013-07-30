@@ -60,6 +60,10 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         } else {
             $this->setAttachments(array());
         }
+
+        if (!empty($data['order'])) {
+            $this->order = $data['order'];
+        }
     }
 
     public function getOptions()
@@ -96,7 +100,6 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
                 $attachment = new ExhibitBlockAttachment;
                 $attachment->block_id = $this->id;
             }
-            $attachment->order = $i;
             $attachment->setData($attachmentData);
             $attachment->save();
         }
@@ -115,6 +118,6 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
 
     public function getFormStem()
     {
-        return 'blocks[' . $this->order . ']';
+        return 'blocks[' . ($this->order - 1) . ']';
     }
 }

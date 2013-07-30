@@ -86,5 +86,9 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
         } else {
             $this->caption = null;
         }
+
+        if (!empty($data['order'])) {
+            $this->order = $data['order'];
+        }
     }
 }

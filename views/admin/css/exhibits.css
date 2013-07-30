@@ -586,22 +586,25 @@ div.selected-items {
     margin-bottom: 0;
 }
 
-.selected-item-list .attachment {
-    background-color: #7C7E5D;
+.selected-item-list .attachment, .selected-item-list .ui-sortable-highlight {
     width: 100px;
     display: inline-block;
     height: 120px;
     color: #fff;
     padding: 10px;
+    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
     line-height: 24px;
     font-size: 14px;
     position: relative;
     vertical-align: top;
     margin: 0 10px 10px 0;
     float: left;
+}
+
+.selected-item-list .attachment {
+    background-color: #7C7E5D;
 }
 
 .selected-item-list .attachment h5 {
