@@ -592,9 +592,9 @@ div.selected-items {
     height: 120px;
     color: #fff;
     padding: 10px;
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     line-height: 24px;
     font-size: 14px;
     position: relative;
