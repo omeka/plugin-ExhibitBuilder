@@ -1,14 +1,30 @@
-.exhibit-item {
+.layout-gallery .exhibit-item {
     display: inline-block;
     vertical-align: top;
     width: 23%; 
     margin-right: 1%;
     margin-bottom: 2%;
-    /* IE 7 */
-    *display: inline;
-    zoom: 1;
 }
 
-.exhibit-item img {
+.layout-gallery img {
     max-width: 100%;
+}
+
+.layout-gallery .gallery-aside {
+    width: 32%;
+    overflow: hidden;
+}
+
+.layout-gallery .gallery-aside.left {
+    float: left;
+}
+
+.layout-gallery .gallery-aside.right {
+    float: right;
+}
+
+.layout-gallery .gallery.with-aside {
+    width: 65%;
+    overflow: hidden;
+    float: left;
 }

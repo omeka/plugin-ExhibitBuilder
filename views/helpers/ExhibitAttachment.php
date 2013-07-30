@@ -6,7 +6,7 @@
 class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abstract
 {
     /**
-     * Return the form for making attachments to an Exhibit block.
+     * Return the markup for displaying an exhibit attachment.
      * 
      * @return string
      */
@@ -31,8 +31,8 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
 
         $html .= $this->_caption($attachment);
 
-        return apply_filters('exhibit_builder_attachment_markup', $html,
-            compact('attachment', 'fileOptions', 'linkProperties')
+        return apply_filters('exhibit_attachment_markup', $html,
+            compact('attachment', 'fileOptions', 'linkProps')
         );
     }
 
@@ -46,7 +46,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
               . $attachment['caption']
               . '</div>';
 
-        return apply_filters('exhibit_builder_caption', $html, array(
+        return apply_filters('exhibit_attachment_caption', $html, array(
             'attachment' => $attachment
         ));
     }

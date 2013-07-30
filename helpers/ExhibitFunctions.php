@@ -172,35 +172,6 @@ function exhibit_builder_get_themes()
 }
 
 /**
- * Returns HTML for a set of linked thumbnails for the items on a given exhibit page.  Each
- * thumbnail is wrapped with a div of class = "exhibit-item"
- *
- * @param int $start The range of items on the page to display as thumbnails
- * @param int $end The end of the range
- * @param array $props Properties to apply to the <img> tag for the thumbnails
- * @param string $thumbnailType The type of thumbnail to display
- * @return string HTML output
- **/
-function exhibit_builder_thumbnail_gallery($start, $end, $props = array(), $thumbnailType = 'square_thumbnail')
-{
-    $html = '';
-    for ($i = (int)$start; $i <= (int)$end; $i++) {
-        if ($attachment = exhibit_builder_page_attachment($i)) {
-            $html .= "\n" . '<div class="exhibit-item">';
-            if ($attachment['file']) {
-                $thumbnail = file_image($thumbnailType, $props, $attachment['file']);
-                $html .= exhibit_builder_link_to_exhibit_item($thumbnail, array(), $attachment['item']);
-            }
-            $html .= exhibit_builder_attachment_caption($attachment);
-            $html .= '</div>' . "\n";
-        }
-    }
-    
-    return apply_filters('exhibit_builder_thumbnail_gallery', $html,
-        array('start' => $start, 'end' => $end, 'props' => $props, 'thumbnail_type' => $thumbnailType));
-}
-
-/**
  * Return the HTML for summarizing a random featured exhibit
  *
  * @return string
