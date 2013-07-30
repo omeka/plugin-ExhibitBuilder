@@ -261,6 +261,9 @@ SQL
 
         $sql = "DROP TABLE `{$db->prefix}exhibit_page_entries`";
         $db->query($sql);
+
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` DROP COLUMN `layout`";
+        $db->query($sql);
     }
 }
 
