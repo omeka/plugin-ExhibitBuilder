@@ -34,11 +34,17 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 
     public function getFile()
     {
+        $file = null;
         if ($this->file_id) {
-            return $this->getTable('File')->find($this->file_id);
-        } else {
-            return null;
+            $file = $this->getTable('File')->find($this->file_id);
         }
+
+        // Fallback if specified file missing or no file specified.
+        if (!$file && ($item = $this->getItem()) && ($files = $item->Files)) {
+            $file = $files[0];
+        }
+
+        return $file;
     }
     
     protected function _validate()
