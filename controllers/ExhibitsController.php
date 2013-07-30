@@ -116,6 +116,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 
         $blocks = $exhibitPage->getPageBlocks();
         $attachments = $exhibitPage->getAllAttachments();
+        $indexedAttachments = array();
         foreach ($attachments as $attachment) {
             $indexedAttachments[$attachment->block_id][] = $attachment;
         }
