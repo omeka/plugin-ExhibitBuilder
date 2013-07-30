@@ -221,6 +221,47 @@ function exhibit_builder_upgrade($args)
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD UNIQUE INDEX `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)";
         $db->query($sql);
     }
+
+    if (version_compare($oldVersion, '3.0-dev', '<')) {
+        $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `page_id` INT UNSIGNED NOT NULL,
+    `layout` VARCHAR(50) NOT NULL,
+    `options` TEXT,
+    `text` MEDIUMTEXT,
+    `order` SMALLINT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `page_id_order` (`page_id`, `order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+        );
+
+        $db->query(<<<SQL
+CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_block_attachments` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `block_id` INT UNSIGNED NOT NULL,
+    `item_id` INT UNSIGNED NOT NULL,
+    `file_id` INT UNSIGNED DEFAULT NULL,
+    `caption` TEXT,
+    `order` SMALLINT UNSIGNED DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `block_id_order` (`block_id`, `order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+SQL
+        );
+
+        $sql = "SELECT id, layout FROM `{$db->prefix}exhibit_pages` ORDER BY id";
+        $pages = $db->query($sql)->fetchAll();
+
+        $upgrader = new ExhibitPageUpgrader($db);
+        foreach ($pages as $page) {
+            $upgrader->upgradePage($page['id'], $page['layout']);
+        }
+
+        $sql = "DROP TABLE `{$db->prefix}exhibit_page_entries`";
+        $db->query($sql);
+    }
 }
 
 /**
