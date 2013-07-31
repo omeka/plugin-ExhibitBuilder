@@ -128,7 +128,7 @@ Omeka.ExhibitBuilder = {};
             getItems(this.action, $(this).serialize());
             setSearchVisibility(false);
         });
-        $('#search-items').on('click', '.pagination a, #view-all-items', function (event) {
+        $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
             event.preventDefault();
             getItems(this.href);
             setSearchVisibility(false);
@@ -155,15 +155,15 @@ Omeka.ExhibitBuilder = {};
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
             Omeka.ExhibitBuilder.loadItemOptionsForm(
-                {item_id: $('#search-items .item-selected').data('itemId')}
+                {item_id: $('#item-select .item-selected').data('itemId')}
             );
-            $('#search-items').addClass('editing-attachment');
+            $('#attachment-panel').addClass('editing-attachment');
             $(document).trigger('exhibit-builder-select-item');
         });
 
         $('#change-selected-item').on('click', function (event) {
             event.preventDefault();
-            $('#search-items').removeClass('editing-attachment');
+            $('#attachment-panel').removeClass('editing-attachment');
         });
     };
 
@@ -222,9 +222,9 @@ Omeka.ExhibitBuilder = {};
             $(attachment).addClass('item-targeted');
         }
 
-        var searchItems = $('#search-items');
+        var attachmentPanel = $('#attachment-panel');
         // Search Items Dialog Box
-        searchItems.dialog({
+        attachmentPanel.dialog({
             autoOpen: false,
             modal: true,
             resizable: false,
@@ -236,7 +236,7 @@ Omeka.ExhibitBuilder = {};
             },
             open: function () {
                 function refreshDialog() {
-                    searchItems.dialog('option', {
+                    attachmentPanel.dialog('option', {
                         width: Math.min($(window).width() - 100, 600),
                         height: Math.min($(window).height() - 100, 500),
                         position: {my: 'center', at: 'center center+22'}
@@ -266,7 +266,7 @@ Omeka.ExhibitBuilder = {};
         $('#apply-attachment').on('click', function (event) {
             event.preventDefault();
             applyAttachment();
-            searchItems.dialog('close');
+            attachmentPanel.dialog('close');
         });
 
         $('#block-container').on('click', '.add-item', function (event) {
@@ -274,7 +274,7 @@ Omeka.ExhibitBuilder = {};
             targetAttachment(this);
 
             tinymce.get('attachment-caption').setContent('');
-            searchItems.removeClass('editing-attachment').dialog('open');
+            attachmentPanel.removeClass('editing-attachment').dialog('open');
         });
 
         $('#block-container').on('click', '.edit-attachment a', function (event) {
@@ -285,7 +285,7 @@ Omeka.ExhibitBuilder = {};
             targetAttachment(attachment);
             Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true));
             $(document).trigger('exhibit-builder-select-item');
-            searchItems.addClass('editing-attachment').dialog('open');
+            attachmentPanel.addClass('editing-attachment').dialog('open');
         });
     }
 
