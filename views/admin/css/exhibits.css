@@ -294,10 +294,9 @@
 }
 
 .block-form label {
-    display: block;
     font-weight: bold;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin: 0 20px 10px 0;
 }
 
 .block-form select {
@@ -532,6 +531,35 @@ div.selected-items {
     display: block;
     font-size: 100px;
     line-height: 75px;
+}
+
+.block-form .layout-options {
+    position: relative;
+    padding: 40px 0 0 0;
+}
+
+.layout-options h4 {
+    background: #F3F3E7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #D6D5C2;
+}
+
+.layout-options > div {
+    display: none;
+    border-bottom: 1px solid #D6D5C2;
+    padding: 20px 10px;
+}
+
+.drawer {
+    position: absolute;
+    top: 10px;
+    right: 7px;
+    line-height: 20px;
 }
 
 /* jQuery UI overrides */

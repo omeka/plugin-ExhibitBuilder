@@ -59,6 +59,13 @@ Omeka.ExhibitBuilder = {};
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
             sortAttachments(this);
         });
+        
+        $('#block-container').on('click', '.drawer', function (event) {
+            event.preventDefault();
+            $(this).toggleClass('closed');
+            $(this).toggleClass('opened');
+            $(this).parent().children('div').toggle();
+        });
 
         sortAttachments('#block-container');
     };
