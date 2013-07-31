@@ -403,6 +403,7 @@
     height: 20px;
     width: 20px;
     text-align: center;
+    color: #A28E8A;
     position: absolute;
     top: 15px;
     right: 10px;
@@ -484,6 +485,7 @@ div.selected-items {
     right: 3px;
     text-indent: -9999px;
 }
+
 .close.button a:after {
     content: "\21";
     font-family: "icomoon";
@@ -514,23 +516,22 @@ div.selected-items {
     height: 120px;
     border: 1px dashed #D6D5C2;
     background-color: rgba(64, 58, 26, 0.05);
+    color: #A28E8A;
     font-weight: bold;
-    font-size: 100px;
     text-align: center;
-    line-height: 100px;
     position: relative;
+    top: 0;
+    left: 0;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.add-item a:after {
+.add-item a:before {
     content: "+";
     display: block;
-    position: absolute;
-    top: 0;
-    left: 25%;
-    right: 25%;
+    font-size: 100px;
+    line-height: 75px;
 }
 
 /* jQuery UI overrides */
