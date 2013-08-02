@@ -18,7 +18,7 @@ $options = $block->getOptions();
 
     <h4><?php echo __('Layout Options'); ?></h4>
     
-    <a href="#" class="drawer"><span class="screen-reader-text"><?php echo __('Expand'); ?></span></a>
+    <div class="drawer"></div>
     
     <div class="file-position">
         <?php echo $this->formLabel($formStem . '[options][file-position]', __('File position')); ?>

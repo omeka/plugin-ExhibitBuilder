@@ -273,6 +273,10 @@
     border-radius: 2px 2px 0 0;
 }
 
+.block-form > .drawer {
+    right: 30px;
+}
+
 .block-form > div {
     padding: 20px 10px;
     border-bottom: 1px solid #D6D5C2;
@@ -389,9 +393,12 @@
 }
 
 .remove-block {
+    display: block !important;
     position: absolute;
     top: 0;
     right: 0;
+    padding-bottom: !important;
+    border-bottom: 0 !important;
 }
 
 .remove-block:before {
@@ -402,7 +409,6 @@
     height: 20px;
     width: 20px;
     text-align: center;
-    color: #A28E8A;
     position: absolute;
     top: 15px;
     right: 10px;
@@ -556,10 +562,13 @@ div.selected-items {
 }
 
 .drawer {
+    display: block !important;
     position: absolute;
     top: 10px;
     right: 7px;
     line-height: 20px;
+    padding: 0 !important;
+    border-bottom: 0 !important;
 }
 
 /* jQuery UI overrides */
