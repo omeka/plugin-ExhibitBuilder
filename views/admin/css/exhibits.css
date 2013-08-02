@@ -1,11 +1,8 @@
 #exhibits-breadcrumb {
     padding: .5em;
     background-color: rgba(255,255,255,.5);
-    border: 1px solid #E7E7E7;
-    
-    border-radius: 3px;
-    margin-bottom: 20px;
-    font-size: 14px;
+    border-bottom: 1px solid #E7E7E7;
+    margin: -20px -10px 20px -10px;
 }
 
 .reorder-instructions {
