@@ -555,6 +555,10 @@ div.selected-items {
     border-bottom: 1px solid #D6D5C2;
 }
 
+.layout-options label {
+    font-weight: normal;
+}
+
 .layout-options > div {
     display: none;
     border-bottom: 1px solid #D6D5C2;
