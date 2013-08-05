@@ -5,7 +5,6 @@
  * @package ExhibitBuilder
  */
 
-
 /**
  * Recursively list the pages under a page for editing.
  *
