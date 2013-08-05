@@ -515,22 +515,26 @@ function exhibit_builder_items_browse_sql($args)
     $exhibit = isset($params['exhibit']) ? $params['exhibit'] : null;
 
     if ($exhibit) {
-        $select->joinInner(
-            array('epe' => $db->ExhibitPageEntry),
-            'epe.item_id = items.id',
-            array()
-            );
-
-        $select->joinInner(
-            array('ep' => $db->ExhibitPage),
-            'ep.id = epe.page_id',
-            array()
-            );
-
-        $select->joinInner(
-            array('e' => $db->Exhibit),
-            'e.id = ep.exhibit_id',
-            array()
+        $select
+            ->joinInner(
+                array('eba' => $db->ExhibitBlockAttachment),
+                'eba.item_id = items.id',
+                array()
+            )
+            ->joinInner(
+                array('epb' => $db->ExhibitPageBlock),
+                'epb.id = eba.block_id',
+                array()
+            )
+            ->joinInner(
+                array('ep' => $db->ExhibitPage),
+                'ep.id = epb.page_id',
+                array()
+            )
+            ->joinInner(
+                array('e' => $db->Exhibit),
+                'e.id = ep.exhibit_id',
+                array()
             );
 
         if ($exhibit instanceof Exhibit) {
