@@ -23,7 +23,6 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     public function _initializeMixins()
     {
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPageBlock', 'page_id');
         $this->_mixins[] = new Mixin_Slug($this, array(
             'parentFields' => array('exhibit_id', 'parent_id'),
             'slugEmptyErrorMessage' => __('A slug must be given for each page of an exhibit.'),
@@ -189,12 +188,12 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     public function getPageBlocks()
     {
-        return $this->loadOrderedChildren();
+        return $this->getTable('ExhibitPageBlock')->findByPage($this);
     }
 
     public function getAllAttachments()
     {
-        return $this->getTable('ExhibitBlockAttachment')->findAllForPage($this);
+        return $this->getTable('ExhibitBlockAttachment')->findByPage($this);
     }
 
     public function setPageBlocks($blocksData, $deleteExtras = true)

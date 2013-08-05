@@ -32,7 +32,6 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     {
         $this->_mixins[] = new Mixin_Tag($this);
         $this->_mixins[] = new Mixin_Owner($this);
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitPage', 'exhibit_id');
         $this->_mixins[] = new Mixin_Slug($this, array(
             'slugEmptyErrorMessage' => __('Exhibits must be given a valid slug.'),
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),

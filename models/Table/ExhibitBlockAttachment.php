@@ -12,7 +12,22 @@
  */
 class Table_ExhibitBlockAttachment extends Omeka_Db_Table
 {
-    public function findAllForPage($page)
+    public function getSelect()
+    {
+        $select = parent::getSelect();
+        $select->order('exhibit_block_attachments.order');
+        return $select;
+    }
+
+    public function findByBlock($block)
+    {
+        $select = $this->getSelect()
+            ->where('exhibit_block_attachments.block_id = ?', $block->id);
+
+        return $this->fetchObjects($select);
+    }
+    
+    public function findByPage($page)
     {
         $select = $this->getSelect()
             ->joinInner(
@@ -21,6 +36,7 @@ class Table_ExhibitBlockAttachment extends Omeka_Db_Table
                 array()
                 )
             ->where('exhibit_page_blocks.page_id = ?', $page->id)
+            ->reset('order')
             ->order('exhibit_page_blocks.order')
             ->order('exhibit_block_attachments.order');
 

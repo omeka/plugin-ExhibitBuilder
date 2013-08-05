@@ -19,11 +19,6 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
     public $order;
 
     protected $_related = array('ExhibitBlockAttachment' => 'getAttachments');
-    
-    public function _initializeMixins()
-    {
-        $this->_mixins[] = new Mixin_Order($this, 'ExhibitBlockAttachment', 'block_id');
-    }
 
     protected function _delete()
     {
@@ -82,7 +77,7 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
 
     public function getAttachments()
     {
-        return $this->loadOrderedChildren();
+        return $this->getTable('ExhibitBlockAttachment')->findByBlock($this);
     }
     
     public function setAttachments($attachmentsData, $deleteExtras = true)
