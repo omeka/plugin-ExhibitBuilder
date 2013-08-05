@@ -64,7 +64,6 @@ function exhibit_builder_page_nav($exhibitPage = null)
  * @param ExhibitPage|null $exhibitPage If null, uses the current exhibit page
  * @return string
  */
-
 function exhibit_builder_child_page_nav($exhibitPage = null)
 {
     if (!$exhibitPage) {

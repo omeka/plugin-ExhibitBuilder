@@ -470,27 +470,28 @@ function exhibit_builder_purify_html($args)
         // exhibit-metadata-form
         case 'add':
         case 'edit':
-
+            if (!empty($post['description'])) {
+                $post['description'] = $purifier->purify($post['description']);
+            }
+            break;
         case 'add-page':
-        case 'edit-page-metadata':
-            // Skip the page-metadata-form.
-            break;
-
-        case 'edit-page-content':
+        case 'edit-page':
             // page-content-form
-            if (isset($post['Text']) && is_array($post['Text'])) {
-                // All of the 'Text' entries are HTML.
-                foreach ($post['Text'] as $key => $text) {
-                    $post['Text'][$key] = $purifier->purify($text);
-                }
-            }
-            if (isset($post['Caption']) && is_array($post['Caption'])) {
-                foreach ($post['Caption'] as $key => $text) {
-                    $post['Caption'][$key] = $purifier->purify($text);
+            if (!empty($post['blocks'])) {
+                foreach ($post['blocks'] as &$blockData) {
+                    if (!empty($blockData['text'])) {
+                        $blockData['text'] = $purifier->purify($blockData['text']);
+                    }
+                    if (!empty($blockData['attachments'])) {
+                        foreach ($blockData['attachments'] as &$attachmentData) {
+                            if (!empty($attachmentData['caption'])) {
+                                $attachmentData['caption'] = $purifier->purify($attachmentData['caption']);
+                            }
+                        }
+                    }
                 }
             }
             break;
-
         default:
             // Don't process anything by default.
             break;
