@@ -63,7 +63,7 @@
             <?php if (!$exhibit->TopPages): ?>
                 <p><?php echo __('There are no pages.'); ?></p>
             <?php else: ?>
-                <p class="reorder-instructions"><?php echo __('To reorder pages, click and drag the page up or down to the preferred location.'); ?></p>
+                <p class="reorder-instructions"><?php echo __('To reorder or nest pages, click and drag a page to the preferred location.'); ?></p>
                 <?php echo common('page-list', array('exhibit' => $exhibit), 'exhibits'); ?>
             <?php endif; ?>
         </div>

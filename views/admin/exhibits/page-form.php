@@ -2,12 +2,12 @@
 $title = ($actionName == 'Add') ? __('Add Page') : __('Edit Page "%s"', $exhibit_page->title);
 echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 ?>
-<?php echo flash(); ?>
 <div id="exhibits-breadcrumb">
     <a href="<?php echo html_escape(url('exhibits')); ?>"><?php echo __('Exhibits'); ?></a> &gt;
     <a href="<?php echo html_escape(url('exhibits/edit/' . $exhibit['id']));?>"><?php echo html_escape($exhibit['title']); ?></a>  &gt;
     <?php echo html_escape($title); ?>
 </div>
+<?php echo flash(); ?>
 <form method="post">
     <div class="seven columns alpha">
     <fieldset>
