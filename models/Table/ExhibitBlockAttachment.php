@@ -21,6 +21,10 @@ class Table_ExhibitBlockAttachment extends Omeka_Db_Table
 
     public function findByBlock($block)
     {
+        if (!$block->exists()) {
+            return array();
+        }
+
         $select = $this->getSelect()
             ->where('exhibit_block_attachments.block_id = ?', $block->id);
 

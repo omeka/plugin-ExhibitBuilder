@@ -21,6 +21,10 @@ class Table_ExhibitPageBlock extends Omeka_Db_Table
 
     public function findByPage($page)
     {
+        if (!$page->exists()) {
+            return array();
+        }
+
         $select = $this->getSelect()
             ->where('exhibit_page_blocks.page_id = ?', $page->id);
 
