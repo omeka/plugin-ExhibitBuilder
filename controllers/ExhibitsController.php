@@ -297,7 +297,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             $exhibitPage->parent_id = $previousPage->parent_id;
             $exhibitPage->order = $previousPage->order + 1;
         } else {
-            $childCount = $exhibit->countTopPages();
+            $childCount = $exhibit->countPages(true);
             $exhibitPage->order = $childCount +1;
         }
 
