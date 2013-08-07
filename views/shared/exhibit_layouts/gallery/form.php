@@ -24,7 +24,7 @@ $options = $block->getOptions();
         <?php
         echo $this->formSelect($formStem . '[options][aside-position]',
             @$options['aside-position'], array(),
-            array('left' => 'Left', 'right' => 'Right'));
+            array('left' => 'Left', 'right' => 'Right', 'center' => 'Center'));
         ?>
     </div>
     
