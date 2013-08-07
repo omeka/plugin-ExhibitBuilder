@@ -15,9 +15,9 @@ $showAside = !empty($text) || ($showcaseFile && !empty($attachments));
         echo $this->exhibitAttachment($attachment, array('imageSize' => 'fullsize'));
     endif;
     ?>
-    <?php echo $text; ?>
 </div>
 <?php endif; ?>
-<div class="gallery <?php if ($showAside) echo 'with-aside'; ?>">
+<div class="gallery <?php if ($showAside) echo 'with-aside'; ?> <?php echo $position; ?>">
     <?php echo $this->exhibitAttachmentGallery($attachments); ?>
 </div>
+<?php echo $text; ?>
