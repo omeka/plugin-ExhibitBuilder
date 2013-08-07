@@ -61,7 +61,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <div class="three columns omega">
         <div id="save" class="panel">
             <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
-            <?php echo $this->formSubmit('page_form', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
+            <?php echo $this->formSubmit('add-another-page', __('Save and Add Another Page'), array('class'=>'submit big green button')); ?>
             <?php if ($exhibit_page->exists()): ?>
                 <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank'), $exhibit_page); ?>
             <?php endif; ?>

@@ -304,7 +304,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Add', $exhibit);
         if ($success) {
             $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
-            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
+            if (array_key_exists('add-another-page', $_POST)) {
+                $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibit->id, 'previous' => $exhibitPage->id), 'exhibitStandard');
+            } else {
+                $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
+            }
             return;
         }
 
@@ -327,7 +331,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $success = $this->processPageForm($exhibitPage, 'Edit', $exhibit);
         if ($success) {
             $this->_helper->flashMessenger("Changes to the exhibit's page were successfully saved!", 'success');
-            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
+            if (array_key_exists('add-another-page', $_POST)) {
+                $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibit->id, 'previous' => $exhibitPage->id), 'exhibitStandard');
+            } else {
+                $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
+            }
             return;
         }
 
