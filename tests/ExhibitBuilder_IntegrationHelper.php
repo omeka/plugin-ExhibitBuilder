@@ -74,23 +74,6 @@ class ExhibitBuilder_IntegrationHelper
         return $exhibitPage;
     }
 
-    public function createNewExhibitPageEntry($exhibitPage, $text = '', $order = 1, $item = null, $caption = '')
-    {
-        $exhibitPageEntry = new ExhibitPageEntry;
-        $exhibitPageEntry->page_id = $exhibitPage->id;
-        $exhibitPageEntry->text = $text;
-        $exhibitPageEntry->order = $order;
-        $exhibitPageEntry->caption =  $caption;
-
-        if ($item && $item->exists()) {
-            $exhibitPageEntry->item_id = $item->id;
-        }
-
-        $exhibitPageEntry->save();
-
-        return $exhibitPageEntry;
-    }
-
     public function createNewItem($isPublic = true, $title = 'Item Title', $titleIsHtml = true)
     {
         $item = insert_item(array('public' => $isPublic),

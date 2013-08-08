@@ -75,9 +75,10 @@ class Table_Exhibit extends Omeka_Db_Table
         $db = $this->getDb();
 
         $sql = "SELECT COUNT(i.id) FROM $db->Item i
-                INNER JOIN $db->ExhibitPageEntry ip ON ip.item_id = i.id
-                INNER JOIN $db->ExhibitPage sp ON sp.id = ip.page_id
-                INNER JOIN $db->Exhibit e ON e.id = sp.exhibit_id
+                INNER JOIN $db->ExhibitBlockAttachment eba ON eba.item_id = i.id
+                INNER JOIN $db->ExhibitPageBlock epb ON epb.id = eba.block_id
+                INNER JOIN $db->ExhibitPage ep ON ep.id = epb.page_id
+                INNER JOIN $db->Exhibit e ON e.id = ep.exhibit_id
                 WHERE e.id = ? AND i.id = ?";
 
         $count = (int) $db->fetchOne($sql, array((int) $exhibit_id, (int) $item_id));

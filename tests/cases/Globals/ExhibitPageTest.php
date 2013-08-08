@@ -27,12 +27,6 @@ class ExhibitPageTest extends Omeka_Test_AppTestCase
         $exhibitPage = $this->helper->createNewExhibitPage($exhibit, null, 'Exhibit Page Title' , 'exhibitpageslug', 1, 'text');
         $this->assertTrue($exhibitPage->exists());
 
-        $maxExhibitPageEntries = 7;
-        for($i = 1; $i <= $maxExhibitPageEntries; $i++) {
-            $exhibitPageEntry = $this->helper->createNewExhibitPageEntry($exhibitPage, 'Exhibit Page Entry', $i, null);
-            $this->assertTrue($exhibitPageEntry->exists());
-        }
-
         $this->dispatch('exhibits/show/exhibitslug/exhibitpageslug');
 
         $exhibitPage = get_current_record('exhibit_page');
