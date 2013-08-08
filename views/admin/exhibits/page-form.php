@@ -107,12 +107,6 @@ jQuery(document).ready(function () {
             tinyMCE.execCommand('mceAddControl', false, this.id);
         });
     });
-    jQuery(document).on('exhibit-builder-remove-wysiwyg', function (event) {
-        // Remove tinyMCE from all textareas in the div where the item was attached.
-        jQuery(event.target).find('textarea').each(function () {
-            tinyMCE.execCommand('mceRemoveControl', false, this.id);
-        });
-    });
 });
 </script>
 <?php echo foot(); ?>
