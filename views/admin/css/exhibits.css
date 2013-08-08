@@ -263,11 +263,11 @@
 .block-form {
     background-color: rgba(255,255,255,.55);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
-    padding: 40px 0 0;
     margin-bottom: 20px;
     border: 1px solid #D6D5C2;
+    border-top: 0;
     position: relative;
-    border-radius: 2px 2px 0 0;
+    border-radius: 2px;
 }
 
 .block-form > .drawer {
@@ -280,10 +280,6 @@
 }
 
 .block-form > div:only-of-type, .block-form > div:last-of-type {
-    margin-bottom: 0;
-}
-
-#content .block-form h2 {
     margin-bottom: 0;
 }
 
@@ -321,11 +317,8 @@
 
 .block-form h2, .add-block h2 {
     background-image: linear-gradient(to bottom, #F5F3EC, #E9E5DA);
-    position: absolute;
-    top: -1px;
-    left: 0;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 11px;
     border: 1px solid #D6D5C2;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -333,8 +326,16 @@
     font-size: 14px;
     text-align: left;
     font-weight: normal;
-    border-radius: 2px 2px 0 0;
+    border-radius: 2px;
     line-height: 1.5em;
+    margin: 0;
+    cursor: move;
+}
+
+.block-order + div {
+    margin-top: -2px;
+    background-color: #fbfbf9;
+    border-top: 1px solid #D6D5C2;
 }
 
 .block-form h2 {
@@ -343,7 +344,9 @@
 
 .layout-select {
     border: 1px dashed #D6D5C2;
-    padding: 2em 10px 1em 10px;
+    border-top-style: solid;
+    padding: 0 10px 1em 10px;
+    margin-top: -1px;
     background-color: rgba(255,255,255,.55);
 }
 
