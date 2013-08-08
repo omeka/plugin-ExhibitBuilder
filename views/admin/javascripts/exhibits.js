@@ -5,6 +5,20 @@ Omeka.ExhibitBuilder = {};
 
 (function ($) {
     Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
+        function sortAttachments(ancestor) {
+            $(ancestor).find('.selected-item-list').sortable({
+                items: '> .attachment',
+                revert: 200,
+                placeholder: 'ui-sortable-highlight',
+                tolerance: 'pointer',
+                stop: function () {
+                    $(this).find('.attachment-order').each(function(index) {
+                        $(this).val(index + 1);
+                    });
+                }
+            });
+        }
+
         $('#block-container').sortable({
             items: '> .block-form',
             handle: 'h2',
@@ -20,21 +34,9 @@ Omeka.ExhibitBuilder = {};
             }
         });
         
-        function sortAttachments(ancestor) {
-            $(ancestor).find('.selected-item-list').sortable({
-                items: '> .attachment',
-                revert: 200,
-                placeholder: 'ui-sortable-highlight',
-                tolerance: 'pointer',
-                stop: function () {
-                    $(this).find('.attachment-order').each(function(index) {
-                        $(this).val(index + 1);
-                    });
-                }
-            });
-        }
-        
         var blockIndex = $('.block-form').length;
+
+        $('.add-link').hide();
         $('.add-link').click(function (event) {
             event.preventDefault();
 
@@ -55,6 +57,7 @@ Omeka.ExhibitBuilder = {};
                         ;
                     $('input[name=new-block-layout]').prop('checked', false);
                     $('.selected').removeClass('selected');
+                    $('.add-link').hide();
                 },
                 'html'
             );
@@ -64,6 +67,7 @@ Omeka.ExhibitBuilder = {};
             $(this).children('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
+            $('.add-link').show();
         });
 
         $('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
