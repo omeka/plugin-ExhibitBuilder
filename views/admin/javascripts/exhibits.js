@@ -5,6 +5,21 @@ Omeka.ExhibitBuilder = {};
 
 (function ($) {
     Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
+        $('#block-container').sortable({
+            items: '> .block-form',
+            handle: 'h2',
+            revert: 200,
+            placeholder: 'ui-sortable-highlight',
+            tolerance: 'pointer',
+            forcePlaceholderSize: true,
+            forceHelperSize: true,
+            stop: function () {
+                $(this).find('.block-order').each(function(index) {
+                    $(this).val(index + 1);
+                });
+            }
+        });
+        
         function sortAttachments(ancestor) {
             $(ancestor).find('.selected-item-list').sortable({
                 items: '> .attachment',
@@ -12,7 +27,7 @@ Omeka.ExhibitBuilder = {};
                 placeholder: 'ui-sortable-highlight',
                 tolerance: 'pointer',
                 stop: function () {
-                    $(this).find('input[name*="[order]"]').each(function(index) {
+                    $(this).find('.attachment-order').each(function(index) {
                         $(this).val(index + 1);
                     });
                 }

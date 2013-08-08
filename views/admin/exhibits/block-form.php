@@ -8,7 +8,7 @@ $order = $block->order;
 <div class="drawer opened"></div>
 <div class="remove-block"><span class="screen-reader-text"><?php echo __('Remove'); ?></span></div>
 <?php echo $this->formHidden($stem . '[layout]', $block->layout); ?>
-<?php echo $this->formHidden($stem . '[order]', $block->order); ?>
+<?php echo $this->formHidden($stem . '[order]', $block->order, array('class' => 'block-order')); ?>
 <?php
 echo $this->partial($layout->getViewPartial('form'), array('block' => $block));
 ?>
