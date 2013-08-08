@@ -1,8 +1,19 @@
 <?php
+/**
+ * Class for upgrading old exhibit pages.
+ */
 class ExhibitPageUpgrader
 {
+    /**
+     * @var Omeka_Db
+     */
     protected $_db;
-    
+
+    /**
+     * Mappings from page old page types to upgrade methods.
+     * 
+     * @var array
+     */
     protected $_upgraders = array(
         'text' => '_upgradeText',
         'text-image-left' => '_upgradeTextImage',
@@ -18,16 +29,32 @@ class ExhibitPageUpgrader
         'gallery-full-right' => '_upgradeGalleryFull'
     );
 
+    /**
+     * Create the upgrader, assigning the database.
+     *
+     * @param Omeka_Db $db
+     */
     public function __construct($db)
     {
         $this->_db = $db;
     }
 
+    /**
+     * Get the database object.
+     *
+     * @return Omeka_Db
+     */
     public function getDb()
     {
         return $this->_db;
     }
 
+    /**
+     * Upgrade one page.
+     *
+     * @param $pageId ID number for the page
+     * @param $pageLayout Name of the old page layout
+     */
     public function upgradePage($pageId, $pageLayout)
     {
         $db = $this->getDb();
@@ -56,6 +83,13 @@ SQL;
         $this->$upgrader($pageId, $entries, $pageLayout);
     }
 
+    /**
+     * Upgrade an old text layout.
+     *
+     * @param string $pageId Page ID
+     * @param array $entries Associative array for all old entries
+     * @param string $layout Old layout name
+     */
     protected function _upgradeText($pageId, $entries, $layout)
     {
         $this->_createBlock(array(
@@ -66,6 +100,13 @@ SQL;
         ));
     }
 
+    /**
+     * Upgrade an old text layout.
+     *
+     * @param string $pageId Page ID
+     * @param array $entries Associative array for all old entries
+     * @param string $layout Old layout name
+     */
     protected function _upgradeTextImage($pageId, $entries, $layout)
     {
         $db = $this->getDb();
@@ -93,6 +134,13 @@ SQL;
         }
     }
 
+    /**
+     * Upgrade an old text-image-* layout.
+     *
+     * @param string $pageId Page ID
+     * @param array $entries Associative array for all old entries
+     * @param string $layout Old layout name
+     */
     protected function _upgradeGallery($pageId, $entries, $layout)
     {
         $textTop = false;
@@ -137,6 +185,13 @@ SQL;
         }
     }
 
+    /**
+     * Upgrade an old image-list-* layout.
+     *
+     * @param string $pageId Page ID
+     * @param array $entries Associative array for all old entries
+     * @param string $layout Old layout name
+     */
     protected function _upgradeImageList($pageId, $entries, $layout)
     {
         $fileSize = 'fullsize';
@@ -181,6 +236,13 @@ SQL;
         }
     }
 
+    /**
+     * Upgrade an old gallery-full-* layout.
+     *
+     * @param string $pageId Page ID
+     * @param array $entries Associative array for all old entries
+     * @param string $layout Old layout name
+     */
     protected function _upgradeGalleryFull($pageId, $entries, $layout)
     {
         $fileSize = 'fullsize';
@@ -218,6 +280,12 @@ SQL;
         }
     }
 
+    /**
+     * Create a new block.
+     *
+     * @param array $data Associative array of data to set
+     * @return integer ID of the new block.
+     */
     protected function _createBlock($data)
     {
         $db = $this->getDb();
@@ -225,6 +293,12 @@ SQL;
         return $db->lastInsertId();
     }
 
+    /**
+     * Create a new attachment.
+     *
+     * @param array $data Associative array of data to set
+     * @return integer ID of the new attachment.
+     */
     protected function _createAttachment($data)
     {
         $db = $this->getDb();
