@@ -12,15 +12,54 @@
  */
 class ExhibitPage extends Omeka_Record_AbstractRecord
 {
-    public $id;
+    /**
+     * ID of parent page, if any
+     *
+     * @var integer
+     */
     public $parent_id;
+
+    /**
+     * ID of the exhibit this page is in
+     *
+     * @var integer
+     */
     public $exhibit_id;
+
+    /**
+     * URL slug for this page
+     *
+     * @var string
+     */
     public $slug;
+
+    /**
+     * Title for the page
+     *
+     * @var string
+     */
     public $title;
+
+    /**
+     * Order of the page underneath its parent/exhibit
+     *
+     * @var integer
+     */
     public $order;
 
+    /**
+     * Related record linkages.
+     *
+     * @var array
+     */
     protected $_related = array('ExhibitPageBlock' => 'getPageBlocks');
 
+    /**
+     * Define mixins.
+     *
+     * @see Mixin_Slug
+     * @see Mixin_Search
+     */
     public function _initializeMixins()
     {
         $this->_mixins[] = new Mixin_Slug($this, array(
@@ -32,12 +71,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     }
 
     /**
-     * In order to validate:
-     * 1) must have a layout
-     * 2) Must have a title
-     * 3) must be properly ordered
-     * 
-     * @return void
+     * In order to validate an exhibit must have a title.
      */
     protected function _validate()
     {
@@ -45,7 +79,14 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             $this->addError('title', __('Exhibit pages must be given a title.'));
         }
     }
-    
+
+    /**
+     * After save callback.
+     *
+     * Update block data and search data after saving.
+     *
+     * @var array $args
+     */
     protected function afterSave($args)
     {
         if ($args['post']) {
@@ -73,16 +114,31 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         $this->addSearchText($this->title);
     }
 
+    /**
+     * Get the previous page.
+     *
+     * @return ExhibitPage
+     */
     public function previous()
     {
         return $this->getDb()->getTable('ExhibitPage')->findPrevious($this);
     }
 
+    /**
+     * Get the next page.
+     *
+     * @return ExhibitPage
+     */
     public function next()
     {
         return $this->getDb()->getTable('ExhibitPage')->findNext($this);
     }
 
+    /**
+     * Get the next page, preferring to step down to this page's children first.
+     *
+     * @return ExhibitPage
+     */
     public function firstChildOrNext()
     {
         if($firstChild = $this->getFirstChildPage()) {
@@ -102,6 +158,11 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get the previous page, or this page's parent if there are none.
+     * 
+     * @return ExhibitPage
+     */
     public function previousOrParent()
     {
         $previous = $this->previous();
@@ -118,35 +179,60 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get this page's parent.
+     *
+     * @return ExhibitPage
+     */
     public function getParent()
     {
         return $this->getTable()->find($this->parent_id);
     }
 
+    /**
+     * Get all this page's children.
+     *
+     * @return ExhibitPage[]
+     */
     public function getChildPages()
     {
         return $this->getTable()->findBy(array('parent'=>$this->id, 'sort_field'=>'order'));
     }
 
+    /**
+     * Get this page's first child.
+     *
+     * @return ExhibitPage
+     */
     public function getFirstChildPage()
     {
         return $this->getTable()->findEndChild($this, 'first');
     }
 
+    /**
+     * Get this page's last child.
+     *
+     * @return ExhibitPage
+     */
     public function getLastChildPage()
     {
         return $this->getTable()->findEndChild($this, 'last');
     }
 
+    /**
+     * Count the number of child pages for this page.
+     *
+     * @return integer
+     */
     public function countChildPages()
     {
         return $this->getTable()->count(array('parent'=>$this->id));
     }
 
     /**
-     * Get the ancestors of the page
+     * Get the ancestors of this page.
      *
-     * @return array
+     * @return ExhibitPage[]
      */
     public function getAncestors()
     {
@@ -161,11 +247,21 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     }
 
+    /**
+     * Get this page's owning exhibit.
+     *
+     * @return Exhibit
+     */
     public function getExhibit()
     {
         return $this->getTable('Exhibit')->find($this->exhibit_id);
     }
 
+    /**
+     * Delete owned blocks when deleting the page.
+     *
+     * Also, move childen of the page up a level in the hierarchy.
+     */
     protected function _delete()
     {
         if ($this->ExhibitPageBlock) {
@@ -186,16 +282,33 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get all blocks for this page.
+     *
+     * @return ExhibitPageBlock[]
+     */
     public function getPageBlocks()
     {
         return $this->getTable('ExhibitPageBlock')->findByPage($this);
     }
 
+    /**
+     * Get all attachments for all this page's blocks.
+     *
+     * @return ExhibitBlockAttachment[]
+     */
     public function getAllAttachments()
     {
         return $this->getTable('ExhibitBlockAttachment')->findByPage($this);
     }
 
+    /**
+     * Set data for this page's blocks.
+     *
+     * @param array $blocksData An array of key-value arrays for each block.
+     * @param boolean $deleteExtras Whether to delete any extra preexisting
+     *  blocks.
+     */ 
     public function setPageBlocks($blocksData, $deleteExtras = true)
     {
         $existingBlocks = $this->getPageBlocks();
@@ -218,6 +331,12 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get the URL to this page, with the specified action.
+     *
+     * @param string $action The action to link to
+     * @return string
+     */
     public function getRecordUrl($action = 'show')
     {
         if ('show' == $action) {

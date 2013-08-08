@@ -6,23 +6,62 @@
  */
  
 /**
- * ExhibitPageEntry model.
+ * ExhibitBlockAttachment model.
  * 
  * @package ExhibitBuilder
  */
 class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 {
+    /**
+     * ID of the block this attachment belongs to.
+     *
+     * @var integer
+     */
     public $block_id;
+
+    /**
+     * ID of the attached item.
+     *
+     * @var integer
+     */
     public $item_id;
+
+    /**
+     * ID of the attached file, if any.
+     *
+     * @var integer
+     */
     public $file_id;
+
+    /**
+     * User-specified HTML caption for the attachment.
+     *
+     * @var string
+     */
     public $caption;
+
+    /**
+     * Order of this attachment within the block.
+     *
+     * @var integer
+     */
     public $order;
-    
+
+    /**
+     * Related records mappings.
+     *
+     * @var array
+     */
     protected $_related = array(
         'Item' => 'getItem',
         'File' => 'getFile'
     );
-    
+
+    /**
+     * Get the attached item
+     *
+     * @return Item|null
+     */
     public function getItem()
     {
         if ($this->item_id) {
@@ -32,6 +71,11 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get the attached file.
+     *
+     * @return File|null
+     */
     public function getFile()
     {
         $file = null;
@@ -46,7 +90,13 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
 
         return $file;
     }
-    
+
+    /**
+     * Validate the attachment data.
+     *
+     * A valid attachment has a numeric block ID, a numeric order, and a
+     * numeric item ID.
+     */
     protected function _validate()
     {
         if (empty($this->block_id) || !is_numeric($this->block_id)) {
@@ -61,12 +111,22 @@ class ExhibitBlockAttachment extends Omeka_Record_AbstractRecord
             $this->addError(null, 'item_id field must be a valid foreign key');
         }
     }
-    
+
+    /**
+     * Get the owning block.
+     *
+     * @return ExhibitPageBlock
+     */
     protected function getBlock()
     {
         return $this->getTable('ExhibitPage')->find($this->block_id);
     }
 
+    /**
+     * Set this attachment's data by key-value array.
+     *
+     * @param array $data
+     */
     public function setData($data)
     {
         if (!empty($data['item_id'])) {

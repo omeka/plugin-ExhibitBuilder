@@ -12,14 +12,51 @@
  */
 class ExhibitPageBlock extends Omeka_Record_AbstractRecord
 {
+    /**
+     * ID of the page that owns this block.
+     *
+     * @var integer
+     */
     public $page_id;
+
+    /**
+     * Identifier of the layout being used by this block.
+     *
+     * @var string
+     */
     public $layout;
+
+    /**
+     * JSON-encoded set of options for the layout.
+     *
+     * @var string
+     */
     public $options;
+
+    /**
+     * User-input text for this block, in HTML.
+     *
+     * @var string
+     */
     public $text;
+
+    /**
+     * Order of this block on the page.
+     *
+     * @var integer
+     */
     public $order;
 
+    /**
+     * Related record mappings.
+     *
+     * @var array
+     */
     protected $_related = array('ExhibitBlockAttachment' => 'getAttachments');
 
+    /**
+     * Delete all attachments when deleting the block.
+     */
     protected function _delete()
     {
         if ($this->ExhibitBlockAttachment) {
@@ -28,12 +65,22 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
             }
         }
     }
-    
+
+    /**
+     * Get the page that owns the block.
+     *
+     * @return ExhibitPage
+     */
     public function getPage()
     {
         return $this->getTable('ExhibitPage')->find($this->page_id);
     }
 
+    /**
+     * Set the data for this block from an array.
+     *
+     * @param array $data Data to set
+     */
     public function setData($data)
     {
         if (!empty($data['layout'])) {
@@ -61,6 +108,11 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get a PHP array from the JSON-serialized layout options.
+     *
+     * @return array
+     */
     public function getOptions()
     {
         if (!empty($this->options)) {
@@ -70,16 +122,34 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Set an key-value array of options to be JSON-encoded.
+     *
+     * @param array $options
+     */
     public function setOptions($options)
     {
         $this->options = json_encode($options);
     }
 
+    /**
+     * Get the attachments for this block.
+     *
+     * @return ExhibitBlockAttachment[]
+     */
     public function getAttachments()
     {
         return $this->getTable('ExhibitBlockAttachment')->findByBlock($this);
     }
-    
+
+    /**
+     * Set attachment data for this block by array.
+     *
+     * @param array $attachmentsData Array of key-value arrays of data for each
+     *  attachment.
+     * @param boolean $deleteExtras Whether to delete extra preexisting
+     *  attachments after setting new data.
+     */
     public function setAttachments($attachmentsData, $deleteExtras = true)
     {
         // We have to have an ID to proceed.
@@ -106,11 +176,22 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
         }
     }
 
+    /**
+     * Get the layout object for this page's layout.
+     *
+     * @return ExhibitLayout
+     */
     public function getLayout()
     {
         return ExhibitLayout::getLayout($this->layout);
     }
 
+    /**
+     * Get the stem for form name attributes for this block. The stem uses
+     * integer keys, based on the initial order of the block.
+     *
+     * @return string
+     */
     public function getFormStem()
     {
         return 'blocks[' . ($this->order - 1) . ']';
