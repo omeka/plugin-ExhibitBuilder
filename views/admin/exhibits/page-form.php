@@ -30,7 +30,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
     </fieldset>
     <fieldset id="block-container">
-        <legend><?php echo __('Content'); ?></legend>
+        <h2><?php echo __('Content'); ?></h2>
         <?php
         foreach ($exhibit_page->getPageBlocks() as $block):
             echo $this->partial('exhibits/block-form.php', array('block' => $block));
