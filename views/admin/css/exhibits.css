@@ -1,6 +1,6 @@
 #exhibits-breadcrumb {
     padding: .5em;
-    background-color: rgba(255,255,255,.5);
+    background-color: #fbfbf9;
     border-bottom: 1px solid #E7E7E7;
     margin: -20px -10px 20px -10px;
 }
@@ -261,7 +261,7 @@
 /* Block form */
 
 .block-form {
-    background-color: rgba(255,255,255,.55);
+    background-color: #fbfbf9;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
     margin-bottom: 20px;
     border: 1px solid #D6D5C2;
