@@ -264,7 +264,6 @@
     background-color: #fbfbf9;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0 -1px 0 0 rgba(0, 0, 0, 0.07) inset;
     margin-bottom: 20px;
-    border: 1px solid #D6D5C2;
     border-width: 0 1px;
     position: relative;
     border-radius: 2px;
@@ -274,16 +273,32 @@
     right: 30px;
 }
 
-.block-form > div {
-    padding: 20px 10px;
-    border-bottom: 1px solid #D6D5C2;
+.block-body {
+    position: relative;
 }
 
-.block-form > div:only-of-type, .block-form > div:last-of-type {
+.block-body > div {
+    padding: 20px 10px;
+    border: solid #D6D5C2;
+    border-width: 0 1px 1px 1px;
+    position: relative;
+    z-index: 10;
+}
+
+.block-body > div:only-of-type, .block-body > div:last-of-type {
     margin-bottom: 0;
 }
 
 .block-form h4:first-of-type { margin-top: 0; }
+
+.block-form h2 {
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    border-radius: 2px;
+    line-height: 1.5em;
+    margin: 0;
+}
 
 .block-form h4 { 
     clear: both; 
@@ -298,6 +313,18 @@
 
 .block-form select {
     margin: 0;
+}
+
+.block-form > .block-header {
+    padding: 10px;
+    position: relative;
+    z-index: 0;
+    border-top: 1px solid #D6D5C2;
+    box-shadow: none;
+}
+
+.block-form > .block-header .drawer {
+    right: 30px;
 }
 
 .add-block {
@@ -315,7 +342,7 @@
     margin-bottom: 0;
 }
 
-.block-form h2, .add-block h2 {
+.add-block h2 {
     background-image: linear-gradient(to bottom, #F5F3EC, #E9E5DA);
     width: 100%;
     padding: 10px 10px 11px;
@@ -333,7 +360,7 @@
 }
 
 .block-order + div {
-    margin-top: -2px;
+    margin-top: -1px;
     background-color: #fbfbf9;
     border-top: 1px solid #D6D5C2;
 }
@@ -392,7 +419,7 @@
     text-align: center;
 }
 
-.remove-block {
+.delete-toggle {
     display: block !important;
     position: absolute;
     top: 10px;
@@ -404,7 +431,7 @@
     cursor: pointer;
 }
 
-.remove-block:before {
+.delete-toggle:before {
     content: "\21";
     display: inline-block;
     font-family: "icomoon";
@@ -483,7 +510,7 @@ div.selected-items {
 }
 .edit.button a { color: #fff; }
 
-.close.button {
+.attachment .delete-toggle.button {
     display: block;
     position: absolute;
     top: 3px;
@@ -491,7 +518,7 @@ div.selected-items {
     text-indent: -9999px;
 }
 
-.close.button a:after {
+.attachment .delete-toggle:after {
     content: "\21";
     font-family: "icomoon";
     text-indent: 0;
@@ -511,6 +538,17 @@ div.selected-items {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: 16px;
+    z-index: 51;
+}
+
+.attachment .undo-delete:after {
+    content: "\23";
+    font-size: 12px;
+    color: #4C3939;
+}
+
+.attachment .frozen:after {
+    z-index: 50;
 }
 
 .add-item { float: left; }
@@ -541,18 +579,12 @@ div.selected-items {
 
 .block-form .layout-options {
     position: relative;
-    padding: 40px 0 0 0;
+    padding: 0;
 }
 
 .layout-options h4 {
-    background: #F3F3E7;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid #D6D5C2;
+    margin: 0;
 }
 
 .layout-options label {
@@ -565,6 +597,12 @@ div.selected-items {
     padding: 20px 10px;
 }
 
+.layout-options > .block-header {
+    background: #F3F3E7;
+    display: block;
+    padding: 10px;
+}
+
 .drawer {
     display: block !important;
     position: absolute;
@@ -573,6 +611,18 @@ div.selected-items {
     line-height: 20px;
     padding: 0 !important;
     border-bottom: 0 !important;
+}
+
+.frozen:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    content: "";
+    display: block;
+    background-color: rgba(255,255,255,.7);
+    z-index: 100;
 }
 
 /* jQuery UI overrides */

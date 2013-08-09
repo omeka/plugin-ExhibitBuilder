@@ -70,16 +70,21 @@ Omeka.ExhibitBuilder = {};
             $('.add-link').show();
         });
 
-        $('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
+        $('#block-container').on('click', '.delete-toggle, .remove-attachment', function (event) {
             event.preventDefault();
-            var target = $(this).parent();
-            if (!target.hasClass('deleted')) {
-                target.addClass('deleted');
+            $(this).toggleClass('undo-delete')
+                .parent().toggleClass('deleted')
+                .siblings('div').toggleClass('frozen');
+
+            var target = $(this).parent().parent();
+            var removedClass = 'removed';
+            if (!target.hasClass(removedClass)) {
+                target.addClass(removedClass);
                 target.find('input, select, textarea').prop('disabled', true);
             } else {
-                target.removeClass('deleted');
+                target.removeClass(removedClass);
                 target.find('input, select, textarea').each(function () {
-                    if (!$(this).parent().hasClass('deleted')) {
+                    if (!$(this).parent().parent().hasClass(removedClass)) {
                         this.disabled = false;
                     }
                 });
@@ -94,7 +99,7 @@ Omeka.ExhibitBuilder = {};
             event.preventDefault();
             $(this).toggleClass('closed');
             $(this).toggleClass('opened');
-            $(this).parent().children('div').toggle();
+            $(this).parent().siblings('div').toggle();
         });
 
         sortAttachments('#block-container');

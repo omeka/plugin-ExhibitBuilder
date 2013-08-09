@@ -15,10 +15,10 @@ $options = $block->getOptions();
 </div>
 
 <div class="layout-options">
-
-    <h4><?php echo __('Layout Options'); ?></h4>
-    
-    <div class="drawer"></div>
+    <div class="block-header">
+        <h4><?php echo __('Layout Options'); ?></h4>
+        <div class="drawer"></div>
+    </div>
     
     <div class="file-position">
         <?php echo $this->formLabel($formStem . '[options][file-position]', __('File position')); ?>
