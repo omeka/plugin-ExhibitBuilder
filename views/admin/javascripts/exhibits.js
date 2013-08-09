@@ -72,7 +72,18 @@ Omeka.ExhibitBuilder = {};
 
         $('#block-container').on('click', '.remove-block, .remove-attachment', function (event) {
             event.preventDefault();
-            $(this).parent().remove();
+            var target = $(this).parent();
+            if (!target.hasClass('deleted')) {
+                target.addClass('deleted');
+                target.find('input, select, textarea').prop('disabled', true);
+            } else {
+                target.removeClass('deleted');
+                target.find('input, select, textarea').each(function () {
+                    if (!$(this).parent().hasClass('deleted')) {
+                        this.disabled = false;
+                    }
+                });
+            }
         });
 
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {

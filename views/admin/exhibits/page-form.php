@@ -32,7 +32,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <fieldset id="block-container">
         <h2><?php echo __('Content'); ?></h2>
         <?php
-        foreach ($exhibit_page->getPageBlocks() as $block):
+        foreach ($exhibit_page->getPageBlocks() as $index => $block):
+            $block->order = $index + 1;
             echo $this->partial('exhibits/block-form.php', array('block' => $block));
         endforeach;
         ?>
