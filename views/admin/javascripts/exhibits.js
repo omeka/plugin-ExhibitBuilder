@@ -12,7 +12,7 @@ Omeka.ExhibitBuilder = {};
                 placeholder: 'ui-sortable-highlight',
                 tolerance: 'pointer',
                 stop: function () {
-                    $(this).find('.attachment-order').each(function(index) {
+                    $(this).find('.attachment-order').each(function (index) {
                         $(this).val(index + 1);
                     });
                 }
@@ -26,10 +26,23 @@ Omeka.ExhibitBuilder = {};
             placeholder: 'ui-sortable-highlight',
             tolerance: 'pointer',
             forcePlaceholderSize: true,
-            forceHelperSize: true,
-            stop: function () {
-                $(this).find('.block-order').each(function(index) {
+            forceHelperSize: false,
+            helper: 'clone',
+            start: function (event, ui) {
+                ui.item.find('textarea').each(function () {
+                    tinyMCE.execCommand('mceRemoveControl', false, this.id);
+                });
+                ui.helper.find('.block-body').hide();
+                var height = ui.helper.find('.block-header').outerHeight();
+                ui.helper.height(height);
+                ui.placeholder.height(height);
+            },
+            stop: function (event, ui) {
+                $(this).find('.block-order').each(function (index) {
                     $(this).val(index + 1);
+                });
+                ui.item.find('textarea').each(function () {
+                    tinyMCE.execCommand('mceAddControl', false, this.id);
                 });
             }
         });
