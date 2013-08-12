@@ -10,6 +10,23 @@
     color: #888;
 }
 
+#block-container > h2 {
+    float: left;
+}
+
+.collapse, .expand {
+    float: right;
+    line-height: 26px;
+    cursor: pointer;
+    color: #C76941;
+}
+
+.expand:after {
+    content: "|";
+    margin: 0 5px;
+    color: #4C3939;
+}
+
 /* override for core's .undo-delete hiding */
 #page-list .undo-delete {
     display: inline;

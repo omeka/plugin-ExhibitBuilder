@@ -108,6 +108,24 @@ Omeka.ExhibitBuilder = {};
             sortAttachments(this);
         });
         
+        $('#block-container').on('click', '> span', function() {
+            if ($(this).hasClass('collapse')) {
+                $('.drawer').each( function() {
+                    if ($(this).hasClass('opened')) {
+                        $(this).removeClass('opened').addClass('closed');
+                        $(this).parent().siblings('div').toggle();
+                    }
+                });
+            } else {
+                $('.drawer').each( function() {
+                    if ($(this).hasClass('closed')) {
+                        $(this).removeClass('closed').addClass('opened');
+                        $(this).parent().siblings('div').toggle();
+                    }
+                });
+            }
+        });
+
         $('#block-container').on('click', '.drawer', function (event) {
             event.preventDefault();
             $(this).toggleClass('closed');

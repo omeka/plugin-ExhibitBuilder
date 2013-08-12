@@ -31,6 +31,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </fieldset>
     <fieldset id="block-container">
         <h2><?php echo __('Content'); ?></h2>
+        <span class="collapse"><?php echo __('Collapse All'); ?></span>
+        <span class="expand"><?php echo __('Expand All'); ?></span>
         <?php
         foreach ($exhibit_page->getPageBlocks() as $index => $block):
             $block->order = $index + 1;
