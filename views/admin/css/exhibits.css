@@ -284,6 +284,7 @@
     border-width: 0 1px;
     position: relative;
     border-radius: 2px;
+    clear: both;
 }
 
 .block-form > .drawer {
