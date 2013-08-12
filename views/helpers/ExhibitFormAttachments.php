@@ -1,16 +1,19 @@
 <?php
 
 /**
+ * View helper for block attachments form.
+ * 
  * @package ExhibitBuilder\View\Helper
  */
 class ExhibitBuilder_View_Helper_ExhibitFormAttachments extends Zend_View_Helper_Abstract
 {
     /**
      * Return the form for making attachments to an Exhibit block.
-     * 
+     *
+     * @param ExhibitPageBlock $block Block to make form for
      * @return string
      */
-    public function exhibitFormAttachments($block, $maxAttachments = 0)
+    public function exhibitFormAttachments($block)
     {
         $attachments = $block->ExhibitBlockAttachment;
 

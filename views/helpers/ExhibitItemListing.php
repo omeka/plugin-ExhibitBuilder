@@ -1,13 +1,15 @@
 <?php
 
 /**
+ * View helper for a single item listing in the attachment selection dialog.
  * @package ExhibitBuilder\View\Helper
  */
 class ExhibitBuilder_View_Helper_ExhibitItemListing extends Zend_View_Helper_Abstract
 {
     /**
-     * Return the form for making attachments to an Exhibit.
-     * 
+     * Return the form for showing an item to be attached.
+     *
+     * @param Item $item
      * @return string
      */
     public function exhibitItemListing($item)

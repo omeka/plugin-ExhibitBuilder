@@ -12,6 +12,11 @@
  */
 class Table_ExhibitBlockAttachment extends Omeka_Db_Table
 {
+    /**
+     * Order by the order column by default.
+     *
+     * @return Omeka_Db_Select
+     */
     public function getSelect()
     {
         $select = parent::getSelect();
@@ -19,6 +24,12 @@ class Table_ExhibitBlockAttachment extends Omeka_Db_Table
         return $select;
     }
 
+    /**
+     * Find the attachments for a block.
+     *
+     * @param ExhibitPageBlock $block
+     * @return ExhibitBlockAttachment[]
+     */
     public function findByBlock($block)
     {
         if (!$block->exists()) {
@@ -30,7 +41,13 @@ class Table_ExhibitBlockAttachment extends Omeka_Db_Table
 
         return $this->fetchObjects($select);
     }
-    
+
+    /**
+     * Find all the attachments for all blocks on a page.
+     *
+     * @param ExhibitPage $page
+     * @return ExhibitBlockAttachment[]
+     */
     public function findByPage($page)
     {
         $select = $this->getSelect()

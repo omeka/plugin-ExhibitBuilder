@@ -1,13 +1,18 @@
 <?php
 
 /**
+ * Exhibit attachment view helper.
+ * 
  * @package ExhibitBuilder\View\Helper
  */
 class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abstract
 {
     /**
      * Return the markup for displaying an exhibit attachment.
-     * 
+     *
+     * @param ExhibitBlockAttachment $attachment
+     * @param array $fileOptions Array of options for file_markup
+     * @param array $linkProps Array of options for exhibit_builder_link_to_exhibit_item
      * @return string
      */
     public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array())
@@ -36,6 +41,12 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
         );
     }
 
+    /**
+     * Return the markup for an attachment's caption.
+     *
+     * @param ExhibitBlockAttachment $attachment
+     * @return string
+     */
     protected function _caption($attachment)
     {
         if (!is_string($attachment['caption']) || $attachment['caption'] == '') {

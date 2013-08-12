@@ -12,6 +12,12 @@
  */
 class Table_Exhibit extends Omeka_Db_Table
 {
+
+    /**
+     * Use SQL-based low-level permissions checking for exhibit queries.
+     *
+     * @return Omeka_Db_Select
+     */
     public function getSelect()
     {
         $select = parent::getSelect();
@@ -20,6 +26,17 @@ class Table_Exhibit extends Omeka_Db_Table
         return $select;
     }
 
+    /**
+     * Define filters for browse and findBy.
+     *
+     * Available filters are: "tag" or "tags", "public" and "featured". "sort"
+     * also adds specific sorting strategies "alpha" and "recent", but the
+     * normal sorting can also be used.
+     *
+     * @param Omeka_Db_Select $select
+     * @param array $params Key-value array of search parameters
+     * @return Omeka_Db_Select
+     */
     public function applySearchFilters($select, $params)
     {
         $db = $this->getDb();
@@ -36,10 +53,6 @@ class Table_Exhibit extends Omeka_Db_Table
                     }
                     $select->where("tg.record_type = ? ", array('Exhibit'));
                     break;
-                case 'limit':
-                    $select->limit($paramValue);
-                    break;
-
                 case 'sort':
                     switch($paramValue) {
                         case 'alpha':
@@ -62,6 +75,11 @@ class Table_Exhibit extends Omeka_Db_Table
         return $select;
     }
 
+    /**
+     * Find an exhibit by its slug.
+     *
+     * @param string $slug
+     */
     public function findBySlug($slug)
     {
         $select = $this->getSelect();
@@ -70,6 +88,13 @@ class Table_Exhibit extends Omeka_Db_Table
         return $this->fetchObject($select, array($slug));
     }
 
+    /**
+     * Find whether an exhibit has a specific item.
+     *
+     * @param integer $exhibit_id The ID of the exhibit to check in
+     * @param integer $item_id The ID of the item to check for
+     * @return boolean
+     */
     public function exhibitHasItem($exhibit_id, $item_id)
     {
         $db = $this->getDb();
@@ -87,10 +112,10 @@ class Table_Exhibit extends Omeka_Db_Table
     }
 
     /**
-     * @duplication CollectionTable::findRandomFeatured(), ItemTable::findRandomFeatured()
-     *
-     * @return Exhibit|false
-     **/
+     * Get a random featured Exhibit.
+     * 
+     * @return Exhibit
+     */
     public function findRandomFeatured()
     {
         $select = $this->getSelect();
@@ -99,6 +124,11 @@ class Table_Exhibit extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
+    /**
+     * Get column names to be used for making a select dropdown.
+     *
+     * @return array
+     */
     protected function _getColumnPairs()
     {
         return array('exhibits.id', 'exhibits.title');
@@ -108,14 +138,10 @@ class Table_Exhibit extends Omeka_Db_Table
      * Apply a filter to the exhibits based on whether or not they are public
      *
      * @param Zend_Db_Select
-     * @param boolean Whether or not to retrieve only public exhibits
-     * @return void
-     **/
+     * @param boolean True for only public exhibits, false for only private
+     */
     public function filterByPublic($select, $isPublic)
     {
-        $isPublic = (bool) $isPublic; // this makes sure that empty strings and unset parameters are false
-
-        //Force a preview of the public collections
         if ($isPublic) {
             $select->where('exhibits.public = 1');
         } else {
@@ -127,14 +153,10 @@ class Table_Exhibit extends Omeka_Db_Table
      * Apply a filter to the exhibits based on whether or not they are featured
      *
      * @param Zend_Db_Select
-     * @param boolean Whether or not to retrieve only public exhibits
-     * @return void
-     **/
+     * @param boolean True for only featured exhibits, false for only private
+     */
     public function filterByFeatured($select, $isFeatured)
     {
-        $isFeatured = (bool) $isFeatured; // this make sure that empty strings and unset parameters are false
-
-        //filter items based on featured (only value of 'true' will return featured collections)
         if ($isFeatured) {
             $select->where('exhibits.featured = 1');
         } else {

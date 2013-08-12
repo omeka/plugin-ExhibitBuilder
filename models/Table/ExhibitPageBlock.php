@@ -12,6 +12,11 @@
  */
 class Table_ExhibitPageBlock extends Omeka_Db_Table
 {
+    /**
+     * Sort blocks by the order column by default.
+     *
+     * @return Omeka_Db_Select
+     */
     public function getSelect()
     {
         $select = parent::getSelect();
@@ -19,6 +24,12 @@ class Table_ExhibitPageBlock extends Omeka_Db_Table
         return $select;
     }
 
+    /**
+     * Find all blocks on a page.
+     *
+     * @param ExhibitPage $page
+     * @return ExhibitPageBlock[]
+     */
     public function findByPage($page)
     {
         if (!$page->exists()) {

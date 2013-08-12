@@ -12,6 +12,14 @@
  */
 class Table_ExhibitPage extends Omeka_Db_Table
 {
+    /**
+     * Apply filters for searching pages to an SQL select object.
+     *
+     * Valid filters are "parent", "exhibit", "order", and "topOnly".
+     *
+     * @param Omeka_Db_Select $select
+     * @param array $params
+     */
     public function applySearchFilters($select, $params)
     {
         if(isset($params['parent'])) {
@@ -41,16 +49,35 @@ class Table_ExhibitPage extends Omeka_Db_Table
         }
     }
 
+    /**
+     * Find the previous page.
+     *
+     * @param ExhibitPage $page
+     * @return ExhibitPage
+     */
     public function findPrevious($page)
     {
         return $this->findNearby($page, 'previous');
     }
 
+    /**
+     * Find the next page.
+     *
+     * @param ExhibitPage $page
+     * @return ExhibitPage
+     */
     public function findNext($page)
     {
         return $this->findNearby($page, 'next');
     }
 
+    /**
+     * Find a nearby page.
+     *
+     * @param ExhibitPage $page
+     * @param string $position
+     * @return ExhibitPage
+     */
     protected function findNearby($page, $position = 'next')
     {
         $select = $this->getSelect();
@@ -83,6 +110,13 @@ class Table_ExhibitPage extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
+    /**
+     * Find either the first or last child page of this page.
+     *
+     * @param ExhibitPage $page
+     * @param string $position
+     * @return ExhibitPage
+     */
     public function findEndChild($page, $position = 'first')
     {
         $select = $this->getSelect();
@@ -108,6 +142,15 @@ class Table_ExhibitPage extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
+    /**
+     * Find a page in an exhibit by slug.
+     *
+     * @param string $slug Slug of the page to find
+     * @param Exhibit|integer $exhibit Exhibit (or ID) to search within
+     * @param ExhibitPage|integer $parent Exhibit page (or ID) to search for
+     *  pages under. If omitted, only top-level pages are found.
+     * @return ExhibitPage|null
+     */
     public function findBySlug($slug, $exhibit, $parent = null)
     {
         if ($exhibit instanceof Exhibit) {
@@ -130,21 +173,44 @@ class Table_ExhibitPage extends Omeka_Db_Table
         return $this->fetchObject($select);
     }
 
+    /**
+     * Filter a select by parent page ID.
+     *
+     * @param Zend_Db_Select $select Select object to filter
+     * @param integer $parentId Parent page ID
+     */
     protected function filterByParentId($select, $parentId)
     {
         $select->where('exhibit_pages.parent_id = ?', $parentId);
     }
 
+    /**
+     * Filter a select by parent page ID.
+     *
+     * @param Zend_Db_Select $select Select object to filter
+     * @param integer $exhibitId Exhibit ID
+     */
     protected function filterByExhibitId($select, $exhibitId)
     {
         $select->where('exhibit_pages.exhibit_id = ?', $exhibitId);
     }
 
+    /**
+     * Filter a select to find only top-level pages.
+     *
+     * @param Zend_Db_Select $select Select object to filter
+     */
     protected function filterByTopOnly($select)
     {
         $select->where('exhibit_pages.parent_id IS NULL');
     }
 
+    /**
+     * Filter a select by order.
+     *
+     * @param Zend_Db_Select $select Select object to filter
+     * @param integer $order Order to filter by
+     */
     protected function filterByOrder($select, $order)
     {
         $select->where('exhibit_pages.order = ? ', $order);
