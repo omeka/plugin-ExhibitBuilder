@@ -376,7 +376,6 @@
     border-radius: 2px;
     line-height: 1.5em;
     margin: 0;
-    cursor: move;
 }
 
 .block-order + div {
