@@ -122,7 +122,7 @@ class ExhibitLayout
      */
     public function getIconUrl()
     {
-        return $this->getAssetUrl('layout.gif');
+        return $this->getAssetUrl('layout.png');
     }
 
     /**

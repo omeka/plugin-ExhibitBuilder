@@ -396,15 +396,23 @@
     background-color: rgba(255,255,255,.55);
 }
 
+.layout-thumbs .add-link {
+    margin-top: 20px;
+}
+
 .layout {
+    width: 30%;
     display: inline-block;
     overflow: auto;
     cursor: pointer;
     background-color: #fff;
-    margin: 0 20px;
     padding: 5px;
     box-shadow: 0 0 3px #ccc;
-    margin: 1em 0 1em 20px;
+    margin: 0 0 0 2%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 2px solid #fff;
 }
 
 .layout:first-of-type, .layout:nth-of-type(4n) { margin-left: 0; }
@@ -413,11 +421,19 @@
     border: 1px solid #e7e7e7;
     float: left;
     margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.layout.selected {
+    border: 2px solid #D6D5C2;
 }
 
 .selected {
-    background-color: #C4DEF2;
-    color: darkblue;
+    background-color: #F3F3E7;
 }
 
 .layout input[type="radio"] {
