@@ -5,7 +5,7 @@ $order = $block->order;
 ?>
 <div class="block-form" data-block-index="<?php echo $order; ?>">
     <div class="sortable-item block-header">
-        <h2><?php echo __('Section'); ?> <?php echo $order; ?> (<?php echo $layout->name; ?>)</h2>
+        <h2><?php echo __('Block'); ?> <?php echo $order; ?> (<?php echo $layout->name; ?>)</h2>
         <div class="drawer opened"></div>
         <div class="delete-toggle"><span class="screen-reader-text"><?php echo __('Remove'); ?></span></div>
     </div>

@@ -40,7 +40,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         endforeach;
         ?>
         <div class="add-block">
-            <h2><?php echo __('New Content Block'); ?></h2>
+            <h2><?php echo __('New Block'); ?></h2>
             <div class="layout-select">
                 <h4><?php echo __('Select layout'); ?></h3>
                 <div class="layout-thumbs">
