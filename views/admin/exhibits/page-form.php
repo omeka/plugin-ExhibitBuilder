@@ -74,6 +74,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="attachment-panel" title="<?php echo html_escape(__('Attach an Item')); ?>">
     <div id="item-form">
+        <button type="button" id="revert-selected-item"><?php echo __('Revert to Selected Item'); ?></button>
         <button type="button" id="show-or-hide-search" class="show-form blue"><?php echo __('Show Search Form'); ?></button>
         <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
         <div id="page-search-form" class="container-twelve">

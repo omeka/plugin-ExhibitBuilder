@@ -83,7 +83,7 @@
 
 /* Item select: Item list */
 
-#item-list {
+#item-list, #page-search-form {
     position: absolute;
     top: 50px;
     bottom: 0;
@@ -92,6 +92,14 @@
     padding: 0 5px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+.editing-selection #item-list, .editing-selection #page-search-form {
+    top: 88px;
+}
+
+.editing-selection #item-form {
+    margin-top: 38px;
 }
 
 #item-list .item-listing {
@@ -168,16 +176,9 @@
 /* Item select: Search form */
 
 #page-search-form {
-    position: absolute;
-    top: 50px;
-    bottom: 0;
-    left: 0;
-    right: 0;
     padding: 5px;
     background: white;
     z-index: 2;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
 }
 
 #page-search-form input[type=submit] {
@@ -190,7 +191,7 @@
     margin-bottom: 10px;
 }
 
-#change-selected-item {
+#change-selected-item, #revert-selected-item {
     margin-bottom: 10px;
     background: none #F8F6F0;
     width: 100%;
@@ -208,6 +209,14 @@
     text-shadow: none;
     padding: 10px;
     outline: none;
+}
+
+#revert-selected-item {
+    display: none;
+}
+
+.editing-selection #revert-selected-item {
+    display: block;
 }
 
 /* Item select: Attachment options */
