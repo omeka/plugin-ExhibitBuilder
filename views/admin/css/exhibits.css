@@ -302,7 +302,6 @@
     border: solid #D6D5C2;
     border-width: 0 1px 1px 1px;
     position: relative;
-    z-index: 10;
 }
 
 .block-body > div:only-of-type, .block-body > div:last-of-type {
@@ -477,7 +476,7 @@
 }
 
 div.selected-items {
-    overflow: auto;
+    font-size: 0;
     padding-bottom: 20px;
 }
 
@@ -485,7 +484,7 @@ div.selected-items {
     margin-bottom: 0;
 }
 
-.selected-item-list .attachment, .selected-item-list .ui-sortable-highlight {
+.selected-item-list .attachment, .selected-item-list .ui-sortable-highlight, .add-item {
     width: 100px;
     display: inline-block;
     height: 120px;
@@ -499,7 +498,6 @@ div.selected-items {
     position: relative;
     vertical-align: top;
     margin: 0 10px 10px 0;
-    float: left;
 }
 
 .selected-item-list .attachment {
@@ -586,26 +584,17 @@ div.selected-items {
     z-index: 50;
 }
 
-.add-item { float: left; }
-
-.add-item a {
-    display: block;
-    width: 100px;
-    height: 120px;
+.add-item {
     border: 1px dashed #D6D5C2;
     background-color: rgba(64, 58, 26, 0.05);
     color: #A28E8A;
     font-weight: bold;
     text-align: center;
-    position: relative;
-    top: 0;
-    left: 0;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0;
 }
 
-.add-item a:before {
+.add-item:before {
     content: "+";
     display: block;
     font-size: 100px;

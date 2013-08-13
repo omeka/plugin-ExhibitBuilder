@@ -28,9 +28,8 @@ class ExhibitBuilder_View_Helper_ExhibitFormAttachments extends Zend_View_Helper
                 )
             );
         }
-
+        $html .= '<div class="add-item button">Add Item</div>';
         $html .= '</div>';
-        $html .= '<div class="add-item button"><a href="#">Add Item</a></div>';
         return $html;
     }
 }

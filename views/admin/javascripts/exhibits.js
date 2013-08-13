@@ -264,7 +264,7 @@ Omeka.ExhibitBuilder = {};
                     if (targetedItem.is('.attachment')) {
                         targetedItem.replaceWith(response);
                     } else {
-                        targetedBlock.find('.selected-item-list').append(response);
+                        targetedBlock.find('.add-item').before(response);
                     }
                 }
             });
