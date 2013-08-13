@@ -276,7 +276,7 @@
 }
 
 /* Block form */
-.block-form, #block-container .ui-sortable-highlight {
+.block-form, #block-container > .ui-sortable-highlight {
     margin-bottom: 20px;
     border-radius: 2px;
     clear: both;
