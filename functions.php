@@ -348,7 +348,6 @@ function exhibit_builder_public_head()
                 if (!array_key_exists($layout->id, $layouts)) {
                     $layouts[$layout->id] = true;
                     try {
-                        echo $layout->getAssetUrl('layout.css');
                         queue_css_url($layout->getAssetUrl('layout.css'));
                     } catch (InvalidArgumentException $e) {
                         // no CSS for this layout
