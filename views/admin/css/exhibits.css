@@ -298,10 +298,6 @@
     position: relative;
 }
 
-.block-form > .drawer {
-    right: 30px;
-}
-
 .block-body {
     position: relative;
 }
@@ -351,10 +347,6 @@
     border-top: 1px solid #D6D5C2;
     box-shadow: none;
     overflow: auto;
-}
-
-.block-form > .block-header .drawer {
-    right: 30px;
 }
 
 .add-block {
@@ -620,10 +612,7 @@ div.selected-items {
     display: block;
     padding: 10px;
     overflow: auto;
-}
-
-.drawer {
-    line-height: 20px;
+    line-height: 1.5em;
 }
 
 .frozen:after {
