@@ -326,6 +326,7 @@
     border-radius: 2px;
     line-height: 1.5em;
     margin: 0;
+    float: left;
 }
 
 .block-form h4 { 
@@ -349,6 +350,7 @@
     z-index: 0;
     border-top: 1px solid #D6D5C2;
     box-shadow: none;
+    overflow: auto;
 }
 
 .block-form > .block-header .drawer {
@@ -462,26 +464,8 @@
     text-align: center;
 }
 
-.delete-toggle {
-    display: block !important;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 20px;
-    width: 20px;
-    padding: 0 !important;
-    border-bottom: 0 !important;
-    cursor: pointer;
-}
-
-.delete-toggle:before {
-    content: "\21";
-    display: inline-block;
-    font-family: "icomoon";
-    font-size: 10px;
-    height: 20px;
-    width: 20px;
-    text-align: center;
+.delete-element {
+    clear: none;
 }
 
 div.selected-items {
@@ -618,6 +602,7 @@ div.selected-items {
 .layout-options h4 {
     box-sizing: border-box;
     margin: 0;
+    float: left;
 }
 
 .layout-options label {
@@ -634,13 +619,12 @@ div.selected-items {
     background: #F3F3E7;
     display: block;
     padding: 10px;
+    overflow: auto;
 }
 
 .drawer {
     display: block !important;
-    position: absolute;
-    top: 10px;
-    right: 7px;
+    float: right;
     line-height: 20px;
     padding: 0 !important;
     border-bottom: 0 !important;

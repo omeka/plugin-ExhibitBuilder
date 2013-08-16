@@ -83,7 +83,7 @@ Omeka.ExhibitBuilder = {};
             $('.add-link').show();
         });
 
-        $('#block-container').on('click', '.delete-toggle, .remove-attachment', function (event) {
+        $('#block-container').on('click', '.delete-element, .remove-attachment', function (event) {
             event.preventDefault();
             $(this).toggleClass('undo-delete')
                 .parent().toggleClass('deleted')
@@ -395,7 +395,7 @@ Omeka.ExhibitBuilder = {};
     };
 
     Omeka.ExhibitBuilder.activateDeleteLinks = function () {
-        $('#page-list .delete-toggle').click(function (event) {
+        $('#page-list .delete-element').click(function (event) {
             event.preventDefault();
             header = $(this).parent();
             if ($(this).hasClass('delete-element')) {
