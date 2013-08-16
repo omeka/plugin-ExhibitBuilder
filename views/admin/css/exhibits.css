@@ -623,11 +623,7 @@ div.selected-items {
 }
 
 .drawer {
-    display: block !important;
-    float: right;
     line-height: 20px;
-    padding: 0 !important;
-    border-bottom: 0 !important;
 }
 
 .frozen:after {
