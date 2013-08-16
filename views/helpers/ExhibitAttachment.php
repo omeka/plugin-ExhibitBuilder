@@ -13,23 +13,32 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
      * @param ExhibitBlockAttachment $attachment
      * @param array $fileOptions Array of options for file_markup
      * @param array $linkProps Array of options for exhibit_builder_link_to_exhibit_item
+     * @param boolean $forceImage Whether to display the attachment as an image
+     *  always Defaults to false.
      * @return string
      */
-    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array())
+    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false)
     {
         $item = $attachment->getItem();
         $file = $attachment->getFile();
-
-        if (!isset($fileOptions['linkAttributes']['href'])) {
-            $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
-        }
-
-        if (!isset($fileOptions['imgAttributes']['alt'])) {
-            $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
-        }
-    
+        
         if ($file) {
-            $html = file_markup($file, $fileOptions, null);
+            if (!isset($fileOptions['imgAttributes']['alt'])) {
+                $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'));
+            }
+            
+            if ($forceImage) {
+                $imageSize = isset($fileOptions['imageSize'])
+                    ? $fileOptions['imageSize']
+                    : 'square_thumbnail';
+                $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
+                $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
+            } else {
+                if (!isset($fileOptions['linkAttributes']['href'])) {
+                    $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
+                }
+                $html = file_markup($file, $fileOptions, null);
+            }
         } else if($item) {
             $html = exhibit_builder_link_to_exhibit_item(null, $linkProps, $item);
         }
@@ -37,7 +46,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
         $html .= $this->_caption($attachment);
 
         return apply_filters('exhibit_attachment_markup', $html,
-            compact('attachment', 'fileOptions', 'linkProps')
+            compact('attachment', 'fileOptions', 'linkProps', 'forceImage')
         );
     }
 
