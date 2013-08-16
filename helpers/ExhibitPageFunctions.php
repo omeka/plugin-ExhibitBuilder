@@ -6,6 +6,35 @@
  */
 
 /**
+ * Render the markup for an exhibit page.
+ *
+ * @param ExhibitPage|null $exhibitPage
+ */
+function exhibit_builder_render_exhibit_page($exhibitPage = null)
+{
+    if ($exhibitPage === null) {
+        $exhibitPage = get_current_record('exhibit_page');
+    }
+    
+    $blocks = $exhibitPage->ExhibitPageBlocks;
+    $rawAttachments = $exhibitPage->getAllAttachments();
+    $attachments = array();
+    foreach ($rawAttachments as $attachment) {
+        $attachments[$attachment->block_id][] = $attachment;
+    }
+    foreach ($blocks as $block) {
+        $layout = $block->getLayout();
+        echo '<div class="exhibit-block layout-' . html_escape($layout->id) . '">';
+        echo get_view()->partial($layout->getViewPartial(), array(
+            'options' => $block->getOptions(),
+            'text' => $block->text,
+            'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array()
+        ));
+        echo '</div>';
+    }
+}
+
+/**
  * Return whether an exhibit page is the current exhibit page.
  *
  * @param ExhibitPage|null $exhibitPage

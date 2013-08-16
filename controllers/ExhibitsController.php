@@ -141,33 +141,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             }
         }
 
-        $blocks = $exhibitPage->getPageBlocks();
-        $attachments = $exhibitPage->getAllAttachments();
-        $indexedAttachments = array();
-        foreach ($attachments as $attachment) {
-            $indexedAttachments[$attachment->block_id][] = $attachment;
-        }
-
-        $layoutStyles = array();
-        foreach ($blocks as $block) {
-            $layout = $block->getLayout();
-            if (!array_key_exists($layout->id, $layoutStyles)) {
-                try {
-                    $layoutStyles[$layout->id] = $layout->getAssetUrl('layout.css');
-                } catch (InvalidArgumentException $e) {
-                    // no CSS for this layout
-                }
-            }
-        }
-
-        fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit, 'exhibitPage' => $exhibitPage));
+        fire_plugin_hook('show_exhibit', array(
+            'exhibit' => $exhibit,
+            'exhibitPage' => $exhibitPage
+        ));
 
         $this->view->assign(array(
             'exhibit' => $exhibit,
             'exhibit_page' => $exhibitPage,
-            'blocks' => $blocks,
-            'attachments' => $indexedAttachments,
-            'layout_styles' => $layoutStyles
         ));
     }
 

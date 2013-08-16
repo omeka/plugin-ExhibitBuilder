@@ -52,7 +52,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      *
      * @var array
      */
-    protected $_related = array('ExhibitPageBlock' => 'getPageBlocks');
+    protected $_related = array('ExhibitPageBlocks' => 'getPageBlocks');
 
     /**
      * Define mixins.
@@ -264,8 +264,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      */
     protected function _delete()
     {
-        if ($this->ExhibitPageBlock) {
-            foreach ($this->ExhibitPageBlock as $block) {
+        if ($this->ExhibitPageBlocks) {
+            foreach ($this->ExhibitPageBlocks as $block) {
                 $block->delete();
             }
         }

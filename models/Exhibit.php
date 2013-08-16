@@ -267,6 +267,19 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
+     * Alias for countPages, for compatibility purposes.
+     *
+     * @deprecated
+     * @see countPages()
+     * @param boolean $topOnly Whether to count only top pages
+     * @return ExhibitPage[]
+     */
+    public function getPagesCount($topOnly = false)
+    {
+        return $this->countPages($topOnly);
+    }
+
+    /**
      * Determine whether an exhibit uses a particular item on any of its pages.
      *
      * @param Item $item

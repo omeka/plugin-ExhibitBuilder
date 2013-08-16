@@ -1,7 +1,4 @@
 <?php
-foreach ($layout_styles as $css_url):
-    queue_css_url($css_url);
-endforeach;
 echo head(array(
     'title' => metadata('exhibit_page', 'title') . ' &middot; ' . metadata('exhibit', 'title'),
     'bodyclass' => 'exhibits show'));
@@ -17,19 +14,7 @@ echo head(array(
     <?php echo exhibit_builder_child_page_nav(); ?>
 </nav>
 
-<?php foreach ($blocks as $block): ?>
-    <?php $layout = $block->getLayout(); ?>
-    <div class="exhibit-block layout-<?php echo html_escape($layout->id); ?>">
-    <?php
-    $script = $layout->getViewPartial();
-    echo $this->partial($script, array(
-        'options' => $block->getOptions(),
-        'text' => $block->text,
-        'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array()
-    ));
-    ?>
-    </div>
-<?php endforeach; ?>
+<?php exhibit_builder_render_exhibit_page(); ?>
 
 <div id="exhibit-page-navigation">
     <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>

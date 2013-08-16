@@ -334,7 +334,29 @@ function exhibit_builder_define_routes($args)
  */
 function exhibit_builder_public_head()
 {
-    queue_css_file('exhibits');
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+    $module = $request->getModuleName();
+    
+    if ($module == 'exhibit-builder') {
+        queue_css_file('exhibits');
+        if (($exhibitPage = get_current_record('exhibit_page', false))) {
+            $blocks = $exhibitPage->ExhibitPageBlocks;
+
+            $layouts = array();
+            foreach ($blocks as $block) {
+                $layout = $block->getLayout();
+                if (!array_key_exists($layout->id, $layouts)) {
+                    $layouts[$layout->id] = true;
+                    try {
+                        echo $layout->getAssetUrl('layout.css');
+                        queue_css_url($layout->getAssetUrl('layout.css'));
+                    } catch (InvalidArgumentException $e) {
+                        // no CSS for this layout
+                    }
+                }
+            }
+        }
+    }
 }
 
 /**
