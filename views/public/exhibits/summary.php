@@ -19,7 +19,7 @@
 </div>
 
 <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-<?php if (has_loop_records('exhibit_page'): ?>
+<?php if (has_loop_records('exhibit_page')): ?>
 <nav id="exhibit-pages">
     <ul>
         <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
