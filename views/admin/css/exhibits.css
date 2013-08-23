@@ -528,15 +528,16 @@ div.selected-items {
 }
 .edit.button a { color: #fff; }
 
-.attachment .delete-toggle.button {
+.attachment .delete-element.button {
     display: block;
     position: absolute;
     top: 3px;
     right: 3px;
     text-indent: -9999px;
+    cursor: pointer;
 }
 
-.attachment .delete-toggle:after {
+.attachment .delete-element:after {
     content: "\21";
     font-family: "icomoon";
     text-indent: 0;

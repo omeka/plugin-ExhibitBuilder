@@ -5,7 +5,7 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
 ?>
 <div class="attachment" data-attachment-index="<?php echo html_escape($index); ?>">
     <div class="attachment-header">
-        <div class="delete-toggle close button"><span class="screen-reader-text"><?php echo __('Close'); ?></a></div>
+        <div class="delete-element close button"><span class="screen-reader-text"><?php echo __('Close'); ?></a></div>
     </div>
     <div class="attachment-body">
         <?php if ($file): ?>
