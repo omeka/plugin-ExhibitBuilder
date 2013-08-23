@@ -7,15 +7,6 @@
     clear: both;
     border-bottom: 0;
     overflow: visible;
-    margin-bottom: 1em;
-}
-
-.layout-file-text .exhibit-items.left .download-file {
-    float: left;
-}
-
-.layout-file-text .exhibit-items.right .download-file {
-    float: right;
 }
 
 .layout-file-text .exhibit-items.left {
@@ -30,6 +21,7 @@
 
 .layout-file-text .exhibit-items img {
     max-width: 100%;
+    margin-bottom: 1em;
 }
 
 .layout-file-text .exhibit-item-caption p {
