@@ -5,7 +5,7 @@
     margin: -20px -10px 20px -10px;
 }
 
-.reorder-instructions {
+.instructions {
     font-size:11px;
     color: #888;
 }
@@ -596,6 +596,10 @@ div.selected-items {
     box-sizing: border-box;
     margin: 0;
     float: left;
+}
+
+.layout-options *:last-child {
+    margin-bottom: 0;
 }
 
 .layout-options label {
