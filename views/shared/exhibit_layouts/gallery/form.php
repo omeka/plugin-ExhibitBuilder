@@ -19,21 +19,23 @@ $options = $block->getOptions();
         <div class="drawer"></div>
     </div>
 
-    <div class="aside-position">
-        <?php echo $this->formLabel($formStem . '[options][aside-position]', __('Aside position')); ?>
+    <div class="showcase-position">
+        <?php echo $this->formLabel($formStem . '[options][showcase-position]', __('Showcase file position')); ?>
         <?php
-        echo $this->formSelect($formStem . '[options][aside-position]',
-            @$options['aside-position'], array(),
-            array('left' => 'Left', 'right' => 'Right', 'center' => 'Center'));
-        ?>
-    </div>
-    
-    <div class="showcase-file">
-        <?php echo $this->formLabel($formStem . '[options][showcase-file]', __('Showcase file')); ?>
-        <?php
-        echo $this->formCheckbox($formStem . '[options][showcase-file]',
-            @$options['showcase-file'], array(), array('1', '0'));
+        echo $this->formSelect($formStem . '[options][showcase-position]',
+            @$options['showcase-position'], array(),
+            array('none' => 'No showcase file', 'left' => 'Left', 'right' => 'Right'));
         ?>
     </div>
 
+    <div class="gallery-position">
+        <?php echo $this->formLabel($formStem . '[options][gallery-position]', __('Gallery position')); ?>
+        <?php
+        echo $this->formSelect($formStem . '[options][gallery-position]',
+            @$options['gallery-position'], array(),
+            array('left' => 'Left', 'right' => 'Right'));
+        ?>
+        <p class="instructions"><?php echo __('If there is no showcase file or text, the gallery will use the full width of the page.'); ?></p>
+    </div>
+    
 </div>

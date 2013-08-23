@@ -1,23 +1,22 @@
 <?php
-$position = isset($options['aside-position'])
-    ? html_escape($options['aside-position'])
+$showcasePosition = isset($options['showcase-position'])
+    ? html_escape($options['showcase-position'])
     : 'left';
-$showcaseFile = isset($options['showcase-file'])
-    ? (bool) $options['showcase-file']
-    : false;
-$showAside = !empty($text) || ($showcaseFile && !empty($attachments));
+$showcaseFile = $options['showcase-position'] !== 'none';
+$showShowcase = !empty($text) || ($showcaseFile && !empty($attachments));
+$galleryPosition = isset($options['gallery-position'])
+    ? html_escape($options['gallery-position'])
+    : 'left';
 ?>
-<?php if ($showAside): ?>
-<div class="gallery-aside <?php echo $position; ?>">
+<?php if ($showcaseFile): ?>
+<div class="gallery-showcase <?php echo $showcasePosition; ?> with-<?php echo $galleryPosition; ?>">
     <?php
-    if ($showcaseFile):
         $attachment = array_shift($attachments);
         echo $this->exhibitAttachment($attachment, array('imageSize' => 'fullsize'));
-    endif;
     ?>
 </div>
 <?php endif; ?>
-<div class="gallery <?php if ($showAside) echo 'with-aside'; ?> <?php echo $position; ?>">
+<div class="gallery <?php if ($showShowcase) echo 'with-showcase'; ?> <?php if (!empty($text) || $showShowcase) echo $galleryPosition; ?>">
     <?php echo $this->exhibitAttachmentGallery($attachments); ?>
 </div>
 <?php echo $text; ?>

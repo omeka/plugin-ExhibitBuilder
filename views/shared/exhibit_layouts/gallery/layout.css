@@ -1,6 +1,39 @@
-.layout-gallery .gallery-aside {
-    width: 40%;
-    overflow: hidden;
+.layout-gallery .gallery .exhibit-item, 
+.layout-gallery .gallery .exhibit-item:nth-of-type(2n) {
+    width: 24%;
+    margin-right: 1.25%;
+}
+
+.layout-gallery .gallery .exhibit-item:nth-of-type(4n) {
+    margin-right: 0;
+}
+
+.layout-gallery .gallery.with-showcase .exhibit-item {
+    width: 49%;
+    margin-right: 2%;
+}
+
+.layout-gallery .gallery.with-showcase .exhibit-item:nth-of-type(2n) {
+    margin-right: 0;
+}
+
+.layout-gallery .gallery-showcase,
+.layout-gallery .gallery.with-showcase,
+.layout-gallery .gallery.left, 
+.layout-gallery .gallery.right {
+    width: 49%;
+}
+
+.layout-gallery .gallery-showcase.left,
+.layout-gallery .gallery.left {
+    float: left;
+    margin-right: 2%;
+}
+
+.layout-gallery .gallery-showcase.right,
+.layout-gallery .gallery.right {
+    float: right;
+    margin-left: 2%;
 }
 
 .layout-gallery a {
@@ -15,51 +48,27 @@
 .layout-gallery .exhibit-item {
     display: inline-block;
     vertical-align: top;
-    width: 24%; 
-    margin-right: 1.25%;
     margin-bottom: 1.25%;
 }
 
-.layout-gallery .exhibit-item:nth-child(4n) {
+.layout-gallery .gallery-showcase.left.with-right {
     margin-right: 0;
 }
 
-.layout-gallery .gallery-aside.left {
-    float: left;
-    margin-right: 2%;
+.layout-gallery .gallery-showcase.right.with-left {
+    margin-left: 0;
 }
 
-.layout-gallery .gallery-aside.right {
-    float: right;
-    margin-left: 2%;
-}
-
-.layout-gallery .gallery-aside.center,
-.layout-gallery .gallery.with-aside.center {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.layout-gallery .gallery.with-aside {
-    width: 40%;
-    overflow: hidden;
-}
-
-.layout-gallery .gallery.with-aside.left {
-    float: left;
+.layout-gallery .gallery.with-showcase.left {
     clear: left;
-    margin-right: 2%;
 }
 
-.layout-gallery .gallery.with-aside.right {
-    float: right;
+.layout-gallery .gallery.with-showcase.right {
     clear: right;
-    margin-left: 2%;
 }
 
-.layout-gallery .gallery.with-aside img {
+.layout-gallery .gallery.with-showcase img {
     max-width: 100%;
-    margin-bottom: 2%;
 }
 
 .layout-gallery .exhibit-item-caption p {
