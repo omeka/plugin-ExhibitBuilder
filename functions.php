@@ -243,7 +243,7 @@ function exhibit_builder_define_acl($args)
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
         array('add', 'add-page', 'delete-page', 'edit-page-content',
             'edit-page-metadata', 'item-container', 'theme-config',
-            'editSelf', 'deleteSelf'));
+            'editSelf', 'deleteSelf', 'showSelfNotPublic'));
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),
         new Omeka_Acl_Assert_Ownership);
