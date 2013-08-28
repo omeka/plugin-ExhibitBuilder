@@ -83,7 +83,7 @@ Omeka.ExhibitBuilder = {};
             $('.add-link').show();
         });
 
-        $('#block-container').on('click', '.delete-element, .remove-attachment', function (event) {
+        $('#block-container').on('click', '.delete-element', function (event) {
             event.preventDefault();
             $(this).toggleClass('undo-delete')
                 .parent().toggleClass('deleted')
