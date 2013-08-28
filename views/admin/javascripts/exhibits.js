@@ -21,7 +21,7 @@ Omeka.ExhibitBuilder = {};
 
         $('#block-container').sortable({
             items: '> .block-form',
-            handle: 'h2',
+            handle: '> .sortable-item',
             revert: 200,
             placeholder: 'ui-sortable-highlight',
             tolerance: 'pointer',
