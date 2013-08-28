@@ -449,13 +449,6 @@
     display: block;
 }
 
-.screen-reader-text {
-    display: inline-block;
-    font-size: 10px;
-    text-indent: -9999px;
-    text-align: center;
-}
-
 .delete-element {
     clear: none;
 }
@@ -514,7 +507,7 @@ div.selected-items {
     opacity: 0.2;
 }
 
-.edit.button {
+.edit-attachment {
     position: absolute;
     width: 100%;
     display: inline-block;
@@ -525,10 +518,11 @@ div.selected-items {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
 }
-.edit.button a { color: #fff; }
 
-.attachment .delete-element.button {
+.attachment .delete-element {
     display: block;
     position: absolute;
     top: 3px;

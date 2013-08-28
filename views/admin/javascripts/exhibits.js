@@ -364,11 +364,11 @@ Omeka.ExhibitBuilder = {};
                 .dialog('open');
         });
 
-        $('#block-container').on('click', '.edit-attachment a', function (event) {
+        $('#block-container').on('click', '.edit-attachment', function (event) {
             var attachment;
             event.preventDefault();
 
-            attachment = $(this).parent().parent();
+            attachment = $(this).parent();
             targetAttachment(attachment);
             Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true));
             $(document).trigger('exhibit-builder-select-item');
