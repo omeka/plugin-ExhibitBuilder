@@ -24,7 +24,12 @@ $options = $block->getOptions();
         <?php
         echo $this->formSelect($formStem . '[options][showcase-position]',
             @$options['showcase-position'], array(),
-            array('none' => 'No showcase file', 'left' => 'Left', 'right' => 'Right'));
+            array(
+                'none' => __('No showcase file'),
+                'left' => __('Left'),
+                'right' => __('Right')
+            )
+        );
         ?>
     </div>
 
@@ -33,7 +38,11 @@ $options = $block->getOptions();
         <?php
         echo $this->formSelect($formStem . '[options][gallery-position]',
             @$options['gallery-position'], array(),
-            array('left' => 'Left', 'right' => 'Right'));
+            array(
+                'left' => __('Left'),
+                'right' => __('Right')
+            )
+        );
         ?>
         <p class="instructions"><?php echo __('If there is no showcase file or text, the gallery will use the full width of the page.'); ?></p>
     </div>
