@@ -245,15 +245,18 @@ SQL;
      */
     protected function _upgradeGalleryFull($pageId, $entries, $layout)
     {
-        $fileSize = 'fullsize';
-        
         $nameParts = explode('-', $layout);
         
-        $asidePosition = $nameParts[2];
+        $showcasePosition = $nameParts[2];
+        if ($showcasePosition == 'left') {
+            $galleryPosition = 'right';
+        } else {
+            $galleryPosition = 'left';
+        }
 
         $options = array(
-            'aside-position' => $asidePosition,
-            'showcase-file' => '1'
+            'showcase-position' => $showcasePosition,
+            'gallery-position' => $galleryPosition
         );
 
         $galleryBlockId = $this->_createBlock(
