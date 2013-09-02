@@ -69,7 +69,7 @@ SQL;
 
         if (empty($entries)) {
             // Create no blocks for pages with no content.
-            continue;
+            return;
         }
 
         if (isset($this->_upgraders[$pageLayout])) {
