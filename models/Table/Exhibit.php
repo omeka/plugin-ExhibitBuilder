@@ -22,7 +22,7 @@ class Table_Exhibit extends Omeka_Db_Table
     {
         $select = parent::getSelect();
         $permissions = new Omeka_Db_Select_PublicPermissions('ExhibitBuilder_Exhibits');
-        $permissions->apply($select, 'exhibits', null);
+        $permissions->apply($select, 'exhibits');
         return $select;
     }
 

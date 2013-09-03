@@ -311,7 +311,7 @@ function exhibit_builder_define_acl($args)
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
         array('add', 'add-page', 'delete-page', 'edit-page', 'attachment',
             'attachment-item-options', 'theme-config',
-            'editSelf', 'deleteSelf'));
+            'editSelf', 'deleteSelf', 'showSelfNotPublic'));
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),
         new Omeka_Acl_Assert_Ownership);
@@ -587,4 +587,26 @@ function exhibit_builder_search_record_types($recordTypes)
     $recordTypes['Exhibit'] = __('Exhibit');
     $recordTypes['ExhibitPage'] = __('Exhibit Page');
     return $recordTypes;
+}
+
+function exhibit_builder_api_resources($apiResources)
+{
+    $apiResources['exhibits'] = array(
+        'record_type' => 'Exhibit', 
+        'actions' => array('get', 'index'), 
+        'index_params' => array('tag', 'tags', 'sort', 'public', 'featured')
+    );
+    $apiResources['exhibit_pages'] = array(
+            'record_type' => 'ExhibitPage',
+            'actions' => array('get', 'index'),
+            'index_params' => array('parent', 'exhibit', 'order', 'topOnly')
+    );    
+    
+    $apiResources['exhibit_page_entries'] = array(
+            'record_type' => 'ExhibitPageEntry',
+            'actions' => array('get', 'index'),
+            'index_params' => array('page_id', 'item_id')
+    );    
+    
+    return $apiResources;    
 }

@@ -13,6 +13,22 @@
 class Table_ExhibitPage extends Omeka_Db_Table
 {
     /**
+     * Get the basic select query for exhibit pages.
+     *
+     * @return Omeka_Db_Select
+     */
+    public function getSelect()
+    {
+        $select = parent::getSelect();
+        $request = Zend_Controller_Front::getInstance()->getRequest();
+        $db = $this->getDb();
+        $select->join(array('exhibits' => $db->Exhibit), 'exhibits.id = exhibit_pages.exhibit_id', array());
+        $permissions = new Omeka_Db_Select_PublicPermissions('ExhibitBuilder_Exhibits');
+        $permissions->apply($select, 'exhibits');
+        return $select;
+    }
+        
+    /**
      * Apply filters for searching pages to an SQL select object.
      *
      * Valid filters are "parent", "exhibit", "order", and "topOnly".
