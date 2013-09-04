@@ -241,7 +241,7 @@ function exhibit_builder_define_acl($args)
 
     // Allow contributors everything but editAll and deleteAll.
     $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
-        array('add', 'add-page', 'delete-page', 'edit-page-content',
+        array('add', 'add-page', 'delete-page', 'delete-confirm', 'edit-page-content',
             'edit-page-metadata', 'item-container', 'theme-config',
             'editSelf', 'deleteSelf', 'showSelfNotPublic'));
 
