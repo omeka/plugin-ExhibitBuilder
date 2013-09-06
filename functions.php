@@ -308,10 +308,10 @@ function exhibit_builder_define_acl($args)
         array('show', 'summary', 'show-item', 'browse', 'tags'));
 
     // Allow contributors everything but editAll and deleteAll.
-    $acl->allow('contributor', 'ExhibitBuilder_Exhibits',
-        array('add', 'add-page', 'delete-page', 'edit-page', 'attachment',
-            'attachment-item-options', 'theme-config',
-            'editSelf', 'deleteSelf', 'showSelfNotPublic'));
+    $acl->allow('contributor', 'ExhibitBuilder_Exhibits', array(
+        'add', 'add-page', 'delete-page', 'delete-confirm', 'edit-page',
+        'attachment', 'attachment-item-options', 'theme-config',
+        'editSelf', 'deleteSelf', 'showSelfNotPublic'));
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),
         new Omeka_Acl_Assert_Ownership);
