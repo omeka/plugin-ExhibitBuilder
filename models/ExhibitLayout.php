@@ -18,6 +18,11 @@ class ExhibitLayout
     const VIEW_STEM = 'exhibit_layouts';
 
     /**
+     * The ID for the layout to use when one can't be found.
+     */
+    const FALLBACK_LAYOUT = 'file-text';
+
+    /**
      * The internal name for the layout.
      *
      * The internal name is used to store the layout being used, as well as
@@ -157,17 +162,25 @@ class ExhibitLayout
      * Get a specific layout by ID.
      *
      * @param string $id Layout internal ID
-     * @return ExhibitLayout
+     * @param boolean $fallback Whether to return the fallback layout if the
+     *  given ID isn't recognized. If false, null will be returned for an
+     *  invalid layout ID.
+     * @return ExhibitLayout|null
      */
-    public static function getLayout($id)
+    public static function getLayout($id, $fallback = true)
     {
         $layouts = self::getLayoutArray();
-        if (isset($layouts[$id])) {
-            $layout = new ExhibitLayout($id);
-            $layout->setMetadata($layouts[$id]);
-            return $layout;
-        } else {
-            return null;
+        if (!isset($layouts[$id])) {
+            if ($fallback) {
+                $originalId = $id;
+                $id = self::FALLBACK_LAYOUT;
+            } else {
+                return null;
+            }
         }
+
+        $layout = new ExhibitLayout($id);
+        $layout->setMetadata($layouts[$id]);
+        return $layout;
     }
 }
