@@ -77,9 +77,11 @@ Omeka.ExhibitBuilder = {};
         });
         
         $('.layout').click(function (event) {
+            var layout_id = $(this).attr('id');
             $(this).children('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
+            $('.'+layout_id + '.layout-description').addClass('selected');
             $('.add-link').show();
         });
 

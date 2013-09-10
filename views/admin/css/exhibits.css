@@ -627,6 +627,24 @@ div.selected-items {
     z-index: 100;
 }
 
+.selected.layout-description {
+    display: block;
+}
+
+.layout-description {
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #F3F3E7;
+    width: 100%;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #D6D5C2;
+    padding: 10px 0;
+    margin: 10px 0 0;
+    display: none;
+}
+
 /* jQuery UI overrides */
 
 .exhibits .ui-dialog {

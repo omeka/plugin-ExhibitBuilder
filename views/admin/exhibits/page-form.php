@@ -47,10 +47,16 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php
                     $layouts = ExhibitLayout::getLayouts();
                     foreach ($layouts as $layout) {
-                        echo '<div class="layout">';
+                        $layout_id = html_escape($layout->id);
+                        echo '<div class="layout" id="' . $layout_id . '">';
                         echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
                         echo '<span class="layout-name">' . $layout->name . '</span>';
-                        echo '<input type="radio" name="new-block-layout" value="'. html_escape($layout->id) .'">';
+                        echo '<input type="radio" name="new-block-layout" value="'. $layout_id .'">';
+                        echo '</div>';
+                    }
+                    foreach ($layouts as $layout) {
+                        echo '<div class="'.html_escape($layout->id).' layout-description">';
+                        echo $layout->description;
                         echo '</div>';
                     }
                 ?>
