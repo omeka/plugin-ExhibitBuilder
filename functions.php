@@ -332,7 +332,7 @@ function exhibit_builder_define_routes($args)
 /**
  * Display the CSS layout for the exhibit in the public head
  */
-function exhibit_builder_public_head()
+function exhibit_builder_public_head($args)
 {
     $request = Zend_Controller_Front::getInstance()->getRequest();
     $module = $request->getModuleName();
@@ -354,6 +354,10 @@ function exhibit_builder_public_head()
                     }
                 }
             }
+            fire_plugin_hook('exhibit_builder_page_head', array(
+                'view' => $args['view'],
+                'layouts' => $layouts)
+            );
         }
     }
 }
