@@ -1,6 +1,6 @@
 .layout-file-text .exhibit-items {
     margin-bottom: 2%;
-    width: 40%;
+    max-width: 40%;
 }
 
 .layout-file-text .exhibit-items .download-file {
@@ -12,14 +12,16 @@
 .layout-file-text .exhibit-items.left {
     float: left;
     margin-right: 2%;
+    margin-left: 0;
 }
 
 .layout-file-text .exhibit-items.right {
     float: right;
     margin-left: 2%;
+    margin-right: 0;
 }
 
-.layout-file-text .exhibit-items img {
+.layout-file-text .exhibit-items .fullsize img {
     max-width: 100%;
     margin-bottom: 1em;
 }

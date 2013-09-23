@@ -35,3 +35,14 @@
 .exhibit-block {
     clear: both;
 }
+
+.exhibit-items img {
+    vertical-align: top;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.exhibit-item-link {
+    display: block;
+}
