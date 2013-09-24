@@ -44,15 +44,6 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
                 'attachments' => array()
                 );
 
-             /*
-            $blockAttachmentsCount = get_db()->getTable('ExhibitBlockAttachment')
-                                             ->count(array('block_id' => $pageBlock->id));  
-            $blockRepresentation['attachments']['count'] = $blockAttachmentsCount;
-            $blockRepresentation['attachments']['resource']
-            // */      
-            
-            
-            // /*
             $blockAttachments = $pageBlock->getAttachments();
 
             foreach($blockAttachments as $attachment) {
@@ -77,7 +68,6 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
                 }
                 $blockRepresentation['attachments'][] = $attachmentRepresentation;
             }
-            // */
             $representation['page_blocks'][] = $blockRepresentation; 
         }
         return $representation;
