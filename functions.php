@@ -593,6 +593,22 @@ function exhibit_builder_search_record_types($recordTypes)
     return $recordTypes;
 }
 
+/**
+ * Add exhibit title to item search filters.
+ */
+function exhibit_builder_item_search_filters($displayArray, $args)
+{
+    $request = $args['request_array'];
+
+    if (isset($request['exhibit'])
+        && ($exhibit = get_record_by_id('Exhibit', $request['exhibit']))
+    ) {
+        $displayArray['exhibit'] =
+            metadata($exhibit, 'title', array('no_escape' => true));
+    }
+    return $displayArray;
+}
+
 function exhibit_builder_api_resources($apiResources)
 {
     $apiResources['exhibits'] = array(
