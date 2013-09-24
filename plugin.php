@@ -35,6 +35,7 @@ add_filter('admin_dashboard_stats', 'exhibit_builder_dashboard_stats');
 add_filter('search_record_types', 'exhibit_builder_search_record_types');
 add_filter('api_resources', 'exhibit_builder_api_resources');
 add_filter('api_extend_items', 'exhibit_builder_api_extend_items');
+add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
