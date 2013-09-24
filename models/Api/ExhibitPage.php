@@ -11,7 +11,6 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
                 'url' => self::getResourceUrl("/exhibit_pages/{$record->id}"),
                 'title' => $record->title,
                 'slug' => $record->slug,
-                'layout' => $record->layout,
                 'order' => $record->order
                 );
         
@@ -30,13 +29,57 @@ class Api_ExhibitPage extends Omeka_Record_Api_AbstractRecordAdapter
             $representation['parent'] = null;
         }
         
-        $entriesCount = get_db()->getTable('ExhibitPageEntry')->count(array('page_id' => $record->id));
-        $representation['exhibit_page_entries'] = array(
-                'count' => $entriesCount,
-                'resource' => 'exhibit_page_entries',
-                'url' => self::getResourceUrl("/exhibit_page_entries?page_id={$record->id}")
-                );
+        $pageBlocks = $record->getPageBlocks($record);
         
+        $representation['page_blocks'] = array();
+        
+        foreach($pageBlocks as $pageBlock) {
+            $blockRepresentation = array(
+                'id'          => $pageBlock->id,
+                'page_id'     => $pageBlock->page_id,
+                'layout'      => $pageBlock->layout,
+                'options'     => json_decode($pageBlock->options, true),
+                'text'        => $pageBlock->text,
+                'order'       => $pageBlock->order,
+                'attachments' => array()
+                );
+
+             /*
+            $blockAttachmentsCount = get_db()->getTable('ExhibitBlockAttachment')
+                                             ->count(array('block_id' => $pageBlock->id));  
+            $blockRepresentation['attachments']['count'] = $blockAttachmentsCount;
+            $blockRepresentation['attachments']['resource']
+            // */      
+            
+            
+            // /*
+            $blockAttachments = $pageBlock->getAttachments();
+
+            foreach($blockAttachments as $attachment) {
+                
+                $attachmentRepresentation = 
+                    array(
+                        'id'   => $attachment->id,
+                        'caption' => $attachment->caption,
+                        'item' => array(
+                            'id'       => $attachment->item_id,
+                            'resource' => 'items',
+                            'url'      => self::getResourceUrl("/items/{$attachment->item_id}")
+                            ),
+
+                        );
+                if($attachment->file_id) {
+                    $attachmentRepresentation['file'] = array(
+                        'id'       => $attachment->file_id,
+                        'resource' => 'files',
+                        'url'      => self::getResourceUrl("/files/{$attachment->file_id}")
+                        );                  
+                }
+                $blockRepresentation['attachments'][] = $attachmentRepresentation;
+            }
+            // */
+            $representation['page_blocks'][] = $blockRepresentation; 
+        }
         return $representation;
     }
     
