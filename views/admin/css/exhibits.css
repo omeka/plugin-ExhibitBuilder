@@ -44,7 +44,7 @@
 
 #attachment-panel {
     display: none;
-    padding: 10px 10px 40px;
+    padding: 10px 5px 40px;
     position: relative;
 }
 
@@ -81,6 +81,10 @@
     line-height: 26px;
 }
 
+#item-filters li {
+    margin-bottom: 10px;
+}
+
 /* Item select: Item list */
 
 #item-list, #page-search-form {
@@ -90,7 +94,7 @@
     left: 0;
     right: 0;
     padding: 0 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -116,7 +120,7 @@
     padding: 10px;
     font-size: 14px;
     line-height: 1.5em;
-    margin: 10px 0;
+    margin: 5px 0;
     overflow:hidden;
 }
 
