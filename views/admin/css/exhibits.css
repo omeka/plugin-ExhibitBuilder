@@ -431,7 +431,7 @@
     background-color: #fff;
     padding: 5px;
     box-shadow: 0 0 3px #ccc;
-    margin: 0 0 0 2%;
+    margin: 0 0 2% 2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -593,6 +593,7 @@ div.selected-items {
     text-align: center;
     cursor: pointer;
     padding: 0;
+    float: none; /* Override core responsive .add-item style */
 }
 
 .add-item:before {
