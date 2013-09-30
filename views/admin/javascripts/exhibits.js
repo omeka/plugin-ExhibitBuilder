@@ -143,6 +143,7 @@ Omeka.ExhibitBuilder = {};
          * Use AJAX to retrieve the list of items that can be attached.
          */
         function getItems(uri, parameters) {
+            $('#attachment-panel').addClass('loading');
             $.ajax({
                 url: uri,
                 data: parameters,
@@ -153,6 +154,9 @@ Omeka.ExhibitBuilder = {};
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     alert('Error getting items: ' . textStatus);
+                },
+                complete: function() {
+                    $('#attachment-panel').removeClass('loading');
                 }
             });
         };
@@ -177,6 +181,7 @@ Omeka.ExhibitBuilder = {};
          * Use AJAX to load the form for an attachment.
          */
         this.loadItemOptionsForm = function(data) {
+            $('#attachment-panel').addClass('loading');
             $.ajax({
                 url: itemOptionsUrl,
                 method: 'POST',
@@ -190,6 +195,9 @@ Omeka.ExhibitBuilder = {};
                         tinymce.get('attachment-caption').setContent(data.caption);
                     }
                     $('#attachment-item-options').html(response);
+                },
+                complete: function() {
+                    $('#attachment-panel').removeClass('loading');
                 }
             });
         };
