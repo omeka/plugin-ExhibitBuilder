@@ -103,7 +103,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <button type="submit" id="apply-attachment"><?php echo __('Apply'); ?></button>
     </div>
-    <div id="attachment-panel-loading"><?php echo('Loading...'); ?></div>
+    <div id="attachment-panel-loading"><span class="spinner"></span></div>
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function () {
