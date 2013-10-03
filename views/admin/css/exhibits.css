@@ -66,6 +66,27 @@
     display: none;
 }
 
+#attachment-save {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #F8F6F0;
+    border-top: 1px solid #D6D5C2;
+    padding: 10px;
+    text-align: right;
+}
+
+.options {
+    height: 360px;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding: 10px 10px 0 10px;
+    margin-top: -10px;
+}
+
 /* Item select */
 
 #item-select {

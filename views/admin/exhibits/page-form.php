@@ -94,14 +94,18 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </div>
     <div id="attachment-options">
         <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
-        <div id="attachment-item-options"></div>
-        <div class="item-caption">
-            <p class="direction"><?php echo __('Provide a caption.'); ?></p>
-            <div class="inputs">
-                <?php echo $this->formTextarea('caption', '', array('rows' => 3, 'id' => 'attachment-caption')); ?>
+        <div class="options">
+            <div id="attachment-item-options"></div>
+            <div class="item-caption">
+                <p class="direction"><?php echo __('Provide a caption.'); ?></p>
+                <div class="inputs">
+                    <?php echo $this->formTextarea('caption', '', array('rows' => 3, 'id' => 'attachment-caption')); ?>
+                </div>
             </div>
         </div>
-        <button type="submit" id="apply-attachment"><?php echo __('Apply'); ?></button>
+        <div id="attachment-save">
+            <button type="submit" id="apply-attachment"><?php echo __('Apply'); ?></button>
+        </div>
     </div>
     <div id="attachment-panel-loading"><span class="spinner"></span></div>
 </div>
