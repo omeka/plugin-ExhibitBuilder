@@ -43,7 +43,12 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
             $html = exhibit_builder_link_to_exhibit_item(null, $linkProps, $item);
         }
 
-        $html .= $this->_caption($attachment);
+        // Don't show a caption if we couldn't show the Item or File at all
+        if (isset($html)) {
+            $html .= $this->_caption($attachment);
+        } else {
+            $html = '';
+        }
 
         return apply_filters('exhibit_attachment_markup', $html,
             compact('attachment', 'fileOptions', 'linkProps', 'forceImage')
