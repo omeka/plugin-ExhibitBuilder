@@ -23,6 +23,11 @@ class ExhibitLayout
     const FALLBACK_LAYOUT = 'file-text';
 
     /**
+     * Name of the image file to use when one can't be found.
+     */
+    const FALLBACK_LAYOUT_IMG = 'fallback_layout.png';
+
+    /**
      * The internal name for the layout.
      *
      * The internal name is used to store the layout being used, as well as
@@ -127,7 +132,11 @@ class ExhibitLayout
      */
     public function getIconUrl()
     {
-        return $this->getAssetUrl('layout.png');
+        try {
+            return $this->getAssetUrl('layout.png');
+        } catch (InvalidArgumentException $e) {
+            return img(self::FALLBACK_LAYOUT_IMG);
+        }
     }
 
     /**
