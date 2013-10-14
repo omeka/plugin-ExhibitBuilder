@@ -540,9 +540,10 @@ div.selected-items {
 .selected-item-list .attachment h5 {
     font-family: "Cabin", sans-serif;
     font-weight: normal;
-    margin: 5px 0;
-    line-height: 24px; font-size: 14px;
-    height: 70px;
+    margin: 0;
+    line-height: 20px; 
+    font-size: 14px;
+    height: 82px;
     overflow: hidden;
     position: relative;
     z-index: 10;
