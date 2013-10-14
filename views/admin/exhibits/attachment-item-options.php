@@ -6,14 +6,14 @@ $files = $item->Files;
 if ($file_id === null && $files) {
     $file_id = $files[0]->id;
 }
-if (metadata($item, 'public') == 0) {
-    $private = __('(Private)');
+if (!metadata($item, 'public')) {
+    $private = ' ' . __('(Private)');
 } else {
     $private = '';
 }
 ?>
 <?php echo $this->formHidden('item_id', $item->id); ?>
-<h2><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title')) . ' ' . $private); ?></h2>
+<h2><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title')) . $private); ?></h2>
 <?php if ($files): ?>
 <div class="file-select">
     <?php if (count($files) > 1): ?>

@@ -13,8 +13,8 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
         <?php endif; ?>
         <h5>
             #<?php echo html_escape($item->id); ?>:<br>
-            <?php if (metadata($item, 'public') == 0): ?>
-            <?php echo __('(Private)') . '<br />'; ?>
+            <?php if (!metadata($item, 'public')): ?>
+            <?php echo __('(Private)') . ' '; ?>
             <?php endif; ?>
             <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
         </h5>
