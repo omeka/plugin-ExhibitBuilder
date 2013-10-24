@@ -1,5 +1,9 @@
 <?php
 $item = $attachment->getItem();
+if (!$item) {
+    return;
+}
+
 $file = $attachment->getFile();
 $stem = $block->getFormStem() . "[attachments][{$index}]";
 ?>
