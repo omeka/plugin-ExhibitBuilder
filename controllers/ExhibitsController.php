@@ -99,11 +99,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         if ($item && $exhibit->hasItem($item) ) {
             //Plugin hooks
             fire_plugin_hook('show_exhibit_item',  array('item' => $item, 'exhibit' => $exhibit));
-
-            $this->view->assign(compact('exhibit', 'item'));
+            $this->view->exhibit = $exhibit;
+            $this->_forward('show', 'items', 'default', array('id' => $itemId));
         } else {
-            $this->_helper->flashMessenger(__('This item is not used within this exhibit.'), 'error');
-            throw new Omeka_Controller_Exception_403;
+            throw new Omeka_Controller_Exception_403(__('This item is not used within this exhibit.'));
         }
     }
 

@@ -26,7 +26,6 @@ add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
-add_filter('theme_options', 'exhibit_builder_theme_options');
 add_filter('public_theme_name', 'exhibit_builder_public_theme_name');
 add_filter('admin_dashboard_stats', 'exhibit_builder_dashboard_stats');
 add_filter('search_record_types', 'exhibit_builder_search_record_types');

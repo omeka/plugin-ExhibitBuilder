@@ -433,17 +433,15 @@ function exhibit_builder_admin_nav($navArray)
  */
 function exhibit_builder_theme_options($themeOptions, $args)
 {
-    if (Zend_Controller_Front::getInstance()->getRequest()->getModuleName() == 'exhibit-builder') {
-        try {
-            if ($exhibit = get_current_record('exhibit', false)) {
-                $exhibitThemeOptions = $exhibit->getThemeOptions();
-                if (!empty($exhibitThemeOptions)) {
-                    return serialize($exhibitThemeOptions);
-                }
+    try {
+        if ($exhibit = get_current_record('exhibit', false)) {
+            $exhibitThemeOptions = $exhibit->getThemeOptions();
+            if (!empty($exhibitThemeOptions)) {
+                return serialize($exhibitThemeOptions);
             }
-        } catch (Zend_Exception $e) {
-            // no view available
         }
+    } catch (Zend_Exception $e) {
+        // no view available
     }
     return $themeOptions;
 }
@@ -468,6 +466,7 @@ function exhibit_builder_public_theme_name($themeName)
         $slug = $request->getParam('slug');
         $exhibit = get_db()->getTable('Exhibit')->findBySlug($slug);
         if ($exhibit && ($exhibitTheme = $exhibit->theme)) {
+            add_filter('theme_options', 'exhibit_builder_theme_options');
             return $exhibitTheme;
         }
     }
