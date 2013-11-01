@@ -1,5 +1,5 @@
 <form id="exhibit-metadata-form" method="post" class="exhibit-builder">
-    <div class="seven columns alpha">
+    <section class="seven columns alpha">
     <fieldset>
         <legend><?php echo __('Exhibit Metadata'); ?></legend>
         <div class="field">
@@ -71,24 +71,26 @@
             <input type="submit" name="add_page" id="add-page" value="<?php echo __('Add Page'); ?>" />
         </div>
     </fieldset>
-    </div>
-    <div id="save" class="three columns omega panel">
-        <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>
-        <?php if ($exhibit->exists()): ?>
-            <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank')); ?>
-            <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
-        <?php endif; ?>
-        <div id="public-featured">
-            <div class="public">
-                <label for="public"><?php echo __('Public'); ?>:</label> 
-                <?php echo $this->formCheckbox('public', $exhibit->public, array(), array('1', '0')); ?>
-            </div>
-            <div class="featured">
-                <label for="featured"><?php echo __('Featured'); ?>:</label> 
-                <?php echo $this->formCheckbox('featured', $exhibit->featured, array(), array('1', '0')); ?>
+    </section>
+    <section class="three columns omega">
+        <div id="save" class="panel">
+            <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>
+            <?php if ($exhibit->exists()): ?>
+                <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank')); ?>
+                <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
+            <?php endif; ?>
+            <div id="public-featured">
+                <div class="public">
+                    <label for="public"><?php echo __('Public'); ?>:</label> 
+                    <?php echo $this->formCheckbox('public', $exhibit->public, array(), array('1', '0')); ?>
+                </div>
+                <div class="featured">
+                    <label for="featured"><?php echo __('Featured'); ?>:</label> 
+                    <?php echo $this->formCheckbox('featured', $exhibit->featured, array(), array('1', '0')); ?>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </form>
 
 <script type="text/javascript" charset="utf-8">
