@@ -13,7 +13,7 @@ if (!metadata($item, 'public')) {
 }
 ?>
 <?php echo $this->formHidden('item_id', $item->id); ?>
-<h2><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title')) . $private); ?></h2>
+<h2><?php echo __('Selected Item: %s', metadata($item, array('Dublin Core', 'Title'))) . $private; ?></h2>
 <?php if ($files): ?>
 <div class="file-select">
     <?php if (count($files) > 1): ?>

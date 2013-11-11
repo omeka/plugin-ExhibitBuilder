@@ -27,7 +27,7 @@ class ExhibitBuilder_View_Helper_ExhibitItemListing extends Zend_View_Helper_Abs
         }
         $private = '';
         if (!metadata($item, 'public')) {
-            $private == ' ' . __('(Private)');
+            $private = ' ' . __('(Private)');
         }
         $html .= '<h4 class="title">'
               . metadata($item, array('Dublin Core', 'Title'))
