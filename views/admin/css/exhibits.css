@@ -699,6 +699,21 @@ div.selected-items {
     display: none;
 }
 
+#theme {
+    width: 68%;
+    float: left;
+    margin-right: 2%;
+    padding-right: 40px;
+    text-overflow: ellipsis;
+}
+
+input[type=submit].configure-button {
+    width: 30%;
+    float: left;
+    margin-right: 0;
+    line-height: 22px;
+}
+
 /* jQuery UI overrides */
 
 .exhibits .ui-dialog {

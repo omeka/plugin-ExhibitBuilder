@@ -174,6 +174,8 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     {
         if (array_key_exists('add_page', $_POST)) {
             $this->_helper->redirector->gotoRoute(array('action' => 'add-page', 'id' => $exhibit->id), 'exhibitStandard');
+        } else if (array_key_exists('configure-theme', $_POST)) {
+            $this->_helper->redirector->gotoRoute(array('action' => 'theme-config', 'id' => $exhibit->id), 'exhibitStandard');
         } else {
             $this->_helper->redirector->gotoRoute(array('action' => 'edit', 'id' => $exhibit->id), 'exhibitStandard');
         }

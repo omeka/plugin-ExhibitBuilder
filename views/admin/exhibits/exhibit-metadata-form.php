@@ -52,7 +52,7 @@
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_themes(); ?>
                 <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
                 <?php if ($theme && $theme->hasConfig): ?>
-                    <a href="<?php echo html_escape(url("exhibits/theme-config/$exhibit->id")); ?>" class="configure-button button"><?php echo __('Configure'); ?></a>
+                    <input type="submit" class="configure-button" name="configure-theme" value="<?php echo __('Configure'); ?>">
                 <?php endif;?>
             </div>
         </div>
