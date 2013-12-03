@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Bogdan Trifunovic <>, 2012
+# Dušan Ranđelović <randjelovic@pantype.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
-"Report-Msgid-Bugs-To: https://github.com/omeka/Omeka/issues\n"
+"Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-01-24 04:39+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2013-11-20 12:57+0000\n"
+"Last-Translator: Dušan Ranđelović <randjelovic@pantype.com>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/projects/p/omeka/language/sr_RS/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgstr "Мораш тачно означити тему да би могао д�
 
 #: functions.php:282
 msgid "exhibits"
-msgstr ""
+msgstr "изложбе"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
@@ -142,11 +143,11 @@ msgstr "Претражи изложбу"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr ""
+msgstr "Изложба"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Страница изложбе"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
@@ -163,7 +164,7 @@ msgstr "Натпис"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr ""
+msgstr "Одабери документ"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
@@ -206,7 +207,7 @@ msgstr "Стална веза мора постојати за сваку стр
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "Стална веза ове странице већ је искоришћена у овом делу. Молимо измените сталну везу тако да буде јединствена."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
@@ -218,12 +219,12 @@ msgstr "Странице изложбе морају имати наслове."
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr ""
+msgstr "Не може се додати \"дете\" запису који још увек не постоји!"
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr ""
+msgstr "\"Дете\" мора бити инстанца од \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -235,7 +236,7 @@ msgstr "Још увек нема изложби."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Додај изложбу."
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -250,7 +251,7 @@ msgstr "Тренутна објављена тема"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Уреди изложбу: \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -264,7 +265,7 @@ msgstr "Стална веза"
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "Размаци или специјални знаци нису дозвољени."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
@@ -273,17 +274,17 @@ msgstr "Заслуге"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr ""
+msgstr "Странице"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr ""
+msgstr "Нема страница."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr ""
+msgstr "Да би се странице регруписале кликни и повуци сличицу странице горе или доле на жељену локацију."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
@@ -322,7 +323,7 @@ msgstr "Прикачи одабрани објекат"
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Уреди страницу: \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
@@ -334,7 +335,7 @@ msgstr "Шеме"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr ""
+msgstr "Шема"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
@@ -351,7 +352,7 @@ msgstr "Нема ознака за приказ. Прво мораш означ�
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "Подеси &#8220;%s&#8221; тему"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
