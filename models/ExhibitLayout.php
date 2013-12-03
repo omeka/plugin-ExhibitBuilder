@@ -61,15 +61,15 @@ class ExhibitLayout
     public static $defaultLayouts = array(
         'file-text' => array(
             'name' => 'File with Text',
-            'description' => 'The standard layout'
+            'description' => 'Default layout features files justified to left or right with text displaying to the opposite side'
         ),
         'gallery' => array(
             'name' => 'Gallery',
-            'description' => 'A gallery'
+            'description' => 'A gallery layout featuring file thumbnails'
         ),
         'text' => array(
             'name' => 'Text',
-            'description' => 'A plain block of text'
+            'description' => 'Layout featuring a block of text without files'
         )
     );
 
