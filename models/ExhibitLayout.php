@@ -52,26 +52,12 @@ class ExhibitLayout
     public $description;
 
     /**
-     * The default layout data.
+     * The filtered layout data.
      *
-     * New layouts can be added through filtering, with this same structure.
-     *
+     * @see self::getLayoutArray()
      * @var array
      */
-    public static $defaultLayouts = array(
-        'file-text' => array(
-            'name' => 'File with Text',
-            'description' => 'Default layout features files justified to left or right with text displaying to the opposite side'
-        ),
-        'gallery' => array(
-            'name' => 'Gallery',
-            'description' => 'A gallery layout featuring file thumbnails'
-        ),
-        'text' => array(
-            'name' => 'Text',
-            'description' => 'Layout featuring a block of text without files'
-        )
-    );
+    public static $layouts;
 
     /**
      * Create the layout.
@@ -148,7 +134,28 @@ class ExhibitLayout
      */
     public static function getLayoutArray()
     {
-        return apply_filters('exhibit_layouts', self::$defaultLayouts);
+        if (self::$layouts) {
+            return self::$layouts;
+        }
+        
+        $defaultLayouts = array(
+            'file-text' => array(
+                'name' => __('File with Text'),
+                'description' => __('Default layout features files justified to left or right with text displaying to the opposite side')
+            ),
+            'gallery' => array(
+                'name' => __('Gallery'),
+                'description' => __('A gallery layout featuring file thumbnails')
+            ),
+            'text' => array(
+                'name' => __('Text'),
+                'description' => __('Layout featuring a block of text without files')
+            )
+        );
+
+        $layouts = apply_filters('exhibit_layouts', $defaultLayouts);
+        self::$layouts = $layouts;
+        return $layouts;
     }
 
     /**

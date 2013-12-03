@@ -25,7 +25,7 @@ $options = $block->getOptions();
         <?php
         echo $this->formSelect($formStem . '[options][file-position]',
             @$options['file-position'], array(),
-            array('left' => 'Left', 'right' => 'Right'));
+            array('left' => __('Left'), 'right' => __('Right')));
         ?>
     </div>
     
@@ -35,9 +35,9 @@ $options = $block->getOptions();
         echo $this->formSelect($formStem . '[options][file-size]',
             @$options['file-size'], array(),
             array(
-                'fullsize' => 'Fullsize',
-                'thumbnail' => 'Thumbnail',
-                'square_thumbnail' => 'Square Thumbnail'
+                'fullsize' => __('Fullsize'),
+                'thumbnail' => __('Thumbnail'),
+                'square_thumbnail' => __('Square Thumbnail')
             ));
         ?>
     </div>

@@ -243,6 +243,14 @@
     margin-bottom: 10px;
 }
 
+#show-or-hide-search.show-form .hide-search-label {
+    display: none;
+}
+
+#show-or-hide-search.hide-form .show-search-label {
+    display: none;
+}
+
 #change-selected-item, #revert-selected-item {
     margin-bottom: 10px;
     background: #F8F6F0;
@@ -409,6 +417,7 @@
     font-size: 1.5em;
     text-align: center; 
     position: relative;
+    clear: both;
 }
 
 .add-block a {

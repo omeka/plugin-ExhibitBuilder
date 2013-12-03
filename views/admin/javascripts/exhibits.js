@@ -170,10 +170,10 @@ Omeka.ExhibitBuilder = {};
             }
             if (show) {
                 searchForm.show();
-                searchButton.text('Hide Search Form');
+                searchButton.addClass('hide-form').removeClass('show-form');
             } else {
                 searchForm.hide();
-                searchButton.text('Show Search Form');
+                searchButton.addClass('show-form').removeClass('hide-form');
             }
         }
 
