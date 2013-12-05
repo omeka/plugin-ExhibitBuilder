@@ -138,6 +138,20 @@ Omeka.ExhibitBuilder = {};
         sortAttachments('#block-container');
     };
 
+    Omeka.ExhibitBuilder.themeConfig = function(themeConfigUrl, data) {
+        if ($('#theme').val() == '') {
+            $('.configure-button').hide();
+        }
+        
+        $('#theme').change(function() {
+            if ($(this).val() == '') {
+                $('.configure-button').hide();
+            } else {
+                $('.configure-button').show();
+            }
+        });
+    }; 
+
     Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl) {
         /*
          * Use AJAX to retrieve the list of items that can be attached.

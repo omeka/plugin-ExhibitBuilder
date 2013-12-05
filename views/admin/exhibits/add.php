@@ -11,4 +11,8 @@
 
 <?php echo common('exhibit-metadata-form', array('exhibit' => $exhibit, 'theme' => null), 'exhibits'); ?>
 
+<script type="text/javascript">
+Omeka.addReadyCallback(Omeka.ExhibitBuilder.themeConfig);
+</script>
+
 <?php echo foot(); ?>

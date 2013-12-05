@@ -13,4 +13,8 @@
 <?php $theme = $exhibit->theme ? Theme::getTheme($exhibit->theme) : null; ?>
 <?php echo common('exhibit-metadata-form', array('exhibit' => $exhibit, 'theme' => $theme), 'exhibits'); ?>
 
+<script type="text/javascript">
+    Omeka.addReadyCallback(Omeka.ExhibitBuilder.themeConfig);
+</script>
+
 <?php echo foot(); ?>

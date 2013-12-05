@@ -51,9 +51,7 @@
             <div class="five columns omega inputs">
                 <?php $values = array('' => __('Current Public Theme')) + exhibit_builder_get_themes(); ?>
                 <?php echo get_view()->formSelect('theme', $exhibit->theme, array(), $values); ?>
-                <?php if ($theme && $theme->hasConfig): ?>
                     <input type="submit" class="configure-button" name="configure-theme" value="<?php echo __('Configure'); ?>">
-                <?php endif;?>
             </div>
         </div>
     </fieldset>
