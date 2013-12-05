@@ -113,8 +113,8 @@ msgid "A gallery layout featuring file thumbnails"
 msgstr ""
 
 #: models/ExhibitLayout.php:151
-#: views/shared/exhibit_layouts/file-text/form.php:13
-#: views/shared/exhibit_layouts/gallery/form.php:12
+#: views/shared/exhibit_layouts/file-text/form.php:11
+#: views/shared/exhibit_layouts/gallery/form.php:11
 #: views/shared/exhibit_layouts/text/form.php:2
 msgid "Text"
 msgstr ""
@@ -204,20 +204,20 @@ msgstr ""
 msgid "Credits"
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:61
+#: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:66
+#: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr ""
@@ -247,47 +247,52 @@ msgstr ""
 msgid "Expand All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:43
+#: views/admin/exhibits/page-form.php:36
+msgid ""
+"To reorder blocks and items, click and drag them to the preferred location."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:44
 msgid "New Block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:45
+#: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:63
+#: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:73
+#: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:81
+#: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:83
+#: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:99
+#: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:110
+#: views/admin/exhibits/page-form.php:111
 msgid "Apply"
 msgstr ""
 
@@ -321,49 +326,44 @@ msgstr ""
 msgid "There are no exhibits available yet."
 msgstr ""
 
-#: views/shared/exhibit_layouts/file-text/form.php:8
-#: views/shared/exhibit_layouts/gallery/form.php:7
-msgid "To reorder items, click and drag the item to the preferred location."
-msgstr ""
-
-#: views/shared/exhibit_layouts/file-text/form.php:19
-#: views/shared/exhibit_layouts/gallery/form.php:18
+#: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
 msgstr ""
 
-#: views/shared/exhibit_layouts/file-text/form.php:24
+#: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
 msgstr ""
 
-#: views/shared/exhibit_layouts/file-text/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:29
-#: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:28
+#: views/shared/exhibit_layouts/gallery/form.php:41
 msgid "Left"
 msgstr ""
 
-#: views/shared/exhibit_layouts/file-text/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:30
-#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
 msgid "Right"
 msgstr ""
 
-#: views/shared/exhibit_layouts/file-text/form.php:33
+#: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
 msgstr ""
 
-#: views/shared/exhibit_layouts/gallery/form.php:23
+#: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
 msgstr ""
 
-#: views/shared/exhibit_layouts/gallery/form.php:28
+#: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
 msgstr ""
 
-#: views/shared/exhibit_layouts/gallery/form.php:37
+#: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
 msgstr ""
 
-#: views/shared/exhibit_layouts/gallery/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of "
 "the page."

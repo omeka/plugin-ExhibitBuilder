@@ -33,6 +33,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <h2><?php echo __('Content'); ?></h2>
         <span class="collapse"><?php echo __('Collapse All'); ?></span>
         <span class="expand"><?php echo __('Expand All'); ?></span>
+        <p class="instructions"><?php echo __('To reorder blocks and items, click and drag them to the preferred location.'); ?></p>
         <?php
         foreach ($exhibit_page->getPageBlocks() as $index => $block):
             $block->order = $index + 1;

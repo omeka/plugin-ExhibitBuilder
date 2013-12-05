@@ -8,6 +8,7 @@
 .instructions {
     font-size:11px;
     color: #888;
+    clear: both;
 }
 
 #block-container > h2 {
