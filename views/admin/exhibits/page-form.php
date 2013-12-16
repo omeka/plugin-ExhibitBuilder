@@ -61,7 +61,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                         echo '</div>';
                     }
                 ?>
-                <a class="add-link button" href="#"><?php echo __('Add new content block'); ?></a>
+                <a class="add-link big button" href="#"><?php echo __('Add new content block'); ?></a>
                 </div>
             </div>
         </div>

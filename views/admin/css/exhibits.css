@@ -402,6 +402,10 @@
     margin: 0;
 }
 
+.block-form label, .block-form select, .block-form input, .block-form textarea {
+    vertical-align: middle;
+}
+
 .block-form > .block-header {
     padding: 10px;
     position: relative;
@@ -412,12 +416,7 @@
 }
 
 .add-block {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    font-size: 1.5em;
     text-align: center; 
-    position: relative;
     clear: both;
 }
 
