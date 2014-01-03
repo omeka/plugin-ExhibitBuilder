@@ -3,380 +3,379 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Daniel Alves <daniel_r_alves@hotmail.com>, 2013
-# xfil <llopes@museus.ul.pt>, 2013
+# HadjaLSI <grebenkina007@mail.ru>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-12-14 09:06+0000\n"
-"Last-Translator: Daniel Alves <daniel_r_alves@hotmail.com>\n"
-"Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/omeka/language/pt_PT/)\n"
+"PO-Revision-Date: 2013-12-20 21:35+0000\n"
+"Last-Translator: HadjaLSI <grebenkina007@mail.ru>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/omeka/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_PT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "Gallery Full Left"
-msgstr "Galeria Toda à Esquerda"
+msgstr "Левая Полная Галерея  "
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
 " image and text block."
-msgstr "Uma galeria com 8 imagens de pré-visualização, com 1 coluna à esquerda mais larga para mostrar uma imagem no seu tamanho original e texto."
+msgstr "Показывает галерею 8 миниатюр, с широкой левой колонкой 1 для полного изображения и текстового блока. "
 
 msgid "Gallery Full Right"
-msgstr "Galeria Toda à Direita"
+msgstr "Правая Полная Галерея"
 
 msgid ""
 "Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
 "size image and text block."
-msgstr "Uma galeria com 8 imagens de pré-visualização, com 1 coluna à direita mais larga para mostrar uma imagem no seu tamanho original e texto."
+msgstr "Показывает галерею 8 миниатюр, с широкой правой колонкой для 1 полного изображения и текстового блока."
 
 msgid "Gallery Thumbnails Text Bottom"
-msgstr "Texto das imagens de pré-vizualição da galeria no fundo"
+msgstr "Галерея Миниатюр  Нижняя Текстовая Часть"
 
 msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Mostra um bloco de texto abaixo de uma galeria que pode conter até 12 itens."
+msgstr "Показывает блок текста до 12 документов ниже галереи."
 
 msgid "Gallery Thumbnails Text Top"
-msgstr "Texto das imagens de pré-vizualição da galeria no topo"
+msgstr "Галерея эскизов Верхняя Текстовая Часть "
 
 msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Mostra um bloco de texto acima de uma galeria que pode conter até 12 itens."
+msgstr "Показывает блок текста до 12 документов выше галереи."
 
 msgid "Gallery Thumbnails"
-msgstr "Imagens de pré-visualização da galeria"
+msgstr "Галерея миниатюр"
 
 msgid "Displays a gallery of up to 16 items."
-msgstr "Galeria que pode conter até 16 itens."
+msgstr "Показывает галерею до 16 элементов."
 
 msgid "Image List Left Thumbs"
-msgstr "Lista de Imagens de Pré-visualização à Esquerda"
+msgstr "Изображение списка Левых Миниатюр"
 
 msgid ""
 "Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
 "right."
-msgstr "Mostra até 8 imagens de pré-visualização à esquerda com até 8 blocos de texto à direita."
+msgstr "Показывает до 8 миниатюр слева с возможностью вставки до 8 блоков текста справа. "
 
 msgid "Image List Left"
-msgstr "Lista de Imagens à Esquerda"
+msgstr "Изображение левого Списка"
 
 msgid ""
 "Displays up to 8 full-size images on the left with up to 8 text blocks on "
 "the right."
-msgstr "Mostra até 8 imagens em tamanho original à esquerda com até 8 blocos de texto à direita."
+msgstr "Показывает до 8 изображений полного размера с возможностью вставки до 8 блоков текста справа."
 
 msgid "Image List Right Thumbs"
-msgstr "Lista de Imagens de Pré-visualização à Direita"
+msgstr "Изображение Списка правых миниатюр. "
 
 msgid ""
 "Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
 "left."
-msgstr "Mostra até 8 imagens de pré-visualização à direita com até 8 blocos de texto à esquerda."
+msgstr "Показывает до 8 миниатюр справа с возможностью вставки до 8 блоков текста слева. "
 
 msgid "Image List Right"
-msgstr "Lista de Imagens à Direita"
+msgstr "Изображение правого списка"
 
 msgid ""
 "Displays up to 8 full-size images on the right with up to 8 text blocks on "
 "the left."
-msgstr "Mostra até 8 imagens em tamanho original à direita com até 8 blocos de texto à esquerda."
+msgstr "Показывает до 8 изображений полного размера справа с возможностью вставки до 8 блоков текста слева."
 
 msgid "Text Image Left"
-msgstr "Texto Imagem Esquerda"
+msgstr "Текстовое изображение слева. "
 
 msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Mostra uma página inteira de texto, com uma imagem em tamanho original à esquerda posicionada como \"float\""
+msgstr "Показывает полную страницу текста, с изображениями полного размера, всплывающими слева. "
 
 msgid "Text Image Right"
-msgstr "Texto Imagem Direita"
+msgstr "Текстовое изображение слева"
 
 msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Mostra uma página inteira de texto, com uma imagem em tamanho original à direita posicionada como \"float\""
+msgstr "Показывает полную страницу текста, с изображениями полного размера, всплывающими справа."
 
 msgid "Text"
-msgstr "Texto"
+msgstr "Текст"
 
 msgid "Displays a full page of text without items."
-msgstr "Mostra uma página inteira de texto sem itens."
+msgstr "Показывает полную страницу текста без документов. "
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Ordenar Exposições"
+msgstr "Сортировка выставок. "
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "O método por omissão pelo qual deseja fazer a ordenação da lista de exposições na página exposições/navegação. Por omissão é usada a data de adição."
+msgstr "Метод \"по умолчанию\" используется, когда Вы хотите отсортировать список выставок на страничке выставки/поиск. \"Дата добавления\" используется по умолчанию. "
 
 #: controllers/ExhibitsController.php:75
 msgid "This item is not used within this exhibit."
-msgstr "Este item não é usado nesta exposição."
+msgstr "Этот элемент не используется в данной выставке. "
 
 #: controllers/ExhibitsController.php:201
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Deve seleccionar um tema específico para o configurar."
+msgstr "Вы должны выбрать тему для дальнейшей её конфигурации. "
 
 #: functions.php:282
 msgid "exhibits"
-msgstr "exposições"
+msgstr "выставки"
 
 #: functions.php:296 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Explorar Exposições"
+msgstr "Поиск Выставок "
 
 #: functions.php:312 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8
 #: views/admin/exhibits/page-content-form.php:9
 #: views/admin/exhibits/page-metadata-form.php:8
 msgid "Exhibits"
-msgstr "Exposições"
+msgstr "Выставки."
 
 #: functions.php:469
 msgid "Search by Exhibit"
-msgstr "Pesquisar por Exposição"
+msgstr "Поиск по выставкам"
 
 #: functions.php:478
 msgid "Exhibit"
-msgstr "Exposição"
+msgstr "Выставка"
 
 #: functions.php:479
 msgid "Exhibit Page"
-msgstr "Página de Exposição"
+msgstr "Страница Выставки"
 
 #: helpers/ExhibitFunctions.php:242
 msgid "There is no item attached."
-msgstr "Não existe nenhum item anexado."
+msgstr "Не прилагается ни одного элемента. "
 
 #: helpers/ExhibitFunctions.php:244
 #: views/admin/exhibits/page-content-form.php:95
 msgid "Attach an Item"
-msgstr "Anexe um Item"
+msgstr "Присоединить документ."
 
 #: helpers/ExhibitFunctions.php:267
 msgid "Caption"
-msgstr "Legenda"
+msgstr "Заголовок"
 
 #: helpers/ExhibitFunctions.php:290
 msgid "Select a File"
-msgstr "Escolha um Ficheiro"
+msgstr "Выбрать файл"
 
 #: helpers/ExhibitFunctions.php:463
 msgid "Featured Exhibit"
-msgstr "Exposição em Destaque"
+msgstr "Избранный выставки"
 
 #: helpers/ExhibitFunctions.php:468
 msgid "You have no featured exhibits."
-msgstr "Não tem exposições em destaque."
+msgstr "У Вас нет избранных выставок."
 
 #: models/Exhibit.php:37
 msgid "Exhibits must be given a valid slug."
-msgstr "As exposições devem ter um identificador válido."
+msgstr "Необходимо дать действительный заголовок выставке."
 
 #: models/Exhibit.php:38 models/ExhibitPage.php:31
 msgid "A slug must be 30 characters or less."
-msgstr "Um identificador deve ter 30 caracteres ou menos."
+msgstr "Заголовок не должен превышать 30 символов. "
 
 #: models/Exhibit.php:39
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "O identificador do URL está em uso por outra exposição. Por favor escolha outro."
+msgstr "Ваш URL заголовок уже используется другой выставкой. Пожалуйста, выберите другой заголовок."
 
 #: models/Exhibit.php:48
 msgid "An exhibit must be given a title."
-msgstr "Uma exposição deve ter um título."
+msgstr "Необходимо озаглавить выставку. "
 
 #: models/Exhibit.php:52
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "O título da exposição deve ter 255 caracteres ou menos."
+msgstr "Название выставки не должно превышать 255 символов."
 
 #: models/Exhibit.php:56
 msgid "The name of your theme must be 30 characters or less."
-msgstr "O nome do tema deve ter 30 caracteres ou menos."
+msgstr "Название Вашей темы не должно превышать 30 символов."
 
 #: models/ExhibitPage.php:30
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Deve ser dado um identificador para cada página numa exposição."
+msgstr "Необходимо написать заголовок на каждой странице выставки."
 
 #: models/ExhibitPage.php:32
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "O identificador desta página já foi usado. Por favor modifique o identificador de forma a que seja único."
+msgstr "Такой заголовок страницы уже используется. Пожалуйста, придумайте уникальный заголовок."
 
 #: models/ExhibitPage.php:47
 msgid "A layout must be provided for each exhibit page."
-msgstr "Deve ser fornecido um modelo para cada página de exposição."
+msgstr "На каждой странице выставки должен быть предоставлен макет."
 
 #: models/ExhibitPage.php:51
 msgid "Exhibit pages must be given a title."
-msgstr "Páginas de exposição devem ter um título."
+msgstr "Необходимо озаглавить страницы выставки. "
 
 #: models/Mixin/Order.php:101
 msgid "Cannot add a child to a record that does not exist yet!"
-msgstr "Não é possível adicionar um nó inferior a um registo que ainda não existe!"
+msgstr "Не удаётся добавить ребёнка к ещё несуществующей записи."
 
 #: models/Mixin/Order.php:105
 #, php-format
 msgid "Child must be an instance of \"%s\""
-msgstr "Nó inferior deve ser uma instância de \"%s\""
+msgstr "Ребёнок должен быть на этапе \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Adicionar Exposição"
+msgstr "Добавить выставку"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Ainda não existem exposições."
+msgstr "Пока, что нет никаких выставок. "
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Adicionar uma Exposição"
+msgstr "Добавить выставку"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Tema"
+msgstr "Тема"
 
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Tema Público Actual"
+msgstr "Текущая общественная тема "
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Editar Exposição \"%s\""
+msgstr "Редактировать Выставку \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Metadados da Exposição"
+msgstr "Выставка метаданных"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 #: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
-msgstr "Identificador"
+msgstr "заголовок"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-metadata-form.php:28
 msgid "No spaces or special characters allowed"
-msgstr "Não são permitidos espaços ou caracteres especiais"
+msgstr "Пробелы и специальные символы запрещены."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:14
 msgid "Credits"
-msgstr "Créditos"
+msgstr "Кредиты"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:61
 msgid "Pages"
-msgstr "Páginas"
+msgstr "страницы"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid "There are no pages."
-msgstr "Não existem páginas."
+msgstr "Нет страниц"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:66
 msgid ""
 "To reorder pages, click and drag the page up or down to the preferred "
 "location."
-msgstr "Para re-ordenar páginas, clique e arraste a página para cima ou para baixo para a sua localização preferida."
+msgstr "Для изменения положения страницы, щёлкните и перетащите страницу в нужное положение."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 #: views/admin/exhibits/page-metadata-form.php:2
 msgid "Add Page"
-msgstr "Adicionar Página"
+msgstr "Добавить страницу"
 
 #: views/admin/exhibits/page-content-form.php:2
 #, php-format
 msgid "Edit Page Content: \"%s\""
-msgstr "Editar o Conteúdo da Página: \"%s\""
+msgstr "Редактировать содержание страницы \"%s\""
 
 #: views/admin/exhibits/page-content-form.php:16
 msgid "Page Layout"
-msgstr "Modelo da Página"
+msgstr "макет страницы"
 
 #: views/admin/exhibits/page-content-form.php:27
 msgid "Edit Page"
-msgstr "Editar Página"
+msgstr "Редактировать страницу"
 
 #: views/admin/exhibits/page-content-form.php:30
 msgid "Page Content"
-msgstr "Conteúdo da Página"
+msgstr "Содержание страницы"
 
 #: views/admin/exhibits/page-content-form.php:42
 msgid "Save and Add Another Page"
-msgstr "Gravar e Adicionar Outra Página"
+msgstr "Сохранить и добавить другую страницу "
 
 #: views/admin/exhibits/page-content-form.php:63
 msgid "Remove This Item"
-msgstr "Remover Este Item"
+msgstr "Удалить документ"
 
 #: views/admin/exhibits/page-content-form.php:98
 msgid "Attach Selected Item"
-msgstr "Anexar Item Seleccionado"
+msgstr "Присоединить выбранный документ"
 
 #: views/admin/exhibits/page-metadata-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Editar Página \"%s\""
+msgstr "Редактировать страницу \"%s\""
 
 #: views/admin/exhibits/page-metadata-form.php:14
 msgid "Page Metadata"
-msgstr "Metadados da Página"
+msgstr "Страница метаданных"
 
 #: views/admin/exhibits/page-metadata-form.php:35
 msgid "Layouts"
-msgstr "Modelos"
+msgstr "Макеты"
 
 #: views/admin/exhibits/page-metadata-form.php:50
 msgid "Layout"
-msgstr "Modelo"
+msgstr "Макет"
 
 #: views/admin/exhibits/page-metadata-form.php:55
 msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Escolha um modelo seleccionando a imagem de pré-visualização à direita."
+msgstr "Выбрать макет, нажатием на миниатюру справа. "
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Explorar Exposições por Etiqueta"
+msgstr "Поиск выставок по тегам"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Não existem etiquetas para mostrar. Primeiro é preciso etiquetar algumas exposições."
+msgstr "Невозможно отобразить теги. Сначала необходимо выбрать выставку."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configurar o &#8220;%s&#8221; Tema"
+msgstr "Настроить &#8220;%s&#8221; Тема"
 
 #: views/admin/items/browse.php:2
 msgid "Show Search Form"
-msgstr "Mostrar Formulário de Pesquisa"
+msgstr "Показать поисковой бланк"
 
 #: views/admin/items/browse.php:17
 msgid "add some items"
-msgstr "adicionar itens"
+msgstr "добавить документы"
 
 #: views/admin/items/browse.php:17
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Não há itens para escolher. Por favor refine a sua busca ou %s."
+msgstr "Невозможно выбрать документы. Пожалуйста, усовершенствуйте Ваш поиск, либо %s"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Ainda não existem exposições."
+msgstr "Нет доступных выставок. "
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:4
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:4
 msgid "Primary"
-msgstr "Primário"
+msgstr "Первичное"
 
 #: views/shared/exhibit_layouts/gallery-full-left/form.php:11
 #: views/shared/exhibit_layouts/gallery-full-right/form.php:11
 msgid "Secondary"
-msgstr "Secundário"
+msgstr "Вторичное"
