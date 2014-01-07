@@ -1,3 +1,7 @@
+.exhibit-block + .layout-gallery {
+    padding-top: 1.5em;
+}
+
 .layout-gallery .gallery .exhibit-item, 
 .layout-gallery .gallery .exhibit-item:nth-of-type(2n) {
     width: 24%;
