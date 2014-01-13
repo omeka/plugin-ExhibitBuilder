@@ -4,7 +4,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
- 
+
 /**
  * ExhibitPage table class.
  *
@@ -27,7 +27,7 @@ class Table_ExhibitPage extends Omeka_Db_Table
         $permissions->apply($select, 'exhibits');
         return $select;
     }
-        
+
     /**
      * Apply filters for searching pages to an SQL select object.
      *
@@ -62,6 +62,10 @@ class Table_ExhibitPage extends Omeka_Db_Table
 
         if(isset($params['topOnly'])) {
             $this->filterByTopOnly($select);
+        }
+
+        if(isset($params['item'])) {
+            $this->filterByItem($select, $params['item']);
         }
     }
 
@@ -172,11 +176,11 @@ class Table_ExhibitPage extends Omeka_Db_Table
         if ($exhibit instanceof Exhibit) {
             $exhibit = $exhibit->id;
         }
-        
+
         if ($parent instanceof ExhibitPage) {
             $parent = $parent->id;
         }
-        
+
         $select = $this->getSelect();
         $select->where('exhibit_pages.exhibit_id = ?', $exhibit);
         $select->where('exhibit_pages.slug = ?', $slug);
@@ -230,5 +234,26 @@ class Table_ExhibitPage extends Omeka_Db_Table
     protected function filterByOrder($select, $order)
     {
         $select->where('exhibit_pages.order = ? ', $order);
+    }
+
+    /**
+     * Filter by an item used on the exhibit page
+     * @param Zend_Db_Select $select Select object to filter
+     * @param integer $item_id Item id to filter by
+     */
+    protected function filterByItem($select, $item_id)
+    {
+        $db = $this->getDb();
+        $select->join(
+                array('exhibit_page_blocks' => $db->ExhibitPageBlocks),
+                'exhibit_pages.id = exhibit_page_blocks.page_id',
+                array()
+        );
+        $select->join(
+                array('exhibit_block_attachments' => $db->ExhibitBlockAttachments),
+                'exhibit_page_blocks.id = exhibit_block_attachments.block_id',
+                array()
+        );
+        $select->where('exhibit_block_attachments.item_id = ?', $item_id);
     }
 }
