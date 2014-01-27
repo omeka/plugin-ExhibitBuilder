@@ -1,3 +1,14 @@
+.exhibit-item-link,
+.download-file {
+    vertical-align: top;
+    display: block;
+}
+
+.exhibit-item-link *,
+.download-file * {
+    vertical-align: top;
+}
+
 .exhibit-block + .layout-gallery {
     padding-top: 1.5em;
 }
@@ -40,6 +51,11 @@
     margin-left: 2%;
 }
 
+.layout-gallery .gallery-showcase.right.with-left +
+.gallery.with-showcase.left {
+    margin-right: 0;
+}
+
 .layout-gallery a {
     border-bottom: 0;
 }
@@ -55,12 +71,13 @@
     margin-bottom: 1.25%;
 }
 
-.layout-gallery .gallery-showcase.left.with-right {
-    margin-right: 0;
+.layout-gallery .gallery-showcase.left.with-right +
+.gallery.with-showcase.right {
+    margin-left: 0;
 }
 
 .layout-gallery .gallery-showcase.right.with-left {
-    margin-left: 0;
+    margin-left: 2%;
 }
 
 .layout-gallery .gallery.with-showcase.left {
