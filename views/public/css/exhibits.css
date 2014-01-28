@@ -1,5 +1,6 @@
 .exhibit-item-caption {
     font-size: 0.8em;
+    margin-bottom: 1.2em !important;
 }
 
 #exhibit-pages ul {
@@ -34,6 +35,7 @@
 
 .exhibit-block {
     clear: both;
+    margin-bottom: 1.5em;
 }
 
 .exhibit-items img {
@@ -44,4 +46,15 @@
 
 .exhibit-item-link {
     display: block;
+}
+
+.exhibit-item-link,
+.download-file {
+    vertical-align: top;
+    display: block;
+}
+
+.exhibit-item-link *,
+.download-file * {
+    vertical-align: top;
 }
