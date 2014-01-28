@@ -38,6 +38,10 @@
     margin-bottom: 1.5em;
 }
 
+.exhibit-block:last-child {
+    margin-bottom: 0;
+}
+
 .exhibit-items img {
     vertical-align: top;
     max-width: 100%;
