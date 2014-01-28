@@ -1,6 +1,26 @@
+.exhibit-item-link,
+.download-file {
+    vertical-align: top;
+    display: block;
+}
+
+.exhibit-item-link *,
+.download-file * {
+    vertical-align: top;
+}
+
 .layout-file-text .exhibit-items {
     margin-bottom: 2%;
     max-width: 40%;
+}
+
+.layout-file-text .exhibit-items > * {
+    max-width: 100%;
+    margin-bottom: 1em;
+}
+
+.layout-file-text .exhibit-items > *:last-child {
+    margin-bottom: 0;
 }
 
 .layout-file-text .exhibit-items .download-file {
