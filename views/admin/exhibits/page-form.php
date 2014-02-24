@@ -8,7 +8,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <?php echo html_escape($title); ?>
 </div>
 <?php echo flash(); ?>
-<form method="post">
+<form id="exhibit-page-form" method="post">
     <div class="seven columns alpha">
     <fieldset>
         <div class="field">
@@ -118,6 +118,8 @@ jQuery(document).ready(function () {
     Omeka.ExhibitBuilder.setUpBlocks(<?php echo json_encode(url('exhibits/block-form')); ?>);
     Omeka.ExhibitBuilder.setUpItemsSelect(<?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>);
+    Omeka.ExhibitBuilder.setUpPageValidate(<?php echo js_escape(url(array(
+        'action' => 'validate-page', 'id' => $exhibit_page->id), 'exhibitStandard')); ?>);
 
     Omeka.wysiwyg();
     jQuery(document).on('exhibit-builder-refresh-wysiwyg', function (event) {

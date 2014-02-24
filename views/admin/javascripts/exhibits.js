@@ -445,4 +445,36 @@ Omeka.ExhibitBuilder = {};
             $('#pages-delete-hidden').val(deletedIds.join(','));
         });
     };
+
+    Omeka.ExhibitBuilder.setUpPageValidate = function (validateUrl) {
+        var preventSubmit = true;
+        $('#exhibit-page-form').submit(function (event) {
+            var form = this;
+            $('.page-validate-message').remove();
+            if (!preventSubmit) {
+                return;
+            }
+
+            event.preventDefault();
+            $.ajax({
+                url: validateUrl,
+                method: 'POST',
+                dataType: 'json',
+                data: $('#title, #slug').serialize(),
+                success: function (response) {
+                    if (response.success) {
+                        preventSubmit = false;
+                        form.submit();
+                    } else {
+                        $('html, body').scrollTop(0);
+                        $.each(response.messages, function (key, value) {
+                            var message = '<span class="error page-validate-message">' + value + '</span>';
+                            jQuery('#' + key).after(message)
+                                .parent().effect('shake', {distance: 10});
+                        })
+                    }
+                }
+            });
+        });
+    };
 })(jQuery);

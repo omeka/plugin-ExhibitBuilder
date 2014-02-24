@@ -363,6 +363,31 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     }
 
     /**
+     * AJAX action for checking exhibit page data.
+     */
+    public function validatePageAction()
+    {
+        try {
+            $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
+        } catch (Exception $e) {
+            $exhibitPage = new ExhibitPage;
+        }
+
+        $exhibitPage->setPostData($_POST);
+        $exhibitPage->validateSlug();
+        if ($exhibitPage->isValid()) {
+            $data = array('success' => true);
+        } else {
+            $data = array(
+                'success' => false,
+                'messages' => $exhibitPage->getErrors()->get()
+            );
+        }
+
+        $this->_helper->json($data);
+    }
+
+    /**
      * AJAX/partial form for a single block in an page.
      */
     public function blockFormAction()
