@@ -1,6 +1,4 @@
-if (typeof Omeka === 'undefined') {
-    Omeka = {};
-}
+var Omeka = Omeka || {};
 Omeka.ExhibitBuilder = {};
 
 (function ($) {
@@ -138,13 +136,13 @@ Omeka.ExhibitBuilder = {};
         sortAttachments('#block-container');
     };
 
-    Omeka.ExhibitBuilder.themeConfig = function(themeConfigUrl, data) {
-        if ($('#theme').val() == '') {
+    Omeka.ExhibitBuilder.themeConfig = function() {
+        if ($('#theme').val() === '') {
             $('.configure-button').hide();
         }
         
         $('#theme').change(function() {
-            if ($(this).val() == '') {
+            if ($(this).val() === '') {
                 $('.configure-button').hide();
             } else {
                 $('.configure-button').show();
@@ -152,7 +150,7 @@ Omeka.ExhibitBuilder = {};
         });
     }; 
 
-    Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl, attachmentUrl) {
+    Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl) {
         /*
          * Use AJAX to retrieve the list of items that can be attached.
          */
@@ -173,7 +171,7 @@ Omeka.ExhibitBuilder = {};
                     $('#attachment-panel').removeClass('loading');
                 }
             });
-        };
+        }
 
         function setSearchVisibility(show) {
             var searchForm = $('#page-search-form');
@@ -278,16 +276,16 @@ Omeka.ExhibitBuilder = {};
     Omeka.ExhibitBuilder.setUpAttachments = function (attachmentUrl) {
         function applyAttachment() {
             var options = $('#attachment-options');
-            data = getAttachmentData(options, false);
+            var data = getAttachmentData(options, false);
 
             var targetedItem = $('.item-targeted').removeClass('item-targeted');
             var targetedBlock = targetedItem.parents('.block-form');
-            data['block_index'] = targetedBlock.data('blockIndex');
+            data.block_index = targetedBlock.data('blockIndex');
 
             if (targetedItem.is('.attachment')) {
-                data['index'] = targetedItem.data('attachment-index');
+                data.index = targetedItem.data('attachment-index');
             } else {
-                data['index'] = targetedBlock.find('.attachment').length;
+                data.index = targetedBlock.find('.attachment').length;
             }
 
             $.ajax({
@@ -303,17 +301,17 @@ Omeka.ExhibitBuilder = {};
                     }
                 }
             });
-        };
+        }
 
         function getAttachmentData(container, hidden) {
             var item_id, file_id, caption;
 
             if (hidden) {
-                item_id = container.find('input[name*="[item_id]"]').val()
+                item_id = container.find('input[name*="[item_id]"]').val();
                 file_id = container.find('input[name*="[file_id]"]').val();
                 caption = container.find('input[name*="[caption]"]').val();
             } else {
-                item_id = container.find('input[name="item_id"]').val()
+                item_id = container.find('input[name="item_id"]').val();
                 file_id = container.find('input[name="file_id"]:checked').val();
                 caption = tinymce.get(container.find('textarea[name="caption"]').attr('id')).getContent();
             }
@@ -398,7 +396,7 @@ Omeka.ExhibitBuilder = {};
             $(document).trigger('exhibit-builder-select-item');
             attachmentPanel.addClass('editing-attachment').dialog('open');
         });
-    }
+    };
 
     /**
      * Enable drag and drop sorting for elements.
@@ -421,7 +419,7 @@ Omeka.ExhibitBuilder = {};
     Omeka.ExhibitBuilder.activateDeleteLinks = function () {
         $('#page-list .delete-element').click(function (event) {
             event.preventDefault();
-            header = $(this).parent();
+            var header = $(this).parent();
             if ($(this).hasClass('delete-element')) {
                 $(this).removeClass('delete-element').addClass('undo-delete');
                 header.addClass('deleted');
@@ -471,7 +469,7 @@ Omeka.ExhibitBuilder = {};
                             var message = '<span class="error page-validate-message">' + value + '</span>';
                             jQuery('#' + key).after(message)
                                 .parent().effect('shake', {distance: 10});
-                        })
+                        });
                     }
                 }
             });
