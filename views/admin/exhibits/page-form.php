@@ -118,8 +118,19 @@ jQuery(document).ready(function () {
     Omeka.ExhibitBuilder.setUpBlocks(<?php echo json_encode(url('exhibits/block-form')); ?>);
     Omeka.ExhibitBuilder.setUpItemsSelect(<?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>);
-    Omeka.ExhibitBuilder.setUpPageValidate(<?php echo js_escape(url(array(
-        'action' => 'validate-page', 'id' => $exhibit_page->id), 'exhibitStandard')); ?>);
+    <?php
+    if ($exhibit_page->exists()) {
+        $validateUrl = url(
+            array('action' => 'validate-page', 'id' => $exhibit_page->id),
+            'exhibitStandard', array(), true);
+    } else {
+        $validateUrl = url(
+            array('action' => 'validate-page', 'exhibit_id' => $exhibit_page->exhibit_id,
+                'parent_id' => $exhibit_page->parent_id),
+            'exhibitAction', array(), true);
+    }
+    ?>
+    Omeka.ExhibitBuilder.setUpPageValidate(<?php echo js_escape($validateUrl); ?>);
 
     Omeka.wysiwyg();
     jQuery(document).on('exhibit-builder-refresh-wysiwyg', function (event) {

@@ -371,6 +371,12 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
         } catch (Exception $e) {
             $exhibitPage = new ExhibitPage;
+            if (($exhibit_id = $this->getParam('exhibit_id'))) {
+                $exhibitPage->exhibit_id = $exhibit_id;
+            }
+            if (($parent_id = $this->getParam('parent_id'))) {
+                $exhibitPage->parent_id = $parent_id;
+            }
         }
 
         $exhibitPage->setPostData($_POST);
