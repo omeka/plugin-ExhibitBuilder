@@ -10,98 +10,14 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-11-20 12:57+0000\n"
-"Last-Translator: Jan Černý <cernyhonza@gmail.com>\n"
+"PO-Revision-Date: 2014-01-03 19:02+0000\n"
+"Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/omeka/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-msgid "Gallery Full Left"
-msgstr "Náhledy k položkám v levém sloupci"
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
-" image and text block."
-msgstr "Zobrazí galerii 8 náhledů s širším sloupcem vlevo pro 1 obrázek plné velikosti a blok textu."
-
-msgid "Gallery Full Right"
-msgstr "Náhledy k položkám v pravém sloupci"
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
-"size image and text block."
-msgstr "Galerie obsahuje 8 náhledů k položkám, velký obrázek v pravém sloupci a odstavec textu."
-
-msgid "Gallery Thumbnails Text Bottom"
-msgstr "Obrazové náhledy k položkám v horní části, v dolní je umístěn text"
-
-msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Zobrazí blok textu pod galerií 12-ti položek."
-
-msgid "Gallery Thumbnails Text Top"
-msgstr "Horní text náhledů galerie"
-
-msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Zobrazí blok textu nad galerií 12-ti položek."
-
-msgid "Gallery Thumbnails"
-msgstr "Náhledy galerie"
-
-msgid "Displays a gallery of up to 16 items."
-msgstr "Zobrazí galerii až 16-ti položek."
-
-msgid "Image List Left Thumbs"
-msgstr "Náhledy seznamu obrázků vlevo"
-
-msgid ""
-"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
-"right."
-msgstr "Zobrazí až 8 náhledů vlevo s až 8 bloky textu vpravo."
-
-msgid "Image List Left"
-msgstr "Seznam obrázků vlevo"
-
-msgid ""
-"Displays up to 8 full-size images on the left with up to 8 text blocks on "
-"the right."
-msgstr "Zobrazí až 8 obrázků plné velikosti vlevo s až 8 bloky textu vpravo."
-
-msgid "Image List Right Thumbs"
-msgstr "Náhledy seznamu obrázků vpravo"
-
-msgid ""
-"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
-"left."
-msgstr "Zobrazí až 8 náhledů vpravo s až 8 bloky textu vlevo."
-
-msgid "Image List Right"
-msgstr "Seznam obrázků vpravo"
-
-msgid ""
-"Displays up to 8 full-size images on the right with up to 8 text blocks on "
-"the left."
-msgstr "Zobrazí až 8 obrázků plné velikosti vpravo s až 8 bloky textu vlevo."
-
-msgid "Text Image Left"
-msgstr "Text obrázku vlevo"
-
-msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Zobrazí stránku textu s obrázky plné velikosti plovoucími vlevo."
-
-msgid "Text Image Right"
-msgstr "Text obrázku vpravo"
-
-msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Zobrazí stránku textu s obrázky plné velikosti plovoucími vpravo."
-
-msgid "Text"
-msgstr "Text"
-
-msgid "Displays a full page of text without items."
-msgstr "Zobrazí stránku texte bez položek."
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
@@ -113,122 +29,141 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Výchozí metoda podle které si přejete řadit seznam expozic na stránce expozice/procházení. Výchozí je 'Datum Přidání'."
 
-#: controllers/ExhibitsController.php:75
+#: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
 msgstr "Položka není použita v této expozici."
 
-#: controllers/ExhibitsController.php:201
+#: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Je nutné nejprve vybrat téma vzhledu aby bylo možné ho nastavit."
 
-#: functions.php:282
+#: functions.php:390
 msgid "exhibits"
 msgstr "expozice"
 
-#: functions.php:296 views/admin/exhibits/browse.php:2
+#: functions.php:404 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Procházet expozice"
 
-#: functions.php:312 views/admin/exhibits/add.php:6
-#: views/admin/exhibits/edit.php:8
-#: views/admin/exhibits/page-content-form.php:9
-#: views/admin/exhibits/page-metadata-form.php:8
+#: functions.php:420 views/admin/exhibits/add.php:6
+#: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Expozice"
 
-#: functions.php:469
+#: functions.php:581
 msgid "Search by Exhibit"
 msgstr "Hledat podle expozice"
 
-#: functions.php:478
+#: functions.php:590
 msgid "Exhibit"
 msgstr "Expozice"
 
-#: functions.php:479
+#: functions.php:591
 msgid "Exhibit Page"
 msgstr "Stránka expozice"
 
-#: helpers/ExhibitFunctions.php:242
-msgid "There is no item attached."
-msgstr "Není zde připojena žádná položka."
-
-#: helpers/ExhibitFunctions.php:244
-#: views/admin/exhibits/page-content-form.php:95
-msgid "Attach an Item"
-msgstr "Připojit položku"
-
-#: helpers/ExhibitFunctions.php:267
-msgid "Caption"
-msgstr "Titulek"
-
-#: helpers/ExhibitFunctions.php:290
-msgid "Select a File"
-msgstr "Vybrat soubor"
-
-#: helpers/ExhibitFunctions.php:463
+#: helpers/ExhibitFunctions.php:177
 msgid "Featured Exhibit"
 msgstr "Doporučené expozice"
 
-#: helpers/ExhibitFunctions.php:468
+#: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
 msgstr "Nemáte žádné doporučené expozice."
 
-#: models/Exhibit.php:37
+#: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
 msgstr "Expozici musí být nastaven validní kód."
 
-#: models/Exhibit.php:38 models/ExhibitPage.php:31
+#: models/Exhibit.php:110 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Kód nesmí být delší než 30 znaků."
 
-#: models/Exhibit.php:39
+#: models/Exhibit.php:111
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Váš URL kód je již používán jinou expozicí.  Prosím vyberte jiný."
 
-#: models/Exhibit.php:48
+#: models/Exhibit.php:124
 msgid "An exhibit must be given a title."
 msgstr "Expozici musí být nastaven název."
 
-#: models/Exhibit.php:52
+#: models/Exhibit.php:128
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Název expozice nesmí být delší než 255 znaků."
 
-#: models/Exhibit.php:56
+#: models/Exhibit.php:132
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Jméno vašeho vzhledu může být nejvýše 30 znaků dlouhé."
 
-#: models/ExhibitPage.php:30
+#: models/ExhibitLayout.php:143
+msgid "File with Text"
+msgstr ""
+
+#: models/ExhibitLayout.php:144
+msgid ""
+"Default layout features files justified to left or right with text "
+"displaying to the opposite side"
+msgstr ""
+
+#: models/ExhibitLayout.php:147
+msgid "Gallery"
+msgstr ""
+
+#: models/ExhibitLayout.php:148
+msgid "A gallery layout featuring file thumbnails"
+msgstr ""
+
+#: models/ExhibitLayout.php:151
+#: views/shared/exhibit_layouts/file-text/form.php:11
+#: views/shared/exhibit_layouts/gallery/form.php:11
+#: views/shared/exhibit_layouts/text/form.php:2
+msgid "Text"
+msgstr "Text"
+
+#: models/ExhibitLayout.php:152
+msgid "Layout featuring a block of text without files"
+msgstr ""
+
+#: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Kód musí být nastaven pro každou stránku expozice."
 
-#: models/ExhibitPage.php:32
+#: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Kód této stránky byl jíž použit.  Prosím modifikujte kód tak aby byl jedinečný."
 
-#: models/ExhibitPage.php:47
-msgid "A layout must be provided for each exhibit page."
-msgstr "Rozvržení musí být nastaveno pro každou stránku expozice."
-
-#: models/ExhibitPage.php:51
+#: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
 msgstr "Expozicím musí být nastaveno jméno."
-
-#: models/Mixin/Order.php:101
-msgid "Cannot add a child to a record that does not exist yet!"
-msgstr "Nelze přidat potomka záznamu který dosud neexistuje!"
-
-#: models/Mixin/Order.php:105
-#, php-format
-msgid "Child must be an instance of \"%s\""
-msgstr "Potomek musí být instance \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
 msgstr "Přidat expozici"
+
+#: views/admin/exhibits/attachment-item-options.php:16
+#, php-format
+msgid "Selected Item: %s"
+msgstr ""
+
+#: views/admin/exhibits/attachment-item-options.php:20
+msgid "Select a file to use."
+msgstr ""
+
+#: views/admin/exhibits/attachment.php:12
+#: views/admin/exhibits/block-form.php:9
+msgid "Remove/Restore"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:8
+msgid "Block"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:10
+msgid "Expand/Collapse"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -258,88 +193,110 @@ msgid "Exhibit Metadata"
 msgstr "Metadata expozice"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
-#: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
 msgstr "Kód"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-metadata-form.php:28
+#: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
 msgstr "Mezery a speciální znaky nejsou povoleny"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
-#: views/public/exhibits/summary.php:14
+#: views/public/exhibits/summary.php:15
 msgid "Credits"
 msgstr "Titulky"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:61
+#: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
 msgstr "Stránky"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
 msgstr "Nejsou zde žádné stránky."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:66
+#: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
-"To reorder pages, click and drag the page up or down to the preferred "
-"location."
-msgstr "Pro přeskupení stránek, klikněte a táhněte stránku nahoru nebo dolů na požadovanou pozici."
+"To reorder or nest pages, click and drag a page to the preferred location."
+msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Přidat stránku"
 
-#: views/admin/exhibits/page-content-form.php:2
-#, php-format
-msgid "Edit Page Content: \"%s\""
-msgstr "Upravit obsah stránky: \"%s\""
-
-#: views/admin/exhibits/page-content-form.php:16
-msgid "Page Layout"
-msgstr "Rozvržení stránky"
-
-#: views/admin/exhibits/page-content-form.php:27
-msgid "Edit Page"
-msgstr "Upravit stránku"
-
-#: views/admin/exhibits/page-content-form.php:30
-msgid "Page Content"
-msgstr "Obsah stránky"
-
-#: views/admin/exhibits/page-content-form.php:42
-msgid "Save and Add Another Page"
-msgstr "Uložit a  přidat další stránku"
-
-#: views/admin/exhibits/page-content-form.php:63
-msgid "Remove This Item"
-msgstr "Odstranit tuto položku"
-
-#: views/admin/exhibits/page-content-form.php:98
-msgid "Attach Selected Item"
-msgstr "Přiložit vybrané položky"
-
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
 msgstr "Upravit stránku \"%s\""
 
-#: views/admin/exhibits/page-metadata-form.php:14
-msgid "Page Metadata"
-msgstr "Metadata stránky"
+#: views/admin/exhibits/page-form.php:16
+msgid "Page Title"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:35
-msgid "Layouts"
-msgstr "Rozvržení"
+#: views/admin/exhibits/page-form.php:24
+msgid "Page Slug"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:50
-msgid "Layout"
-msgstr "Rozvežení"
+#: views/admin/exhibits/page-form.php:33
+msgid "Content"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:55
-msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Vyberte rozvržení označením náhledu vpravo."
+#: views/admin/exhibits/page-form.php:34
+msgid "Collapse All"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:35
+msgid "Expand All"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:36
+msgid ""
+"To reorder blocks and items, click and drag them to the preferred location."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:44
+msgid "New Block"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:46
+msgid "Select layout"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:64
+msgid "Add new content block"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:74
+msgid "Save and Add Another Page"
+msgstr "Uložit a  přidat další stránku"
+
+#: views/admin/exhibits/page-form.php:82
+msgid "Attach an Item"
+msgstr "Připojit položku"
+
+#: views/admin/exhibits/page-form.php:84
+msgid "Revert to Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "Zobrazit vyhledávací formulář"
+
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:104
+msgid "Provide a caption."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:111
+msgid "Apply"
+msgstr ""
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -354,29 +311,62 @@ msgstr "Nemohu zobrazit žádné štítky. Musíte nejprve označit nějaké exp
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "Nastavit vzhled &#8220;%s&#8221;"
 
-#: views/admin/items/browse.php:2
-msgid "Show Search Form"
-msgstr "Zobrazit vyhledávací formulář"
-
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "přidat položky"
 
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Nejsou zde žádné položky z kterých by bylo možné vybírat.  Prosím upravte vaše hledání, nebo %s."
+
+#: views/helpers/ExhibitItemListing.php:36
+msgid "Select Item"
+msgstr ""
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
 msgstr "Zatím zde nejsou žádné expozice. "
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
-msgid "Primary"
-msgstr "Primární"
+#: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/gallery/form.php:17
+msgid "Layout Options"
+msgstr ""
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:11
-msgid "Secondary"
-msgstr "Sekundární"
+#: views/shared/exhibit_layouts/file-text/form.php:22
+msgid "File position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:28
+#: views/shared/exhibit_layouts/gallery/form.php:41
+msgid "Left"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
+msgid "Right"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:31
+msgid "File size"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:22
+msgid "Showcase file position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:27
+msgid "No showcase file"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:36
+msgid "Gallery position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:46
+msgid ""
+"If there is no showcase file or text, the gallery will use the full width of"
+" the page."
+msgstr ""

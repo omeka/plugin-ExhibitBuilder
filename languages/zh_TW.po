@@ -3,371 +3,370 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# stauros gkinis <gkista@yahoo.gr>, 2012
-# Stoitsis Giannis <>, 2012
-# Theodosios Filippou <tf1974@gmail.com>, 2013
+# yenny <yennylin1234@gmail.com>, 2014
+# zhangh <zhangh@unlv.nevada.edu>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-03 19:02+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/omeka/language/el_GR/)\n"
+"PO-Revision-Date: 2014-01-11 09:12+0000\n"
+"Last-Translator: yenny <yennylin1234@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/omeka/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el_GR\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Ταξινόμηση Εκθεμάτων"
+msgstr "排序展覽"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "Η προεπιλεγμένη μέθοδος με την οποία θέλετε να ταξινομήσετε την λίστα των εκθεμάτων για τα εκθέματα / περιηγηση σελίδας. Η προεπιλογή είναι \"Ημερομηνία Καταχώρησης»."
+msgstr "在展覽/瀏覽頁面上的展覽列表，你希望其預設的排序方法。預設是“增加日期”。"
 
 #: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
-msgstr "Αυτό το αντικείμενο δεν χρησιμοποιείται μέσα στο έκθεμα."
+msgstr "這個單件未在此展覽中使用。"
 
 #: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Πρέπει να επιλέξετε συγκεκριμένα ένα θέμα για να το διαμορφώσετε."
+msgstr "你必須明確地選定一個布景主題來設置它。"
 
 #: functions.php:390
 msgid "exhibits"
-msgstr "εκθέματα"
+msgstr "展覽"
 
 #: functions.php:404 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Περιήγηση Εκθεμάτων"
+msgstr "瀏覽展覽"
 
 #: functions.php:420 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Εκθέματα"
+msgstr "展覽"
 
 #: functions.php:581
 msgid "Search by Exhibit"
-msgstr "Αναζήτηση ανά Έκθεμα"
+msgstr "依展覽搜尋"
 
 #: functions.php:590
 msgid "Exhibit"
-msgstr "Έκθεμα"
+msgstr "展覽"
 
 #: functions.php:591
 msgid "Exhibit Page"
-msgstr ""
+msgstr "展覽頁"
 
 #: helpers/ExhibitFunctions.php:177
 msgid "Featured Exhibit"
-msgstr "Προτεινόμενα εκθέματα"
+msgstr "特色展覽"
 
 #: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
-msgstr "Δεν έχετε προτεινόμενα εκθέματα."
+msgstr "您沒有特色展覽。"
 
 #: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
-msgstr "Τα Έκθεματα πρέπει να έχουν έγκυρο slug."
+msgstr "展覽必須賦予一個有效的網址簡稱。"
 
 #: models/Exhibit.php:110 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
-msgstr "Το slug πρέπει να είναι το πολύ 30 χαρακτήρες."
+msgstr "一個網址簡稱最多只能有30個字元。"
 
 #: models/Exhibit.php:111
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Το URL slug χρησιμοποιείται από ένα άλλο έκθεμα. Παρακαλώ διαλέξτε κάποιο άλλο."
+msgstr "你的URL網址簡稱已被另一個展覽使用。請選擇另一個。"
 
 #: models/Exhibit.php:124
 msgid "An exhibit must be given a title."
-msgstr "Στο Έκθεμα πρέπει να δοθεί ένας τίτλος."
+msgstr "一個展覽必須賦予一個標題。"
 
 #: models/Exhibit.php:128
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "Ο τίτλος ενός Εκθέματος πρέπει να είναι το πολύ 255 χαρακτήρες."
+msgstr "展覽標題最多只能有255個字元。"
 
 #: models/Exhibit.php:132
 msgid "The name of your theme must be 30 characters or less."
-msgstr "Το όνομα του θέματος πρέπει να είναι το πολύ 30 χαρακτήρες."
+msgstr "你的布景主題名稱最多只能有30個字元。"
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "有文本的檔案"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "預設版型特色檔案被調整到左邊或右邊並讓文本顯示在另一邊"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr ""
+msgstr "相簿"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "著重檔案縮圖的相簿版型"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
 #: views/shared/exhibit_layouts/gallery/form.php:11
 #: views/shared/exhibit_layouts/text/form.php:2
 msgid "Text"
-msgstr "Κείμενο"
+msgstr "文本"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "強調文字區塊而沒有檔案的版型"
 
 #: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Ένα slug πρέπει να δοθεί για κάθε σελίδα του εκθέματος."
+msgstr "每個展覽的每個頁面都必須賦予一個網址簡稱。"
 
 #: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "這個頁面的網址簡稱已被使用。請修改網址簡稱使其具有唯一性。"
 
 #: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
-msgstr "Οι σελίδες ενός εκθέματος πρέπει να έχουν ένα τίτλο."
+msgstr "展覽頁面必須賦予標題"
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Προσθήκη Εκθέματος."
+msgstr "增加展覽"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "挑選的單件：%s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "選擇使用的檔案"
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr ""
+msgstr "移除/回復"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr ""
+msgstr "區塊"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "展開/折疊"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Δεν υπάρχει κάποιο έκθεμα ακόμα."
+msgstr "尚未有展覽。"
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Προσθήκη Εκθέματος"
+msgstr "增加展覽"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Θέμα"
+msgstr "布景主題"
 
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Τρέχων Δημόσιο Θέμα"
+msgstr "當前公開的布景主題"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Επεξεργασία Εκθέματος: \"%s\""
+msgstr "編輯展覽\"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Μεταδεδομένα Εκθέματος"
+msgstr "展覽後設資料"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr "Slug"
+msgstr "網址簡稱"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
-msgstr "Τα κενά και οι ειδικοί χαρακτήρες δεν επιτρέπονται."
+msgstr "不允許空格或特殊字元"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Συντελεστές"
+msgstr "關於作者"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
-msgstr "Σελίδες"
+msgstr "頁面"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
-msgstr "Δεν υπάρχουν σελίδες."
+msgstr "沒有頁面。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "重排或套入頁面，點擊並拖曳頁面到預想的位置。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Προσθήκη σελίδας"
+msgstr "增加頁面"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Επεξεργασία σελίδας \"%s\""
+msgstr "編輯頁面\"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "頁面標題"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr ""
+msgstr "頁面網址簡稱"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "內容"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr ""
+msgstr "全部折疊"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr ""
+msgstr "全部展開"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "重排區塊或單件，點擊並拖曳它們到預想的位置。"
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr ""
+msgstr "新區塊"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr ""
+msgstr "選擇版型"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr ""
+msgstr "增加新的內容區塊"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
-msgstr "Αποθήκευση και προσθήκη νέας σελίδας"
+msgstr "儲存並增加另一個頁面"
 
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
-msgstr "Τοποθετήστε ένα αντικείμενο"
+msgstr "附加一個單件"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "回復到挑選的單件"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
-msgstr "Προβολή φόρμας αναζήτησης"
+msgstr "顯示搜尋表單"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr ""
+msgstr "隱藏搜尋表單"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr ""
+msgstr "變更挑選的單件"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr ""
+msgstr "提供一個標題。"
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr ""
+msgstr "套用"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Περιήγηση Εκθεμάτων από Tag"
+msgstr "依標籤瀏覽展覽"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Δεν υπάρχουν tags. Πρέπει πρώτα να βάλετε tag σε κάποιο έκθεμα."
+msgstr "沒有標籤可以顯示。你必須先為一些展覽標註標籤。"
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Ρυθμίστε το &#8220;%s&#8221; Θέμα"
+msgstr "設置&#8220;%s&#8221;布景主題"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "προσθέστε μερικά αντικείμενα"
+msgstr "增加一些單件"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Δεν υπάρχουν αντικείμενα για να επιλέξετε. Παρακαλούμε να βελτιώσετε την αναζήτησή σας ή %s."
+msgstr "沒有可以選擇的單件。請修改你的搜尋或%s。"
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "選擇單件"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Δεν υπάρχει έκθεμα διαθέσιμο ακόμα."
+msgstr "尚未有展覽。"
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "版型選項"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr ""
+msgstr "檔案位置"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 msgid "Left"
-msgstr ""
+msgstr "左邊"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 msgid "Right"
-msgstr ""
+msgstr "右邊"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "檔案尺寸"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "範例檔案位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "沒有範例檔案"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "相簿位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "如果沒有範例檔案和文本，相簿會使用頁面的全寬。"

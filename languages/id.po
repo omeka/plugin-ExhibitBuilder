@@ -9,98 +9,14 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-11-20 12:57+0000\n"
-"Last-Translator: demank <sukmabudi@yahoo.com>\n"
+"PO-Revision-Date: 2014-01-03 19:02+0000\n"
+"Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/omeka/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-msgid "Gallery Full Left"
-msgstr "Galeri Lengkap Kiri"
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
-" image and text block."
-msgstr "Tampilkan sebuah galeri dengan 8 thumbnail, kolom kiri lebih lebar untuk gambar 1 ukuran-penuh dan blok teks."
-
-msgid "Gallery Full Right"
-msgstr "Galeri Lengkap Kanan"
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
-"size image and text block."
-msgstr "Tampilkan sebuah galeri dengan 8 thumbnail, kolom kanan lebih lebar untuk gambar 1 ukuran-penuh dan blok teks."
-
-msgid "Gallery Thumbnails Text Bottom"
-msgstr "Teks Thumbnail Galeri Bawah"
-
-msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Tampilkan sebuah blok teks di bawah galeri dengan 12 item."
-
-msgid "Gallery Thumbnails Text Top"
-msgstr "Teks Thumbnail Galeri Atas"
-
-msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Tampilkan blok teks di atas galeri dengan 12 item."
-
-msgid "Gallery Thumbnails"
-msgstr "Thumbnail Galeri"
-
-msgid "Displays a gallery of up to 16 items."
-msgstr "Tampilkan galeri dengan 16 item."
-
-msgid "Image List Left Thumbs"
-msgstr "Daftar Gambar Thumb Kiri"
-
-msgid ""
-"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
-"right."
-msgstr "Tampilkan 8 thumbnail di kiri dengan 8 blok teks di kanan."
-
-msgid "Image List Left"
-msgstr "Daftar Gambar Kiri"
-
-msgid ""
-"Displays up to 8 full-size images on the left with up to 8 text blocks on "
-"the right."
-msgstr "Tampilkan gambar 8 ukuran-penuh di kiri dengan 8 blok teks di kanan."
-
-msgid "Image List Right Thumbs"
-msgstr "Daftar Gambar Thumb Kanan"
-
-msgid ""
-"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
-"left."
-msgstr "Tampilkan 8 thumbnail di kanan dengan 8 thumbnail di kiri."
-
-msgid "Image List Right"
-msgstr "Daftar Gambar Kanan"
-
-msgid ""
-"Displays up to 8 full-size images on the right with up to 8 text blocks on "
-"the left."
-msgstr "Tampilkan gambar 8 ukuran-penuh di kanan dengan 8 blok teks di kiri."
-
-msgid "Text Image Left"
-msgstr "Teks Gambar Kiri"
-
-msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Tampilkan halaman teks penuh, dengan gambar ukuran-penuh mengambang di kiri."
-
-msgid "Text Image Right"
-msgstr "Teks Gambar Kanan"
-
-msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Tampilkan halaman teks penuh, dengan gambar ukuran-penuh mengambang di kanan."
-
-msgid "Text"
-msgstr "Teks"
-
-msgid "Displays a full page of text without items."
-msgstr "Tampilkan halaman teks penuh tanpa item."
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
@@ -112,122 +28,141 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Metode baku yang ingin anda gunakan untuk mengurut daftar pameran pada halaman pameran/ramban. Bakunya adalah 'Tanggal Ditambahkan'."
 
-#: controllers/ExhibitsController.php:75
+#: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
 msgstr "Item ini tidak digunakan dalam pameran ini."
 
-#: controllers/ExhibitsController.php:201
+#: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Anda harus memilih secara spesifik sebuah tema untuk mengkonfigurasinya."
 
-#: functions.php:282
+#: functions.php:390
 msgid "exhibits"
 msgstr "pameran"
 
-#: functions.php:296 views/admin/exhibits/browse.php:2
+#: functions.php:404 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ramban Pameran"
 
-#: functions.php:312 views/admin/exhibits/add.php:6
-#: views/admin/exhibits/edit.php:8
-#: views/admin/exhibits/page-content-form.php:9
-#: views/admin/exhibits/page-metadata-form.php:8
+#: functions.php:420 views/admin/exhibits/add.php:6
+#: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Pameran"
 
-#: functions.php:469
+#: functions.php:581
 msgid "Search by Exhibit"
 msgstr "Cari berdasarkan Pameran"
 
-#: functions.php:478
+#: functions.php:590
 msgid "Exhibit"
 msgstr "Pameran"
 
-#: functions.php:479
+#: functions.php:591
 msgid "Exhibit Page"
 msgstr "Halaman Pameran"
 
-#: helpers/ExhibitFunctions.php:242
-msgid "There is no item attached."
-msgstr "Tidak ada item dilampirkan."
-
-#: helpers/ExhibitFunctions.php:244
-#: views/admin/exhibits/page-content-form.php:95
-msgid "Attach an Item"
-msgstr "Lampirkan Item"
-
-#: helpers/ExhibitFunctions.php:267
-msgid "Caption"
-msgstr "Judul"
-
-#: helpers/ExhibitFunctions.php:290
-msgid "Select a File"
-msgstr "Pilih File"
-
-#: helpers/ExhibitFunctions.php:463
+#: helpers/ExhibitFunctions.php:177
 msgid "Featured Exhibit"
 msgstr "Pameran Istimewa"
 
-#: helpers/ExhibitFunctions.php:468
+#: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
 msgstr "Anda tidak mempunyai pameran istimewa."
 
-#: models/Exhibit.php:37
+#: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
 msgstr "Pameran harus diberi sebuah slug yang valid."
 
-#: models/Exhibit.php:38 models/ExhibitPage.php:31
+#: models/Exhibit.php:110 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Sebuah slug harus 30 karakter atau kurang."
 
-#: models/Exhibit.php:39
+#: models/Exhibit.php:111
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "URL slug anda telah digunakan oleh pameran lain.  Gunakan yang lain."
 
-#: models/Exhibit.php:48
+#: models/Exhibit.php:124
 msgid "An exhibit must be given a title."
 msgstr "Sebuah pameran harus diberi judul."
 
-#: models/Exhibit.php:52
+#: models/Exhibit.php:128
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Judul untuk pameran harus 255 karakter atau kurang."
 
-#: models/Exhibit.php:56
+#: models/Exhibit.php:132
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Nama dari tema anda harus 30 karakter atau kurang."
 
-#: models/ExhibitPage.php:30
+#: models/ExhibitLayout.php:143
+msgid "File with Text"
+msgstr ""
+
+#: models/ExhibitLayout.php:144
+msgid ""
+"Default layout features files justified to left or right with text "
+"displaying to the opposite side"
+msgstr ""
+
+#: models/ExhibitLayout.php:147
+msgid "Gallery"
+msgstr ""
+
+#: models/ExhibitLayout.php:148
+msgid "A gallery layout featuring file thumbnails"
+msgstr ""
+
+#: models/ExhibitLayout.php:151
+#: views/shared/exhibit_layouts/file-text/form.php:11
+#: views/shared/exhibit_layouts/gallery/form.php:11
+#: views/shared/exhibit_layouts/text/form.php:2
+msgid "Text"
+msgstr "Teks"
+
+#: models/ExhibitLayout.php:152
+msgid "Layout featuring a block of text without files"
+msgstr ""
+
+#: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Sebuah slug harus diberikan untuk setiap halaman pameran."
 
-#: models/ExhibitPage.php:32
+#: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Slug halaman ini sudah digunakan.  Silahkan modifikasi slug agar ia menjadi unik."
 
-#: models/ExhibitPage.php:47
-msgid "A layout must be provided for each exhibit page."
-msgstr "Sebuah tataletak harus disediakan untuk setiap halaman pameran."
-
-#: models/ExhibitPage.php:51
+#: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
 msgstr "Halaman pameran harus diberi sebuah judul."
-
-#: models/Mixin/Order.php:101
-msgid "Cannot add a child to a record that does not exist yet!"
-msgstr "Tidak dapat menambahkan sebuah cabang ke rekod yang belum ada!"
-
-#: models/Mixin/Order.php:105
-#, php-format
-msgid "Child must be an instance of \"%s\""
-msgstr "Cabang haruslah sebuah instance dari \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
 msgstr "Tambah Pameran"
+
+#: views/admin/exhibits/attachment-item-options.php:16
+#, php-format
+msgid "Selected Item: %s"
+msgstr ""
+
+#: views/admin/exhibits/attachment-item-options.php:20
+msgid "Select a file to use."
+msgstr ""
+
+#: views/admin/exhibits/attachment.php:12
+#: views/admin/exhibits/block-form.php:9
+msgid "Remove/Restore"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:8
+msgid "Block"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:10
+msgid "Expand/Collapse"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -257,88 +192,110 @@ msgid "Exhibit Metadata"
 msgstr "Metadata Pameran"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
-#: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
 msgstr "Slug"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-metadata-form.php:28
+#: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
 msgstr "Spasi kosong atau karakter khusus tidak diperkenankan"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
-#: views/public/exhibits/summary.php:14
+#: views/public/exhibits/summary.php:15
 msgid "Credits"
 msgstr "Penghargaan"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:61
+#: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
 msgstr "Halaman"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
 msgstr "Tidak ada halaman."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:66
+#: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
-"To reorder pages, click and drag the page up or down to the preferred "
-"location."
-msgstr "Untuk mengurut ulang halaman, klik dan seret halaman naik atau turun ke lokasi yang diinginkan."
+"To reorder or nest pages, click and drag a page to the preferred location."
+msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Tambah Halaman"
 
-#: views/admin/exhibits/page-content-form.php:2
-#, php-format
-msgid "Edit Page Content: \"%s\""
-msgstr "Edit Konten Halaman: \"%s\""
-
-#: views/admin/exhibits/page-content-form.php:16
-msgid "Page Layout"
-msgstr "Tataletak Halaman"
-
-#: views/admin/exhibits/page-content-form.php:27
-msgid "Edit Page"
-msgstr "Edit Halaman"
-
-#: views/admin/exhibits/page-content-form.php:30
-msgid "Page Content"
-msgstr "Konten Halaman"
-
-#: views/admin/exhibits/page-content-form.php:42
-msgid "Save and Add Another Page"
-msgstr "Simpan dan Tambah Halaman Lainnya"
-
-#: views/admin/exhibits/page-content-form.php:63
-msgid "Remove This Item"
-msgstr "Hapus Item Ini"
-
-#: views/admin/exhibits/page-content-form.php:98
-msgid "Attach Selected Item"
-msgstr "Lampirkan Item Terpilih"
-
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
 msgstr "Edit Halaman \"%s\""
 
-#: views/admin/exhibits/page-metadata-form.php:14
-msgid "Page Metadata"
-msgstr "Metadata Halaman"
+#: views/admin/exhibits/page-form.php:16
+msgid "Page Title"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:35
-msgid "Layouts"
-msgstr "Tataletak"
+#: views/admin/exhibits/page-form.php:24
+msgid "Page Slug"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:50
-msgid "Layout"
-msgstr "Tataletak"
+#: views/admin/exhibits/page-form.php:33
+msgid "Content"
+msgstr ""
 
-#: views/admin/exhibits/page-metadata-form.php:55
-msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Pilih sebuah tataletak dengan memilih sebuah thumbnail di kanan."
+#: views/admin/exhibits/page-form.php:34
+msgid "Collapse All"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:35
+msgid "Expand All"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:36
+msgid ""
+"To reorder blocks and items, click and drag them to the preferred location."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:44
+msgid "New Block"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:46
+msgid "Select layout"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:64
+msgid "Add new content block"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:74
+msgid "Save and Add Another Page"
+msgstr "Simpan dan Tambah Halaman Lainnya"
+
+#: views/admin/exhibits/page-form.php:82
+msgid "Attach an Item"
+msgstr "Lampirkan Item"
+
+#: views/admin/exhibits/page-form.php:84
+msgid "Revert to Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "Tampilkan Formulir Pencarian"
+
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:104
+msgid "Provide a caption."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:111
+msgid "Apply"
+msgstr ""
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -353,29 +310,62 @@ msgstr "Tidak ada tag untuk ditampilkan. Sebelumnya anda harus memberi tag beber
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "Konfigurasi Tema &#8220;%s&#8221;"
 
-#: views/admin/items/browse.php:2
-msgid "Show Search Form"
-msgstr "Tampilkan Formulir Pencarian"
-
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "tambah beberapa item"
 
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Tidak ada item untuk dipilih.  Silahkan perbaiki pencarian anda atau %s."
+
+#: views/helpers/ExhibitItemListing.php:36
+msgid "Select Item"
+msgstr ""
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
 msgstr "Belum ada pameran tersedia."
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
-msgid "Primary"
-msgstr "Primer"
+#: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/gallery/form.php:17
+msgid "Layout Options"
+msgstr ""
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:11
-msgid "Secondary"
-msgstr "Sekunder"
+#: views/shared/exhibit_layouts/file-text/form.php:22
+msgid "File position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:28
+#: views/shared/exhibit_layouts/gallery/form.php:41
+msgid "Left"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
+msgid "Right"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:31
+msgid "File size"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:22
+msgid "Showcase file position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:27
+msgid "No showcase file"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:36
+msgid "Gallery position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:46
+msgid ""
+"If there is no showcase file or text, the gallery will use the full width of"
+" the page."
+msgstr ""

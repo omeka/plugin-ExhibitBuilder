@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Matti Lassila <matti.lassila@gmail.com>, 2012
+# Matti Lassila <matti.lassila@gmail.com>, 2012,2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2013-11-20 12:57+0000\n"
+"PO-Revision-Date: 2014-01-04 19:54+0000\n"
 "Last-Translator: Matti Lassila <matti.lassila@gmail.com>\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/projects/p/omeka/language/fi_FI/)\n"
 "MIME-Version: 1.0\n"
@@ -17,90 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "Gallery Full Left"
-msgstr "Galleria ja täysi kuva vasemmalla."
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider left column for 1 full-size"
-" image and text block."
-msgstr "Kahdeksan esikatselukuvan galleria, jossa yhden täysikokoisen kuvan ja tekstiosion sisältävä vasen palsta."
-
-msgid "Gallery Full Right"
-msgstr "Galleria ja täysi kuva oikealla."
-
-msgid ""
-"Displays a gallery of 8 thumbnails, with a wider right column for 1 full-"
-"size image and text block."
-msgstr "Kahdeksan esikatselukuvan galleria, jossa yhden täysikokoisen kuvan ja tekstiosion sisältävä oikea palsta."
-
-msgid "Gallery Thumbnails Text Bottom"
-msgstr "Galleria ja teksti alhaalla."
-
-msgid "Displays a block of text below a gallery of up to 12 items."
-msgstr "Alhaalla sijaitseva tekstiosio ja tila 12 esikatselukuvan gallerialle."
-
-msgid "Gallery Thumbnails Text Top"
-msgstr "Galleria ja teksti ylhäällä"
-
-msgid "Displays a block of text above a gallery of up to 12 items."
-msgstr "Ylhäällä sijaitseva tekstiosio ja tila 12 esikatselukuvan gallerialle."
-
-msgid "Gallery Thumbnails"
-msgstr "Galleria"
-
-msgid "Displays a gallery of up to 16 items."
-msgstr "Tila 16 esikatselukuvan gallerialle."
-
-msgid "Image List Left Thumbs"
-msgstr "Kuvapalsta esikatselukuvilla vasen"
-
-msgid ""
-"Displays up to 8 thumbnails on the left with up to 8 text blocks on the "
-"right."
-msgstr "Kahdeksan esikatselukuvan ja tekstin sisältävää osiota, kuvat asemoitu vasemmalle."
-
-msgid "Image List Left"
-msgstr "Kuvapalsta vasen"
-
-msgid ""
-"Displays up to 8 full-size images on the left with up to 8 text blocks on "
-"the right."
-msgstr "Kahdeksan täysikokoisen kuvan ja tekstin sisältävää osiota, kuvat asemoitu oikealle."
-
-msgid "Image List Right Thumbs"
-msgstr "Kuvapalsta esikatselukuvilla oikea"
-
-msgid ""
-"Displays up to 8 thumbnails on the right with up to 8 text blocks on the "
-"left."
-msgstr "Kahdeksan esikatselukuvan ja tekstin sisältävää osiota, kuvat asemoitu oikealle."
-
-msgid "Image List Right"
-msgstr "Kuvapalsta oikea"
-
-msgid ""
-"Displays up to 8 full-size images on the right with up to 8 text blocks on "
-"the left."
-msgstr "Kahdeksan täysikokoisen kuvan ja tekstin sisältävää osiota, kuvat asemoitu oikealle."
-
-msgid "Text Image Left"
-msgstr "Teksti, kuva vasemalla."
-
-msgid "Displays a full page of text, with a full-size image floated left."
-msgstr "Tekstisivu täysikokoisella kuvalla vasemmassa reunassa."
-
-msgid "Text Image Right"
-msgstr "Teksti, kuva oikealla."
-
-msgid "Displays a full page of text, with a full-size image floated right."
-msgstr "Tekstisivu täysikokoisella kuvalla oikeassa reunassa."
-
-msgid "Text"
-msgstr "Teksti"
-
-msgid "Displays a full page of text without items."
-msgstr "Tekstisivu ilman aineistoja."
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
@@ -112,122 +28,141 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Oletusjärjestys näytteyiden selaussivulla. Oletusarvoisesti näyttelyt järjestetään niiden lisäyspäivän mukaan."
 
-#: controllers/ExhibitsController.php:75
+#: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
 msgstr "Aineistoa ei ole sisällytetty tähän näyttelyyn."
 
-#: controllers/ExhibitsController.php:201
+#: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Voit muuttaa asetuksia valittuasi ulkoasun."
 
-#: functions.php:282
+#: functions.php:390
 msgid "exhibits"
 msgstr "näyttelyjä"
 
-#: functions.php:296 views/admin/exhibits/browse.php:2
+#: functions.php:404 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Selaa näyttelyitä"
 
-#: functions.php:312 views/admin/exhibits/add.php:6
-#: views/admin/exhibits/edit.php:8
-#: views/admin/exhibits/page-content-form.php:9
-#: views/admin/exhibits/page-metadata-form.php:8
+#: functions.php:420 views/admin/exhibits/add.php:6
+#: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Näyttelyt"
 
-#: functions.php:469
+#: functions.php:581
 msgid "Search by Exhibit"
 msgstr "Hae näyttelyn mukaan"
 
-#: functions.php:478
+#: functions.php:590
 msgid "Exhibit"
 msgstr "Näyttely"
 
-#: functions.php:479
+#: functions.php:591
 msgid "Exhibit Page"
 msgstr "Näyttelyn sivu"
 
-#: helpers/ExhibitFunctions.php:242
-msgid "There is no item attached."
-msgstr "Ei liitettyjä aineistoja."
-
-#: helpers/ExhibitFunctions.php:244
-#: views/admin/exhibits/page-content-form.php:95
-msgid "Attach an Item"
-msgstr "Liitä aineisto."
-
-#: helpers/ExhibitFunctions.php:267
-msgid "Caption"
-msgstr "Kuvateksti"
-
-#: helpers/ExhibitFunctions.php:290
-msgid "Select a File"
-msgstr "Valitse tiedosto"
-
-#: helpers/ExhibitFunctions.php:463
+#: helpers/ExhibitFunctions.php:177
 msgid "Featured Exhibit"
 msgstr "Etusivulle nostettu näyttely"
 
-#: helpers/ExhibitFunctions.php:468
+#: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
 msgstr "Ei etusivulle nostettuja näyttelyitä."
 
-#: models/Exhibit.php:37
+#: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
 msgstr "URL-osoitteessa näytettävän nimen tulee olla oikeaa muotoa."
 
-#: models/Exhibit.php:38 models/ExhibitPage.php:31
+#: models/Exhibit.php:110 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "URL-osoitteessa näytettävä nimi voi sisältää korkeintaan 30 merkkiä."
 
-#: models/Exhibit.php:39
+#: models/Exhibit.php:111
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Näyttelylle antamasi URL-teksti on jo käytössä. Ole hyvä ja muokkaa tekstiä."
 
-#: models/Exhibit.php:48
+#: models/Exhibit.php:124
 msgid "An exhibit must be given a title."
 msgstr "Näyttelyllä tulee olla nimi."
 
-#: models/Exhibit.php:52
+#: models/Exhibit.php:128
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Näyttelyn nimi voi sisältää korkeintaan 255 merkkiä."
 
-#: models/Exhibit.php:56
+#: models/Exhibit.php:132
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Ulkoasun nimi voi sisältää korkeintaan 30 merkkiä."
 
-#: models/ExhibitPage.php:30
+#: models/ExhibitLayout.php:143
+msgid "File with Text"
+msgstr "Aineisto ja teksti"
+
+#: models/ExhibitLayout.php:144
+msgid ""
+"Default layout features files justified to left or right with text "
+"displaying to the opposite side"
+msgstr "Oletusasetteluna on aineisto asemoituna vasemmalle tai oikealle, teksti asemoituna vastakkaiselle puolelle."
+
+#: models/ExhibitLayout.php:147
+msgid "Gallery"
+msgstr "Galleria"
+
+#: models/ExhibitLayout.php:148
+msgid "A gallery layout featuring file thumbnails"
+msgstr "Gallerianäkymä aineistojen esikatselukuvista"
+
+#: models/ExhibitLayout.php:151
+#: views/shared/exhibit_layouts/file-text/form.php:11
+#: views/shared/exhibit_layouts/gallery/form.php:11
+#: views/shared/exhibit_layouts/text/form.php:2
+msgid "Text"
+msgstr "Teksti"
+
+#: models/ExhibitLayout.php:152
+msgid "Layout featuring a block of text without files"
+msgstr "Asettelu tekstikentällä ilman aineistoja"
+
+#: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Näyttelyn jokaisella sivulla tulee olla URL-teksti."
 
-#: models/ExhibitPage.php:32
+#: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "URL-teksti on jo käytössä. Ole hyvä ja muokkaa tekstiä."
 
-#: models/ExhibitPage.php:47
-msgid "A layout must be provided for each exhibit page."
-msgstr "Näyttelyn jokaisen sivun tulee noudattaa jotain asettelua."
-
-#: models/ExhibitPage.php:51
+#: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
 msgstr "Näyttelyn sivuilla tulee olla otsikko."
-
-#: models/Mixin/Order.php:101
-msgid "Cannot add a child to a record that does not exist yet!"
-msgstr "Lapsi-tietuetta ei voi lisätä tietueeseen jota ei ole vielä olemassa."
-
-#: models/Mixin/Order.php:105
-#, php-format
-msgid "Child must be an instance of \"%s\""
-msgstr "Lapsi-tietueen tulee olla tyyppiä \"%s\""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
 msgstr "Lisää näyttely"
+
+#: views/admin/exhibits/attachment-item-options.php:16
+#, php-format
+msgid "Selected Item: %s"
+msgstr "Valittu aineisto: %s"
+
+#: views/admin/exhibits/attachment-item-options.php:20
+msgid "Select a file to use."
+msgstr "Valitse käytettävä aineisto."
+
+#: views/admin/exhibits/attachment.php:12
+#: views/admin/exhibits/block-form.php:9
+msgid "Remove/Restore"
+msgstr "Poista/Palauta"
+
+#: views/admin/exhibits/block-form.php:8
+msgid "Block"
+msgstr "Sisältölohko"
+
+#: views/admin/exhibits/block-form.php:10
+msgid "Expand/Collapse"
+msgstr "Laajenna/Kutista"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -257,88 +192,110 @@ msgid "Exhibit Metadata"
 msgstr "Näyttelyn metatiedot"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
-#: views/admin/exhibits/page-metadata-form.php:25
 msgid "Slug"
 msgstr "URL-teksti"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-metadata-form.php:28
+#: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
 msgstr "Välilyönnit tai erikoismerkit eivät ole sallittuja."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
-#: views/public/exhibits/summary.php:14
+#: views/public/exhibits/summary.php:15
 msgid "Credits"
 msgstr "Tekijätiedot"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:61
+#: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
 msgstr "Sivut"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
 msgstr "Ei sivuja."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:66
+#: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
-"To reorder pages, click and drag the page up or down to the preferred "
-"location."
+"To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "Vedä ja pudota sivut haluttuun järjestykseen."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Lisää sivu"
 
-#: views/admin/exhibits/page-content-form.php:2
-#, php-format
-msgid "Edit Page Content: \"%s\""
-msgstr "Muokkaa sivun sisältöä: \"%s\""
-
-#: views/admin/exhibits/page-content-form.php:16
-msgid "Page Layout"
-msgstr "Sivun asettelu"
-
-#: views/admin/exhibits/page-content-form.php:27
-msgid "Edit Page"
-msgstr "Muokkaa sivua"
-
-#: views/admin/exhibits/page-content-form.php:30
-msgid "Page Content"
-msgstr "Sivun sisältö"
-
-#: views/admin/exhibits/page-content-form.php:42
-msgid "Save and Add Another Page"
-msgstr "Tallenna ja lisää toinen sivu"
-
-#: views/admin/exhibits/page-content-form.php:63
-msgid "Remove This Item"
-msgstr "Poista aineisto"
-
-#: views/admin/exhibits/page-content-form.php:98
-msgid "Attach Selected Item"
-msgstr "Liitä valittu aineisto"
-
-#: views/admin/exhibits/page-metadata-form.php:2
+#: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
 msgstr "Muokataan sivua \"%s\""
 
-#: views/admin/exhibits/page-metadata-form.php:14
-msgid "Page Metadata"
-msgstr "Sivun metatiedot"
+#: views/admin/exhibits/page-form.php:16
+msgid "Page Title"
+msgstr "Sivun otsikko"
 
-#: views/admin/exhibits/page-metadata-form.php:35
-msgid "Layouts"
-msgstr "Asettelut"
+#: views/admin/exhibits/page-form.php:24
+msgid "Page Slug"
+msgstr "URL-teksti"
 
-#: views/admin/exhibits/page-metadata-form.php:50
-msgid "Layout"
-msgstr "Asettelu"
+#: views/admin/exhibits/page-form.php:33
+msgid "Content"
+msgstr "Sivun sisältö"
 
-#: views/admin/exhibits/page-metadata-form.php:55
-msgid "Choose a layout by selecting a thumbnail on the right."
-msgstr "Valitse asettelu oikealta."
+#: views/admin/exhibits/page-form.php:34
+msgid "Collapse All"
+msgstr "Kutista kaikki"
+
+#: views/admin/exhibits/page-form.php:35
+msgid "Expand All"
+msgstr "Laajenna kaikki"
+
+#: views/admin/exhibits/page-form.php:36
+msgid ""
+"To reorder blocks and items, click and drag them to the preferred location."
+msgstr "Vedä ja pudota lohkot ja aineistot haluttuun järjestykseen."
+
+#: views/admin/exhibits/page-form.php:44
+msgid "New Block"
+msgstr "Lisää sisältölohko"
+
+#: views/admin/exhibits/page-form.php:46
+msgid "Select layout"
+msgstr "Valitse asettelu"
+
+#: views/admin/exhibits/page-form.php:64
+msgid "Add new content block"
+msgstr "Lisää uusi sisältölohko"
+
+#: views/admin/exhibits/page-form.php:74
+msgid "Save and Add Another Page"
+msgstr "Tallenna ja lisää toinen sivu"
+
+#: views/admin/exhibits/page-form.php:82
+msgid "Attach an Item"
+msgstr "Liitä aineisto."
+
+#: views/admin/exhibits/page-form.php:84
+msgid "Revert to Selected Item"
+msgstr "Palauta valittu aineisto"
+
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "Näytä hakulomake"
+
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr "Sulje hakulomake"
+
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr "Vaihda valittu ainesto"
+
+#: views/admin/exhibits/page-form.php:104
+msgid "Provide a caption."
+msgstr "Kuvateksti"
+
+#: views/admin/exhibits/page-form.php:111
+msgid "Apply"
+msgstr "Tallenna"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -353,29 +310,62 @@ msgstr "Ei avainsanoitettuja näyttelyitä."
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "Ulkoasun &#8220;%s&#8221; asetukset"
 
-#: views/admin/items/browse.php:2
-msgid "Show Search Form"
-msgstr "Näytä hakulomake"
-
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "lisää uusia aineistoja"
 
-#: views/admin/items/browse.php:17
+#: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Aineistoja ei löytynyt. Muokkaa hakua tai %s."
+
+#: views/helpers/ExhibitItemListing.php:36
+msgid "Select Item"
+msgstr "Valitse aineisto"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
 msgstr "Näyttelyitä ei ole vielä julkistettu."
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:4
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:4
-msgid "Primary"
-msgstr "Ensisijainen"
+#: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/gallery/form.php:17
+msgid "Layout Options"
+msgstr "Asettelu-asetukset"
 
-#: views/shared/exhibit_layouts/gallery-full-left/form.php:11
-#: views/shared/exhibit_layouts/gallery-full-right/form.php:11
-msgid "Secondary"
-msgstr "Toissijainen"
+#: views/shared/exhibit_layouts/file-text/form.php:22
+msgid "File position"
+msgstr "Aineiston asemointi"
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:28
+#: views/shared/exhibit_layouts/gallery/form.php:41
+msgid "Left"
+msgstr "Vasen"
+
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
+msgid "Right"
+msgstr "Oikea"
+
+#: views/shared/exhibit_layouts/file-text/form.php:31
+msgid "File size"
+msgstr "Koko"
+
+#: views/shared/exhibit_layouts/gallery/form.php:22
+msgid "Showcase file position"
+msgstr "Aineistonoston asemointi"
+
+#: views/shared/exhibit_layouts/gallery/form.php:27
+msgid "No showcase file"
+msgstr "Ei aineistonostoa"
+
+#: views/shared/exhibit_layouts/gallery/form.php:36
+msgid "Gallery position"
+msgstr "Gallerian asemointi"
+
+#: views/shared/exhibit_layouts/gallery/form.php:46
+msgid ""
+"If there is no showcase file or text, the gallery will use the full width of"
+" the page."
+msgstr "Galleria näytetään koko lohkon levyisenä jos lohkolla ei ole aineistonostoa tai tekstiä."
