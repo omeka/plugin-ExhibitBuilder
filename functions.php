@@ -646,3 +646,14 @@ function exhibit_builder_api_extend_items($extend, $args)
     }
     return $extend;
 }
+
+function exhibit_builder_api_import_omeka_adapters($adapters, $args)
+{
+        require_once(EXHIBIT_PLUGIN_DIR . '/ApiImportAdapter/Omeka/ExhibitPageAdapter.php');
+        require_once(EXHIBIT_PLUGIN_DIR . '/ApiImportAdapter/Omeka/ExhibitPageBlockAdapter.php');
+        $exhibitsAdapter = new ApiImport_ResponseAdapter_Omeka_GenericAdapter(null, $args['endpointUri'], 'Exhibit');
+        $exhibitsAdapter->setUserProperties(array('owner'));
+        $adapters['exhibits'] = $exhibitsAdapter;
+        $adapters['exhibit_pages'] = 'ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter';
+        return $adapters;
+}
