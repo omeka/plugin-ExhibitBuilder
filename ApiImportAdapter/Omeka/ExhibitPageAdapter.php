@@ -14,7 +14,7 @@ class ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter extends ApiImport
         $this->record->slug = $this->responseData['slug'];
         $this->record->order = $this->responseData['order'];
         $this->record->exhibit_id = $this->getLocalResourceId($this->responseData['exhibit'], 'Exhibit');
-        if(is_null($this->responseData->parent)) {
+        if(empty($this->responseData['parent'])) {
             $this->record->parent_id = null;
         } else {
             //first, see if it is already imported
