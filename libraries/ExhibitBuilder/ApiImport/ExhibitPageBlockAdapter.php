@@ -1,9 +1,8 @@
 <?php
-class ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageBlockAdapter extends ApiImport_ResponseAdapter_RecordAdapterAbstract
-                                  implements ApiImport_ResponseAdapter_RecordAdapterInterface
+class ExhibitBuilder_ApiImport_ExhibitPageBlockAdapter extends ApiImport_ResponseAdapter_AbstractRecordAdapter
 {
     protected $recordType = 'ExhibitPageBlock';
-    
+
     public function import()
     {
         if(! $this->record) {

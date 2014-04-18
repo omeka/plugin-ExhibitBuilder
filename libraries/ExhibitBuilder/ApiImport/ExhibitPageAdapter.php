@@ -1,10 +1,9 @@
 <?php
 
-class ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter extends ApiImport_ResponseAdapter_RecordAdapterAbstract
-                                  implements ApiImport_ResponseAdapter_RecordAdapterInterface
+class ExhibitBuilder_ApiImport_ExhibitPageAdapter extends ApiImport_ResponseAdapter_AbstractRecordAdapter
 {
     protected $recordType = 'ExhibitPage';
-    
+
     public function import()
     {
         if(!$this->record) {
@@ -26,7 +25,7 @@ class ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter extends ApiImport
                 $response = $this->service->exhibit_pages->get($responseData['parent']['id']);
                 if($response->getStatus() == 200) {
                     $data = json_decode($response->getBody(), true);
-                    $adapter = new ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter($data, $this->endpointUri);
+                    $adapter = new ExhibitBuilder_ApiImport_ExhibitPageAdapter($data, $this->endpointUri);
                     $adapter->import();
                 } else {
                     _log($response->getMessage());
@@ -39,7 +38,7 @@ class ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageAdapter extends ApiImport
         } catch(Exception $e) {
             _log($e);
         }
-        $pageBlockAdapter = new ExhibitBuilder_ApiImportAdapter_Omeka_ExhibitPageBlockAdapter(null, $this->endpointUri);
+        $pageBlockAdapter = new ExhibitBuilder_ApiImport_ExhibitPageBlockAdapter(null, $this->endpointUri);
         foreach($this->responseData['page_blocks'] as $pageBlockData) {
             $pageBlockData['page_id'] = $this->record->id;
             $pageBlockAdapter->resetResponseData($pageBlockData);
