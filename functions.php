@@ -617,9 +617,9 @@ function exhibit_builder_api_resources($apiResources)
         'index_params' => array('tag', 'tags', 'sort', 'public', 'featured')
     );
     $apiResources['exhibit_pages'] = array(
-            'record_type' => 'ExhibitPage',
-            'actions' => array('get', 'index'),
-            'index_params' => array('parent', 'exhibit', 'order', 'topOnly', 'item')
+        'record_type' => 'ExhibitPage',
+        'actions' => array('get', 'index'),
+        'index_params' => array('parent', 'exhibit', 'order', 'topOnly', 'item')
     );
 
 
@@ -634,16 +634,16 @@ function exhibit_builder_api_extend_items($extend, $args)
     if(count($pages) == 1) {
         $page = $pages[0];
         $extend['exhibit_pages'] = array(
-                                        'id' => $page->id,
-                                        'url' => Omeka_Record_Api_AbstractRecordAdapter::getResourceUrl("/exhibit_pages/{$page->id}"),
-                                        'resource' => 'exhibit_pages'
-                                        );
+            'id' => $page->id,
+            'url' => Omeka_Record_Api_AbstractRecordAdapter::getResourceUrl("/exhibit_pages/{$page->id}"),
+            'resource' => 'exhibit_pages'
+        );
     } else {
         $extend['exhibit_pages'] = array(
-                                        'count' => count($pages),
-                                        'url' => Omeka_Record_Api_AbstractRecordAdapter::getResourceUrl("/exhibit_pages?item={$item->id}"),
-                                        'resource' => 'exhibit_pages'
-                                        );
+            'count' => count($pages),
+            'url' => Omeka_Record_Api_AbstractRecordAdapter::getResourceUrl("/exhibit_pages?item={$item->id}"),
+            'resource' => 'exhibit_pages'
+        );
     }
     return $extend;
 }
