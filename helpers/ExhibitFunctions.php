@@ -558,6 +558,6 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
     return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitPage);
 }
 
-function exhibit_builder_featured_exhibits_shortcode($args) {
+function exhibit_builder_featured_exhibits_shortcode() {
     return exhibit_builder_display_random_featured_exhibit();
 }
