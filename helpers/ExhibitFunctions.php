@@ -211,6 +211,43 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
     return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitPage);
 }
 
-function exhibit_builder_featured_exhibits_shortcode() {
-    return exhibit_builder_display_random_featured_exhibit();
+function exhibit_builder_exhibits_shortcode($args, $view)
+{
+    $params = array();
+
+    if (isset($args['is_featured'])) {
+        $params['featured'] = $args['is_featured'];
+    }
+
+    if (isset($args['sort'])) {
+        $params['sort_field'] = $args['sort'];
+    }
+
+    if (isset($args['num'])) {
+        $limit = $args['num'];
+    } else {
+        $limit = 1; 
+    }
+
+    $exhibits = get_records('Exhibit', $params, $limit);
+
+    $content = '';
+    foreach ($exhibits as $exhibit) {
+        $content .= $view->partial('exhibits/single.php', array('exhibit' => $exhibit));
+    }
+
+    return $content;
+
 }
+
+function exhibit_builder_featured_exhibits_shortcode($args, $view) 
+{
+    $args['is_featured'] = 1;
+
+    $args['sort'] = 'random';
+
+    return exhibit_builder_exhibits_shortcode($args, $view);
+
+}
+
+
