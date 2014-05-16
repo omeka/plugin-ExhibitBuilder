@@ -223,10 +223,18 @@ function exhibit_builder_exhibits_shortcode($args, $view)
         $params['sort_field'] = $args['sort'];
     }
 
+    if (isset($args['order'])) {
+        $params['sort_dir'] = $args['order'];
+    }
+
+    if (isset($args['ids'])) {
+            $params['range'] = $args['ids'];
+    }
+
     if (isset($args['num'])) {
         $limit = $args['num'];
     } else {
-        $limit = 1; 
+        $limit = 10; 
     }
 
     $exhibits = get_records('Exhibit', $params, $limit);
@@ -243,6 +251,10 @@ function exhibit_builder_exhibits_shortcode($args, $view)
 function exhibit_builder_featured_exhibits_shortcode($args, $view) 
 {
     $args['is_featured'] = 1;
+
+    if (!isset($args['num'])) {
+        $args['num'] = 1;
+    }
 
     $args['sort'] = 'random';
 

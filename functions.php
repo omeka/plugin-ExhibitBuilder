@@ -11,7 +11,8 @@
 function exhibit_builder_initialize()
 {
     add_translation_source(dirname(__FILE__) . '/languages');
-    add_shortcode( 'featured_exhibits', 'exhibit_builder_featured_exhibits_shortcode');
+    add_shortcode ('exhibits', 'exhibit_builder_exhibits_shortcode');
+    add_shortcode ('featured_exhibits', 'exhibit_builder_featured_exhibits_shortcode');
 }
 
 /**
