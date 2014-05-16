@@ -355,6 +355,42 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
+     * Get a representative file for this Exhibit.
+     *
+     * The representative is the first attached file in the exhibit.
+     *
+     * @return File|null
+     */
+    public function getFile()
+    {
+        $db = $this->getDb();
+        $fileTable = $this->getDb()->getTable('File');
+        $select =
+            $fileTable->getSelect()
+            ->joinInner(
+                array('eba' => $db->ExhibitBlockAttachment),
+                'eba.file_id = files.id',
+                array()
+            )
+            ->joinInner(
+                array('epb' => $db->ExhibitPageBlock),
+                'epb.id = eba.block_id',
+                array()
+            )
+            ->joinInner(
+                array('ep' => $db->ExhibitPage),
+                'ep.id = epb.page_id',
+                array()
+            )
+            ->where('ep.exhibit_id = ?', $this->id)
+            ->where('files.has_derivative_image = 1')
+            ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
+            ->limit(1);
+
+        return $fileTable->fetchObject($select);
+    }
+
+    /**
      * Required by Zend_Acl_Resource_Interface.
      *
      * @return string
