@@ -176,10 +176,9 @@ function exhibit_builder_display_random_featured_exhibit()
     $featuredExhibit = exhibit_builder_random_featured_exhibit();
     $html .= '<h2>' . __('Featured Exhibit') . '</h2>';
     if ($featuredExhibit) {
-       $html .= '<h3>' . exhibit_builder_link_to_exhibit($featuredExhibit) . '</h3>'."\n";
-       $html .= '<p>'.snippet_by_word_count(metadata($featuredExhibit, 'description', array('no_escape' => true))).'</p>';
+        $html .= get_view()->partial('exhibits/single.php', array('exhibit' => $featuredExhibit));
     } else {
-       $html .= '<p>' . __('You have no featured exhibits.') . '</p>';
+        $html .= '<p>' . __('You have no featured exhibits.') . '</p>';
     }
     $html .= '</div>';
     $html = apply_filters('exhibit_builder_display_random_featured_exhibit', $html);
@@ -242,10 +241,10 @@ function exhibit_builder_exhibits_shortcode($args, $view)
     $content = '';
     foreach ($exhibits as $exhibit) {
         $content .= $view->partial('exhibits/single.php', array('exhibit' => $exhibit));
+        release_object($exhibit);
     }
 
     return $content;
-
 }
 
 function exhibit_builder_featured_exhibits_shortcode($args, $view) 
@@ -259,7 +258,6 @@ function exhibit_builder_featured_exhibits_shortcode($args, $view)
     $args['sort'] = 'random';
 
     return exhibit_builder_exhibits_shortcode($args, $view);
-
 }
 
 
