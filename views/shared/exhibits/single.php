@@ -1,4 +1,4 @@
-<div class="exhibit">
+<div class="exhibit record">
     <h3><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h3>
     <?php if ($exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
         <?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image')); ?>
