@@ -38,6 +38,9 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 <?php foreach($exhibits as $key=>$exhibit): ?>
     <tr class="exhibit<?php if ($key % 2 == 1) echo ' even'; else echo ' odd'; ?>">
         <td class="exhibit-info<?php if ($exhibit->featured) echo ' featured'; ?>">
+            <?php if ($exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
+                <?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image')); ?>
+            <?php endif; ?>
             <span>
             <a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
             <?php if(!$exhibit->public): ?>
