@@ -45,7 +45,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
      *
      * @var integer
      */
-    public $public = 1;
+    public $public = 0;
     
     /**
      * Public theme to use for this exhibit.
