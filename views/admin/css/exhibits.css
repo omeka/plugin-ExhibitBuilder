@@ -595,8 +595,8 @@ div.selected-items {
 }
 
 .attachment .delete-element:after {
-    content: "\21";
-    font-family: "icomoon";
+    content: "\f00d";
+    font-family: "FontAwesome";
     text-indent: 0;
     position: absolute;
     color: rgba(255,255,255,.75);
