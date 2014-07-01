@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Benjamin <benjamin@deichman.no>, 2012
-# Petter Goksøyr Åsen <boutrosboutrosboutros@gmail.com>, 2012
+# boutrosboutrosboutros <boutrosboutrosboutros@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"

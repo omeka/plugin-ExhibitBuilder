@@ -5,13 +5,14 @@
 # Translators:
 # Bogdan Trifunovic <>, 2012
 # Dušan Ranđelović <randjelovic@pantype.com>, 2013
+# Predrag Djukic <predragd@bgb.rs>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-03 19:02+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2014-04-07 12:58+0000\n"
+"Last-Translator: Predrag Djukic <predragd@bgb.rs>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/projects/p/omeka/language/sr_RS/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,21 +99,21 @@ msgstr "Назив ваше теме мора бити 30 карактера и�
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "Датотека са текстом"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "Подразумевани изглед приказује документа са равнањем с лева на десно и тектом приказаним са супротне стране"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr ""
+msgstr "Галерија"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "Изглед галерије приказује минијатурне слике докумената"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -123,7 +124,7 @@ msgstr "Текст"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "Изглед приказује блок текста без докумената"
 
 #: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
@@ -146,24 +147,24 @@ msgstr "Додај изложбу"
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "Одабрани објекти %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "Одабери документ за коришћење."
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr ""
+msgstr "Уклони/Врати"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr ""
+msgstr "Блок"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "Повећај/Смањи"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -217,7 +218,7 @@ msgstr "Нема страница."
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Да би се странице гнезда регруписале кликни и повуци сличицу странице горе или доле на жељену локацију."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
@@ -231,40 +232,40 @@ msgstr "Уреди страницу: \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "Наслов странице"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr ""
+msgstr "Стална веза странице"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "Садржај"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr ""
+msgstr "Смањи све"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr ""
+msgstr "Повећај све"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Да би се блокови или објекти регруписали кликни и повуци секцију или страницу горе или доле на жељену локацију."
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr ""
+msgstr "Нови блок"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr ""
+msgstr "Одабери изглед"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr ""
+msgstr "Додај нови блок са садржајем"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
@@ -276,7 +277,7 @@ msgstr "Прикачи објекат"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "Врати се на одебрани објекат"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
@@ -284,19 +285,19 @@ msgstr "Прикажи форму за претрагу"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr ""
+msgstr "Сакриј форму за претрагу"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr ""
+msgstr "Измени одабрани објекат"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr ""
+msgstr "Обезбеди наслов"
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr ""
+msgstr "Примени"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -322,7 +323,7 @@ msgstr "Нема објеката за избор. Молимо промени �
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "Одабери објекат"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
@@ -331,42 +332,42 @@ msgstr "Још увек нема изложби."
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "Могућности приказа"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr ""
+msgstr "Позиција датотеке"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 msgid "Left"
-msgstr ""
+msgstr "Лево"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 msgid "Right"
-msgstr ""
+msgstr "Десно"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Величина документа"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "Позиција документа за пример"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Нема фокумента за пример"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "Позиција галерије"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Уколико не постоји документ за пример или текст, галерија ће искористити пуну ширину странице."

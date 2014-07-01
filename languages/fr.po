@@ -4,8 +4,8 @@
 # 
 # Translators:
 # Julien Sicot <julien.sicot@gmail.com>, 2012
-# thierry <thierry.pasquier@emf.ccsti.eu>, 2012
-# thierry <thierry.pasquier@emf.ccsti.eu>, 2013
+# Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2012
+# Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2013
 # symac <wikitipiac@laposte.net>, 2014
 # symac <wikitipiac@laposte.net>, 2012
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-04 17:48+0000\n"
+"PO-Revision-Date: 2014-04-29 07:45+0000\n"
 "Last-Translator: symac <wikitipiac@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -234,40 +234,40 @@ msgstr "Éditer la page \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "Titre de la page"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr ""
+msgstr "Alias de la page"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "Contenu"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr ""
+msgstr "Tout replier"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr ""
+msgstr "Tout déplier"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Pour ré-ordonner les blocs et éléments, cliquez-déposez les pour les ranger selon votre choix."
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr ""
+msgstr "Nouveau bloc"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr ""
+msgstr "Choisir la disposition"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr ""
+msgstr "Ajouter un nouveau bloc de contenu"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
@@ -279,7 +279,7 @@ msgstr "Associer un contenu"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "Revenir au contenu sélectionné"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
@@ -287,19 +287,19 @@ msgstr "Afficher le formulaire de recherche"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr ""
+msgstr "Master le formulaire de recherche"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr ""
+msgstr "Changer le contenu sélectionné"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr ""
+msgstr "Fournir une légende"
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr ""
+msgstr "Appliquer"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -325,7 +325,7 @@ msgstr "Il n'y a pas de contenu à sélectionner. Merci d'affiner votre recherch
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "Sélectionner le contenu"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
@@ -334,39 +334,39 @@ msgstr "Il n'y a pas encore d'exposition disponible."
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "Options de disposition"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr ""
+msgstr "Position du fichier"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 msgid "Left"
-msgstr ""
+msgstr "Gauche"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 msgid "Right"
-msgstr ""
+msgstr "Droite"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Taille du fichier"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "Position du fichier"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Aucun fichier de \"showcase\""
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "Position dans la galerie"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""

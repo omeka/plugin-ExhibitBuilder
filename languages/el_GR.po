@@ -5,7 +5,7 @@
 # Translators:
 # stauros gkinis <gkista@yahoo.gr>, 2012
 # Stoitsis Giannis <>, 2012
-# Theodosios Filippou <tf1974@gmail.com>, 2013
+# Theodosis Filippou <tf1974@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"

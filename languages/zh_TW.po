@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# yenny <yennylin1234@gmail.com>, 2014
-# zhangh <zhangh@unlv.nevada.edu>, 2013
+# yennylin <yennylin1234@gmail.com>, 2014
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2014-01-11 09:12+0000\n"
-"Last-Translator: yenny <yennylin1234@gmail.com>\n"
+"Last-Translator: yennylin <yennylin1234@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/omeka/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
