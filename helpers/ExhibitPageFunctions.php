@@ -130,17 +130,7 @@ function exhibit_builder_link_to_next_page($text = null, $props = array(), $exhi
 
     // if page object exists, grab link to the first child page if exists. If it doesn't, grab
     // a link to the next page
-    if ($nextPage = $exhibitPage->firstChildOrNext()) {
-        $targetPage = $nextPage;
-    } elseif ($exhibitPage->parent_id) {
-        $parentPage = $exhibitPage->getParent();
-        $nextParentPage = $parentPage->next();
-        if ($nextParentPage) {
-            $targetPage = $nextPage;
-        }
-    }
-
-    if ($targetPage) {
+    if ($targetPage = $exhibitPage->firstChildOrNext()) {
         if (!isset($props['class'])) {
             $props['class'] = 'next-page';
         }

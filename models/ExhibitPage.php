@@ -149,11 +149,13 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             if($next) {
                 return $next;
             }
-            //no next on same level, so bump up one level and go to next page
-            $parent = $this->getParent();
-            if($parent) {
-                $parentNext = $parent->next();
-                return $parentNext;
+            // no next on same level, so bump up one level and go to next page
+            // keep going up until we hit the top
+            $current = $this;
+            while (($current = $current->getParent())) {
+                if (($parentNext = $current->next())) {
+                    return $parentNext;
+                }
             }
         }
     }
@@ -167,8 +169,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     {
         $previous = $this->previous();
         if($previous) {
-            if($previousLastChildPage = $previous->getLastChildPage()) {
-                return $previousLastChildPage;
+            while (($lastChild = $previous->getLastChildPage())) {
+                $previous = $lastChild;
             }
             return $previous;
         } else {
