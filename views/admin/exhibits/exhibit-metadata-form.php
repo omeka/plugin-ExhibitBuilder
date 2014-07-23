@@ -70,6 +70,7 @@
         </div>
     </fieldset>
     </section>
+    <?php echo $csrf; ?>
     <section class="three columns omega">
         <div id="save" class="panel">
             <?php echo $this->formSubmit('save_exhibit', __('Save Changes'), array('class'=>'submit big green button')); ?>

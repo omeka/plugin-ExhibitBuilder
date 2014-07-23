@@ -67,7 +67,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
     </fieldset>
     </div>
-    
+    <?php echo $csrf; ?>
     <div class="three columns omega">
         <div id="save" class="panel">
             <?php echo $this->formSubmit('continue', __('Save Changes'), array('class'=>'submit big green button')); ?>
