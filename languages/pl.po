@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Dominik Broniszewski <dominik@broniszewski.pl>, 2013
+# vortage <vortage@o2.pl>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-03 19:02+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2014-07-10 14:07+0000\n"
+"Last-Translator: vortage <vortage@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/omeka/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr ""
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr ""
+msgstr "Galeria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
@@ -230,7 +231,7 @@ msgstr "Modyfikuj stronę \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "Tytuł strony"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
@@ -238,7 +239,7 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "Zawartość"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
@@ -283,7 +284,7 @@ msgstr "Pokaż formularz wyszukiwania"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr ""
+msgstr "Ukryj formularz wyszukiwania"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
@@ -295,7 +296,7 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr ""
+msgstr "Zatwierdź"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -350,7 +351,7 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Rozmiar pliku"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
