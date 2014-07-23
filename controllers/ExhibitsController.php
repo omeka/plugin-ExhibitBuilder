@@ -361,21 +361,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     }
 
     /**
-     * Delete an exhibit page.
-     */
-    public function deletePageAction()
-    {
-        $exhibitPage = $this->_helper->db->findById(null,'ExhibitPage');
-        $exhibit = $exhibitPage->getExhibit();
-        if (!$this->_helper->acl->isAllowed('delete', $exhibit)) {
-            throw new Omeka_Controller_Exception_403;
-        }
-
-        $exhibitPage->delete();
-        $this->_helper->redirector->gotoUrl('exhibits/edit/' . $exhibit->id );
-    }
-
-    /**
      * AJAX action for checking exhibit page data.
      */
     public function validatePageAction()
