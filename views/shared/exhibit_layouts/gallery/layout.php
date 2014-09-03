@@ -6,6 +6,9 @@ $showcaseFile = $showcasePosition !== 'none' && !empty($attachments);
 $galleryPosition = isset($options['gallery-position'])
     ? html_escape($options['gallery-position'])
     : 'left';
+$galleryFileSize = isset($options['gallery-file-size'])
+    ? html_escape($options['gallery-file-size'])
+    : 'square_thumbnail';
 ?>
 <?php if ($showcaseFile): ?>
 <div class="gallery-showcase <?php echo $showcasePosition; ?> with-<?php echo $galleryPosition; ?>">
@@ -16,6 +19,6 @@ $galleryPosition = isset($options['gallery-position'])
 </div>
 <?php endif; ?>
 <div class="gallery <?php if ($showcaseFile || !empty($text)) echo "with-showcase $galleryPosition"; ?>">
-    <?php echo $this->exhibitAttachmentGallery($attachments); ?>
+    <?php echo $this->exhibitAttachmentGallery($attachments, array('imageSize' => $galleryFileSize)); ?>
 </div>
 <?php echo $text; ?>

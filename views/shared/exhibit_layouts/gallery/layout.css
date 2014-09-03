@@ -51,8 +51,9 @@
 
 .layout-gallery .exhibit-item-link *,
 .layout-gallery .download-file * {
-    width: 100%;
-    margin-bottom: 2%;
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 5px;
 }
 
 .layout-gallery .exhibit-item {

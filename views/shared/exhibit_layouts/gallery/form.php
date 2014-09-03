@@ -45,5 +45,16 @@ $options = $block->getOptions();
         ?>
         <p class="instructions"><?php echo __('If there is no showcase file or text, the gallery will use the full width of the page.'); ?></p>
     </div>
-    
+
+    <div class="gallery-file-size">
+        <?php echo $this->formLabel($formStem . '[options][gallery-file-size]', __('Gallery file size')); ?>
+        <?php
+        echo $this->formSelect($formStem . '[options][gallery-file-size]',
+            @$options['gallery-file-size'], array(),
+            array(
+                'square_thumbnail' => __('Square Thumbnail'),
+                'thumbnail' => __('Thumbnail'),
+            ));
+        ?>
+    </div>
 </div>
