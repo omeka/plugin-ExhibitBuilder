@@ -100,8 +100,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
 
         foreach ($this->getPageBlocks() as $block) {
+            $this->addSearchText($block->text);
             foreach ($block->getAttachments() as $attachment) {
-                $this->addSearchText($attachment->text);
                 $this->addSearchText($attachment->caption);
             }
         }
