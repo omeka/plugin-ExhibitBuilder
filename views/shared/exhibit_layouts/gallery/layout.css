@@ -40,11 +40,6 @@
     margin-left: 2%;
 }
 
-.layout-gallery .gallery-showcase.right.with-left +
-.gallery.with-showcase.left {
-    margin-right: 0;
-}
-
 .layout-gallery a {
     border-bottom: 0;
 }
@@ -62,13 +57,12 @@
     margin-bottom: 1.25%;
 }
 
-.layout-gallery .gallery-showcase.left.with-right +
-.gallery.with-showcase.right {
+.layout-gallery .gallery-showcase.right.with-left {
     margin-left: 0;
 }
 
-.layout-gallery .gallery-showcase.right.with-left {
-    margin-left: 2%;
+.layout-gallery .gallery-showcase.left.with-right {
+    margin-right: 0;
 }
 
 .layout-gallery .gallery.with-showcase.left {
