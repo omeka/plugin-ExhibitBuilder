@@ -38,3 +38,15 @@
     margin: 0;
     clear: both;
 }
+
+.layout-file-text .captions-center .exhibit-item-caption {
+    text-align: center;
+}
+
+.layout-file-text .captions-left .exhibit-item-caption {
+    text-align: left;
+}
+
+.layout-file-text .captions-right .exhibit-item-caption {
+    text-align: right;
+}

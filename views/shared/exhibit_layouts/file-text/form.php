@@ -39,4 +39,18 @@ $options = $block->getOptions();
             ));
         ?>
     </div>
+
+    <div class="captions-position">
+        <?php echo $this->formLabel($formStem . '[options][captions-position]', __('Captions position')); ?>
+        <?php
+        echo $this->formSelect($formStem . '[options][captions-position]',
+            @$options['captions-position'], array(),
+            array(
+                'center' => __('Center'),
+                'left' => __('Left'),
+                'right' => __('Right')
+            ));
+        ?>
+    </div>
+
 </div>
