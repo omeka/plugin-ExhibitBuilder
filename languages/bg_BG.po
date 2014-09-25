@@ -3,58 +3,56 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Bogdan Trifunovic <>, 2012,2014
-# Dušan Ranđelović <randjelovic@pantype.com>, 2013
-# Predrag Djukic <djukic.predrag@gmail.com>, 2014
+# Gabriel Radev <gabosss@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-08-22 08:39+0000\n"
-"Last-Translator: Bogdan Trifunovic <>\n"
-"Language-Team: Serbian (Serbia) (http://www.transifex.com/projects/p/omeka/language/sr_RS/)\n"
+"PO-Revision-Date: 2014-09-15 21:44+0000\n"
+"Last-Translator: Gabriel Radev <gabosss@gmail.com>\n"
+"Language-Team: Bulgarian (Bulgaria) (http://www.transifex.com/projects/p/omeka/language/bg_BG/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr_RS\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: bg_BG\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Сортирање изложби"
+msgstr "Сортиране на Изложби"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "Подразумевани метод по којем желиш да сортираш листу изложби на изложба/преглед страници. Подразумевани је \"Датум уноса\"."
+msgstr "Избор на метода за сортиране по подразбиране на списъка изложби в страницата на изложби/преглед. По подразбиране е \"Дата на добавяне\""
 
 #: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
-msgstr "Овај објекат се не користи у оквиру ове изложбе."
+msgstr "Този документ не е използван в тази изложба"
 
 #: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Мораш тачно означити тему да би могао да је подесиш."
+msgstr "Трябва да изберете тема за да я конфигурирате."
 
 #: functions.php:390
 msgid "exhibits"
-msgstr "изложбе"
+msgstr "изложби"
 
 #: functions.php:404 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Прегледај изложбе"
+msgstr "Преглед на Изложбите"
 
 #: functions.php:420 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Изложбе"
+msgstr "Изложби"
 
 #: functions.php:581
 msgid "Search by Exhibit"
-msgstr "Претрага по изложби"
+msgstr "Търсене по Изложба"
 
 #: functions.php:590
 msgid "Exhibit"
@@ -62,58 +60,58 @@ msgstr "Изложба"
 
 #: functions.php:591
 msgid "Exhibit Page"
-msgstr "Страница изложбе"
+msgstr "Изложбена страница."
 
 #: helpers/ExhibitFunctions.php:177
 msgid "Featured Exhibit"
-msgstr "Истакнута изложба"
+msgstr "Представена Изложба"
 
 #: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
-msgstr "Немаш истакнуту изложбу."
+msgstr "Нямате създадени изложби."
 
 #: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
-msgstr "Изложбе морају имати исправну сталну везу."
+msgstr "На Изложбата трябва да се даде валидно Кратко име"
 
 #: models/Exhibit.php:110 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
-msgstr "Стална веза мора имати 30 карактера или мање."
+msgstr "Краткото име трябва да е по-малко от 30 знака."
 
 #: models/Exhibit.php:111
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "URL сталне везе је већ искоришћен за другу изложбу. Молимо изабери други."
+msgstr "Вашият URL за кратко име вече се използва в друга изложба. Изберете друго."
 
 #: models/Exhibit.php:124
 msgid "An exhibit must be given a title."
-msgstr "Изложба мора имати наслов. "
+msgstr "На изложбата трябва да бъде дадено заглавие."
 
 #: models/Exhibit.php:128
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "Наслов изложбе мора имати 255 карактера или мање."
+msgstr "Заглавието за изложбата трябва да е до 255 знака."
 
 #: models/Exhibit.php:132
 msgid "The name of your theme must be 30 characters or less."
-msgstr "Назив ваше теме мора бити 30 карактера или мање."
+msgstr "Името на темата трябва да е до 30 знака."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr "Датотека са текстом"
+msgstr "Файл с Текст"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr "Подразумевани изглед приказује документа са равнањем с лева на десно и текстом приказаним са супротне стране"
+msgstr "Стандартното оформление на файловете е в ляво или дясно  с текст показван от другата страна."
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Галерија"
+msgstr "Галерия"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr "Изглед галерије приказује минијатурне слике докумената"
+msgstr "Оформяне на галерията с използване на файлови миниатюри."
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -124,39 +122,39 @@ msgstr "Текст"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr "Изглед приказује блок текста без докумената"
+msgstr "Оформяне на блокове от текст без файлове"
 
 #: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Стална веза мора постојати за сваку страницу једне изложбе."
+msgstr "Краткото заглавие трябва да бъде дадено на всяка страница от изложбата."
 
 #: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "Стална веза ове странице већ је искоришћена у овом делу. Молимо измените сталну везу тако да буде јединствена."
+msgstr "Това кратко име за страницата вече е използвано. Променете краткото име за да е уникално."
 
 #: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
-msgstr "Странице изложбе морају имати наслове."
+msgstr "На изложбената страница трябва да бъде дадено заглавие."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Додај изложбу"
+msgstr "Добавяне на Изложба"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Одабрани објекти %s"
+msgstr "Избрани документи: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr "Одабери датотеку за коришћење."
+msgstr "Изберете файл за използване."
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr "Уклони/Врати"
+msgstr "Премахване/Възстановяване"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
@@ -164,15 +162,15 @@ msgstr "Блок"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr "Повећај/Смањи"
+msgstr "Разширяване/Свиване"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Још увек нема изложби."
+msgstr "Все още няма изложби."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Додај изложбу."
+msgstr "Добавяне на Изложба"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -182,192 +180,192 @@ msgstr "Тема"
 #: views/admin/exhibits/browse.php:59
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Тренутна објављена тема"
+msgstr "Текуща публична Тема"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Уреди изложбу: \"%s\""
+msgstr "Редактиране на Изложба \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Изложи метаподатке"
+msgstr "Метаданни на Изложба"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr "Стална веза"
+msgstr "Кратко име"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
-msgstr "Размаци или специјални знаци нису дозвољени."
+msgstr "Не са разрешени интервали или специални знаци"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Заслуге"
+msgstr "Благодарности "
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Pages"
-msgstr "Странице"
+msgstr "Страници"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid "There are no pages."
-msgstr "Нема страница."
+msgstr "Тук няма страници."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr "Да би се странице гнезда регруписале кликни и повуци сличицу странице горе или доле на жељену локацију."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Додај страницу"
+msgstr "Добавяне на Страница"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Уреди страницу: \"%s\""
+msgstr "Редактирена на страница  \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr "Наслов странице"
+msgstr "Заглавие на страница"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr "Стална веза странице"
+msgstr "Кратко име на страница"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr "Садржај"
+msgstr "Съдържание"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr "Смањи све"
+msgstr "Събери всичко"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr "Повећај све"
+msgstr "Разшири всичко"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr "Да би се блокови или објекти регруписали кликни и повуци секцију или страницу горе или доле на жељену локацију."
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr "Нови блок"
+msgstr "Нов блок"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr "Одабери изглед"
+msgstr "Избор на оформление"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr "Додај нови блок са садржајем"
+msgstr "Добавяне на нов блок със съдържание"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
-msgstr "Сачувај и додај нову страницу "
+msgstr "Запис и добавяне на Друга страница"
 
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
-msgstr "Прикачи објекат"
+msgstr "Прикачване на документ"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr "Врати се на одебрани објекат"
+msgstr "Връщане към избрания документ"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
-msgstr "Прикажи форму за претрагу"
+msgstr "Показване на форма за търсене"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr "Сакриј форму за претрагу"
+msgstr "Скриване на формата за търсене"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr "Измени одабрани објекат"
+msgstr "Промяна на избрания документ"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr "Обезбеди наслов"
+msgstr "Сложете надпис"
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr "Примени"
+msgstr "Приложи"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Прегледај изложбе према ознаци"
+msgstr "Преглед на Изложбите по Маркер"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Нема ознака за приказ. Прво мораш означити неке изложбе."
+msgstr "Няма маркери за полазване. Трябва да маркирате някоя изложба."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Подеси &#8220;%s&#8221; тему"
+msgstr "Настройване на &#8220;%s&#8221; Тема"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "додај неке објекте"
+msgstr "добавяне на малко документи"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Нема објеката за избор. Молимо промени своју претрагу или %s."
+msgstr "Няма документи за избиране. Прецизирайте търсенето или %s."
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Одабери објекат"
+msgstr "Изберете документ"
 
 #: views/public/exhibits/browse.php:40
 msgid "There are no exhibits available yet."
-msgstr "Још увек нема изложби."
+msgstr "Няма достъпни изложби в момента."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr "Могућности приказа"
+msgstr "Настройки за оформлението"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr "Позиција датотеке"
+msgstr "Позиция на файла"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 msgid "Left"
-msgstr "Лево"
+msgstr "Ляво"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 msgid "Right"
-msgstr "Десно"
+msgstr "Дясно"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr "Величина документа"
+msgstr "Размер на файл "
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr "Позиција документа за пример"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr "Нема фокумента за пример"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr "Позиција галерије"
+msgstr "Позиция на галерията"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr "Уколико не постоји документ за пример или текст, галерија ће искористити пуну ширину странице."
+msgstr ""

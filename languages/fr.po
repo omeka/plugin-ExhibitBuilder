@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Julien Sicot <julien.sicot@gmail.com>, 2012
+# rcheno <remi.cheno@ideo-cairo.org>, 2014
 # Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2012
 # Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2013
 # symac <wikitipiac@laposte.net>, 2014
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-04-29 07:45+0000\n"
-"Last-Translator: symac <wikitipiac@laposte.net>\n"
+"PO-Revision-Date: 2014-07-27 21:18+0000\n"
+"Last-Translator: rcheno <remi.cheno@ideo-cairo.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +31,7 @@ msgstr "Trier les expositions"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "La méthode par défaut que vous souhaitez utiliser pour trier la liste des expositions sur la page \"Parcourir les exposition\". Par défaut 'Date' est utilisé."
+msgstr "La méthode par défaut à utiliser pour trier la liste des expositions sur la page \"Parcourir les expositions\". Par défaut : 'Date d'ajout'."
 
 #: controllers/ExhibitsController.php:105
 msgid "This item is not used within this exhibit."
@@ -38,7 +39,7 @@ msgstr "Ce contenu n'est pas utilisé dans cette exposition."
 
 #: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
-msgstr "Vous devez sélectionner un thème puis le configurer."
+msgstr "Vous devez sélectionner un thème pour pouvoir le configurer."
 
 #: functions.php:390
 msgid "exhibits"
@@ -72,7 +73,7 @@ msgstr "Mettre en avant cette exposition"
 
 #: helpers/ExhibitFunctions.php:182
 msgid "You have no featured exhibits."
-msgstr "Vous n'avez pas mis en avant d'expositions."
+msgstr "Vous n'avez aucune exposition mise en avant."
 
 #: models/Exhibit.php:109
 msgid "Exhibits must be given a valid slug."
@@ -107,7 +108,7 @@ msgstr "Fichier contenant du texte"
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "La disposition par défaut présente les fichiers justifiés à droite ou à gauche, avec le texte affiché du côté opposé."
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
@@ -115,7 +116,7 @@ msgstr "Galerie"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr "Affichage sous forme de vignettes"
+msgstr "Disposition en galerie de vignettes"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -126,7 +127,7 @@ msgstr "Texte"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr "Affichage contenant un bloc de texte sans fichiers"
+msgstr "Disposition avec un bloc de texte sans fichiers"
 
 #: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
@@ -136,7 +137,7 @@ msgstr "Un identifiant doit être attribué à chaque page d'une exposition."
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "Cet identifiant de page est déjà utilisé. Modifiez cet identifiant pour qu'il soit unique SVP."
+msgstr "Cet identifiant de page est déjà utilisé. Merci de modifier cet identifiant pour qu'il soit unique."
 
 #: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
@@ -220,7 +221,7 @@ msgstr "Il n'y a pas de pages."
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Pour réordonner ou imbriquer des pages, cliquez et déplacez une page à l'endroit voulu."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
@@ -238,7 +239,7 @@ msgstr "Titre de la page"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr "Alias de la page"
+msgstr "Identifiant de la page"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
@@ -255,7 +256,7 @@ msgstr "Tout déplier"
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr "Pour ré-ordonner les blocs et éléments, cliquez-déposez les pour les ranger selon votre choix."
+msgstr "Pour ré-ordonner les blocs et éléments, cliquez-déposez-les pour les ranger selon votre choix."
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
@@ -287,7 +288,7 @@ msgstr "Afficher le formulaire de recherche"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr "Master le formulaire de recherche"
+msgstr "Masquer le formulaire de recherche"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
@@ -362,7 +363,7 @@ msgstr "Position du fichier"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr "Aucun fichier de \"showcase\""
+msgstr "Aucun fichier présenté"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
@@ -372,4 +373,4 @@ msgstr "Position dans la galerie"
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "S'il n'y a ni fichier ni texte, la galerie utilisera la page en pleine largeur."
