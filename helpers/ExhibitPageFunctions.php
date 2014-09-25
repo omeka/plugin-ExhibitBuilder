@@ -69,13 +69,30 @@ function exhibit_builder_page_nav($exhibitPage = null)
     $html .= '<li>';
     $html .= '<a class="exhibit-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
+    
+    $levelNumber = 1;
+    
     foreach ($pagesTrail as $page) {
         $linkText = $page->title;
         $pageExhibit = $page->getExhibit();
         $pageParent = $page->getParent();
         $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages()); 
 
-        $html .= "<li>\n<ul>\n";
+        switch ($levelNumber) {
+            case 1:
+                $levelName = "exhibit-secondary";
+                break;
+            case 2:
+                $levelName = "exhibit-tertiary";
+                break;
+            case 3:
+                $levelName = "exhibit-quaternary";            
+                break;
+        }
+
+        $html .= "<li>\n<ul class=\"$levelName\">\n";
+        $levelNumber +=1;
+        
         foreach ($pageSiblings as $pageSibling) {
             $html .= '<li' . ($pageSibling->id == $page->id ? ' class="current"' : '') . '>';
             $html .= '<a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling)) . '">';
