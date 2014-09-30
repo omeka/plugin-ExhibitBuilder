@@ -78,19 +78,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
         $pageParent = $page->getParent();
         $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages()); 
 
-        switch ($levelNumber) {
-            case 1:
-                $levelName = "exhibit-secondary";
-                break;
-            case 2:
-                $levelName = "exhibit-tertiary";
-                break;
-            case 3:
-                $levelName = "exhibit-quaternary";            
-                break;
-        }
-
-        $html .= "<li>\n<ul class=\"$levelName\">\n";
+        $html .= "<li>\n<ul class=\"exhibit-nav-level-$levelNumber\">\n";
         $levelNumber +=1;
         
         foreach ($pageSiblings as $pageSibling) {
