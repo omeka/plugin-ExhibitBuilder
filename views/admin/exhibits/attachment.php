@@ -13,7 +13,7 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
     </div>
     <div class="attachment-body">
         <?php if ($file): ?>
-        <div class="attachment-background" style="background: url(<?php echo html_escape(metadata($file, 'square_thumbnail_uri')); ?>) center / cover"></div>
+        <div class="attachment-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
         <?php endif; ?>
         <h5>
             #<?php echo html_escape($item->id); ?>:<br>
