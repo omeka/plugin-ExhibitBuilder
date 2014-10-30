@@ -54,7 +54,7 @@ class ExhibitBuilder_ApiImport_ExhibitPageAdapter extends ApiImport_ResponseAdap
     protected function getLocalResourceId($resourceData, $type)
     {
         $remoteId = $resourceData['id'];
-        $localRecord = $this->db->getTable('ApiRecordIdMap')->localRecord($type, $remoteId, $this->endpointUri);
+        $localRecord = $this->db->getTable('OmekaApiImportRecordIdMap')->localRecord($type, $remoteId, $this->endpointUri);
         return $localRecord->id;
     }
 }
