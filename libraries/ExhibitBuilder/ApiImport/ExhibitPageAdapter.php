@@ -34,7 +34,7 @@ class ExhibitBuilder_ApiImport_ExhibitPageAdapter extends ApiImport_ResponseAdap
         }
         try {
             $this->record->save(true);
-            $this->addApiRecordIdMap();
+            $this->addOmekaApiImportRecordIdMap();
         } catch(Exception $e) {
             _log($e);
         }

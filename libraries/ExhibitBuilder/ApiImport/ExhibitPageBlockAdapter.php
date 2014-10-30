@@ -15,7 +15,7 @@ class ExhibitBuilder_ApiImport_ExhibitPageBlockAdapter extends ApiImport_Respons
         $this->record->options = json_encode($this->responseData['options']);
         try {
             $this->record->save(true);
-            $this->addApiRecordIdMap();
+            $this->addOmekaApiImportRecordIdMap();
         } catch(Exception $e) {
             _log($e);
         }
