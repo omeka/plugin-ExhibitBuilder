@@ -118,20 +118,15 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         if (!$exhibit) {
             throw new Omeka_Controller_Exception_404;
         }
-        
-        $params = $this->getRequest()->getParams();
-        unset($params['action']);
-        unset($params['controller']);
-        unset($params['module']);
-        //loop through the page slugs to make sure each one actually exists
-        //then render the last one
-        //pass all the pages into the view so the breadcrumb can be built there
-        unset($params['slug']); // don't need the exhibit slug
+
+        $slugParams = array('page_slug_1', 'page_slug_2', 'page_slug_3');
 
         $pageTable = $this->_helper->db->getTable('ExhibitPage');
 
+        $exhibitPage = null;
         $parentPage = null;
-        foreach($params as $slug) {
+        foreach($slugParams as $param) {
+            $slug = $this->getParam($param);
             if(!empty($slug)) {
                 $exhibitPage = $pageTable->findBySlug($slug, $exhibit, $parentPage);
                 if($exhibitPage) {
@@ -140,6 +135,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
                     throw new Omeka_Controller_Exception_404;
                 }
             }
+        }
+        if (!$exhibitPage) {
+            throw new Omeka_Controller_Exception_404;
         }
 
         fire_plugin_hook('show_exhibit', array(
