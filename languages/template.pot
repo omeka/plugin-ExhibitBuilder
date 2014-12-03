@@ -31,7 +31,7 @@ msgstr ""
 msgid "This item is not used within this exhibit."
 msgstr ""
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:205
 msgid "You must specifically select a theme in order to configure it."
 msgstr ""
 

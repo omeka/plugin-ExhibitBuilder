@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
+# Bert Balcaen <bert@rekalldesign.com>, 2014
 # Evy De Wulf <evy.dewulf@libis.kuleuven.be>, 2013-2014
 # John Flatness <john@zerocrates.org>, 2012
 # Peter Baan <exnihilo@xs4all.nl>, 2012
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-24 11:25+0000\n"
-"Last-Translator: Evy De Wulf <evy.dewulf@libis.kuleuven.be>\n"
+"PO-Revision-Date: 2014-10-02 17:51+0000\n"
+"Last-Translator: Bert Balcaen <bert@rekalldesign.com>\n"
 "Language-Team: Dutch (Belgium) (http://www.transifex.com/projects/p/omeka/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,37 +32,37 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "De standaardmethode waarop u de lijst met tentoonstellingen wilt sorteren op de tentoonstelling/doorbladerpagina. Standaard is 'Toegevoegd op datum'."
 
-#: controllers/ExhibitsController.php:105
+#: controllers/ExhibitsController.php:107
 msgid "This item is not used within this exhibit."
 msgstr "Dit item wordt niet gebruikt in deze tentoonstelling."
 
-#: controllers/ExhibitsController.php:205
+#: controllers/ExhibitsController.php:207
 msgid "You must specifically select a theme in order to configure it."
 msgstr "U dient een specifiek thema te selecteren, om het te kunnen configureren."
 
-#: functions.php:390
+#: functions.php:392
 msgid "exhibits"
 msgstr "tentoonstellingen"
 
-#: functions.php:404 views/admin/exhibits/browse.php:2
+#: functions.php:406 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Blader door tentoonstellingen"
 
-#: functions.php:420 views/admin/exhibits/add.php:6
+#: functions.php:422 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Tentoonstellingen"
 
-#: functions.php:581
+#: functions.php:583
 msgid "Search by Exhibit"
 msgstr "Zoeken op tentoonstelling"
 
-#: functions.php:590
+#: functions.php:592
 msgid "Exhibit"
 msgstr "Tentoonstelling"
 
-#: functions.php:591
+#: functions.php:593
 msgid "Exhibit Page"
 msgstr "Tentoonstellingspagina"
 
@@ -69,7 +70,7 @@ msgstr "Tentoonstellingspagina"
 msgid "Featured Exhibit"
 msgstr "Aanbevolen tentoonstelling"
 
-#: helpers/ExhibitFunctions.php:182
+#: helpers/ExhibitFunctions.php:181
 msgid "You have no featured exhibits."
 msgstr "U hebt geen aanbevolen tentoonstellingen."
 
@@ -110,7 +111,7 @@ msgstr "Standaard lay-out kenmerkt door bestanden links of naar rechts uitgelijn
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Gallerij"
+msgstr "Galerij"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
@@ -180,7 +181,7 @@ msgstr "Voeg een tentoonstelling toe"
 msgid "Theme"
 msgstr "Thema"
 
-#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Huidige publieke thema"
@@ -272,6 +273,7 @@ msgstr "Voeg een nieuw inhoudsblok toe"
 msgid "Save and Add Another Page"
 msgstr "Opslaan en nog een pagina toevoegen"
 
+#. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr "Voeg een item bij."
@@ -326,7 +328,7 @@ msgstr "Er zijn geen items om uit te kiezen. Verfijn uw zoekopdracht of %s."
 msgid "Select Item"
 msgstr "Item selecteren"
 
-#: views/public/exhibits/browse.php:40
+#: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
 msgstr "Er zijn nog geen tentoonstellingen beschikbaar."
 
@@ -340,20 +342,34 @@ msgid "File position"
 msgstr "Bestandspositie"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
+#: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
 msgstr "Links"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
 msgstr "Rechts"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
 msgstr "Bestandsgrootte"
+
+#: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:62
+msgid "Captions position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/gallery/form.php:67
+msgid "Center"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
@@ -372,3 +388,7 @@ msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Als er geen showcase bestand of tekst is, zal de gallerij de volledige breedte van de pagina gebruiken."
+
+#: views/shared/exhibit_layouts/gallery/form.php:50
+msgid "Gallery file size"
+msgstr ""

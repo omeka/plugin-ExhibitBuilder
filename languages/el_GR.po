@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-01-03 19:02+0000\n"
+"PO-Revision-Date: 2014-09-25 18:31+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/omeka/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -30,37 +30,37 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Η προεπιλεγμένη μέθοδος με την οποία θέλετε να ταξινομήσετε την λίστα των εκθεμάτων για τα εκθέματα / περιηγηση σελίδας. Η προεπιλογή είναι \"Ημερομηνία Καταχώρησης»."
 
-#: controllers/ExhibitsController.php:105
+#: controllers/ExhibitsController.php:107
 msgid "This item is not used within this exhibit."
 msgstr "Αυτό το αντικείμενο δεν χρησιμοποιείται μέσα στο έκθεμα."
 
-#: controllers/ExhibitsController.php:205
+#: controllers/ExhibitsController.php:207
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Πρέπει να επιλέξετε συγκεκριμένα ένα θέμα για να το διαμορφώσετε."
 
-#: functions.php:390
+#: functions.php:392
 msgid "exhibits"
 msgstr "εκθέματα"
 
-#: functions.php:404 views/admin/exhibits/browse.php:2
+#: functions.php:406 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Περιήγηση Εκθεμάτων"
 
-#: functions.php:420 views/admin/exhibits/add.php:6
+#: functions.php:422 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Εκθέματα"
 
-#: functions.php:581
+#: functions.php:583
 msgid "Search by Exhibit"
 msgstr "Αναζήτηση ανά Έκθεμα"
 
-#: functions.php:590
+#: functions.php:592
 msgid "Exhibit"
 msgstr "Έκθεμα"
 
-#: functions.php:591
+#: functions.php:593
 msgid "Exhibit Page"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Featured Exhibit"
 msgstr "Προτεινόμενα εκθέματα"
 
-#: helpers/ExhibitFunctions.php:182
+#: helpers/ExhibitFunctions.php:181
 msgid "You have no featured exhibits."
 msgstr "Δεν έχετε προτεινόμενα εκθέματα."
 
@@ -179,7 +179,7 @@ msgstr "Προσθήκη Εκθέματος"
 msgid "Theme"
 msgstr "Θέμα"
 
-#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Τρέχων Δημόσιο Θέμα"
@@ -271,6 +271,7 @@ msgstr ""
 msgid "Save and Add Another Page"
 msgstr "Αποθήκευση και προσθήκη νέας σελίδας"
 
+#. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr "Τοποθετήστε ένα αντικείμενο"
@@ -325,7 +326,7 @@ msgstr "Δεν υπάρχουν αντικείμενα για να επιλέξ�
 msgid "Select Item"
 msgstr ""
 
-#: views/public/exhibits/browse.php:40
+#: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
 msgstr "Δεν υπάρχει έκθεμα διαθέσιμο ακόμα."
 
@@ -339,19 +340,33 @@ msgid "File position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
+#: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:62
+msgid "Captions position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/gallery/form.php:67
+msgid "Center"
 msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
@@ -370,4 +385,8 @@ msgstr ""
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:50
+msgid "Gallery file size"
 msgstr ""

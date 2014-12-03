@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-08-02 10:29+0000\n"
+"PO-Revision-Date: 2014-11-23 09:35+0000\n"
 "Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/projects/p/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -32,37 +32,37 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "El criteri per defecte que s'utilitza per llistar les exposicions a la pàgina 'Navega per les exposicions'. El criteri per defecte és 'Data d'incorporació'."
 
-#: controllers/ExhibitsController.php:105
+#: controllers/ExhibitsController.php:107
 msgid "This item is not used within this exhibit."
 msgstr "Aquest ítem no s'utilitza dins aquesta exposició."
 
-#: controllers/ExhibitsController.php:205
+#: controllers/ExhibitsController.php:207
 msgid "You must specifically select a theme in order to configure it."
 msgstr "És obligatori especificar la plantilla per poder configurar-la."
 
-#: functions.php:390
+#: functions.php:392
 msgid "exhibits"
 msgstr "exposicions"
 
-#: functions.php:404 views/admin/exhibits/browse.php:2
+#: functions.php:406 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Navega per les exposicions"
 
-#: functions.php:420 views/admin/exhibits/add.php:6
+#: functions.php:422 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Exposicions"
 
-#: functions.php:581
+#: functions.php:583
 msgid "Search by Exhibit"
 msgstr "Cerca per exposició"
 
-#: functions.php:590
+#: functions.php:592
 msgid "Exhibit"
 msgstr "Exposició"
 
-#: functions.php:591
+#: functions.php:593
 msgid "Exhibit Page"
 msgstr "Pàgina de l'exposició"
 
@@ -70,7 +70,7 @@ msgstr "Pàgina de l'exposició"
 msgid "Featured Exhibit"
 msgstr "Exposició destacada"
 
-#: helpers/ExhibitFunctions.php:182
+#: helpers/ExhibitFunctions.php:181
 msgid "You have no featured exhibits."
 msgstr "No hi ha cap exposició destacada"
 
@@ -181,7 +181,7 @@ msgstr "Afegeix una exposició"
 msgid "Theme"
 msgstr "Plantilla"
 
-#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Plantilla actual del repositori"
@@ -273,6 +273,7 @@ msgstr "Afegeix un nou bloc de contingut"
 msgid "Save and Add Another Page"
 msgstr "Desa els canvis i afegeix una nova pàgina"
 
+#. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr "Adjunta un ítem"
@@ -295,7 +296,7 @@ msgstr "Canvia l'ítem seleccionat"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr "Consigneu un peu de foto."
+msgstr "Consigneu un text de llegenda."
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
@@ -327,7 +328,7 @@ msgstr "No hi ha continguts per seleccionar. Reformuleu la vostra cerca %s."
 msgid "Select Item"
 msgstr "Selecciona un ítem"
 
-#: views/public/exhibits/browse.php:40
+#: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
 msgstr "Encara no hi ha cap exposició disponible."
 
@@ -341,20 +342,34 @@ msgid "File position"
 msgstr "Posició dels fitxers"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
+#: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
 msgstr "Esquerra"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
 msgstr "Dreta"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
 msgstr "Mida del fitxer"
+
+#: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:62
+msgid "Captions position"
+msgstr "Posició dels textos de llegenda"
+
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/gallery/form.php:67
+msgid "Center"
+msgstr "Centrat"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
@@ -373,3 +388,7 @@ msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Si no hi ha un ítem o text destacat, la galeria aprofitarà tot l'ample de la pàgina."
+
+#: views/shared/exhibit_layouts/gallery/form.php:50
+msgid "Gallery file size"
+msgstr "Mida dels fitxers de la galeria"

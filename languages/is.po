@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-06-25 12:53+0000\n"
-"Last-Translator: Bryndís Zoega <inactive+bryndiszoega@transifex.com>\n"
+"PO-Revision-Date: 2014-09-25 18:31+0000\n"
+"Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Icelandic (http://www.transifex.com/projects/p/omeka/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,37 +28,37 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr ""
 
-#: controllers/ExhibitsController.php:105
+#: controllers/ExhibitsController.php:107
 msgid "This item is not used within this exhibit."
 msgstr "Þetta gagn er ekki notað í þessari sýningu. "
 
-#: controllers/ExhibitsController.php:205
+#: controllers/ExhibitsController.php:207
 msgid "You must specifically select a theme in order to configure it."
 msgstr ""
 
-#: functions.php:390
+#: functions.php:392
 msgid "exhibits"
 msgstr ""
 
-#: functions.php:404 views/admin/exhibits/browse.php:2
+#: functions.php:406 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Skoða sýningar"
 
-#: functions.php:420 views/admin/exhibits/add.php:6
+#: functions.php:422 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Sýningar"
 
-#: functions.php:581
+#: functions.php:583
 msgid "Search by Exhibit"
 msgstr ""
 
-#: functions.php:590
+#: functions.php:592
 msgid "Exhibit"
 msgstr ""
 
-#: functions.php:591
+#: functions.php:593
 msgid "Exhibit Page"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Featured Exhibit"
 msgstr "Tilgreind sýning"
 
-#: helpers/ExhibitFunctions.php:182
+#: helpers/ExhibitFunctions.php:181
 msgid "You have no featured exhibits."
 msgstr "Þú ert ekki með neinar tilgreindar sýningar."
 
@@ -177,7 +177,7 @@ msgstr "Bæta við sýningu"
 msgid "Theme"
 msgstr "Þema"
 
-#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr ""
@@ -269,6 +269,7 @@ msgstr ""
 msgid "Save and Add Another Page"
 msgstr ""
 
+#. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr "Bæta við gagni"
@@ -323,7 +324,7 @@ msgstr ""
 msgid "Select Item"
 msgstr "Velja gagn"
 
-#: views/public/exhibits/browse.php:40
+#: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
 msgstr ""
 
@@ -337,20 +338,34 @@ msgid "File position"
 msgstr "Staðsetning skjals"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
+#: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
 msgstr "Vinstri"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
 msgstr "Hægri"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
 msgstr "Stærð skjals"
+
+#: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:62
+msgid "Captions position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/gallery/form.php:67
+msgid "Center"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
@@ -368,4 +383,8 @@ msgstr ""
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
+msgstr ""
+
+#: views/shared/exhibit_layouts/gallery/form.php:50
+msgid "Gallery file size"
 msgstr ""

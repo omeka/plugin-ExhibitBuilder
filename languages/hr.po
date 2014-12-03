@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-03-27 14:19+0000\n"
+"PO-Revision-Date: 2014-11-26 11:17+0000\n"
 "Last-Translator: rijekateam <digitalizacija@gkri.hr>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/omeka/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -29,37 +29,37 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Zadana metoda po kojoj želite sortirati prikaz izložbi na stranici izložbe/pregledaj. Zadano je 'Datum unosa'."
 
-#: controllers/ExhibitsController.php:105
+#: controllers/ExhibitsController.php:107
 msgid "This item is not used within this exhibit."
 msgstr "Ovaj dokument se ne koristi u ovoj izložbi."
 
-#: controllers/ExhibitsController.php:205
+#: controllers/ExhibitsController.php:207
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Morate odabrati temu kako biste je podesili."
 
-#: functions.php:390
+#: functions.php:392
 msgid "exhibits"
 msgstr "izložbe"
 
-#: functions.php:404 views/admin/exhibits/browse.php:2
+#: functions.php:406 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Izložbe"
 
-#: functions.php:420 views/admin/exhibits/add.php:6
+#: functions.php:422 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Izložbe"
 
-#: functions.php:581
+#: functions.php:583
 msgid "Search by Exhibit"
 msgstr "Pretraži po izložbama"
 
-#: functions.php:590
+#: functions.php:592
 msgid "Exhibit"
 msgstr "Izložba"
 
-#: functions.php:591
+#: functions.php:593
 msgid "Exhibit Page"
 msgstr "Stranica izložbe"
 
@@ -67,7 +67,7 @@ msgstr "Stranica izložbe"
 msgid "Featured Exhibit"
 msgstr "Preporučena izložba"
 
-#: helpers/ExhibitFunctions.php:182
+#: helpers/ExhibitFunctions.php:181
 msgid "You have no featured exhibits."
 msgstr "Nema preporučenih izložbi."
 
@@ -163,7 +163,7 @@ msgstr "Blok"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "Proširi/Suzi"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -178,7 +178,7 @@ msgstr "Dodaj novu izložbu."
 msgid "Theme"
 msgstr "Tema"
 
-#: views/admin/exhibits/browse.php:59
+#: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Trenutna javna tema"
@@ -217,7 +217,7 @@ msgstr "Nema stranica."
 #: views/admin/exhibits/exhibit-metadata-form.php:64
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Za promjenu redoslijeda ili grupiranje stranica, klikni i odvuci stranicu do željene lokacije."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:69
 #: views/admin/exhibits/page-form.php:2
@@ -243,16 +243,16 @@ msgstr "Sadržaj"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr ""
+msgstr "Suzi sve"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr ""
+msgstr "Proširi sve"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Za promjenu redoslijeda blokova i dokumenata, kliki i odvuci ih do željene lokacije."
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
@@ -270,13 +270,14 @@ msgstr "Dodaj novi blok sadržaja"
 msgid "Save and Add Another Page"
 msgstr "Pohrani i dodaj novu stranicu"
 
+#. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
 msgstr "Priloži dokument"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "Vrati na odabrani dokument"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
@@ -292,7 +293,7 @@ msgstr "Promijeni odabrani dokument"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr ""
+msgstr "Unesite kratki opis/naslov"
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
@@ -324,7 +325,7 @@ msgstr "Nema dokumenata za izabrati. Molimo preformulirajte svoju pretragu ili %
 msgid "Select Item"
 msgstr "Odaberi dokument"
 
-#: views/public/exhibits/browse.php:40
+#: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
 msgstr "Izložbe još nisu dostupne"
 
@@ -338,14 +339,18 @@ msgid "File position"
 msgstr "Pozicija datoteke"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
+#: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
 msgstr "Lijevo"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
 msgstr "Desno"
 
@@ -353,13 +358,23 @@ msgstr "Desno"
 msgid "File size"
 msgstr "Veličina datoteke"
 
+#: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:62
+msgid "Captions position"
+msgstr "Pozicija kratkog opisa"
+
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/gallery/form.php:67
+msgid "Center"
+msgstr "Sredina"
+
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "Pozicija ogledne datoteke"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Nema ogledne datoteke"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
@@ -369,4 +384,8 @@ msgstr "Pozicija galerije"
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Ako nema ogledne datoteke ili teksta, galerija će koristiti punu širinu stranice."
+
+#: views/shared/exhibit_layouts/gallery/form.php:50
+msgid "Gallery file size"
+msgstr "Veličina datoteke u galeriji"
