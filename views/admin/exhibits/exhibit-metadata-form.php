@@ -54,6 +54,15 @@
                     <input type="submit" class="configure-button" name="configure-theme" value="<?php echo __('Configure'); ?>">
             </div>
         </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('use_summary_page', __('Use Summary Page?')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <p class="explanation"><?php echo __("Use Omeka's built-in summary page. If unchecked, use the first exhibit page if it exists."); ?></p>
+                <?php echo $this->formCheckbox('use_summary_page', $exhibit->use_summary_page, array(), array('1', '0')); ?>
+            </div>
+        </div>
     </fieldset>
     <fieldset>
         <legend><?php echo __('Pages'); ?></legend>
