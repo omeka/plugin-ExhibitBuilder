@@ -266,7 +266,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
 
         $topPage = null;
         if (!empty($topPages)) {
-            $topPage = array_pop($topPages);
+            $topPage = array_shift($topPages);
         }
 
         return $topPage;
