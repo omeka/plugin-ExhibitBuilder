@@ -59,7 +59,7 @@
                 <?php echo $this->formLabel('use_summary_page', __('Use Summary Page?')); ?>
             </div>
             <div class="five columns omega inputs">
-                <p class="explanation"><?php echo __("Use Omeka's built-in summary page. If unchecked, use the first exhibit page if it exists."); ?></p>
+                <p class="explanation"><?php echo __("Start the exhibit on the summary page. If unchecked, start on the first exhibit page if it exists."); ?></p>
                 <?php echo $this->formCheckbox('use_summary_page', $exhibit->use_summary_page, array(), array('1', '0')); ?>
             </div>
         </div>
