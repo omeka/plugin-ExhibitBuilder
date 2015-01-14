@@ -268,6 +268,11 @@ SQL
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` DROP COLUMN `layout`";
         $db->query($sql);
     }
+
+    if (version_compare($oldVersion, '3.1.4', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `use_summary_page` TINYINT(1) DEFAULT 1 AFTER `owner_id`";
+        $db->query($sql);
+    }
 }
 
 /**
