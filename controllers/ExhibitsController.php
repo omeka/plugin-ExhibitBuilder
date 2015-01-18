@@ -168,8 +168,6 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             if (null !== $firstPage) {
                 $this->_helper->redirector->gotoRoute(
                     array(
-                        'controller' => 'exhibits',
-                        'action' => 'show',
                         'slug' => $exhibit->slug,
                         'page_slug_1' => $firstPage->slug
                     ),
