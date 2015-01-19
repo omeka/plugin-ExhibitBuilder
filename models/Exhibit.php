@@ -90,6 +90,13 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public $owner_id;
 
     /**
+     * Whether the summary page will be used.
+     *
+     * @var integer
+     */
+    public $use_summary_page = 1;
+
+    /**
      * Quick-access mappings for related records.
      *
      * @var array
@@ -232,7 +239,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     /**
      * Get all the pages for this exhibit with no parent (top-level pages).
      *
-     * @return Exhibit[]
+     * @return ExhibitPage[]
      */
     public function getTopPages()
     {
@@ -248,9 +255,21 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
 
     }
 
+    /**
+     * Get the first page with no parent.
+     *
+     * @return ExhibitPage|null
+     */
     public function getFirstTopPage()
     {
+        $topPages = $this->getTopPages();
 
+        $topPage = null;
+        if (!empty($topPages)) {
+            $topPage = array_shift($topPages);
+        }
+
+        return $topPage;
     }
 
     /**

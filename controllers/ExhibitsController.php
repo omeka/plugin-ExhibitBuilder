@@ -162,6 +162,20 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         fire_plugin_hook('show_exhibit', array('exhibit' => $exhibit));
+
+        if (!$exhibit->use_summary_page) {
+            $firstPage = $exhibit->getFirstTopPage();
+            if (null !== $firstPage) {
+                $this->_helper->redirector->gotoRoute(
+                    array(
+                        'slug' => $exhibit->slug,
+                        'page_slug_1' => $firstPage->slug
+                    ),
+                    'exhibitShow'
+                );
+            }
+        }
+
         $this->view->exhibit = $exhibit;
     }
 
