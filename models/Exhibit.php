@@ -102,7 +102,11 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
      * @var array
      */
     protected $_related = array(
-        'Pages' => 'getPages', 'TopPages' => 'getTopPages', 'Tags' => 'getTags'
+        'Pages' => 'getPages',
+        'PagesById' => 'getPagesById',
+        'PagesByParent' => 'getPagesByParent',
+        'TopPages' => 'getTopPages',
+        'Tags' => 'getTags'
     );
 
     /**
@@ -234,6 +238,39 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public function getPages()
     {
         return $this->getTable('ExhibitPage')->findBy(array('exhibit' => $this->id, 'sort_field' => 'order'));
+    }
+
+    /**
+     * Get all pages for this Exhibit, indexed by page ID.
+     *
+     * @return Exhibit[]
+     */
+    public function getPagesById()
+    {
+        $pages = $this->Pages;
+        $pagesById = array();
+        foreach ($pages as $page) {
+            $pagesById[$page->id] = $page;
+        }
+
+        return $pagesById;
+    }
+
+    /**
+     * Get all pages for this Exhibit, indexed by parent ID.
+     *
+     * @return array
+     */
+    public function getPagesByParent()
+    {
+        $pages = $this->Pages;
+        $pagesByParent = array();
+        foreach ($pages as $page) {
+            $parent_id = $page->parent_id ? (int) $page->parent_id : 0;
+            $pagesByParent[$parent_id][] = $page;
+        }
+
+        return $pagesByParent;
     }
 
     /**
