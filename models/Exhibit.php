@@ -284,12 +284,9 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             return array();
         }
 
-        return $this->getTable('ExhibitPage')->findBy(array('exhibit'=>$this->id, 'topOnly'=>true, 'sort_field'=>'order'));
-    }
+        $pages = $this->PagesByParent;
 
-    public function getTopPageBySlug($slug)
-    {
-
+        return isset($pages[0]) ? $pages[0] : array();
     }
 
     /**
@@ -302,8 +299,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
         $topPages = $this->getTopPages();
 
         $topPage = null;
-        if (!empty($topPages)) {
-            $topPage = array_shift($topPages);
+        if ($topPages) {
+            $topPage = current($topPages);
         }
 
         return $topPage;
