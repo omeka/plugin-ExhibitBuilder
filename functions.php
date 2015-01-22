@@ -473,12 +473,17 @@ function exhibit_builder_public_theme_name($themeName)
     if ($request->getModuleName() == 'exhibit-builder') {
         $slug = $request->getParam('slug');
         $exhibit = get_db()->getTable('Exhibit')->findBySlug($slug);
-        if ($exhibit && ($exhibitTheme = $exhibit->theme)) {
+        if ($exhibit && $exhibit->theme) {
+            // Save result in static for future calls
+            $exhibitTheme = $exhibit->theme;
             add_filter('theme_options', 'exhibit_builder_theme_options');
             return $exhibitTheme;
         }
     }
-    return $themeName;
+
+    // Short-circuit any future calls to the hook if we didn't change the theme
+    $exhibitTheme = $themeName;
+    return $exhibitTheme;
 }
 
 /**
