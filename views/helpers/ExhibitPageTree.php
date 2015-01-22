@@ -38,7 +38,7 @@ class ExhibitBuilder_View_Helper_ExhibitPageTree extends Zend_View_Helper_Abstra
 
         $ancestorIds = $this->_getAncestorIds($currentPage);
 
-        $html = '<ul>';
+        $html = $this->_renderListOpening();
         foreach ($pages[0] as $topPage) {
             $html .= $this->_renderPageBranch($topPage, $currentPage, $ancestorIds);
         }
@@ -55,7 +55,7 @@ class ExhibitBuilder_View_Helper_ExhibitPageTree extends Zend_View_Helper_Abstra
      * @param array $ancestorIds
      * @return string
      */
-    public function _renderPageBranch($page, $currentPage, $ancestorIds)
+    protected function _renderPageBranch($page, $currentPage, $ancestorIds)
     {
         if ($currentPage && $page->id === $currentPage->id) {
             $html = '<li class="current">';
@@ -79,12 +79,22 @@ class ExhibitBuilder_View_Helper_ExhibitPageTree extends Zend_View_Helper_Abstra
     }
 
     /**
+     * Get the opening tag for the outermost list element.
+     *
+     * @return string
+     */
+    protected function _renderListOpening()
+    {
+        return '<ul>';
+    }
+
+    /**
      * Get the IDs of all pages that are ancestors of the current page.
      *
      * @param ExhibitPage $currentPage
      * @return array
      */
-    public function _getAncestorIds($currentPage)
+    protected function _getAncestorIds($currentPage)
     {
         $ancestorIds = array();
         if ($currentPage) {
