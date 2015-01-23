@@ -4,17 +4,11 @@ echo head(array(
     'bodyclass' => 'exhibits show'));
 ?>
 
-<nav id="exhibit-pages">
-    <?php echo exhibit_builder_page_nav(); ?>
-</nav>
-
 <h1><span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></h1>
 
-<nav id="exhibit-child-pages">
-    <?php echo exhibit_builder_child_page_nav(); ?>
-</nav>
-
+<div id="exhibit-blocks">
 <?php exhibit_builder_render_exhibit_page(); ?>
+</div>
 
 <div id="exhibit-page-navigation">
     <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>
@@ -32,4 +26,7 @@ echo head(array(
     </div>
 </div>
 
+<nav id="exhibit-pages">
+    <?php echo exhibit_builder_page_tree($exhibit, $exhibit_page); ?>
+</nav>
 <?php echo foot(); ?>
