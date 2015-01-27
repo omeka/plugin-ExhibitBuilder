@@ -27,6 +27,7 @@ echo head(array(
 </div>
 
 <nav id="exhibit-pages">
+    <h4><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h4>
     <?php echo exhibit_builder_page_tree($exhibit, $exhibit_page); ?>
 </nav>
 <?php echo foot(); ?>
