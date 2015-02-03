@@ -14,26 +14,14 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
 {
     protected $_autoCsrfProtection = true;
 
+    protected $_browseRecordsPerPage = self::RECORDS_PER_PAGE_SETTING;
+
     /**
      * Controller-wide initialization. Sets the underlying model to use.
      */
     public function init()
     {
         $this->_helper->db->setDefaultModelName('Exhibit');
-    }
-
-    /**
-     * Use global settings for determining browse page limits.
-     *
-     * @return int
-     */
-    public function _getBrowseRecordsPerPage()
-    {
-        if (is_admin_theme()) {
-            return (int) get_option('per_page_admin');
-        } else {
-            return (int) get_option('per_page_public');
-        }
     }
 
     /**
