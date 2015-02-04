@@ -92,17 +92,6 @@ class Table_Exhibit extends Omeka_Db_Table
                     }
                     $select->where("tg.record_type = ? ", array('Exhibit'));
                     break;
-                case 'sort':
-                    switch($paramValue) {
-                        case 'alpha':
-                            $select->order("exhibits.title ASC");
-                            break;
-
-                        case 'recent':
-                            $select->order("exhibits.id DESC");
-                            break;
-                    }
-                    break;
                 case 'public':
                     $this->filterByPublic($select, $params['public']);
                     break;

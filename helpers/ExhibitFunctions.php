@@ -118,7 +118,7 @@ function exhibit_builder_exhibit_item_uri($item, $exhibit = null)
  */
 function exhibit_builder_recent_exhibits($num = 10)
 {
-    return get_records('Exhibit', array('sort'=>'recent'), $num);
+    return get_records('Exhibit', array('sort_field' => 'added', 'sort_dir' => 'd'), $num);
 }
 
 /**

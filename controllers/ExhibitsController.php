@@ -25,26 +25,21 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     }
 
     /**
-     * Browse exhibits action.
+     * Return the default sorting parameters to use when none are specified.
+     *
+     * @return array|null Array of parameters, with the first element being the
+     *  sort_field parameter, and the second (optionally) the sort_dir.
      */
-    public function browseAction()
+    protected function _getBrowseDefaultSort()
     {
-        $request = $this->getRequest();
-        $sortParam = $request->getParam('sort');
-        $sortOptionValue = get_option('exhibit_builder_sort_browse');
-
-        if (!isset($sortParam)) {
-            switch ($sortOptionValue) {
-                case 'alpha':
-                    $request->setParam('sort', 'alpha');
-                    break;
-                case 'recent':
-                    $request->setParam('sort', 'recent');
-                    break;
-            }
+        switch(get_option('exhibit_builder_sort_browse')) {
+            case 'alpha':
+                return array('title');
+            case 'recent':
+                return array('added', 'd');
+            default:
+                return null;
         }
-
-        parent::browseAction();
     }
 
     /**
