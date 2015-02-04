@@ -70,23 +70,6 @@ class Table_ExhibitPage extends Omeka_Db_Table
     }
 
     /**
-     * Enables sorting based on parent_id and order simultaneously.
-     *
-     * @param Omeka_Db_Select $select
-     * @param string $sortField Field to sort on
-     * @param string $sortDir Sorting direction (ASC or DESC)
-     */
-    public function applySorting($select, $sortField, $sortDir)
-    {
-        parent::applySorting($select, $sortField, $sortDir);
-
-        if ($sortField == 'parent_order') {
-            $alias = $this->getTableAlias();
-            $select->order(array("{$alias}.parent_id", "{$alias}.order"));
-        }
-    }
-
-    /**
      * Find the previous page.
      *
      * @param ExhibitPage $page
