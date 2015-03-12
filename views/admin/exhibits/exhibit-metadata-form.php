@@ -86,7 +86,7 @@
             <?php if ($exhibit->exists()): ?>
                 <?php echo exhibit_builder_link_to_exhibit($exhibit, __('View Public Page'), array('class' => 'big blue button', 'target' => '_blank')); ?>
                 <?php if (is_allowed($exhibit, 'delete')): ?>
-                    <?php echo link_to($exhibit, 'delete-confirm', __('Delete'), array('class' => 'big red button delete-confirm')); ?>
+                    <?php echo link_to($exhibit, 'delete-confirm', __('Delete Exhibit'), array('class' => 'big red button delete-confirm')); ?>
                 <?php endif; ?>
             <?php endif; ?>
             <div id="public-featured">

@@ -43,6 +43,18 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     }
 
     /**
+     * Return message for confirming exhibit deletion.
+     *
+     * @param Exhibit $exhibit
+     * @return string
+     */
+    protected function _getDeleteConfirmMessage($exhibit)
+    {
+        return __('This will permanently delete the entire exhibit "%s"'
+            .' and all its pages.', $exhibit->title);
+    }
+
+    /**
      * Find an exhibit by its slug.
      *
      * @param string|null $exhibitSlug The slug to look up. If null, look up
