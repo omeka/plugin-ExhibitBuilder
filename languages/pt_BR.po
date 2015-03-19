@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012-2014
-# Tel, 2014
+# Tel, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-10-02 16:58+0000\n"
+"PO-Revision-Date: 2015-03-13 17:24+0000\n"
 "Last-Translator: Tel\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/omeka/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -29,70 +29,75 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "O método padrão usado para ordenar as listagens de exposições na página de exposições ou de navegação. Padrão é por \"Data Adicionada\"."
 
-#: controllers/ExhibitsController.php:107
+#: controllers/ExhibitsController.php:53
+#, php-format
+msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
+msgstr "Isso vai remover permanentemente a exibição \"%s\" e todas as suas páginas."
+
+#: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
 msgstr "Este item não é usado nesta exposição."
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Você precisa selecionar um tema em específico para poder configurá-lo."
 
-#: functions.php:392
+#: functions.php:398
 msgid "exhibits"
 msgstr "mostras"
 
-#: functions.php:406 views/admin/exhibits/browse.php:2
+#: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ver Exposições"
 
-#: functions.php:422 views/admin/exhibits/add.php:6
+#: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Exposições"
 
-#: functions.php:583
+#: functions.php:594
 msgid "Search by Exhibit"
 msgstr "Procurar por Exposição"
 
-#: functions.php:592
+#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
 msgstr "Mostra"
 
-#: functions.php:593
+#: functions.php:604
 msgid "Exhibit Page"
 msgstr "Página de Mostras"
 
-#: helpers/ExhibitFunctions.php:177
+#: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Exposição em Destaque"
 
-#: helpers/ExhibitFunctions.php:181
+#: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
 msgstr "Você não tem exposições em destaque."
 
-#: models/Exhibit.php:109
+#: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
 msgstr "Exposições necessitam de um slug válido."
 
-#: models/Exhibit.php:110 models/ExhibitPage.php:68
+#: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Um slug tem no máximo 30 caracteres."
 
-#: models/Exhibit.php:111
+#: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Seu slug da URL já está em uso por outra exposição. Por favor escolha outro."
 
-#: models/Exhibit.php:124
+#: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
 msgstr "É necessário dar um nome à Exposição."
 
-#: models/Exhibit.php:128
+#: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "O título de uma exposição pode ter no máximo 255 caracteres."
 
-#: models/Exhibit.php:132
+#: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
 msgstr "O nome do seu tema pode ter no máximo 30 caracteres."
 
@@ -207,19 +212,29 @@ msgid "Credits"
 msgstr "Créditos"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
+msgid "Use Summary Page?"
+msgstr "Usar página de resumo?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:62
+msgid ""
+"Start the exhibit on the summary page. If unchecked, start on the first "
+"exhibit page if it exists."
+msgstr "Começar a exibição na página de resumo. Se não estiver marcado, começar na primeira página se ela existir."
+
+#: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
 msgstr "Páginas"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:62
+#: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
 msgstr "ão existem páginas."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "Para reordenar as paginas aninhar, clique a arraste a página para a localização desejada."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Adicionar Página"

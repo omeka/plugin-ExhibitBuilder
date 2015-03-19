@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-09-25 18:31+0000\n"
+"PO-Revision-Date: 2015-03-12 22:21+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/omeka/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -28,70 +28,75 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Metode baku yang ingin anda gunakan untuk mengurut daftar pameran pada halaman pameran/ramban. Bakunya adalah 'Tanggal Ditambahkan'."
 
-#: controllers/ExhibitsController.php:107
+#: controllers/ExhibitsController.php:53
+#, php-format
+msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
+msgstr ""
+
+#: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
 msgstr "Item ini tidak digunakan dalam pameran ini."
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Anda harus memilih secara spesifik sebuah tema untuk mengkonfigurasinya."
 
-#: functions.php:392
+#: functions.php:398
 msgid "exhibits"
 msgstr "pameran"
 
-#: functions.php:406 views/admin/exhibits/browse.php:2
+#: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ramban Pameran"
 
-#: functions.php:422 views/admin/exhibits/add.php:6
+#: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Pameran"
 
-#: functions.php:583
+#: functions.php:594
 msgid "Search by Exhibit"
 msgstr "Cari berdasarkan Pameran"
 
-#: functions.php:592
+#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
 msgstr "Pameran"
 
-#: functions.php:593
+#: functions.php:604
 msgid "Exhibit Page"
 msgstr "Halaman Pameran"
 
-#: helpers/ExhibitFunctions.php:177
+#: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Pameran Istimewa"
 
-#: helpers/ExhibitFunctions.php:181
+#: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
 msgstr "Anda tidak mempunyai pameran istimewa."
 
-#: models/Exhibit.php:109
+#: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
 msgstr "Pameran harus diberi sebuah slug yang valid."
 
-#: models/Exhibit.php:110 models/ExhibitPage.php:68
+#: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Sebuah slug harus 30 karakter atau kurang."
 
-#: models/Exhibit.php:111
+#: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "URL slug anda telah digunakan oleh pameran lain.  Gunakan yang lain."
 
-#: models/Exhibit.php:124
+#: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
 msgstr "Sebuah pameran harus diberi judul."
 
-#: models/Exhibit.php:128
+#: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Judul untuk pameran harus 255 karakter atau kurang."
 
-#: models/Exhibit.php:132
+#: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Nama dari tema anda harus 30 karakter atau kurang."
 
@@ -206,19 +211,29 @@ msgid "Credits"
 msgstr "Penghargaan"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
+msgid "Use Summary Page?"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:62
+msgid ""
+"Start the exhibit on the summary page. If unchecked, start on the first "
+"exhibit page if it exists."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
 msgstr "Halaman"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:62
+#: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
 msgstr "Tidak ada halaman."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Tambah Halaman"

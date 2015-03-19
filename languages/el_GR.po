@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
+# Konstantina Elma <konstantinaelma@hotmail.com>, 2015
 # stauros gkinis <gkista@yahoo.gr>, 2012
 # Stoitsis Giannis <>, 2012
 # Theodosis Filippou <tf1974@gmail.com>, 2013
@@ -11,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-09-25 18:31+0000\n"
+"PO-Revision-Date: 2015-03-12 22:21+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Greek (Greece) (http://www.transifex.com/projects/p/omeka/language/el_GR/)\n"
 "MIME-Version: 1.0\n"
@@ -30,76 +31,81 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Η προεπιλεγμένη μέθοδος με την οποία θέλετε να ταξινομήσετε την λίστα των εκθεμάτων για τα εκθέματα / περιηγηση σελίδας. Η προεπιλογή είναι \"Ημερομηνία Καταχώρησης»."
 
-#: controllers/ExhibitsController.php:107
+#: controllers/ExhibitsController.php:53
+#, php-format
+msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
+msgstr ""
+
+#: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
 msgstr "Αυτό το αντικείμενο δεν χρησιμοποιείται μέσα στο έκθεμα."
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Πρέπει να επιλέξετε συγκεκριμένα ένα θέμα για να το διαμορφώσετε."
 
-#: functions.php:392
+#: functions.php:398
 msgid "exhibits"
 msgstr "εκθέματα"
 
-#: functions.php:406 views/admin/exhibits/browse.php:2
+#: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Περιήγηση Εκθεμάτων"
 
-#: functions.php:422 views/admin/exhibits/add.php:6
+#: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Εκθέματα"
 
-#: functions.php:583
+#: functions.php:594
 msgid "Search by Exhibit"
 msgstr "Αναζήτηση ανά Έκθεμα"
 
-#: functions.php:592
+#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
 msgstr "Έκθεμα"
 
-#: functions.php:593
+#: functions.php:604
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Σελίδα εκθέματος"
 
-#: helpers/ExhibitFunctions.php:177
+#: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Προτεινόμενα εκθέματα"
 
-#: helpers/ExhibitFunctions.php:181
+#: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
 msgstr "Δεν έχετε προτεινόμενα εκθέματα."
 
-#: models/Exhibit.php:109
+#: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
 msgstr "Τα Έκθεματα πρέπει να έχουν έγκυρο slug."
 
-#: models/Exhibit.php:110 models/ExhibitPage.php:68
+#: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Το slug πρέπει να είναι το πολύ 30 χαρακτήρες."
 
-#: models/Exhibit.php:111
+#: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Το URL slug χρησιμοποιείται από ένα άλλο έκθεμα. Παρακαλώ διαλέξτε κάποιο άλλο."
 
-#: models/Exhibit.php:124
+#: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
 msgstr "Στο Έκθεμα πρέπει να δοθεί ένας τίτλος."
 
-#: models/Exhibit.php:128
+#: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Ο τίτλος ενός Εκθέματος πρέπει να είναι το πολύ 255 χαρακτήρες."
 
-#: models/Exhibit.php:132
+#: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Το όνομα του θέματος πρέπει να είναι το πολύ 30 χαρακτήρες."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "Αρχείο με κείμενο"
 
 #: models/ExhibitLayout.php:144
 msgid ""
@@ -147,16 +153,16 @@ msgstr "Προσθήκη Εκθέματος."
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "Επιλεγμένο αντικείμενο: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "Επιλέξτε ένα αρχείο για χρήση"
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr ""
+msgstr "Αφαίρεση/Επαναφορά"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
@@ -208,19 +214,29 @@ msgid "Credits"
 msgstr "Συντελεστές"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
+msgid "Use Summary Page?"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:62
+msgid ""
+"Start the exhibit on the summary page. If unchecked, start on the first "
+"exhibit page if it exists."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
 msgstr "Σελίδες"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:62
+#: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
 msgstr "Δεν υπάρχουν σελίδες."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Προσθήκη σελίδας"
@@ -232,7 +248,7 @@ msgstr "Επεξεργασία σελίδας \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "Τίτλος Σελίδας"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
@@ -240,7 +256,7 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "Περιεχόμενο"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
@@ -333,11 +349,11 @@ msgstr "Δεν υπάρχει έκθεμα διαθέσιμο ακόμα."
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "Επιλογές Διάταξης"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr ""
+msgstr "Θέση αρχείου"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -345,7 +361,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
-msgstr ""
+msgstr "Αριστερά"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -353,16 +369,16 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
-msgstr ""
+msgstr "Δεξιά"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Μέγεθος αρχείου"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
-msgstr ""
+msgstr "Θέση λεζάντας"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/gallery/form.php:67

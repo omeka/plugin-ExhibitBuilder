@@ -6,13 +6,14 @@
 # Alessandro Leccese <alec.wiki@gmail.com>, 2012
 # Alfio Squatrito <info@lswebagency.it>, 2014
 # Donatella Mutti <donatella.mutti@unito.it>, 2012
+# Guybrush88 <erpizzo@alice.it>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-09-25 18:31+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2015-03-17 19:04+0000\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/omeka/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,76 +31,81 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr ""
 
-#: controllers/ExhibitsController.php:107
+#: controllers/ExhibitsController.php:53
+#, php-format
+msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
+msgstr ""
+
+#: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
 msgstr ""
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
 msgstr ""
 
-#: functions.php:392
+#: functions.php:398
 msgid "exhibits"
 msgstr ""
 
-#: functions.php:406 views/admin/exhibits/browse.php:2
+#: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr ""
+msgstr "Esplora le esibizioni"
 
-#: functions.php:422 views/admin/exhibits/add.php:6
+#: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr ""
+msgstr "Esibizioni"
 
-#: functions.php:583
+#: functions.php:594
 msgid "Search by Exhibit"
-msgstr ""
+msgstr "Cerca per esibizione"
 
-#: functions.php:592
+#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
-msgstr ""
+msgstr "Esibizione"
 
-#: functions.php:593
+#: functions.php:604
 msgid "Exhibit Page"
-msgstr ""
+msgstr "Pagina dell'esibizione"
 
-#: helpers/ExhibitFunctions.php:177
+#: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr ""
 
-#: helpers/ExhibitFunctions.php:181
+#: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
 msgstr ""
 
-#: models/Exhibit.php:109
+#: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
 msgstr ""
 
-#: models/Exhibit.php:110 models/ExhibitPage.php:68
+#: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr ""
 
-#: models/Exhibit.php:111
+#: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr ""
 
-#: models/Exhibit.php:124
+#: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
-msgstr ""
+msgstr "Bisogna dare un titolo all'esibizione."
 
-#: models/Exhibit.php:128
+#: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr ""
 
-#: models/Exhibit.php:132
+#: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
 msgstr ""
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "File con testo"
 
 #: models/ExhibitLayout.php:144
 msgid ""
@@ -109,7 +115,7 @@ msgstr ""
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr ""
+msgstr "Galleria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
@@ -142,12 +148,12 @@ msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr ""
+msgstr "Aggiungi un'esibizione"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "Oggetto selezionato: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
@@ -156,11 +162,11 @@ msgstr ""
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr ""
+msgstr "Rimuovi/Ripristina"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr ""
+msgstr "Blocca"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
@@ -168,11 +174,11 @@ msgstr ""
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr ""
+msgstr "Non ci sono ancora delle esibizioni."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr ""
+msgstr "Aggiungi un'esibizione"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
@@ -187,7 +193,7 @@ msgstr "Tema pubblico attuale"
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr ""
+msgstr "Modifica l'esibizione \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -208,19 +214,29 @@ msgid "Credits"
 msgstr "Ringraziamenti"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
+msgid "Use Summary Page?"
+msgstr "Utilizzare la pagina di sommario?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:62
+msgid ""
+"Start the exhibit on the summary page. If unchecked, start on the first "
+"exhibit page if it exists."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
 msgstr "Pagine"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:62
+#: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
-msgstr ""
+msgstr "Non ci sono pagine."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Aggiungi pagina"
@@ -228,11 +244,11 @@ msgstr "Aggiungi pagina"
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr ""
+msgstr "Modifica la pagina \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr ""
+msgstr "Titolo della pagina"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
@@ -240,15 +256,15 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr ""
+msgstr "Contenuto"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr ""
+msgstr "Collassa tutto"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr ""
+msgstr "Espandi tutto"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
@@ -257,7 +273,7 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr ""
+msgstr "Nuovo blocco"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
@@ -298,7 +314,7 @@ msgstr ""
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -311,7 +327,7 @@ msgstr ""
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr ""
+msgstr "Configura il &#8220;%s&#8221; tema"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
@@ -324,7 +340,7 @@ msgstr ""
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "Seleziona un oggetto"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
@@ -337,7 +353,7 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr ""
+msgstr "Posizione del file"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -357,7 +373,7 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Dimensione del file"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:62

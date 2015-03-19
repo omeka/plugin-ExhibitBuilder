@@ -5,13 +5,13 @@
 # Translators:
 # Martin Sauter <martin.sauter@gmx.ch>, 2012
 # Martin Sauter <martin.sauter@gmx.ch>, 2013
-# Roland Keck <roland.keck@web.de>, 2014
+# Roland Keck <roland.keck@web.de>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2014-10-07 06:45+0000\n"
+"PO-Revision-Date: 2015-03-13 07:02+0000\n"
 "Last-Translator: Roland Keck <roland.keck@web.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/projects/p/omeka/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
@@ -30,70 +30,75 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "Die Sortiermethode für die Liste der Ausstellungen auf der Seite \"Exhibits/Browse\". Die Standardeinstellung ist \"Datum hinzugefügt\"."
 
-#: controllers/ExhibitsController.php:107
+#: controllers/ExhibitsController.php:53
+#, php-format
+msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
+msgstr "Sie werden die Austellung \"%s\" und alle Seiten hiermit löschen."
+
+#: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
 msgstr "Dieses Objekt wird in dieser Ausstellung nicht verwendet."
 
-#: controllers/ExhibitsController.php:207
+#: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Sie müssen explizit ein Theme auswählen um es konfigurieren zu können."
 
-#: functions.php:392
+#: functions.php:398
 msgid "exhibits"
 msgstr "Ausstellungen"
 
-#: functions.php:406 views/admin/exhibits/browse.php:2
+#: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ausstellungen durchstöbern"
 
-#: functions.php:422 views/admin/exhibits/add.php:6
+#: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Ausstellungen"
 
-#: functions.php:583
+#: functions.php:594
 msgid "Search by Exhibit"
 msgstr "Suche nach Ausstellungen"
 
-#: functions.php:592
+#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
 msgstr "Ausstellung"
 
-#: functions.php:593
+#: functions.php:604
 msgid "Exhibit Page"
 msgstr "Ausstellungsseite"
 
-#: helpers/ExhibitFunctions.php:177
+#: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Hervorgehobene Ausstellung"
 
-#: helpers/ExhibitFunctions.php:181
+#: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
 msgstr "Sie haben keine hervorgehobenen Ausstellungen."
 
-#: models/Exhibit.php:109
+#: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
 msgstr "Ausstellungen benötigen einen gültigen Slug."
 
-#: models/Exhibit.php:110 models/ExhibitPage.php:68
+#: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
 msgstr "Ein Slug darf höchstens 30 Zeichen lang sein."
 
-#: models/Exhibit.php:111
+#: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Ihr URL Slug wird bereits für eine andere Ausstellung benutzt. Bitte wählen Sie einen anderen Slug."
 
-#: models/Exhibit.php:124
+#: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
 msgstr "Eine Ausstellung benötigt einen Titel."
 
-#: models/Exhibit.php:128
+#: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Der Titel für eine Ausstellung darf höchstens 255 Zeichen lang sein."
 
-#: models/Exhibit.php:132
+#: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Der Name Ihres Themes darf höchstens 30 Zeichen lang sein."
 
@@ -208,19 +213,29 @@ msgid "Credits"
 msgstr "Credits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
+msgid "Use Summary Page?"
+msgstr "Übersichtsseite verwenden?"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:62
+msgid ""
+"Start the exhibit on the summary page. If unchecked, start on the first "
+"exhibit page if it exists."
+msgstr "Starten Sie die Ausstellung auf der Übersichtsseite. Falls nicht markiert wird die Ausstellung aud er ersten Seite gestartet, sofern diese existiert"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
 msgstr "Seiten"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:62
+#: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
 msgstr "Es existieren keine Seiten."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:64
+#: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "Um Seiten umzusortieren oder zu verschachteln klicken und die Seite zu der gewählten Position verschieben."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:69
+#: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Seite hinzufügen"
