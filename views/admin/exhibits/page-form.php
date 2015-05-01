@@ -43,7 +43,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <div class="add-block">
             <h2><?php echo __('New Block'); ?></h2>
             <div class="layout-select">
-                <h4><?php echo __('Select layout'); ?></h3>
+                <h3><?php echo __('Select layout'); ?></h3>
                 <div class="layout-thumbs">
                 <?php
                     $layouts = ExhibitLayout::getLayouts();
