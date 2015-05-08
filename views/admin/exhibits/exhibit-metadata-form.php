@@ -63,6 +63,24 @@
                 <?php echo $this->formCheckbox('use_summary_page', $exhibit->use_summary_page, array(), array('1', '0')); ?>
             </div>
         </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>
+            </div>
+            <div class="five columns omega inputs">
+                <p class="explanation">
+                    <?php echo __("Choose an item to represent this exhibit.  Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
+                </p>
+                <input name="choose-item" id="exhibit-choose-cover-image" value="Choose Item" type="submit">
+                <br/>
+                <?php if (isset($exhibit->id) && $exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
+                    <?php
+                        echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
+                        echo $this->formHidden('cover_image_item_id', $exhibit->getFile()->item_id);
+                    ?>
+                <?php endif; ?>
+            </div>
+        </div>
     </fieldset>
     <fieldset>
         <legend><?php echo __('Pages'); ?></legend>
