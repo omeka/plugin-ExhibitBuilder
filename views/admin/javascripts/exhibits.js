@@ -471,6 +471,8 @@ Omeka.ExhibitBuilder = {};
 
     Omeka.ExhibitBuilder.setUpCoverImageChooser = function () {
         var coverImagePanel = $('#cover-image-panel');
+        var selected_cover_image_id = $('#cover_image_item_id').val();
+
         coverImagePanel.dialog({
             autoOpen: false,
             modal: true,
@@ -505,9 +507,14 @@ Omeka.ExhibitBuilder = {};
 
         $('#cover-image-container').on('click', '#exhibit-choose-cover-image', function (event) {
             event.preventDefault();
-            var selected_cover_image_id = $('#cover_image_file_id').val();
-            $('div.cover-image-listing[data-file-id=' + selected_cover_image_id +']').click();
             coverImagePanel.dialog('open');
+            $('div.item-listing[data-item-id=' + selected_cover_image_id +']').click();
+        });
+
+        $('#item-select').on('click', '.item-listing', function (event) {
+            $('#item-list div.item-selected').removeClass('item-selected');
+            $(this).addClass('item-selected');
+            $('#choose-cover-image').prop('disabled', false);
         });
     }
 
