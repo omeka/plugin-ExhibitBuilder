@@ -73,12 +73,14 @@
                 </p>
                 <input name="choose-item" id="exhibit-choose-cover-image" value="Choose Item" type="submit">
                 <br/>
+                <div id="cover-image-form-elements">
                 <?php if (isset($exhibit->id) && $exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
                     <?php
                         echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
                         echo $this->formHidden('cover_image_item_id', $exhibit->getFile()->item_id);
                     ?>
                 <?php endif; ?>
+                </div>
             </div>
         </div>
     </fieldset>
@@ -136,7 +138,7 @@
         Omeka.wysiwyg();
     });
     jQuery(document).ready(function(){
-        Omeka.ExhibitBuilder.setUpCoverImageChooser();
+        Omeka.ExhibitBuilder.setUpCoverImageChooser(<?php echo json_encode(url('exhibit-builder/items/cover-image')); ?>);
         Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse', array('exhibit' => $exhibit->id))); ?>);
     });
 //]]>
