@@ -43,12 +43,14 @@
     z-index: 1000;
 }
 
+#cover-image-panel,
 #attachment-panel {
     display: none;
     padding: 10px 5px 40px;
     position: relative;
 }
 
+#cover-image-panel,
 #attachment-panel + div {
     margin-top: 0;
     padding: 5px 0;

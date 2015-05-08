@@ -63,7 +63,7 @@
                 <?php echo $this->formCheckbox('use_summary_page', $exhibit->use_summary_page, array(), array('1', '0')); ?>
             </div>
         </div>
-        <div class="field">
+        <div id="cover-image-container" class="field">
             <div class="two columns alpha">
                 <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>
             </div>
@@ -120,11 +120,24 @@
         </div>
     </section>
 </form>
+<div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
+    <div id="item-form">
+        <div id="item-select"></div>
+        <div id="attachment-save">
+            <button type="submit" id="choose-cover-image" disabled><?php echo __('Choose'); ?></button>
+        </div>
+    </div>
+    <div id="cover-image-panel-loading"><span class="spinner"></span></div>
+</div>
 
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     jQuery(window).load(function() {
         Omeka.wysiwyg();
+    });
+    jQuery(document).ready(function(){
+        Omeka.ExhibitBuilder.setUpCoverImageChooser();
+        Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse', array('exhibit' => $exhibit->id))); ?>);
     });
 //]]>
 </script>

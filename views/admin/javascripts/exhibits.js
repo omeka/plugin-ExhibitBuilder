@@ -468,4 +468,72 @@ Omeka.ExhibitBuilder = {};
             });
         });
     };
+
+    Omeka.ExhibitBuilder.setUpCoverImageChooser = function () {
+        var coverImagePanel = $('#cover-image-panel');
+        coverImagePanel.dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            create: function () {
+                $(this).dialog('widget').draggable('option', {
+                    containment: 'window',
+                    scroll: false
+                });
+            },
+            open: function () {
+                function refreshDialog() {
+                    coverImagePanel.dialog('option', {
+                        width: Math.min($(window).width() - 100, 600),
+                        height: Math.min($(window).height() - 100, 500),
+                        position: {my: 'center', at: 'center center+22'}
+                    });
+                }
+
+                refreshDialog();
+                $('body').css('overflow', 'hidden');
+                $(window).on('resize.ExhibitBuilder', function () {
+                    refreshDialog();
+                });
+            },
+            beforeClose: function () {
+                $('body').css('overflow', 'inherit');
+                $(window).off('resize.ExhibitBuilder');
+            },
+            dialogClass: 'item-dialog'
+        });
+
+        $('#cover-image-container').on('click', '#exhibit-choose-cover-image', function (event) {
+            event.preventDefault();
+            var selected_cover_image_id = $('#cover_image_file_id').val();
+            $('div.cover-image-listing[data-file-id=' + selected_cover_image_id +']').click();
+            coverImagePanel.dialog('open');
+        });
+    }
+
+    Omeka.ExhibitBuilder.setUpCoverImageSelect = function(browseUri) {
+        /*
+         * Use AJAX to retrieve the list of items that can be attached.
+         */
+        function getItems(uri, parameters) {
+            console.log(uri);
+            $('#cover-image-panel').addClass('loading');
+            $.ajax({
+                url: uri,
+                data: parameters,
+                method: 'GET',
+                success: function(data) {
+                    $('#item-select').html(data);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error getting items: ' . textStatus);
+                },
+                complete: function() {
+                    $('#cover-image-panel').removeClass('loading');
+                }
+            });
+        }
+
+        getItems(browseUri);
+    }
 })(jQuery);
