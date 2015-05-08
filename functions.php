@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `modified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
     `owner_id` INT UNSIGNED DEFAULT NULL,
     `use_summary_page` TINYINT(1) DEFAULT 1,
+    `cover_image_item_id` INT UNSIGNED DEFAULT NULL,
     PRIMARY KEY  (`id`),
     UNIQUE KEY `slug` (`slug`),
     KEY `public` (`public`)
