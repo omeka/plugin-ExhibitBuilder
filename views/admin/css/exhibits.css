@@ -98,6 +98,11 @@
     line-height: 26px;
 }
 
+
+#cover-image-panel #item-filters {
+   display: none;
+}
+
 #item-filters li {
     margin-bottom: 10px;
 }
@@ -213,6 +218,10 @@
 
 #item-list .item-selected .select-item {
     display: block;
+}
+
+#cover-image-panel .item-selected .select-item {
+    display: none;
 }
 
 #item-list .title {
