@@ -424,30 +424,43 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public function getFile()
     {
         $db = $this->getDb();
-        $fileTable = $this->getDb()->getTable('File');
-        $select =
-            $fileTable->getSelect()
-            ->joinInner(
-                array('eba' => $db->ExhibitBlockAttachment),
-                'eba.file_id = files.id',
-                array()
-            )
-            ->joinInner(
-                array('epb' => $db->ExhibitPageBlock),
-                'epb.id = eba.block_id',
-                array()
-            )
-            ->joinInner(
-                array('ep' => $db->ExhibitPage),
-                'ep.id = epb.page_id',
-                array()
-            )
-            ->where('ep.exhibit_id = ?', $this->id)
-            ->where('files.has_derivative_image = 1')
-            ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
-            ->limit(1);
 
-        return $fileTable->fetchObject($select);
+        if(isset($this->cover_image_item_id)){
+            $itemTable = $this->getDb()->getTable('Item');
+            $select =
+                $itemTable->getSelect()
+                ->where('id = ?', $this->cover_image_item_id);
+
+            $item = $itemTable->fetchObject($select);
+            $file = $item->getFile();
+        }else{
+            $fileTable = $this->getDb()->getTable('File');
+            $select =
+                $fileTable->getSelect()
+                ->joinInner(
+                    array('eba' => $db->ExhibitBlockAttachment),
+                    'eba.file_id = files.id',
+                    array()
+                )
+                ->joinInner(
+                    array('epb' => $db->ExhibitPageBlock),
+                    'epb.id = eba.block_id',
+                    array()
+                )
+                ->joinInner(
+                    array('ep' => $db->ExhibitPage),
+                    'ep.id = epb.page_id',
+                    array()
+                )
+                ->where('ep.exhibit_id = ?', $this->id)
+                ->where('files.has_derivative_image = 1')
+                ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
+                ->limit(1);
+
+            $file = $fileTable->fetchObject($select);
+        }
+
+        return $file;
     }
 
     /**
