@@ -516,7 +516,6 @@ Omeka.ExhibitBuilder = {};
          * Use AJAX to retrieve the list of items that can be attached.
          */
         function getItems(uri, parameters) {
-            console.log(uri);
             $('#cover-image-panel').addClass('loading');
             $.ajax({
                 url: uri,
