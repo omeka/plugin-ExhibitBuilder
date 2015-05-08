@@ -424,6 +424,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public function getFile()
     {
         $db = $this->getDb();
+        $file = array();
 
         if(isset($this->cover_image_item_id)){
             $itemTable = $this->getDb()->getTable('Item');
@@ -432,7 +433,9 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
                 ->where('id = ?', $this->cover_image_item_id);
 
             $item = $itemTable->fetchObject($select);
-            $file = $item->getFile();
+            if(!empty($item)){
+                $file = $item->getFile();
+            }
         }else{
             $fileTable = $this->getDb()->getTable('File');
             $select =
