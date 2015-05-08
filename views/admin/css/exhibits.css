@@ -148,6 +148,10 @@
     -webkit-overflow-scrolling: touch;
 }
 
+#cover-image-panel #item-list {
+    top: 0;
+}
+
 #attachment-options .options {
     top: 38px;
     bottom: 46px;
