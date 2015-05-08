@@ -43,4 +43,14 @@ class ExhibitBuilder_ItemsController extends Omeka_Controller_AbstractActionCont
     {
         throw new Omeka_Controller_Exception_404;
     }
+
+
+    /*
+     * AJAX partial for the cover image section of the Exhibit metadata form.
+     */
+    public function coverImageAction()
+    {
+        $item = $this->_helper->db->findById();
+        $this->view->item = $item;
+    }
 }
