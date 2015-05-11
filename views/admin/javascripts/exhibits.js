@@ -487,7 +487,7 @@ Omeka.ExhibitBuilder = {};
                 function refreshDialog() {
                     coverImagePanel.dialog('option', {
                         width: Math.min($(window).width() - 100, 600),
-                        height: Math.min($(window).height() - 100, 500),
+                        height: Math.min($(window).height() - 100, 1000),
                         position: {my: 'center', at: 'center center+22'}
                     });
                 }
@@ -539,7 +539,6 @@ Omeka.ExhibitBuilder = {};
             coverImagePanel.dialog('close');
         });
 
-
     }
 
     Omeka.ExhibitBuilder.setUpCoverImageSelect = function(browseUri) {
@@ -566,5 +565,14 @@ Omeka.ExhibitBuilder = {};
         }
 
         getItems(browseUri);
+
+        $('#exhibit-page').on('change', function(event){
+            $('#cover-image-form').submit();
+        });
+
+        $('#cover-image-form').on('submit', function(event){
+            event.preventDefault();
+            getItems(this.action, $(this).serialize());
+        });
     }
 })(jQuery);

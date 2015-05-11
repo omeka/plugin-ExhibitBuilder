@@ -123,6 +123,7 @@
     </section>
 </form>
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
+    <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse')); ?>
     <div id="item-form">
         <div id="item-select"></div>
         <div id="attachment-save">
