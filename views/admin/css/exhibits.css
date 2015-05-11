@@ -137,6 +137,10 @@
     overflow: hidden;
 }
 
+#cover-image-panel #item-list {
+    top: 150px;
+}
+
 #item-list, #page-search-form, #attachment-options .options {
     position: absolute;
     top: 50px;
