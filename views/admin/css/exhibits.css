@@ -825,3 +825,7 @@ input[type=submit].configure-button {
 #cover-image-form .filter-right {
     width: 50%;
 }
+
+#choose-cover-image {
+    margin: 0;
+}
