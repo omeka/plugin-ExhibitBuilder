@@ -43,6 +43,11 @@
     z-index: 1000;
 }
 
+#cover-image-form {
+	max-width: 60%;
+	float: left;
+}
+
 #cover-image-panel,
 #attachment-panel {
     display: none;
@@ -50,7 +55,7 @@
     position: relative;
 }
 
-#cover-image-panel,
+#cover-image-panel + div,
 #attachment-panel + div {
     margin-top: 0;
     padding: 5px 0;
@@ -134,10 +139,6 @@
 
 #attachment-panel.loading {
     overflow: hidden;
-}
-
-#cover-image-panel #item-list {
-    top: 150px;
 }
 
 #item-list, #page-search-form, #attachment-options .options {

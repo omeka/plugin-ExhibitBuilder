@@ -1,9 +1,12 @@
 <form id="cover-image-form" action="<?php echo $formActionUri; ?>">
     <div class="field">
+        <div class="two columns alpha">
+            <?php
+            echo $this->formLabel('exhibit-page-search', __('Filter By Page'));?>
+        </div>
+        <div class="five columns">
+
         <?php
-        echo $this->formLabel('exhibit-page-search', __('Filter By Page'));?>
-        <div class="inputs">
-        <?php 
             echo $this->formSelect(
                 'exhibit-page',
                 @$_REQUEST['exhibit-page'],
