@@ -74,7 +74,7 @@
                 <input name="choose-item" id="exhibit-choose-cover-image" value="Choose Item" type="submit">
                 <br/>
                 <div id="cover-image-form-elements">
-                <?php if (isset($exhibit->id) && $exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
+                <?php if ($exhibit->exists() && $exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
                     <?php
                         echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
                         echo $this->formHidden('cover_image_item_id', $exhibit->getFile()->item_id);
@@ -124,7 +124,7 @@
 </form>
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
     <?php
-        if(isset($exhibit->id)){
+        if($exhibit->exists()){
             echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));
         }
     ?>
