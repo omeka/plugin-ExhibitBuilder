@@ -183,6 +183,10 @@
     margin-top: 0;
 }
 
+#item-list .item-listing:hover {
+    cursor: pointer;
+}
+
 #item-list .item-selected {
     background: #D1C6A8;
     background: -moz-linear-gradient(top, #EEEADD, #D1C6A8);
