@@ -573,5 +573,11 @@ Omeka.ExhibitBuilder = {};
             event.preventDefault();
             getItems(this.action, $(this).serialize());
         });
+
+        $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
+            event.preventDefault();
+            getItems(this.href);
+            setSearchVisibility(false);
+        });
     }
 })(jQuery);
