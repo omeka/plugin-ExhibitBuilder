@@ -126,12 +126,9 @@
         </div>
     </section>
 </form>
+<?php if($exhibit->exists()): ?>
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
-    <?php
-        if($exhibit->exists()){
-            echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));
-        }
-    ?>
+    <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));?>
     <div id="item-form">
         <div id="item-select"></div>
         <div id="attachment-save">
@@ -140,15 +137,17 @@
     </div>
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
 </div>
-
+<?php endif; ?>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     jQuery(window).load(function() {
         Omeka.wysiwyg();
     });
+    <?php if($exhibit->exists()): ?>
     jQuery(document).ready(function(){
         Omeka.ExhibitBuilder.setUpCoverImageChooser(<?php echo json_encode(url('exhibit-builder/items/cover-image')); ?>);
         Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse', array('exhibit' => $exhibit->id))); ?>);
     });
+    <?php endif; ?>
 //]]>
 </script>
