@@ -43,11 +43,6 @@
     z-index: 1000;
 }
 
-#cover-image-form {
-	max-width: 60%;
-	float: left;
-}
-
 #cover-image-panel,
 #attachment-panel {
     display: none;
@@ -817,4 +812,16 @@ input[type=submit].configure-button {
 @keyframes spin {
   to {
     transform: rotate(360deg); } 
+}
+
+#cover-image-form .column select {
+    max-width: 100%;
+}
+
+#cover-image-form .filter-left {
+    width: 15%;
+}
+
+#cover-image-form .filter-right {
+    width: 50%;
 }
