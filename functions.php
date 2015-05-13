@@ -274,6 +274,11 @@ SQL
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `use_summary_page` TINYINT(1) DEFAULT 1 AFTER `owner_id`";
         $db->query($sql);
     }
+
+    if (version_compare($oldVersion, '3.2-ual-dev', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `cover_image_item_id` INT UNSIGNED DEFAULT NULL AFTER `use_summary_page`";
+        $db->query($sql);
+    }
 }
 
 /**
