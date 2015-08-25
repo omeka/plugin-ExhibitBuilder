@@ -5,15 +5,15 @@
 # Translators:
 # Dana Léw <lew.dana@gmail.com>, 2012
 # Jan Černý <cernyhonza@gmail.com>, 2012-2013
-# Jiří Vírava <appukonrad@gmail.com>, 2014
+# Jiří Vírava <appukonrad@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/omeka/language/cs/)\n"
+"PO-Revision-Date: 2015-05-07 10:16+0000\n"
+"Last-Translator: Jiří Vírava <appukonrad@gmail.com>\n"
+"Language-Team: Czech (http://www.transifex.com/omeka/omeka/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -276,7 +276,7 @@ msgstr "Nový blok"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr ""
+msgstr "Vybrat vzhled"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr ""
+msgstr "Velikost souboru "
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:62

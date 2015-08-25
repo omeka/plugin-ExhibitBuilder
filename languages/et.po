@@ -3,34 +3,30 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Bert Balcaen <bert@rekalldesign.com>, 2014
-# Evy De Wulf <evy.dewulf@libis.kuleuven.be>, 2013-2014
-# John Flatness <john@zerocrates.org>, 2012
-# Peter Baan <exnihilo@xs4all.nl>, 2012
-# Sam Alloing <sam.alloing@gmail.com>, 2013
+# Rivo Zängov <eraser@eraser.ee>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Dutch (Belgium) (http://www.transifex.com/omeka/omeka/language/nl_BE/)\n"
+"PO-Revision-Date: 2015-08-20 10:43+0000\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>\n"
+"Language-Team: Estonian (http://www.transifex.com/omeka/omeka/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_BE\n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Tentoonstellingen sorteren"
+msgstr "Näituste sorteerimine"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "De standaardmethode waarop u de lijst met tentoonstellingen wilt sorteren op de tentoonstelling/doorbladerpagina. Standaard is 'Toegevoegd op datum'."
+msgstr ""
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -39,88 +35,88 @@ msgstr ""
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
-msgstr "Dit item wordt niet gebruikt in deze tentoonstelling."
+msgstr "See ühik pole selles näituses kasutusel."
 
 #: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
-msgstr "U dient een specifiek thema te selecteren, om het te kunnen configureren."
+msgstr "Sa pead selle seadistamiseks valima kujunduse."
 
 #: functions.php:398
 msgid "exhibits"
-msgstr "tentoonstellingen"
+msgstr "näitused"
 
 #: functions.php:412 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Blader door tentoonstellingen"
+msgstr "Sirvi näituseid"
 
 #: functions.php:428 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Tentoonstellingen"
+msgstr "Näitused"
 
 #: functions.php:594
 msgid "Search by Exhibit"
-msgstr "Zoeken op tentoonstelling"
+msgstr "Otsi näituste järgi"
 
 #: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
 msgid "Exhibit"
-msgstr "Tentoonstelling"
+msgstr "Näitus"
 
 #: functions.php:604
 msgid "Exhibit Page"
-msgstr "Tentoonstellingspagina"
+msgstr "Näituse lehekülg"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
-msgstr "Aanbevolen tentoonstelling"
+msgstr "Esiletõstetud näitus"
 
 #: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
-msgstr "U hebt geen aanbevolen tentoonstellingen."
+msgstr "Sul pole ühtegi esiletõstetud näitust."
 
 #: models/Exhibit.php:120
 msgid "Exhibits must be given a valid slug."
-msgstr "Tentoonstellingen dienen een geldige <em>slug</em> te krijgen."
+msgstr "Näitusel peab olema lühinimi."
 
 #: models/Exhibit.php:121 models/ExhibitPage.php:68
 msgid "A slug must be 30 characters or less."
-msgstr "Een <em>slug</em> moet tenminste 30 tekens lang zijn."
+msgstr "Lühinime pikkus peab olema 30 märki või vähem."
 
 #: models/Exhibit.php:122
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Uw URL-<em>slug</em> is al in gebruik bij een andere tentoonstelling. Kies a.u.b. een andere."
+msgstr "Sinu lühinime URL on juba teise näituse poolt kasutusel. Palun vali teine lühinimi."
 
 #: models/Exhibit.php:135
 msgid "An exhibit must be given a title."
-msgstr "Een tentoonstelling hoort een titel te krijgen."
+msgstr "Näitusel peab olema pealkiri."
 
 #: models/Exhibit.php:139
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "De titel van een tentoonstelling kan niet meer dan 255 tekens bevatten."
+msgstr "Näituse pealkirja pikkus peab olema 255 märki või vähem."
 
 #: models/Exhibit.php:143
 msgid "The name of your theme must be 30 characters or less."
-msgstr "De naam van uw thema moet tenminste 30 tekens bevatten."
+msgstr "Sinu teema nime pikkus peab olema 30 märki või vähem."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr "Bestand met tekst"
+msgstr "Fail tekstiga"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr "Standaard lay-out kenmerkt door bestanden links of naar rechts uitgelijnd met het weergeven van tekst naar de andere kant"
+msgstr ""
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Galerij"
+msgstr "Galerii"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr "Een galerij layout met miniatuurweergaves van bestanden"
+msgstr ""
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -131,92 +127,92 @@ msgstr "Tekst"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr "ay-out met een blok of een tekst zonder bestanden"
+msgstr ""
 
 #: models/ExhibitPage.php:67
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Iedere pagina van een tentoonstelling dient een <em>slug</em> te krijgen."
+msgstr ""
 
 #: models/ExhibitPage.php:69
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "Deze pagina-<em>slug</em> is al gebruikt. Wijzig de <em>slug</em>, zodat deze uniek is. "
+msgstr ""
 
 #: models/ExhibitPage.php:79
 msgid "Exhibit pages must be given a title."
-msgstr "Tentoonstellingspagina's moeten een titel hebben."
+msgstr "Näituse lehekülgedel peab olema pealkiri."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Tentoonstelling toevoegen"
+msgstr "Lisa väljapanek"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Geselecteerd item: %s"
+msgstr "Valitud ühikud: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr "Selecteer een bestand om te gebruiken."
+msgstr "Vali fail, mida kasutada."
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr "Verwijder/Verplaats"
+msgstr "Eemalda/Taasta"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr "Blok"
+msgstr "Plokk"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr "Uitbreiden/Samenvouwen"
+msgstr "Ava/Sulge"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Er zijn nog geen tentoonstellingen."
+msgstr "Pole veel ühtegi näitust."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Voeg een tentoonstelling toe"
+msgstr "Lisa väljapanek"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Thema"
+msgstr "Teema"
 
 #: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Huidige publieke thema"
+msgstr "Praegune avalik teema"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Bewerk tentoonstelling: \"%s\""
+msgstr "Muuda näitust \"%s\""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Metadata tentoonstelling"
+msgstr "Näituse metaandmed"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr "Slug"
+msgstr "Lühinimi"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
-msgstr "Geen spaties of speciale tekens toegestaan."
+msgstr "Tühikute ja erimärkide kasutamine pole lubatud"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Credits"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Kasutada kokkuvõtte lehte?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
@@ -226,135 +222,135 @@ msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
-msgstr "Pagina's"
+msgstr "Leheküljed"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:71
 msgid "There are no pages."
-msgstr "Er zijn geen pagina's."
+msgstr "Lehekülgi pole."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:73
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr "Om de pagina's opnieuw te ordenen of in elkaar te passen, klikt en sleept u de pagina naar de locatie van uw keuze."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:78
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Pagina toevoegen"
+msgstr "Lisa lehekülg"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Bewerk pagina \"%s\""
+msgstr "Muuda lehekülge \"%s\""
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr "Titel van de pagina"
+msgstr "Lehekülje pealkiri"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr "Pagina slug"
+msgstr "Lehe lühinimi"
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr "Inhoud"
+msgstr "Sisu"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr "Alles samenvouwen"
+msgstr "Sulge kõik"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr "Alles uitbreiden"
+msgstr "Ava kõik"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr "Om blokken en items opnieuw te ordenen, klikt en sleept u deze naar de locatie van uw keuze"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr "Nieuw blok"
+msgstr "Uus plokk"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr "Selecteer de lay-out"
+msgstr "Vali paigutus"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr "Voeg een nieuw inhoudsblok toe"
+msgstr "Lisa uus sisuplokk"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
-msgstr "Opslaan en nog een pagina toevoegen"
+msgstr "Salvesta ja lisa teine lehekülg"
 
 #. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
-msgstr "Voeg een item bij."
+msgstr "Lisa ühik"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr "Keer terug naar het geselecteerde item"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
-msgstr "Toon zoekformulier"
+msgstr "Näita otsinguvormi"
 
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr "Verberg zoekformulier"
+msgstr "Peida otsinguvorm"
 
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr "Geselecteerd item veranderen"
+msgstr "Muuda valitud ühikut"
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr "Zorg voor een bijschrift."
+msgstr "Lisa pealkiri."
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr "Toepassen"
+msgstr "Rakenda"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Blader door tentoonstellingen op tag"
+msgstr "Sirvi näitusi sildi järgi"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Er kunnen nog geen tags worden getoond. U dient eerst enkele tentoonstellingen van een tag te voorzien."
+msgstr ""
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configureer het &#8220;%s&#8221; thema"
+msgstr "Seadista teemat &#8220;%s&#8221;"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "enkele item toevoegen"
+msgstr "lisa mõningaid ühikuid"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Er zijn geen items om uit te kiezen. Verfijn uw zoekopdracht of %s."
+msgstr ""
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Item selecteren"
+msgstr "Vali ühik"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
-msgstr "Er zijn nog geen tentoonstellingen beschikbaar."
+msgstr "Ühtegi näitust pole veel saadaval."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr "Lay-out opties"
+msgstr "Paigutuse valikud"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 msgid "File position"
-msgstr "Bestandspositie"
+msgstr "Faili asukoht"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -362,7 +358,7 @@ msgstr "Bestandspositie"
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
-msgstr "Links"
+msgstr "Vasakul"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -370,40 +366,40 @@ msgstr "Links"
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
-msgstr "Rechts"
+msgstr "Paremal"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 msgid "File size"
-msgstr "Bestandsgrootte"
+msgstr "Faili suurus"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
-msgstr ""
+msgstr "Pealkirjade asukoht"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
-msgstr ""
+msgstr "Keskel"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr "Showcase bestandspositie"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr "Geen showcase bestand"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr "Gallerij positie"
+msgstr "Galerii asukoht"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr "Als er geen showcase bestand of tekst is, zal de gallerij de volledige breedte van de pagina gebruiken."
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr ""
+msgstr "Galerii faili suurus"

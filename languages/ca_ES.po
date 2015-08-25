@@ -5,7 +5,7 @@
 # Translators:
 # Miquel Àngel <ma.serra@gmail.com>, 2013
 # Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2014
+# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2015
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 msgid ""
@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Catalan (Spain) (http://www.transifex.com/projects/p/omeka/language/ca_ES/)\n"
+"PO-Revision-Date: 2015-04-29 09:24+0000\n"
+"Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/omeka/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +35,7 @@ msgstr "El criteri per defecte que s'utilitza per llistar les exposicions a la p
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "Esborrareu permanentment l'exposició \"%s\" i totes les seves pàgines."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -216,13 +216,13 @@ msgstr "Crèdits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Voleu utilitzar la pàgina de continguts?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Comença l'exposició en la pàgina de continguts. Si es desmarca, comença a la primera pàgina disponible, si n'hi ha."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"

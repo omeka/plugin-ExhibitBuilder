@@ -5,15 +5,16 @@
 # Translators:
 # Bogdan Trifunovic <>, 2012,2014
 # Dušan Ranđelović <randjelovic@pantype.com>, 2013
+# Predrag Djukic <djukic.predrag@gmail.com>, 2015
 # Predrag Djukic <djukic.predrag@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Serbian (Serbia) (http://www.transifex.com/projects/p/omeka/language/sr_RS/)\n"
+"PO-Revision-Date: 2015-04-22 13:54+0000\n"
+"Last-Translator: Predrag Djukic <djukic.predrag@gmail.com>\n"
+"Language-Team: Serbian (Serbia) (http://www.transifex.com/omeka/omeka/language/sr_RS/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,7 +34,7 @@ msgstr "Подразумевани метод по којем желиш да с
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "Ово ће трајно обрисати целу изложбу \"%s\" и све припадајуће странице."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -214,13 +215,13 @@ msgstr "Заслуге"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Да ли желите да користите страницу Резиме?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Започните изложбу на страници резимеа. Уколико није одабрано, започни на првој страници изложбе, уколико постоји."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
@@ -377,12 +378,12 @@ msgstr "Величина документа"
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
-msgstr ""
+msgstr "Натписи позиција"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
-msgstr ""
+msgstr "Центар"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
@@ -404,4 +405,4 @@ msgstr "Уколико не постоји документ за пример и
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr ""
+msgstr "Величина документа галерије."

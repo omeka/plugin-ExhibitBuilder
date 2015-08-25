@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
+# Isabelle Gilles <isabelle.gillesgallet@gmail.com>, 2015
 # Julien Sicot <julien.sicot@gmail.com>, 2012
 # rcheno <remi.cheno@ideo-cairo.org>, 2014
 # Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2012
@@ -14,9 +15,9 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/omeka/language/fr/)\n"
+"PO-Revision-Date: 2015-04-14 20:07+0000\n"
+"Last-Translator: Isabelle Gilles <isabelle.gillesgallet@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/omeka/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,7 +37,7 @@ msgstr "La méthode par défaut à utiliser pour trier la liste des expositions 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "Cette action supprimera définitivement l'exposition \"%s\" et toutes ses pages."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -217,13 +218,13 @@ msgstr "Crédits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Utiliser le Résumé ?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Démarrer l'exposition par son résumé. Si l'option n'est pas cochée, l'exposition débute par la première page si elle existe."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Pages"
@@ -320,11 +321,11 @@ msgstr "Appliquer"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "\t\nParcourir les expositions par tags"
+msgstr "\t\nParcourir les expositions par mot clé"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "Aucun tag à afficher. Vous devez d'abord en attribuer à certaines expositions."
+msgstr "Aucun mot clé à afficher. Vous devez d'abord en attribuer à certaines expositions."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
