@@ -55,6 +55,13 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     protected $_related = array('ExhibitPageBlocks' => 'getPageBlocks');
 
     /**
+     * Whether to automatically shift the page's children up a level when the page is deleted.
+     *
+     * @var boolean
+     */
+    private $_fixChildrenOnDelete = true;
+
+    /**
      * Define mixins.
      *
      * @see Mixin_Slug
@@ -272,6 +279,10 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             }
         }
 
+        if (!$this->_fixChildrenOnDelete) {
+            return;
+        }
+
         //bump all child pages up to being children of the parent
         $childPages = $this->getChildPages();
         foreach($childPages as $child) {
@@ -346,5 +357,15 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
         return array('module' => 'exhibit-builder', 'controller' => 'exhibits', 
                      'action' => $action, 'id' => $this->id);
+    }
+
+    /**
+     * Set whether to automatically shift the page's children up a level when the page is deleted.
+     *
+     * @param boolean $fix
+     */
+    public function setFixChildrenOnDelete($fix)
+    {
+        $this->_fixChildrenOnDelete = (bool) $fix;
     }
 }

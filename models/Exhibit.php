@@ -154,6 +154,7 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
         //get all the pages and delete them
         $pages = $this->getTable('ExhibitPage')->findBy(array('exhibit'=>$this->id));
         foreach($pages as $page) {
+            $page->setFixChildrenOnDelete(false);
             $page->delete();
         }
         $this->deleteTaggings();
