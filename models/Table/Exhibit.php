@@ -68,7 +68,7 @@ class Table_Exhibit extends Omeka_Db_Table
     /**
      * Define filters for browse and findBy.
      *
-     * Available filters are: "tag" or "tags", "public" and "featured". "sort"
+     * Available filters are: "tag" or "tags", "public", "featured" and "owner(user)". "sort"
      * also adds specific sorting strategies "alpha" and "recent", but the
      * normal sorting can also be used.
      *
@@ -102,6 +102,9 @@ class Table_Exhibit extends Omeka_Db_Table
                 case 'featured':
                     $this->filterByFeatured($select, $params['featured']);
                     break;
+                case 'owner': /* Filter a user's own exhibits from others. */
+                    $this->filterByUser($select, $params['owner']);
+                    break;					
             }
         }
         return $select;
@@ -195,4 +198,17 @@ class Table_Exhibit extends Omeka_Db_Table
             $select->where('exhibits.featured = 0');
         }
     }
+	
+    /**
+     * Apply a filter to get exhibts of a user
+     *
+     * @param Zend_Db_Select
+     * @param integer $userId Id of the user whose exhibits are to be retrieved
+     */
+    public function filterByUser($select, $userId)
+    {
+        if (!empty($userId) && $userId > 0) {
+            $select->where('exhibits.owner_id = '. $userId);
+        }
+    }	
 }
