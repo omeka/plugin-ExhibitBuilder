@@ -613,22 +613,12 @@ function exhibit_builder_search_record_types($recordTypes)
  */
 function exhibit_builder_item_detail($args)
 {
-    static $exhibitItems;
-    if(!isset($exhibitItems)){
-        $db = get_db();
-        $sql = "SELECT i.id as item, e.id as exhibit_id, e.title as exhibit_title FROM $db->Item i
-                INNER JOIN $db->ExhibitBlockAttachment eba ON eba.item_id = i.id
-                INNER JOIN $db->ExhibitPageBlock epb ON epb.id = eba.block_id
-                INNER JOIN $db->ExhibitPage ep ON ep.id = epb.page_id
-                INNER JOIN $db->Exhibit e ON e.id = ep.exhibit_id";
-        $results = $db->query($sql);
-        while ($row = $results->fetch()) 
-            $exhibitItems[$row['item']][]=array('id'=>$row['exhibit_id'],'title'=>$row['exhibit_title']);
-    }
     $item = $args['item'];
-    foreach($exhibitItems[$item->id] as $exhibit){
-        echo('<p class="in-exhibit">Appears in Exhibit: <a href="'.admin_url('exhibits/edit/'.$exhibit['id']).'">'.$exhibit['title'].'</a></p>');
-    } 
+    $exhibits = get_db()->getTable('Exhibit')->findByItem($item->id);
+    foreach($exhibits as $exhibit)
+        echo('<p class="in-exhibit">Appears in Exhibit: <a href="'
+            .admin_url('exhibits/edit/'.$exhibit['id'])
+            .'">'.$exhibit['title'].'</a></p>');     
 }
 
 /**

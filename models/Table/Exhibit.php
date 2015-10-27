@@ -121,6 +121,30 @@ class Table_Exhibit extends Omeka_Db_Table
     }
 
     /**
+     * Find all exhibits containing an item.
+     *
+     * @param string $slug
+     */
+    public function findByItem($item_id)
+    {
+        if(is_object($item_id))
+            $item_id = $item_id->id;
+        $db=$this->getDb();
+        $select = $this->getSelect()
+                       ->join(array('ep' => $db->ExhibitPage),
+                              '`exhibits`.id = ep.exhibit_id',
+                              array())
+                       ->join(array('epb' => $db->ExhibitPageBlock),
+                              'ep.id = epb.page_id',
+                              array())
+                       ->join(array('eba' => $db->ExhibitBlockAttachment),
+                              'epb.id = eba.block_id',
+                              array())
+                       ->where('eba.item_id = ?');
+        return $this->fetchObjects($select,array($item_id));
+    }
+
+    /**
      * Find whether an exhibit has a specific item.
      *
      * @param integer $exhibit_id The ID of the exhibit to check in
