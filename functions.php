@@ -613,7 +613,7 @@ function exhibit_builder_search_record_types($recordTypes)
  */
 function exhibit_builder_item_detail($args)
 {
-    global $exhibitItems;
+    static $exhibitItems;
     if(!isset($exhibitItems)){
         $db = get_db();
         $sql = "SELECT i.id as item, e.id as exhibit FROM $db->Item i
