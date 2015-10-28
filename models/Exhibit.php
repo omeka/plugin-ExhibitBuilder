@@ -97,11 +97,11 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public $use_summary_page = 1;
 
     /**
-     * The  Item ID of the Item used to represent this Exhibit.
+     * The File ID of the File used to represent this Exhibit.
      *
      * @var integer
      */
-    public $cover_image_item_id;
+    public $cover_image_file_id;
 
     /**
      * Quick-access mappings for related records.
