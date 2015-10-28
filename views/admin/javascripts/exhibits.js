@@ -471,7 +471,7 @@ Omeka.ExhibitBuilder = {};
 
     Omeka.ExhibitBuilder.setUpCoverImageChooser = function (coverImageChooserUrl) {
         var coverImagePanel = $('#cover-image-panel');
-        var selected_cover_image_id = $('#cover_image_item_id').val();
+        var selected_cover_image_id = $('#cover_image_file_id').val();
 
         coverImagePanel.dialog({
             autoOpen: false,

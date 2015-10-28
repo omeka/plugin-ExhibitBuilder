@@ -77,7 +77,7 @@
                 <div id="cover-image-form-elements">
                     <?php
                         echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
-                        echo $this->formHidden('cover_image_item_id', $exhibit->getFile()->item_id);
+                        echo $this->formHidden('cover_image_file_id', $exhibit->getFile()->id);
                     ?>
                 </div>
                 <?php else: ?>
