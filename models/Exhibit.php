@@ -425,19 +425,13 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     {
         $db = $this->getDb();
         $file = array();
+        $fileTable = $this->getDb()->getTable('File');
 
-        if(isset($this->cover_image_item_id)){
-            $itemTable = $this->getDb()->getTable('Item');
+        if(isset($this->cover_image_file_id)){
             $select =
-                $itemTable->getSelect()
-                ->where('id = ?', $this->cover_image_item_id);
-
-            $item = $itemTable->fetchObject($select);
-            if(!empty($item)){
-                $file = $item->getFile();
-            }
+                $fileTable->getSelect()
+                ->where('files.id = ?', $this->cover_image_file_id);
         }else{
-            $fileTable = $this->getDb()->getTable('File');
             $select =
                 $fileTable->getSelect()
                 ->joinInner(
@@ -459,9 +453,9 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
                 ->where('files.has_derivative_image = 1')
                 ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
                 ->limit(1);
-
-            $file = $fileTable->fetchObject($select);
         }
+
+        $file = $fileTable->fetchObject($select);
 
         return $file;
     }
