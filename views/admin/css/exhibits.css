@@ -223,10 +223,6 @@
     display: block;
 }
 
-#cover-image-panel .item-selected .select-item {
-    display: none;
-}
-
 #item-list .title {
     margin: 0;
     padding: 4px 0;
