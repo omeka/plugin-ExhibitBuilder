@@ -606,6 +606,22 @@ function exhibit_builder_search_record_types($recordTypes)
 }
 
 /**
+ * Show the Exhibits that each item is included in on the Item Browse page
+ * 
+ * @param array $args An array of parameters passed by the hook
+ * @return void
+ */
+function exhibit_builder_item_detail($args)
+{
+    $item = $args['item'];
+    $exhibits = get_db()->getTable('Exhibit')->findByItem($item->id);
+    foreach($exhibits as $exhibit)
+        echo('<p class="in-exhibit">Appears in Exhibit: <a href="'
+            .admin_url('exhibits/edit/'.$exhibit['id'])
+            .'">'.$exhibit['title'].'</a></p>');     
+}
+
+/**
  * Add exhibit title to item search filters.
  */
 function exhibit_builder_item_search_filters($displayArray, $args)

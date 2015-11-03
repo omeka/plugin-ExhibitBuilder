@@ -23,6 +23,7 @@ add_plugin_hook('items_browse_sql', 'exhibit_builder_items_browse_sql');
 add_plugin_hook('admin_items_search', 'exhibit_builder_items_search');
 add_plugin_hook('public_items_search', 'exhibit_builder_items_search');
 add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
+add_plugin_hook('admin_items_browse_detailed_each', 'exhibit_builder_item_detail');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
