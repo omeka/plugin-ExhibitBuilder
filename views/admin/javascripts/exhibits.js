@@ -192,7 +192,11 @@ Omeka.ExhibitBuilder = {};
         /**
          * Use AJAX to load the form for an attachment.
          */
-        this.loadItemOptionsForm = function(data) {
+        this.loadItemOptionsForm = function(data, ajaxUrl) {
+            if(typeof ajaxURL == 'undefined'){
+                ajaxUrl = itemOptionsUrl;
+            }
+
             $('#attachment-panel').addClass('loading');
             $.ajax({
                 url: itemOptionsUrl,
