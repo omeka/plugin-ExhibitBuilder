@@ -1,17 +1,9 @@
 .layout-file .exhibit-items {
-    width: -moz-max-content;
-    width: -webkit-min-content;
-    max-width: min-content;
-}
-
-.layout-file .exhibit-items img {
-    max-width: -moz-max-content;
-    max-width: -webkit-max-content;
-    max-width: max-content;
+    width: 100%;
 }
 
 .layout-file .exhibit-items > * {
-    max-width: none;
+    max-width: 100%;
     margin-bottom: 1em;
 }
 
