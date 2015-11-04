@@ -147,6 +147,7 @@
     -webkit-overflow-scrolling: touch;
 }
 
+#cover-image-options .options,
 #attachment-options .options {
     top: 38px;
     bottom: 46px;
@@ -828,4 +829,17 @@ input[type=submit].configure-button {
 
 #choose-cover-image {
     margin: 0;
+}
+
+#cover-image-panel #cover-image-options {
+    display: none;
+}
+
+#cover-image-panel.editing-cover-image #cover-image-options {
+    display: block;
+    padding-top: 40px;
+}
+
+#cover-image-panel.editing-cover-image #item-form {
+    display: none;
 }
