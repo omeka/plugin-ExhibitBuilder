@@ -508,12 +508,47 @@ Omeka.ExhibitBuilder = {};
             dialogClass: 'item-dialog'
         });
 
-        function chooseCoverImage(itemId){
+        /**
+         * Use AJAX to load the form for an attachment.
+         */
+        function loadItemOptionsForm(data, ajaxUrl) {
+            if(typeof ajaxURL == 'undefined'){
+                ajaxUrl = itemOptionsUrl;
+            }
+
+            $('#cover-image-panel').addClass('loading');
+            $.ajax({
+                url: itemOptionsUrl,
+                method: 'POST',
+                dataType: 'html',
+                data: data,
+                success: function (response) {
+                    $('#cover-image-item-options').html(response);
+                },
+                complete: function() {
+                    $('#cover-image-panel').removeClass('loading');
+                }
+            });
+        };
+
+        // Hook select buttons to item options form
+        $('#item-select').on('click', '.select-item', function (event) {
+            event.preventDefault();
+            loadItemOptionsForm(
+                {item_id: $('#item-select .item-selected').data('itemId')}
+            );
+            $('#cover-image-panel')
+                .addClass('editing-cover-image')
+                .removeClass('editing-selection');
+            $(document).trigger('exhibit-builder-select-item');
+        });
+
+        function chooseCoverImage(fileId){
             $.ajax({
                 url: coverImageChooserUrl ,
                 method: 'GET',
                 dataType: 'html',
-                data: {"id": itemId},
+                data: {"id": fileId},
                 success: function (response) {
                     $('#cover-image-form-elements').replaceWith(response);
                 },
@@ -536,12 +571,17 @@ Omeka.ExhibitBuilder = {};
         });
 
         $('#choose-cover-image').on('click', function (event) {
+            file_id = $('input[name="file_id"]:checked').val();
             event.preventDefault();
-            var selectedItemId = $('.item-selected').attr('data-item-id');
-            chooseCoverImage(selectedItemId);
+            chooseCoverImage(file_id);
             coverImagePanel.dialog('close');
         });
 
+        $('#cover-image-item-options').on('click','.file-select .item-file', function(event) {
+            $(this).find('input[type="radio"]').prop('checked', true);
+            $('.selected').removeClass('selected');
+            $(this).addClass('selected');
+        });
     }
 
     Omeka.ExhibitBuilder.setUpCoverImageSelect = function(browseUri) {
