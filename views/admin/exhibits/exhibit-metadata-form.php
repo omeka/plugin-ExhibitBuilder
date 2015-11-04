@@ -132,6 +132,14 @@
     <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));?>
         <div id="item-select"></div>
     </div>
+    <div id="cover-image-options">
+      <div class="options">
+        <div id="cover-image-item-options"></div>
+      </div>
+      <div id="attachment-save">
+        <button type="submit" id="choose-cover-image">Choose</button>
+      </div>
+    </div>
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
 </div>
 <?php endif; ?>
