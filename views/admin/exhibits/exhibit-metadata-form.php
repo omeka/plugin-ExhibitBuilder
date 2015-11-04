@@ -142,7 +142,10 @@
     });
     <?php if($exhibit->exists()): ?>
     jQuery(document).ready(function(){
-        Omeka.ExhibitBuilder.setUpCoverImageChooser(<?php echo json_encode(url('exhibit-builder/items/cover-image')); ?>);
+        Omeka.ExhibitBuilder.setUpCoverImageChooser(
+          <?php echo json_encode(url('exhibit-builder/files/cover-image')); ?>,
+          <?php echo js_escape(url('exhibits/attachment-item-options')); ?>
+        );
         Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse', array('exhibit' => $exhibit->id))); ?>);
     });
     <?php endif; ?>

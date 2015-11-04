@@ -473,7 +473,7 @@ Omeka.ExhibitBuilder = {};
         });
     };
 
-    Omeka.ExhibitBuilder.setUpCoverImageChooser = function (coverImageChooserUrl) {
+    Omeka.ExhibitBuilder.setUpCoverImageChooser = function (coverImageChooserUrl, itemOptionsUrl) {
         var coverImagePanel = $('#cover-image-panel');
         var selected_cover_image_id = $('#cover_image_file_id').val();
 
