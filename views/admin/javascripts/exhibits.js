@@ -504,6 +504,7 @@ Omeka.ExhibitBuilder = {};
             beforeClose: function () {
                 $('body').css('overflow', 'inherit');
                 $(window).off('resize.ExhibitBuilder');
+                $('#cover-image-item-options').empty();
             },
             dialogClass: 'item-dialog'
         });
@@ -560,7 +561,10 @@ Omeka.ExhibitBuilder = {};
 
         $('#cover-image-container').on('click', '#exhibit-choose-cover-image', function (event) {
             event.preventDefault();
-            coverImagePanel.dialog('open');
+            coverImagePanel
+                .removeClass('editing-cover-image')
+                .removeClass('editing-selection')
+                .dialog('open');
             $('div.item-listing[data-item-id=' + selected_cover_image_id +']').click();
         });
 
