@@ -535,6 +535,7 @@ div.selected-items {
     margin-bottom: 0;
 }
 
+.cover-image-form-elements,
 .selected-item-list .attachment, .selected-item-list .ui-sortable-highlight, .add-item {
     width: 100px;
     display: inline-block;
@@ -556,6 +557,11 @@ div.selected-items {
     cursor: move;
 }
 
+.cover-image-form-elements {
+    background-color: #7C7E5D;
+    height: 80px;
+}
+
 .selected-item-list .attachment h5 {
     font-family: "Cabin", sans-serif;
     font-weight: normal;
@@ -572,6 +578,7 @@ div.selected-items {
     color: #fff;
 }
 
+.cover-image-form-elements .cover-image-background,
 .selected-item-list .attachment-background {
     position: absolute;
     top: 0;
@@ -596,6 +603,7 @@ div.selected-items {
     cursor: pointer;
 }
 
+.cover-image-form-elements .delete-element,
 .attachment .delete-element {
     display: block;
     position: absolute;
@@ -605,6 +613,7 @@ div.selected-items {
     cursor: pointer;
 }
 
+.cover-image-form-elements .delete-element:after,
 .attachment .delete-element:after {
     content: "\f00d";
     font-family: "FontAwesome";

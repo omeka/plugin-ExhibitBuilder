@@ -1,17 +1,20 @@
-<div id="cover-image-form-elements">
+<div class="cover-image-form-elements">
 <?php if($file): ?>
-<p class="explanation">
-    <?php echo __("Choose an item to represent this exhibit.  shown on the browse exhibits page and on the home page when the exhibit is featured."); ?>
-</p>
-<input name="choose-item" id="exhibit-choose-cover-image" value="Choose Item" type="submit">
-<br/>
-<?php
-  echo record_image($file, 'square_thumbnail');
-  echo $this->formHidden('cover_image_file_id', $file->id);
-?>
+    <div class="cover-image-header">
+        <div class="delete-element" role="button" title="<?php echo __('Remove/Restore'); ?>"></div>
+    </div>
+    <div class="attachment-body">
+        <?php if ($file): ?>
+        <div class="cover-image-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
+        <?php endif; ?>
+        <?php echo $this->formHidden('cover_image_item_id', $file->item_id); ?>
+        <?php echo $this->formHidden('cover_image_file_id', $file->id); ?>
+    </div>
+
+    <span class="edit-attachment" role="button"><?php echo __('Edit'); ?></span>
 <?php else: ?>
-<p class="explanation">
-    <?php echo __("No cover images available for this exhibit."); ?>
-</p>
+    <p class="explanation">
+        <?php echo __("No cover images available for this exhibit."); ?>
+    </p>
 <?php endif; ?>
 </div>
