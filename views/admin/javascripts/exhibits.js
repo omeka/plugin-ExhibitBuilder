@@ -491,7 +491,7 @@ Omeka.ExhibitBuilder = {};
                 function refreshDialog() {
                     coverImagePanel.dialog('option', {
                         width: Math.min($(window).width() - 100, 600),
-                        height: Math.min($(window).height() - 100, 1000)
+                        height: Math.min($(window).height() - 100, 500)
                     });
                 }
 
