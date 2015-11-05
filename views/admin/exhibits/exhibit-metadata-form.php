@@ -68,23 +68,7 @@
                 <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>
             </div>
             <div class="five columns omega inputs">
-                <?php if ($exhibit->exists() && $exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
-                <p class="explanation">
-                    <?php echo __("Choose an item to represent this exhibit.  Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
-                </p>
-                <input name="choose-item" id="exhibit-choose-cover-image" value="Choose Item" type="submit">
-                <br/>
-                <div id="cover-image-form-elements">
-                    <?php
-                        echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage);
-                        echo $this->formHidden('cover_image_file_id', $exhibit->getFile()->id);
-                    ?>
-                </div>
-                <?php else: ?>
-                <p class="explanation">
-                    <?php echo __("No cover images available for this exhibit."); ?>
-                </p>
-                <?php endif; ?>
+                <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getFile())); ?>
             </div>
         </div>
     </fieldset>
