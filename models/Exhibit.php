@@ -424,14 +424,15 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public function getFile()
     {
         $db = $this->getDb();
-        $file = array();
+        $file = null;
+        $select = null;
         $fileTable = $this->getDb()->getTable('File');
 
         if(isset($this->cover_image_file_id)){
             $select =
                 $fileTable->getSelect()
                 ->where('files.id = ?', $this->cover_image_file_id);
-        }else{
+        }elseif($this->exists()){
             $select =
                 $fileTable->getSelect()
                 ->joinInner(
@@ -455,7 +456,9 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
                 ->limit(1);
         }
 
-        $file = $fileTable->fetchObject($select);
+        if(!empty($select)) {
+            $file = $fileTable->fetchObject($select);
+        }
 
         return $file;
     }
