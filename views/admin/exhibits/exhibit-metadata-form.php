@@ -129,11 +129,13 @@
 <?php if($exhibit->exists()): ?>
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
     <div id="item-form">
+        <button type="button" id="revert-selected-item">Revert to Selected Item</button>
     <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));?>
         <div id="item-select"></div>
     </div>
     <div id="cover-image-options">
       <div class="options">
+        <button type="button" id="change-selected-item">Change Selected Item</button>
         <div id="cover-image-item-options"></div>
       </div>
       <div id="attachment-save">

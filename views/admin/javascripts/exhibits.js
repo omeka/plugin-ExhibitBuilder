@@ -586,6 +586,20 @@ Omeka.ExhibitBuilder = {};
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
         });
+
+        $('#change-selected-item').on('click', function (event) {
+            event.preventDefault();
+            $('#cover-image-panel')
+                .removeClass('editing-cover-image')
+                .addClass('editing-selection');
+        });
+
+        $('#revert-selected-item').on('click', function (event) {
+            event.preventDefault();
+            $('#cover-image-panel')
+                .removeClass('editing-selection')
+                .addClass('editing-cover-image');
+        });
     }
 
     Omeka.ExhibitBuilder.setUpCoverImageSelect = function(browseUri) {
