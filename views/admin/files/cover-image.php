@@ -8,7 +8,7 @@
         <?php echo $this->formHidden('cover_image_file_id', $file->id); ?>
     </div>
 
-    <span class="edit-attachment" role="button"><?php echo __('Edit'); ?></span>
+    <span class="edit-cover-image" role="button"><?php echo __('Change'); ?></span>
 <?php else: ?>
     <p class="explanation">
         <?php echo __("No cover images available for this exhibit."); ?>
