@@ -587,6 +587,7 @@ div.selected-items {
     opacity: 0.2;
 }
 
+.edit-cover-image,
 .edit-attachment {
     position: absolute;
     width: 100%;
