@@ -68,6 +68,9 @@
                 <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>
             </div>
             <div class="five columns omega inputs">
+                <p class="explanation">
+                    <?php echo __("Choose an item to represent this exhibit.  Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
+                </p>
                 <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getFile())); ?>
             </div>
         </div>
@@ -114,9 +117,6 @@
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
     <div id="item-form">
         <button type="button" id="revert-selected-item">Revert to Selected Item</button>
-    <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));?>
-        <div id="item-select"></div>
-    </div>
     <div id="cover-image-options">
       <div class="options">
         <button type="button" id="change-selected-item">Change Selected Item</button>
