@@ -532,6 +532,18 @@ Omeka.ExhibitBuilder = {};
             });
         };
 
+        function getCoverImageData(container) {
+            var item_id, file_id;
+
+            item_id = container.find('input[name="cover_image_item_id"]').val();
+            file_id = container.find('input[name="cover_image_file_id"]:checked').val();
+
+            return {
+                'item_id': item_id,
+                'file_id': file_id,
+            };
+        }
+
         // Hook select buttons to item options form
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
@@ -551,13 +563,22 @@ Omeka.ExhibitBuilder = {};
                 dataType: 'html',
                 data: {"id": fileId},
                 success: function (response) {
-                    $('#cover-image-form-elements').replaceWith(response);
+                    $('.cover-image-form-elements').replaceWith(response);
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     alert('Error getting items: ' . textStatus);
                 }
             });
         }
+
+        $('#cover-image-container').on('click', '.edit-cover-image', function (event) {
+            var coverImage;
+            event.preventDefault();
+
+            coverImage = $(this).parent();
+            loadItemOptionsForm(getCoverImageData(coverImage));
+            coverImagePanel.addClass('editing-cover-image').dialog('open');
+        });
 
         $('#cover-image-container').on('click', '#exhibit-choose-cover-image', function (event) {
             event.preventDefault();
