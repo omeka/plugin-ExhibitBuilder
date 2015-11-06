@@ -68,6 +68,9 @@
                 <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>
             </div>
             <div class="five columns omega inputs">
+                <p class="explanation">
+                  <?php echo __("Choose an item to represent this exhibit. Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
+                </p>
                 <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getFile())); ?>
             </div>
         </div>
