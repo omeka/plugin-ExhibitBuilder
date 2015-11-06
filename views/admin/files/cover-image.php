@@ -1,8 +1,5 @@
 <div class="cover-image-form-elements">
 <?php if($file): ?>
-    <div class="cover-image-header">
-        <div class="delete-element" role="button" title="<?php echo __('Remove/Restore'); ?>"></div>
-    </div>
     <div class="attachment-body">
         <?php if ($file): ?>
         <div class="cover-image-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
