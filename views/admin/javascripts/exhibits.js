@@ -2,6 +2,21 @@ var Omeka = Omeka || {};
 Omeka.ExhibitBuilder = {};
 
 (function ($) {
+    Omeka.ExhibitBuilder.setSearchVisibility = function(show) {
+        var searchForm = $('#page-search-form');
+        var searchButton = $('#show-or-hide-search');
+
+        if (typeof show === 'undefined') {
+            show = !searchForm.is(':visible');
+        }
+        if (show) {
+            searchForm.show();
+            searchButton.addClass('hide-form').removeClass('show-form');
+        } else {
+            searchForm.hide();
+            searchButton.addClass('show-form').removeClass('hide-form');
+        }
+    }
     Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
         function sortAttachments(ancestor) {
             $(ancestor).find('.selected-item-list').sortable({
@@ -173,21 +188,6 @@ Omeka.ExhibitBuilder = {};
             });
         }
 
-        function setSearchVisibility(show) {
-            var searchForm = $('#page-search-form');
-            var searchButton = $('#show-or-hide-search');
-
-            if (typeof show === 'undefined') {
-                show = !searchForm.is(':visible');
-            }
-            if (show) {
-                searchForm.show();
-                searchButton.addClass('hide-form').removeClass('show-form');
-            } else {
-                searchForm.hide();
-                searchButton.addClass('show-form').removeClass('hide-form');
-            }
-        }
 
         /**
          * Use AJAX to load the form for an attachment.
@@ -225,23 +225,23 @@ Omeka.ExhibitBuilder = {};
         $('#search').submit(function(event) {
             event.preventDefault();
             getItems(this.action, $(this).serialize());
-            setSearchVisibility(false);
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
         $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
             event.preventDefault();
             getItems(this.href);
-            setSearchVisibility(false);
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
         $('#item-select').on('submit', '.pagination form', function (event) {
             event.preventDefault();
             getItems(this.action + '?' + $(this).serialize());
-            setSearchVisibility(false);
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
 
-        setSearchVisibility(false);
+        Omeka.ExhibitBuilder.setSearchVisibility(false);
         $('#show-or-hide-search').click(function (event) {
             event.preventDefault();
-            setSearchVisibility();
+            Omeka.ExhibitBuilder.setSearchVisibility();
         });
 
         // Make item listings selectable
@@ -648,6 +648,29 @@ Omeka.ExhibitBuilder = {};
 
         getItems(browseUri);
 
+        // Make search and pagination use AJAX to respond.
+        $('#search').submit(function(event) {
+            event.preventDefault();
+            getItems(this.action, $(this).serialize());
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
+        });
+        $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
+            event.preventDefault();
+            getItems(this.href);
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
+        });
+        $('#item-select').on('submit', '.pagination form', function (event) {
+            event.preventDefault();
+            getItems(this.action + '?' + $(this).serialize());
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
+        });
+
+        Omeka.ExhibitBuilder.setSearchVisibility(false);
+        $('#show-or-hide-search').click(function (event) {
+            event.preventDefault();
+            Omeka.ExhibitBuilder.setSearchVisibility();
+        });
+
         $('#exhibit-page').on('change', function(event){
             $('#cover-image-form').submit();
         });
@@ -660,7 +683,7 @@ Omeka.ExhibitBuilder = {};
         $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
             event.preventDefault();
             getItems(this.href);
-            setSearchVisibility(false);
+            Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
     }
 })(jQuery);

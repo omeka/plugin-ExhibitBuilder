@@ -117,7 +117,18 @@
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
     <div id="item-form">
         <button type="button" id="revert-selected-item">Revert to Selected Item</button>
-    <?php echo exhibit_builder_cover_image_filter($exhibit, url('exhibit-builder/items/browse'));?>
+        <button type="button" id="show-or-hide-search" class="show-form blue">
+            <span class="show-search-label"><?php echo __('Show Search Form'); ?></span>
+            <span class="hide-search-label"><?php echo __('Hide Search Form'); ?></span>
+        </button>
+        <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
+        <div id="page-search-form" class="container-twelve">
+        <?php
+            $action = url(array('module' => 'exhibit-builder',
+                'controller' => 'items', 'action' => 'browse'), 'default', array(), true);
+            echo items_search_form(array('id' => 'search'), $action);
+        ?>
+        </div>
         <div id="item-select"></div>
     </div>
     <div id="cover-image-options">
