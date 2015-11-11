@@ -628,11 +628,17 @@ function exhibit_builder_items_browse_sql($args)
 function exhibit_builder_items_search()
 {
     $view = get_view();
-    $html = '<div class="field"><div class="two columns alpha">'
-          . $view->formLabel('exhibit', __('Search by Exhibit'))
-          . '</div><div class="five columns omega inputs">'
-          . $view->formSelect('exhibit', @$_GET['exhibit'], array(), get_table_options('Exhibit'))
-          . '</div></div>';
+    if(!empty($view->exhibit->id) && $view->limitItemSelectionToExhibit === true) {
+        $html = $view->formHidden('exhibit', $view->exhibit->id);
+
+    } else {
+        $html = '<div class="field"><div class="two columns alpha">'
+              . $view->formLabel('exhibit', __('Search by Exhibit'))
+              . '</div><div class="five columns omega inputs">'
+              . $view->formSelect('exhibit', @$_GET['exhibit'], array(), get_table_options('Exhibit'))
+              . '</div></div>';
+    }
+
     echo $html;
 }
 
