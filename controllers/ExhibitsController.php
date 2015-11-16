@@ -438,21 +438,4 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $attachment->file_id = $this->_getParam('file_id');
         $this->view->attachment = $attachment;
     }
-
-    /**
-     * Similar to 'add' action, except this requires a pre-existing record.
-     *
-     * Every request to this action must pass a record ID in the 'id' parameter.
-     *
-     * @uses Omeka_Controller_Action_Helper_Db::getDefaultModelName()
-     * @uses Omeka_Controller_Action_Helper_Db::findById()
-     * @uses self::_getEditSuccessMessage()
-     * @uses self::_redirectAfterEdit()
-     */
-    public function editAction()
-    {
-        $limitItemSelectionToExhibit = true;
-        $this->view->assign(compact('limitItemSelectionToExhibit'));
-        parent::editAction();
-    }
 }
