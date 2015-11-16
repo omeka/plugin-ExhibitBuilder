@@ -1,7 +1,17 @@
 <div class="cover-image-form-elements">
     <div class="attachment-body">
-        <?php if ($file): ?>
+        <?php
+        if ($file):
+         $item = $file->getItem();
+        ?>
         <div class="cover-image-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
+        <h5>
+            #<?php echo html_escape($item->id); ?>:<br>
+            <?php if (!metadata($item, 'public')): ?>
+            <?php echo __('(Private)') . ' '; ?>
+            <?php endif; ?>
+            <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
+        </h5>
         <?php echo $this->formHidden('cover_image_item_id', $file->item_id); ?>
         <?php echo $this->formHidden('cover_image_file_id', $file->id); ?>
         <span class="edit-cover-image" role="button"><?php echo __('Change'); ?></span>
