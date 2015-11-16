@@ -2,6 +2,26 @@ var Omeka = Omeka || {};
 Omeka.ExhibitBuilder = {};
 
 (function ($) {
+    Omeka.ExhibitBuilder.deleteElement = function (element, event) {
+        event.preventDefault();
+        $(element).toggleClass('undo-delete')
+            .parent().toggleClass('deleted')
+            .siblings('div').toggleClass('frozen');
+
+        var target = $(element).parent().parent();
+        var removedClass = 'removed';
+        if (!target.hasClass(removedClass)) {
+            target.addClass(removedClass);
+            target.find('input, select, textarea').prop('disabled', true);
+        } else {
+            target.removeClass(removedClass);
+            target.find('input, select, textarea').each(function () {
+                if (!$(element).parent().parent().hasClass(removedClass)) {
+                    element.disabled = false;
+                }
+            });
+        }
+    }
     Omeka.ExhibitBuilder.setSearchVisibility = function(show) {
         var searchForm = $('#page-search-form');
         var searchButton = $('#show-or-hide-search');
@@ -99,24 +119,7 @@ Omeka.ExhibitBuilder = {};
         });
 
         $('#block-container').on('click', '.delete-element', function (event) {
-            event.preventDefault();
-            $(this).toggleClass('undo-delete')
-                .parent().toggleClass('deleted')
-                .siblings('div').toggleClass('frozen');
-
-            var target = $(this).parent().parent();
-            var removedClass = 'removed';
-            if (!target.hasClass(removedClass)) {
-                target.addClass(removedClass);
-                target.find('input, select, textarea').prop('disabled', true);
-            } else {
-                target.removeClass(removedClass);
-                target.find('input, select, textarea').each(function () {
-                    if (!$(this).parent().parent().hasClass(removedClass)) {
-                        this.disabled = false;
-                    }
-                });
-            }
+            Omeka.ExhibitBuilder.deleteElement(this, event);
         });
 
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
