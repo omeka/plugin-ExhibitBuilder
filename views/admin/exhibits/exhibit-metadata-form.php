@@ -113,7 +113,6 @@
         </div>
     </section>
 </form>
-<?php if($exhibit->exists()): ?>
 <div id="cover-image-panel" title="<?php echo html_escape(__('Choose a Cover Image')); ?>">
     <div id="item-form">
         <button type="button" id="revert-selected-item">Revert to Selected Item</button>
@@ -142,20 +141,17 @@
     </div>
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
 </div>
-<?php endif; ?>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     jQuery(window).load(function() {
         Omeka.wysiwyg();
     });
-    <?php if($exhibit->exists()): ?>
     jQuery(document).ready(function(){
         Omeka.ExhibitBuilder.setUpCoverImageChooser(
           <?php echo json_encode(url('exhibit-builder/files/cover-image')); ?>,
           <?php echo js_escape(url('exhibits/attachment-item-options')); ?>
         );
-        Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse', array('exhibit' => $exhibit->id))); ?>);
+        Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse')); ?>);
     });
-    <?php endif; ?>
 //]]>
 </script>
