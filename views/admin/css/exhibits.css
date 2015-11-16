@@ -638,12 +638,14 @@ div.selected-items {
     z-index: 51;
 }
 
+.cover-image-form-elements .undo-delete:after,
 .attachment .undo-delete:after {
     content: "\23";
     font-size: 12px;
     color: #4C3939;
 }
 
+.cover-image-form-elements .frozen:after,
 .attachment .frozen:after {
     z-index: 50;
 }

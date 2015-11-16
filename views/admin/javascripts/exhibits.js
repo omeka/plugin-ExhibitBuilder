@@ -695,5 +695,9 @@ Omeka.ExhibitBuilder = {};
             getItems(this.href);
             Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
+
+        $('#cover-image-container').on('click', '.delete-element', function (event) {
+            Omeka.ExhibitBuilder.deleteElement(this, event);
+        });
     }
 })(jQuery);

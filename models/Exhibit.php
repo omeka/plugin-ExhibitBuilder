@@ -166,6 +166,15 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
         $this->deleteTaggings();
     }
 
+    protected function beforeSave($args)
+    {
+        if($args['post']) {
+            $post = $args['post'];
+            if(empty($post['cover_image_file_id']))
+                unset($this->cover_image_file_id);
+        }
+    }
+
     /**
      * After-save callback.
      *
