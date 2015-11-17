@@ -1,0 +1,61 @@
+.layout-file .exhibit-items {
+    width: 100%;
+}
+
+.layout-file .exhibit-items > * {
+    max-width: 100%;
+    margin-bottom: 1em;
+}
+
+.layout-file .exhibit-items > *:last-child {
+    margin-bottom: 0;
+}
+
+.layout-file .exhibit-items .download-file {
+    clear: both;
+    border-bottom: 0;
+    overflow: visible;
+}
+
+.layout-file .exhibit-items.left {
+    float: left;
+    margin-right: 2%;
+    margin-left: 0;
+    text-align: left;
+}
+
+.layout-file .exhibit-items.right {
+    float: right;
+    margin-left: 2%;
+    margin-right: 0;
+    text-align: right;
+}
+
+.layout-file .exhibit-items.center {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.layout-file .exhibit-items .fullsize img {
+    max-width: 100%;
+    margin-bottom: 1em;
+}
+
+.layout-file .exhibit-item-caption p {
+    margin: 0;
+    clear: both;
+}
+
+.layout-file .captions-center .exhibit-item-caption {
+    text-align: center;
+}
+
+.layout-file .captions-left .exhibit-item-caption {
+    text-align: left;
+}
+
+.layout-file .captions-right .exhibit-item-caption {
+    text-align: right;
+}

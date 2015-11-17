@@ -345,7 +345,7 @@ Omeka.ExhibitBuilder = {};
                     attachmentPanel.dialog('option', {
                         width: Math.min($(window).width() - 100, 600),
                         height: Math.min($(window).height() - 100, 500),
-                        position: {my: 'center', at: 'center center+22'}
+                        position: {my: 'center', at: 'center center+22', of: window}
                     });
                 }
 

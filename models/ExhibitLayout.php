@@ -4,7 +4,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
- 
+
 /**
  * Exhibit layout model.
  *
@@ -137,7 +137,7 @@ class ExhibitLayout
         if (self::$layouts) {
             return self::$layouts;
         }
-        
+
         $defaultLayouts = array(
             'file-text' => array(
                 'name' => __('File with Text'),
@@ -150,6 +150,10 @@ class ExhibitLayout
             'text' => array(
                 'name' => __('Text'),
                 'description' => __('Layout featuring a block of text without files')
+            ),
+            'file' => array(
+                'name' => __('File'),
+                'description' => __('Layout featuring a standalone file')
             )
         );
 
