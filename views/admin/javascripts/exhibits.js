@@ -539,7 +539,7 @@ Omeka.ExhibitBuilder = {};
             var item_id, file_id;
 
             item_id = container.find('input[name="cover_image_item_id"]').val();
-            file_id = container.find('input[name="cover_image_file_id"]:checked').val();
+            file_id = container.find('input[name="cover_image_file_id"]').val();
 
             return {
                 'item_id': item_id,
