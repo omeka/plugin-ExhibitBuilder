@@ -424,10 +424,9 @@ function exhibit_builder_public_main_nav($navArray)
  */
 function exhibit_builder_admin_nav($navArray)
 {
-	/* By default user will see its own exhibits. */
     $navArray[] = array(
         'label' => __('Exhibits'),
-        'uri' => url('exhibits', array('owner' => current_user()->id)),
+        'uri' => url('exhibits'),
         'resource' => 'ExhibitBuilder_Exhibits',
         'privilege' => 'browse'
     );

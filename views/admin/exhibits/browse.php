@@ -17,8 +17,6 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 <?php if (is_allowed('ExhibitBuilder_Exhibits', 'add')): ?>
 <div class="table-actions">
     <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="small green add button"><?php echo __('Add an Exhibit'); ?></a>
-    <a href="<?php echo html_escape(url('exhibits', array('owner' => current_user()->id))); ?>" class="small green add button"><?php echo __('View Own Exhibits'); ?></a>
-    <a href="<?php echo html_escape(url('exhibits')); ?>" class="small green add button"><?php echo __('View All Exhibits'); ?></a>	
 </div>
 <?php endif; ?>
 
