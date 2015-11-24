@@ -195,10 +195,7 @@ Omeka.ExhibitBuilder = {};
         /**
          * Use AJAX to load the form for an attachment.
          */
-        this.loadItemOptionsForm = function(data, ajaxUrl) {
-            if(typeof ajaxURL == 'undefined'){
-                ajaxUrl = itemOptionsUrl;
-            }
+        this.loadItemOptionsForm = function(data) {
 
             $('#attachment-panel').addClass('loading');
             $.ajax({
@@ -515,10 +512,7 @@ Omeka.ExhibitBuilder = {};
         /**
          * Use AJAX to load the form for an attachment.
          */
-        function loadItemOptionsForm(data, ajaxUrl) {
-            if(typeof ajaxURL == 'undefined'){
-                ajaxUrl = itemOptionsUrl;
-            }
+        function loadItemOptionsForm(data) {
 
             $('#cover-image-panel').addClass('loading');
             $.ajax({
