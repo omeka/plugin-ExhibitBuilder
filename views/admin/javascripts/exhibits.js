@@ -664,16 +664,6 @@ Omeka.ExhibitBuilder = {};
             getItems(this.action, $(this).serialize());
             Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
-        $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
-            event.preventDefault();
-            getItems(this.href);
-            Omeka.ExhibitBuilder.setSearchVisibility(false);
-        });
-        $('#item-select').on('submit', '.pagination form', function (event) {
-            event.preventDefault();
-            getItems(this.action + '?' + $(this).serialize());
-            Omeka.ExhibitBuilder.setSearchVisibility(false);
-        });
 
         Omeka.ExhibitBuilder.setSearchVisibility(false);
         $('#show-or-hide-search').click(function (event) {
