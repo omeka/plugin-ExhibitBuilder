@@ -827,18 +827,6 @@ input[type=submit].configure-button {
     transform: rotate(360deg); } 
 }
 
-#cover-image-form .column select {
-    max-width: 100%;
-}
-
-#cover-image-form .filter-left {
-    width: 15%;
-}
-
-#cover-image-form .filter-right {
-    width: 50%;
-}
-
 #choose-cover-image {
     margin: 0;
 }
