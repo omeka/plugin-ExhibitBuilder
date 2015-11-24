@@ -636,17 +636,6 @@ function exhibit_builder_items_search()
     echo $html;
 }
 
-/**
- * Form for filtering possible cover images.
- */
-function exhibit_builder_cover_image_filter($exhibit, $formActionUri)
-{
-    return get_view()->partial(
-        'exhibits/cover-image-form.php',
-        array('exhibit' => $exhibit, 'formActionUri' => $formActionUri)
-    );
-}
-
 function exhibit_builder_search_record_types($recordTypes)
 {
     $recordTypes['Exhibit'] = __('Exhibit');
