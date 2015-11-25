@@ -424,6 +424,21 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
+     * Get the specified cover image for this exhibit.  If none exists, return
+     * null.
+     *
+     * @return File|null
+     */
+    public function getCoverImage()
+    {
+        $db = $this->getDb();
+        $fileTable = $this->getDb()->getTable('File');
+        $file = $fileTable->find($this->cover_image_file_id);
+
+        return ($file) ? $file : null;
+    }
+
+    /**
      * Get a representative file for this Exhibit.
      *
      * The representative is the first attached file in the exhibit.
@@ -432,13 +447,13 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
      */
     public function getFile()
     {
-        $db = $this->getDb();
-        $file = null;
-        $fileTable = $this->getDb()->getTable('File');
-
         if (isset($this->cover_image_file_id)) {
-            $file = $fileTable->find($this->cover_image_file_id);
-        } elseif($this->exists()) {
+            $file = $this->getCoverImage();
+        } elseif ($this->exists()) {
+            $db = $this->getDb();
+            $file = null;
+            $fileTable = $this->getDb()->getTable('File');
+
             $select =
                 $fileTable->getSelect()
                 ->joinInner(
