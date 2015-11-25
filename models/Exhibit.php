@@ -424,8 +424,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
-     * Get the specified cover image for this exhibit.  If none exists, return
-     * null.
+     * Get the specified cover image File for this exhibit.  If none exists,
+     * return null.
      *
      * @return File|null
      */
@@ -439,9 +439,12 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
-     * Get a representative file for this Exhibit.
+     * Get a representative File for this Exhibit.
      *
-     * The representative is the first attached file in the exhibit.
+     * The representative File is the File with the id specified in
+     * cover_image_file_id. If that field is empty, the first File in the
+     * Exhibit is returned. If the Exhibit has no associated Files, null is
+     * returned.
      *
      * @return File|null
      */
