@@ -605,7 +605,10 @@ Omeka.ExhibitBuilder = {};
          * Use AJAX to retrieve the list of items that can be attached.
          */
         function getItems(uri, parameters) {
+            if(typeof parameters == "undefined")
+                parameters = "search=";
             $('#cover-image-panel').addClass('loading');
+            parameters+= "&hasImage=1";
             $.ajax({
                 url: uri,
                 data: parameters,
