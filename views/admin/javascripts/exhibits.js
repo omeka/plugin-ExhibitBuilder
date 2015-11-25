@@ -38,7 +38,7 @@ Omeka.ExhibitBuilder = {};
         }
     }
 
-    Omeka.ExhibitBuilder.loadItemOptionsForm = function(data, itemOptionsUrl, panel, options, tinyMceCaption) {
+    Omeka.ExhibitBuilder.loadItemOptionsForm = function(data, itemOptionsUrl, panel, options) {
         $(panel).addClass('loading');
         $.ajax({
             url: itemOptionsUrl,
@@ -249,7 +249,7 @@ Omeka.ExhibitBuilder = {};
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
             var data = {item_id: $('#item-select .item-selected').data('itemId')};
-            Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#attachment-panel', '#attachment-item-options', 'attachment-caption');
+            Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#attachment-panel', '#attachment-item-options');
             $('#attachment-panel')
                 .addClass('editing-attachment')
                 .removeClass('editing-selection');
@@ -390,7 +390,7 @@ Omeka.ExhibitBuilder = {};
 
             attachment = $(this).parent();
             targetAttachment(attachment);
-            Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true), itemOptionsUrl, '#attachment-panel', '#attachment-item-options', 'attachment-caption');
+            Omeka.ExhibitBuilder.loadItemOptionsForm(getAttachmentData(attachment, true), itemOptionsUrl, '#attachment-panel', '#attachment-item-options');
             $(document).trigger('exhibit-builder-select-item');
             attachmentPanel.addClass('editing-attachment').dialog('open');
         });
@@ -519,7 +519,7 @@ Omeka.ExhibitBuilder = {};
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
             var data = {item_id: $('#item-select .item-selected').data('itemId')};
-            Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options', '');
+            Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
             $('#cover-image-panel')
                 .addClass('editing-cover-image')
                 .removeClass('editing-selection');
@@ -552,7 +552,7 @@ Omeka.ExhibitBuilder = {};
                     .dialog('open');
             } else {
                 coverImage = $(this).parent();
-                Omeka.ExhibitBuilder.loadItemOptionsForm(getCoverImageData(coverImage), itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options', '');
+                Omeka.ExhibitBuilder.loadItemOptionsForm(getCoverImageData(coverImage), itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
                 coverImagePanel.addClass('editing-cover-image').dialog('open');
             }
         });
