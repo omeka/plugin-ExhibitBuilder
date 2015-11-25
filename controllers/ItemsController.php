@@ -43,4 +43,5 @@ class ExhibitBuilder_ItemsController extends Omeka_Controller_AbstractActionCont
     {
         throw new Omeka_Controller_Exception_404;
     }
+
 }

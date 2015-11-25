@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `modified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
     `owner_id` INT UNSIGNED DEFAULT NULL,
     `use_summary_page` TINYINT(1) DEFAULT 1,
+    `cover_image_file_id` INT UNSIGNED DEFAULT NULL,
     PRIMARY KEY  (`id`),
     UNIQUE KEY `slug` (`slug`),
     KEY `public` (`public`)
@@ -271,6 +272,11 @@ SQL
 
     if (version_compare($oldVersion, '3.1.4', '<')) {
         $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `use_summary_page` TINYINT(1) DEFAULT 1 AFTER `owner_id`";
+        $db->query($sql);
+    }
+
+    if (version_compare($oldVersion, '3.2.1', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `cover_image_file_id` INT UNSIGNED DEFAULT NULL AFTER `use_summary_page`";
         $db->query($sql);
     }
 }
@@ -550,6 +556,7 @@ function exhibit_builder_items_browse_sql($args)
     $db = get_db();
 
     $exhibit = isset($params['exhibit']) ? $params['exhibit'] : null;
+    $exhibit_page = isset($params['exhibit-page']) ? $params['exhibit-page'] : null;
 
     if ($exhibit) {
         $select
@@ -580,6 +587,37 @@ function exhibit_builder_items_browse_sql($args)
             $select->where('e.id = ?', $exhibit);
         }
     }
+
+    if($exhibit_page){
+        $select
+            ->joinInner(
+                array('eba' => $db->ExhibitBlockAttachment),
+                'eba.item_id = items.id',
+                array()
+            )
+            ->joinInner(
+                array('epb' => $db->ExhibitPageBlock),
+                'epb.id = eba.block_id',
+                array()
+            )
+            ->joinInner(
+                array('ep' => $db->ExhibitPage),
+                'ep.id = epb.page_id',
+                array()
+            )
+            ->joinInner(
+                array('e' => $db->Exhibit),
+                'e.id = ep.exhibit_id',
+                array()
+            );
+
+        if ($exhibit_page instanceof ExhibitPage) {
+            $select->where('ep.id = ?', $exhibit_page->id);
+        } elseif (is_numeric($exhibit_page)) {
+            $select->where('ep.id = ?', $exhibit_page);
+        }
+    }
+
 
     return $select;
 }
