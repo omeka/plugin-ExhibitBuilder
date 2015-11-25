@@ -638,15 +638,6 @@ Omeka.ExhibitBuilder = {};
             Omeka.ExhibitBuilder.setSearchVisibility();
         });
 
-        $('#exhibit-page').on('change', function(event){
-            $('#cover-image-form').submit();
-        });
-
-        $('#cover-image-form').on('submit', function(event){
-            event.preventDefault();
-            getItems(this.action, $(this).serialize());
-        });
-
         $('#item-form').on('click', '.pagination a, #view-all-items', function (event) {
             event.preventDefault();
             getItems(this.href);
