@@ -71,7 +71,7 @@
                 <p class="explanation">
                   <?php echo __("Choose an item to represent this exhibit. Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
                 </p>
-                <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getFile())); ?>
+                <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getCoverImage())); ?>
             </div>
         </div>
     </fieldset>
