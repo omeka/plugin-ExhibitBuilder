@@ -556,7 +556,6 @@ function exhibit_builder_items_browse_sql($args)
     $db = get_db();
 
     $exhibit = isset($params['exhibit']) ? $params['exhibit'] : null;
-    $exhibit_page = isset($params['exhibit-page']) ? $params['exhibit-page'] : null;
 
     if ($exhibit) {
         $select
@@ -587,37 +586,6 @@ function exhibit_builder_items_browse_sql($args)
             $select->where('e.id = ?', $exhibit);
         }
     }
-
-    if($exhibit_page){
-        $select
-            ->joinInner(
-                array('eba' => $db->ExhibitBlockAttachment),
-                'eba.item_id = items.id',
-                array()
-            )
-            ->joinInner(
-                array('epb' => $db->ExhibitPageBlock),
-                'epb.id = eba.block_id',
-                array()
-            )
-            ->joinInner(
-                array('ep' => $db->ExhibitPage),
-                'ep.id = epb.page_id',
-                array()
-            )
-            ->joinInner(
-                array('e' => $db->Exhibit),
-                'e.id = ep.exhibit_id',
-                array()
-            );
-
-        if ($exhibit_page instanceof ExhibitPage) {
-            $select->where('ep.id = ?', $exhibit_page->id);
-        } elseif (is_numeric($exhibit_page)) {
-            $select->where('ep.id = ?', $exhibit_page);
-        }
-    }
-
 
     return $select;
 }
