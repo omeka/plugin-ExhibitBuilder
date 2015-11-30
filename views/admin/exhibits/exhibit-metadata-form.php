@@ -132,11 +132,11 @@
     </div>
     <div id="cover-image-options">
       <div class="options">
-        <button type="button" id="change-selected-item">Change Selected Item</button>
+        <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
         <div id="cover-image-item-options"></div>
       </div>
       <div id="attachment-save">
-        <button type="submit" id="choose-cover-image">Choose</button>
+        <button type="submit" id="choose-cover-image"><?php echo __('Choose'); ?></button>
       </div>
     </div>
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
