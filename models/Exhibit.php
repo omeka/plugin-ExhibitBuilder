@@ -450,11 +450,11 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
      */
     public function getFile()
     {
+        $file = null;
         if (isset($this->cover_image_file_id)) {
             $file = $this->getCoverImage();
         } elseif ($this->exists()) {
             $db = $this->getDb();
-            $file = null;
             $fileTable = $this->getDb()->getTable('File');
 
             $select =
