@@ -258,14 +258,4 @@ class Table_ExhibitPage extends Omeka_Db_Table
         );
         $select->where('exhibit_block_attachments.item_id = ?', $item_id);
     }
-
-    /**
-     * Retrieve the array of column that are used by findPairsForSelectForm().
-     *
-     */
-
-    protected function _getColumnPairs()
-    {
-        return array("exhibit_pages.id", "exhibit_pages.title");
-    }
 }
