@@ -327,39 +327,7 @@ Omeka.ExhibitBuilder = {};
         }
 
         var attachmentPanel = $('#attachment-panel');
-        // Search Items Dialog Box
-        attachmentPanel.dialog({
-            autoOpen: false,
-            modal: true,
-            resizable: false,
-            create: function () {
-                $(this).dialog('widget').draggable('option', {
-                    containment: 'window',
-                    scroll: false
-                });
-            },
-            open: function () {
-                function refreshDialog() {
-                    attachmentPanel.dialog('option', {
-                        width: Math.min($(window).width() - 100, 600),
-                        height: Math.min($(window).height() - 100, 500),
-                        position: {my: 'center', at: 'center center+22', of: window}
-                    });
-                }
-
-                refreshDialog();
-                $('body').css('overflow', 'hidden');
-                $(window).on('resize.ExhibitBuilder', function () {
-                    refreshDialog();
-                });
-            },
-            beforeClose: function () {
-                $('body').css('overflow', 'inherit');
-                $(window).off('resize.ExhibitBuilder');
-                $('#attachment-item-options').empty();
-            },
-            dialogClass: 'item-dialog'
-        });
+        Omeka.ExhibitBuilder.createDialog(attachmentPanel);
         
         $('#attachment-item-options').on('click','.file-select .item-file', function(event) {
             $(this).find('input[type="radio"]').prop('checked', true);
@@ -471,37 +439,7 @@ Omeka.ExhibitBuilder = {};
         var coverImagePanel = $('#cover-image-panel');
         var selected_cover_image_id = $('#cover_image_file_id').val();
 
-        coverImagePanel.dialog({
-            autoOpen: false,
-            modal: true,
-            resizable: false,
-            create: function () {
-                $(this).dialog('widget').draggable('option', {
-                    containment: 'window',
-                    scroll: false
-                });
-            },
-            open: function () {
-                function refreshDialog() {
-                    coverImagePanel.dialog('option', {
-                        width: Math.min($(window).width() - 100, 600),
-                        height: Math.min($(window).height() - 100, 500)
-                    });
-                }
-
-                refreshDialog();
-                $('body').css('overflow', 'hidden');
-                $(window).on('resize.ExhibitBuilder', function () {
-                    refreshDialog();
-                });
-            },
-            beforeClose: function () {
-                $('body').css('overflow', 'inherit');
-                $(window).off('resize.ExhibitBuilder');
-                $('#cover-image-item-options').empty();
-            },
-            dialogClass: 'item-dialog'
-        });
+        Omeka.ExhibitBuilder.createDialog(coverImagePanel);
 
         function getCoverImageData(container) {
             var item_id, file_id;
@@ -649,6 +587,41 @@ Omeka.ExhibitBuilder = {};
 
         $('#cover-image-container').on('click', '.delete-element', function (event) {
             Omeka.ExhibitBuilder.deleteElement(this, event);
+        });
+    }
+
+    Omeka.ExhibitBuilder.createDialog = function (panel) {
+        panel.dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            create: function () {
+                $(this).dialog('widget').draggable('option', {
+                    containment: 'window',
+                    scroll: false
+                });
+            },
+            open: function () {
+                function refreshDialog() {
+                    panel.dialog('option', {
+                        width: Math.min($(window).width() - 100, 600),
+                        height: Math.min($(window).height() - 100, 500),
+                        position: {my: 'center', at: 'center center+22', of: window}
+                    });
+                }
+
+                refreshDialog();
+                $('body').css('overflow', 'hidden');
+                $(window).on('resize.ExhibitBuilder', function () {
+                    refreshDialog();
+                });
+            },
+            beforeClose: function () {
+                $('body').css('overflow', 'inherit');
+                $(window).off('resize.ExhibitBuilder');
+                $('#attachment-item-options').empty();
+            },
+            dialogClass: 'item-dialog'
         });
     }
 })(jQuery);
