@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `theme` VARCHAR(30) DEFAULT NULL,
     `theme_options` TEXT,
     `slug` VARCHAR(30) NOT NULL,
-    `added` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `modified` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+    `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
+    `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     `owner_id` INT UNSIGNED DEFAULT NULL,
     `use_summary_page` TINYINT(1) DEFAULT 1,
     `cover_image_file_id` INT UNSIGNED DEFAULT NULL,
@@ -276,7 +276,12 @@ SQL
     }
 
     if (version_compare($oldVersion, '3.3', '<')) {
-        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `cover_image_file_id` INT UNSIGNED DEFAULT NULL AFTER `use_summary_page`";
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibits`
+    ADD `cover_image_file_id` INT UNSIGNED DEFAULT NULL AFTER `use_summary_page`,
+    ALTER `added` SET DEFAULT '2000-01-01 00:00:00',
+    ALTER `modified` SET DEFAULT '2000-01-01 00:00:00'
+SQL;
         $db->query($sql);
     }
 }
