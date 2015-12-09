@@ -97,6 +97,13 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     public $use_summary_page = 1;
 
     /**
+     * The File ID of the File used to represent this Exhibit.
+     *
+     * @var integer
+     */
+    public $cover_image_file_id;
+
+    /**
      * Quick-access mappings for related records.
      *
      * @var array
@@ -158,6 +165,15 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
             $page->delete();
         }
         $this->deleteTaggings();
+    }
+
+    protected function beforeSave($args)
+    {
+        if($args['post']) {
+            $post = $args['post'];
+            if(empty($post['cover_image_file_id']))
+                unset($this->cover_image_file_id);
+        }
     }
 
     /**
@@ -409,39 +425,64 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
     }
 
     /**
-     * Get a representative file for this Exhibit.
+     * Get the specified cover image File for this exhibit.  If none exists,
+     * return null.
      *
-     * The representative is the first attached file in the exhibit.
+     * @return File|null
+     */
+    public function getCoverImage()
+    {
+        $db = $this->getDb();
+        $fileTable = $this->getDb()->getTable('File');
+        $file = $fileTable->find($this->cover_image_file_id);
+
+        return ($file) ? $file : null;
+    }
+
+    /**
+     * Get a representative File for this Exhibit.
+     *
+     * The representative File is the File with the id specified in
+     * cover_image_file_id. If that field is empty, the first File in the
+     * Exhibit is returned. If the Exhibit has no associated Files, null is
+     * returned.
      *
      * @return File|null
      */
     public function getFile()
     {
-        $db = $this->getDb();
-        $fileTable = $this->getDb()->getTable('File');
-        $select =
-            $fileTable->getSelect()
-            ->joinInner(
-                array('eba' => $db->ExhibitBlockAttachment),
-                'eba.file_id = files.id',
-                array()
-            )
-            ->joinInner(
-                array('epb' => $db->ExhibitPageBlock),
-                'epb.id = eba.block_id',
-                array()
-            )
-            ->joinInner(
-                array('ep' => $db->ExhibitPage),
-                'ep.id = epb.page_id',
-                array()
-            )
-            ->where('ep.exhibit_id = ?', $this->id)
-            ->where('files.has_derivative_image = 1')
-            ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
-            ->limit(1);
+        $file = null;
+        if (isset($this->cover_image_file_id)) {
+            $file = $this->getCoverImage();
+        } elseif ($this->exists()) {
+            $db = $this->getDb();
+            $fileTable = $this->getDb()->getTable('File');
 
-        return $fileTable->fetchObject($select);
+            $select =
+                $fileTable->getSelect()
+                ->joinInner(
+                    array('eba' => $db->ExhibitBlockAttachment),
+                    'eba.file_id = files.id',
+                    array()
+                )
+                ->joinInner(
+                    array('epb' => $db->ExhibitPageBlock),
+                    'epb.id = eba.block_id',
+                    array()
+                )
+                ->joinInner(
+                    array('ep' => $db->ExhibitPage),
+                    'ep.id = epb.page_id',
+                    array()
+                )
+                ->where('ep.exhibit_id = ?', $this->id)
+                ->where('files.has_derivative_image = 1')
+                ->order(array('ep.order', 'ep.parent_id', 'epb.order', 'eba.order'))
+                ->limit(1);
+            $file = $fileTable->fetchObject($select);
+        }
+
+        return $file;
     }
 
     /**
