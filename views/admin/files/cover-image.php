@@ -1,4 +1,4 @@
-<div class="cover-image-form-elements">
+<div class="cover-image-form-elements <?php echo ($file) ? 'attached' : ''; ?>">
     <p class="explanation">
         <?php echo __("Omeka will use the first attached file as the cover image."); ?>
     </p>
