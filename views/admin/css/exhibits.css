@@ -540,7 +540,7 @@ div.selected-items {
 .selected-item-list .attachment, .selected-item-list .ui-sortable-highlight, .add-item {
     width: 100px;
     display: inline-block;
-    height: 120px;
+    height: 124px;
     color: #fff;
     padding: 10px;
     -moz-box-sizing: border-box;
