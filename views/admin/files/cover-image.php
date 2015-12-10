@@ -1,4 +1,7 @@
 <div class="cover-image-form-elements">
+    <p class="explanation">
+        <?php echo __("Use the first item for the cover image."); ?>
+    </p>
     <?php if ($file):
          $item = $file->getItem();
     ?>
@@ -8,7 +11,7 @@
     <div class="attachment-body">
         <div class="cover-image-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
         <h5>
-            #<?php echo html_escape($item->id); ?>:<br>
+            #<?php echo html_escape($item->id); ?>:
             <?php if (!metadata($item, 'public')): ?>
             <?php echo __('(Private)') . ' '; ?>
             <?php endif; ?>
@@ -19,9 +22,6 @@
         <span class="edit-cover-image" role="button"><?php echo __('Change'); ?></span>
     </div>
     <?php else: ?>
-    <p class="explanation">
-        <?php echo __("Use the first item for the cover image."); ?>
-    </p>
     <span class="edit-cover-image" id="first-time-cover-image" role="button"><?php echo __('Change'); ?></span>
     <?php endif; ?>
 </div>

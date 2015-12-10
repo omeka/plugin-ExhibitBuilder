@@ -562,6 +562,27 @@ div.selected-items {
     width: 100%;
 }
 
+.cover-image-form-elements .explanation {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 51;
+    margin-top: -12px;
+}
+
+.cover-image-form-elements.attached .explanation {
+    display: none;
+}
+
+.cover-image-form-elements.attached.removed .explanation {
+    display: block;
+    color: #4C3939;
+    margin-top: 0;
+}
+
 .cover-image-form-elements h5,
 .selected-item-list .attachment h5 {
     font-family: "Cabin", sans-serif;
@@ -719,7 +740,7 @@ div.selected-items {
     width: 100%;
     content: "";
     display: block;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255,255,255,.85);
     z-index: 100;
 }
 

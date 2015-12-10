@@ -472,6 +472,7 @@ Omeka.ExhibitBuilder = {};
                 data: {"id": fileId},
                 success: function (response) {
                     $('.cover-image-form-elements').replaceWith(response);
+                    $('.cover-image-form-elements').addClass('attached');
                 },
                 error: function(xhr, textStatus, errorThrown) {
                     alert('Error getting items: ' . textStatus);
