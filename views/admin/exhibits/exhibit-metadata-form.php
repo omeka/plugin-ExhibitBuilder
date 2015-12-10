@@ -69,7 +69,7 @@
             </div>
             <div class="five columns omega inputs">
                 <p class="explanation">
-                  <?php echo __("Choose an item to represent this exhibit. Shown on the Browse Exhibits page and on the home page when the exhibit is featured."); ?>
+                  <?php echo __('Choose a file to represent this exhibit. The selected file will serve as the thumbnail for the exhibit.'); ?>
                 </p>
                 <?php echo $this->partial('files/cover-image.php', array('file' => $exhibit->getCoverImage())); ?>
             </div>
