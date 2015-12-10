@@ -131,8 +131,8 @@
         <div id="item-select"></div>
     </div>
     <div id="cover-image-options">
+      <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
       <div class="options">
-        <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
         <div id="cover-image-item-options"></div>
       </div>
       <div id="attachment-save">

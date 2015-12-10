@@ -136,7 +136,8 @@
     overflow: hidden;
 }
 
-#item-list, #page-search-form, #attachment-options .options {
+#item-list, #page-search-form, #attachment-options .options,
+#cover-image-options .options {
     position: absolute;
     top: 50px;
     bottom: 0;
