@@ -108,7 +108,7 @@
 
 /* Item select: Item list */
 
-#attachment-panel-loading {
+#attachment-panel-loading, #cover-image-panel-loading {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -120,7 +120,7 @@
     padding: 1em;
 }
 
-.loading #attachment-panel-loading {
+.loading #attachment-panel-loading, .loading #cover-image-panel-loading {
     color: #A28E8A;
     font-size: 1em;
     font-style: italic;
@@ -132,7 +132,7 @@
     box-sizing: border-box;
 }
 
-#attachment-panel.loading {
+#attachment-panel.loading, #cover-image-panel.loading {
     overflow: hidden;
 }
 
