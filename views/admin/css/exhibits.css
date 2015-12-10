@@ -309,7 +309,7 @@
     display: block;
 }
 
-.direction { 
+.direction {
     clear: both;
     font-weight: bold;
     margin: 0;
@@ -398,8 +398,8 @@
     float: left;
 }
 
-.block-form h4 { 
-    clear: both; 
+.block-form h4 {
+    clear: both;
     margin-bottom: 10px;
 }
 
@@ -427,7 +427,7 @@
 }
 
 .add-block {
-    text-align: center; 
+    text-align: center;
     clear: both;
 }
 
@@ -460,7 +460,7 @@
 }
 
 .block-form h2 {
-    border-width: 1px 0;  
+    border-width: 1px 0;
 }
 
 .layout-select {
@@ -559,6 +559,7 @@ div.selected-items {
 
 .cover-image-form-elements {
     background-color: #7C7E5D;
+    width: 100%;
 }
 
 .cover-image-form-elements h5,
@@ -566,12 +567,16 @@ div.selected-items {
     font-family: "Cabin", sans-serif;
     font-weight: normal;
     margin: 0;
-    line-height: 20px; 
+    line-height: 20px;
     font-size: 14px;
     height: 82px;
     overflow: hidden;
     position: relative;
     z-index: 10;
+}
+
+.cover-image-form-elements h5 {
+    margin-left: 100px;
 }
 
 .selected-item-list .attachment h5 a {
@@ -586,6 +591,11 @@ div.selected-items {
     left: 0;
     right: 0;
     opacity: 0.2;
+}
+
+.cover-image-form-elements .cover-image-background {
+    width: 100px;
+    opacity: 1;
 }
 
 .edit-cover-image,
@@ -640,7 +650,7 @@ div.selected-items {
 
 .cover-image-form-elements .undo-delete:after,
 .attachment .undo-delete:after {
-    content: "\23";
+    content: "\f0e2";
     font-size: 12px;
     color: #4C3939;
 }
@@ -776,7 +786,7 @@ input[type=submit].configure-button {
   margin-top: -15px;
   margin-left: -15px;
   border: 3px solid #A28E8A;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
 .loading .spinner::before, .loading .spinner::after {
@@ -785,7 +795,7 @@ input[type=submit].configure-button {
     display: block;
     width: 3px;
     background-color: #A28E8A;
-    border-radius: 1.5px; 
+    border-radius: 1.5px;
 }
 
 .loading .spinner::before {
@@ -797,7 +807,7 @@ input[type=submit].configure-button {
     animation: spin 2000ms linear infinite;
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%; 
+    transform-origin: 50% 0%;
 }
 
 .loading .spinner::after {
@@ -809,22 +819,22 @@ input[type=submit].configure-button {
     animation: spin 500ms linear infinite;
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
-    transform-origin: 50% 0%; 
+    transform-origin: 50% 0%;
 }
 
 @-webkit-keyframes spin {
   to {
-    -webkit-transform: rotate(360deg); } 
+    -webkit-transform: rotate(360deg); }
 }
 
 @-moz-keyframes spin {
   to {
-    -moz-transform: rotate(360deg); } 
+    -moz-transform: rotate(360deg); }
 }
 
 @keyframes spin {
   to {
-    transform: rotate(360deg); } 
+    transform: rotate(360deg); }
 }
 
 #choose-cover-image {
