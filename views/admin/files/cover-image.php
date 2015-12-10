@@ -1,6 +1,6 @@
 <div class="cover-image-form-elements">
     <p class="explanation">
-        <?php echo __("Use the first item for the cover image."); ?>
+        <?php echo __("Omeka will use the first attached file as the cover image."); ?>
     </p>
     <?php if ($file):
          $item = $file->getItem();
