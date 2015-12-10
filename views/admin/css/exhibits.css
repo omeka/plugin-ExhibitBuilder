@@ -606,6 +606,7 @@ div.selected-items {
 
 .cover-image-form-elements .cover-image-background,
 .selected-item-list .attachment-background {
+    height: 100px;
     position: absolute;
     top: 0;
     bottom: 0;
