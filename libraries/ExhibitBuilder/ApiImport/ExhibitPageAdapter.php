@@ -22,7 +22,7 @@ class ExhibitBuilder_ApiImport_ExhibitPageAdapter extends ApiImport_ResponseAdap
             if($parentId) {
                 $this->record->parent_id = $parentId;
             } else {
-                $response = $this->service->exhibit_pages->get($responseData['parent']['id']);
+                $response = $this->service->exhibit_pages->get($this->responseData['parent']['id']);
                 if($response->getStatus() == 200) {
                     $data = json_decode($response->getBody(), true);
                     $adapter = new ExhibitBuilder_ApiImport_ExhibitPageAdapter($data, $this->endpointUri);
