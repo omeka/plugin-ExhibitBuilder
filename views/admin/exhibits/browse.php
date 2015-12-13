@@ -8,7 +8,7 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
     <h2><?php echo __('There are no exhibits yet.'); ?></h2>
     
     <?php if (is_allowed('ExhibitBuilder_Exhibits','add')): ?>
-        <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="big green add button"><?php echo __('Add an Exhibit'); ?></a></p>
+        <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="big green add button"><?php echo __('Add an Exhibit'); ?></a>
     <?php endif; ?>
     </div>
     
