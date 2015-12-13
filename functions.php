@@ -358,7 +358,8 @@ function exhibit_builder_public_head($args)
 
     if ($module == 'exhibit-builder') {
         queue_css_file('exhibits');
-        if (($exhibitPage = get_current_record('exhibit_page', false))) {
+        $exhibitPage = get_current_record('exhibit_page', false);
+        if ($exhibitPage) {
             $blocks = $exhibitPage->ExhibitPageBlocks;
 
             $layouts = array();
@@ -453,7 +454,8 @@ function exhibit_builder_admin_nav($navArray)
 function exhibit_builder_theme_options($themeOptions, $args)
 {
     try {
-        if ($exhibit = get_current_record('exhibit', false)) {
+        $exhibit = get_current_record('exhibit', false);
+        if ($exhibit) {
             $exhibitThemeOptions = $exhibit->getThemeOptions();
             if (!empty($exhibitThemeOptions)) {
                 return serialize($exhibitThemeOptions);

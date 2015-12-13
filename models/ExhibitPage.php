@@ -148,7 +148,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      */
     public function firstChildOrNext()
     {
-        if($firstChild = $this->getFirstChildPage()) {
+        $firstChild = $this->getFirstChildPage();
+        if ($firstChild) {
             return $firstChild;
         } else {
             //see if there's a next page on the same level
@@ -160,7 +161,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             // keep going up until we hit the top
             $current = $this;
             while (($current = $current->getParent())) {
-                if (($parentNext = $current->next())) {
+                $parentNext = $current->next();
+                if ($parentNext) {
                     return $parentNext;
                 }
             }
