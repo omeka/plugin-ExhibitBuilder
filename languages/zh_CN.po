@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
+"PO-Revision-Date: 2016-01-21 15:34+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/omeka/omeka/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -41,29 +41,29 @@ msgstr "该条目未在此展览中使用。"
 msgid "You must specifically select a theme in order to configure it."
 msgstr "您必须明确选定一个主题来设置它。"
 
-#: functions.php:398
+#: functions.php:409
 msgid "exhibits"
 msgstr "展览"
 
-#: functions.php:412 views/admin/exhibits/browse.php:2
+#: functions.php:423 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "浏览展览"
 
-#: functions.php:428 views/admin/exhibits/add.php:6
+#: functions.php:439 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "展览"
 
-#: functions.php:594
+#: functions.php:605
 msgid "Search by Exhibit"
 msgstr "按展览搜索"
 
-#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
+#: functions.php:614
 msgid "Exhibit"
 msgstr "展览"
 
-#: functions.php:604
+#: functions.php:615
 msgid "Exhibit Page"
 msgstr "展览页"
 
@@ -75,28 +75,28 @@ msgstr "专题展览"
 msgid "You have no featured exhibits."
 msgstr "您没有专题展览。"
 
-#: models/Exhibit.php:120
+#: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
 msgstr "展览必须给定一个有效缩略名。"
 
-#: models/Exhibit.php:121 models/ExhibitPage.php:68
+#: models/Exhibit.php:128 models/ExhibitPage.php:75
 msgid "A slug must be 30 characters or less."
 msgstr "一个缩略名必须只能有30个字符或更少。"
 
-#: models/Exhibit.php:122
+#: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "您的URL的缩略名已被另一个展览使用。请选择另一个。"
 
-#: models/Exhibit.php:135
+#: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
 msgstr "一个展览必须给定一个标题。"
 
-#: models/Exhibit.php:139
+#: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "展览标题必须只能有255个字符或更少。"
 
-#: models/Exhibit.php:143
+#: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
 msgstr "您的主题名称必须只能有30个字符或更少。"
 
@@ -129,17 +129,21 @@ msgstr "文本"
 msgid "Layout featuring a block of text without files"
 msgstr ""
 
-#: models/ExhibitPage.php:67
+#: models/ExhibitLayout.php:156
+msgid "Layout featuring a standalone file"
+msgstr ""
+
+#: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
 msgstr "每个展览的每个页面都必须给定一个缩略名。"
 
-#: models/ExhibitPage.php:69
+#: models/ExhibitPage.php:76
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "该页的缩略名已被使用。请修改缩略名使其具有唯一性。"
 
-#: models/ExhibitPage.php:79
+#: models/ExhibitPage.php:86
 msgid "Exhibit pages must be given a title."
 msgstr "展览页面必须给定标题"
 
@@ -221,22 +225,59 @@ msgid ""
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
+msgid "Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:72
+msgid ""
+"Choose a file to represent this exhibit. The selected file will serve as the"
+" thumbnail for the exhibit."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
 msgstr "页面"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
 msgstr "没有页面。"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:73
+#: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:78
+#: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "添加页面"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:100
+msgid "Delete Exhibit"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:116
+msgid "Choose a Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:120
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "显示搜索表单"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:121
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:134
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:139
+msgid "Choose"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -293,18 +334,6 @@ msgstr "附加一个条目"
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:86
-msgid "Show Search Form"
-msgstr "显示搜索表单"
-
-#: views/admin/exhibits/page-form.php:87
-msgid "Hide Search Form"
-msgstr ""
-
-#: views/admin/exhibits/page-form.php:100
-msgid "Change Selected Item"
-msgstr ""
-
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
 msgstr ""
@@ -326,6 +355,14 @@ msgstr "没有标签可以显示。您必须先给一些展览添加标签。"
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "设置&#8220;%s&#8221;主题"
 
+#: views/admin/files/cover-image.php:3
+msgid "Omeka will use the first attached file as the cover image."
+msgstr ""
+
+#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+msgid "Change"
+msgstr ""
+
 #: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "添加一些条目"
@@ -344,16 +381,20 @@ msgid "There are no exhibits available yet."
 msgstr "尚未有可用的展览。"
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:45
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
@@ -362,6 +403,8 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
@@ -369,15 +412,19 @@ msgid "Right"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
+#: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
 msgstr ""

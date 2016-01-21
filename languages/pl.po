@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:21+0000\n"
+"PO-Revision-Date: 2016-01-21 15:34+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Polish (http://www.transifex.com/omeka/omeka/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -42,29 +42,29 @@ msgstr "Ta publikacja nie jest dołączona do tej wystawy."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Musisz wybrać konkretny szablon, aby móc go konfigurować."
 
-#: functions.php:398
+#: functions.php:409
 msgid "exhibits"
 msgstr "Wystawy"
 
-#: functions.php:412 views/admin/exhibits/browse.php:2
+#: functions.php:423 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Przeglądaj wystawy"
 
-#: functions.php:428 views/admin/exhibits/add.php:6
+#: functions.php:439 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Wystawy"
 
-#: functions.php:594
+#: functions.php:605
 msgid "Search by Exhibit"
 msgstr "Szukaj w wystawach"
 
-#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
+#: functions.php:614
 msgid "Exhibit"
 msgstr "Wystawa"
 
-#: functions.php:604
+#: functions.php:615
 msgid "Exhibit Page"
 msgstr "Strona wystawy"
 
@@ -76,28 +76,28 @@ msgstr "Wystawa polecana"
 msgid "You have no featured exhibits."
 msgstr "Nie masz polecanych wystaw."
 
-#: models/Exhibit.php:120
+#: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
 msgstr "Wystawy muszą mieć nadany odpowiedni skrót ścieżki URL."
 
-#: models/Exhibit.php:121 models/ExhibitPage.php:68
+#: models/Exhibit.php:128 models/ExhibitPage.php:75
 msgid "A slug must be 30 characters or less."
 msgstr "Skrót ścieżki URL może zawierać maksymalnie do 30 znaków."
 
-#: models/Exhibit.php:122
+#: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Twój skrót ścieżki URL jest już używany przez inną wystawę. Proszę wybrać inny."
 
-#: models/Exhibit.php:135
+#: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
 msgstr "Wystawie musi zostać nadany tytuł."
 
-#: models/Exhibit.php:139
+#: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Tytuł wystawy może zawierać maksymalnie do 255 znaków."
 
-#: models/Exhibit.php:143
+#: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Tytuł szablonu może zawierać maksymalnie do 30 znaków."
 
@@ -130,17 +130,21 @@ msgstr "Tekst"
 msgid "Layout featuring a block of text without files"
 msgstr ""
 
-#: models/ExhibitPage.php:67
+#: models/ExhibitLayout.php:156
+msgid "Layout featuring a standalone file"
+msgstr ""
+
+#: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Skrót adresu URL musi być nadany każdej ze stron wystawy."
 
-#: models/ExhibitPage.php:69
+#: models/ExhibitPage.php:76
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Ten skrót adresu URL jest już używany. Należy zmienić go na unikalny. "
 
-#: models/ExhibitPage.php:79
+#: models/ExhibitPage.php:86
 msgid "Exhibit pages must be given a title."
 msgstr "Strony wystawy muszą mieć nadany tytuł."
 
@@ -222,22 +226,59 @@ msgid ""
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
+msgid "Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:72
+msgid ""
+"Choose a file to represent this exhibit. The selected file will serve as the"
+" thumbnail for the exhibit."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
 msgstr "Strony"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
 msgstr "Nie ma dostępnych stron."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:73
+#: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:78
+#: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Dodaj stronę"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:100
+msgid "Delete Exhibit"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:116
+msgid "Choose a Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:120
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "Pokaż formularz wyszukiwania"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:121
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr "Ukryj formularz wyszukiwania"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:134
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:139
+msgid "Choose"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -294,18 +335,6 @@ msgstr "Dołącz publikację"
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:86
-msgid "Show Search Form"
-msgstr "Pokaż formularz wyszukiwania"
-
-#: views/admin/exhibits/page-form.php:87
-msgid "Hide Search Form"
-msgstr "Ukryj formularz wyszukiwania"
-
-#: views/admin/exhibits/page-form.php:100
-msgid "Change Selected Item"
-msgstr ""
-
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
 msgstr ""
@@ -327,6 +356,14 @@ msgstr "Brak etykiet do wyświetlenia. Dodaj etykiety do wystaw."
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "Konfiguruj szablon &#8220;%s&#8221;"
 
+#: views/admin/files/cover-image.php:3
+msgid "Omeka will use the first attached file as the cover image."
+msgstr ""
+
+#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+msgid "Change"
+msgstr ""
+
 #: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "dodaj dowolne publikacje"
@@ -345,16 +382,20 @@ msgid "There are no exhibits available yet."
 msgstr "Nie ma jeszcze dostępnych wystaw."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:45
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
@@ -363,6 +404,8 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
@@ -370,15 +413,19 @@ msgid "Right"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
+#: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
 msgstr "Rozmiar pliku"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
 msgstr ""

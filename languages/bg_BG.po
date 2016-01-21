@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2015-03-12 22:35+0000\n"
-"Last-Translator: Gabriel Radev <gabosss@gmail.com>\n"
+"PO-Revision-Date: 2016-01-21 15:34+0000\n"
+"Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Bulgarian (Bulgaria) (http://www.transifex.com/omeka/omeka/language/bg_BG/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,29 +41,29 @@ msgstr "Този документ не е използван в тази изл�
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Трябва да изберете тема за да я конфигурирате."
 
-#: functions.php:398
+#: functions.php:409
 msgid "exhibits"
 msgstr "изложби"
 
-#: functions.php:412 views/admin/exhibits/browse.php:2
+#: functions.php:423 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Преглед на Изложбите"
 
-#: functions.php:428 views/admin/exhibits/add.php:6
+#: functions.php:439 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Изложби"
 
-#: functions.php:594
+#: functions.php:605
 msgid "Search by Exhibit"
 msgstr "Търсене по Изложба"
 
-#: functions.php:603 views/admin/exhibits/exhibit-metadata-form.php:89
+#: functions.php:614
 msgid "Exhibit"
 msgstr "Изложба"
 
-#: functions.php:604
+#: functions.php:615
 msgid "Exhibit Page"
 msgstr "Изложбена страница."
 
@@ -75,28 +75,28 @@ msgstr "Представена Изложба"
 msgid "You have no featured exhibits."
 msgstr "Нямате създадени изложби."
 
-#: models/Exhibit.php:120
+#: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
 msgstr "На Изложбата трябва да се даде валидно Кратко име"
 
-#: models/Exhibit.php:121 models/ExhibitPage.php:68
+#: models/Exhibit.php:128 models/ExhibitPage.php:75
 msgid "A slug must be 30 characters or less."
 msgstr "Краткото име трябва да е по-малко от 30 знака."
 
-#: models/Exhibit.php:122
+#: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Вашият URL за кратко име вече се използва в друга изложба. Изберете друго."
 
-#: models/Exhibit.php:135
+#: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
 msgstr "На изложбата трябва да бъде дадено заглавие."
 
-#: models/Exhibit.php:139
+#: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Заглавието за изложбата трябва да е до 255 знака."
 
-#: models/Exhibit.php:143
+#: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Името на темата трябва да е до 30 знака."
 
@@ -129,17 +129,21 @@ msgstr "Текст"
 msgid "Layout featuring a block of text without files"
 msgstr "Оформяне на блокове от текст без файлове"
 
-#: models/ExhibitPage.php:67
+#: models/ExhibitLayout.php:156
+msgid "Layout featuring a standalone file"
+msgstr ""
+
+#: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Краткото заглавие трябва да бъде дадено на всяка страница от изложбата."
 
-#: models/ExhibitPage.php:69
+#: models/ExhibitPage.php:76
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Това кратко име за страницата вече е използвано. Променете краткото име за да е уникално."
 
-#: models/ExhibitPage.php:79
+#: models/ExhibitPage.php:86
 msgid "Exhibit pages must be given a title."
 msgstr "На изложбената страница трябва да бъде дадено заглавие."
 
@@ -221,22 +225,59 @@ msgid ""
 msgstr "Стартиране на изложбата от страницата индекса. Ако не е маркирано, стартира от първата страница, ако съществува."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
+msgid "Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:72
+msgid ""
+"Choose a file to represent this exhibit. The selected file will serve as the"
+" thumbnail for the exhibit."
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
 msgstr "Страници"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:71
+#: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
 msgstr "Тук няма страници."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:73
+#: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "За да преподредите или нагласите страниците, щракнете и преместете страницата на предпочитаното място."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:78
+#: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Добавяне на Страница"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:100
+msgid "Delete Exhibit"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:116
+msgid "Choose a Cover Image"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:120
+#: views/admin/exhibits/page-form.php:86
+msgid "Show Search Form"
+msgstr "Показване на форма за търсене"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:121
+#: views/admin/exhibits/page-form.php:87
+msgid "Hide Search Form"
+msgstr "Скриване на формата за търсене"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:134
+#: views/admin/exhibits/page-form.php:100
+msgid "Change Selected Item"
+msgstr "Промяна на избрания документ"
+
+#: views/admin/exhibits/exhibit-metadata-form.php:139
+msgid "Choose"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -293,18 +334,6 @@ msgstr "Прикачване на документ"
 msgid "Revert to Selected Item"
 msgstr "Връщане към избрания документ"
 
-#: views/admin/exhibits/page-form.php:86
-msgid "Show Search Form"
-msgstr "Показване на форма за търсене"
-
-#: views/admin/exhibits/page-form.php:87
-msgid "Hide Search Form"
-msgstr "Скриване на формата за търсене"
-
-#: views/admin/exhibits/page-form.php:100
-msgid "Change Selected Item"
-msgstr "Промяна на избрания документ"
-
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
 msgstr "Сложете надпис"
@@ -326,6 +355,14 @@ msgstr "Няма маркери за полазване. Трябва да ма�
 msgid "Configure the &#8220;%s&#8221; Theme"
 msgstr "Настройване на &#8220;%s&#8221; Тема"
 
+#: views/admin/files/cover-image.php:3
+msgid "Omeka will use the first attached file as the cover image."
+msgstr ""
+
+#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+msgid "Change"
+msgstr ""
+
 #: views/admin/items/browse.php:8
 msgid "add some items"
 msgstr "добавяне на малко документи"
@@ -344,16 +381,20 @@ msgid "There are no exhibits available yet."
 msgstr "Няма достъпни изложби в момента."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
 msgstr "Настройки за оформлението"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
 msgstr "Позиция на файла"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:45
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
@@ -362,6 +403,8 @@ msgstr "Ляво"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
@@ -369,15 +412,19 @@ msgid "Right"
 msgstr "Дясно"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
+#: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
 msgstr "Размер на файл "
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
+#: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
 msgstr "Позиция на заглавието"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
 msgstr "Център"
