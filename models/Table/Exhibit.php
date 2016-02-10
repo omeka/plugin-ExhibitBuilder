@@ -12,46 +12,6 @@
  */
 class Table_Exhibit extends Omeka_Db_Table
 {
-
-    /**
-     * Can specify a range of valid Exhibit IDs or an individual ID
-     *
-     * @param Omeka_Db_Select $select
-     * @param string $range Example: 1-4, 75, 89
-     * @return void
-     */
-    public function filterByRange($select, $range)
-    {
-        // Comma-separated expressions should be treated individually
-        $exprs = explode(',', $range);
-
-        // Construct a SQL clause where every entry in this array is linked by 'OR'
-        $wheres = array();
-
-        foreach ($exprs as $expr) {
-            // If it has a '-' in it, it is a range of item IDs.  Otherwise it is
-            // a single item ID
-            if (strpos($expr, '-') !== false) {
-                list($start, $finish) = explode('-', $expr);
-
-                // Naughty naughty koolaid, no SQL injection for you
-                $start  = (int) trim($start);
-                $finish = (int) trim($finish);
-
-                $wheres[] = "(exhibits.id BETWEEN $start AND $finish)";
-
-                //It is a single item ID
-            } else {
-                $id = (int) trim($expr);
-                $wheres[] = "(exhibits.id = $id)";
-            }
-        }
-
-        $where = join(' OR ', $wheres);
-
-        $select->where('('.$where.')');
-    }
-
     /**
      * Use SQL-based low-level permissions checking for exhibit queries.
      *
@@ -164,35 +124,5 @@ class Table_Exhibit extends Omeka_Db_Table
     protected function _getColumnPairs()
     {
         return array('exhibits.id', 'exhibits.title');
-    }
-
-    /**
-     * Apply a filter to the exhibits based on whether or not they are public
-     *
-     * @param Zend_Db_Select
-     * @param boolean True for only public exhibits, false for only private
-     */
-    public function filterByPublic($select, $isPublic)
-    {
-        if ($isPublic) {
-            $select->where('exhibits.public = 1');
-        } else {
-            $select->where('exhibits.public = 0');
-        }
-    }
-
-    /**
-     * Apply a filter to the exhibits based on whether or not they are featured
-     *
-     * @param Zend_Db_Select
-     * @param boolean True for only featured exhibits, false for only private
-     */
-    public function filterByFeatured($select, $isFeatured)
-    {
-        if ($isFeatured) {
-            $select->where('exhibits.featured = 1');
-        } else {
-            $select->where('exhibits.featured = 0');
-        }
     }
 }
