@@ -3,397 +3,393 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Miquel Àngel <ma.serra@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2016
-# Sergi Montes <sergi.blanes@gmail.com>, 2013
-# Sergi Montes <sergi.blanes@gmail.com>, 2013
+# Khaidav T. <khaidaw@yahoo.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-03-11 10:04+0000\n"
-"Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>\n"
-"Language-Team: Catalan (Spain) (http://www.transifex.com/omeka/omeka/language/ca_ES/)\n"
+"PO-Revision-Date: 2016-02-25 07:22+0000\n"
+"Last-Translator: Khaidav T. <khaidaw@yahoo.com>\n"
+"Language-Team: Mongolian (http://www.transifex.com/omeka/omeka/language/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca_ES\n"
+"Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Ordenació de les exposicions"
+msgstr "Үзэсгэлнгүүдийг эрэмблэх"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "El criteri per defecte que s'utilitza per llistar les exposicions a la pàgina 'Navega per les exposicions'. El criteri per defecte és 'Data d'incorporació'."
+msgstr ""
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr "Esborrareu permanentment l'exposició \"%s\" i totes les seves pàgines."
+msgstr ""
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
-msgstr "Aquest ítem no s'utilitza dins aquesta exposició."
+msgstr "Энэ мэдээлэл уг үзэсгэлэнд хэрэглэгдэхгүй."
 
 #: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
-msgstr "És obligatori especificar la plantilla per poder configurar-la."
+msgstr ""
 
 #: functions.php:409
 msgid "exhibits"
-msgstr "exposicions"
+msgstr "үзэсгэлэнгүүд"
 
 #: functions.php:423 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Navega per les exposicions"
+msgstr "Үзэсгэлэгүүдийг гүйлгэж үзэх"
 
 #: functions.php:439 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Exposicions"
+msgstr "Үзэсгэлэнгүүд"
 
 #: functions.php:605
 msgid "Search by Exhibit"
-msgstr "Cerca per exposició"
+msgstr "Үзэсгэлэн хайх"
 
 #: functions.php:614
 msgid "Exhibit"
-msgstr "Exposició"
+msgstr "Үзэсгэлэн"
 
 #: functions.php:615
 msgid "Exhibit Page"
-msgstr "Pàgina de l'exposició"
+msgstr "Үзэсгэлэнгийн хуудас"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
-msgstr "Exposició destacada"
+msgstr "Онцлох үзэсгэлэн"
 
 #: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
-msgstr "No hi ha cap exposició destacada"
+msgstr "Та ямар нэг онцлох үзэсгэлэн сонгоогүй байна."
 
 #: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
-msgstr "Les exposicions han de tenir un identificador vàlid."
+msgstr ""
 
 #: models/Exhibit.php:128 models/ExhibitPage.php:75
 msgid "A slug must be 30 characters or less."
-msgstr "L'identificador ha de tenir 30 caràcters o menys."
+msgstr ""
 
 #: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Aquest identificador ja s'utilitza en una altra exposició. Trieu un altre."
+msgstr ""
 
 #: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
-msgstr "Es necessari proporcionar un títol a l'exposició."
+msgstr "Үзэсгэлэнд нэр өгөх шаардлагатай."
 
 #: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr "El títol de l'exposició ha de tenir 255 caràcters o menys."
+msgstr ""
 
 #: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
-msgstr "El nom de la teva plantilla ha de tenir 30 caràcters o menys."
+msgstr "Таны загварын нэр 30 хүртэлх тэмдэгтэд багтах ёсто."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr "Fitxer amb text"
+msgstr "Текст бүхий файл"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr "La maquetació per defecte justifica els fitxers a l'esquerra o a la dreta amb el text d'acompanyament al costa oposat"
+msgstr ""
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Galeria"
+msgstr "Галарей"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr "Una galeria d'imatges amb miniatures"
+msgstr ""
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
 #: views/shared/exhibit_layouts/gallery/form.php:11
 #: views/shared/exhibit_layouts/text/form.php:2
 msgid "Text"
-msgstr "Text"
+msgstr "Текст"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr "Un bloc de text sense cap fitxer adjunt"
+msgstr ""
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr "Disposició específica a partir d'un fitxer independent"
+msgstr ""
 
 #: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
-msgstr "Cal proporcionar un identificador per a cada pàgina d'una exposició"
+msgstr ""
 
 #: models/ExhibitPage.php:76
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr "L'identificador d'aquesta pàgina ja està en ús. Modifiqueu l'identificador per tal que sigui únic."
+msgstr ""
 
 #: models/ExhibitPage.php:86
 msgid "Exhibit pages must be given a title."
-msgstr "Les pàgines de les exposicions han de tenir un títol."
+msgstr "Үзэсгэлэнгийн хуудсууд нэртэй байх ёстой."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Afegeix una exposició"
+msgstr "Үзэсгэлэн нэмэх"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Ítem seleccionat: %s"
+msgstr "Сонгосон мэдээлэл: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr "Seleccioneu un fitxer."
+msgstr "Файлыг сонгоод хэрэглэх"
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr "Eliminar/Restaurar"
+msgstr "Устгах/Сэргээх"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr "Bloc"
+msgstr "Блок"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr "Desplega/Replega"
+msgstr "Дэлгэх/Хумих"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Encara no hi ha exposicions."
+msgstr "Энд үзэсгэлэн алга."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Afegeix una exposició"
+msgstr "Үзэсгэлэнг нэмэх"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Plantilla"
+msgstr "Загвар"
 
 #: views/admin/exhibits/browse.php:62
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Plantilla actual del repositori"
+msgstr "Сонгосон нийтэд зориулсан загвар."
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Edita l'exposició \"%s\""
+msgstr " \"%s\" Үзэсгэлэнг засах"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr "Metadades de l'exposició"
+msgstr "Үзэсгэлэнгийн метадата"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr "Identificador"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:27
 msgid "No spaces or special characters allowed"
-msgstr "No s'admeten els espais o caràcters especials"
+msgstr "Тэмдэгт хооронд зайгүй, эсвэл тусгай тэмдэгтийг зөвшөөрнө"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Crèdits"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr "Voleu utilitzar la pàgina de continguts?"
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr "Comença l'exposició en la pàgina de continguts. Si es desmarca, comença a la primera pàgina disponible, si n'hi ha."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr "Imatge de portada"
+msgstr "Хавтасны зураг"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr "Tria una imatge que representi l'exposició. Aquesta imatge s'utilitzarà com a miniatura per a l'exposició."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
-msgstr "Pàgines"
+msgstr "Хуудас"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
-msgstr "No hi ha cap pàgina."
+msgstr "Ямар нэг хуудас алга"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr "Per reordenar o agrupar les pàgines, feu clic i arrossegueu una pàgina a la ubicació que preferiu."
+msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Afegeix una pàgina"
+msgstr "Хуудас нэмэх"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr "Elimina l'exposició"
+msgstr "Үзэсгэлэнг устгах"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr "Trieu una imatge de portada"
+msgstr "Хавтасны зургийг сонгох"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:86
 msgid "Show Search Form"
-msgstr "Mostra el formulari de cerca"
+msgstr "Хайлтын формыг харуулах"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
 #: views/admin/exhibits/page-form.php:87
 msgid "Hide Search Form"
-msgstr "Amaga el formulari de cerca"
+msgstr "Хайлтын формыг нуух"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
 #: views/admin/exhibits/page-form.php:100
 msgid "Change Selected Item"
-msgstr "Canvia l'ítem seleccionat"
+msgstr "Сонгосон мэдээллийг солих"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr "Trieu"
+msgstr "Сонгох"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Edita la pàgina \"%s\""
+msgstr " \"%s\" Хуудсыг засах"
 
 #: views/admin/exhibits/page-form.php:16
 msgid "Page Title"
-msgstr "Títol de la pàgina"
+msgstr "Хуудасны нэр"
 
 #: views/admin/exhibits/page-form.php:24
 msgid "Page Slug"
-msgstr "Identificador de la pàgina"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:33
 msgid "Content"
-msgstr "Contingut"
+msgstr "Агуулга"
 
 #: views/admin/exhibits/page-form.php:34
 msgid "Collapse All"
-msgstr "Replega tot"
+msgstr "Бүгдийг хумих"
 
 #: views/admin/exhibits/page-form.php:35
 msgid "Expand All"
-msgstr "Desplega tot"
+msgstr "Бүгдийг дэлгэх"
 
 #: views/admin/exhibits/page-form.php:36
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr "Per reordenar blocs i ítems, feu clic i arrossegueu-los a la ubicació que preferiu."
+msgstr "Мэдээлэл болон блокыг сонгоод чирэх замаар өөр байршилд байрлуулна уу."
 
 #: views/admin/exhibits/page-form.php:44
 msgid "New Block"
-msgstr "Nou bloc"
+msgstr "Шинэ блок"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Select layout"
-msgstr "Seleccioneu la maquetació"
+msgstr "Байршил сонгох"
 
 #: views/admin/exhibits/page-form.php:64
 msgid "Add new content block"
-msgstr "Afegeix un nou bloc de contingut"
+msgstr "Шинэ блок нэмэх"
 
 #: views/admin/exhibits/page-form.php:74
 msgid "Save and Add Another Page"
-msgstr "Desa els canvis i afegeix una nova pàgina"
+msgstr "Хадгалаад шинэ хуудас нэмэх"
 
 #. /c IE7 can't handle nested form tags.
 #: views/admin/exhibits/page-form.php:82
 msgid "Attach an Item"
-msgstr "Adjunta un ítem"
+msgstr "Баримт хавсаргах"
 
 #: views/admin/exhibits/page-form.php:84
 msgid "Revert to Selected Item"
-msgstr "Restableix l'ítem seleccionat"
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:104
 msgid "Provide a caption."
-msgstr "Consigneu un text de llegenda."
+msgstr ""
 
 #: views/admin/exhibits/page-form.php:111
 msgid "Apply"
-msgstr "Aplica"
+msgstr "Хэрэглэх"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Navega per les coleccions a partir de les etiquetes"
+msgstr "Үзэсглэнгүүдийг Таагаар гүйлгэн харах"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr "No hi ha etiquetes per visualitzar. Heu d'assignar etiquetes a les exposicions."
+msgstr "Дэлгэцэнд ямар нэг тааг алга. Та эхний таагийг оруулж болно."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configura la plantilla &#8220;%s&#8221;"
+msgstr " &#8220;%s&#8221;  Загварыг тохируулах"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr "L'Omeka utilitzarà la primera imatge adjunta com a imatge de portada."
+msgstr "Хамгийн эхэнд хавсаргасан файлыг Омека хавтасны зургаар сонгоно."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr "Canvia"
+msgstr "Солих"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "afegeix alguns ítems"
+msgstr "ойролцоо мэдээлэл нэмэх"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "No hi ha continguts per seleccionar. Reformuleu la vostra cerca %s."
+msgstr ""
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Selecciona un ítem"
+msgstr "Мэдээлэл сонгох"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
-msgstr "Encara no hi ha cap exposició disponible."
+msgstr "Энд ямар нэг үзэсгэлэн алга."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr "Opcions de maquetació"
+msgstr "Байршилын тохиргоо"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
-msgstr "Posició dels fitxers"
+msgstr "Файлын байршил"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -403,7 +399,7 @@ msgstr "Posició dels fitxers"
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:68
 msgid "Left"
-msgstr "Esquerra"
+msgstr "Зүүн"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -413,44 +409,44 @@ msgstr "Esquerra"
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Right"
-msgstr "Dreta"
+msgstr "Баруун"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 #: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
-msgstr "Mida del fitxer"
+msgstr "Файлын хэмжээ"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:62
 msgid "Captions position"
-msgstr "Posició dels textos de llegenda"
+msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:67
 msgid "Center"
-msgstr "Centrat"
+msgstr "Төв"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr "Posició de l'ítem destacat"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr "Sense destacat"
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr "Alineació de la galeria"
+msgstr "Галарейн байршил"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr "Si no hi ha un ítem o text destacat, la galeria aprofitarà tot l'ample de la pàgina."
+msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr "Mida dels fitxers de la galeria"
+msgstr "Галарейн файлын хэмжээ"

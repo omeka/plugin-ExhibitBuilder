@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2015
+# Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-01-21 15:34+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2016-04-18 16:14+0000\n"
+"Last-Translator: Matti Lassila <matti.lassila@gmail.com>\n"
 "Language-Team: Finnish (Finland) (http://www.transifex.com/omeka/omeka/language/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,7 +131,7 @@ msgstr "Asettelu tekstikentällä ilman aineistoja"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Asettelu tiedostoa varten"
 
 #: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
@@ -226,13 +226,13 @@ msgstr "Käytä yhteenvetosivua näyttelyn ensimmäisenä näkymänä. Muussa ta
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Esittelykuva"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Kuva jota käytetään näyttelyn esikatselukuvana."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -254,11 +254,11 @@ msgstr "Lisää sivu"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Poista näyttely"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Valitse esikatselukuva"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:86
@@ -277,7 +277,7 @@ msgstr "Vaihda valittu ainesto"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "Valitse"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -357,11 +357,11 @@ msgstr "Ulkoasun &#8220;%s&#8221; asetukset"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka käyttää ensimmäistä valittua tiedostoa esikatselukuvana."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "Vaihda"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"

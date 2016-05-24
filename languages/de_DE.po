@@ -5,14 +5,14 @@
 # Translators:
 # Martin Sauter <martin.sauter@gmx.ch>, 2012
 # Martin Sauter <martin.sauter@gmx.ch>, 2013
-# Roland Keck <roland.keck@web.de>, 2014-2015
+# Roland Keck <roland.keck@web.de>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-01-21 15:34+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2016-01-25 18:08+0000\n"
+"Last-Translator: Roland Keck <roland.keck@web.de>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/omeka/omeka/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,7 +133,7 @@ msgstr "Layout, das einen Textblock aber keine Dateien anzeigt"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Layout für eine einzelne Datei"
 
 #: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
@@ -228,13 +228,13 @@ msgstr "Starten Sie die Ausstellung auf der Übersichtsseite. Falls nicht markie
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Totelbild"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Wählen Sie eine Datei aus, die typisch für diese Ausstellung ist. Die ausgewählte Datei wird als Vorschaubild verwendet."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -256,11 +256,11 @@ msgstr "Seite hinzufügen"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Ausstellung löschen"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Bitte Titelbild auswählen"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:86
@@ -279,7 +279,7 @@ msgstr "Gewähltes Objekt ändern"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "Auswählen"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -359,11 +359,11 @@ msgstr "Das Theme &#8220;%s&#8221; konfigurieren"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka wird die erste angefügte Datei als Titelbild verwenden."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "Ändern"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
