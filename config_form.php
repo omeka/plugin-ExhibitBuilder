@@ -6,6 +6,6 @@
         <p class="explanation">
             <?php echo __("The default method by which you wish to sort the listing of exhibits on the exhibits/browse page. Default is 'Date Added'."); ?>
         </p>
-        <?php echo get_view()->formSelect('exhibit_builder_sort_browse', get_option('exhibit_builder_sort_browse'), null, array('added' => 'Date Added', 'alpha' => 'Alphabetical', 'recent' => 'Recent')); ?>
+        <?php echo get_view()->formSelect('exhibit_builder_sort_browse', get_option('exhibit_builder_sort_browse'), null, array('added' => __('Date Added'), 'alpha' => __('Alphabetical'), 'recent' => __('Recent'))); ?>
     </div>
 </div>
