@@ -5,15 +5,15 @@
 # Translators:
 # Bogdan Trifunovic <>, 2012,2014
 # Dušan Ranđelović <randjelovic@pantype.com>, 2013
-# Predrag Djukic <djukic.predrag@gmail.com>, 2015
+# Predrag Djukic <djukic.predrag@gmail.com>, 2015-2016
 # Predrag Djukic <djukic.predrag@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-01-21 15:34+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2016-06-17 12:59+0000\n"
+"Last-Translator: Predrag Djukic <djukic.predrag@gmail.com>\n"
 "Language-Team: Serbian (Serbia) (http://www.transifex.com/omeka/omeka/language/sr_RS/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +134,7 @@ msgstr "Изглед приказује блок текста без докум�
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Изглед који истиче самостални документ"
 
 #: models/ExhibitPage.php:74
 msgid "A slug must be given for each page of an exhibit."
@@ -229,13 +229,13 @@ msgstr "Започните изложбу на страници резимеа. 
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Насловна слика"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Одабери документ за представљање изложбе. Одабрани документ послужиће као сличица која представља изложбу."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -257,11 +257,11 @@ msgstr "Додај страницу"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Обриши изложбу"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Одабери насловну слику"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:86
@@ -280,7 +280,7 @@ msgstr "Измени одабрани објекат"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "Одабери"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -360,11 +360,11 @@ msgstr "Подеси &#8220;%s&#8221; тему"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Омека ће користити први придружени документ као насловну слику."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "Измена"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
