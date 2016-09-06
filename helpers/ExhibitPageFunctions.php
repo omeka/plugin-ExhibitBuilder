@@ -29,7 +29,8 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
             'index' => $index,
             'options' => $block->getOptions(),
             'text' => $block->text,
-            'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array()
+            'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array(),
+            'block' => $block,
         ));
         echo '</div>';
     }

@@ -38,7 +38,7 @@ class Table_ExhibitPageBlock extends Omeka_Db_Table
 
         $select = $this->getSelect()
             ->where('exhibit_page_blocks.page_id = ?', $page->id);
-
+        apply_filters('exhibit_page_blocks_sql', $select, array('page' => $page));
         return $this->fetchObjects($select);
     }
 }
