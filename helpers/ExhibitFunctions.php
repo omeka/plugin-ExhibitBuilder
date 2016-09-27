@@ -204,6 +204,10 @@ function exhibit_builder_exhibits_shortcode($args, $view)
             $params['range'] = $args['ids'];
     }
 
+    if (isset($args['tags'])) {
+            $params['tags'] = $args['tags'];
+    }
+
     if (isset($args['num'])) {
         $limit = $args['num'];
     } else {
