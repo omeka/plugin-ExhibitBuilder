@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Roy Rosenzweig Center for History and New Media, 2007-2012
+ * @copyright Roy Rosenzweig Center for History and New Media, 2007-2016
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
@@ -96,7 +96,7 @@ function exhibit_builder_link_to_exhibit_item($text = null, $props = array(), $i
 
 /**
  * Return a URL to an item within an exhibit.
- * 
+ *
  * @param Item $item
  * @param Exhibit|null $exhibit If null, will use the current exhibit.
  * @return string
@@ -184,6 +184,13 @@ function link_to_exhibit($text = null, $props = array(), $exhibitPage = null, $e
     return exhibit_builder_link_to_exhibit($exhibit, $text, $props, $exhibitPage);
 }
 
+/**
+ * Shortcode for Exhibits.
+ *
+ * @param array $args
+ * @param Omeka_View $view
+ * @return string
+ */
 function exhibit_builder_exhibits_shortcode($args, $view)
 {
     $params = array();
@@ -201,17 +208,17 @@ function exhibit_builder_exhibits_shortcode($args, $view)
     }
 
     if (isset($args['ids'])) {
-            $params['range'] = $args['ids'];
+        $params['range'] = $args['ids'];
     }
 
     if (isset($args['tags'])) {
-            $params['tags'] = $args['tags'];
+        $params['tags'] = $args['tags'];
     }
 
     if (isset($args['num'])) {
         $limit = $args['num'];
     } else {
-        $limit = 10; 
+        $limit = 10;
     }
 
     $exhibits = get_records('Exhibit', $params, $limit);
@@ -225,7 +232,14 @@ function exhibit_builder_exhibits_shortcode($args, $view)
     return $content;
 }
 
-function exhibit_builder_featured_exhibits_shortcode($args, $view) 
+/**
+ * Shortcode for featured Exhibits.
+ *
+ * @param array $args
+ * @param Omeka_View $view
+ * @return string
+ */
+function exhibit_builder_featured_exhibits_shortcode($args, $view)
 {
     $args['is_featured'] = 1;
 
@@ -237,5 +251,3 @@ function exhibit_builder_featured_exhibits_shortcode($args, $view)
 
     return exhibit_builder_exhibits_shortcode($args, $view);
 }
-
-
