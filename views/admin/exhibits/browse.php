@@ -8,7 +8,7 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
     <h2><?php echo __('There are no exhibits yet.'); ?></h2>
     
     <?php if (is_allowed('ExhibitBuilder_Exhibits','add')): ?>
-        <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="big green add button"><?php echo __('Add an Exhibit'); ?></a></p>
+        <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="big green add button"><?php echo __('Add an Exhibit'); ?></a>
     <?php endif; ?>
     </div>
     
@@ -34,13 +34,14 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
     </tr>
     </thead>
     <tbody>
-        
+
 <?php foreach($exhibits as $key=>$exhibit): ?>
     <tr class="exhibit<?php if ($key % 2 == 1) echo ' even'; else echo ' odd'; ?>">
         <td class="exhibit-info<?php if ($exhibit->featured) echo ' featured'; ?>">
-            <?php if ($exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
-                <?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image')); ?>
-            <?php endif; ?>
+            <?php $exhibitImage = record_image($exhibit, 'square_thumbnail');
+            if ($exhibitImage):
+                echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image'));
+            endif; ?>
             <span>
             <a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
             <?php if(!$exhibit->public): ?>
