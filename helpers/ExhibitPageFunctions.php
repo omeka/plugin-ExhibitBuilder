@@ -28,7 +28,7 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
         echo get_view()->partial($layout->getViewPartial(), array(
             'index' => $index,
             'options' => $block->getOptions(),
-            'text' => $block->text,
+            'text' => get_view()->shortcodes($block->text),
             'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array(),
             'block' => $block,
         ));
