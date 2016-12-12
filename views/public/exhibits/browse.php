@@ -25,7 +25,7 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
     <?php $exhibitCount++; ?>
     <div class="exhibit <?php if ($exhibitCount%2==1) echo ' even'; else echo ' odd'; ?>">
         <h2><?php echo link_to_exhibit(); ?></h2>
-        <?php if ($exhibitImage = record_image($exhibit, 'square_thumbnail')): ?>
+        <?php if ($exhibitImage = record_image($exhibit)): ?>
             <?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image')); ?>
         <?php endif; ?>
         <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
