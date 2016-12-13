@@ -1,5 +1,4 @@
 <?php
-$defaultFileSize = (get_option('use_square_thumbnail') == 1) ? 'square_thumbnail' : 'thumbnail';
 $showcasePosition = isset($options['showcase-position'])
     ? html_escape($options['showcase-position'])
     : 'none';
@@ -9,7 +8,7 @@ $galleryPosition = isset($options['gallery-position'])
     : 'left';
 $galleryFileSize = isset($options['gallery-file-size'])
     ? html_escape($options['gallery-file-size'])
-    : $defaultFileSize;
+    : null;
 $captionPosition = isset($options['captions-position'])
     ? html_escape($options['captions-position'])
     : 'center';
