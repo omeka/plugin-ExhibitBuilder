@@ -621,16 +621,13 @@ function exhibit_builder_items_browse_sql($args)
 
 /**
  * Form element for advanced search.
+ *
+ * @internal Themed partial should go to "my_theme/exhibits".
  */
-function exhibit_builder_items_search()
+function exhibit_builder_items_search($args)
 {
-    $view = get_view();
-    $html = '<div class="field"><div class="two columns alpha">'
-          . $view->formLabel('exhibit', __('Search by Exhibit'))
-          . '</div><div class="five columns omega inputs">'
-          . $view->formSelect('exhibit', @$_GET['exhibit'], array(), get_table_options('Exhibit'))
-          . '</div></div>';
-    echo $html;
+    $view = $args['view'];
+    echo $view->partial('exhibits/exhibit-builder-advanced-search.php');
 }
 
 function exhibit_builder_search_record_types($recordTypes)
