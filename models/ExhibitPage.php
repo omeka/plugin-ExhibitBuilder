@@ -48,6 +48,23 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $order;
 
     /**
+     * Timestamp the page was added.
+     *
+     * @var Timestamp
+     */
+    public $added;
+
+    /**
+     * Timestamp the page was modified.
+     *
+     * Useful to pass along to blocks that want to check whether the page
+     * has been modified by another user before it was loaded.
+     *
+     * @var Timestamp
+     */
+    public $modified;
+
+    /**
      * Related record linkages.
      *
      * @var array
@@ -75,6 +92,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('This page slug has already been used.  Please modify the slug so that it is unique.')));
         $this->_mixins[] = new Mixin_Search($this);
+        $this->_mixins[] = new Mixin_Timestamp($this);
     }
 
     /**

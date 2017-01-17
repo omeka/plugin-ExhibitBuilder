@@ -53,6 +53,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `title` VARCHAR(255) DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
+    `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
+    `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     PRIMARY KEY  (`id`),
     KEY `exhibit_id_order` (`exhibit_id`, `order`),
     UNIQUE KEY `exhibit_id_parent_id_slug` (`exhibit_id`, `parent_id`, `slug`)
@@ -289,6 +291,15 @@ SQL
         $sql = <<<SQL
 ALTER TABLE `{$db->prefix}exhibits`
     ADD `cover_image_file_id` INT UNSIGNED DEFAULT NULL AFTER `use_summary_page`
+SQL;
+        $db->query($sql);
+    }
+    
+    if (version_compare($oldVersion, '3.3.3', '<')) {
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibit_pages`
+              ADD `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
+              ADD `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00'
 SQL;
         $db->query($sql);
     }
