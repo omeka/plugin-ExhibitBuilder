@@ -48,6 +48,23 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $order;
 
     /**
+     * Timestamp the page was added.
+     *
+     * @var Timestamp
+     */
+    public $added;
+
+    /**
+     * Timestamp the page was modified.
+     *
+     * Useful to pass along to blocks that want to check whether the page
+     * has been modified by another user before it was loaded.
+     *
+     * @var Timestamp
+     */
+    public $modified;
+
+    /**
      * Related record linkages.
      *
      * @var array
@@ -75,6 +92,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
             'slugLengthErrorMessage' => __('A slug must be 30 characters or less.'),
             'slugUniqueErrorMessage' => __('This page slug has already been used.  Please modify the slug so that it is unique.')));
         $this->_mixins[] = new Mixin_Search($this);
+        $this->_mixins[] = new Mixin_Timestamp($this);
     }
 
     /**
@@ -119,6 +137,23 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
         $this->setSearchTextTitle($this->title);
         $this->addSearchText($this->title);
+    }
+
+    /**
+     * Before save callback
+     * 
+     * Checks whether data is about to be clobbered due to two people editing the page
+     * at the same time
+     */
+    protected function beforeSave($args)
+    {
+        $post = $args['post'];
+        if (isset($post['record_last_modified'])) {
+            $lastModified = $post['record_last_modified'];
+            if ($this->exists() && $this->modified != $lastModified) {
+                $this->addError('Edit Conflict', 'Someone has edited the page while you were working on it. Your changes have been discarded to prevent losing their changes.');
+            }
+        }
     }
 
     /**
