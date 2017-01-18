@@ -9,6 +9,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </div>
 <?php echo flash(); ?>
 <form id="exhibit-page-form" method="post">
+    <?php if($exhibit_page->exists()): ?>
+    <input type='hidden' name='record_last_modified' value='<?php echo $exhibit_page->modified; ?>'></input>
+    <?php endif; ?>
     <div class="seven columns alpha">
     <fieldset>
         <div class="field">

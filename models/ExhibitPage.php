@@ -140,6 +140,23 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     }
 
     /**
+     * Before save callback
+     * 
+     * Checks whether data is about to be clobbered due to two people editing the page
+     * at the same time
+     */
+    protected function beforeSave($args)
+    {
+        $post = $args['post'];
+        if (isset($post['record_last_modified'])) {
+            $lastModified = $post['record_last_modified'];
+            if ($this->exists() && $this->modified != $lastModified) {
+                $this->addError('Edit Conflict', 'Someone has edited the page while you were working on it. Your changes have been discarded to prevent losing their changes.');
+            }
+        }
+    }
+
+    /**
      * Get the previous page.
      *
      * @return ExhibitPage
