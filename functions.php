@@ -341,6 +341,7 @@ function exhibit_builder_define_acl($args)
      * but researcher/contributor cannot.
      */
     $acl->addResource('ExhibitBuilder_Exhibits');
+    $acl->addResource('ExhibitBuilder_Files');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
         array('show', 'summary', 'show-item', 'browse', 'tags'));
@@ -350,6 +351,8 @@ function exhibit_builder_define_acl($args)
         'add', 'add-page', 'delete-confirm', 'edit-page',
         'attachment', 'attachment-item-options', 'theme-config',
         'editSelf', 'deleteSelf', 'showSelfNotPublic', 'block-form'));
+
+    $acl->allow('contributor', 'ExhibitBuilder_Files', 'cover-image');
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits', array('edit', 'delete'),
         new Omeka_Acl_Assert_Ownership);

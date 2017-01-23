@@ -7,17 +7,12 @@
 
 class ExhibitBuilder_FilesController extends Omeka_Controller_AbstractActionController
 {
-    public function init()
-    {
-        $this->_helper->db->setDefaultModelName('File');
-    }
-
     /*
      * AJAX partial for the cover image section of the Exhibit metadata form.
      */
     public function coverImageAction()
     {
-        $file = $this->_helper->db->findById();
+        $file = $this->_helper->db->findById(null, 'File');
         $this->view->file = $file;
     }
 }
