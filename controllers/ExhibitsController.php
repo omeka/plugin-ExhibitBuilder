@@ -329,8 +329,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
                 $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
             }
             return;
+        } else if ($success === false) {
+            $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
+            return;
         }
-
         $this->render('page-form');
     }
 
