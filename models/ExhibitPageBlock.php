@@ -89,6 +89,8 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
 
         if (!empty($data['options'])) {
             $this->setOptions($data['options']);
+        } else {
+            $this->options = null;
         }
 
         if (!empty($data['text'])) {
