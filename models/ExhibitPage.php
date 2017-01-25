@@ -364,7 +364,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         $existingBlocks = $this->getPageBlocks();
         foreach ($blocksData as $i => $blockData) {
             if (!empty($existingBlocks)) {
-                $block = array_pop($existingBlocks);
+                $block = array_shift($existingBlocks);
             } else {
                 $block = new ExhibitPageBlock;
                 $block->page_id = $this->id;
