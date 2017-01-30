@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-04-27 16:28+0000\n"
-"Last-Translator: Andreas Sandlund <andreas.sandlund@gmail.com>\n"
+"PO-Revision-Date: 2017-01-23 20:04+0000\n"
+"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
 "Language-Team: Swedish (Sweden) (http://www.transifex.com/omeka/omeka/language/sv_SE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,29 +42,29 @@ msgstr "Detta objekt används inte i denna utställning."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Du måste välja ett tema för att kunna anpassa inställningarna för det."
 
-#: functions.php:409
+#: functions.php:432
 msgid "exhibits"
 msgstr "utställningar"
 
-#: functions.php:423 views/admin/exhibits/browse.php:2
+#: functions.php:446 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Bläddra bland utställningar"
 
-#: functions.php:439 views/admin/exhibits/add.php:6
+#: functions.php:462 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Utställningar"
 
-#: functions.php:605
+#: functions.php:629
 msgid "Search by Exhibit"
 msgstr "Sök i utställning"
 
-#: functions.php:614
+#: functions.php:638
 msgid "Exhibit"
 msgstr "Utställning"
 
-#: functions.php:615
+#: functions.php:639
 msgid "Exhibit Page"
 msgstr "Utställningssida"
 
@@ -80,7 +80,7 @@ msgstr "Du har inga utvalda utställningar."
 msgid "Exhibits must be given a valid slug."
 msgstr "Utställningar måste ha en giltig kortadress."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:75
+#: models/Exhibit.php:128 models/ExhibitPage.php:92
 msgid "A slug must be 30 characters or less."
 msgstr "En kortadress får bestå av max 30 tecken."
 
@@ -134,19 +134,25 @@ msgstr "Layout med enbart text"
 msgid "Layout featuring a standalone file"
 msgstr "Layout med en eller flera filer utan text"
 
-#: models/ExhibitPage.php:74
+#: models/ExhibitPage.php:91
 msgid "A slug must be given for each page of an exhibit."
 msgstr "En kortadress måste anges för varje sida i en utställning."
 
-#: models/ExhibitPage.php:76
+#: models/ExhibitPage.php:93
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Kortadressen används redan. Vänligen ange en unik kortadress."
 
-#: models/ExhibitPage.php:86
+#: models/ExhibitPage.php:104
 msgid "Exhibit pages must be given a title."
 msgstr "Utställningssidor måste ha en titel."
+
+#: models/ExhibitPage.php:154
+msgid ""
+"Someone has edited the page while you were working on it. Your changes have "
+"been discarded to prevent losing their changes."
+msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -187,7 +193,7 @@ msgstr "Lägg till en utställning"
 msgid "Theme"
 msgstr "Tema"
 
-#: views/admin/exhibits/browse.php:62
+#: views/admin/exhibits/browse.php:63
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Nuvarande publikt tema"
@@ -206,7 +212,7 @@ msgid "Slug"
 msgstr "Kortadress"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:27
+#: views/admin/exhibits/page-form.php:30
 msgid "No spaces or special characters allowed"
 msgstr "Inga mellanslag eller specialtecken tillåtna"
 
@@ -262,17 +268,17 @@ msgid "Choose a Cover Image"
 msgstr "Välj en omslagsbild"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:89
 msgid "Show Search Form"
 msgstr "Visa sökformulär"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:90
 msgid "Hide Search Form"
 msgstr "Dölj sökformulär"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:100
+#: views/admin/exhibits/page-form.php:103
 msgid "Change Selected Item"
 msgstr "Ändra valt objekt"
 
@@ -285,61 +291,60 @@ msgstr "Välj"
 msgid "Edit Page \"%s\""
 msgstr "Redigera sida \"%s\""
 
-#: views/admin/exhibits/page-form.php:16
+#: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
 msgstr "Sidans titel"
 
-#: views/admin/exhibits/page-form.php:24
+#: views/admin/exhibits/page-form.php:27
 msgid "Page Slug"
 msgstr "Sidans kortadress"
 
-#: views/admin/exhibits/page-form.php:33
+#: views/admin/exhibits/page-form.php:36
 msgid "Content"
 msgstr "innehåll"
 
-#: views/admin/exhibits/page-form.php:34
+#: views/admin/exhibits/page-form.php:37
 msgid "Collapse All"
 msgstr "Dölj alla"
 
-#: views/admin/exhibits/page-form.php:35
+#: views/admin/exhibits/page-form.php:38
 msgid "Expand All"
 msgstr "Visa alla"
 
-#: views/admin/exhibits/page-form.php:36
+#: views/admin/exhibits/page-form.php:39
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Dra och släpp block eller objekt för att ändra deras ordning."
 
-#: views/admin/exhibits/page-form.php:44
+#: views/admin/exhibits/page-form.php:47
 msgid "New Block"
 msgstr "Nytt block"
 
-#: views/admin/exhibits/page-form.php:46
+#: views/admin/exhibits/page-form.php:49
 msgid "Select layout"
 msgstr "Välj layout"
 
-#: views/admin/exhibits/page-form.php:64
+#: views/admin/exhibits/page-form.php:67
 msgid "Add new content block"
 msgstr "Lägg till detta innehållsblock"
 
-#: views/admin/exhibits/page-form.php:74
+#: views/admin/exhibits/page-form.php:77
 msgid "Save and Add Another Page"
 msgstr "Spara och lägg till en ny sida"
 
-#. /c IE7 can't handle nested form tags.
-#: views/admin/exhibits/page-form.php:82
+#: views/admin/exhibits/page-form.php:85
 msgid "Attach an Item"
 msgstr "Lägg till ett objekt"
 
-#: views/admin/exhibits/page-form.php:84
+#: views/admin/exhibits/page-form.php:87
 msgid "Revert to Selected Item"
 msgstr "Återgå till valt objekt"
 
-#: views/admin/exhibits/page-form.php:104
+#: views/admin/exhibits/page-form.php:107
 msgid "Provide a caption."
 msgstr "Ange bildtext."
 
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/page-form.php:114
 msgid "Apply"
 msgstr "Lägg till"
 
@@ -398,7 +403,7 @@ msgstr "Filplacering"
 #: views/shared/exhibit_layouts/file/form.php:45
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:68
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Left"
 msgstr "Vänsterställd"
 
@@ -408,7 +413,7 @@ msgstr "Vänsterställd"
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
 msgstr "Högerställd"
 
@@ -419,14 +424,14 @@ msgstr "Bildstorlek"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:62
+#: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
 msgstr "Placering bildtext"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:67
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Center"
 msgstr "Centrerad"
 

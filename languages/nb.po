@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2016-01-21 15:34+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2017-01-23 20:04+0000\n"
+"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/omeka/omeka/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,29 +42,29 @@ msgstr "Dette elementet er ikke i bruk i denne utstillingen."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Du må spesifikt velge et tema for å kunne endre oppsettet på det."
 
-#: functions.php:409
+#: functions.php:432
 msgid "exhibits"
 msgstr ""
 
-#: functions.php:423 views/admin/exhibits/browse.php:2
+#: functions.php:446 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Utstillinger"
 
-#: functions.php:439 views/admin/exhibits/add.php:6
+#: functions.php:462 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Utstillinger"
 
-#: functions.php:605
+#: functions.php:629
 msgid "Search by Exhibit"
 msgstr "Søk i utstillinger"
 
-#: functions.php:614
+#: functions.php:638
 msgid "Exhibit"
 msgstr ""
 
-#: functions.php:615
+#: functions.php:639
 msgid "Exhibit Page"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr "Du har ingen fremhevede utstillinger"
 msgid "Exhibits must be given a valid slug."
 msgstr "Utstillinger må gis en gyldig lenkestreng."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:75
+#: models/Exhibit.php:128 models/ExhibitPage.php:92
 msgid "A slug must be 30 characters or less."
 msgstr "En lenkestreng må være 30 tegn eller mindre."
 
@@ -134,19 +134,25 @@ msgstr ""
 msgid "Layout featuring a standalone file"
 msgstr ""
 
-#: models/ExhibitPage.php:74
+#: models/ExhibitPage.php:91
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Lenkestreng må angis for hver side i en utstilling."
 
-#: models/ExhibitPage.php:76
+#: models/ExhibitPage.php:93
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr ""
 
-#: models/ExhibitPage.php:86
+#: models/ExhibitPage.php:104
 msgid "Exhibit pages must be given a title."
 msgstr "Utstillingssider må ha en tittel."
+
+#: models/ExhibitPage.php:154
+msgid ""
+"Someone has edited the page while you were working on it. Your changes have "
+"been discarded to prevent losing their changes."
+msgstr ""
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -187,7 +193,7 @@ msgstr ""
 msgid "Theme"
 msgstr "Tema"
 
-#: views/admin/exhibits/browse.php:62
+#: views/admin/exhibits/browse.php:63
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Nåværende tema"
@@ -206,7 +212,7 @@ msgid "Slug"
 msgstr "Lenkestreng"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:27
+#: views/admin/exhibits/page-form.php:30
 msgid "No spaces or special characters allowed"
 msgstr ""
 
@@ -262,17 +268,17 @@ msgid "Choose a Cover Image"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:89
 msgid "Show Search Form"
 msgstr "Vis søkeskjema"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:90
 msgid "Hide Search Form"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:100
+#: views/admin/exhibits/page-form.php:103
 msgid "Change Selected Item"
 msgstr ""
 
@@ -285,61 +291,60 @@ msgstr ""
 msgid "Edit Page \"%s\""
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:16
+#: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:24
+#: views/admin/exhibits/page-form.php:27
 msgid "Page Slug"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:33
+#: views/admin/exhibits/page-form.php:36
 msgid "Content"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:34
+#: views/admin/exhibits/page-form.php:37
 msgid "Collapse All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:35
+#: views/admin/exhibits/page-form.php:38
 msgid "Expand All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:36
+#: views/admin/exhibits/page-form.php:39
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:44
+#: views/admin/exhibits/page-form.php:47
 msgid "New Block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:46
+#: views/admin/exhibits/page-form.php:49
 msgid "Select layout"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:64
+#: views/admin/exhibits/page-form.php:67
 msgid "Add new content block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:74
+#: views/admin/exhibits/page-form.php:77
 msgid "Save and Add Another Page"
 msgstr "Lagre og legg til en ny side"
 
-#. /c IE7 can't handle nested form tags.
-#: views/admin/exhibits/page-form.php:82
+#: views/admin/exhibits/page-form.php:85
 msgid "Attach an Item"
 msgstr "Legg til en ressurs"
 
-#: views/admin/exhibits/page-form.php:84
+#: views/admin/exhibits/page-form.php:87
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:104
+#: views/admin/exhibits/page-form.php:107
 msgid "Provide a caption."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/page-form.php:114
 msgid "Apply"
 msgstr ""
 
@@ -398,7 +403,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/file/form.php:45
 #: views/shared/exhibit_layouts/gallery/form.php:28
 #: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:68
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Left"
 msgstr ""
 
@@ -408,7 +413,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
 msgstr ""
 
@@ -419,14 +424,14 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:62
+#: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:67
+#: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Center"
 msgstr ""
 
