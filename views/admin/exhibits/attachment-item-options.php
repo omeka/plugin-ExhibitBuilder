@@ -35,4 +35,9 @@ if (!metadata($item, 'public')) {
     </div>
 </div>
 <?php endif; ?>
-
+<span class="toggle-item-metadata collapse"><?php echo __('Show item metadata'); ?></span>
+<div class="item-metadata">
+    <?php set_current_record('item', $item); ?>
+    <?php echo all_element_texts($item); ?>
+    <?php fire_plugin_hook('admin_items_show', array('item' => $item, 'view' => $this)); ?>
+</div>
