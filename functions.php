@@ -294,7 +294,7 @@ ALTER TABLE `{$db->prefix}exhibits`
 SQL;
         $db->query($sql);
     }
-    
+
     if (version_compare($oldVersion, '3.3.3', '<')) {
         $sql = <<<SQL
 ALTER TABLE `{$db->prefix}exhibit_pages`
@@ -505,7 +505,7 @@ function exhibit_builder_public_theme_name($themeName)
 
     $request = Zend_Controller_Front::getInstance()->getRequest();
 
-    if ($request->getModuleName() == 'exhibit-builder') {
+    if ($request && $request->getModuleName() == 'exhibit-builder') {
         $slug = $request->getParam('slug');
         $exhibit = get_db()->getTable('Exhibit')->findBySlug($slug);
         if ($exhibit && $exhibit->theme) {
