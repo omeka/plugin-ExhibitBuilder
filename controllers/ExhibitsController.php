@@ -365,6 +365,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
                 return true;
             } catch (Exception $e) {
                 $this->_helper->flashMessenger($e->getMessage(), 'error');
+                _log($e);
                 return false;
             }
         }
