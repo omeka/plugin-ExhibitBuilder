@@ -340,8 +340,12 @@ function exhibit_builder_define_acl($args)
      * That means that admin and super users can both manipulate exhibits completely,
      * but researcher/contributor cannot.
      */
-    $acl->addResource('ExhibitBuilder_Exhibits');
-    $acl->addResource('ExhibitBuilder_Files');
+    if (!$acl->has('ExhibitBuilder_Exhibits')) {
+        $acl->addResource('ExhibitBuilder_Exhibits');
+    }
+    if (!$acl->has('ExhibitBuilder_Files')) {
+        $acl->addResource('ExhibitBuilder_Files');
+    }
 
     $acl->allow(null, 'ExhibitBuilder_Exhibits',
         array('show', 'summary', 'show-item', 'browse', 'tags'));
