@@ -31,7 +31,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
                 $imageSize = isset($fileOptions['imageSize'])
                     ? $fileOptions['imageSize']
                     : 'square_thumbnail';
-                $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
+                $image = file_image($imageSize, $fileOptions['imgAttributes'], $item);
                 $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
             } else {
                 if (!isset($fileOptions['linkAttributes']['href'])) {
