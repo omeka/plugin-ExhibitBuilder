@@ -27,6 +27,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             <?php echo $this->formLabel('menu_title', __('Menu Link Title')); ?>
             </div>
             <div class="inputs five columns omega">
+            <p class="explanation"><?php echo __('Optionally use a shorter title in the exhibit menu'); ?></p>
             <?php echo $this->formText('menu_title', $exhibit_page->menu_title); ?>
             </div>
         </div>
