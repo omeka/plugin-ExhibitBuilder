@@ -24,6 +24,14 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <div class="field">
             <div class="two columns alpha">
+            <?php echo $this->formLabel('menu_title', __('Menu Link Title')); ?>
+            </div>
+            <div class="inputs five columns omega">
+            <?php echo $this->formText('menu_title', $exhibit_page->menu_title); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
                 <?php echo $this->formLabel('slug', __('Page Slug')); ?>
             </div>
             <div class="inputs five columns omega">

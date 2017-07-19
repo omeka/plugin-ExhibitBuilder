@@ -41,6 +41,13 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $title;
 
     /**
+     * The title for the page that will be displayed in the menu
+     *
+     * @var string
+     */
+    public $menu_title;
+
+    /**
      * Order of the page underneath its parent/exhibit
      *
      * @var integer
