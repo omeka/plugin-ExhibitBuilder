@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `exhibit_id` INT UNSIGNED NOT NULL,
     `parent_id` INT UNSIGNED DEFAULT NULL,
     `title` VARCHAR(255) DEFAULT NULL,
-    `menu_title` VARCHAR(255) DEFAULT NULL,
+    `short_title` VARCHAR(255) DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -306,7 +306,7 @@ SQL;
     }
 
     if (version_compare($oldVersion, '3.3.4', '<')) {
-        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `menu_title` VARCHAR(255) DEFAULT NULL";
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `short_title` VARCHAR(255) DEFAULT NULL";
         $db->query($sql);
     }
 }

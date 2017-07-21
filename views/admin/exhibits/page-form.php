@@ -24,11 +24,11 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <div class="field">
             <div class="two columns alpha">
-            <?php echo $this->formLabel('menu_title', __('Menu Link Title')); ?>
+            <?php echo $this->formLabel('short_title', __('Menu Link Title')); ?>
             </div>
             <div class="inputs five columns omega">
             <p class="explanation"><?php echo __('Optionally use a shorter title in the exhibit menu'); ?></p>
-            <?php echo $this->formText('menu_title', $exhibit_page->menu_title); ?>
+            <?php echo $this->formText('short_title', $exhibit_page->short_title); ?>
             </div>
         </div>
         <div class="field">

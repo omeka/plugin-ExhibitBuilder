@@ -45,7 +45,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      *
      * @var string
      */
-    public $menu_title;
+    public $short_title;
 
     /**
      * Order of the page underneath its parent/exhibit
@@ -411,5 +411,25 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public function setFixChildrenOnDelete($fix)
     {
         $this->_fixChildrenOnDelete = (bool) $fix;
+    }
+
+    /**
+     * Get a property for display.
+     *
+     * @param string $property
+     * @return mixed
+     */
+    public function getProperty($property)
+    {
+        switch($property) {
+            case 'menu_title':
+                if(isset($this->short_title) && !empty($this->short_title)) {
+                    return $this->short_title;
+                } else {
+                    return $this->title;
+                }
+            default:
+                return parent::getProperty($property);
+        }
     }
 }
