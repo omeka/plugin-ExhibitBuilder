@@ -92,7 +92,6 @@ function exhibit_builder_page_nav($exhibitPage = null)
     $levelNumber = 1;
     
     foreach ($pagesTrail as $page) {
-        $linkText = $page->menu_title;
         $pageExhibit = $page->getExhibit();
         $pageParent = $page->getParent();
         $pageSiblings = ($pageParent ? exhibit_builder_child_pages($pageParent) : $pageExhibit->getTopPages());
