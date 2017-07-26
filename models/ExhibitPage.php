@@ -423,7 +423,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     {
         switch($property) {
             case 'menu_title':
-                if(isset($this->short_title) && !empty($this->short_title)) {
+                if(!empty($this->short_title)) {
                     return $this->short_title;
                 } else {
                     return $this->title;
