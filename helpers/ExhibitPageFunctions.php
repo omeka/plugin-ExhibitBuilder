@@ -102,7 +102,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
         foreach ($pageSiblings as $pageSibling) {
             $html .= '<li' . ($pageSibling->id == $page->id ? ' class="current"' : '') . '>';
             $html .= '<a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling)) . '">';
-            $html .= html_escape(metadata($pageSibling, 'menu_title')) . "</a></li>\n";
+            $html .= metadata($pageSibling, 'menu_title') . "</a></li>\n";
         }
         $html .= "</ul>\n</li>\n";
     }
