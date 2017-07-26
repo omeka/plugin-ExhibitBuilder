@@ -64,9 +64,9 @@ class ExhibitBuilder_View_Helper_ExhibitPageTree extends Zend_View_Helper_Abstra
         } else {
             $html = '<li>';
         }
-        
+
         $html .= '<a href="' . exhibit_builder_exhibit_uri($this->_exhibit, $page) . '">'
-              . metadata($page, 'title') .'</a>';
+              . metadata($page, 'menu_title') .'</a>';
         if (isset($this->_pages[$page->id])) {
             $html .= '<ul>';
             foreach ($this->_pages[$page->id] as $childPage) {

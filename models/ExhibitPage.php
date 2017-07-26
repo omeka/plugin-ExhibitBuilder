@@ -41,6 +41,13 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public $title;
 
     /**
+     * The title for the page that will be displayed in the menu
+     *
+     * @var string
+     */
+    public $short_title;
+
+    /**
      * Order of the page underneath its parent/exhibit
      *
      * @var integer
@@ -404,5 +411,25 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
     public function setFixChildrenOnDelete($fix)
     {
         $this->_fixChildrenOnDelete = (bool) $fix;
+    }
+
+    /**
+     * Get a property for display.
+     *
+     * @param string $property
+     * @return mixed
+     */
+    public function getProperty($property)
+    {
+        switch($property) {
+            case 'menu_title':
+                if(!empty($this->short_title)) {
+                    return $this->short_title;
+                } else {
+                    return $this->title;
+                }
+            default:
+                return parent::getProperty($property);
+        }
     }
 }
