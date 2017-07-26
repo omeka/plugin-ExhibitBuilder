@@ -103,7 +103,7 @@ function exhibit_builder_page_nav($exhibitPage = null)
         foreach ($pageSiblings as $pageSibling) {
             $html .= '<li' . ($pageSibling->id == $page->id ? ' class="current"' : '') . '>';
             $html .= '<a class="exhibit-page-title" href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $pageSibling)) . '">';
-            $html .= html_escape($pageSibling->menu_title) . "</a></li>\n";
+            $html .= html_escape(metadata($pageSibling, 'menu_title')) . "</a></li>\n";
         }
         $html .= "</ul>\n</li>\n";
     }
@@ -128,7 +128,7 @@ function exhibit_builder_child_page_nav($exhibitPage = null)
     $children = exhibit_builder_child_pages($exhibitPage);
     $html = '<ul class="exhibit-child-nav navigation">' . "\n";
     foreach ($children as $child) {
-        $html .= '<li><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $child)) . '">' . html_escape($child->menu_title) . '</a></li>';
+        $html .= '<li><a href="' . html_escape(exhibit_builder_exhibit_uri($exhibit, $child)) . '">' . metadata($child, 'menu_title') . '</a></li>';
     }
     $html .= '</ul>' . "\n";
     return $html;
