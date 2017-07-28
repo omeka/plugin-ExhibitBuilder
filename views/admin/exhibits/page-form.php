@@ -151,6 +151,7 @@ jQuery(document).ready(function () {
             tinyMCE.execCommand('mceAddControl', false, this.id);
         });
     });
+    Omeka.ExhibitBuilder.toggleItemMetadata(<?php echo js_escape(__('Show item metadata')), ', ', js_escape(__('Hide item metadata')); ?>);
 });
 </script>
 <?php echo foot(); ?>

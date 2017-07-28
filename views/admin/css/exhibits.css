@@ -155,6 +155,12 @@
     padding: 10px 10px 0 10px;
 }
 
+#cover-image-options .item-metadata,
+#attachment-options .item-metadata {
+    display: none;
+    margin-bottom: 20px;
+}
+
 .editing-selection #item-list, .editing-selection #page-search-form {
     top: 88px;
 }

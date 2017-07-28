@@ -625,4 +625,19 @@ Omeka.ExhibitBuilder = {};
             dialogClass: 'item-dialog'
         });
     }
+
+    Omeka.ExhibitBuilder.toggleItemMetadata = function (showText, hideText) {
+        $('#attachment-options, #cover-image-options').on('click', '.toggle-item-metadata', function(e) {
+            e.preventDefault();
+            var $toggler = $(this);
+            var itemMetadataShown = !!$toggler.data('shown');
+            if (itemMetadataShown) {
+                $toggler.text(showText).data('shown', false);
+                $toggler.siblings('.item-metadata').slideUp('fast');
+            } else {
+                $toggler.text(hideText).data('shown', true);
+                $toggler.siblings('.item-metadata').slideDown('fast');
+            }
+        });
+    };
 })(jQuery);
