@@ -148,7 +148,7 @@ jQuery(document).ready(function () {
     jQuery(document).on('exhibit-builder-refresh-wysiwyg', function (event) {
         // Add tinyMCE to all textareas in the div where the item was attached.
         jQuery(event.target).find('textarea').each(function () {
-            tinyMCE.execCommand('mceAddControl', false, this.id);
+            tinyMCE.EditorManager.execCommand('mceAddEditor', false, this.id);
         });
     });
 });

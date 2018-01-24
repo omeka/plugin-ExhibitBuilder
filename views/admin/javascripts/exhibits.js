@@ -85,7 +85,7 @@ Omeka.ExhibitBuilder = {};
             helper: 'clone',
             start: function (event, ui) {
                 ui.item.find('textarea').each(function () {
-                    tinyMCE.execCommand('mceRemoveControl', false, this.id);
+                    tinyMCE.EditorManager.execCommand('mceAddEditor', false, this.id);
                 });
                 ui.helper.find('.block-body').hide();
                 var height = ui.helper.find('.block-header').outerHeight();
@@ -97,7 +97,7 @@ Omeka.ExhibitBuilder = {};
                     $(this).val(index + 1);
                 });
                 ui.item.find('textarea').each(function () {
-                    tinyMCE.execCommand('mceAddControl', false, this.id);
+                    tinyMCE.EditorManager.execCommand('mceAddEditor', false, this.id);
                 });
             }
         });
