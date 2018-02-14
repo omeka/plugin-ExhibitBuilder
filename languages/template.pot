@@ -41,29 +41,25 @@ msgstr ""
 msgid "You must specifically select a theme in order to configure it."
 msgstr ""
 
-#: functions.php:432
+#: functions.php:438
 msgid "exhibits"
 msgstr ""
 
-#: functions.php:446 views/admin/exhibits/browse.php:2
+#: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr ""
 
-#: functions.php:462 views/admin/exhibits/add.php:6
+#: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr ""
 
-#: functions.php:629
-msgid "Search by Exhibit"
-msgstr ""
-
-#: functions.php:638
+#: functions.php:641
 msgid "Exhibit"
 msgstr ""
 
-#: functions.php:639
+#: functions.php:642
 msgid "Exhibit Page"
 msgstr ""
 
@@ -79,7 +75,7 @@ msgstr ""
 msgid "Exhibits must be given a valid slug."
 msgstr ""
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:92
+#: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
 msgstr ""
 
@@ -133,21 +129,21 @@ msgstr ""
 msgid "Layout featuring a standalone file"
 msgstr ""
 
-#: models/ExhibitPage.php:91
+#: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
 msgstr ""
 
-#: models/ExhibitPage.php:93
+#: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr ""
 
-#: models/ExhibitPage.php:104
+#: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
 msgstr ""
 
-#: models/ExhibitPage.php:154
+#: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -166,8 +162,7 @@ msgstr ""
 msgid "Select a file to use."
 msgstr ""
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
+#: views/admin/exhibits/attachment.php:12 views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
 msgstr ""
 
@@ -211,7 +206,7 @@ msgid "Slug"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:30
+#: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
 msgstr ""
 
@@ -267,17 +262,17 @@ msgid "Choose a Cover Image"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:89
+#: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:90
+#: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
 msgstr ""
 
@@ -295,55 +290,63 @@ msgid "Page Title"
 msgstr ""
 
 #: views/admin/exhibits/page-form.php:27
-msgid "Page Slug"
+msgid "Menu Link Title"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:30
+msgid "Optionally use a shorter title in the exhibit menu"
 msgstr ""
 
 #: views/admin/exhibits/page-form.php:36
+msgid "Page Slug"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:45
 msgid "Content"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:37
+#: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:38
+#: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:39
+#: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:56
 msgid "New Block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:49
+#: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:67
+#: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:77
+#: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:107
+#: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:114
+#: views/admin/exhibits/page-form.php:122
 msgid "Apply"
 msgstr ""
 
@@ -454,4 +457,8 @@ msgstr ""
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
+msgstr ""
+
+#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
+msgid "Search by Exhibit"
 msgstr ""

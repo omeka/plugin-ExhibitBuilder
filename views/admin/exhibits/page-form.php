@@ -90,7 +90,6 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
     </div>
 </form>
-<?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <div id="attachment-panel" title="<?php echo html_escape(__('Attach an Item')); ?>">
     <div id="item-form">
         <button type="button" id="revert-selected-item"><?php echo __('Revert to Selected Item'); ?></button>
