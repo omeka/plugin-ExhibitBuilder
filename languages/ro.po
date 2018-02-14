@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Nicolaie Constantinescu <kosson@gmail.com>, 2012-2014
+# Nicolaie Constantinescu <kosson@gmail.com>, 2012-2014,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2017-01-23 20:04+0000\n"
-"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
+"PO-Revision-Date: 2017-09-23 18:07+0000\n"
+"Last-Translator: Nicolaie Constantinescu <kosson@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/omeka/omeka/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Metoda standard prin care ai dori să sortezi lista cu expoziții din pa
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "Acest pas va șterge întreaga expoziție \"%s\" și toate paginile sale."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -131,7 +131,7 @@ msgstr "Machetă care arată un bloc de text fără fișiere"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Aspect care valorifică un singur fișier"
 
 #: models/ExhibitPage.php:91
 msgid "A slug must be given for each page of an exhibit."
@@ -151,7 +151,7 @@ msgstr "Trebuie să dai un titlu expoziției."
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Cineva a editat pagina în timp ce lucrai și tu. Modificările făcute de tine au fost ignorate pentru a nu le pierde pe cele făcute de persoana care s-a suprapus."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -222,23 +222,23 @@ msgstr "Mulțumiri"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Folosești o pagină pentru sumar?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Începe expoziția de la pagina sumarului. Dacă nu este bifat, expoziția va debuta cu prima pagină dacă aceasta există."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Imagine pentru copertă"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Alege un fișier reprezentativ pentru această expoziție. Fișierul selectat va servi drept pictogramă a expoziției."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -260,11 +260,11 @@ msgstr "Adaugă pagină"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Șterge expoziția"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Alege imaginea pentru copertă"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:89
@@ -283,7 +283,7 @@ msgstr "Modifică elementul selectat"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "Alege"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -362,11 +362,11 @@ msgstr "Configurează &#8220;%s&#8221; Temă"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka va folosi primul fișier atașat ca imagine a coperții."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "Modifică"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
