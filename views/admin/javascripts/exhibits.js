@@ -625,4 +625,16 @@ Omeka.ExhibitBuilder = {};
             dialogClass: 'item-dialog'
         });
     }
+
+    $.widget('ui.dialog', $.ui.dialog, {
+        _allowInteraction: function (event) {
+            if (this._super(event)) {
+                return true;
+            }
+
+            if ($(event.target).closest('.mce-window').length) {
+                return true;
+            }
+        }
+    });
 })(jQuery);
