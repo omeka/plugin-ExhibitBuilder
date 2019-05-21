@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Hong Zhang <zhangh@unlv.nevada.edu>, 2013
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2013,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2017-09-19 13:53+0000\n"
-"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
+"PO-Revision-Date: 2018-03-05 17:36+0000\n"
+"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/omeka/omeka/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,12 +26,12 @@ msgstr "排序展览"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "您想用来分类在展览/浏览页面上的展览列表的默认方法。默认为“添加日期”。"
+msgstr "您想在展览/浏览页面上排序的展览列表的默认方法。默认为“添加日期”。"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "这将永久删除整个%s展览，及其所有页面。"
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -41,29 +41,25 @@ msgstr "该条目未在此展览中使用。"
 msgid "You must specifically select a theme in order to configure it."
 msgstr "您必须明确选定一个主题来设置它。"
 
-#: functions.php:432
+#: functions.php:438
 msgid "exhibits"
 msgstr "展览"
 
-#: functions.php:446 views/admin/exhibits/browse.php:2
+#: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "浏览展览"
 
-#: functions.php:462 views/admin/exhibits/add.php:6
+#: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "展览"
 
-#: functions.php:629
-msgid "Search by Exhibit"
-msgstr "按展览搜索"
-
-#: functions.php:638
+#: functions.php:641
 msgid "Exhibit"
 msgstr "展览"
 
-#: functions.php:639
+#: functions.php:642
 msgid "Exhibit Page"
 msgstr "展览页"
 
@@ -79,7 +75,7 @@ msgstr "您没有专题展览。"
 msgid "Exhibits must be given a valid slug."
 msgstr "展览必须给定一个有效缩略名。"
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:92
+#: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
 msgstr "一个缩略名必须只能有30个字符或更少。"
 
@@ -102,21 +98,21 @@ msgstr "您的主题名称必须只能有30个字符或更少。"
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "文本文件"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "默认布局的特点是文件对左边或右边对齐，文本在另一侧显示。"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr ""
+msgstr "画廊"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "展示文件缩略图的画廊布局"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -127,31 +123,31 @@ msgstr "文本"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "展示没有相关文件的一段文本的布局。"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "展示一个独立文件的布局。"
 
-#: models/ExhibitPage.php:91
+#: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
 msgstr "每个展览的每个页面都必须给定一个缩略名。"
 
-#: models/ExhibitPage.php:93
+#: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "该页的缩略名已被使用。请修改缩略名使其具有唯一性。"
 
-#: models/ExhibitPage.php:104
+#: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
 msgstr "展览页面必须给定标题"
 
-#: models/ExhibitPage.php:154
+#: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "在你正在对它工作时，另外有人已经编辑了页面。您的更新已被丢弃，以防止他人的更新被丢失。"
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -160,24 +156,24 @@ msgstr "添加展览"
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "已选择条目：%s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "选择要使用的文件。"
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr ""
+msgstr "移除/恢复"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr ""
+msgstr "段落"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "扩展/收缩"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
@@ -211,7 +207,7 @@ msgid "Slug"
 msgstr "缩略名"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:30
+#: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
 msgstr "空格或特殊字符是不允许的"
 
@@ -222,23 +218,23 @@ msgstr "关于作者"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "使用总结页面？"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "在总结页面上开始展览。如果未被点选，那么如果展览的第一页存在，就从那里开始。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "封面图片"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "选择一个可以代表该展览的文件。选中的文件会被用作展览的缩略图。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -251,7 +247,7 @@ msgstr "没有页面。"
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "要对页面重新排序货嵌套，把它们点选并拖曳到合适位置。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
@@ -260,30 +256,30 @@ msgstr "添加页面"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "删除展览"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "选择封面图片"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:89
+#: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
 msgstr "显示搜索表单"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:90
+#: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
-msgstr ""
+msgstr "隐藏搜索表单"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
-msgstr ""
+msgstr "更换已选条目"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "挑选"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -292,60 +288,68 @@ msgstr "编辑页面\"%s\""
 
 #: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
-msgstr ""
+msgstr "页面标题"
 
 #: views/admin/exhibits/page-form.php:27
-msgid "Page Slug"
-msgstr ""
+msgid "Menu Link Title"
+msgstr "菜单链接标题"
+
+#: views/admin/exhibits/page-form.php:30
+msgid "Optionally use a shorter title in the exhibit menu"
+msgstr "在展览菜单上可选使用更短标题"
 
 #: views/admin/exhibits/page-form.php:36
+msgid "Page Slug"
+msgstr "页面缩略名"
+
+#: views/admin/exhibits/page-form.php:45
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
-#: views/admin/exhibits/page-form.php:37
+#: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
-msgstr ""
-
-#: views/admin/exhibits/page-form.php:38
-msgid "Expand All"
-msgstr ""
-
-#: views/admin/exhibits/page-form.php:39
-msgid ""
-"To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "收缩全部"
 
 #: views/admin/exhibits/page-form.php:47
+msgid "Expand All"
+msgstr "扩展全部"
+
+#: views/admin/exhibits/page-form.php:48
+msgid ""
+"To reorder blocks and items, click and drag them to the preferred location."
+msgstr "要对段落和条目重新排序，把它们点选并拖曳到合适位置。"
+
+#: views/admin/exhibits/page-form.php:56
 msgid "New Block"
-msgstr ""
+msgstr "新段落"
 
-#: views/admin/exhibits/page-form.php:49
+#: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
-msgstr ""
+msgstr "选择布局"
 
-#: views/admin/exhibits/page-form.php:67
+#: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
-msgstr ""
+msgstr "添加新内容段落"
 
-#: views/admin/exhibits/page-form.php:77
+#: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
 msgstr "保存并添加另一个页面"
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
 msgstr "附加一个条目"
 
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "还原至已选条目"
 
-#: views/admin/exhibits/page-form.php:107
+#: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
-msgstr ""
+msgstr "提供一个标题。"
 
-#: views/admin/exhibits/page-form.php:114
+#: views/admin/exhibits/page-form.php:122
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -362,11 +366,11 @@ msgstr "设置&#8220;%s&#8221;主题"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka将使用第一个附属文件作为封面图片。"
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "更换"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
@@ -379,7 +383,7 @@ msgstr "没有可以选择的条目。请修改您的搜索或%s。"
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "选择条目"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
@@ -389,12 +393,12 @@ msgstr "尚未有可用的展览。"
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "布局选项"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
-msgstr ""
+msgstr "文件位置"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -404,7 +408,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Left"
-msgstr ""
+msgstr "左"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -414,44 +418,48 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
-msgstr ""
+msgstr "右"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 #: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
-msgstr ""
+msgstr "文件尺寸"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
-msgstr ""
+msgstr "标题位置"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Center"
-msgstr ""
+msgstr "中间"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "展示文件位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "无展示文件"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "画廊位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "如果没有展示文件或文本，画廊将使用整个页面宽度。"
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr ""
+msgstr "画廊文件尺寸"
+
+#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
+msgid "Search by Exhibit"
+msgstr "按展览搜索"

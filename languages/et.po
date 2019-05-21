@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Rivo Zängov <eraser@eraser.ee>, 2015-2016
+# Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2017-09-19 19:06+0000\n"
-"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
+"PO-Revision-Date: 2018-11-10 18:44+0000\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>\n"
 "Language-Team: Estonian (http://www.transifex.com/omeka/omeka/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,29 +41,25 @@ msgstr "See ühik pole selles näituses kasutusel."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Sa pead selle seadistamiseks valima kujunduse."
 
-#: functions.php:432
+#: functions.php:438
 msgid "exhibits"
 msgstr "näitused"
 
-#: functions.php:446 views/admin/exhibits/browse.php:2
+#: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Sirvi näituseid"
 
-#: functions.php:462 views/admin/exhibits/add.php:6
+#: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Näitused"
 
-#: functions.php:629
-msgid "Search by Exhibit"
-msgstr "Otsi näituste järgi"
-
-#: functions.php:638
+#: functions.php:641
 msgid "Exhibit"
 msgstr "Näitus"
 
-#: functions.php:639
+#: functions.php:642
 msgid "Exhibit Page"
 msgstr "Näituse lehekülg"
 
@@ -79,7 +75,7 @@ msgstr "Sul pole ühtegi esiletõstetud näitust."
 msgid "Exhibits must be given a valid slug."
 msgstr "Näitusel peab olema lühinimi."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:92
+#: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
 msgstr "Lühinime pikkus peab olema 30 märki või vähem."
 
@@ -131,23 +127,23 @@ msgstr "Tekstiga ja ilma failideta paigutus"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Paigutus, milles on üks fail"
 
-#: models/ExhibitPage.php:91
+#: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Igal näituse lehel peab olema lühinimi."
 
-#: models/ExhibitPage.php:93
+#: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "See lehe lühinimi on juba kasutusel. Palun muuda lühinime nii, et see oleks kordumatu."
 
-#: models/ExhibitPage.php:104
+#: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
 msgstr "Näituse lehekülgedel peab olema pealkiri."
 
-#: models/ExhibitPage.php:154
+#: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -211,14 +207,14 @@ msgid "Slug"
 msgstr "Lühinimi"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:30
+#: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
 msgstr "Tühikute ja erimärkide kasutamine pole lubatud"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr ""
+msgstr "Autoriõigused"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
@@ -267,17 +263,17 @@ msgid "Choose a Cover Image"
 msgstr "Vali kaanepilt"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:89
+#: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
 msgstr "Näita otsinguvormi"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:90
+#: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
 msgstr "Peida otsinguvorm"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
 msgstr "Muuda valitud ühikut"
 
@@ -295,55 +291,63 @@ msgid "Page Title"
 msgstr "Lehekülje pealkiri"
 
 #: views/admin/exhibits/page-form.php:27
+msgid "Menu Link Title"
+msgstr "Menüülingi pealkiri"
+
+#: views/admin/exhibits/page-form.php:30
+msgid "Optionally use a shorter title in the exhibit menu"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
 msgstr "Lehe lühinimi"
 
-#: views/admin/exhibits/page-form.php:36
+#: views/admin/exhibits/page-form.php:45
 msgid "Content"
 msgstr "Sisu"
 
-#: views/admin/exhibits/page-form.php:37
+#: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
 msgstr "Sulge kõik"
 
-#: views/admin/exhibits/page-form.php:38
+#: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Ava kõik"
 
-#: views/admin/exhibits/page-form.php:39
+#: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:56
 msgid "New Block"
 msgstr "Uus plokk"
 
-#: views/admin/exhibits/page-form.php:49
+#: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
 msgstr "Vali paigutus"
 
-#: views/admin/exhibits/page-form.php:67
+#: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
 msgstr "Lisa uus sisuplokk"
 
-#: views/admin/exhibits/page-form.php:77
+#: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
 msgstr "Salvesta ja lisa teine lehekülg"
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
 msgstr "Lisa ühik"
 
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:107
+#: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
 msgstr "Lisa pealkiri."
 
-#: views/admin/exhibits/page-form.php:114
+#: views/admin/exhibits/page-form.php:122
 msgid "Apply"
 msgstr "Rakenda"
 
@@ -455,3 +459,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Galerii faili suurus"
+
+#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
+msgid "Search by Exhibit"
+msgstr "Otsi näituste järgi"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2017-09-22 20:50+0000\n"
-"Last-Translator: Victor Pshibytko <vpshibitko@mail.ru>\n"
+"PO-Revision-Date: 2018-02-14 19:43+0000\n"
+"Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Belarusian (Belarus) (http://www.transifex.com/omeka/omeka/language/be_BY/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,29 +41,25 @@ msgstr "Гэты элемент не выкарыстоўваецца ў дад�
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Вы павінны выбраць тэму для таго, каб настроіць яе."
 
-#: functions.php:432
+#: functions.php:438
 msgid "exhibits"
 msgstr "Выставы"
 
-#: functions.php:446 views/admin/exhibits/browse.php:2
+#: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Прагляд выстаў"
 
-#: functions.php:462 views/admin/exhibits/add.php:6
+#: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Выставы"
 
-#: functions.php:629
-msgid "Search by Exhibit"
-msgstr "Шукаць па выставе"
-
-#: functions.php:638
+#: functions.php:641
 msgid "Exhibit"
 msgstr "Выстава"
 
-#: functions.php:639
+#: functions.php:642
 msgid "Exhibit Page"
 msgstr "Старонка выставы"
 
@@ -79,7 +75,7 @@ msgstr "У вас няма выстаў для прапанавання."
 msgid "Exhibits must be given a valid slug."
 msgstr "Дайце карэктны чалавеказразумелы URL-загаловак для выставы."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:92
+#: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
 msgstr "URL-загаловак не павінен перавышаць 30 знакаў."
 
@@ -133,21 +129,21 @@ msgstr "Макет галерэі, пры якім блок тэкст адлю�
 msgid "Layout featuring a standalone file"
 msgstr "Макет галерэі, які адлюстроўвае самастойны файл"
 
-#: models/ExhibitPage.php:91
+#: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Неабходна дадаць URL-загаловак на кожнай старонцы выставы."
 
-#: models/ExhibitPage.php:93
+#: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Такі загаловак старонкі ўжо выкарыстоўваецца. Калі ласка, прыдумайце ўнікальны загаловак."
 
-#: models/ExhibitPage.php:104
+#: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
 msgstr "Неабходна зрабіць загалоўкі для старонак выставы."
 
-#: models/ExhibitPage.php:154
+#: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -211,7 +207,7 @@ msgid "Slug"
 msgstr "Чалавеказразумелы URL-загаловак"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:30
+#: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
 msgstr "Прабелы і спецыяльныя сімвалы не дапускаюцца"
 
@@ -267,17 +263,17 @@ msgid "Choose a Cover Image"
 msgstr "Выбраць выяву вокладкі"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:89
+#: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
 msgstr "Паказаць форму пошуку"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:90
+#: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
 msgstr "Схаваць форму пошуку"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
 msgstr "Змяніць выбраны элемент"
 
@@ -295,55 +291,63 @@ msgid "Page Title"
 msgstr "Загаловак старонкі"
 
 #: views/admin/exhibits/page-form.php:27
+msgid "Menu Link Title"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:30
+msgid "Optionally use a shorter title in the exhibit menu"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
 msgstr "Чалавеказразумелы URL старонкі"
 
-#: views/admin/exhibits/page-form.php:36
+#: views/admin/exhibits/page-form.php:45
 msgid "Content"
 msgstr "Змест"
 
-#: views/admin/exhibits/page-form.php:37
+#: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
 msgstr "Згарнуць усё"
 
-#: views/admin/exhibits/page-form.php:38
+#: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Раскрыць усё"
 
-#: views/admin/exhibits/page-form.php:39
+#: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Каб змяніць парадак блокаў і элементаў, шчоўкніце мышкай і перацягніце іх у патрэбнае месца."
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:56
 msgid "New Block"
 msgstr "Новы блок"
 
-#: views/admin/exhibits/page-form.php:49
+#: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
 msgstr "Выбраць размяшчэнне"
 
-#: views/admin/exhibits/page-form.php:67
+#: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
 msgstr "Дадать новы змястоўны блок"
 
-#: views/admin/exhibits/page-form.php:77
+#: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
 msgstr "Захаваць і дадаць іншую старонку"
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
 msgstr "Далучыць элемент"
 
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
 msgstr "Вярнуцца да выбраннага элемента"
 
-#: views/admin/exhibits/page-form.php:107
+#: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
 msgstr "Забяспечыць подпіс."
 
-#: views/admin/exhibits/page-form.php:114
+#: views/admin/exhibits/page-form.php:122
 msgid "Apply"
 msgstr "Прымяніть"
 
@@ -455,3 +459,7 @@ msgstr "Калі няма дэманстрацыйнага файла або т�
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Велічыня файла галерэі"
+
+#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
+msgid "Search by Exhibit"
+msgstr "Шукаць па выставе"

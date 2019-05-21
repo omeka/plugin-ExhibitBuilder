@@ -3,407 +3,402 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Alessandro Leccese <alec.wiki@gmail.com>, 2012
-# Alfio Squatrito <info@lswebagency.it>, 2014
-# Donatella Mutti <donatella.mutti@unito.it>, 2012
-# Giorgia Menghinella <archiviofotsc@gmail.com>, 2017
-# Guybrush88 <erpizzo@alice.it>, 2015
-# stefano saverioni <associazione.bambun@gmail.com>, 2016
+# Naosuke Okamoto, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Italian (http://www.transifex.com/omeka/omeka/language/it/)\n"
+"PO-Revision-Date: 2018-05-01 04:19+0000\n"
+"Last-Translator: Naosuke Okamoto\n"
+"Language-Team: Japanese (http://www.transifex.com/omeka/omeka/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr ""
+msgstr "展示の並べ替え"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr ""
+msgstr "展示/閲覧ページで展示のリストをソートするデフォルトの方法。 デフォルトは「追加日」です。"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "これにより、展示\"%s\" 全体とすべてのページが完全に削除されます。"
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
-msgstr ""
+msgstr "このアイテムはこの展示では使用されていません。"
 
 #: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
-msgstr ""
+msgstr "テーマを設定するには、具体的にテーマを選択する必要があります。"
 
 #: functions.php:438
 msgid "exhibits"
-msgstr ""
+msgstr "展示"
 
 #: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Esplora le esposizioni"
+msgstr "展示を見る"
 
 #: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Esposizioni"
+msgstr "展示一覧"
 
 #: functions.php:641
 msgid "Exhibit"
-msgstr "Esposizione"
+msgstr "展示"
 
 #: functions.php:642
 msgid "Exhibit Page"
-msgstr "Pagina dell'esposizione"
+msgstr "展示ページ"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
-msgstr "Esposizione in evidenza"
+msgstr "注目の展示"
 
 #: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
-msgstr ""
+msgstr "注目の展示がありません。"
 
 #: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
-msgstr ""
+msgstr "展示には有効なスラッグ（ページを識別するURLの一部）を与えなければなりません。"
 
 #: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
-msgstr ""
+msgstr "スラッグは30文字以下でなければなりません。"
 
 #: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr ""
+msgstr "あなたのURLスラッグはすでに別の展示で使用しています。 別のものを選んでください。"
 
 #: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
-msgstr "Bisogna dare un titolo all'esibizione."
+msgstr "展示にはタイトルを付ける必要があります。"
 
 #: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr ""
+msgstr "展示のタイトルは255文字以下でなければなりません。"
 
 #: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
-msgstr ""
+msgstr "のテーマの名前は30文字以下でなければなりません。"
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr "File con testo"
+msgstr "テキスト付きファイル"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "デフォルトのレイアウトでは、ファイルが左または右に揃えられ、反対側にテキストが表示されます"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Galleria"
+msgstr "ギャラリー"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "ファイルサムネイルを含むギャラリーレイアウト"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
 #: views/shared/exhibit_layouts/gallery/form.php:11
 #: views/shared/exhibit_layouts/text/form.php:2
 msgid "Text"
-msgstr "Testo"
+msgstr "テキスト"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "ファイルのないテキストブロックのレイアウト"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "スタンドアロンファイルを含むレイアウト"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
-msgstr ""
+msgstr "展示の各ページにはスラッグ（ページを識別するURLの一部）を付ける必要があります。"
 
 #: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "このページスラッグはすでに使用されています。 ユニークになるようにスラッグを修正してください。"
 
 #: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
-msgstr ""
+msgstr "展示ページにはタイトルを付ける必要があります。"
 
 #: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "作業中に誰かがページを編集しました。 編集が失われないように、あなたの変更は破棄されました。"
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Aggiungi un'esposizione"
+msgstr "展示を追加"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Oggetto selezionato: %s"
+msgstr "選択したアイテム： %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "使用するファイルを選択します。"
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr "Rimuovi/Ripristina"
+msgstr "削除/復元"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr "Blocca"
+msgstr "ブロック"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "展開/折りたたみ"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Non ci sono ancora delle esibizioni."
+msgstr "また展示がありません。"
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Aggiungi un'esibizione"
+msgstr "展示を追加"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Tema"
+msgstr "テーマ"
 
 #: views/admin/exhibits/browse.php:63
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Tema pubblico attuale"
+msgstr "現在のパブリックテーマ"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Modifica l'esposizione \"%s\""
+msgstr "展示 \"%s\" を編集"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr ""
+msgstr "展示メタデータ"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr ""
+msgstr "スラッグ（ページを識別するURLの一部）"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "スペースや特殊文字は使用できません"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Ringraziamenti"
+msgstr "Credits"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr "Utilizzare la pagina di sommario?"
+msgstr "要約ページを使用しますか？"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "概要ページで展示を開始します。 チェックが外されている場合は、最初の展示ページがある場合はそのページから開始します。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "表紙イメージ"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "この展示を表すファイルを選択してください。 選択したファイルが展示のサムネイルとして使用します。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
-msgstr "Pagine"
+msgstr "ページ一覧"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
-msgstr "Non ci sono pagine."
+msgstr "ページがありません。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "ページを並べ替えたり入れ子にしたりするには、ページをクリックして好みの場所にドラッグします。"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Aggiungi pagina"
+msgstr "ページを追加"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "展示を削除"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "表紙イメージを選択"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
-msgstr "Mostra Modulo Ricerca"
+msgstr "検索フォームを表示"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
 #: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
-msgstr ""
+msgstr "検索フォームを隠す"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
 #: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
-msgstr ""
+msgstr "選択したアイテムを変更する"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "選択"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Modifica la pagina \"%s\""
+msgstr "ページ \"%s\" を編集"
 
 #: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
-msgstr "Titolo della pagina"
+msgstr "ページタイトル"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "メニューのリンクタイトル"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "オプションで、展示のメニューで短いタイトルを使用する"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
-msgstr ""
+msgstr "ページスラッグ（ページを識別するURLの一部）"
 
 #: views/admin/exhibits/page-form.php:45
 msgid "Content"
-msgstr "Contenuto"
+msgstr "内容"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
-msgstr "Collassa tutto"
+msgstr "すべて折りたたむ"
 
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
-msgstr "Espandi tutto"
+msgstr "すべて展開"
 
 #: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "ブロックとアイテムを並べ替えるには、クリックして優先する場所にドラッグします。"
 
 #: views/admin/exhibits/page-form.php:56
 msgid "New Block"
-msgstr "Nuovo blocco"
+msgstr "新しいブロック"
 
 #: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
-msgstr ""
+msgstr "レイアウトを選択"
 
 #: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
-msgstr ""
+msgstr "新しい内容ブロックを追加する"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
-msgstr "Salva e aggiungi un'altra pagina"
+msgstr "保存して他のページを追加"
 
 #: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
-msgstr "Allega un oggetto"
+msgstr "アイテムを添付"
 
 #: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "選択アイテムを戻す"
 
 #: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
-msgstr ""
+msgstr "キャプションを入力します。"
 
 #: views/admin/exhibits/page-form.php:122
 msgid "Apply"
-msgstr "Applica"
+msgstr "適用"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr ""
+msgstr "タグから展示を見る"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr ""
+msgstr "表示するタグはありません。 最初にいくつかの展示にタグを付ける必要があります。"
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configura il &#8220;%s&#8221; tema"
+msgstr "&#8220;%s&#8221; テーマを設定する"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omekaは最初の添付ファイルを表紙イメージとして使用します。"
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "変更"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "aggiungi qualche oggetto"
+msgstr "アイテムを追加する"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr ""
+msgstr "選択できるアイテムはありません。 検索条件や%sを変更してください。"
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Seleziona un oggetto"
+msgstr "アイテムを選択"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
-msgstr ""
+msgstr "まだ展示がありません。"
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "レイアウトオプション"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
-msgstr "Posizione del file"
+msgstr "ファイルの位置"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -413,7 +408,7 @@ msgstr "Posizione del file"
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Left"
-msgstr ""
+msgstr "Left"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -423,48 +418,48 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
-msgstr ""
+msgstr "Right"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 #: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
-msgstr "Dimensione del file"
+msgstr "ファイル容量"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
-msgstr ""
+msgstr "キャプションの位置"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Center"
-msgstr ""
+msgstr "Center"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "ショーケースファイルの位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "ショーケースファイルなし"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "ギャラリーの位置"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "ショーケースファイルまたはテキストがない場合、ギャラリーはページの全幅を使用します。"
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr ""
+msgstr "ギャラリーファイルサイズ"
 
 #: views/shared/exhibits/exhibit-builder-advanced-search.php:3
 msgid "Search by Exhibit"
-msgstr "Cerca per esposizione"
+msgstr "展示から検索"

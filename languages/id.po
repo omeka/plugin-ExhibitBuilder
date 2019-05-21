@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
+# irfan pradana <gondeaz@gmail.com>, 2018
 # Sukma Budi <sukmabudi@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2017-09-19 14:55+0000\n"
-"Last-Translator: patrickmj <patrickmjchnm@gmail.com>\n"
+"PO-Revision-Date: 2018-03-13 01:44+0000\n"
+"Last-Translator: irfan pradana <gondeaz@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/omeka/omeka/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,29 +42,25 @@ msgstr "Item ini tidak digunakan dalam pameran ini."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Anda harus memilih secara spesifik sebuah tema untuk mengkonfigurasinya."
 
-#: functions.php:432
+#: functions.php:438
 msgid "exhibits"
 msgstr "pameran"
 
-#: functions.php:446 views/admin/exhibits/browse.php:2
+#: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ramban Pameran"
 
-#: functions.php:462 views/admin/exhibits/add.php:6
+#: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Pameran"
 
-#: functions.php:629
-msgid "Search by Exhibit"
-msgstr "Cari berdasarkan Pameran"
-
-#: functions.php:638
+#: functions.php:641
 msgid "Exhibit"
 msgstr "Pameran"
 
-#: functions.php:639
+#: functions.php:642
 msgid "Exhibit Page"
 msgstr "Halaman Pameran"
 
@@ -79,7 +76,7 @@ msgstr "Anda tidak mempunyai pameran istimewa."
 msgid "Exhibits must be given a valid slug."
 msgstr "Pameran harus diberi sebuah slug yang valid."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:92
+#: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
 msgstr "Sebuah slug harus 30 karakter atau kurang."
 
@@ -133,21 +130,21 @@ msgstr ""
 msgid "Layout featuring a standalone file"
 msgstr ""
 
-#: models/ExhibitPage.php:91
+#: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Sebuah slug harus diberikan untuk setiap halaman pameran."
 
-#: models/ExhibitPage.php:93
+#: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Slug halaman ini sudah digunakan.  Silahkan modifikasi slug agar ia menjadi unik."
 
-#: models/ExhibitPage.php:104
+#: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
 msgstr "Halaman pameran harus diberi sebuah judul."
 
-#: models/ExhibitPage.php:154
+#: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -211,7 +208,7 @@ msgid "Slug"
 msgstr "Slug"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
-#: views/admin/exhibits/page-form.php:30
+#: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
 msgstr "Spasi kosong atau karakter khusus tidak diperkenankan"
 
@@ -264,20 +261,20 @@ msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Buat gambar cover"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:89
+#: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
 msgstr "Tampilkan Formulir Pencarian"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:90
+#: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
-msgstr ""
+msgstr "sembunyikan form pencarian"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:103
+#: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
 msgstr ""
 
@@ -295,55 +292,63 @@ msgid "Page Title"
 msgstr ""
 
 #: views/admin/exhibits/page-form.php:27
-msgid "Page Slug"
+msgid "Menu Link Title"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:30
+msgid "Optionally use a shorter title in the exhibit menu"
 msgstr ""
 
 #: views/admin/exhibits/page-form.php:36
+msgid "Page Slug"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:45
 msgid "Content"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:37
+#: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:38
+#: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:39
+#: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:56
 msgid "New Block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:49
+#: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:67
+#: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:77
+#: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
 msgstr "Simpan dan Tambah Halaman Lainnya"
 
-#: views/admin/exhibits/page-form.php:85
+#: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
 msgstr "Lampirkan Item"
 
-#: views/admin/exhibits/page-form.php:87
+#: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:107
+#: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:114
+#: views/admin/exhibits/page-form.php:122
 msgid "Apply"
 msgstr ""
 
@@ -455,3 +460,7 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr ""
+
+#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
+msgid "Search by Exhibit"
+msgstr "Cari berdasarkan Pameran"

@@ -3,407 +3,403 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Alessandro Leccese <alec.wiki@gmail.com>, 2012
-# Alfio Squatrito <info@lswebagency.it>, 2014
-# Donatella Mutti <donatella.mutti@unito.it>, 2012
-# Giorgia Menghinella <archiviofotsc@gmail.com>, 2017
-# Guybrush88 <erpizzo@alice.it>, 2015
-# stefano saverioni <associazione.bambun@gmail.com>, 2016
+# Adam Katona, 2018
+# Dora Nagy, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
-"Language-Team: Italian (http://www.transifex.com/omeka/omeka/language/it/)\n"
+"PO-Revision-Date: 2019-01-29 09:47+0000\n"
+"Last-Translator: Dora Nagy\n"
+"Language-Team: Hungarian (Hungary) (http://www.transifex.com/omeka/omeka/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
+"Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr ""
+msgstr "Kiállítások rendezése"
 
 #: config_form.php:7
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr ""
+msgstr "A kiállítások listázásának alapértelmezett rendezési sorrendje a kiállítások/böngészés oldalakon. Az alapértelmezett beállítás a 'Hozzáadás dátuma' szerint rendezi sorba a kiállításokat. "
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "Ezzel véglegesen törli a teljes %skiállítást és a hozzá tartozó összes oldalt."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
-msgstr ""
+msgstr "Ez az elem nem szerepel ebben a kiállításban."
 
 #: controllers/ExhibitsController.php:214
 msgid "You must specifically select a theme in order to configure it."
-msgstr ""
+msgstr "A konfiguráláshoz külön kell kiválasztania egy témát."
 
 #: functions.php:438
 msgid "exhibits"
-msgstr ""
+msgstr "kiállítások"
 
 #: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Esplora le esposizioni"
+msgstr "Kiállítások böngészése"
 
 #: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
-msgstr "Esposizioni"
+msgstr "Kiállítások"
 
 #: functions.php:641
 msgid "Exhibit"
-msgstr "Esposizione"
+msgstr "Kiállítás"
 
 #: functions.php:642
 msgid "Exhibit Page"
-msgstr "Pagina dell'esposizione"
+msgstr "Kiállítás oldal"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
-msgstr "Esposizione in evidenza"
+msgstr "Kiemelt kiállítás"
 
 #: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
-msgstr ""
+msgstr "Nincs kiemelt kiállítás"
 
 #: models/Exhibit.php:127
 msgid "Exhibits must be given a valid slug."
-msgstr ""
+msgstr "A kiállításoknak érvényes URL végződéssel kell rendelkezniük. "
 
 #: models/Exhibit.php:128 models/ExhibitPage.php:99
 msgid "A slug must be 30 characters or less."
-msgstr ""
+msgstr "Az URL végződés maximum 30 karakter hosszúságú lehet."
 
 #: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr ""
+msgstr "A megadott URL végződés már foglalt. Kérjük válasszon egy másikat. "
 
 #: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
-msgstr "Bisogna dare un titolo all'esibizione."
+msgstr "A kiállításnak címet kell adni."
 
 #: models/Exhibit.php:146
 msgid "The title for an exhibit must be 255 characters or less."
-msgstr ""
+msgstr "A kiállítás címe maximum 255 karakter hosszúságú lehet."
 
 #: models/Exhibit.php:150
 msgid "The name of your theme must be 30 characters or less."
-msgstr ""
+msgstr "A téma neve maximum 30 karakter hosszúságú lehet."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr "File con testo"
+msgstr "Fájl szöveggel"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "Az alapértelmezett elrendezés jobb- vagy bal oldalra igazítja a fájlokat, úgy, hogy a szöveg a velük szemközti oldalon jelenik meg"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
-msgstr "Galleria"
+msgstr "Galéria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "A galéria elrendezés a bélyegképeket is megjeleníti"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
 #: views/shared/exhibit_layouts/gallery/form.php:11
 #: views/shared/exhibit_layouts/text/form.php:2
 msgid "Text"
-msgstr "Testo"
+msgstr "Szöveg"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "Elrendezés, amely csak szövegblokkot tartalmaz fájlok nélkül"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Önálló fájlokat tartalmazó elrendezés"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
-msgstr ""
+msgstr "A kiállítás minden oldalának URL végződést kell megadni. "
 
 #: models/ExhibitPage.php:100
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "A megadott URL végződés már foglalt. Kérjük egyedi végződést adjon meg."
 
 #: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
-msgstr ""
+msgstr "A kiállítás oldalainak címeket kell adni."
 
 #: models/ExhibitPage.php:161
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Valaki szerkesztette az oldalt amíg Ön is dolgozott rajta. Az Ön módosításait elvetettük, hogy mások munkája ne vesszen el."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
-msgstr "Aggiungi un'esposizione"
+msgstr "Kiállítás hozzáadása"
 
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Oggetto selezionato: %s"
+msgstr "Kiválasztott elem: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "Válassza ki a használni kívánt fájlt."
 
 #: views/admin/exhibits/attachment.php:12
 #: views/admin/exhibits/block-form.php:9
 msgid "Remove/Restore"
-msgstr "Rimuovi/Ripristina"
+msgstr "Eltávolítás/Visszaállítás"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr "Blocca"
+msgstr "Zárolás"
 
 #: views/admin/exhibits/block-form.php:10
 msgid "Expand/Collapse"
-msgstr ""
+msgstr "Kinyitás/Összecsukás"
 
 #: views/admin/exhibits/browse.php:8
 msgid "There are no exhibits yet."
-msgstr "Non ci sono ancora delle esibizioni."
+msgstr "Jelenleg nincs kiállítás."
 
 #: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
-msgstr "Aggiungi un'esibizione"
+msgstr "Kiállítás hozzáadása"
 
 #: views/admin/exhibits/browse.php:31
 #: views/admin/exhibits/exhibit-metadata-form.php:49
 msgid "Theme"
-msgstr "Tema"
+msgstr "Téma"
 
 #: views/admin/exhibits/browse.php:63
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
-msgstr "Tema pubblico attuale"
+msgstr "Aktuális nyilvános téma"
 
 #: views/admin/exhibits/edit.php:3
 #, php-format
 msgid "Edit Exhibit \"%s\""
-msgstr "Modifica l'esposizione \"%s\""
+msgstr "\"%s\" kiállítás szerkesztése"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
-msgstr ""
+msgstr "Kiállítás metaadata"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:15
 msgid "Slug"
-msgstr ""
+msgstr "URL végződés"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:18
 #: views/admin/exhibits/page-form.php:39
 msgid "No spaces or special characters allowed"
-msgstr ""
+msgstr "Szóközök és speciális karakterek használata nem engedélyezett"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:24
 #: views/public/exhibits/summary.php:15
 msgid "Credits"
-msgstr "Ringraziamenti"
+msgstr "Kreditek"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr "Utilizzare la pagina di sommario?"
+msgstr "Használja az összefoglaló oldalt?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "A kiállítás az összefoglaló oldalon kezdődjön. Ha nem jelöli be, a kiállítás az első kiállítás oldalon fog megjelenni, ha az létezik."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Borítókép"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Válassza ki, hogy mely kép reprezentálja a kiállítást. A kiválasztott fájl lesz a kiállítás bélyegképe."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
-msgstr "Pagine"
+msgstr "Oldalak"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:82
 msgid "There are no pages."
-msgstr "Non ci sono pagine."
+msgstr "Nincsenek oldalak"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Az oldalak újrarendezéséhez, kattintson és húzza az oldalt a kívánt helyre."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
-msgstr "Aggiungi pagina"
+msgstr "Oldal hozzáadása"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Kiállítás törlése"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Válasszon borítóképet"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:97
 msgid "Show Search Form"
-msgstr "Mostra Modulo Ricerca"
+msgstr "Keresési űrlap megjelenítése"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
 #: views/admin/exhibits/page-form.php:98
 msgid "Hide Search Form"
-msgstr ""
+msgstr "Keresési űrlap elrejtése"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:134
 #: views/admin/exhibits/page-form.php:111
 msgid "Change Selected Item"
-msgstr ""
+msgstr "Kiválasztott elemek módosítása"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:139
 msgid "Choose"
-msgstr ""
+msgstr "Válasszon"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
 msgid "Edit Page \"%s\""
-msgstr "Modifica la pagina \"%s\""
+msgstr "\"%s\" oldal szerkesztése"
 
 #: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
-msgstr "Titolo della pagina"
+msgstr "Oldal címe"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Menü hivatkozás címe"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Tetszés szerint használjon rövidebb címet a kiállítás menüjének."
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
-msgstr ""
+msgstr "Oldal URL végződése"
 
 #: views/admin/exhibits/page-form.php:45
 msgid "Content"
-msgstr "Contenuto"
+msgstr "Tartalom"
 
 #: views/admin/exhibits/page-form.php:46
 msgid "Collapse All"
-msgstr "Collassa tutto"
+msgstr "Mind összecsukása"
 
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
-msgstr "Espandi tutto"
+msgstr "Mind kinyitása"
 
 #: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "A blokkok és elemek újrarendezéséhez, kattintson és húzza őket a kívánt helyre."
 
 #: views/admin/exhibits/page-form.php:56
 msgid "New Block"
-msgstr "Nuovo blocco"
+msgstr "Új blokk"
 
 #: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
-msgstr ""
+msgstr "Rendezés kiválasztása"
 
 #: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
-msgstr ""
+msgstr "Új tartalmi blokk hozzáadása"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
-msgstr "Salva e aggiungi un'altra pagina"
+msgstr "Mentés és újabb oldal hozzáadása"
 
 #: views/admin/exhibits/page-form.php:93
 msgid "Attach an Item"
-msgstr "Allega un oggetto"
+msgstr "Elem csatolása"
 
 #: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "Visszatérés a kiválasztott elemhez"
 
 #: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
-msgstr ""
+msgstr "Adjon meg egy leírást."
 
 #: views/admin/exhibits/page-form.php:122
 msgid "Apply"
-msgstr "Applica"
+msgstr "Alkalmazás"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr ""
+msgstr "Kiállítás böngészése címke alapján"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
-msgstr ""
+msgstr "Nincs megjeleníthető címke. Először címkézzen meg kiállításokat."
 
 #: views/admin/exhibits/theme-config.php:16
 #, php-format
 msgid "Configure the &#8220;%s&#8221; Theme"
-msgstr "Configura il &#8220;%s&#8221; tema"
+msgstr "Konfigurálja a  &#8220;%s&#8221; témát"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Az Omeka az első csatolt fájlt fogja borítóképként használni."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr ""
+msgstr "Módosítás"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"
-msgstr "aggiungi qualche oggetto"
+msgstr "adjon hozzá elemeket"
 
 #: views/admin/items/browse.php:8
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr ""
+msgstr "Nincsenek választandó elemek. Kérjük, finomítsa a keresést vagy %s."
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Seleziona un oggetto"
+msgstr "Válasszon ki egy elemet"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
-msgstr ""
+msgstr "Nincs elérhető kiállítás."
 
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "Rendezési beállítások"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
 msgid "File position"
-msgstr "Posizione del file"
+msgstr "Fájl pozíciója"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
@@ -413,7 +409,7 @@ msgstr "Posizione del file"
 #: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Left"
-msgstr ""
+msgstr "Balra"
 
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
@@ -423,48 +419,48 @@ msgstr ""
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
-msgstr ""
+msgstr "Jobbra"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 #: views/shared/exhibit_layouts/file/form.php:26
 msgid "File size"
-msgstr "Dimensione del file"
+msgstr "A fájl mérete"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
 #: views/shared/exhibit_layouts/file/form.php:39
 #: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
-msgstr ""
+msgstr "Feliratok pozíciója"
 
 #: views/shared/exhibit_layouts/file-text/form.php:49
 #: views/shared/exhibit_layouts/file/form.php:21
 #: views/shared/exhibit_layouts/file/form.php:44
 #: views/shared/exhibit_layouts/gallery/form.php:69
 msgid "Center"
-msgstr ""
+msgstr "Középre"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "A fájl pozíciójának megjelenítése"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Nincs megjeleníthető fájl"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
-msgstr ""
+msgstr "A galéria pozíciója"
 
 #: views/shared/exhibit_layouts/gallery/form.php:46
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Ha nincs megjeleníthető fájl vagy szöveg, a galéria az oldal teljes szélességét fogja használni."
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
-msgstr ""
+msgstr "Galéria fájlmérete"
 
 #: views/shared/exhibits/exhibit-builder-advanced-search.php:3
 msgid "Search by Exhibit"
-msgstr "Cerca per esposizione"
+msgstr "Kiállítás szerinti keresés"
