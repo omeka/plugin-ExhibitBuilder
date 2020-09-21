@@ -19,9 +19,9 @@
         </h5>
         <?php echo $this->formHidden('cover_image_item_id', $file->item_id); ?>
         <?php echo $this->formHidden('cover_image_file_id', $file->id); ?>
-        <span class="edit-cover-image" role="button"><?php echo __('Change'); ?></span>
+        <span class="edit-cover-image big blue button" role="button"><?php echo __('Change'); ?></span>
     </div>
     <?php else: ?>
-    <span class="edit-cover-image" id="first-time-cover-image" role="button"><?php echo __('Change'); ?></span>
+    <span class="edit-cover-image big blue button" id="first-time-cover-image" role="button"><?php echo __('Change'); ?></span>
     <?php endif; ?>
 </div>

@@ -1,8 +1,8 @@
 #exhibits-breadcrumb {
-    padding: .5em;
+    padding: 10px 25px;
     background-color: #fbfbf9;
     border-bottom: 1px solid #E7E7E7;
-    margin: -20px -10px 20px -10px;
+    margin: -25px -25px 20px;
 }
 
 .instructions {
@@ -46,7 +46,7 @@
 #cover-image-panel,
 #attachment-panel {
     display: none;
-    padding: 10px 5px 40px;
+    padding: 25px;
     position: relative;
 }
 
@@ -74,7 +74,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #F8F6F0;
+    background-color: #fff;
     border-top: 1px solid #D6D5C2;
     padding: 10px;
     text-align: right;
@@ -139,24 +139,24 @@
 #item-list, #page-search-form, #attachment-options .options,
 #cover-image-options .options {
     position: absolute;
-    top: 50px;
+    top: 75px;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 5px;
+    padding: 0 25px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
 #cover-image-options .options,
 #attachment-options .options {
-    top: 38px;
-    bottom: 46px;
-    padding: 10px 10px 0 10px;
+    top: 40px;
+    bottom: 40px;
+    padding: 0 25px;
 }
 
 .editing-selection #item-list, .editing-selection #page-search-form {
-    top: 88px;
+    top: 120px;
 }
 
 .editing-selection #item-form {
@@ -179,6 +179,18 @@
     line-height: 1.5em;
     margin: 5px 0;
     overflow:hidden;
+    
+    
+    background: #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border: 1px solid #D6D5C2;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.5em;
+    margin: 0;
 }
 
 #item-list .item-listing:first-of-type {
@@ -190,29 +202,49 @@
 }
 
 #item-list .item-selected {
-    background: #D1C6A8;
-    background: -moz-linear-gradient(top, #EEEADD, #D1C6A8);
-    background: -webkit-linear-gradient(top, #EEEADD, #D1C6A8);
-    background: linear-gradient(to bottom, #EEEADD, #D1C6A8);
+    background: #f1f2f2;
 }
 
 #item-list .select-item {
     display: none;
     position: absolute;
-    top: 0;
+    top: 8px;
     right: 0;
     margin: 0;
     bottom: 0;
-    background: -moz-linear-gradient(top, #B3A679, #503F20);
-    background: -webkit-linear-gradient(top, #B3A679, #503F20);
-    background: linear-gradient(to bottom, #B3A679, #503F20);
-    border-width: 0 0 0 1px;
-    border-color: #8A8122;
-    border-radius: 0 1px 1px 0;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    padding: 0 20px;
+
+	-webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-appearance: none;
+    
+    background: #f1f2f2;
+    border: 1px solid rgba(#232323, 0.25);
+    color: #232323;
+    
+    margin: 0 5px 8px 0;
+    min-height: 25px;
+    padding: 10px 18px;
+    line-height: 16px;
+    
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+    transition: 0.5s all;
+    
+    &:hover,
+    &:focus {
+	    border-color: rgba(#232323, 0.65);
+	    background: darken(#f1f2f2, 5%);
+	    outline: none;
+    }
+
 }
 
 #item-list .select-item:after {
@@ -252,7 +284,6 @@
 
 #show-or-hide-search, #view-all-items {
     float: left;
-    color: #fff;
     margin-bottom: 10px;
 }
 
@@ -266,7 +297,7 @@
 
 #change-selected-item, #revert-selected-item {
     margin-bottom: 10px;
-    background: #F8F6F0;
+    background: #F1f2f2;
     filter: none; /* Old IE fallback background override */
     width: 100%;
     border-width: 0 0 1px 0;
@@ -279,7 +310,7 @@
     left: 0;
     right: 0;
     border-color: #EEE;
-    color: #A28E8A;
+    color: #666;
     text-shadow: none;
     padding: 10px;
     outline: none;
@@ -559,19 +590,20 @@ div.selected-items {
 }
 
 .cover-image-form-elements {
-    background-color: #7C7E5D;
+	padding: 25px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
+    text-align: center;
+}
+
+.cover-image-form-elements.attached {
+	padding-left: 100px;
 }
 
 .cover-image-form-elements .explanation {
-    position: absolute;
     width: 100%;
     text-align: center;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    z-index: 51;
-    margin-top: -12px;
 }
 
 .cover-image-form-elements.attached .explanation {
@@ -586,19 +618,16 @@ div.selected-items {
 
 .cover-image-form-elements h5,
 .selected-item-list .attachment h5 {
-    font-family: "Cabin", sans-serif;
-    font-weight: normal;
-    margin: 0;
+    margin: 0 0 20px;
     line-height: 20px;
     font-size: 14px;
-    height: 82px;
     overflow: hidden;
     position: relative;
     z-index: 10;
 }
 
 .cover-image-form-elements h5 {
-    margin-left: 100px;
+    /*margin-left: 100px;*/
 }
 
 .selected-item-list .attachment h5 a {
@@ -614,27 +643,13 @@ div.selected-items {
     left: 0;
     right: 0;
     opacity: 0.2;
+    
 }
 
 .cover-image-form-elements .cover-image-background {
     width: 100px;
+    margin: 10px 0 0 10px;
     opacity: 1;
-}
-
-.edit-cover-image,
-.edit-attachment {
-    position: absolute;
-    width: 100%;
-    display: inline-block;
-    background-color: #BFC19C;
-    margin-left: -10px;
-    bottom: 0;
-    padding: 0 10px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
 }
 
 .cover-image-form-elements .delete-element,
@@ -645,6 +660,7 @@ div.selected-items {
     right: 3px;
     text-indent: -9999px;
     cursor: pointer;
+    text-align: center;
 }
 
 .cover-image-form-elements .delete-element:after,
@@ -788,16 +804,6 @@ input[type=submit].configure-button {
 
 .exhibits .ui-widget-content {
     border: 0;
-}
-
-.exhibits .ui-widget-header {
-    background-image: -moz-linear-gradient(top, #F5F3EC, #E9E5DA);
-    background-image: -webkit-linear-gradient(top, #F5F3EC, #E9E5DA);
-    background-image: linear-gradient(to bottom, #F5F3EC, #E9E5DA);
-    -moz-border-radius: 2px 2px 0 0;
-    -webkit-border-radius: 2px 2px 0 0;
-    border-radius: 2px 2px 0 0;
-    padding: 10px;
 }
 
 .loading .spinner {
