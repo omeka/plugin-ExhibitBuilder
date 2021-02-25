@@ -11,10 +11,12 @@
 </div>
 <div class="field">
     <div class="two columns alpha">
-        <label for="exhibit_builder_researcher_options"><?php echo __('Researcher Permissions'); ?></label>
+        <label for="exhibit_builder_researcher_permissions"><?php echo __('Researcher Permissions'); ?></label>
     </div>
     <div class="inputs five columns omega">
         <p class="explanation">Allow researchers to view unpublished exhibits.</p>
-        <?php echo get_view()->formCheckbox('exhibit_builder_researcher_options', get_option('exhibit_builder_researcher_options'), null, array('true' => __('Can view'), 'false' => __('Cannot view'))); ?>
+        <?php echo get_view()->formCheckbox('exhibit_builder_researcher_permissions', get_option('exhibit_builder_researcher_permissions'), null, array('checked' => 1)); ?> 
     </div>
 </div>
+
+<!-- ($name, $value = null, $attribs = null, array $checkedOptions = null) -->
