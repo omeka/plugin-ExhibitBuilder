@@ -1,6 +1,7 @@
 <?php
 $title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_results);
 echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
+echo item_search_filters();
 ?>
     
 <?php if (!count($exhibits)): ?> 
@@ -43,12 +44,15 @@ echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
 	            if ($exhibitImage):
 	                echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image'));
 	            endif; ?>
-	            <h3 class="title">
-	            <a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
-	            <?php if(!$exhibit->public): ?>
-	                <small><?php echo __('(Private)'); ?></small>
-	            <?php endif; ?>
-	            </h3>
+	            
+	            <h3 class="title <?php if ($exhibit->featured): ?>featured<?php endif; ?>">
+                	<a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
+
+                    <?php if(!$exhibit->public): ?>
+                    	<small><?php echo __('(Private)'); ?></small>
+                    <?php endif; ?>
+                </h3>
+	            
 	            <ul class="action-links group">
 	                <?php if (is_allowed($exhibit, 'edit')): ?>
 	                <li><?php echo link_to($exhibit, 'edit', __('Edit'), array('class'=>'edit')); ?></li>
