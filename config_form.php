@@ -18,5 +18,3 @@
         <?php echo get_view()->formCheckbox('exhibit_builder_researcher_permissions', get_option('exhibit_builder_researcher_permissions'), null, array('checked' => 1)); ?> 
     </div>
 </div>
-
-<!-- ($name, $value = null, $attribs = null, array $checkedOptions = null) -->
