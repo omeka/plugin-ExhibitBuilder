@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Bryndís Zoega <inactive+bryndiszoega@transifex.com>, 2014
+# 72d2c1bc1be92c9fcf9a3bc8e046413f_fd3c651 <2bf4953ea485be2620221690b3005e74_204966>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
+"PO-Revision-Date: 2021-03-19 19:12+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Icelandic (http://www.transifex.com/omeka/omeka/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,14 @@ msgstr ""
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
+msgstr ""
+
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
 msgstr ""
 
 #: controllers/ExhibitsController.php:53

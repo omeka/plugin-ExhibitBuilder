@@ -29,6 +29,14 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "A kiállítások listázásának alapértelmezett rendezési sorrendje a kiállítások/böngészés oldalakon. Az alapértelmezett beállítás a 'Hozzáadás dátuma' szerint rendezi sorba a kiállításokat. "
 
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."

@@ -28,6 +28,14 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "您想在展览/浏览页面上排序的展览列表的默认方法。默认为“添加日期”。"
 
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."

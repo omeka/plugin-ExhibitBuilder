@@ -31,6 +31,14 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "De standaardmethode waarmee u de lijst met tentoonstellingen wilt sorteren op de tentoonstellingen/doorbladerpagina. Standaard is 'Toegevoegd op datum'."
 
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."

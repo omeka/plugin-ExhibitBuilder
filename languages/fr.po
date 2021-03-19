@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Daniel Berthereau <daniel.transifex@berthereau.net>, 2016
+# Daniel Berthereau <daniel.transifex@berthereau.net>, 2016,2020
+# a270031086f2a0d3514bc0cb507b48f6, 2019
 # fiuzzy <fiuzzy1@gmail.com>, 2016-2017
 # Isabelle Gilles <isabelle.gillesgallet@gmail.com>, 2015
 # Julien Sicot <julien.sicot@gmail.com>, 2012
@@ -17,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
+"PO-Revision-Date: 2021-03-19 19:12+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: French (http://www.transifex.com/omeka/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +36,14 @@ msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "La méthode par défaut à utiliser pour trier la liste des expositions sur la page \"Parcourir les expositions\". Par défaut : 'Date d'ajout'."
+
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -73,7 +82,7 @@ msgstr "Page de l'exposition"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
-msgstr "Mettre en avant cette exposition"
+msgstr "Exposition mise en avant"
 
 #: helpers/ExhibitFunctions.php:155
 msgid "You have no featured exhibits."
@@ -300,11 +309,11 @@ msgstr "Titre de la page"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Titre du lien de menu"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Utilisez éventuellement un titre plus court dans le menu de l'exposition"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"

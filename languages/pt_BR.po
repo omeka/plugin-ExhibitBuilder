@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012-2014,2016-2017
+# Rafael Trindade <drafael@usp.br>, 2019
 # Edson Duarte <edson@artsoft.com.br>, 2016
 # Tel, 2014-2015
 msgid ""
@@ -11,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Omeka\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
+"PO-Revision-Date: 2021-03-19 19:12+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/omeka/omeka/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +30,14 @@ msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
 msgstr "O método padrão usado para ordenar as listagens de exposições na página de exposições ou de navegação. Padrão é por \"Data Adicionada\"."
+
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -294,11 +303,11 @@ msgstr "Título da página"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Título do Link do Menu"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Opcionalmente, use um título mais curto no menu de exibição"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
