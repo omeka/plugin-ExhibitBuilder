@@ -27,6 +27,14 @@ msgid ""
 "exhibits/browse page. Default is 'Date Added'."
 msgstr ""
 
+#: config_form.php:9
+msgid "Alphabetical"
+msgstr ""
+
+#: config_form.php:9
+msgid "Recent"
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid ""
