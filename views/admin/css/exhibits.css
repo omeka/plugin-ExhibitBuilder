@@ -792,7 +792,6 @@ input[type=submit].configure-button {
     width: 30%;
     float: left;
     margin-right: 0;
-    line-height: 22px;
 }
 
 /* jQuery UI overrides */
