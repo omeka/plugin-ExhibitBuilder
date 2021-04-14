@@ -783,6 +783,16 @@ input[type=submit].configure-button {
     margin-right: 0;
 }
 
+@media screen and (max-width: 480px) {
+    #theme {
+        width: 100%;
+    }
+
+    input[type=submit].configure-button {
+        width: auto;
+    }
+}
+
 /* jQuery UI overrides */
 
 .exhibits .ui-dialog {
