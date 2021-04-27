@@ -150,14 +150,14 @@ Omeka.ExhibitBuilder = {};
         
         $('#block-container').on('click', '> span', function() {
             if ($(this).hasClass('collapse')) {
-                $('.drawer').each( function() {
+                $('.drawer-toggle').each( function() {
                     if ($(this).hasClass('opened')) {
                         $(this).removeClass('opened').addClass('closed');
                         $(this).parent().siblings('div').toggle();
                     }
                 });
             } else {
-                $('.drawer').each( function() {
+                $('.drawer-toggle').each( function() {
                     if ($(this).hasClass('closed')) {
                         $(this).removeClass('closed').addClass('opened');
                         $(this).parent().siblings('div').toggle();
@@ -166,7 +166,7 @@ Omeka.ExhibitBuilder = {};
             }
         });
 
-        $('#block-container').on('click', '.drawer', function (event) {
+        $('#block-container').on('click', '.drawer-toggle', function (event) {
             event.preventDefault();
             $(this).toggleClass('closed');
             $(this).toggleClass('opened');

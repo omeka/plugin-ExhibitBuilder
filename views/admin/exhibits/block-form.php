@@ -7,7 +7,7 @@ $order = $block->order;
     <div class="sortable-item block-header">
         <h2><?php echo __('Block'); ?> <?php echo $order; ?> (<?php echo $layout->name; ?>)</h2>
         <div class="delete-element" role="button" title="<?php echo  __('Remove/Restore') ?>"></div>
-        <div class="drawer opened" role="button" title="<?php echo __('Expand/Collapse'); ?>"></div>
+        <div class="drawer-toggle opened" role="button" title="<?php echo __('Expand/Collapse'); ?>"></div>
     </div>
     <div class="block-body">
         <?php echo $this->formHidden($stem . '[layout]', $block->layout); ?>
