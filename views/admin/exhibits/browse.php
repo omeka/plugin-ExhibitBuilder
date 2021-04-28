@@ -39,20 +39,20 @@ echo item_search_filters();
 	
 	<?php foreach($exhibits as $key=>$exhibit): ?>
 	    <tr class="exhibit<?php if ($key % 2 == 1) echo ' even'; else echo ' odd'; ?>">
-	        <td class="exhibit-info<?php if ($exhibit->featured) echo ' featured'; ?>">
+	        <td class="exhibit-info">
 	            <?php $exhibitImage = record_image($exhibit, 'square_thumbnail');
 	            if ($exhibitImage):
 	                echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image'));
 	            endif; ?>
 	            
-	            <h3 class="title <?php if ($exhibit->featured): ?>featured<?php endif; ?>">
+	            <span class="title">
                 	<a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
 					<?php if ($exhibit->featured): ?><span class="featured" aria-label="<?php echo __('Featured'); ?>" title="<?php echo __('Featured'); ?>"></span><?php endif; ?>
 
                     <?php if(!$exhibit->public): ?>
                     	<small><?php echo __('(Private)'); ?></small>
                     <?php endif; ?>
-                </h3>
+                </span>
 	            
 	            <ul class="action-links group">
 	                <?php if (is_allowed($exhibit, 'edit')): ?>
