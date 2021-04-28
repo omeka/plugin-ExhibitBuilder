@@ -1,6 +1,6 @@
 <?php
 $title = __('Browse Exhibits') . ' ' . __('(%s total)', $total_results);
-echo head(array('title'=>$title, 'bodyclass'=>'exhibits'));
+echo head(array('title'=>$title, 'bodyclass'=>'exhibits browse'));
 echo item_search_filters();
 ?>
     
