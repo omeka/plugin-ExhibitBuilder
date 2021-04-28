@@ -47,6 +47,7 @@ echo item_search_filters();
 	            
 	            <h3 class="title <?php if ($exhibit->featured): ?>featured<?php endif; ?>">
                 	<a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
+					<?php if ($exhibit->featured): ?><span class="featured" aria-label="<?php echo __('Featured'); ?>" title="<?php echo __('Featured'); ?>"></span><?php endif; ?>
 
                     <?php if(!$exhibit->public): ?>
                     	<small><?php echo __('(Private)'); ?></small>
