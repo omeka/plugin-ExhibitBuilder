@@ -143,10 +143,8 @@
 </div>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
-    jQuery(window).load(function() {
-        Omeka.wysiwyg();
-    });
     jQuery(document).ready(function(){
+        Omeka.wysiwyg();
         Omeka.ExhibitBuilder.setUpCoverImageChooser(
           <?php echo json_encode(url('exhibit-builder/files/cover-image')); ?>,
           <?php echo js_escape(url('exhibits/attachment-item-options')); ?>
