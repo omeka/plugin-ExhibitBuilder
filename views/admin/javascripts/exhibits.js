@@ -462,7 +462,6 @@ Omeka.ExhibitBuilder = {};
                 itemListing.addClass('item-selected');
             }
             var data = {item_id: $('#item-select .item-selected').data('itemId')};
-            console.log(data);
             Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
             $('#cover-image-panel')
                 .addClass('editing-cover-image')
