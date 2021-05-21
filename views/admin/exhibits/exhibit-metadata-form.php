@@ -144,7 +144,6 @@
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
 </div>
 <script type="text/javascript" charset="utf-8">
-//<![CDATA[
     jQuery(document).ready(function(){
         Omeka.wysiwyg();
         Omeka.ExhibitBuilder.setUpCoverImageChooser(
@@ -153,5 +152,4 @@
         );
         Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse')); ?>);
     });
-//]]>
 </script>

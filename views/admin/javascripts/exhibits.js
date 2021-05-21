@@ -438,7 +438,7 @@ Omeka.ExhibitBuilder = {};
     Omeka.ExhibitBuilder.setUpCoverImageChooser = function (coverImageChooserUrl, itemOptionsUrl) {
         var coverImagePanel = $('#cover-image-panel');
         var selected_cover_image_id = $('#cover_image_file_id').val();
-
+        
         Omeka.ExhibitBuilder.createDialog(coverImagePanel);
 
         function getCoverImageData(container) {
@@ -456,7 +456,13 @@ Omeka.ExhibitBuilder = {};
         // Hook select buttons to item options form
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
+            var itemListing = $(this).parents('.item-listing');
+            if (!itemListing.hasClass('item-selected')) {
+                $('.item-selected').removeClass('item-selected');
+                itemListing.addClass('item-selected');
+            }
             var data = {item_id: $('#item-select .item-selected').data('itemId')};
+            console.log(data);
             Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
             $('#cover-image-panel')
                 .addClass('editing-cover-image')
