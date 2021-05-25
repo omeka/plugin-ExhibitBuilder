@@ -12,20 +12,27 @@
 }
 
 #block-container > h2 {
-    float: left;
+    margin-right: 1rem;
+    display: inline-block;
 }
 
-.collapse, .expand {
+.expand-collapse {
     float: right;
     line-height: 26px;
     cursor: pointer;
     color: #C76941;
 }
 
-.expand:after {
-    content: "|";
-    margin: 0 5px;
-    color: #4C3939;
+.expand-collapse button {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .expand-collapse {
+        clear: both;
+        float: none;
+        margin: -1rem 0 0;
+    }
 }
 
 /* override for core's .undo-delete hiding */
