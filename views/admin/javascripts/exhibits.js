@@ -232,16 +232,10 @@ Omeka.ExhibitBuilder = {};
             Omeka.ExhibitBuilder.setSearchVisibility();
         });
 
-        // Make item listings selectable
-        $('#item-select').on('click', '.item-listing', function (event) {
-            $('#item-list div.item-selected').removeClass('item-selected');
-            $(this).addClass('item-selected');
-        });
-
         // Hook select buttons to item options form
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
-            var data = {item_id: $('#item-select .item-selected').data('itemId')};
+            var data = {item_id: $(this).parent().data('itemId')};
             Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#attachment-panel', '#attachment-item-options');
             $('#attachment-panel')
                 .addClass('editing-attachment')
@@ -449,12 +443,7 @@ Omeka.ExhibitBuilder = {};
         // Hook select buttons to item options form
         $('#item-select').on('click', '.select-item', function (event) {
             event.preventDefault();
-            var itemListing = $(this).parents('.item-listing');
-            if (!itemListing.hasClass('item-selected')) {
-                $('.item-selected').removeClass('item-selected');
-                itemListing.addClass('item-selected');
-            }
-            var data = {item_id: $('#item-select .item-selected').data('itemId')};
+            var data = {item_id: $(this).parent().data('itemId')};
             Omeka.ExhibitBuilder.loadItemOptionsForm(data, itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
             $('#cover-image-panel')
                 .addClass('editing-cover-image')
@@ -492,21 +481,6 @@ Omeka.ExhibitBuilder = {};
                 Omeka.ExhibitBuilder.loadItemOptionsForm(getCoverImageData(coverImage), itemOptionsUrl, '#cover-image-panel', '#cover-image-item-options');
                 coverImagePanel.addClass('editing-cover-image').dialog('open');
             }
-        });
-
-        $('#cover-image-container').on('click', '#exhibit-choose-cover-image', function (event) {
-            event.preventDefault();
-            coverImagePanel
-                .removeClass('editing-cover-image')
-                .removeClass('editing-selection')
-                .dialog('open');
-            $('div.item-listing[data-item-id=' + selected_cover_image_id +']').click();
-        });
-
-        $('#item-select').on('click', '.item-listing', function (event) {
-            $('#item-list div.item-selected').removeClass('item-selected');
-            $(this).addClass('item-selected');
-            $('#choose-cover-image').prop('disabled', false);
         });
 
         $('#choose-cover-image').on('click', function (event) {
