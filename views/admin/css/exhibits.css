@@ -700,12 +700,22 @@ div.selected-items {
 
 .layout-options label {
     font-weight: normal;
+    display: inline-block;
+    width: 30%;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .layout-options label {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
 }
 
 .layout-options > div {
     display: none;
     border-bottom: 1px solid #D6D5C2;
-    padding: 20px 10px;
+    padding: 10px;
 }
 
 .layout-options > .block-header {
@@ -713,6 +723,12 @@ div.selected-items {
     padding: 10px;
     overflow: auto;
     line-height: 1.5em;
+}
+
+.layout-options > .block-header ~ div.opened {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .frozen:after {
