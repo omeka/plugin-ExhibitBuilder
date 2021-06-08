@@ -150,6 +150,11 @@
     padding: 0 25px;
 }
 
+.options h1 {
+    font-size: 20px;
+    line-height: 1.25;
+}
+
 .editing-selection #item-list, .editing-selection #page-search-form {
     top: 120px;
 }
