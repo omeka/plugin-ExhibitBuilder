@@ -16,9 +16,7 @@ echo item_search_filters();
 <?php else: ?>
 
 <?php if (is_allowed('ExhibitBuilder_Exhibits', 'add')): ?>
-<div class="table-actions">
     <a href="<?php echo html_escape(url('exhibits/add')); ?>" class="full-width-mobile green add button"><?php echo __('Add an Exhibit'); ?></a>
-</div>
 <?php endif; ?>
 
 <?php echo pagination_links(); ?>
