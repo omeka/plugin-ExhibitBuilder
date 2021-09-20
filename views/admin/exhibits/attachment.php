@@ -16,11 +16,10 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
         <div class="attachment-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
         <?php endif; ?>
         <h5>
-            #<?php echo html_escape($item->id); ?>:<br>
             <?php if (!metadata($item, 'public')): ?>
             <?php echo __('(Private)') . ' '; ?>
             <?php endif; ?>
-            <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
+            <?php echo metadata($item,'rich_title', array('no_escape' => true)); ?>
         </h5>
         <?php echo $this->formHidden($stem . '[item_id]', $item->id); ?>
         <?php if ($file): ?>
