@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012-2014,2016-2017
-# Rafael Trindade <drafael@usp.br>, 2019
+# Deidson Rafael <drafael@usp.br>, 2019
 # Edson Duarte <edson@artsoft.com.br>, 2016
 # Tel, 2014-2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Omeka\n"
+"Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2021-03-19 19:12+0000\n"

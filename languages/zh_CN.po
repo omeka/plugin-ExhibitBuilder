@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Hong Zhang <zhangh@unlv.nevada.edu>, 2013,2018
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2013,2018,2021
 msgid ""
 msgstr ""
-"Project-Id-Version: Omeka\n"
+"Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-03-05 17:36+0000\n"
+"PO-Revision-Date: 2021-04-25 06:29+0000\n"
 "Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/omeka/omeka/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "您想在展览/浏览页面上排序的展览列表的默认方法。�
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "字母顺序"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "最近的"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -357,7 +357,7 @@ msgstr "提供一个标题。"
 
 #: views/admin/exhibits/page-form.php:122
 msgid "Apply"
-msgstr "应用"
+msgstr "实施"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
@@ -378,7 +378,7 @@ msgstr "Omeka将使用第一个附属文件作为封面图片。"
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
-msgstr "更换"
+msgstr "更改"
 
 #: views/admin/items/browse.php:8
 msgid "add some items"

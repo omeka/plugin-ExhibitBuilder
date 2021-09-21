@@ -9,10 +9,10 @@
 # Peter Baan <exnihilo@xs4all.nl>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: Omeka\n"
+"Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2018-02-14 19:43+0000\n"
+"PO-Revision-Date: 2021-03-19 19:12+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/omeka/omeka/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"

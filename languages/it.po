@@ -5,18 +5,19 @@
 # Translators:
 # Alessandro Leccese <alec.wiki@gmail.com>, 2012
 # Alfio Squatrito <info@lswebagency.it>, 2014
-# Daniele Binaghi, 2019
+# Daniele Binaghi, 2019,2021
 # Donatella Mutti <donatella.mutti@unito.it>, 2012
 # Giorgia Menghinella <archiviofotsc@gmail.com>, 2017
 # Guybrush88 <erpizzo@alice.it>, 2015
+# Joe Mauri <asbruff@gmail.com>, 2021
 # stefano saverioni <associazione.bambun@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Omeka\n"
+"Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2021-03-19 19:12+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2021-06-25 09:40+0000\n"
+"Last-Translator: Daniele Binaghi\n"
 "Language-Team: Italian (http://www.transifex.com/omeka/omeka/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,15 +33,15 @@ msgstr "Ordinamento esposizioni"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr ""
+msgstr "Il metodo predefinito in base al quale desideri ordinare l'elenco delle esposizioni nella pagina exhibits/browse. L'impostazione predefinita è \"Data aggiunta\". "
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabetico"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Recenti"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -118,7 +119,7 @@ msgstr "File con testo"
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "L'impaginazione di default mostra i file giustificati a sinistra o destra con testo visualizzato sul lato opposto"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
@@ -126,7 +127,7 @@ msgstr "Galleria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "Un'impaginazione galleria con miniature"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -137,11 +138,11 @@ msgstr "Testo"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "Impaginazione con un blocco di testo senza file"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Impaginazione con un file indipendente"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -151,7 +152,7 @@ msgstr "Ad ogni pagina dell'esposizione deve essere assegnato uno slug."
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
-msgstr ""
+msgstr "Questo slug di pagina è già stato usato. Modifica lo slug in modo che sia unico."
 
 #: models/ExhibitPage.php:111
 msgid "Exhibit pages must be given a title."
@@ -161,7 +162,7 @@ msgstr "Dev'essere dato un titolo alle pagine dell'esposizione."
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Qualcuno ha modificato la pagina mentre ci stavi lavorando. Le tue modifiche sono state scartate per evitare di perdere i suoi cambiamenti."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -170,7 +171,7 @@ msgstr "Aggiungi un'esposizione"
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr "Oggetto selezionato: %s"
+msgstr "Documento selezionato: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
@@ -238,7 +239,7 @@ msgstr "Utilizzare la pagina di sommario?"
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Inizia l'esibizione nella pagina sommario. Se deselezionato, inizia dalla prima pagina dell'esibizione nel caso esista."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
@@ -248,7 +249,7 @@ msgstr "Immagine di copertina"
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Scegli un file che rappresenti questa esibizione. Il file selezionato funzionerà da miniatura per l'esibizione."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -261,7 +262,7 @@ msgstr "Non ci sono pagine."
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Per riordinare o annidare le pagine, clicca e trascina una pagina nella posizione che preferisci."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
@@ -306,7 +307,7 @@ msgstr "Titolo della pagina"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Titolo Collegamento Menu"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
@@ -314,7 +315,7 @@ msgstr "Usa opzionalmente un titolo più corto nel menu dell'esposizione"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
-msgstr ""
+msgstr "Slug Pagina"
 
 #: views/admin/exhibits/page-form.php:45
 msgid "Content"
@@ -331,7 +332,7 @@ msgstr "Espandi tutto"
 #: views/admin/exhibits/page-form.php:48
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Per riordinare i blocchi e i documenti, clicca e trascinali nella posizione che preferisci."
 
 #: views/admin/exhibits/page-form.php:56
 msgid "New Block"
@@ -339,11 +340,11 @@ msgstr "Nuovo blocco"
 
 #: views/admin/exhibits/page-form.php:58
 msgid "Select layout"
-msgstr ""
+msgstr "Seleziona un'impaginazione"
 
 #: views/admin/exhibits/page-form.php:76
 msgid "Add new content block"
-msgstr ""
+msgstr "Aggiungi un nuovo blocco contenuto"
 
 #: views/admin/exhibits/page-form.php:86
 msgid "Save and Add Another Page"
@@ -355,7 +356,7 @@ msgstr "Allega un documento"
 
 #: views/admin/exhibits/page-form.php:95
 msgid "Revert to Selected Item"
-msgstr ""
+msgstr "Ritorna al documento selezionato"
 
 #: views/admin/exhibits/page-form.php:115
 msgid "Provide a caption."
@@ -407,7 +408,7 @@ msgstr "Non c'è alcuna esposizione disponibile."
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr "Opzioni di layout"
+msgstr "Opzioni di impaginazione"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
@@ -454,11 +455,11 @@ msgstr "Centro"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "Posizione file in vetrina"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Nessun file in vetrina"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
@@ -468,7 +469,7 @@ msgstr "Posizione della galleria"
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Se non c'è un file o un testo in vetrina, la galleria userà l'intera larghezza della pagina."
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
