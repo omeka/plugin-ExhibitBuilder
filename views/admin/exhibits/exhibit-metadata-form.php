@@ -143,6 +143,7 @@
     </div>
     <div id="cover-image-panel-loading"><span class="spinner"></span></div>
 </div>
+<?php echo js_tag('items'); ?>
 <script type="text/javascript" charset="utf-8">
     jQuery(document).ready(function(){
         Omeka.wysiwyg();
@@ -151,5 +152,7 @@
           <?php echo js_escape(url('exhibits/attachment-item-options')); ?>
         );
         Omeka.ExhibitBuilder.setUpCoverImageSelect(<?php echo json_encode(url('exhibit-builder/items/browse')); ?>);
+        Omeka.Items.tagDelimiter = <?php echo js_escape(get_option('tag_delimiter')); ?>;
+        Omeka.Items.tagChoices('#tags', <?php echo js_escape(url(array('controller'=>'tags', 'action'=>'autocomplete'), 'default', array(), true)); ?>);
     });
 </script>

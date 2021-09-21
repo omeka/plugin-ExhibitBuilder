@@ -798,10 +798,6 @@ input[type=submit].configure-button {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5)
 }
 
-.exhibits .ui-widget-content {
-    border: 0;
-}
-
 .loading .spinner {
   width: 30px;
   height: 30px;
