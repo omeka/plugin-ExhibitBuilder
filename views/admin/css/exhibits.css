@@ -590,11 +590,12 @@ div.selected-items {
 
 .cover-image-form-elements h5,
 .selected-item-list .attachment h5 {
-    margin: 0 0 20px;
+    margin: 0;
     line-height: 20px;
     font-size: 14px;
     overflow: hidden;
     position: relative;
+    max-height: 80px;
 }
 
 .selected-item-list .attachment h5 a {
@@ -660,6 +661,20 @@ div.selected-items {
 
 .edit-cover-image.button {
     margin-bottom: 0;
+}
+
+.edit-attachment {
+    background-color: rgba(0,0,0,.03);
+    margin: 0 -10px;
+    padding: 0 10px;
+}
+
+.attachment-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .add-item {
