@@ -22,6 +22,6 @@
         <span class="edit-cover-image big blue button" role="button"><?php echo __('Change'); ?></span>
     </div>
     <?php else: ?>
-    <span class="edit-cover-image big blue button" id="first-time-cover-image" role="button"><?php echo __('Change'); ?></span>
+    <button type="button" class="edit-cover-image big blue button" id="first-time-cover-image"><?php echo __('Change'); ?></button>
     <?php endif; ?>
 </div>
