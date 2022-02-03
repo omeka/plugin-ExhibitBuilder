@@ -96,10 +96,9 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <div id="item-form">
         <button type="button" id="revert-selected-item"><?php echo __('Revert to Selected Item'); ?></button>
         <button type="button" id="show-or-hide-search" class="show-form blue">
-            <span class="show-search-label"><?php echo __('Show Search Form'); ?></span>
-            <span class="hide-search-label"><?php echo __('Hide Search Form'); ?></span>
+            <span class="show-search-label" title="<?php echo __('Show Search Form'); ?>"></span>
+            <span class="hide-search-label" title="<?php echo __('Hide Search Form'); ?>"></span>
         </button>
-        <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
         <div id="page-search-form" class="container-twelve">
         <?php
             $action = url(array('module' => 'exhibit-builder',

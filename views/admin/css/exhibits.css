@@ -89,12 +89,41 @@
 
 /* Item select */
 
+.show-search-label,
+.hide-search-label {
+    display: block;
+    padding: 10px;
+}
+
+.show-search-label:before,
+.hide-search-label:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.show-search-label:before {
+    content: "\f002";
+}
+
+.hide-search-label:before {
+    content: "\f30a";
+}
+
 #item-select {
     padding: 0;
 }
 
 #cover-image-panel #item-filters {
     display: none;
+}
+
+#item-filters,
+#item-filters ul {
+    display: inline-block;
+}
+
+#item-filters ul {
+    margin: 12px 0;
 }
 
 #item-filters li {
@@ -228,12 +257,22 @@
 }
 
 #page-search-form input[type=submit] {
-    font-family: "Cabin", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
-#show-or-hide-search, #view-all-items {
+#show-or-hide-search {
     float: left;
     margin-bottom: 10px;
+    padding: 0;
+}
+
+#view-all-items {
+    display: none;
+    padding: 3px 12px;
+}
+
+#item-filters + #view-all-items {
+    display: inline-block;
 }
 
 #show-or-hide-search.show-form .hide-search-label {
