@@ -24,18 +24,18 @@ Omeka.ExhibitBuilder = {};
     }
     Omeka.ExhibitBuilder.setSearchVisibility = function(show) {
         var searchForm = $('#page-search-form');
-        var searchButton = $('#show-or-hide-search');
+        var searchToggleButton = $('.search-toggle');
 
         if (typeof show === 'undefined') {
             show = !searchForm.is(':visible');
         }
+
         if (show) {
             searchForm.show();
-            searchButton.addClass('hide-form').removeClass('show-form');
         } else {
             searchForm.hide();
-            searchButton.addClass('show-form').removeClass('hide-form');
         }
+        searchToggleButton.toggleClass('active');
     }
 
     Omeka.ExhibitBuilder.loadItemOptionsForm = function(data, itemOptionsUrl, panel, options) {
@@ -227,7 +227,7 @@ Omeka.ExhibitBuilder = {};
         });
 
         Omeka.ExhibitBuilder.setSearchVisibility(false);
-        $('#show-or-hide-search').click(function (event) {
+        $('.search-toggle').click(function (event) {
             event.preventDefault();
             Omeka.ExhibitBuilder.setSearchVisibility();
         });
@@ -547,7 +547,7 @@ Omeka.ExhibitBuilder = {};
         });
 
         Omeka.ExhibitBuilder.setSearchVisibility(false);
-        $('#show-or-hide-search').click(function (event) {
+        $('.search-toggle').click(function (event) {
             event.preventDefault();
             Omeka.ExhibitBuilder.setSearchVisibility();
         });

@@ -89,32 +89,8 @@
 
 /* Item select */
 
-.show-search-label,
-.hide-search-label {
-    display: block;
-    padding: 10px;
-}
-
-.show-search-label:before,
-.hide-search-label:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-}
-
-.show-search-label:before {
-    content: "\f002";
-}
-
-.hide-search-label:before {
-    content: "\f30a";
-}
-
 #item-select {
     padding: 0;
-}
-
-#cover-image-panel #item-filters {
-    display: none;
 }
 
 #item-filters,
@@ -247,10 +223,28 @@
     font-family: "Lato", sans-serif;
 }
 
-#show-or-hide-search {
+.search-toggle {
     float: left;
     margin-bottom: 10px;
-    padding: 0;
+    padding: 10px;
+    display: none;
+}
+
+.search-toggle.active {
+    display: inline-block;
+}
+
+.search-toggle:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.show-form:before {
+    content: "\f002";
+}
+
+.hide-form:before {
+    content: "\f30a";
 }
 
 #view-all-items {
@@ -260,14 +254,6 @@
 
 #item-filters + #view-all-items {
     display: inline-block;
-}
-
-#show-or-hide-search.show-form .hide-search-label {
-    display: none;
-}
-
-#show-or-hide-search.hide-form .show-search-label {
-    display: none;
 }
 
 #change-selected-item, #revert-selected-item {
