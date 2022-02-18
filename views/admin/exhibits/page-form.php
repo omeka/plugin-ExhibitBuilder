@@ -96,8 +96,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <div id="item-form">
         <div class="browse-controls">
             <button type="button" id="revert-selected-item">Revert to Selected Item</button>
-            <button type="button" class="search-toggle show-form blue" aria-label="<?php echo __('Show Search Form'); ?>" title="<?php echo __('Show Search Form'); ?>"></button>
-            <button type="button" class="search-toggle hide-form blue active" aria-label="<?php echo __('Hide Search Form'); ?>" title="<?php echo __('Hide Search Form'); ?>"></button>
+            <button type="button" class="search-toggle show-form blue active" aria-label="<?php echo __('Show Search Form'); ?>" title="<?php echo __('Show Search Form'); ?>"></button>
+            <button type="button" class="search-toggle hide-form blue" aria-label="<?php echo __('Hide Search Form'); ?>" title="<?php echo __('Hide Search Form'); ?>"></button>
         </div>
         <div id="page-search-form" class="container-twelve">
         <?php

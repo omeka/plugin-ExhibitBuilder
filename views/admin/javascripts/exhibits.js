@@ -24,18 +24,20 @@ Omeka.ExhibitBuilder = {};
     }
     Omeka.ExhibitBuilder.setSearchVisibility = function(show) {
         var searchForm = $('#page-search-form');
-        var searchToggleButton = $('.search-toggle');
 
         if (typeof show === 'undefined') {
             show = !searchForm.is(':visible');
         }
 
+        $('.search-toggle.active').removeClass('active');
+
         if (show) {
             searchForm.show();
+            $('.hide-form').addClass('active');
         } else {
             searchForm.hide();
+            $('.show-form').addClass('active');
         }
-        searchToggleButton.toggleClass('active');
     }
 
     Omeka.ExhibitBuilder.loadItemOptionsForm = function(data, itemOptionsUrl, panel, options) {
