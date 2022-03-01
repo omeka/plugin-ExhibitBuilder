@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2021-03-19 19:12+0000\n"
+"PO-Revision-Date: 2022-02-23 21:06+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/omeka/omeka/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -183,11 +183,11 @@ msgstr "Bloc"
 msgid "Expand/Collapse"
 msgstr "Extinde/Strânge"
 
-#: views/admin/exhibits/browse.php:8
+#: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
 msgstr "Încă nu există nicio expoziție."
 
-#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+#: views/admin/exhibits/browse.php:12 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
 msgstr "Adaugă o expoziție"
 
@@ -196,7 +196,7 @@ msgstr "Adaugă o expoziție"
 msgid "Theme"
 msgstr "Temă"
 
-#: views/admin/exhibits/browse.php:63
+#: views/admin/exhibits/browse.php:67
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Tema publică curentă"
@@ -271,21 +271,21 @@ msgid "Choose a Cover Image"
 msgstr "Alege imaginea pentru copertă"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:97
+#: views/admin/exhibits/page-form.php:99
 msgid "Show Search Form"
 msgstr "Afișează formularul de căutare"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:98
+#: views/admin/exhibits/page-form.php:100
 msgid "Hide Search Form"
 msgstr "Ascunde formularul de căutare"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+#: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
 msgstr "Modifică elementul selectat"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:139
+#: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
 msgstr "Alege"
 
@@ -314,48 +314,44 @@ msgstr "Ciot de pagină"
 msgid "Content"
 msgstr "Conținut"
 
-#: views/admin/exhibits/page-form.php:46
-msgid "Collapse All"
-msgstr "Strânge tot"
-
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Extinde tot"
 
 #: views/admin/exhibits/page-form.php:48
+msgid "Collapse All"
+msgstr "Strânge tot"
+
+#: views/admin/exhibits/page-form.php:50
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Pentru a reordona paginile, clic și trage pagina mai sus sau mai jos până la poziția dorită."
 
-#: views/admin/exhibits/page-form.php:56
+#: views/admin/exhibits/page-form.php:58
 msgid "New Block"
 msgstr "Bloc nou"
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
 msgstr "Selectează macheta"
 
-#: views/admin/exhibits/page-form.php:76
+#: views/admin/exhibits/page-form.php:78
 msgid "Add new content block"
 msgstr "Adaugă un bloc de conținut nou"
 
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:88
 msgid "Save and Add Another Page"
 msgstr "Salvează și adaugă o altă pagină"
 
-#: views/admin/exhibits/page-form.php:93
+#: views/admin/exhibits/page-form.php:95
 msgid "Attach an Item"
 msgstr "Atașează o înregistrare"
 
-#: views/admin/exhibits/page-form.php:95
-msgid "Revert to Selected Item"
-msgstr "Revino șa elementul selectat"
-
-#: views/admin/exhibits/page-form.php:115
+#: views/admin/exhibits/page-form.php:116
 msgid "Provide a caption."
 msgstr "Introdu o legendă."
 
-#: views/admin/exhibits/page-form.php:122
+#: views/admin/exhibits/page-form.php:123
 msgid "Apply"
 msgstr "Aplică"
 
@@ -380,11 +376,15 @@ msgstr "Omeka va folosi primul fișier atașat ca imagine a coperții."
 msgid "Change"
 msgstr "Modifică"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:7
+msgid "Clear Filters"
+msgstr ""
+
+#: views/admin/items/browse.php:9
 msgid "add some items"
 msgstr "adaugă niște înregistrări"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:9
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Nu există înregistrări din care să alegi. Fă o căutare mai elaborată sau %s."

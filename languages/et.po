@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018
+# Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2021-03-19 19:12+0000\n"
+"PO-Revision-Date: 2022-02-23 21:06+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/omeka/omeka/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -26,20 +26,20 @@ msgstr "Näituste sorteerimine"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr ""
+msgstr "Vaikmisi meetod näituse nimekirja sorteerimiseks. Vaikeväärtus on 'Lisamise kuupäev'."
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Tähestikuline"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Hiljutine"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "See kustutab jäädavalt kogu näituse \"%s\" ja kõik selle leheküljed."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -112,7 +112,7 @@ msgstr "Fail tekstiga"
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "Vaikimisi paigutuses on failid joondatud vasakule või paremale ning tekst on siis vastavalt teisel pool"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
@@ -155,7 +155,7 @@ msgstr "Näituse lehekülgedel peab olema pealkiri."
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Keegi muutis lehekülge sel ajal kui sa sellega töötasid. Sinu muudatustest on loobutud, et teiste poolt tehtud muudatused kaduma ei läheks."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -183,11 +183,11 @@ msgstr "Plokk"
 msgid "Expand/Collapse"
 msgstr "Ava/Sulge"
 
-#: views/admin/exhibits/browse.php:8
+#: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
 msgstr "Pole veel ühtegi näitust."
 
-#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+#: views/admin/exhibits/browse.php:12 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
 msgstr "Lisa väljapanek"
 
@@ -196,7 +196,7 @@ msgstr "Lisa väljapanek"
 msgid "Theme"
 msgstr "Teema"
 
-#: views/admin/exhibits/browse.php:63
+#: views/admin/exhibits/browse.php:67
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Praegune avalik teema"
@@ -242,7 +242,7 @@ msgstr "Kaanepilt"
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Vali fail, mis esindab seda näitust. Seda pilti kasutatakse näituse pisipildina."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -255,7 +255,7 @@ msgstr "Lehekülgi pole."
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Lehekülgede liigutamiseks või alumisele tasemele liigutamiseks kliki ja lohista see lehekülg soovitud kohta."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
@@ -271,21 +271,21 @@ msgid "Choose a Cover Image"
 msgstr "Vali kaanepilt"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:97
+#: views/admin/exhibits/page-form.php:99
 msgid "Show Search Form"
 msgstr "Näita otsinguvormi"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:98
+#: views/admin/exhibits/page-form.php:100
 msgid "Hide Search Form"
 msgstr "Peida otsinguvorm"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+#: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
 msgstr "Muuda valitud ühikut"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:139
+#: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
 msgstr "Vali"
 
@@ -304,7 +304,7 @@ msgstr "Menüülingi pealkiri"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Soovi korral võid näituse menüüs kasutada lühemat menüü"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
@@ -314,48 +314,44 @@ msgstr "Lehe lühinimi"
 msgid "Content"
 msgstr "Sisu"
 
-#: views/admin/exhibits/page-form.php:46
-msgid "Collapse All"
-msgstr "Sulge kõik"
-
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Ava kõik"
 
 #: views/admin/exhibits/page-form.php:48
+msgid "Collapse All"
+msgstr "Sulge kõik"
+
+#: views/admin/exhibits/page-form.php:50
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Plokkide ja ühikute järjekorra muutmiseks kliki ja lohista see lehekülg soovitud kohta."
 
-#: views/admin/exhibits/page-form.php:56
+#: views/admin/exhibits/page-form.php:58
 msgid "New Block"
 msgstr "Uus plokk"
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
 msgstr "Vali paigutus"
 
-#: views/admin/exhibits/page-form.php:76
+#: views/admin/exhibits/page-form.php:78
 msgid "Add new content block"
 msgstr "Lisa uus sisuplokk"
 
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:88
 msgid "Save and Add Another Page"
 msgstr "Salvesta ja lisa teine lehekülg"
 
-#: views/admin/exhibits/page-form.php:93
+#: views/admin/exhibits/page-form.php:95
 msgid "Attach an Item"
 msgstr "Lisa ühik"
 
-#: views/admin/exhibits/page-form.php:95
-msgid "Revert to Selected Item"
-msgstr ""
-
-#: views/admin/exhibits/page-form.php:115
+#: views/admin/exhibits/page-form.php:116
 msgid "Provide a caption."
 msgstr "Lisa pealkiri."
 
-#: views/admin/exhibits/page-form.php:122
+#: views/admin/exhibits/page-form.php:123
 msgid "Apply"
 msgstr "Rakenda"
 
@@ -374,17 +370,21 @@ msgstr "Seadista teemat &#8220;%s&#8221;"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka kasutab esimest kaasatud pilti kaanepildina."
 
 #: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
 msgid "Change"
 msgstr "Muuda"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:7
+msgid "Clear Filters"
+msgstr ""
+
+#: views/admin/items/browse.php:9
 msgid "add some items"
 msgstr "lisa mõningaid ühikuid"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:9
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Pole ühikuid, mille hulgast valida. Palun muuda oma otsingut või %s."
@@ -448,11 +448,11 @@ msgstr "Keskel"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
-msgstr ""
+msgstr "Vitriinkasti faili asukoht"
 
 #: views/shared/exhibit_layouts/gallery/form.php:27
 msgid "No showcase file"
-msgstr ""
+msgstr "Vitriinkasti faili pole"
 
 #: views/shared/exhibit_layouts/gallery/form.php:36
 msgid "Gallery position"
@@ -462,7 +462,7 @@ msgstr "Galerii asukoht"
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Kui vitriinkasti faili või teksti pole, siis kasutab galerii lehekülje täislaiust."
 
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"

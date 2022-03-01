@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2021-03-19 19:12+0000\n"
+"PO-Revision-Date: 2022-02-23 21:06+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Czech (http://www.transifex.com/omeka/omeka/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -185,11 +185,11 @@ msgstr ""
 msgid "Expand/Collapse"
 msgstr ""
 
-#: views/admin/exhibits/browse.php:8
+#: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
 msgstr "Nejsou zde zatím žádné expozice."
 
-#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+#: views/admin/exhibits/browse.php:12 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
 msgstr "Přidat expozici"
 
@@ -198,7 +198,7 @@ msgstr "Přidat expozici"
 msgid "Theme"
 msgstr "Vzhled"
 
-#: views/admin/exhibits/browse.php:63
+#: views/admin/exhibits/browse.php:67
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Současný veřejný vzhled"
@@ -273,21 +273,21 @@ msgid "Choose a Cover Image"
 msgstr ""
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:97
+#: views/admin/exhibits/page-form.php:99
 msgid "Show Search Form"
 msgstr "Zobrazit vyhledávací formulář"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:98
+#: views/admin/exhibits/page-form.php:100
 msgid "Hide Search Form"
 msgstr "Skrýt vyhledávací formulář"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+#: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
 msgstr ""
 
-#: views/admin/exhibits/exhibit-metadata-form.php:139
+#: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
 msgstr ""
 
@@ -316,48 +316,44 @@ msgstr ""
 msgid "Content"
 msgstr "Obsah"
 
-#: views/admin/exhibits/page-form.php:46
-msgid "Collapse All"
-msgstr "Sbalit vše"
-
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Zobrazit vše"
 
 #: views/admin/exhibits/page-form.php:48
+msgid "Collapse All"
+msgstr "Sbalit vše"
+
+#: views/admin/exhibits/page-form.php:50
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Chcete-li změnit pořadí bloků a položek, klikněte na ně a přetáhněte je na požadované místo."
 
-#: views/admin/exhibits/page-form.php:56
+#: views/admin/exhibits/page-form.php:58
 msgid "New Block"
 msgstr "Nový blok"
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
 msgstr "Vybrat vzhled"
 
-#: views/admin/exhibits/page-form.php:76
+#: views/admin/exhibits/page-form.php:78
 msgid "Add new content block"
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:88
 msgid "Save and Add Another Page"
 msgstr "Uložit a  přidat další stránku"
 
-#: views/admin/exhibits/page-form.php:93
+#: views/admin/exhibits/page-form.php:95
 msgid "Attach an Item"
 msgstr "Připojit položku"
 
-#: views/admin/exhibits/page-form.php:95
-msgid "Revert to Selected Item"
-msgstr ""
-
-#: views/admin/exhibits/page-form.php:115
+#: views/admin/exhibits/page-form.php:116
 msgid "Provide a caption."
 msgstr ""
 
-#: views/admin/exhibits/page-form.php:122
+#: views/admin/exhibits/page-form.php:123
 msgid "Apply"
 msgstr "Použít"
 
@@ -382,11 +378,15 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:7
+msgid "Clear Filters"
+msgstr ""
+
+#: views/admin/items/browse.php:9
 msgid "add some items"
 msgstr "přidat položky"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:9
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "Nejsou zde žádné položky z kterých by bylo možné vybírat.  Prosím upravte vaše hledání, nebo %s."
