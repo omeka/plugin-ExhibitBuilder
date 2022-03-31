@@ -24,7 +24,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
         
         if ($file) {
             if (!isset($fileOptions['imgAttributes']['alt'])) {
-                $fileOptions['imgAttributes']['alt'] = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true));
+                $fileOptions['imgAttributes']['alt'] = metadata($file, array('Dublin Core', 'Title'), array('no_escape' => true));
             }
             
             if ($forceImage) {
