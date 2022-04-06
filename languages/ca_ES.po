@@ -5,7 +5,7 @@
 # Translators:
 # Miquel Àngel <ma.serra@gmail.com>, 2013
 # Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018
+# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2021-03-19 19:12+0000\n"
+"PO-Revision-Date: 2022-02-23 21:06+0000\n"
 "Last-Translator: John Flatness <john@zerocrates.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/omeka/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Ordenació de les exposicions"
+msgstr "Ordre de les exposicions"
 
 #: config_form.php:7
 msgid ""
@@ -34,11 +34,11 @@ msgstr "El criteri per defecte que s'utilitza per llistar les exposicions a la p
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabètic"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Recent"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -60,7 +60,7 @@ msgstr "exposicions"
 #: functions.php:452 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Navega per les exposicions"
+msgstr "Exposicions"
 
 #: functions.php:468 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
@@ -187,11 +187,11 @@ msgstr "Bloc"
 msgid "Expand/Collapse"
 msgstr "Desplega/Replega"
 
-#: views/admin/exhibits/browse.php:8
+#: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
 msgstr "Encara no hi ha exposicions."
 
-#: views/admin/exhibits/browse.php:11 views/admin/exhibits/browse.php:19
+#: views/admin/exhibits/browse.php:12 views/admin/exhibits/browse.php:19
 msgid "Add an Exhibit"
 msgstr "Afegeix una exposició"
 
@@ -200,7 +200,7 @@ msgstr "Afegeix una exposició"
 msgid "Theme"
 msgstr "Plantilla"
 
-#: views/admin/exhibits/browse.php:63
+#: views/admin/exhibits/browse.php:67
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Plantilla actual del repositori"
@@ -275,21 +275,21 @@ msgid "Choose a Cover Image"
 msgstr "Trieu una imatge de portada"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:97
+#: views/admin/exhibits/page-form.php:99
 msgid "Show Search Form"
 msgstr "Mostra el formulari de cerca"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:98
+#: views/admin/exhibits/page-form.php:100
 msgid "Hide Search Form"
 msgstr "Amaga el formulari de cerca"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:134
-#: views/admin/exhibits/page-form.php:111
+#: views/admin/exhibits/exhibit-metadata-form.php:133
+#: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
 msgstr "Canvia l'ítem seleccionat"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:139
+#: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
 msgstr "Trieu"
 
@@ -318,48 +318,44 @@ msgstr "Identificador de la pàgina"
 msgid "Content"
 msgstr "Contingut"
 
-#: views/admin/exhibits/page-form.php:46
-msgid "Collapse All"
-msgstr "Replega tot"
-
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
 msgstr "Desplega tot"
 
 #: views/admin/exhibits/page-form.php:48
+msgid "Collapse All"
+msgstr "Replega tot"
+
+#: views/admin/exhibits/page-form.php:50
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Per reordenar blocs i ítems, feu clic i arrossegueu-los a la ubicació que preferiu."
 
-#: views/admin/exhibits/page-form.php:56
+#: views/admin/exhibits/page-form.php:58
 msgid "New Block"
 msgstr "Nou bloc"
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
 msgstr "Seleccioneu la maquetació"
 
-#: views/admin/exhibits/page-form.php:76
+#: views/admin/exhibits/page-form.php:78
 msgid "Add new content block"
 msgstr "Afegeix un nou bloc de contingut"
 
-#: views/admin/exhibits/page-form.php:86
+#: views/admin/exhibits/page-form.php:88
 msgid "Save and Add Another Page"
 msgstr "Desa els canvis i afegeix una nova pàgina"
 
-#: views/admin/exhibits/page-form.php:93
+#: views/admin/exhibits/page-form.php:95
 msgid "Attach an Item"
 msgstr "Adjunta un ítem"
 
-#: views/admin/exhibits/page-form.php:95
-msgid "Revert to Selected Item"
-msgstr "Restableix l'ítem seleccionat"
-
-#: views/admin/exhibits/page-form.php:115
+#: views/admin/exhibits/page-form.php:116
 msgid "Provide a caption."
 msgstr "Consigneu un text de llegenda."
 
-#: views/admin/exhibits/page-form.php:122
+#: views/admin/exhibits/page-form.php:123
 msgid "Apply"
 msgstr "Aplica"
 
@@ -384,11 +380,15 @@ msgstr "L'Omeka utilitzarà la primera imatge adjunta com a imatge de portada."
 msgid "Change"
 msgstr "Canvia"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:7
+msgid "Clear Filters"
+msgstr ""
+
+#: views/admin/items/browse.php:9
 msgid "add some items"
 msgstr "afegeix alguns ítems"
 
-#: views/admin/items/browse.php:8
+#: views/admin/items/browse.php:9
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
 msgstr "No hi ha continguts per seleccionar. Reformuleu la vostra cerca %s."

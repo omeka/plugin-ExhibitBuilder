@@ -93,8 +93,13 @@
     padding: 0;
 }
 
-#cover-image-panel #item-filters {
-    display: none;
+#item-filters,
+#item-filters ul {
+    display: inline-block;
+}
+
+#item-filters ul {
+    margin: 12px 0;
 }
 
 #item-filters li {
@@ -165,37 +170,24 @@
 
 #item-list .item-listing {
     position: relative;
-    background: #EBEADC;
-    background: -moz-linear-gradient(top, #F5F3EC, #E9E5DA);
-    background: -webkit-linear-gradient(top, #F5F3EC, #E9E5DA);
-    background: linear-gradient(to bottom, #F5F3EC, #E9E5DA);
-    border: 1px solid #D6D5C2;
-    border-radius: 2px;
-    padding: 10px;
-    font-size: 14px;
-    line-height: 1.5em;
-    overflow:hidden;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    
-    
     background: #fff;
-    border: 1px solid #D6D5C2;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    padding: 15px;
     font-size: 14px;
     line-height: 1.5em;
     margin: 0 0 10px;
+    border-top: 1px solid #D6D5C2;
+    padding-top: 10px;
 }
 
 #item-list .item-listing:first-of-type {
     margin-top: 0;
+    border-top-color: transparent;
 }
 
 #item-list .select-item {
-    margin: 0 5px 0 auto;
+    margin: 0 0 0 auto;
     line-height: 1.5;
 }
 
@@ -228,20 +220,40 @@
 }
 
 #page-search-form input[type=submit] {
-    font-family: "Cabin", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
-#show-or-hide-search, #view-all-items {
+.search-toggle {
     float: left;
     margin-bottom: 10px;
-}
-
-#show-or-hide-search.show-form .hide-search-label {
+    padding: 10px;
     display: none;
 }
 
-#show-or-hide-search.hide-form .show-search-label {
+.search-toggle.active {
+    display: inline-block;
+}
+
+.search-toggle:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.show-form:before {
+    content: "\f002";
+}
+
+.hide-form:before {
+    content: "\f30a";
+}
+
+#view-all-items {
     display: none;
+    padding: 3px 12px;
+}
+
+#item-filters + #view-all-items {
+    display: inline-block;
 }
 
 #change-selected-item, #revert-selected-item {
