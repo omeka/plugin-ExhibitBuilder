@@ -5,14 +5,15 @@
 # Translators:
 # evilinstone <evilinstone@gmail.com>, 2013
 # tanya chorna <tanya.chorna@gmail.com>, 2018
+# Yuliya Ilchuk, 2022
 # Yurii Kostiuk <kostyuk.yuiriy@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
-"PO-Revision-Date: 2022-02-23 21:06+0000\n"
-"Last-Translator: John Flatness <john@zerocrates.org>\n"
+"PO-Revision-Date: 2012-01-10 19:03+0000\n"
+"Last-Translator: Yuliya Ilchuk, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/omeka/omeka/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,11 +33,11 @@ msgstr "Метод за замовчуванням, котрий ви хочет
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "За абеткою"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Останні"
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -380,7 +381,7 @@ msgstr "Змінити"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Очистити фільтри"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
