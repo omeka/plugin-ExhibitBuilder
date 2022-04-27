@@ -89,7 +89,7 @@ Omeka.ExhibitBuilder = {};
                 ui.item.find('textarea').each(function () {
                     tinyMCE.EditorManager.execCommand('mceRemoveEditor', false, this.id);
                 });
-                ui.helper.find('.block-body').hide();
+                ui.helper.find('.block-body').addClass('closed');
                 var height = ui.helper.find('.block-header').outerHeight();
                 ui.helper.height(height);
                 ui.placeholder.height(height);
@@ -153,19 +153,19 @@ Omeka.ExhibitBuilder = {};
         $('#block-container .collapse').click(function() {
             $('.drawer-toggle.opened').removeClass('opened');
             $('.drawer-toggle').addClass('closed');
-            $('.block-body').hide();
+            $('.block-body').addClass('closed').removeClass('opened');
         });
 
         $('#block-container .expand').click(function() {
             $('.drawer-toggle.closed').removeClass('closed');
             $('.drawer-toggle').addClass('opened');
-            $('.block-body').show();
+            $('.block-body').addClass('opened').removeClass('closed');
         });
 
         $('#block-container').on('click', '.drawer-toggle', function (event) {
             event.preventDefault();
             $(this).toggleClass('closed').toggleClass('opened');
-            $(this).parent().siblings('div').toggleClass('opened');
+            $(this).parent().siblings('.block-body').toggleClass('opened closed');
         });
 
         sortAttachments('#block-container');

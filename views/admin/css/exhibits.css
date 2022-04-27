@@ -755,6 +755,10 @@ div.selected-items {
     align-items: center;
 }
 
+.block-body.closed {
+    display: none;
+}
+
 .frozen:after {
     position: absolute;
     top: 0;
