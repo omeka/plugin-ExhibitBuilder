@@ -151,21 +151,21 @@ Omeka.ExhibitBuilder = {};
         });
         
         $('#block-container .collapse').click(function() {
-            $('.drawer-toggle.opened').removeClass('opened');
-            $('.drawer-toggle').addClass('closed');
+            $('.block-header .block-drawer-toggle.opened').removeClass('opened');
+            $('.block-header block-drawer-toggle').addClass('closed');
             $('.block-body').addClass('closed').removeClass('opened');
         });
 
         $('#block-container .expand').click(function() {
-            $('.drawer-toggle.closed').removeClass('closed');
-            $('.drawer-toggle').addClass('opened');
+            $('.block-header .block-drawer-toggle.closed').removeClass('closed');
+            $('.block-header .block-drawer-toggle').addClass('opened');
             $('.block-body').addClass('opened').removeClass('closed');
         });
 
-        $('#block-container').on('click', '.drawer-toggle', function (event) {
+        $('#block-container').on('click', '.block-drawer-toggle', function (event) {
             event.preventDefault();
             $(this).toggleClass('closed').toggleClass('opened');
-            $(this).parent().siblings('.block-body').toggleClass('opened closed');
+            $(this).parent().siblings().toggleClass('opened closed');
         });
 
         sortAttachments('#block-container');

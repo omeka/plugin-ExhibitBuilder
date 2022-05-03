@@ -12,24 +12,26 @@ $options = $block->getOptions();
     <?php echo $this->exhibitFormText($block); ?>
 </div>
 
-<div class="layout-options">
+<div class="layout-options closed">
     <div class="block-header">
         <h4><?php echo __('Layout Options'); ?></h4>
-        <div class="drawer-toggle"></div>
+        <button class="block-drawer-toggle opened" role="button" title="<?php echo __('Expand/Collapse'); ?>"></button>
     </div>
 
-    <div class="showcase-position">
-        <?php echo $this->formLabel($formStem . '[options][showcase-position]', __('Showcase file position')); ?>
-        <?php
-        echo $this->formSelect($formStem . '[options][showcase-position]',
-            @$options['showcase-position'], array(),
-            array(
-                'none' => __('No showcase file'),
-                'left' => __('Left'),
-                'right' => __('Right')
-            )
-        );
-        ?>
+    <div class="block-drawer-contents opened">
+        <div class="showcase-position">
+            <?php echo $this->formLabel($formStem . '[options][showcase-position]', __('Showcase file position')); ?>
+            <?php
+            echo $this->formSelect($formStem . '[options][showcase-position]',
+                @$options['showcase-position'], array(),
+                array(
+                    'none' => __('No showcase file'),
+                    'left' => __('Left'),
+                    'right' => __('Right')
+                )
+            );
+            ?>
+        </div>
     </div>
 
     <div class="gallery-position">
