@@ -12,7 +12,7 @@ $options = $block->getOptions();
     <?php echo $this->exhibitFormText($block); ?>
 </div>
 
-<div class="layout-options closed">
+<div class="layout-options">
     <div class="block-header">
         <h4><?php echo __('Layout Options'); ?></h4>
         <button class="block-drawer-toggle opened" role="button" title="<?php echo __('Expand/Collapse'); ?>"></button>

@@ -152,7 +152,7 @@ Omeka.ExhibitBuilder = {};
         
         $('#block-container .collapse').click(function() {
             $('.block-header .block-drawer-toggle.opened').removeClass('opened');
-            $('.block-header block-drawer-toggle').addClass('closed');
+            $('.block-header .block-drawer-toggle').addClass('closed');
             $('.block-body').addClass('closed').removeClass('opened');
         });
 
