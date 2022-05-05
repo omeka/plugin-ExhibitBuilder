@@ -171,7 +171,7 @@ Omeka.ExhibitBuilder = {};
 
         $('#block-container').on('click', '.layout-options .drawer-toggle', function (event) {
             event.preventDefault();
-            $(this).parent().siblings('div:not(.block-body)').toggleClass('opened');
+            $(this).parent().siblings('div').toggleClass('opened');
         });
 
         sortAttachments('#block-container');
