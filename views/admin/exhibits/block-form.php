@@ -9,7 +9,7 @@ $order = $block->order;
         <div class="delete-element" role="button" title="<?php echo  __('Remove/Restore') ?>"></div>
         <div class="drawer-toggle opened" role="button" title="<?php echo __('Expand/Collapse'); ?>"></div>
     </div>
-    <div class="block-body">
+    <div class="block-body opened">
         <?php echo $this->formHidden($stem . '[layout]', $block->layout); ?>
         <?php echo $this->formHidden($stem . '[order]', $block->order, array('class' => 'block-order')); ?>
         <?php

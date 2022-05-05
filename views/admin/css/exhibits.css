@@ -366,7 +366,12 @@
 }
 
 .block-body {
+    display: none;
+}
+
+.block-body.opened {
     position: relative;
+    display: block;
 }
 
 .block-body > div {

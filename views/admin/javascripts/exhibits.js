@@ -149,23 +149,29 @@ Omeka.ExhibitBuilder = {};
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
             sortAttachments(this);
         });
-        
+
+        $('#block-container').on('click', '.drawer-toggle', function() {
+            $(this).toggleClass('opened');
+        });
+
         $('#block-container .collapse').click(function() {
-            $('.drawer-toggle.opened').removeClass('opened');
-            $('.drawer-toggle').addClass('closed');
-            $('.block-body').hide();
+            $('.sortable-item .drawer-toggle').removeClass('opened');
+            $('.block-body').removeClass('opened');
         });
 
         $('#block-container .expand').click(function() {
-            $('.drawer-toggle.closed').removeClass('closed');
-            $('.drawer-toggle').addClass('opened');
-            $('.block-body').show();
+            $('.sortable-item .drawer-toggle').addClass('opened');
+            $('.block-body').addClass('opened');
         });
 
-        $('#block-container').on('click', '.drawer-toggle', function (event) {
+        $('#block-container').on('click', '.block-header .drawer-toggle', function (event) {
             event.preventDefault();
-            $(this).toggleClass('closed').toggleClass('opened');
-            $(this).parent().siblings('div').toggleClass('opened');
+            $(this).parent().siblings('.block-body').toggleClass('opened');
+        });
+
+        $('#block-container').on('click', '.layout-options .drawer-toggle', function (event) {
+            event.preventDefault();
+            $(this).parent().siblings('div:not(.block-body)').toggleClass('opened');
         });
 
         sortAttachments('#block-container');
