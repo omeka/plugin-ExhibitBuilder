@@ -21,13 +21,16 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
     {
         $item = $attachment->getItem();
         $file = $attachment->getFile();
-        
+
         if ($file) {
             if ($forceImage) {
                 $imageSize = isset($fileOptions['imageSize'])
                     ? $fileOptions['imageSize']
                     : 'square_thumbnail';
-                $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
+                $imageAttr = isset($fileOptions['imgAttributes'])
+                    ? $fileOptions['imgAttributes']
+                    : array();
+                $image = file_image($imageSize, $imageAttr, $file);
                 $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
             } else {
                 if (!isset($fileOptions['linkAttributes']['href'])) {
