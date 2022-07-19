@@ -1,0 +1,31 @@
+.layout-carousel a {
+    border-bottom: 0;
+    text-align: center;
+}
+
+.layout-carousel .exhibit-item-link *,
+.layout-carousel .exhibit-item-caption *,
+.layout-carousel p.slide-title {
+    display: block;
+    max-width: 90%;
+    margin: 0 auto 5px;
+}
+
+.layout-carousel .exhibit-item-caption p {
+    clear: both;
+}
+
+.layout-carousel .captions-center .exhibit-item-caption,
+.layout-carousel .captions-center p.slide-title a {
+    text-align: center;
+}
+
+.layout-carousel .captions-left .exhibit-item-caption,
+.layout-carousel .captions-left p.slide-title a {
+    text-align: left;
+}
+
+.layout-carousel .captions-right .exhibit-item-caption,
+.layout-carousel .captions-right p.slide-title a {
+    text-align: right;
+}

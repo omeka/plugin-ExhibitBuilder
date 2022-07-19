@@ -386,6 +386,10 @@ function exhibit_builder_public_head($args)
 
     if ($module == 'exhibit-builder') {
         queue_css_file('exhibits');
+        queue_css_file('jcarousel.responsive');
+        queue_js_file('jcarousel.responsive');
+        queue_js_file('jquery.jcarousel.min');
+        queue_js_file('jquery.jcarousel-fade.min');
         $exhibitPage = get_current_record('exhibit_page', false);
         if ($exhibitPage) {
             $blocks = $exhibitPage->ExhibitPageBlocks;
