@@ -18,6 +18,7 @@
 .layout-carousel .captions-center .exhibit-item-caption,
 .layout-carousel .captions-center p.slide-title a {
     text-align: center;
+    transform: translateX(-50%);
 }
 
 .layout-carousel .captions-left .exhibit-item-caption,
