@@ -1,7 +1,6 @@
 (function($) {
     $(function() {
         var jcarousel = $('.jcarousel');
-
         
         jcarousel
             .on('jcarousel:create jcarousel:reload', function () {
@@ -49,7 +48,7 @@
                 var element = $(this).parent();
                 
                 // Add fade effect to pagination
-                var pageMethod = element[0].hasAttribute('data-jcarousel-fade') ? 'fade' : '';
+                var pageMethod = element.attr('data-jcarousel-fade') == true ? 'fade' : 'scroll';
                 
                 element.find('.jcarousel-control-prev')
                     .jcarouselControl({
