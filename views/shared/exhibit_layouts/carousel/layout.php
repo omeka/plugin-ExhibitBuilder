@@ -10,9 +10,9 @@ $configs['show-title'] = isset($options['show-title'])
 $fade = isset($options['fade'])
     ? html_escape($options['fade'])
     : 0;
-$overlay = isset($options['float-caption'])
-    ? html_escape($options['float-caption'])
-    : 0;
+$overlay = (isset($options['float-caption']) && ($options['float-caption'] == 1))
+    ? 'text-overlay'
+    : 'text-float';
 $perSlide = isset($options['per-slide'])
     ? html_escape($options['per-slide'])
     : 1;
@@ -59,10 +59,9 @@ $configs['carousel']['transitions'] = 1;
 <?php if ($carouselTitle): ?>
 <h2><?php echo $carouselTitle; ?></h2>
 <?php endif; ?>
-<div class="jcarousel-wrapper captions-<?php echo $captionPosition; ?>"
+<div class="jcarousel-wrapper captions-<?php echo $captionPosition; ?> <?php echo $overlay; ?>"
      data-jcarousel-perslide="<?php echo $perSlide ?>"
      data-jcarousel-stretch="<?php echo $stretchImage ?>"
-     data-jcarousel-overlay="<?php echo $overlay ?>"
      data-jcarousel-fade="<?php echo $fade ?>">
     <?php echo $this->exhibitAttachmentCarousel($attachments, $configs); ?>
 </div>

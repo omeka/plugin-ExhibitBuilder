@@ -1,14 +1,25 @@
+.jcarousel li {
+    text-align: center;
+}
+
+.jcarousel .slide-meta {
+    margin-top: 1rem;
+}
+
+.jcarousel .exhibit-item-link {
+    display: inline-block;
+}
+
 .layout-carousel a {
     border-bottom: 0;
     text-align: center;
 }
 
-.layout-carousel .exhibit-item-link *,
-.layout-carousel .exhibit-item-caption *,
-.layout-carousel p.slide-title {
-    display: block;
-    max-width: 90%;
-    margin: 0 auto 5px;
+.text-overlay .slide-meta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .layout-carousel .exhibit-item-caption p {
@@ -18,7 +29,6 @@
 .layout-carousel .captions-center .exhibit-item-caption,
 .layout-carousel .captions-center p.slide-title a {
     text-align: center;
-    transform: translateX(-50%);
 }
 
 .layout-carousel .captions-left .exhibit-item-caption,

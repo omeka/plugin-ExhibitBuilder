@@ -22,11 +22,9 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentCarousel extends Zend_View_Hel
         $html .= '<ul>';
         foreach  ($attachments as $attachment) {
             $item = $attachment->getItem();
+            $showTitle = (isset($configs['show-title']) && $configs['show-title']);
             $html .= '<li>';
-            $html .= $this->view->exhibitAttachment($attachment, array('imageSize' => $configs['file-size']), $linkProps, true);
-            if(isset($configs['show-title']) && $configs['show-title']) {
-                $html .= '<p class="slide-title">' . exhibit_builder_link_to_exhibit_item(null, $linkProps, $item) . '</p>';
-            }
+            $html .= $this->view->exhibitAttachment($attachment, array('imageSize' => $configs['file-size']), $linkProps, true, $showTitle);
             $html .= '</li>';
         }
         $html .= '</ul>';

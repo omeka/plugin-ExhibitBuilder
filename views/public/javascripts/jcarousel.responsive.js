@@ -1,6 +1,7 @@
 (function($) {
     $(function() {
         var jcarousel = $('.jcarousel');
+
         
         jcarousel
             .on('jcarousel:create jcarousel:reload', function () {
@@ -39,27 +40,6 @@
                 			'width': '100%',
                             'height': '100%',
                 			'object-fit': 'cover',
-                		});
-                    }
-                }
-                
-                // Overlay caption/title on image
-                if (element.parent()[0].hasAttribute('data-jcarousel-overlay')) {
-                    overlay = element.parent().attr('data-jcarousel-overlay');
-                    if (overlay == true) {
-                        element.find('.exhibit-item-caption').css({
-                			'position': 'absolute',
-                			'top': '50%',
-                            'left': '50%',
-                		});
-                        element.find('.slide-title').css({
-                			'position': 'absolute',
-                			'top': '65%',
-                            'left': '50%',
-                            'transform': 'translate(-50%, -50%)',
-                		});
-                        element.find("li").css({
-                			'position': 'relative',
                 		});
                     }
                 }

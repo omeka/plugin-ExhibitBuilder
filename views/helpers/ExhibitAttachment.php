@@ -16,8 +16,8 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
      * @param boolean $forceImage Whether to display the attachment as an image
      *  always Defaults to false.
      * @return string
-     */
-    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false)
+     */ 
+    public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false, $showTitle = false)
     {
         $item = $attachment->getItem();
         $file = $attachment->getFile();
@@ -42,9 +42,18 @@ class ExhibitBuilder_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
             $html = exhibit_builder_link_to_exhibit_item(null, $linkProps, $item);
         }
 
+
         // Don't show a caption if we couldn't show the Item or File at all
         if (isset($html)) {
-            $html .= $this->view->exhibitAttachmentCaption($attachment);
+            $captionHtml = $this->view->exhibitAttachmentCaption($attachment);
+            if ($showTitle || $captionHtml !== '') {
+                $html .= '<div class="slide-meta">';
+                if ($showTitle) {
+                    $html .= '<p class="slide-title">' . exhibit_builder_link_to_exhibit_item(null, $linkProps, $item) . '</p>';
+                }
+                $html .= $captionHtml;
+                $html .= '</div>';
+            }
         } else {
             $html = '';
         }
