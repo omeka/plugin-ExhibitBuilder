@@ -8,6 +8,7 @@
 
 .jcarousel .exhibit-item-link {
     display: inline-block;
+    max-width: 90%;
 }
 
 .layout-carousel a {

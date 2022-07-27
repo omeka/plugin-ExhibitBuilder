@@ -26,16 +26,26 @@
                 if (element.parent()[0].hasAttribute('data-jcarousel-stretch')) {
                     stretch = element.parent().attr('data-jcarousel-stretch');
                     if (stretch == 'width') {
+                        element.find('.exhibit-item-link').css({
+                            'width': '100%',
+                        });
                         element.find("img").css({
                 			'width': '100%',
                 			'object-fit': 'cover',
                 		});
                     } else if (stretch == 'height') {
-                        element.find("img").css({
+                        element.find('.exhibit-item-link').css({
                 			'height': '100%',
+                        });
+                        element.find("img").css({
+                            'height': '100%',
                 			'object-fit': 'cover',
-                		});
+                        });
                     } else if (stretch == 'entire') {
+                        element.find('.exhibit-item-link').css({
+                            'width': '100%',
+                            'height': '100%',
+                        });
                         element.find("img").css({
                 			'width': '100%',
                             'height': '100%',
