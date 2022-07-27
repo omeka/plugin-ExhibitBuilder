@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.jcarousel .exhibit-item-link {
+.jcarousel li > .exhibit-item-link {
     display: inline-block;
     max-width: 90%;
 }
@@ -24,7 +24,6 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    padding: 0 6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
