@@ -72,7 +72,7 @@ $options = $block->getOptions();
             @$options['float-caption'], array(),
             array('1', '0'));
         ?>
-        <p class="instructions"><?php echo __('Place caption over image (may require adjusting theme CSS text settings)'); ?></p>
+        <p class="instructions"><?php echo __('Place caption over image (may require adjusting CSS settings)'); ?></p>
     </div>
     
     <div class="caption-position">
