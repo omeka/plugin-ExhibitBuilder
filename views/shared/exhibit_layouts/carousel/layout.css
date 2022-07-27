@@ -1,9 +1,9 @@
-.jcarousel li {
-    text-align: center;
+.jcarousel ul {
+    overflow: hidden;
 }
 
-.jcarousel .slide-meta {
-    margin-top: 1rem;
+.jcarousel li {
+    text-align: center;
 }
 
 .jcarousel .exhibit-item-link {
@@ -15,11 +15,24 @@
     text-align: center;
 }
 
+.text-float .slide-meta {
+    margin-top: 1rem;
+}
+
 .text-overlay .slide-meta {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    bottom: 0;
+    padding: 0 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-overlay .slide-meta > * {
+    background-color: #fff;
+    padding: .25rem;
 }
 
 .layout-carousel .exhibit-item-caption p {

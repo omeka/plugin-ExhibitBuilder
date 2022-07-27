@@ -20,6 +20,7 @@
                 }
           
                 element.jcarousel('items').css('width', width + 'px');
+                element.find('.slide-meta').css('width', width + 'px');
                 
                 // "Stretch" image within slide if chosen
                 if (element.parent()[0].hasAttribute('data-jcarousel-stretch')) {
