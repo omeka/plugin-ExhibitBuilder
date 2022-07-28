@@ -61,6 +61,12 @@
                 // Add fade effect to pagination
                 var pageMethod = element.attr('data-jcarousel-fade') == true ? 'fade' : 'scroll';
                 
+                // Reposition pagination arrows for narrower theme displays
+                if (element.closest('#exhibit-blocks').width() < 1000) {
+                    element.find('.jcarousel-control-prev').css('left', '10px');
+                    element.find('.jcarousel-control-next').css('right', '10px');
+                }
+
                 element.find('.jcarousel-control-prev')
                     .jcarouselControl({
                         target: '-=1',
