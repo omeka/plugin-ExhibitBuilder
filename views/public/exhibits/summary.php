@@ -12,7 +12,7 @@
 
 <?php if (($exhibitCredits = metadata('exhibit', 'credits'))): ?>
 <div class="exhibit-credits">
-    <h3><?php echo __('Credits'); ?></h3>
+    <h2><?php echo __('Credits'); ?></h2>
     <p><?php echo $exhibitCredits; ?></p>
 </div>
 <?php endif; ?>
