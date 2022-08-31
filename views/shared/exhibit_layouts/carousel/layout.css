@@ -1,5 +1,8 @@
 .jcarousel ul {
     overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .jcarousel li {
@@ -35,8 +38,24 @@
     padding: .25rem;
 }
 
+.layout-carousel .captions-left .slide-meta {
+    align-items: flex-start;
+}
+
+.layout-carousel .captions-right .slide-meta {
+    align-items: flex-end;
+}
+
+.layout-carousel .slide-meta {
+    padding: 0 3rem;
+}
+
 .layout-carousel .exhibit-item-caption p {
     clear: both;
+}
+
+.layout-carousel .exhibit-item-caption *:last-child {
+    margin-bottom: 0;
 }
 
 .layout-carousel .captions-center .exhibit-item-caption,
