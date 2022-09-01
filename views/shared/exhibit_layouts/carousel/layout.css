@@ -1,3 +1,7 @@
+.jcarousel-wrapper {
+    box-shadow: none;
+}
+
 .jcarousel ul {
     overflow: hidden;
     display: flex;
@@ -10,8 +14,8 @@
 }
 
 .jcarousel li > .exhibit-item-link {
-    display: inline-block;
     max-width: 90%;
+    margin: auto;
 }
 
 .layout-carousel a {
@@ -71,4 +75,23 @@
 .layout-carousel .captions-right .exhibit-item-caption,
 .layout-carousel .captions-right p.slide-title a {
     text-align: right;
+}
+
+[data-jcarousel-stretch="entire"].jcarousel-wrapper {
+    margin: 0 0 3rem;
+    padding: 0 3rem;
+}
+
+[data-jcarousel-stretch="height"] .jcarousel ul,
+[data-jcarousel-stretch="entire"] .jcarousel ul {
+    align-items: stretch;
+}
+
+[data-jcarousel-stretch="height"] .jcarousel img,
+[data-jcarousel-stretch="entire"] .jcarousel img {
+    height: 100% !important;
+}
+
+[data-jcarousel-stretch="entire"] .jcarousel li > .exhibit-item-link {
+    max-width: 100%;
 }
