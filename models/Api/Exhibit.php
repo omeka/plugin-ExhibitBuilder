@@ -13,6 +13,7 @@ class Api_Exhibit extends Omeka_Record_Api_AbstractRecordAdapter
         $representation['credits'] = $record->credits;
         $representation['featured'] = (bool) $record->featured;
         $representation['public'] = (bool) $record->public;
+        $representation['cover_image_file_id'] = $record->cover_image_file_id;
         $representation['added'] = self::getDate($record->added);
         $representation['modified'] = self::getDate($record->modified);
         $representation['owner'] = array(
