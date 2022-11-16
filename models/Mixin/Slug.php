@@ -15,6 +15,8 @@
  */
 class Mixin_Slug extends Omeka_Record_Mixin_AbstractMixin
 {
+    public $options;
+
     private $_parentFields;
 
     function __construct($record, $options = array())
