@@ -154,6 +154,10 @@ class ExhibitLayout
             'file' => array(
                 'name' => __('File'),
                 'description' => __('Layout featuring a standalone file')
+            ),
+            'carousel' => array(
+                'name' => __('Carousel'),
+                'description' => __('A carousel layout featuring file thumbnails')
             )
         );
 

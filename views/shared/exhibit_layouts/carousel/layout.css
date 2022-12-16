@@ -1,0 +1,97 @@
+.jcarousel-wrapper {
+    box-shadow: none;
+}
+
+.jcarousel ul {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.jcarousel li {
+    text-align: center;
+}
+
+.jcarousel li > .exhibit-item-link {
+    max-width: 90%;
+    margin: auto;
+}
+
+.layout-carousel a {
+    border-bottom: 0;
+    text-align: center;
+}
+
+.text-float .slide-meta {
+    margin-top: 1rem;
+}
+
+.text-overlay .slide-meta {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-overlay .slide-meta > * {
+    background-color: #fff;
+    padding: .25rem;
+}
+
+.layout-carousel .captions-left .slide-meta {
+    align-items: flex-start;
+}
+
+.layout-carousel .captions-right .slide-meta {
+    align-items: flex-end;
+}
+
+.layout-carousel .slide-meta {
+    padding: 0 3rem;
+}
+
+.layout-carousel .exhibit-item-caption p {
+    clear: both;
+}
+
+.layout-carousel .exhibit-item-caption *:last-child {
+    margin-bottom: 0;
+}
+
+.layout-carousel .captions-center .exhibit-item-caption,
+.layout-carousel .captions-center p.slide-title a {
+    text-align: center;
+}
+
+.layout-carousel .captions-left .exhibit-item-caption,
+.layout-carousel .captions-left p.slide-title a {
+    text-align: left;
+}
+
+.layout-carousel .captions-right .exhibit-item-caption,
+.layout-carousel .captions-right p.slide-title a {
+    text-align: right;
+}
+
+[data-jcarousel-stretch="entire"].jcarousel-wrapper {
+    margin: 0 0 3rem;
+    padding: 0 3rem;
+}
+
+[data-jcarousel-stretch="height"] .jcarousel ul,
+[data-jcarousel-stretch="entire"] .jcarousel ul {
+    align-items: stretch;
+}
+
+[data-jcarousel-stretch="height"] .jcarousel img,
+[data-jcarousel-stretch="entire"] .jcarousel img {
+    height: 100% !important;
+}
+
+[data-jcarousel-stretch="entire"] .jcarousel li > .exhibit-item-link {
+    max-width: 100%;
+}
