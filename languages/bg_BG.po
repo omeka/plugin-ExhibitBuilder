@@ -49,25 +49,25 @@ msgstr "Този документ не е използван в тази изл�
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Трябва да изберете тема за да я конфигурирате."
 
-#: functions.php:438
+#: functions.php:442
 msgid "exhibits"
 msgstr "изложби"
 
-#: functions.php:452 views/admin/exhibits/browse.php:2
+#: functions.php:456 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Преглед на Изложбите"
 
-#: functions.php:468 views/admin/exhibits/add.php:6
+#: functions.php:472 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Изложби"
 
-#: functions.php:641
+#: functions.php:645
 msgid "Exhibit"
 msgstr "Изложба"
 
-#: functions.php:642
+#: functions.php:646
 msgid "Exhibit Page"
 msgstr "Изложбена страница."
 
@@ -136,6 +136,14 @@ msgstr "Оформяне на блокове от текст без файлов
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
 msgstr "Оформяне на използването в самостоятелен файл"
+
+#: models/ExhibitLayout.php:159
+msgid "Carousel"
+msgstr ""
+
+#: models/ExhibitLayout.php:160
+msgid "A carousel layout featuring file thumbnails"
+msgstr ""
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -397,17 +405,54 @@ msgstr "Изберете документ"
 msgid "There are no exhibits available yet."
 msgstr "Няма достъпни изложби в момента."
 
+#: views/shared/exhibit_layouts/carousel/form.php:12
 #: views/shared/exhibit_layouts/file-text/form.php:17
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
 msgstr "Настройки за оформлението"
 
-#: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
-msgid "File position"
-msgstr "Позиция на файла"
+#: views/shared/exhibit_layouts/carousel/form.php:17
+msgid "Carousel title"
+msgstr ""
 
+#: views/shared/exhibit_layouts/carousel/form.php:26
+msgid "Items per slide"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:46
+msgid "Item file size"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:54
+msgid "Full Size"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:60
+msgid "Show item title"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:69
+msgid "Overlay caption"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:75
+msgid "Place caption over image (may require adjusting CSS settings)"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:79
+msgid "Caption/title position"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:84
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file/form.php:44
+#: views/shared/exhibit_layouts/gallery/form.php:69
+msgid "Center"
+msgstr "Център"
+
+#: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:50
 #: views/shared/exhibit_layouts/file/form.php:21
@@ -418,6 +463,7 @@ msgstr "Позиция на файла"
 msgid "Left"
 msgstr "Ляво"
 
+#: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
 #: views/shared/exhibit_layouts/file-text/form.php:51
 #: views/shared/exhibit_layouts/file/form.php:21
@@ -427,6 +473,62 @@ msgstr "Ляво"
 #: views/shared/exhibit_layouts/gallery/form.php:71
 msgid "Right"
 msgstr "Дясно"
+
+#: views/shared/exhibit_layouts/carousel/form.php:92
+msgid "Stretch image to fill"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:97
+msgid "None"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:98
+msgid "Fill width"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:99
+msgid "Fill height"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:100
+msgid "Fill entire slide"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:106
+msgid "Scrolling speed"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:113
+msgid ""
+"Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
+"time in milliseconds. Default is 400."
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:117
+msgid "Auto slide duration"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:123
+msgid ""
+"Time in milliseconds to pause before auto advance (set to 0 to turn off)"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:127
+msgid "Loop"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:136
+msgid "Fade between slides"
+msgstr ""
+
+#: views/shared/exhibit_layouts/carousel/form.php:142
+msgid "Note: only works with 1 item per slide"
+msgstr ""
+
+#: views/shared/exhibit_layouts/file-text/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:17
+msgid "File position"
+msgstr "Позиция на файла"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
 #: views/shared/exhibit_layouts/file/form.php:26
@@ -438,13 +540,6 @@ msgstr "Размер на файл "
 #: views/shared/exhibit_layouts/gallery/form.php:64
 msgid "Captions position"
 msgstr "Позиция на заглавието"
-
-#: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
-msgid "Center"
-msgstr "Център"
 
 #: views/shared/exhibit_layouts/gallery/form.php:22
 msgid "Showcase file position"
