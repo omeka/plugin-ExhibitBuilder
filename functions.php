@@ -439,7 +439,11 @@ function exhibit_builder_admin_head()
 function exhibit_builder_dashboard_stats($stats)
 {
     if (is_allowed('ExhibitBuilder_Exhibits', 'browse')) {
-        $stats[] = array(link_to('exhibits', array(), total_records('Exhibits')), __('exhibits'));
+        if (version_compare(OMEKA_VERSION, '3.1', 'ge')) {
+            $stats['exhibits'] = array(total_records('Exhibits'), __('exhibits'));
+        } else {
+            $stats[] = array(link_to('exhibits', array(), total_records('Exhibits')), __('exhibits'));
+        }
     }
     return $stats;
 }
