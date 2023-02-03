@@ -1,4 +1,4 @@
-<div class="field">
+<div id="search-by-exhibit" class="field">
     <div class="two columns alpha">
         <?php echo $this->formLabel('exhibit', __('Search by Exhibit')); ?>
     </div>
