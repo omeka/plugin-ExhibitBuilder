@@ -26,6 +26,7 @@ class Api_Exhibit extends Omeka_Record_Api_AbstractRecordAdapter
                 'resource' => 'exhibit_pages',
                 'url' => self::getResourceUrl("/exhibit_pages?exhibit={$record->id}")
                 );
+        $representation['tags'] = $this->getTagRepresentations($record);
         return $representation;
     }
     
