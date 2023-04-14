@@ -110,6 +110,7 @@ function exhibit_builder_uninstall()
 
     // delete plugin options
     delete_option('exhibit_builder_sort_browse');
+    delete_option('exhibit_builder_researcher_permissions');
 }
 
 /**
