@@ -17,7 +17,7 @@ $options = $block->getOptions();
         <?php echo $this->formLabel($formStem . '[options][carousel-title]', __('Carousel title')); ?>
         <?php
         echo $this->formText($formStem . '[options][carousel-title]',
-            @$options['carousel-title'],
+            @$options['carousel-title']
         );
         ?>
     </div>
@@ -107,7 +107,7 @@ $options = $block->getOptions();
         <?php
         $defaultSpeed = 400;
         echo $this->formText($formStem . '[options][speed]',
-            (@$options['speed']) ? @$options['speed'] : $defaultSpeed,
+            (@$options['speed']) ? @$options['speed'] : $defaultSpeed
         );
         ?>
         <p class="instructions"><?php echo __('Sets the speed for the scrolling animation. May be "fast", "slow", or a time in milliseconds. Default is 400.'); ?></p>
@@ -117,7 +117,7 @@ $options = $block->getOptions();
         <?php echo $this->formLabel($formStem . '[options][auto-slide]', __('Auto slide duration')); ?>
         <?php
         echo $this->formText($formStem . '[options][auto-slide]',
-            @$options['auto-slide'],
+            @$options['auto-slide']
         );
         ?>
         <p class="instructions"><?php echo __('Time in milliseconds to pause before auto advance (set to 0 to turn off)'); ?></p>
