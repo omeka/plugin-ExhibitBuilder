@@ -717,6 +717,8 @@ function exhibit_builder_api_import_omeka_adapters($adapters, $args)
         $exhibitsAdapter = new ApiImport_ResponseAdapter_Omeka_GenericAdapter(null, $args['endpointUri'], 'Exhibit');
         $exhibitsAdapter->setService($args['omeka_service']);
         $exhibitsAdapter->setUserProperties(array('owner'));
+        $exhibitsAdapter->addSkipProperty('added');
+        $exhibitsAdapter->addSkipProperty('modified');
         $adapters['exhibits'] = $exhibitsAdapter;
         $adapters['exhibit_pages'] = 'ExhibitBuilder_ApiImport_ExhibitPageAdapter';
         return $adapters;
