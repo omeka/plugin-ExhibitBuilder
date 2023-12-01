@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2016
+# Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2016,2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2016\n"
-"Language-Team: Finnish (Finland) (http://www.transifex.com/omeka/omeka/language/fi_FI/)\n"
+"Last-Translator: Matti Lassila <matti.lassila@gmail.com>, 2012,2014-2016,2023\n"
+"Language-Team: Finnish (Finland) (http://app.transifex.com/omeka/omeka/language/fi_FI/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,14 +26,22 @@ msgstr "Näyttelyiden järjestys"
 msgid ""
 "The default method by which you wish to sort the listing of exhibits on the "
 "exhibits/browse page. Default is 'Date Added'."
-msgstr "Oletusjärjestys näytteyiden selaussivulla. Oletusarvoisesti näyttelyt järjestetään niiden lisäyspäivän mukaan."
+msgstr "Oletusjärjestys näyttelyiden selaussivulla. Oletusarvoisesti näyttelyt järjestetään niiden lisäyspäivän mukaan."
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Aakkosjärjestys"
 
 #: config_form.php:9
 msgid "Recent"
+msgstr "Uusin ensin"
+
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
 msgstr ""
 
 #: controllers/ExhibitsController.php:53
@@ -49,25 +57,25 @@ msgstr "Aineistoa ei ole sisällytetty tähän näyttelyyn."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Voit muuttaa asetuksia valittuasi ulkoasun."
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "näyttelyjä"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Selaa näyttelyitä"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Näyttelyt"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Näyttely"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Näyttelyn sivu"
 
@@ -139,11 +147,11 @@ msgstr "Asettelu tiedostoa varten"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Karuselli"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Karuselliasettelu esikatselukuville"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -163,7 +171,7 @@ msgstr "Näyttelyn sivuilla tulee olla otsikko."
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Toinen käyttäjä on muokannut sivua samanaikaisesti. Muokkauksesi ei tallennettu jotta toisen käyttäjän muokkaukset säilyvät."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -213,6 +221,11 @@ msgstr "Nykyinen julkinen ulkoasu"
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "Muokataan näyttelyä \"%s\""
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Hae näyttelyn mukaan"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -308,11 +321,11 @@ msgstr "Sivun otsikko"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Valikkolinkin otsikko"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Vaihtoehtoinen valikoissa käytettävä lyhytotsikko"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
@@ -386,7 +399,7 @@ msgstr "Vaihda"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Poista suodattimet"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
@@ -414,35 +427,35 @@ msgstr "Asettelu-asetukset"
 
 #: views/shared/exhibit_layouts/carousel/form.php:17
 msgid "Carousel title"
-msgstr ""
+msgstr "Karusellin otsikko"
 
 #: views/shared/exhibit_layouts/carousel/form.php:26
 msgid "Items per slide"
-msgstr ""
+msgstr "Aineistoja ruutua kohti"
 
 #: views/shared/exhibit_layouts/carousel/form.php:46
 msgid "Item file size"
-msgstr ""
+msgstr "Aineiston tiedostokoko"
 
 #: views/shared/exhibit_layouts/carousel/form.php:54
 msgid "Full Size"
-msgstr ""
+msgstr "Täysi koko"
 
 #: views/shared/exhibit_layouts/carousel/form.php:60
 msgid "Show item title"
-msgstr ""
+msgstr "Näytä aineiston otsikko"
 
 #: views/shared/exhibit_layouts/carousel/form.php:69
 msgid "Overlay caption"
-msgstr ""
+msgstr "Kelluva kuvateksti"
 
 #: views/shared/exhibit_layouts/carousel/form.php:75
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Asemoi otsikko kuvan päälle (voi vaatia CSS-asetusten muuttamista)"
 
 #: views/shared/exhibit_layouts/carousel/form.php:79
 msgid "Caption/title position"
-msgstr ""
+msgstr "Kuvatekstin asemointi"
 
 #: views/shared/exhibit_layouts/carousel/form.php:84
 #: views/shared/exhibit_layouts/file-text/form.php:49
@@ -476,54 +489,54 @@ msgstr "Oikea"
 
 #: views/shared/exhibit_layouts/carousel/form.php:92
 msgid "Stretch image to fill"
-msgstr ""
+msgstr "Venytä kuva"
 
 #: views/shared/exhibit_layouts/carousel/form.php:97
 msgid "None"
-msgstr ""
+msgstr "Ei"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
 msgid "Fill width"
-msgstr ""
+msgstr "Leveyssuunta"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
 msgid "Fill height"
-msgstr ""
+msgstr "Korkeussuunta"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Täytä koko ruutu"
 
 #: views/shared/exhibit_layouts/carousel/form.php:106
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Vieritysnopeus"
 
 #: views/shared/exhibit_layouts/carousel/form.php:113
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Vieritysanimaation nopeus. Asetus voi olla \"fast\", \"slow\" tai aika millisekunteina. Oletus on 400."
 
 #: views/shared/exhibit_layouts/carousel/form.php:117
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Pysähdys ennen seuraavaa ruutua"
 
 #: views/shared/exhibit_layouts/carousel/form.php:123
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Odotusaika millisekunneissa ennen automaattista vaihtoa (asetuksella 0 on kytkettynä pois päältä)"
 
 #: views/shared/exhibit_layouts/carousel/form.php:127
 msgid "Loop"
-msgstr ""
+msgstr "Taukoamaton toisto"
 
 #: views/shared/exhibit_layouts/carousel/form.php:136
 msgid "Fade between slides"
-msgstr ""
+msgstr "Häivytä vaihdot"
 
 #: views/shared/exhibit_layouts/carousel/form.php:142
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Vain mikäli on valittuna 1i aineisto ruutua kohti"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:17
@@ -562,7 +575,3 @@ msgstr "Galleria näytetään koko lohkon levyisenä jos lohkolla ei ole aineist
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Kuvien koko gallerianäkymässä"
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Hae näyttelyn mukaan"

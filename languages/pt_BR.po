@@ -4,7 +4,8 @@
 # 
 # Translators:
 # Carlos Eduardo Maciel <carlosmaciel1@gmail.com>, 2012-2014,2016-2017
-# Deidson Rafael <drafael@usp.br>, 2019
+# Deidson Rafael Trindade <drafael@usp.br>, 2019
+# Deidson Rafael Trindade <drafael@usp.br>, 2019
 # Edson Duarte <edson@artsoft.com.br>, 2016
 # Tel, 2014-2015
 msgid ""
@@ -13,8 +14,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Deidson Rafael <drafael@usp.br>, 2019\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/omeka/omeka/language/pt_BR/)\n"
+"Last-Translator: Edson Duarte <edson@artsoft.com.br>, 2016\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/omeka/omeka/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,6 +40,14 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
@@ -52,25 +61,25 @@ msgstr "Este item não é usado nesta exposição."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Você precisa selecionar um tema em específico para poder configurá-lo."
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "mostras"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Ver Exposições"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Exposições"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Mostra"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Página de Mostras"
 
@@ -216,6 +225,11 @@ msgstr "Tema Público Atual"
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "Editar Mostra: \"%s\""
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Procurar por Exposição"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -565,7 +579,3 @@ msgstr "Se não houver amostras de arquivos ou texto, a galeria utilizará a lar
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Tamanho do arquivo da galeria"
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Procurar por Exposição"

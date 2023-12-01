@@ -4,6 +4,8 @@
 # 
 # Translators:
 # HadjaLSI <grebenkina007@mail.ru>, 2013
+# HadjaLSI <grebenkina007@mail.ru>, 2013
+# Mikhail Shvartsman <Shvar@rsl.ru>, 2014
 # Mikhail Shvartsman <Shvar@rsl.ru>, 2014
 msgid ""
 msgstr ""
@@ -12,7 +14,7 @@ msgstr ""
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
 "Last-Translator: Mikhail Shvartsman <Shvar@rsl.ru>, 2014\n"
-"Language-Team: Russian (http://www.transifex.com/omeka/omeka/language/ru/)\n"
+"Language-Team: Russian (http://app.transifex.com/omeka/omeka/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,6 +39,14 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
@@ -50,25 +60,25 @@ msgstr "Этот элемент не используется в данной в
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Вы должны выбрать тему для дальнейшей её конфигурации. "
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "выставки"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Просмотр выставок"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Выставки"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Выставка"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Страница выставки"
 
@@ -214,6 +224,11 @@ msgstr "Текущая общественная тема "
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "Редактировать выставку \"%s\""
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Поиск по выставке"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -563,7 +578,3 @@ msgstr "Если не существует демонстрационного ф
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr ""
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Поиск по выставке"

@@ -3,14 +3,17 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
+# a270031086f2a0d3514bc0cb507b48f6, 2019
 # Daniel Berthereau <daniel.transifex@berthereau.net>, 2016,2020
 # a270031086f2a0d3514bc0cb507b48f6, 2019
 # fiuzzy <fiuzzy1@gmail.com>, 2016-2017
 # Isabelle Gilles <isabelle.gillesgallet@gmail.com>, 2015
 # Julien Sicot <julien.sicot@gmail.com>, 2012
 # rcheno <remi.cheno@ideo-cairo.org>, 2014
+# rcheno <remi.cheno@ideo-cairo.org>, 2014
+# symac <wikitipiac@laposte.net>, 2012,2014
 # Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2012
-# Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2013
+# Thierry Pasquier <thierry.pasquier@emf.ccsti.eu>, 2012-2013
 # symac <wikitipiac@laposte.net>, 2014
 # symac <wikitipiac@laposte.net>, 2012
 msgid ""
@@ -19,8 +22,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Daniel Berthereau <daniel.transifex@berthereau.net>, 2016,2020\n"
-"Language-Team: French (http://www.transifex.com/omeka/omeka/language/fr/)\n"
+"Last-Translator: symac <wikitipiac@laposte.net>, 2012,2014\n"
+"Language-Team: French (http://app.transifex.com/omeka/omeka/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,6 +48,14 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
@@ -58,25 +69,25 @@ msgstr "Ce contenu n'est pas utilisé dans cette exposition."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Vous devez sélectionner un thème pour pouvoir le configurer."
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "expositions"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Parcourir les expositions"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Expositions"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Exposition"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Page de l'exposition"
 
@@ -222,6 +233,11 @@ msgstr "Thème public courant"
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "Éditer l'exposition \"%s\" "
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Recherche par exposition"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -571,7 +587,3 @@ msgstr "S'il n'y a ni fichier ni texte, la galerie utilisera la page en pleine l
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Taille des fichiers de la galerie"
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Recherche par exposition"

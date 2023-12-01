@@ -4,6 +4,8 @@
 # 
 # Translators:
 # Adam Katona, 2018
+# Adam Katona, 2018
+# Dora Nagy, 2019
 # Dora Nagy, 2019
 msgid ""
 msgstr ""
@@ -12,7 +14,7 @@ msgstr ""
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
 "Last-Translator: Dora Nagy, 2019\n"
-"Language-Team: Hungarian (Hungary) (http://www.transifex.com/omeka/omeka/language/hu_HU/)\n"
+"Language-Team: Hungarian (Hungary) (http://app.transifex.com/omeka/omeka/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,6 +39,14 @@ msgstr ""
 msgid "Recent"
 msgstr ""
 
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
+msgstr ""
+
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
@@ -50,25 +60,25 @@ msgstr "Ez az elem nem szerepel ebben a kiállításban."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "A konfiguráláshoz külön kell kiválasztania egy témát."
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "kiállítások"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Kiállítások böngészése"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Kiállítások"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Kiállítás"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Kiállítás oldal"
 
@@ -214,6 +224,11 @@ msgstr "Aktuális nyilvános téma"
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "\"%s\" kiállítás szerkesztése"
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Kiállítás szerinti keresés"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -563,7 +578,3 @@ msgstr "Ha nincs megjeleníthető fájl vagy szöveg, a galéria az oldal teljes
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr "Galéria fájlmérete"
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Kiállítás szerinti keresés"

@@ -4,7 +4,9 @@
 # 
 # Translators:
 # Catalina_Melo <catalinamelo10@gmail.com>, 2014
-# MangleRojo <administrador@manglerojo.org>, 2013-2014
+# Catalina_Melo <catalinamelo10@gmail.com>, 2014
+# John Flatness <john@omeka.org>, 2023
+# MangleRojo <administrador@manglerojo.org>, 2012-2014
 # MangleRojo <administrador@manglerojo.org>, 2012
 msgid ""
 msgstr ""
@@ -12,8 +14,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: MangleRojo <administrador@manglerojo.org>, 2013-2014\n"
-"Language-Team: Spanish (Colombia) (http://www.transifex.com/omeka/omeka/language/es_CO/)\n"
+"Last-Translator: John Flatness <john@omeka.org>, 2023\n"
+"Language-Team: Spanish (Colombia) (http://app.transifex.com/omeka/omeka/language/es_CO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,10 +34,18 @@ msgstr "Método con el cual desea organizar la lista de exposiciones. El valor p
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabético"
 
 #: config_form.php:9
 msgid "Recent"
+msgstr "Reciente"
+
+#: config_form.php:14
+msgid "Contributor/Researcher Permissions"
+msgstr ""
+
+#: config_form.php:18
+msgid "Allow Contributor and Researcher users to view unpublished exhibits."
 msgstr ""
 
 #: controllers/ExhibitsController.php:53
@@ -51,25 +61,25 @@ msgstr "Este registro no se utiliza en esta exposición."
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Debe seleccionar específicamente un tema con el fin de configurarlo."
 
-#: functions.php:442
+#: functions.php:449 functions.php:451
 msgid "exhibits"
 msgstr "exposiciones"
 
-#: functions.php:456 views/admin/exhibits/browse.php:2
+#: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Navegar por Exposiciones"
 
-#: functions.php:472 views/admin/exhibits/add.php:6
+#: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Exposiciones"
 
-#: functions.php:645
+#: functions.php:655
 msgid "Exhibit"
 msgstr "Exposición"
 
-#: functions.php:646
+#: functions.php:656
 msgid "Exhibit Page"
 msgstr "Página de Exposición"
 
@@ -215,6 +225,11 @@ msgstr "Tema Público Actual"
 #, php-format
 msgid "Edit Exhibit \"%s\""
 msgstr "Editar la Exposición \"%s\""
+
+#: views/admin/exhibits/exhibit-builder-advanced-search.php:2
+#: views/public/exhibits/exhibit-builder-advanced-search.php:2
+msgid "Search by Exhibit"
+msgstr "Buscar por Exposiciones"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:4
 msgid "Exhibit Metadata"
@@ -564,7 +579,3 @@ msgstr "Si no existe una entrada o texto destacado., la galería usará el ancho
 #: views/shared/exhibit_layouts/gallery/form.php:50
 msgid "Gallery file size"
 msgstr ""
-
-#: views/shared/exhibits/exhibit-builder-advanced-search.php:3
-msgid "Search by Exhibit"
-msgstr "Buscar por Exposiciones"
