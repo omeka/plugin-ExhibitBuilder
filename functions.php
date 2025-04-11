@@ -723,3 +723,9 @@ function exhibit_builder_api_import_omeka_adapters($adapters, $args)
         $adapters['exhibit_pages'] = 'ExhibitBuilder_ApiImport_ExhibitPageAdapter';
         return $adapters;
 }
+
+function exhibit_builder_display_records_types($recordTypes)
+{
+    $recordTypes['Exhibit'] = array('partial' => 'exhibit-builder/exhibits/single.php', 'alias' => 'exhibit');
+    return $recordTypes;
+}
