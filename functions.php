@@ -749,14 +749,14 @@ function exhibit_builder_static_site_export_section_create($args)
         $exhibits = get_db()->getTable('Exhibit')->findBy([], 100, $page++);
         foreach ($exhibits as $exhibit) {
 
-            // Create the exhibit bundle.
+            // Create the exhibit section.
             $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
-            $job->makeDirectory(sprintf('content/exhibits/%s/blocks', $exhibit->slug));
 
-            $frontMatterPage = new ArrayObject([
+            $frontMatterExhibit = new ArrayObject([
                 'date' => (new DateTime(metadata($exhibit, 'added')))->format('c'),
                 'title' => $exhibit->title,
                 'draft' => $exhibit->public ? false : true,
+                'layout' => 'exhibit-pages',
                 'params' => [
                     'exhibitID' => $exhibit->id,
                     'description' => $exhibit->description,
@@ -764,10 +764,29 @@ function exhibit_builder_static_site_export_section_create($args)
                 ],
             ]);
 
-            // Add the blocks.
-            $blocks = new ArrayObject;
+            // Make the markdown file.
+            $job->makeFile(
+                sprintf('content/exhibits/%s/_index.md', $exhibit->slug),
+                json_encode($frontMatterExhibit, JSON_PRETTY_PRINT)
+            );
 
-            $job->makeBundleFiles(sprintf('exhibits/%s', $exhibit->slug), $exhibit, $frontMatterPage, $blocks);
+            foreach ($exhibit->getPages() as $exhibitPage) {
+                $frontMatterExhibitPage = new ArrayObject([
+                    'date' => (new DateTime(metadata($exhibitPage, 'added')))->format('c'),
+                    'title' => $exhibitPage->title,
+                    'draft' => $exhibit->public ? false : true,
+                    'params' => [
+                        'exhibitID' => $exhibit->id,
+                        'exhibitPageID' => $exhibitPage->id,
+                    ],
+                ]);
+                // Create the exhibit page bundle.
+                $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));
+                $job->makeFile(
+                    sprintf('content/exhibits/%s/%s/index.md', $exhibit->slug, $exhibitPage->slug),
+                    json_encode($frontMatterExhibitPage, JSON_PRETTY_PRINT)
+                );
+            }
         }
     } while ($files);
 
