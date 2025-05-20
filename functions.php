@@ -366,7 +366,7 @@ function exhibit_builder_define_acl($args)
         new Omeka_Acl_Assert_Ownership);
 
     if (get_option('exhibit_builder_researcher_permissions')==1) {
-        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');   
+        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');
     }
 }
 
@@ -722,4 +722,53 @@ function exhibit_builder_api_import_omeka_adapters($adapters, $args)
         $adapters['exhibits'] = $exhibitsAdapter;
         $adapters['exhibit_pages'] = 'ExhibitBuilder_ApiImport_ExhibitPageAdapter';
         return $adapters;
+}
+
+function exhibit_builder_static_site_export_site_config($args)
+{
+    $args['site_config']['menus']['main'][] = [
+        'name' => __('Browse exhibits'),
+        'pageRef' => '/exhibits',
+        'weight' => 40,
+    ];
+}
+
+function exhibit_builder_static_site_export_section_create($args)
+{
+    $job = $args['job'];
+
+    $frontMatter = [
+        'title' => __('Browse exhibits'),
+        'params' => [],
+    ];
+    $job->makeDirectory('content/exhibits');
+    $job->makeFile('content/exhibits/_index.md', json_encode($frontMatter, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
+
+    $page = 1;
+    do {
+        $exhibits = get_db()->getTable('Exhibit')->findBy([], 100, $page++);
+        foreach ($exhibits as $exhibit) {
+
+            // Create the exhibit bundle.
+            $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
+            $job->makeDirectory(sprintf('content/exhibits/%s/blocks', $exhibit->slug));
+
+            $frontMatterPage = new ArrayObject([
+                'date' => (new DateTime(metadata($exhibit, 'added')))->format('c'),
+                'title' => $exhibit->title,
+                'draft' => $exhibit->public ? false : true,
+                'params' => [
+                    'exhibitID' => $exhibit->id,
+                    'description' => $exhibit->description,
+                    'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                ],
+            ]);
+
+            // Add the blocks.
+            $blocks = new ArrayObject;
+
+            $job->makeBundleFiles(sprintf('exhibits/%s', $exhibit->slug), $exhibit, $frontMatterPage, $blocks);
+        }
+    } while ($files);
+
 }
