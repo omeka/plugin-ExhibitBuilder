@@ -733,6 +733,27 @@ function exhibit_builder_static_site_export_site_config($args)
     ];
 }
 
+function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
+{
+    switch ($args['block']->layout) {
+        case 'file-text':
+            return '';
+            break;
+        case 'gallery':
+            return '';
+            break;
+        case 'text':
+            return '';
+            break;
+        case 'file':
+            return '';
+            break;
+        case 'carousel':
+            return '';
+            break;
+    }
+}
+
 function exhibit_builder_static_site_export_site_export_post($args)
 {
     $job = $args['job'];
@@ -795,6 +816,16 @@ function exhibit_builder_static_site_export_site_export_post($args)
                     sprintf('content/exhibits/%s/%s/index.md', $exhibit->slug, $exhibitPage->slug),
                     json_encode($frontMatterExhibitPage, JSON_PRETTY_PRINT)
                 );
+                $job->makeDirectory(sprintf('content/exhibits/%s/%s/blocks', $exhibit->slug, $exhibitPage->slug));
+                foreach ($exhibitPage->getPageBlocks() as $exhibitPageBlock) {
+                    $frontMatterExhibitPageBlock = new ArrayObject([]);
+                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', ['block' => $exhibitPageBlock]);
+                    $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
+                    $job->makeFile(
+                        sprintf('content/exhibits/%s/%s/blocks/%s-%s.md', $exhibit->slug, $exhibitPage->slug, $blockNumber, $exhibitPageBlock->layout),
+                        sprintf("%s\n%s", json_encode($frontMatterExhibitPageBlock, JSON_PRETTY_PRINT), $markdown)
+                    );
+                }
             }
         }
     } while ($exhibits);
