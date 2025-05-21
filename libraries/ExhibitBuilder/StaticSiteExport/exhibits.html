@@ -2,7 +2,7 @@
 <h2>{{ .Title }}</h2>
 {{ .Content }}
 <div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
-{{ range .Sections }}
+{{ range .Sections.ByTitle }}
     {{ $thumbnailResource := false }}
     {{ if .Params.thumbnailSpec.page }}
         {{ $thumbnailPage := site.GetPage (.Params.thumbnailSpec.page) }}

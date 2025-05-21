@@ -11,7 +11,7 @@
 </div>
 <nav id="exhibit-pages">
     <ul>
-        {{ range .Pages }}
+        {{ range .Pages.ByWeight }}
         <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
         {{ end }}
     </ul>

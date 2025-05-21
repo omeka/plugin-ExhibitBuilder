@@ -737,6 +737,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
 {
     $job = $args['job'];
 
+    // Add exhibit layouts.
     $job->makeDirectory('layouts/exhibits');
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibits.html', PLUGIN_DIR);
     $job->makeFile('layouts/exhibits/list.html', file_get_contents($fromPath));
@@ -782,6 +783,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                     'date' => (new DateTime(metadata($exhibitPage, 'added')))->format('c'),
                     'title' => $exhibitPage->title,
                     'draft' => $exhibit->public ? false : true,
+                    'weight' => $exhibitPage->order + 10,
                     'params' => [
                         'exhibitID' => $exhibit->id,
                         'exhibitPageID' => $exhibitPage->id,
