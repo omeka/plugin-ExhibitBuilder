@@ -1,0 +1,18 @@
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+<div id="exhibit-blocks">
+    {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
+    <div class="exhibit-block {{ printf "layout-%s" .Params.layout }}">
+        {{ .Content }}
+    </div>
+    {{ end }}
+</div>
+<nav id="exhibit-pages">
+    <ul>
+        {{ range .Parent.Pages.ByWeight }}
+        <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
+        {{ end }}
+    </ul>
+</nav>
+{{ .Content }}
+{{ end }}

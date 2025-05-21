@@ -760,12 +760,13 @@ function exhibit_builder_static_site_export_site_export_post($args)
 
     // Add exhibit layouts.
     $job->makeDirectory('layouts/exhibits');
+    $job->makeDirectory('layouts/exhibit-pages');
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibits.html', PLUGIN_DIR);
     $job->makeFile('layouts/exhibits/list.html', file_get_contents($fromPath));
-
-    $job->makeDirectory('layouts/exhibit-pages');
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-pages.html', PLUGIN_DIR);
     $job->makeFile('layouts/exhibit-pages/list.html', file_get_contents($fromPath));
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-page.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibit-pages/single.html', file_get_contents($fromPath));
 
     // Create the exhibits section.
     $frontMatter = [
@@ -805,6 +806,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                     'title' => $exhibitPage->title,
                     'draft' => $exhibit->public ? false : true,
                     'weight' => $exhibitPage->order + 10,
+                    'type' => 'exhibit-pages',
                     'params' => [
                         'exhibitID' => $exhibit->id,
                         'exhibitPageID' => $exhibitPage->id,
@@ -818,7 +820,11 @@ function exhibit_builder_static_site_export_site_export_post($args)
                 );
                 $job->makeDirectory(sprintf('content/exhibits/%s/%s/blocks', $exhibit->slug, $exhibitPage->slug));
                 foreach ($exhibitPage->getPageBlocks() as $exhibitPageBlock) {
-                    $frontMatterExhibitPageBlock = new ArrayObject([]);
+                    $frontMatterExhibitPageBlock = new ArrayObject([
+                        'params' => [
+                            'layout' => $exhibitPageBlock->layout,
+                        ],
+                    ]);
                     $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', ['block' => $exhibitPageBlock]);
                     $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
                     $job->makeFile(
