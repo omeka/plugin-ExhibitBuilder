@@ -733,12 +733,22 @@ function exhibit_builder_static_site_export_site_config($args)
     ];
 }
 
-function exhibit_builder_static_site_export_section_create($args)
+function exhibit_builder_static_site_export_site_export_post($args)
 {
     $job = $args['job'];
 
+    $job->makeDirectory('layouts/exhibits');
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibits.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibits/list.html', file_get_contents($fromPath));
+
+    $job->makeDirectory('layouts/exhibit-pages');
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-pages.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibit-pages/list.html', file_get_contents($fromPath));
+
+    // Create the exhibits section.
     $frontMatter = [
         'title' => __('Browse exhibits'),
+        'type' => 'exhibits',
         'params' => [],
     ];
     $job->makeDirectory('content/exhibits');
@@ -748,29 +758,26 @@ function exhibit_builder_static_site_export_section_create($args)
     do {
         $exhibits = get_db()->getTable('Exhibit')->findBy([], 100, $page++);
         foreach ($exhibits as $exhibit) {
-
-            // Create the exhibit section.
-            $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
-
+            // Create the exhibit pages section.
             $frontMatterExhibit = new ArrayObject([
                 'date' => (new DateTime(metadata($exhibit, 'added')))->format('c'),
                 'title' => $exhibit->title,
                 'draft' => $exhibit->public ? false : true,
-                'layout' => 'exhibit-pages',
+                'type' => 'exhibit-pages',
                 'params' => [
                     'exhibitID' => $exhibit->id,
                     'description' => $exhibit->description,
+                    'credits' => $exhibit->credits,
                     'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
                 ],
             ]);
-
-            // Make the markdown file.
+            $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
             $job->makeFile(
                 sprintf('content/exhibits/%s/_index.md', $exhibit->slug),
                 json_encode($frontMatterExhibit, JSON_PRETTY_PRINT)
             );
-
             foreach ($exhibit->getPages() as $exhibitPage) {
+                // Create the exhibit page bundle.
                 $frontMatterExhibitPage = new ArrayObject([
                     'date' => (new DateTime(metadata($exhibitPage, 'added')))->format('c'),
                     'title' => $exhibitPage->title,
@@ -778,9 +785,9 @@ function exhibit_builder_static_site_export_section_create($args)
                     'params' => [
                         'exhibitID' => $exhibit->id,
                         'exhibitPageID' => $exhibitPage->id,
+                        'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
                     ],
                 ]);
-                // Create the exhibit page bundle.
                 $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));
                 $job->makeFile(
                     sprintf('content/exhibits/%s/%s/index.md', $exhibit->slug, $exhibitPage->slug),
@@ -788,6 +795,6 @@ function exhibit_builder_static_site_export_section_create($args)
                 );
             }
         }
-    } while ($files);
+    } while ($exhibits);
 
 }

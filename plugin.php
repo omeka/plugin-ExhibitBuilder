@@ -24,7 +24,7 @@ add_plugin_hook('admin_items_search', 'exhibit_builder_items_search');
 add_plugin_hook('public_items_search', 'exhibit_builder_items_search');
 add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 add_plugin_hook('static_site_export_site_config', 'exhibit_builder_static_site_export_site_config');
-add_plugin_hook('static_site_export_section_create', 'exhibit_builder_static_site_export_section_create');
+add_plugin_hook('static_site_export_site_export_post', 'exhibit_builder_static_site_export_site_export_post');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');

@@ -1,0 +1,20 @@
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+<div id="primary">
+    {{ with .Params.description }}
+    <div class="exhibit-description">{{ . | safeHTML }}</div>
+    {{ end }}
+    {{ with .Params.credits }}
+    <h2>Credits</h2>
+    <div class="exhibit-credits">{{ . }}</div>
+    {{ end }}
+</div>
+<nav id="exhibit-pages">
+    <ul>
+        {{ range .Pages }}
+        <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
+        {{ end }}
+    </ul>
+</nav>
+{{ .Content }}
+{{ end }}
