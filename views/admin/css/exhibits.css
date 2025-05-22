@@ -566,6 +566,7 @@ div.selected-items {
 
 .selected-item-list .attachment {
     background-color: #e5e5e5;
+    color: #232323;
     cursor: move;
     display: inline-flex;
     justify-content: space-between;
