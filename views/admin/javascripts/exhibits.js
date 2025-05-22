@@ -612,7 +612,7 @@ Omeka.ExhibitBuilder = {};
                 return true;
             }
 
-            if ($(event.target).closest('.mce-window').length) {
+            if ($(event.target).closest('.tox-tinymce-aux').length) {
                 return true;
             }
         }
