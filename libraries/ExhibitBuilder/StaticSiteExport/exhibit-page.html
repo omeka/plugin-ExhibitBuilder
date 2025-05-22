@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $currentPage := . }}
 <h2>{{ .Title }}</h2>
 <div id="exhibit-blocks">
     {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
@@ -9,8 +10,9 @@
 </div>
 <nav id="exhibit-pages">
     <ul>
+        <li><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></li>
         {{ range .Parent.Pages.ByWeight }}
-        <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
+        <li{{ if eq $currentPage . }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
         {{ end }}
     </ul>
 </nav>
