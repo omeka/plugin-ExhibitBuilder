@@ -377,20 +377,6 @@ Omeka.ExhibitBuilder = {};
         });
     };
 
-    Omeka.ExhibitBuilder.activateDeleteLinks = function () {
-        $('#page-list .delete-element').click(function (event) {
-            event.preventDefault();
-            var header = $(this).parent();
-            if ($(this).hasClass('delete-element')) {
-                $(this).removeClass('delete-element').addClass('undo-delete');
-                header.addClass('deleted');
-            } else {
-                $(this).removeClass('undo-delete').addClass('delete-element');
-                header.removeClass('deleted');
-            }
-        });
-    };
-
     Omeka.ExhibitBuilder.setUpFormSubmission = function () {
         $('#exhibit-metadata-form').submit(function (event) {
             // add ids to li elements so that we can pull out the parent/child relationships

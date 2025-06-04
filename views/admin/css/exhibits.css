@@ -36,11 +36,6 @@
     }
 }
 
-/* override for core's .undo-delete hiding */
-#page-list .undo-delete {
-    display: inline;
-}
-
 .page ul { margin-top: 15px; }
 
 /* Edit Page */
