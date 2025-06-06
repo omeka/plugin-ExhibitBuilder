@@ -735,9 +735,27 @@ function exhibit_builder_static_site_export_site_config($args)
 
 function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
 {
-    switch ($args['block']->layout) {
+    $block = $args['block'];
+    $attachments = $block->getAttachments();
+    switch ($block->layout) {
         case 'file-text':
-            return '';
+            $markdown = [];
+            foreach ($attachments as $attachment) {
+                $item = $attachment->getItem();
+                $file = $attachment->getFile();
+                $markdown[] = sprintf(
+                    '{{< omeka-figure imgPage="files/%s" imgResource="fullsize.jpg" linkPage="items/%s" caption="%s" >}}',
+                    $file->id,
+                    $item->id,
+                    // Captions cannot be HTML when using the figure shortcode.
+                    htmlspecialchars(strip_tags($attachment->caption))
+                );
+            }
+            $markdown[] = sprintf(
+                '{{< omeka-html >}}%s{{< /omeka-html >}}',
+                get_view()->shortcodes($block->text)
+            );
+            return implode("\n", $markdown);
             break;
         case 'gallery':
             return '';
