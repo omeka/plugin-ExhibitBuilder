@@ -735,17 +735,22 @@ function exhibit_builder_static_site_export_site_config($args)
 
 function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
 {
+    $job = $args['job'];
     $block = $args['block'];
+
     $attachments = $block->getAttachments();
     switch ($block->layout) {
+        // Build the "file-text" block markdown.
         case 'file-text':
             $markdown = [];
             foreach ($attachments as $attachment) {
                 $item = $attachment->getItem();
                 $file = $attachment->getFile();
+                $thumbnailSpec = $job->getThumbnailSpec($file, 'fullsize');
                 $markdown[] = sprintf(
-                    '{{< omeka-figure imgPage="files/%s" imgResource="fullsize.jpg" linkPage="items/%s" caption="%s" >}}',
-                    $file->id,
+                    '{{< omeka-figure imgPage="%s" imgResource="%s" linkPage="items/%s" caption="%s" >}}',
+                    $thumbnailSpec['page'],
+                    $thumbnailSpec['resource'],
                     $item->id,
                     // Captions cannot be HTML when using the figure shortcode.
                     htmlspecialchars(strip_tags($attachment->caption))
@@ -757,15 +762,58 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             );
             return implode("\n", $markdown);
             break;
+        // Build the "gallery" block markdown.
         case 'gallery':
-            return '';
+            $markdown = [];
+            foreach ($attachments as $attachment) {
+                $item = $attachment->getItem();
+                $file = $attachment->getFile();
+                $thumbnailSpec = $job->getThumbnailSpec($file, 'square_thumbnail');
+                $markdown[] = sprintf(
+                    '{{< omeka-figure imgPage="%s" imgResource="%s" linkPage="items/%s" caption="%s" >}}',
+                    $thumbnailSpec['page'],
+                    $thumbnailSpec['resource'],
+                    $item->id,
+                    // Captions cannot be HTML when using the figure shortcode.
+                    htmlspecialchars(strip_tags($attachment->caption))
+                );
+            }
+            $markdown[] = sprintf(
+                '{{< omeka-html >}}%s{{< /omeka-html >}}',
+                get_view()->shortcodes($block->text)
+            );
+            return implode("\n", $markdown);
             break;
+        // Build the "text" block markdown.
         case 'text':
-            return '';
+            $markdown = [];
+            $markdown[] = sprintf(
+                '{{< omeka-html >}}%s{{< /omeka-html >}}',
+                get_view()->shortcodes($block->text)
+            );
+            return implode("\n", $markdown);
             break;
+        // Build the "file" block markdown.
         case 'file':
-            return '';
+            $markdown = [];
+            foreach ($attachments as $attachment) {
+                $item = $attachment->getItem();
+                $file = $attachment->getFile();
+                $thumbnailSpec = $job->getThumbnailSpec($file, 'fullsize');
+                $markdown[] = sprintf(
+                    '{{< omeka-figure type="%s" filePage="files/%s" fileResource="file" imgPage="%s" imgResource="%s" linkPage="items/%s" caption="%s" >}}',
+                    explode('/', $file->mime_type)[0],
+                    $file->id,
+                    $thumbnailSpec['page'],
+                    $thumbnailSpec['resource'],
+                    $item->id,
+                    // Captions cannot be HTML when using the figure shortcode.
+                    htmlspecialchars(strip_tags($attachment->caption))
+                );
+            }
+            return implode("\n", $markdown);
             break;
+        // Build the "carousel" block markdown.
         case 'carousel':
             return '';
             break;
@@ -843,7 +891,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                             'layout' => $exhibitPageBlock->layout,
                         ],
                     ]);
-                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', ['block' => $exhibitPageBlock]);
+                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', ['job' => $job, 'block' => $exhibitPageBlock]);
                     $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
                     $job->makeFile(
                         sprintf('content/exhibits/%s/%s/blocks/%s-%s.md', $exhibit->slug, $exhibitPage->slug, $blockNumber, $exhibitPageBlock->layout),
@@ -853,5 +901,4 @@ function exhibit_builder_static_site_export_site_export_post($args)
             }
         }
     } while ($exhibits);
-
 }
