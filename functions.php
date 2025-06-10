@@ -737,30 +737,42 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
 {
     $job = $args['job'];
     $block = $args['block'];
+    $frontMatter = $args['frontMatter'];
+
+    $setAttachmentsToFrontMatter = function ($thumbnailType) use ($job, $block, $frontMatter) {
+        foreach ($block->getAttachments() as $attachment) {
+            $item = $attachment->getItem();
+            $file = $attachment->getFile();
+            $frontMatter['params']['attachments'][] = [
+                'itemID' => $item->id,
+                'fileID' => $file->id,
+                'fileMimeType' => explode('/', $file->mime_type)[0],
+                'fileName' => $file->original_filename,
+                'thumbnailSpec' => $job->getThumbnailSpec($file, $thumbnailType),
+                'caption' => $attachment->caption,
+            ];
+        }
+    };
 
     $attachments = $block->getAttachments();
     switch ($block->layout) {
         // Build the "file-text" block markdown.
         case 'file-text':
-            $markdown = [];
-            foreach ($attachments as $attachment) {
-                $item = $attachment->getItem();
-                $file = $attachment->getFile();
-                $thumbnailSpec = $job->getThumbnailSpec($file, 'fullsize');
-                $markdown[] = sprintf(
-                    '{{< omeka-figure imgPage="%s" imgResource="%s" linkPage="items/%s" caption="%s" >}}',
-                    $thumbnailSpec['page'],
-                    $thumbnailSpec['resource'],
-                    $item->id,
-                    // Captions cannot be HTML when using the figure shortcode.
-                    htmlspecialchars(strip_tags($attachment->caption))
-                );
-            }
-            $markdown[] = sprintf(
-                '{{< omeka-html >}}%s{{< /omeka-html >}}',
-                get_view()->shortcodes($block->text)
-            );
-            return implode("\n", $markdown);
+            $options = $block->getOptions();
+            $thumbnailType = isset($options['file-size']) ? $options['file-size'] : 'fullsize';
+            $thumbnailTypeClassMap = [
+                'fullsize' => 'full',
+                'thumbnail' => 'thumb',
+                'square_thumbnail' => 'thumb',
+            ];
+            $frontMatter['params']['options'] = [
+                'fileSize' => $thumbnailType,
+                'filePosition' => isset($options['file-position']) ? $options['file-position'] : 'left',
+                'captionsPosition' => isset($options['captions-position']) ? $options['captions-position'] : 'center',
+                'imgClass' => $thumbnailTypeClassMap[$thumbnailType],
+            ];
+            $setAttachmentsToFrontMatter($thumbnailType);
+            return sprintf('{{< omeka-exhibit-builder-page-block-file-text >}}');
             break;
         // Build the "gallery" block markdown.
         case 'gallery':
@@ -834,6 +846,10 @@ function exhibit_builder_static_site_export_site_export_post($args)
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-page.html', PLUGIN_DIR);
     $job->makeFile('layouts/exhibit-pages/single.html', file_get_contents($fromPath));
 
+    // Add shortcodes.
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
+    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-file-text.html', file_get_contents($fromPath));
+
     // Create the exhibits section.
     $frontMatter = [
         'title' => __('Browse exhibits'),
@@ -889,9 +905,15 @@ function exhibit_builder_static_site_export_site_export_post($args)
                     $frontMatterExhibitPageBlock = new ArrayObject([
                         'params' => [
                             'layout' => $exhibitPageBlock->layout,
+                            'text' => $exhibitPageBlock->text,
+                            'attachments' => [],
                         ],
                     ]);
-                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', ['job' => $job, 'block' => $exhibitPageBlock]);
+                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', [
+                        'job' => $job,
+                        'block' => $exhibitPageBlock,
+                        'frontMatter' => $frontMatterExhibitPageBlock,
+                    ]);
                     $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
                     $job->makeFile(
                         sprintf('content/exhibits/%s/%s/blocks/%s-%s.md', $exhibit->slug, $exhibitPage->slug, $blockNumber, $exhibitPageBlock->layout),

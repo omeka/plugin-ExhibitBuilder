@@ -1,0 +1,45 @@
+{{ $params := .Page.Params }}
+<div class="exhibit-items {{ $params.options.filePosition }} {{ $params.options.fileSize }} captions-{{ $params.options.captionsPosition }}">
+    {{ range $params.attachments }}
+
+    {{ $fileResource := false }}
+    {{ $imgResource := false }}
+    {{ $linkResource := false }}
+
+    {{ $filePage := site.GetPage (printf "files/%s" (string .fileID)) }}
+    {{ $fileResource = $filePage.Resources.GetMatch "file*" }}
+    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+        {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .thumbnailSpec.resource) }}
+    {{ else if (.thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ end }}
+    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
+
+    {{ if eq .fileMimeType "audio" }}
+    <audio src="{{ $fileResource.RelPermalink }}" class="omeka-media" width="200" height="20" controls>
+        <a href="{{ $fileResource.RelPermalink }}">{{ .fileName }}</a>
+    </audio>
+    {{ else if eq .fileMimeType "video" }}
+    <video src="{{ $fileResource.RelPermalink }}" class="omeka-media" width="320" height="240" controls>
+        <a href="{{ $fileResource.RelPermalink }}">{{ .fileName }}</a>
+    </video>
+    {{ else }}
+    <a class="download-file" href="{{ $linkResource.RelPermalink }}">
+        {{ if $imgResource }}
+        <img class="{{ $params.options.imgClass }}" src="{{ $imgResource.RelPermalink }}" alt="">
+        {{ else }}
+        {{ .fileName }}
+        {{ end }}
+    </a>
+    {{ end }}
+
+    {{ with .caption }}
+    <div class="slide-meta">
+        <div class="exhibit-item-caption">{{ . | safeHTML }}</div>
+    </div>
+    {{ end }}
+
+    {{ end }}
+</div>
+{{ $params.text | safeHTML }}
