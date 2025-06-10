@@ -6,8 +6,6 @@
 }
 
 .instructions {
-    font-size:11px;
-    color: #888;
     clear: both;
     width: 100%;
 }
@@ -37,6 +35,10 @@
 }
 
 .page ul { margin-top: 15px; }
+
+.page .drawer-name {
+    max-width: calc(100% - 5rem);
+}
 
 /* Edit Page */
 
@@ -365,9 +367,9 @@
     display: none;
 }
 
-.block-body.opened {
+.drawer-contents.block-body.opened {
     position: relative;
-    display: block;
+    padding: 0;
 }
 
 .block-body > div {
@@ -529,11 +531,6 @@
     clear: none;
 }
 
-div.selected-items {
-    font-size: 0;
-    padding-bottom: 20px;
-}
-
 .selected-item-list:empty + .add-item a {
     margin-bottom: 0;
 }
@@ -594,7 +591,7 @@ div.selected-items {
     display: none;
 }
 
-.cover-image-form-elements.attached.removed .explanation {
+.cover-image-form-elements.attached.deleted .explanation {
     display: block;
     color: #4C3939;
     margin: 0 0 20px;
@@ -630,7 +627,10 @@ div.selected-items {
 }
 
 .cover-image-form-elements .delete-element,
+.cover-image-form-elements .undo-delete,
 .attachment .delete-element {
+    padding: 0;
+    border: 0;
     display: block;
     position: absolute;
     top: 3px;
@@ -640,8 +640,20 @@ div.selected-items {
     text-align: center;
 }
 
+.cover-image-form-elements .undo-delete,
+.cover-image-form-elements .deleted .delete-element {
+    display: none;
+}
+
+.cover-image-form-elements .deleted .undo-delete {
+    display: block;
+}
+
 .cover-image-form-elements .delete-element:after,
+.cover-image-form-elements .undo-delete:after,
 .attachment .delete-element:after {
+    content: "\f00d" / "";
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     text-indent: 0;
     position: absolute;
@@ -652,10 +664,7 @@ div.selected-items {
     height: 16px;
     text-align: center;
     font-size: 12px;
-    vertical-align: top;
     padding: 0px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: 16px;
     z-index: 51;
@@ -668,8 +677,8 @@ div.selected-items {
     color: #4C3939;
 }
 
-.cover-image-form-elements .frozen:after,
-.attachment .frozen:after {
+.cover-image-form-elements .deleted:after,
+.attachment .deleted:after {
     z-index: 50;
 }
 
@@ -757,7 +766,11 @@ div.selected-items {
     align-items: center;
 }
 
-.frozen:after {
+.attachment-header.deleted > * {
+    z-index: 51;
+}
+
+.attachment-header.deleted:after {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -766,7 +779,6 @@ div.selected-items {
     content: "";
     display: block;
     background-color: rgba(255,255,255,.85);
-    z-index: 100;
 }
 
 .selected.layout-description {
