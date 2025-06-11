@@ -773,7 +773,6 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             ];
             $setAttachmentsToFrontMatter($thumbnailType);
             return sprintf('{{< omeka-exhibit-builder-page-block-file-text >}}');
-            break;
         // Build the "gallery" block markdown.
         case 'gallery':
             $options = $block->getOptions();
@@ -788,16 +787,9 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             ];
             $setAttachmentsToFrontMatter($galleryFileSize);
             return sprintf('{{< omeka-exhibit-builder-page-block-gallery >}}');
-            break;
         // Build the "text" block markdown.
         case 'text':
-            $markdown = [];
-            $markdown[] = sprintf(
-                '{{< omeka-html >}}%s{{< /omeka-html >}}',
-                get_view()->shortcodes($block->text)
-            );
-            return implode("\n", $markdown);
-            break;
+            return sprintf('{{< omeka-exhibit-builder-page-block-text >}}');
         // Build the "file" block markdown.
         case 'file':
             $markdown = [];
@@ -817,11 +809,9 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
                 );
             }
             return implode("\n", $markdown);
-            break;
         // Build the "carousel" block markdown.
         case 'carousel':
             return '';
-            break;
     }
 }
 
@@ -844,6 +834,8 @@ function exhibit_builder_static_site_export_site_export_post($args)
     $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-file-text.html', file_get_contents($fromPath));
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
     $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-gallery.html', file_get_contents($fromPath));
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-text.html', PLUGIN_DIR);
+    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-text.html', file_get_contents($fromPath));
 
     // Create the exhibits section.
     $frontMatter = [
