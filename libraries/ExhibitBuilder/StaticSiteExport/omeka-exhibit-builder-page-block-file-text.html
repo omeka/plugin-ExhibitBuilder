@@ -2,19 +2,16 @@
 <div class="exhibit-items {{ $params.options.filePosition }} {{ $params.options.fileSize }} captions-{{ $params.options.captionsPosition }}">
     {{ range $params.attachments }}
 
-    {{ $fileResource := false }}
-    {{ $imgResource := false }}
-    {{ $linkResource := false }}
-
     {{ $filePage := site.GetPage (printf "files/%s" (string .fileID)) }}
-    {{ $fileResource = $filePage.Resources.GetMatch "file*" }}
+    {{ $fileResource := $filePage.Resources.GetMatch "file*" }}
+    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
+    {{ $imgResource := false }}
     {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
         {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
         {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .thumbnailSpec.resource) }}
     {{ else if (.thumbnailSpec.resource) }}
         {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
     {{ end }}
-    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
 
     {{ if eq .fileMimeType "audio" }}
     <audio src="{{ $fileResource.RelPermalink }}" class="omeka-media" width="200" height="20" controls>

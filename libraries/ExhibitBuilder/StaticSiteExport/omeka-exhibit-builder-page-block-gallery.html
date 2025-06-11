@@ -1,0 +1,40 @@
+{{ $params := .Page.Params }}
+{{ $attachments := $params.attachments }}
+
+{{ if $params.options.showcaseFile }}
+{{ range first 1 $params.attachments }}
+<div class="gallery-showcase {{ $params.options.showcasePosition }} with-{{ $params.options.galleryPosition }} captions-{{ $params.options.captionsPosition }}">
+    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
+    {{ $imgResource := false }}
+    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+        {{ $imgResource = $imgPage.Resources.GetMatch "fullsize*" }}
+    {{ else if (.thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ end }}
+    <a class="download-file" href="{{ $linkResource.RelPermalink }}"></a>
+        <img src="{{ $imgResource.RelPermalink }}" alt="">
+    </a>
+</div>
+{{ end }}
+{{ $attachments = after 1 $attachments }}
+{{ end }}
+
+<div class="gallery {{ if or $params.options.showcaseFile $params.text }}with-showcase {{ $params.options.galleryPosition }}{{ end }} captions-{{ $params.options.captionsPosition }}">
+    {{ range $attachments }}
+    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
+    {{ $imgResource := false }}
+    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+        {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .thumbnailSpec.resource) }}
+    {{ else if (.thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ end }}
+    <div class="exhibit-item exhibit-gallery-item">
+        <a href="{{ $linkResource.RelPermalink }}" class="exhibit-item-link">
+            <img src="{{ $imgResource.RelPermalink }}" alt="">
+        </a>
+    </div>
+    {{ end }}
+</div>
+{{ $params.text | safeHTML }}

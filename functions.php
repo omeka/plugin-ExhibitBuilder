@@ -738,6 +738,7 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
     $job = $args['job'];
     $block = $args['block'];
     $frontMatter = $args['frontMatter'];
+    $attachments = $block->getAttachments();
 
     $setAttachmentsToFrontMatter = function ($thumbnailType) use ($job, $block, $frontMatter) {
         foreach ($block->getAttachments() as $attachment) {
@@ -754,7 +755,6 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
         }
     };
 
-    $attachments = $block->getAttachments();
     switch ($block->layout) {
         // Build the "file-text" block markdown.
         case 'file-text':
@@ -776,25 +776,18 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             break;
         // Build the "gallery" block markdown.
         case 'gallery':
-            $markdown = [];
-            foreach ($attachments as $attachment) {
-                $item = $attachment->getItem();
-                $file = $attachment->getFile();
-                $thumbnailSpec = $job->getThumbnailSpec($file, 'square_thumbnail');
-                $markdown[] = sprintf(
-                    '{{< omeka-figure imgPage="%s" imgResource="%s" linkPage="items/%s" caption="%s" >}}',
-                    $thumbnailSpec['page'],
-                    $thumbnailSpec['resource'],
-                    $item->id,
-                    // Captions cannot be HTML when using the figure shortcode.
-                    htmlspecialchars(strip_tags($attachment->caption))
-                );
-            }
-            $markdown[] = sprintf(
-                '{{< omeka-html >}}%s{{< /omeka-html >}}',
-                get_view()->shortcodes($block->text)
-            );
-            return implode("\n", $markdown);
+            $options = $block->getOptions();
+            $showcasePosition = isset($options['showcase-position']) ? $options['showcase-position'] : 'none';
+            $galleryFileSize = isset($options['gallery-file-size']) ? $options['gallery-file-size'] : 'square_thumbnail';
+            $frontMatter['params']['options'] = [
+                'showcasePosition' => $showcasePosition,
+                'showcaseFile' => ($showcasePosition !== 'none' && !empty($attachments)),
+                'galleryPosition' => isset($options['gallery-position']) ? $options['gallery-position'] : 'left',
+                'galleryFileSize' => $galleryFileSize,
+                'captionsPosition' => isset($options['captions-position']) ? $options['captions-position'] : 'center',
+            ];
+            $setAttachmentsToFrontMatter($galleryFileSize);
+            return sprintf('{{< omeka-exhibit-builder-page-block-gallery >}}');
             break;
         // Build the "text" block markdown.
         case 'text':
@@ -849,6 +842,8 @@ function exhibit_builder_static_site_export_site_export_post($args)
     // Add shortcodes.
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
     $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-file-text.html', file_get_contents($fromPath));
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
+    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-gallery.html', file_get_contents($fromPath));
 
     // Create the exhibits section.
     $frontMatter = [
