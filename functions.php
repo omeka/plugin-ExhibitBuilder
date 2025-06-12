@@ -762,6 +762,7 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             $file = $attachment->getFile();
             $frontMatterExhibitPageBlock['params']['attachments'][] = [
                 'itemID' => $item->id,
+                'itemTitle' => metadata($item, 'display_title'),
                 'fileID' => $file->id,
                 'fileMimeType' => explode('/', $file->mime_type)[0],
                 'fileName' => $file->original_filename,

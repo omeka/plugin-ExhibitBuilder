@@ -24,6 +24,13 @@
                 <a href="{{ $linkResource.RelPermalink }}" class="exhibit-item-link">
                     <img src="{{ $imgResource.RelPermalink }}" alt="">
                 </a>
+                {{ if $params.options.showTitle }}
+                <div class="slide-meta">
+                    <p class="slide-title">
+                        <a href="{{ $linkResource.RelPermalink }}" class="exhibit-item-link">{{ .itemTitle }}</a>
+                    </p>
+                </div>
+                {{ end }}
             </li>
         {{ end }}
         </ul>
@@ -37,5 +44,10 @@
 jQuery(function() {
     var carouselConfig = {{ $params.options.carousel }};
     var carousel = jQuery('.jcarousel').jcarousel(carouselConfig);
+
+    {{ if $params.options.autoscroll }}
+    var autoscrollConfig = {{ $params.options.autoscroll }};
+    carousel.jcarouselAutoscroll(autoscrollConfig);
+    {{ end }}
 });
 </script>
