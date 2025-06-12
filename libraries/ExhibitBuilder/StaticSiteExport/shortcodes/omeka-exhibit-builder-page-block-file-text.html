@@ -1,6 +1,6 @@
 {{ $params := .Page.Params }}
 <div class="exhibit-items {{ $params.options.filePosition }} {{ $params.options.fileSize }} captions-{{ $params.options.captionsPosition }}">
-    {{ range $params.attachments }}
+{{ range $params.attachments }}
 
     {{ $filePage := site.GetPage (printf "files/%s" (string .fileID)) }}
     {{ $fileResource := $filePage.Resources.GetMatch "file*" }}
@@ -37,6 +37,6 @@
     </div>
     {{ end }}
 
-    {{ end }}
+{{ end }}
 </div>
 {{ $params.text | safeHTML }}

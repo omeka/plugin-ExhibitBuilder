@@ -733,6 +733,21 @@ function exhibit_builder_static_site_export_site_config($args)
     ];
 }
 
+function exhibit_builder_static_site_export_vendor_packages($vendorPackages, $args)
+{
+    $vendorPackages['jcarousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/jcarousel', PLUGIN_DIR);
+    return $vendorPackages;
+}
+
+function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
+{
+    $shortcodes['omeka-exhibit-builder-page-block-file-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-gallery'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-text.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-carousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-carousel.html', PLUGIN_DIR);
+    return $shortcodes;
+}
+
 function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
 {
     $job = $args['job'];
@@ -794,7 +809,13 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             return sprintf('{{< omeka-exhibit-builder-page-block-text >}}');
         // Build the "carousel" block markdown.
         case 'carousel':
-            $frontMatterExhibitPage['js'][] = 'https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel.min.js';
+            $frontMatterExhibitPage['css'][] = 'vendor/jcarousel/jcarousel.responsive.css';
+            $frontMatterExhibitPage['js'][] = 'vendor/jquery/jquery.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jquery/jquery-ui.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jquery.jcarousel.min.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jcarousel.responsive.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jquery.jcarousel-fade.min.js';
+
             $options = $block->getOptions();
             $fileSize = isset($options['file-size']) ? $options['file-size'] : 'thumbnail';
             $fade = isset($options['fade']) ? $options['fade'] : 0;
@@ -844,16 +865,6 @@ function exhibit_builder_static_site_export_site_export_post($args)
     $job->makeFile('layouts/exhibit-pages/list.html', file_get_contents($fromPath));
     $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-page.html', PLUGIN_DIR);
     $job->makeFile('layouts/exhibit-pages/single.html', file_get_contents($fromPath));
-
-    // Add shortcodes.
-    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
-    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-file-text.html', file_get_contents($fromPath));
-    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
-    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-gallery.html', file_get_contents($fromPath));
-    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-text.html', PLUGIN_DIR);
-    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-text.html', file_get_contents($fromPath));
-    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/omeka-exhibit-builder-page-block-carousel.html', PLUGIN_DIR);
-    $job->makeFile('layouts/shortcodes/omeka-exhibit-builder-page-block-carousel.html', file_get_contents($fromPath));
 
     // Create the exhibits section.
     $frontMatter = [

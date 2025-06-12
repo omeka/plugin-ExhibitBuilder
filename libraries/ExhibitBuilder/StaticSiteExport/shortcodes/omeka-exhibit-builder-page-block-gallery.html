@@ -21,7 +21,7 @@
 {{ end }}
 
 <div class="gallery {{ if or $params.options.showcaseFile $params.text }}with-showcase {{ $params.options.galleryPosition }}{{ end }} captions-{{ $params.options.captionsPosition }}">
-    {{ range $attachments }}
+{{ range $attachments }}
     {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
     {{ $imgResource := false }}
     {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
@@ -35,6 +35,6 @@
             <img src="{{ $imgResource.RelPermalink }}" alt="">
         </a>
     </div>
-    {{ end }}
+{{ end }}
 </div>
 {{ $params.text | safeHTML }}

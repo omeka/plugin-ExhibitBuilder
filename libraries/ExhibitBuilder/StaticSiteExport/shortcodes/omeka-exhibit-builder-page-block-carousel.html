@@ -1,0 +1,41 @@
+{{ $params := .Page.Params }}
+{{ $attachments := $params.attachments }}
+
+{{ if $params.options.carouselTitle }}
+<h2>{{ $params.options.carouselTitle }}</h2>
+{{ end }}
+
+<div class="jcarousel-wrapper captions-{{ $params.options.captionPosition }} {{ $params.options.overlay }}"
+     data-jcarousel-perslide="{{ $params.options.perSlide }}"
+     data-jcarousel-stretch="{{ $params.options.stretchImage }}"
+     data-jcarousel-fade="{{ $params.options.fade }}">
+    <div class="jcarousel">
+        <ul>
+        {{ range $attachments }}
+            {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
+            {{ $imgResource := false }}
+            {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
+                {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+                {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .thumbnailSpec.resource) }}
+            {{ else if (.thumbnailSpec.resource) }}
+                {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+            {{ end }}
+            <li>
+                <a href="{{ $linkResource.RelPermalink }}" class="exhibit-item-link">
+                    <img src="{{ $imgResource.RelPermalink }}" alt="">
+                </a>
+            </li>
+        {{ end }}
+        </ul>
+    </div>
+    <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+    <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+    <p class="jcarousel-pagination"></p>
+</div>
+
+<script>
+jQuery(function() {
+    var carouselConfig = {{ $params.options.carousel }};
+    var carousel = jQuery('.jcarousel').jcarousel(carouselConfig);
+});
+</script>
