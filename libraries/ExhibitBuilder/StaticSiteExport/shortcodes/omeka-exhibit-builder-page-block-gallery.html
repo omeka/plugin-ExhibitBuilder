@@ -12,7 +12,7 @@
     {{ else if (.thumbnailSpec.resource) }}
         {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
     {{ end }}
-    <a class="download-file" href="{{ $linkResource.RelPermalink }}"></a>
+    <a class="download-file" href="{{ $linkResource.RelPermalink }}">
         <img src="{{ $imgResource.RelPermalink }}" alt="">
     </a>
 </div>
