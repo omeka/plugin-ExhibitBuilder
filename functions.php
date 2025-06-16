@@ -724,6 +724,9 @@ function exhibit_builder_api_import_omeka_adapters($adapters, $args)
         return $adapters;
 }
 
+/**
+ * StaticSiteExport plugin: Add "Browse exhibits" link to static site menu.
+ */
 function exhibit_builder_static_site_export_site_config($args)
 {
     $args['site_config']['menus']['main'][] = [
@@ -733,12 +736,18 @@ function exhibit_builder_static_site_export_site_config($args)
     ];
 }
 
+/**
+ * StaticSiteExport plugin: Add vendor packages to static site.
+ */
 function exhibit_builder_static_site_export_vendor_packages($vendorPackages, $args)
 {
     $vendorPackages['jcarousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/jcarousel', PLUGIN_DIR);
     return $vendorPackages;
 }
 
+/**
+ * StaticSiteExport plugin: Add shortcodes to static site.
+ */
 function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
 {
     $shortcodes['omeka-exhibit-builder-page-block-file-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
@@ -748,6 +757,9 @@ function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
     return $shortcodes;
 }
 
+/**
+ * StaticSiteExport plugin: Add markdown for exhibit builder block layouts.
+ */
 function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
 {
     $job = $args['job'];
@@ -756,6 +768,7 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
     $block = $args['block'];
     $attachments = $block->getAttachments();
 
+    // Set block attachments data to block front matter.
     $setAttachmentsToFrontMatter = function ($thumbnailType) use ($job, $block, $frontMatterExhibitPageBlock) {
         foreach ($block->getAttachments() as $attachment) {
             $item = $attachment->getItem();
@@ -853,6 +866,9 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
     }
 }
 
+/**
+ * StaticSiteExport plugin: Add exhibit builder content to static site.
+ */
 function exhibit_builder_static_site_export_site_export_post($args)
 {
     $job = $args['job'];
@@ -916,6 +932,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                 ]);
                 $job->makeDirectory(sprintf('content/exhibits/%s/%s/blocks', $exhibit->slug, $exhibitPage->slug));
                 foreach ($exhibitPage->getPageBlocks() as $exhibitPageBlock) {
+                    // Create the exhibit page blocks.
                     $frontMatterExhibitPageBlock = new ArrayObject([
                         'params' => [
                             'layout' => $exhibitPageBlock->layout,
