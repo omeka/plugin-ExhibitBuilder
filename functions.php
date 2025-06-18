@@ -863,6 +863,8 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
             ];
             $setAttachmentsToFrontMatter($fileSize);
             return sprintf('{{< omeka-exhibit-builder-page-block-carousel >}}');
+        default:
+            return $markdown;
     }
 }
 
