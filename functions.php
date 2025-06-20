@@ -760,12 +760,13 @@ function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
 /**
  * StaticSiteExport plugin: Add markdown for exhibit builder block layouts.
  */
-function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
+function exhibit_builder_static_site_export_exhibit_page_block($args)
 {
     $job = $args['job'];
     $frontMatterExhibitPage = $args['frontMatterExhibitPage'];
     $frontMatterExhibitPageBlock = $args['frontMatterExhibitPageBlock'];
     $block = $args['block'];
+    $markdown = $args['markdown'];
     $attachments = $block->getAttachments();
 
     // Set block attachments data to block front matter.
@@ -803,7 +804,8 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
                 'imgClass' => $thumbnailTypeClassMap[$thumbnailType],
             ];
             $setAttachmentsToFrontMatter($thumbnailType);
-            return sprintf('{{< omeka-exhibit-builder-page-block-file-text >}}');
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-file-text >}}');
+            break;
         // Build the "gallery" block markdown.
         case 'gallery':
             $options = $block->getOptions();
@@ -817,10 +819,12 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
                 'captionsPosition' => isset($options['captions-position']) ? $options['captions-position'] : 'center',
             ];
             $setAttachmentsToFrontMatter($galleryFileSize);
-            return sprintf('{{< omeka-exhibit-builder-page-block-gallery >}}');
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-gallery >}}');
+            break;
         // Build the "text" block markdown.
         case 'text':
-            return sprintf('{{< omeka-exhibit-builder-page-block-text >}}');
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-text >}}');
+            break;
         // Build the "carousel" block markdown.
         case 'carousel':
             $frontMatterExhibitPage['css'][] = 'vendor/jcarousel/jcarousel.responsive.css';
@@ -862,9 +866,10 @@ function exhibit_builder_static_site_export_exhibit_page_block($markdown, $args)
                 'autoscroll' => $autoscroll,
             ];
             $setAttachmentsToFrontMatter($fileSize);
-            return sprintf('{{< omeka-exhibit-builder-page-block-carousel >}}');
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-carousel >}}');
+            break;
         default:
-            return $markdown;
+            break;
     }
 }
 
@@ -932,6 +937,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                         'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
                     ],
                 ]);
+                $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));
                 $job->makeDirectory(sprintf('content/exhibits/%s/%s/blocks', $exhibit->slug, $exhibitPage->slug));
                 foreach ($exhibitPage->getPageBlocks() as $exhibitPageBlock) {
                     // Create the exhibit page blocks.
@@ -942,19 +948,19 @@ function exhibit_builder_static_site_export_site_export_post($args)
                             'attachments' => [],
                         ],
                     ]);
-                    $markdown = apply_filters('exhibit_builder_static_site_export_exhibit_page_block', '', [
-                        'job' => $job,
+                    $markdown = new ArrayObject;
+                    $job->fireHook('exhibit_builder_static_site_export_exhibit_page_block', [
                         'frontMatterExhibitPage' => $frontMatterExhibitPage,
                         'frontMatterExhibitPageBlock' => $frontMatterExhibitPageBlock,
                         'block' => $exhibitPageBlock,
+                        'markdown' => $markdown,
                     ]);
                     $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
                     $job->makeFile(
                         sprintf('content/exhibits/%s/%s/blocks/%s-%s.md', $exhibit->slug, $exhibitPage->slug, $blockNumber, $exhibitPageBlock->layout),
-                        sprintf("%s\n%s", json_encode($frontMatterExhibitPageBlock, JSON_PRETTY_PRINT), $markdown)
+                        sprintf("%s\n%s", json_encode($frontMatterExhibitPageBlock, JSON_PRETTY_PRINT), implode("\n", $markdown->getArrayCopy()))
                     );
                 }
-                $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));
                 $job->makeFile(
                     sprintf('content/exhibits/%s/%s/index.md', $exhibit->slug, $exhibitPage->slug),
                     json_encode($frontMatterExhibitPage, JSON_PRETTY_PRINT)

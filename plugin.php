@@ -25,6 +25,7 @@ add_plugin_hook('public_items_search', 'exhibit_builder_items_search');
 add_plugin_hook('html_purifier_form_submission', 'exhibit_builder_purify_html');
 add_plugin_hook('static_site_export_site_config', 'exhibit_builder_static_site_export_site_config');
 add_plugin_hook('static_site_export_site_export_post', 'exhibit_builder_static_site_export_site_export_post');
+add_plugin_hook('exhibit_builder_static_site_export_exhibit_page_block', 'exhibit_builder_static_site_export_exhibit_page_block');
 
 add_filter('public_navigation_main', 'exhibit_builder_public_main_nav');
 add_filter('admin_navigation_main', 'exhibit_builder_admin_nav');
@@ -37,7 +38,6 @@ add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 add_filter('api_import_omeka_adapters', 'exhibit_builder_api_import_omeka_adapters');
 add_filter('static_site_export_vendor_packages', 'exhibit_builder_static_site_export_vendor_packages');
 add_filter('static_site_export_shortcodes', 'exhibit_builder_static_site_export_shortcodes');
-add_filter('exhibit_builder_static_site_export_exhibit_page_block', 'exhibit_builder_static_site_export_exhibit_page_block');
 
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
