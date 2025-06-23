@@ -8,5 +8,4 @@ echo $this->formHidden('pages-delete-hidden');
 Omeka.addReadyCallback(Omeka.ExhibitBuilder.enableSorting);
 Omeka.manageDrawers('#page-list', '.page');
 Omeka.addReadyCallback(Omeka.ExhibitBuilder.setUpFormSubmission);
-Omeka.manageDrawers('.sortable', '.page');
 </script>
