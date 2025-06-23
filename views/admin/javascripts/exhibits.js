@@ -528,6 +528,13 @@ Omeka.ExhibitBuilder = {};
         $('#cover-image-container').on('click', '.delete-element, .undo-delete', function () {
             $('#cover-image-container').find('.attachment-header, .attachment-body').toggleClass('deleted');
             Omeka.ExhibitBuilder.deleteElement(this, '.cover-image-form-elements', '.attachment-body');
+            if ($('#cover-image-container .attachment-header').hasClass('deleted')) {
+                $('#cover-image-container .undo-delete').focus();
+                $('.edit-cover-image.button').attr('disabled', 'disabled');
+            } else {
+                $('#cover-image-container .delete-element').focus();
+                $('.edit-cover-image.button').removeAttr('disabled');
+            }
         });
     }
 
