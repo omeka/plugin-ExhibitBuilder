@@ -626,20 +626,6 @@
     opacity: 1;
 }
 
-.cover-image-form-elements .delete-element,
-.cover-image-form-elements .undo-delete,
-.attachment .delete-element {
-    padding: 0;
-    border: 0;
-    display: block;
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    text-indent: -9999px;
-    cursor: pointer;
-    text-align: center;
-}
-
 .cover-image-form-elements .undo-delete,
 .cover-image-form-elements .deleted .delete-element {
     display: none;
@@ -649,6 +635,20 @@
     display: block;
 }
 
+.cover-image-form-elements .delete-element,
+.cover-image-form-elements .undo-delete,
+.attachment .delete-element {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+}
+
 .cover-image-form-elements .delete-element:after,
 .cover-image-form-elements .undo-delete:after,
 .attachment .delete-element:after {
@@ -656,15 +656,8 @@
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     text-indent: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    width: 16px;
-    height: 16px;
     text-align: center;
     font-size: 12px;
-    padding: 0px;
     box-sizing: border-box;
     line-height: 16px;
     z-index: 51;
@@ -672,8 +665,7 @@
 
 .cover-image-form-elements .undo-delete:after,
 .attachment .undo-delete:after {
-    content: "\f0e2";
-    font-size: 12px;
+    content: "\f0e2" / "";
     color: #4C3939;
 }
 
