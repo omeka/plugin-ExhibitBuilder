@@ -15,7 +15,8 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
             <?php endif; ?>
             <?php echo metadata($item,'rich_title', array('no_escape' => true)); ?>
         </h5>
-        <button class="delete-element" type="button" title="<?php echo __('Remove/Restore'); ?>" aria-label="<?php echo __('Remove/Restore'); ?>"></button>
+        <button class="delete-element" type="button" title="<?php echo __('Delete'); ?>"></button>
+        <button class="undo-delete" type="button" title="<?php echo __('Undo delete'); ?>"></button>
     </div>
     <div class="attachment-body">
         <?php if ($file): ?>

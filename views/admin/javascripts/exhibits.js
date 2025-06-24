@@ -136,11 +136,18 @@ Omeka.ExhibitBuilder = {};
             Omeka.ExhibitBuilder.deleteElement(this, '.block-form', '.drawer-contents');
         });
 
-        $('#block-container').on('click', '.delete-element', function (e) {
+        $('#block-container').on('click', '.delete-element, .undo-delete', function (e) {
             var deleteButton = $(this);
             var attachment = deleteButton.parents('.attachment');
             attachment.find('.attachment-header, .attachment-body').toggleClass('deleted');
             Omeka.ExhibitBuilder.deleteElement(this, '.attachment', '.attachment-body');
+            if (attachment.find('.deleted').length > 0) {
+                attachment.find('.edit-attachment').attr('disabled', 'disabled');
+                attachment.find('.undo-delete').focus();
+            } else {
+                attachment.find('.edit-attachment').removeAttr('disabled');
+                attachment.find('.delete-element').focus();
+            }
         });
 
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
