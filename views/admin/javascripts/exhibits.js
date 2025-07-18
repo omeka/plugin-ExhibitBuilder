@@ -538,9 +538,11 @@ Omeka.ExhibitBuilder = {};
             if ($('#cover-image-container .attachment-header').hasClass('deleted')) {
                 $('#cover-image-container .undo-delete').focus();
                 $('.edit-cover-image.button').attr('disabled', 'disabled');
+                $('#cover-image-container .attachment-body').attr('aria-hidden', 'true');
             } else {
                 $('#cover-image-container .delete-element').focus();
                 $('.edit-cover-image.button').removeAttr('disabled');
+                $('#cover-image-container .attachment-body').removeAttr('aria-hidden');
             }
         });
     }
