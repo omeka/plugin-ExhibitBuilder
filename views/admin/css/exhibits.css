@@ -44,6 +44,12 @@
 
 /* Item/Attachment dialog */
 
+.delete-drawer,
+.undo-delete {
+    width: 25px;
+    height: 25px;
+}
+
 .item-dialog {
     z-index: 1000;
 }
@@ -648,10 +654,10 @@
 .attachment .delete-element,
 .attachment .undo-delete {
     position: absolute;
-    top: 0;
+    top: 6px;
     right: 0;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     background-color: transparent;
     cursor: pointer;
     padding: 0;
@@ -670,7 +676,7 @@
     text-align: center;
     font-size: 12px;
     box-sizing: border-box;
-    line-height: 16px;
+    line-height: 24px;
 }
 
 .cover-image-form-elements .undo-delete:after,
