@@ -730,6 +730,21 @@
     padding: 0;
 }
 
+.block-form .drawer-contents {
+    box-shadow: none;
+    border: 0;
+    margin-top: 0;
+}
+
+.block-body .drawer {
+    background-color: transparent;
+    border-width: 0 0 1px;
+}
+
+.block-body .drawer-toggle {
+    margin-left: auto;
+}
+
 .layout-options h4 {
     box-sizing: border-box;
     margin: 0;
@@ -761,7 +776,7 @@
 }
 
 .layout-options > .block-header {
-    display: block;
+    display: flex;
     padding: 10px;
     overflow: auto;
     line-height: 1.5em;
@@ -771,6 +786,27 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.layout-options .drawer-contents > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.layout-options .drawer-contents > div:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.layout-options .drawer-contents > div label {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.layout-options .instructions {
+    width: calc(70% - 20px);
+    margin-left: auto;
 }
 
 .attachment-header.deleted > * {
