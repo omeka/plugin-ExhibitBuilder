@@ -45,11 +45,25 @@ class ExhibitBuilder_View_Helper_ExhibitPageEditTree
      */
     protected function _renderPageBranch($page, $currentPage, $ancestorIds)
     {
-        $html = get_view()->partial('exhibits/exhibit-edit-page-branch.php', array(
-            'page' => $page,
-            'currentPage' => $currentPage,
-            'ancestorIds' => $ancestorIds,
-        ));
+        $id = html_escape($page->id);
+        $title = html_escape($page->title);
+
+        $html = '<li class="page" id="page_' . $id . '">'
+            . '<div class="sortable-item drawer">'
+            . '<span id="move-' . $id . '" class="move icon" title="' . __('Move') . '" aria-label="' . __('Move') . '" aria-labelledby="move-' . $id .  'element-' . $id . '"></span>'
+            . '<a href="../edit-page/' . $id . '" class="drawer-name">' . $title . '</a>'
+            . '<button class="undo-delete" data-action-selector="deleted" type="button" aria-label="' . __('Undo remove') . '" title="' . __('Undo remove') . '"><span class="icon"></span></button>'
+            . '<button class="delete-drawer" data-action-selector="deleted" type="button" aria-label="' . __('Remove') . '" title="' . __('Remove') . '"><span class="icon"></span></button>'
+            . '</div>';
+
+        if (isset($this->_pages[$page->id])) {
+            $html .= '<ul>';
+            foreach ($this->_pages[$page->id] as $childPage) {
+                $html .= $this->_renderPageBranch($childPage, $currentPage, $ancestorIds);
+            }
+            $html .= '</ul>';
+        }
+        $html .= '</li>';
         return $html;
     }
 }
