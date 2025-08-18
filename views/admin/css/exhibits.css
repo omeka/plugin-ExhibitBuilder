@@ -753,6 +753,16 @@
     float: left;
 }
 
+.drawer-contents .layout-options input[type="text"] {
+    max-width: 70%;
+    margin-bottom: 0;
+}
+
+.layout-options [type="checkbox"] {
+    margin: 10px 0 0;
+    min-height: 24px;
+}
+
 .layout-options *:last-child {
     margin-bottom: 0;
 }
@@ -761,7 +771,7 @@
     font-weight: normal;
     display: inline-block;
     width: 30%;
-    margin-bottom: 0;
+    margin: 10px 0;
 }
 
 .layout-options:not(:last-child) .drawer-contents.opened {
@@ -797,7 +807,6 @@
 .layout-options .drawer-contents > div {
     width: 100%;
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -812,7 +821,7 @@
 
 .layout-options .instructions {
     width: calc(70% - 20px);
-    margin-left: auto;
+    margin: 10px 0 0 30%;
 }
 
 .attachment-header.deleted > * {
