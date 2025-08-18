@@ -376,6 +376,7 @@
 .drawer-contents.block-body.opened {
     position: relative;
     padding: 0;
+    background-color: #fff;
 }
 
 .block-body > div {
@@ -728,6 +729,7 @@
 .block-form .layout-options {
     position: relative;
     padding: 0;
+    border-bottom: 0;
 }
 
 .block-form .drawer-contents {
@@ -760,6 +762,10 @@
     display: inline-block;
     width: 30%;
     margin-bottom: 0;
+}
+
+.layout-options:not(:last-child) .drawer-contents.opened {
+    border-bottom: 1px solid #D6D5C2;
 }
 
 @media screen and (max-width: 480px) {
