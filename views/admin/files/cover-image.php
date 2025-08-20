@@ -6,7 +6,8 @@
          $item = $file->getItem();
     ?>
     <div class="attachment-header">
-        <div class="delete-element" role="button" title="Remove/Restore"></div>
+        <button class="undo-delete" type="button" aria-label="<?php echo __('Undo delete'); ?>" title="<?php echo __('Undo delete'); ?>"></button>
+        <button class="delete-element" type="button" aria-label="<?php echo __('Delete'); ?>" title="<?php echo __('Delete'); ?>"></button>
     </div>
     <div class="attachment-body">
         <div class="cover-image-background" style="background: url('<?php echo metadata($file, 'square_thumbnail_uri'); ?>') center / cover"></div>
@@ -19,7 +20,7 @@
         </h5>
         <?php echo $this->formHidden('cover_image_item_id', $file->item_id); ?>
         <?php echo $this->formHidden('cover_image_file_id', $file->id); ?>
-        <span class="edit-cover-image big blue button" role="button"><?php echo __('Change'); ?></span>
+        <button class="edit-cover-image big blue button" type="button"><?php echo __('Change'); ?></button>
     </div>
     <?php else: ?>
     <button type="button" class="edit-cover-image big blue button" id="first-time-cover-image"><?php echo __('Change'); ?></button>

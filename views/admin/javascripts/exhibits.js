@@ -2,26 +2,16 @@ var Omeka = Omeka || {};
 Omeka.ExhibitBuilder = {};
 
 (function ($) {
-    Omeka.ExhibitBuilder.deleteElement = function (element, event) {
-        event.preventDefault();
-        $(element).toggleClass('undo-delete')
-            .parent().toggleClass('deleted')
-            .siblings('div').toggleClass('frozen');
-
-        var target = $(element).parent().parent();
-        var removedClass = 'removed';
-        if (!target.hasClass(removedClass)) {
-            target.addClass(removedClass);
-            target.find('input, select, textarea').prop('disabled', true);
+    Omeka.ExhibitBuilder.deleteElement = function (actionButton, element, inputs) {
+        var container = $(actionButton).parents(element).first();
+        var inputsContainer = container.find(inputs).first();
+        if (inputsContainer.hasClass('deleted')) {
+            container.find('input, select, textarea').attr('disabled', 'disabled');
         } else {
-            target.removeClass(removedClass);
-            target.find('input, select, textarea').each(function () {
-                if (!$(element).parent().parent().hasClass(removedClass)) {
-                    element.disabled = false;
-                }
-            });
+            container.find('input, select, textarea').removeAttr('disabled');
         }
     }
+
     Omeka.ExhibitBuilder.setSearchVisibility = function(show) {
         var searchForm = $('#page-search-form');
 
@@ -142,36 +132,26 @@ Omeka.ExhibitBuilder = {};
             $('.add-link').show();
         });
 
-        $('#block-container').on('click', '.delete-element', function (event) {
-            Omeka.ExhibitBuilder.deleteElement(this, event);
+        $('#block-container').on('omeka:delete-drawer omeka:undo-drawer-delete', '.delete-drawer, .undo-delete', function (e) {
+            Omeka.ExhibitBuilder.deleteElement(this, '.block-form', '.drawer-contents');
+        });
+
+        $('#block-container').on('click', '.delete-element, .undo-delete', function (e) {
+            var deleteButton = $(this);
+            var attachment = deleteButton.parents('.attachment');
+            attachment.find('.attachment-header, .attachment-body').toggleClass('deleted');
+            Omeka.ExhibitBuilder.deleteElement(this, '.attachment', '.attachment-body');
+            if (attachment.find('.deleted').length > 0) {
+                attachment.find('.edit-attachment').attr('disabled', 'disabled');
+                attachment.find('.undo-delete').focus();
+            } else {
+                attachment.find('.edit-attachment').removeAttr('disabled');
+                attachment.find('.delete-element').focus();
+            }
         });
 
         $('#block-container').on('exhibit-builder-add-block', '.block-form', function () {
             sortAttachments(this);
-        });
-
-        $('#block-container').on('click', '.drawer-toggle', function() {
-            $(this).toggleClass('opened');
-        });
-
-        $('#block-container .collapse').click(function() {
-            $('.sortable-item .drawer-toggle').removeClass('opened');
-            $('.block-body').removeClass('opened');
-        });
-
-        $('#block-container .expand').click(function() {
-            $('.sortable-item .drawer-toggle').addClass('opened');
-            $('.block-body').addClass('opened');
-        });
-
-        $('#block-container').on('click', '.block-header .drawer-toggle', function (event) {
-            event.preventDefault();
-            $(this).parent().siblings('.block-body').toggleClass('opened');
-        });
-
-        $('#block-container').on('click', '.layout-options .drawer-toggle', function (event) {
-            event.preventDefault();
-            $(this).parent().siblings('div').toggleClass('opened');
         });
 
         sortAttachments('#block-container');
@@ -377,20 +357,6 @@ Omeka.ExhibitBuilder = {};
         });
     };
 
-    Omeka.ExhibitBuilder.activateDeleteLinks = function () {
-        $('#page-list .delete-element').click(function (event) {
-            event.preventDefault();
-            var header = $(this).parent();
-            if ($(this).hasClass('delete-element')) {
-                $(this).removeClass('delete-element').addClass('undo-delete');
-                header.addClass('deleted');
-            } else {
-                $(this).removeClass('undo-delete').addClass('delete-element');
-                header.removeClass('deleted');
-            }
-        });
-    };
-
     Omeka.ExhibitBuilder.setUpFormSubmission = function () {
         $('#exhibit-metadata-form').submit(function (event) {
             // add ids to li elements so that we can pull out the parent/child relationships
@@ -566,8 +532,18 @@ Omeka.ExhibitBuilder = {};
             Omeka.ExhibitBuilder.setSearchVisibility(false);
         });
 
-        $('#cover-image-container').on('click', '.delete-element', function (event) {
-            Omeka.ExhibitBuilder.deleteElement(this, event);
+        $('#cover-image-container').on('click', '.delete-element, .undo-delete', function () {
+            $('#cover-image-container').find('.attachment-header, .attachment-body').toggleClass('deleted');
+            Omeka.ExhibitBuilder.deleteElement(this, '.cover-image-form-elements', '.attachment-body');
+            if ($('#cover-image-container .attachment-header').hasClass('deleted')) {
+                $('#cover-image-container .undo-delete').focus();
+                $('.edit-cover-image.button').attr('disabled', 'disabled');
+                $('#cover-image-container .attachment-body').attr('aria-hidden', 'true');
+            } else {
+                $('#cover-image-container .delete-element').focus();
+                $('.edit-cover-image.button').removeAttr('disabled');
+                $('#cover-image-container .attachment-body').removeAttr('aria-hidden');
+            }
         });
     }
 

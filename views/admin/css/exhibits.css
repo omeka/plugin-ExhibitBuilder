@@ -6,8 +6,6 @@
 }
 
 .instructions {
-    font-size:11px;
-    color: #888;
     clear: both;
     width: 100%;
 }
@@ -36,16 +34,21 @@
     }
 }
 
-/* override for core's .undo-delete hiding */
-#page-list .undo-delete {
-    display: inline;
-}
-
 .page ul { margin-top: 15px; }
+
+.page .drawer-name {
+    max-width: calc(100% - 5rem);
+}
 
 /* Edit Page */
 
 /* Item/Attachment dialog */
+
+.delete-drawer,
+.undo-delete {
+    width: 25px;
+    height: 25px;
+}
 
 .item-dialog {
     z-index: 1000;
@@ -370,9 +373,10 @@
     display: none;
 }
 
-.block-body.opened {
+.drawer-contents.block-body.opened {
     position: relative;
-    display: block;
+    padding: 0;
+    background-color: #fff;
 }
 
 .block-body > div {
@@ -534,34 +538,24 @@
     clear: none;
 }
 
-div.selected-items {
-    font-size: 0;
-    padding-bottom: 20px;
-}
-
 .selected-item-list:empty + .add-item a {
     margin-bottom: 0;
 }
 
-.cover-image-form-elements,
-.selected-item-list .attachment, .selected-item-list .ui-sortable-highlight, .add-item {
+.selected-item-list .attachment, 
+.selected-item-list .ui-sortable-highlight, 
+.add-item {
     width: 100px;
     display: inline-block;
     height: 124px;
     color: #fff;
     padding: 10px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: 24px;
     font-size: 14px;
     position: relative;
     vertical-align: top;
     margin: 0 10px 10px 0;
-}
-
-.cover-image-form-elements {
-    height: auto;
 }
 
 .selected-item-list .attachment {
@@ -574,16 +568,21 @@ div.selected-items {
     padding: 10px 10px 0;
 }
 
+.selected-item-list .attachment h5 {
+    z-index: 51;
+}
+
 .selected-item-list .attachment-body {
     margin-bottom: auto;
 }
 
 .cover-image-form-elements {
+    display: flow-root;
+    position: relative;
 	padding: 25px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    text-align: center;
+    height: auto;
 }
 
 #first-time-cover-image {
@@ -599,7 +598,7 @@ div.selected-items {
     display: none;
 }
 
-.cover-image-form-elements.attached.removed .explanation {
+.cover-image-form-elements.attached.deleted .explanation {
     display: block;
     color: #4C3939;
     margin: 0 0 20px;
@@ -617,6 +616,10 @@ div.selected-items {
     max-height: 80px;
 }
 
+.cover-image-form-elements h5 {
+    margin-bottom: 1rem;
+}
+
 .selected-item-list .attachment h5 a {
     color: #fff;
 }
@@ -630,51 +633,60 @@ div.selected-items {
 
 .cover-image-form-elements .cover-image-background {
     width: 100px;
-    margin: 0 10px 0 0;
+    margin: 0 1rem 0 0;
     opacity: 1;
 }
 
-.cover-image-form-elements .delete-element,
-.attachment .delete-element {
+.cover-image-form-elements .undo-delete,
+.cover-image-form-elements .deleted .delete-element,
+.attachment .deleted .delete-element, 
+.attachment .undo-delete {
+    display: none;
+}
+
+.attachment .deleted .undo-delete,
+.cover-image-form-elements .deleted .undo-delete {
     display: block;
+}
+
+.cover-image-form-elements .delete-element,
+.cover-image-form-elements .undo-delete,
+.attachment .delete-element,
+.attachment .undo-delete {
     position: absolute;
-    top: 3px;
-    right: 3px;
-    text-indent: -9999px;
+    top: 6px;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
     cursor: pointer;
-    text-align: center;
+    padding: 0;
+    border: 0;
+    z-index: 51;
 }
 
 .cover-image-form-elements .delete-element:after,
+.cover-image-form-elements .undo-delete:after,
+.attachment .undo-delete:after,
 .attachment .delete-element:after {
+    content: "\f00d" / "";
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     text-indent: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    width: 16px;
-    height: 16px;
     text-align: center;
     font-size: 12px;
-    vertical-align: top;
-    padding: 0px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    line-height: 16px;
-    z-index: 51;
+    line-height: 24px;
 }
 
 .cover-image-form-elements .undo-delete:after,
 .attachment .undo-delete:after {
-    content: "\f0e2";
-    font-size: 12px;
+    content: "\f0e2" / "";
     color: #4C3939;
 }
 
-.cover-image-form-elements .frozen:after,
-.attachment .frozen:after {
+.cover-image-form-elements .deleted:after,
+.attachment .deleted:after {
     z-index: 50;
 }
 
@@ -717,12 +729,38 @@ div.selected-items {
 .block-form .layout-options {
     position: relative;
     padding: 0;
+    border-bottom: 0;
+}
+
+.block-form .drawer-contents {
+    box-shadow: none;
+    border: 0;
+    margin-top: 0;
+}
+
+.block-body .drawer {
+    background-color: transparent;
+    border-width: 0 0 1px;
+}
+
+.block-body .drawer-toggle {
+    margin-left: auto;
 }
 
 .layout-options h4 {
     box-sizing: border-box;
     margin: 0;
     float: left;
+}
+
+.drawer-contents .layout-options input[type="text"] {
+    max-width: 70%;
+    margin-bottom: 0;
+}
+
+.layout-options [type="checkbox"] {
+    margin: 10px 0 0;
+    min-height: 24px;
 }
 
 .layout-options *:last-child {
@@ -733,7 +771,11 @@ div.selected-items {
     font-weight: normal;
     display: inline-block;
     width: 30%;
-    margin-bottom: 0;
+    margin: 10px 0;
+}
+
+.layout-options:not(:last-child) .drawer-contents.opened {
+    border-bottom: 1px solid #D6D5C2;
 }
 
 @media screen and (max-width: 480px) {
@@ -750,7 +792,7 @@ div.selected-items {
 }
 
 .layout-options > .block-header {
-    display: block;
+    display: flex;
     padding: 10px;
     overflow: auto;
     line-height: 1.5em;
@@ -762,7 +804,31 @@ div.selected-items {
     align-items: center;
 }
 
-.frozen:after {
+.layout-options .drawer-contents > div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.layout-options .drawer-contents > div:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.layout-options .drawer-contents > div label {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.layout-options .instructions {
+    width: calc(70% - 20px);
+    margin: 10px 0 0 30%;
+}
+
+.attachment-header.deleted > * {
+    z-index: 51;
+}
+
+.attachment-header.deleted:after {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -771,7 +837,6 @@ div.selected-items {
     content: "";
     display: block;
     background-color: rgba(255,255,255,.85);
-    z-index: 100;
 }
 
 .selected.layout-description {
