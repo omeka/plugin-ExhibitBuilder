@@ -5,7 +5,7 @@
 # Translators:
 # Miquel Àngel <ma.serra@gmail.com>, 2013
 # Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023
+# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2024
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Sergi Montes <sergi.blanes@gmail.com>, 2013\n"
+"Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2024\n"
 "Language-Team: Catalan (Spain) (http://app.transifex.com/omeka/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +42,11 @@ msgstr "Recent"
 
 #: config_form.php:14
 msgid "Contributor/Researcher Permissions"
-msgstr ""
+msgstr "Permisos del Contribuïdor/investigador"
 
 #: config_form.php:18
 msgid "Allow Contributor and Researcher users to view unpublished exhibits."
-msgstr ""
+msgstr "Permet als usuaris contribuïdors i investigadors veure exposicions no publicades."
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -151,11 +151,11 @@ msgstr "Disposició específica a partir d'un fitxer independent"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Carrusel"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Un carrusel amb miniatures"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -190,18 +190,26 @@ msgstr "Ítem seleccionat: %s"
 msgid "Select a file to use."
 msgstr "Seleccioneu un fitxer."
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
-msgid "Remove/Restore"
-msgstr "Eliminar/Restaurar"
+#: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
+msgid "Undo delete"
+msgstr ""
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
 msgstr "Bloc"
 
+#: views/admin/exhibits/block-form.php:9
+#: views/shared/exhibit_layouts/carousel/form.php:13
+#: views/shared/exhibit_layouts/file-text/form.php:18
+#: views/shared/exhibit_layouts/file/form.php:13
+#: views/shared/exhibit_layouts/gallery/form.php:18
+msgid "Show options"
+msgstr ""
+
 #: views/admin/exhibits/block-form.php:10
-msgid "Expand/Collapse"
-msgstr "Desplega/Replega"
+#: views/helpers/ExhibitPageEditTree.php:55
+msgid "Undo remove"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -354,7 +362,7 @@ msgstr "Per reordenar blocs i ítems, feu clic i arrossegueu-los a la ubicació 
 
 #: views/admin/exhibits/page-form.php:58
 msgid "New Block"
-msgstr "Nou bloc"
+msgstr "Bloc nou"
 
 #: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
@@ -382,7 +390,7 @@ msgstr "Aplica"
 
 #: views/admin/exhibits/tags.php:2 views/public/exhibits/tags.php:2
 msgid "Browse Exhibits by Tag"
-msgstr "Navega per les coleccions a partir de les etiquetes"
+msgstr "Mostra les coleccions a partir de les etiquetes"
 
 #: views/admin/exhibits/tags.php:12
 msgid "There are no tags to display. You must first tag some exhibits."
@@ -397,13 +405,13 @@ msgstr "Configura la plantilla &#8220;%s&#8221;"
 msgid "Omeka will use the first attached file as the cover image."
 msgstr "L'Omeka utilitzarà la primera imatge adjunta com a imatge de portada."
 
-#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+#: views/admin/files/cover-image.php:23 views/admin/files/cover-image.php:26
 msgid "Change"
 msgstr "Canvia"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Esborra els filtres"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
@@ -429,153 +437,153 @@ msgstr "Encara no hi ha cap exposició disponible."
 msgid "Layout Options"
 msgstr "Opcions de maquetació"
 
-#: views/shared/exhibit_layouts/carousel/form.php:17
+#: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
-msgstr ""
+msgstr "Títol del carrusel"
 
-#: views/shared/exhibit_layouts/carousel/form.php:26
+#: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
-msgstr ""
+msgstr "Ítems per diapositiva"
 
-#: views/shared/exhibit_layouts/carousel/form.php:46
+#: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
-msgstr ""
+msgstr "Mida del fitxer de l´ítem"
 
-#: views/shared/exhibit_layouts/carousel/form.php:54
+#: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
-msgstr ""
+msgstr "Mida completa"
 
-#: views/shared/exhibit_layouts/carousel/form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
-msgstr ""
+msgstr "Mostra el títol de l'ítem"
 
-#: views/shared/exhibit_layouts/carousel/form.php:69
+#: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
-msgstr ""
+msgstr "Llegenda sobre la imatge"
 
-#: views/shared/exhibit_layouts/carousel/form.php:75
+#: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Incorpora la llegenda sobre la imatge (pot requerir ajustar la configuració CSS)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:79
+#: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
-msgstr ""
+msgstr "Posició de la llegenda/títol"
 
-#: views/shared/exhibit_layouts/carousel/form.php:84
+#: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Center"
 msgstr "Centrat"
 
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Left"
-msgstr "Esquerra"
-
 #: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Esquerra"
+
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
 msgid "Right"
 msgstr "Dreta"
 
-#: views/shared/exhibit_layouts/carousel/form.php:92
+#: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
-msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:97
-msgid "None"
-msgstr ""
+msgstr "Estira la imatge fins ompli tot el fons"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
-msgid "Fill width"
-msgstr ""
+msgid "None"
+msgstr "Cap"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
-msgid "Fill height"
-msgstr ""
+msgid "Fill width"
+msgstr "Amplada de l'emplenat"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
+msgid "Fill height"
+msgstr "Alçada de l'emplenat"
+
+#: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Omple tota la diapositiva"
 
-#: views/shared/exhibit_layouts/carousel/form.php:106
+#: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Velocitat de desplaçament"
 
-#: views/shared/exhibit_layouts/carousel/form.php:113
+#: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Estableix la velocitat per a l'animació de desplaçament. Pot ser \"ràpid\", \"lent\" o un temps en mil·lisegons. Per defecte són 400."
 
-#: views/shared/exhibit_layouts/carousel/form.php:117
+#: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Durada de cada diapòsitiva"
 
-#: views/shared/exhibit_layouts/carousel/form.php:123
+#: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Temps en mil·lisegons  fins a la pausa abans d'avançar automàticament (0 per a desactivar)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:127
+#: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
-msgstr ""
+msgstr "Bucle"
 
-#: views/shared/exhibit_layouts/carousel/form.php:136
+#: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
-msgstr ""
+msgstr "Efecte d'esvaïment entre diapositives"
 
-#: views/shared/exhibit_layouts/carousel/form.php:142
+#: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Nota: només funciona amb 1 element per diapositiva"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:18
 msgid "File position"
 msgstr "Posició dels fitxers"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
-#: views/shared/exhibit_layouts/file/form.php:26
+#: views/shared/exhibit_layouts/file/form.php:27
 msgid "File size"
 msgstr "Mida del fitxer"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
-#: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:64
+#: views/shared/exhibit_layouts/file/form.php:40
+#: views/shared/exhibit_layouts/gallery/form.php:65
 msgid "Captions position"
-msgstr "Posició dels textos de llegenda"
+msgstr "Posició dels peus d'imatge"
 
-#: views/shared/exhibit_layouts/gallery/form.php:22
+#: views/shared/exhibit_layouts/gallery/form.php:23
 msgid "Showcase file position"
 msgstr "Posició de l'ítem destacat"
 
-#: views/shared/exhibit_layouts/gallery/form.php:27
+#: views/shared/exhibit_layouts/gallery/form.php:28
 msgid "No showcase file"
 msgstr "Sense destacat"
 
-#: views/shared/exhibit_layouts/gallery/form.php:36
+#: views/shared/exhibit_layouts/gallery/form.php:37
 msgid "Gallery position"
 msgstr "Alineació de la galeria"
 
-#: views/shared/exhibit_layouts/gallery/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:47
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Si no hi ha un ítem o text destacat, la galeria aprofitarà tot l'ample de la pàgina."
 
-#: views/shared/exhibit_layouts/gallery/form.php:50
+#: views/shared/exhibit_layouts/gallery/form.php:51
 msgid "Gallery file size"
 msgstr "Mida dels fitxers de la galeria"

@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018,2021
+# Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018,2021,2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018,2021\n"
+"Last-Translator: Rivo Zängov <eraser@eraser.ee>, 2015-2016,2018,2021,2025\n"
 "Language-Team: Estonian (http://app.transifex.com/omeka/omeka/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,11 +38,11 @@ msgstr "Hiljutine"
 
 #: config_form.php:14
 msgid "Contributor/Researcher Permissions"
-msgstr ""
+msgstr "Kaastöölise/Uurija õigused"
 
 #: config_form.php:18
 msgid "Allow Contributor and Researcher users to view unpublished exhibits."
-msgstr ""
+msgstr "Luba kaastöölistel ja uurijatel vaadata avaldamata näituseid."
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -147,11 +147,11 @@ msgstr "Paigutus, milles on üks fail"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Karussell"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Karusselli paigutus faili pisipiltidega"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -186,18 +186,26 @@ msgstr "Valitud ühikud: %s"
 msgid "Select a file to use."
 msgstr "Vali fail, mida kasutada."
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
-msgid "Remove/Restore"
-msgstr "Eemalda/Taasta"
+#: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
+msgid "Undo delete"
+msgstr ""
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
 msgstr "Plokk"
 
+#: views/admin/exhibits/block-form.php:9
+#: views/shared/exhibit_layouts/carousel/form.php:13
+#: views/shared/exhibit_layouts/file-text/form.php:18
+#: views/shared/exhibit_layouts/file/form.php:13
+#: views/shared/exhibit_layouts/gallery/form.php:18
+msgid "Show options"
+msgstr ""
+
 #: views/admin/exhibits/block-form.php:10
-msgid "Expand/Collapse"
-msgstr "Ava/Sulge"
+#: views/helpers/ExhibitPageEditTree.php:55
+msgid "Undo remove"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -393,13 +401,13 @@ msgstr "Seadista teemat &#8220;%s&#8221;"
 msgid "Omeka will use the first attached file as the cover image."
 msgstr "Omeka kasutab esimest kaasatud pilti kaanepildina."
 
-#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+#: views/admin/files/cover-image.php:23 views/admin/files/cover-image.php:26
 msgid "Change"
 msgstr "Muuda"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Tühjenda filtrid"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
@@ -425,153 +433,153 @@ msgstr "Ühtegi näitust pole veel saadaval."
 msgid "Layout Options"
 msgstr "Paigutuse valikud"
 
-#: views/shared/exhibit_layouts/carousel/form.php:17
+#: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
-msgstr ""
+msgstr "Karusselli pealkiri"
 
-#: views/shared/exhibit_layouts/carousel/form.php:26
+#: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
-msgstr ""
+msgstr "Säilikuid slaidil"
 
-#: views/shared/exhibit_layouts/carousel/form.php:46
+#: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
-msgstr ""
+msgstr "Säiliku faili suurus"
 
-#: views/shared/exhibit_layouts/carousel/form.php:54
+#: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
-msgstr ""
+msgstr "Täissuurus"
 
-#: views/shared/exhibit_layouts/carousel/form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
-msgstr ""
+msgstr "Näita säiliku pealkirja"
 
-#: views/shared/exhibit_layouts/carousel/form.php:69
+#: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
-msgstr ""
+msgstr "Pildi kohal"
 
-#: views/shared/exhibit_layouts/carousel/form.php:75
+#: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Paiguta pealkiri pildi kohale (võib vajada CSS seadete kohandamist)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:79
+#: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
-msgstr ""
+msgstr "Pealkirja asukoht"
 
-#: views/shared/exhibit_layouts/carousel/form.php:84
+#: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Center"
 msgstr "Keskel"
 
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Left"
-msgstr "Vasakul"
-
 #: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Vasakul"
+
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
 msgid "Right"
 msgstr "Paremal"
 
-#: views/shared/exhibit_layouts/carousel/form.php:92
+#: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
-msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:97
-msgid "None"
-msgstr ""
+msgstr "Venita pilti täitmiseks"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
-msgid "Fill width"
-msgstr ""
+msgid "None"
+msgstr "Pole"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
-msgid "Fill height"
-msgstr ""
+msgid "Fill width"
+msgstr "Täida laius"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
+msgid "Fill height"
+msgstr "Täida kõrgus"
+
+#: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Täida kogu slaid"
 
-#: views/shared/exhibit_layouts/carousel/form.php:106
+#: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Kerimise kiirus"
 
-#: views/shared/exhibit_layouts/carousel/form.php:113
+#: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Määrab kerimise animatsiooni. Võib olla \"kiire\", \"aeglane\" või aeg millisekundites. Vaikeväärtus on 400."
 
-#: views/shared/exhibit_layouts/carousel/form.php:117
+#: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Automaatne slaidi kestus"
 
-#: views/shared/exhibit_layouts/carousel/form.php:123
+#: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Aeg millisekundites peatumiseks enne kui liikuta automaatselt edasi (väljalülitamiseks sisesta 0)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:127
+#: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
-msgstr ""
+msgstr "Korduv"
 
-#: views/shared/exhibit_layouts/carousel/form.php:136
+#: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
-msgstr ""
+msgstr "Sujuv üleminek slaidide vahel"
 
-#: views/shared/exhibit_layouts/carousel/form.php:142
+#: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Märkus: töötab, kui on ainult 1 säilik slaidi kohta"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:18
 msgid "File position"
 msgstr "Faili asukoht"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
-#: views/shared/exhibit_layouts/file/form.php:26
+#: views/shared/exhibit_layouts/file/form.php:27
 msgid "File size"
 msgstr "Faili suurus"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
-#: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:64
+#: views/shared/exhibit_layouts/file/form.php:40
+#: views/shared/exhibit_layouts/gallery/form.php:65
 msgid "Captions position"
 msgstr "Pealkirjade asukoht"
 
-#: views/shared/exhibit_layouts/gallery/form.php:22
+#: views/shared/exhibit_layouts/gallery/form.php:23
 msgid "Showcase file position"
 msgstr "Vitriinkasti faili asukoht"
 
-#: views/shared/exhibit_layouts/gallery/form.php:27
+#: views/shared/exhibit_layouts/gallery/form.php:28
 msgid "No showcase file"
 msgstr "Vitriinkasti faili pole"
 
-#: views/shared/exhibit_layouts/gallery/form.php:36
+#: views/shared/exhibit_layouts/gallery/form.php:37
 msgid "Gallery position"
 msgstr "Galerii asukoht"
 
-#: views/shared/exhibit_layouts/gallery/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:47
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Kui vitriinkasti faili või teksti pole, siis kasutab galerii lehekülje täislaiust."
 
-#: views/shared/exhibit_layouts/gallery/form.php:50
+#: views/shared/exhibit_layouts/gallery/form.php:51
 msgid "Gallery file size"
 msgstr "Galerii faili suurus"
