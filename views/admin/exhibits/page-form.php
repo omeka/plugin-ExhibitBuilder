@@ -131,7 +131,7 @@ jQuery(document).ready(function () {
     Omeka.ExhibitBuilder.setUpItemsSelect(<?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>, <?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.manageDrawers('#block-container', '.block-form');
-    Omeka.manageDrawers('.block-form .block-body', '.layout-options');
+    Omeka.manageDrawers('#block-container', '.layout-options');
     <?php
     if ($exhibit_page->exists()) {
         $validateUrl = url(

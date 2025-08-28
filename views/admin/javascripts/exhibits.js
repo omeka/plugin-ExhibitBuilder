@@ -118,8 +118,6 @@ Omeka.ExhibitBuilder = {};
                     $('input[name=new-block-layout]').prop('checked', false);
                     $('.selected').removeClass('selected');
                     $('.add-link').hide();
-                    $('.block-form .block-body').unbind('click');
-                    Omeka.manageDrawers('.block-form .block-body', '.layout-options');
                 },
                 'html'
             );
