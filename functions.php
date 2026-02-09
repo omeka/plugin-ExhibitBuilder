@@ -366,7 +366,7 @@ function exhibit_builder_define_acl($args)
         new Omeka_Acl_Assert_Ownership);
 
     if (get_option('exhibit_builder_researcher_permissions')==1) {
-        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');   
+        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');
     }
 }
 
@@ -728,4 +728,26 @@ function exhibit_builder_display_records_types($recordTypes)
 {
     $recordTypes['Exhibit'] = array('partial' => 'exhibit-builder/exhibits/single.php', 'alias' => 'exhibit');
     return $recordTypes;
+}
+
+function exhibit_builder_exports_records_csv_get_field_data($fieldData, $args)
+{
+    $k = $args['k'];
+    $v = $args['v'];
+    $export = $args['export'];
+    $exportData = $export->getData();
+
+    // Add page block texts to a page_blocks CSV.
+    if ('exhibit_pages' === $exportData['record'] && 'page_blocks' === $k) {
+        $pageBlockTexts = [];
+        foreach ($v as $pageBlock) {
+            if (isset($pageBlock['text'])) {
+                $pageBlockTexts[] = $pageBlock['text'];
+            }
+        }
+        $fieldData = [['Text', implode($exportData['multivalue_separator'], $pageBlockTexts)]];
+        return $fieldData;
+    }
+
+    return $fieldData;
 }
