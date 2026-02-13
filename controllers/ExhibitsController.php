@@ -109,7 +109,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
     public function showAction()
     {
         $exhibit = $this->_findByExhibitSlug();
-        
+
         if (!$exhibit) {
             throw new Omeka_Controller_Exception_404;
         }
@@ -144,6 +144,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             'exhibit' => $exhibit,
             'exhibit_page' => $exhibitPage,
         ));
+
+        if ($exhibitPage->template) {
+            $this->render(sprintf('common/page-template/%s', $exhibitPage->template), null, true);
+        }
     }
 
     /**
@@ -304,6 +308,10 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             return;
         }
 
+        $pageTemplates = exhibit_builder_get_page_templates($exhibit);
+        $pageTemplates = ['' => __('Default')] + $pageTemplates;
+        $this->view->assign(['page_templates' => $pageTemplates]);
+
         $this->render('page-form');
     }
 
@@ -333,6 +341,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             $this->_helper->redirector->gotoRoute(array('action' => 'edit-page', 'id' => $exhibitPage->id), 'exhibitStandard');
             return;
         }
+
+        $pageTemplates = exhibit_builder_get_page_templates($exhibit);
+        $pageTemplates = ['' => __('Default')] + $pageTemplates;
+        $this->view->assign(['page_templates' => $pageTemplates]);
+
         $this->render('page-form');
     }
 
