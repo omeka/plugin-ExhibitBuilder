@@ -4,7 +4,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
- 
+
 /**
  * ExhibitPage model.
  *
@@ -32,6 +32,8 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      * @var string
      */
     public $slug;
+
+    public $template;
 
     /**
      * Title for the page
@@ -148,7 +150,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     /**
      * Before save callback
-     * 
+     *
      * Checks whether data is about to be clobbered due to two people editing the page
      * at the same time
      */
@@ -213,7 +215,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
 
     /**
      * Get the previous page, or this page's parent if there are none.
-     * 
+     *
      * @return ExhibitPage
      */
     public function previousOrParent()
@@ -365,7 +367,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      * @param array $blocksData An array of key-value arrays for each block.
      * @param boolean $deleteExtras Whether to delete any extra preexisting
      *  blocks.
-     */ 
+     */
     public function setPageBlocks($blocksData, $deleteExtras = true)
     {
         $existingBlocks = $this->getPageBlocks();
@@ -399,7 +401,7 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         if ('show' == $action) {
             return exhibit_builder_exhibit_uri($this->getExhibit(), $this);
         }
-        return array('module' => 'exhibit-builder', 'controller' => 'exhibits', 
+        return array('module' => 'exhibit-builder', 'controller' => 'exhibits',
                      'action' => $action, 'id' => $this->id);
     }
 

@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `title` VARCHAR(255) DEFAULT NULL,
     `short_title` VARCHAR(255) DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
+    `template` VARCHAR(255) DEFAULT NULL,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -310,6 +311,11 @@ SQL;
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `short_title` VARCHAR(255) DEFAULT NULL";
         $db->query($sql);
     }
+
+    if (version_compare($oldVersion, '3.9', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `template` VARCHAR(255) DEFAULT NULL AFTER `slug`";
+        $db->query($sql);
+    }
 }
 
 /**
@@ -366,7 +372,7 @@ function exhibit_builder_define_acl($args)
         new Omeka_Acl_Assert_Ownership);
 
     if (get_option('exhibit_builder_researcher_permissions')==1) {
-        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');   
+        $acl->allow('researcher', 'ExhibitBuilder_Exhibits', 'showNotPublic');
     }
 }
 
@@ -728,4 +734,45 @@ function exhibit_builder_display_records_types($recordTypes)
 {
     $recordTypes['Exhibit'] = array('partial' => 'exhibit-builder/exhibits/single.php', 'alias' => 'exhibit');
     return $recordTypes;
+}
+
+/**
+ * Get all available page templates.
+ *
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_page_templates(Exhibit $exhibit)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    return $themeConfig['exhibit_builder_templates']['page_templates'] ?? [];
+}
+
+/**
+ * Get all available block templates.
+ *
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_block_templates(Exhibit $exhibit)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    return $themeConfig['exhibit_builder_templates']['block_templates'] ?? [];
+}
+
+/**
+ * Get the theme configuration.
+ *
+ * @todo Is there a way to get theme configuration via the core?
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_theme_config(Exhibit $exhibit)
+{
+    $themeName = $exhibit->theme ? $exhibit->theme : Theme::getCurrentThemeName('public');
+    $configPath = sprintf('%s/%s/config.ini', PUBLIC_THEME_DIR, $themeName);
+    if (file_exists($configPath) && is_readable($configPath)) {
+        return (new Zend_Config_Ini($configPath))->toArray();
+    }
+    return [];
 }

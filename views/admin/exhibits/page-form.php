@@ -40,6 +40,15 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             </div>
         </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('page_template', __('Page Template')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <p class="explanation"><?php echo __('Enter a page template.'); ?></p>
+                <?php echo $this->formSelect('template', $exhibit_page->template, [], $page_templates); ?>
+            </div>
+        </div>
     </fieldset>
     <fieldset id="block-container">
         <h2><?php echo __('Content'); ?></h2>
