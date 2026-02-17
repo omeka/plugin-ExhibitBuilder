@@ -1079,17 +1079,25 @@ function exhibit_builder_static_site_export_site_export_post($args)
 /**
  * Get all available page templates.
  *
+ * Themes can add page templates in theme config under "[exhibit_builder_templates]".
+ * Plugins can add page templates via the "exhibit_builder_page_templates" filter.
+ *
  * @param Exhibit $exhibit
  * @return array
  */
 function exhibit_builder_get_page_templates(Exhibit $exhibit)
 {
     $themeConfig = exhibit_builder_get_theme_config($exhibit);
-    return $themeConfig['exhibit_builder_templates']['page_templates'] ?? [];
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['page_templates'] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_page_templates', []);
+    return array_merge($themeTemplates, $pluginTemplates);
 }
 
 /**
  * Get all available block templates.
+ *
+ * Themes can add block templates in theme config under "[exhibit_builder_templates]".
+ * Plugins can add block templates via the "exhibit_builder_bock_templates" filter.
  *
  * @param Exhibit $exhibit
  * @return array
@@ -1097,7 +1105,9 @@ function exhibit_builder_get_page_templates(Exhibit $exhibit)
 function exhibit_builder_get_block_templates(Exhibit $exhibit)
 {
     $themeConfig = exhibit_builder_get_theme_config($exhibit);
-    return $themeConfig['exhibit_builder_templates']['block_templates'] ?? [];
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['block_templates'] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_block_templates', []);
+    return array_merge($themeTemplates, $pluginTemplates);
 }
 
 /**
