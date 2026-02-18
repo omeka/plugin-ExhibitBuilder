@@ -53,7 +53,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `title` VARCHAR(255) DEFAULT NULL,
     `short_title` VARCHAR(255) DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
-    `template` VARCHAR(255) DEFAULT NULL,
+    `layout` VARCHAR(255) DEFAULT NULL,
+    `layout_data` TEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -69,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `page_id` INT UNSIGNED NOT NULL,
     `layout` VARCHAR(50) NOT NULL,
+    `layout_data` TEXT,
     `options` TEXT,
     `text` MEDIUMTEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
@@ -312,8 +314,10 @@ SQL;
         $db->query($sql);
     }
 
-    if (version_compare($oldVersion, '3.9', '<')) {
-        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `template` VARCHAR(255) DEFAULT NULL AFTER `slug`";
+    if (version_compare($oldVersion, '3.9-alpha', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `layout` VARCHAR(255) DEFAULT NULL, ADD `layout_data` TEXT";
+        $db->query($sql);
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_page_blocks` ADD `layout_data` TEXT";
         $db->query($sql);
     }
 }

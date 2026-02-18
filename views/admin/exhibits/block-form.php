@@ -16,5 +16,15 @@ $order = $block->order;
         <?php
         echo $this->partial($layout->getViewPartial('form'), array('block' => $block));
         ?>
+        <div class="layout-options">
+            <div class="block-header drawer">
+                <h4><?php echo __('Block Layout Options'); ?></h4>
+                <button class="drawer-toggle" type="button" data-action-selector="opened"><span class="icon"></span></button>
+            </div>
+            <div class="drawer-contents" id="">
+                <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
+                <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), '', [], ['' => __('Default')]); ?>
+            </div>
+        </div>
     </div>
 </div>
