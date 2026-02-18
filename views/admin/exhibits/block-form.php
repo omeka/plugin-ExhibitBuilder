@@ -2,6 +2,9 @@
 $layout = $block->getLayout();
 $stem = $block->getFormStem();
 $order = $block->order;
+
+$blockTemplates = exhibit_builder_get_block_templates($block->getPage()->getExhibit(), $block->layout);
+$blockTemplates = ['' => __('Default')] + $blockTemplates;
 ?>
 <div class="block-form" data-block-index="<?php echo $order; ?>">
     <div class="sortable-item drawer block-header opened">
@@ -23,7 +26,7 @@ $order = $block->order;
             </div>
             <div class="drawer-contents" id="">
                 <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
-                <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), '', [], ['' => __('Default')]); ?>
+                <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), $block->getLayoutData('template'), [], $blockTemplates); ?>
             </div>
         </div>
     </div>
