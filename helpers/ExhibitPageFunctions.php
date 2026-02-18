@@ -15,7 +15,7 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     if ($exhibitPage === null) {
         $exhibitPage = get_current_record('exhibit_page');
     }
-    
+
     $blocks = $exhibitPage->ExhibitPageBlocks;
     $rawAttachments = $exhibitPage->getAllAttachments();
     $attachments = array();
@@ -24,8 +24,10 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     }
     foreach ($blocks as $index => $block) {
         $layout = $block->getLayout();
+        $template = $block->getLayoutData('template');
+        $partial = $template ? sprintf('common/block-template/%s/%s', $block->layout, $template) : $layout->getViewPartial();
         echo '<div class="exhibit-block layout-' . html_escape($layout->id) . '">';
-        echo get_view()->partial($layout->getViewPartial(), array(
+        echo get_view()->partial($partial, array(
             'index' => $index,
             'options' => $block->getOptions(),
             'text' => get_view()->shortcodes($block->text),
@@ -88,9 +90,9 @@ function exhibit_builder_page_nav($exhibitPage = null)
     $html .= '<li>';
     $html .= '<a class="exhibit-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
-    
+
     $levelNumber = 1;
-    
+
     foreach ($pagesTrail as $page) {
         $pageExhibit = $page->getExhibit();
         $pageParent = $page->getParent();
@@ -289,7 +291,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 
 /**
  * Get the children of a page.
- * 
+ *
  * @param ExhibitPage $exhibitPage The exhibit page. If null, uses the current page.
  * @return array[ExhibitPage]
  */
