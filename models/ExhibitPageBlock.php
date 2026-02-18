@@ -4,10 +4,10 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @package ExhibitBuilder
  */
- 
+
 /**
  * ExhibitPageBlock model.
- * 
+ *
  * @package ExhibitBuilder
  */
 class ExhibitPageBlock extends Omeka_Record_AbstractRecord
@@ -32,6 +32,8 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
      * @var string
      */
     public $options;
+
+    public $layout_data;
 
     /**
      * User-input text for this block, in HTML.
@@ -93,6 +95,12 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
             $this->options = null;
         }
 
+        if (!empty($data['layout_data'])) {
+            $this->layout_data = json_encode($data['layout_data']);
+        } else {
+            $this->layout_data = null;
+        }
+
         if (!empty($data['text'])) {
             $this->text = $data['text'];
         } else {
@@ -132,6 +140,19 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
     public function setOptions($options)
     {
         $this->options = json_encode($options);
+    }
+
+    /**
+     * Get layout data by key.
+     *
+     * @param string $key
+     * @param string $default
+     * @return string
+     */
+    public function getLayoutData($key, $default = null)
+    {
+        $layoutData = json_decode($this->layout_data, true);
+        return $layoutData[$key] ?? $default;
     }
 
     /**

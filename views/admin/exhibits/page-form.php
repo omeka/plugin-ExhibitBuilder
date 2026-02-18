@@ -43,7 +43,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <h2><?php echo __('Page Layout Options'); ?></h2>
         <div class="field">
             <div class="two columns alpha">
-                <?php echo $this->formLabel('layout_data[template]', __('Page Template')); ?>
+                <?php echo $this->formLabel('layout_data[template]', __('Template')); ?>
             </div>
             <div class="inputs five columns omega">
                 <p class="explanation"><?php echo __('Enter a page template.'); ?></p>
