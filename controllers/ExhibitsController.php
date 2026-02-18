@@ -145,8 +145,9 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
             'exhibit_page' => $exhibitPage,
         ));
 
-        if ($exhibitPage->template) {
-            $this->render(sprintf('common/page-template/%s', $exhibitPage->template), null, true);
+        $template = $exhibitPage->getLayoutData('template');
+        if ($template) {
+            $this->render(sprintf('common/page-template/%s', $template), null, true);
         }
     }
 

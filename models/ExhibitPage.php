@@ -33,7 +33,9 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
      */
     public $slug;
 
-    public $template;
+    public $layout;
+
+    public $layout_data;
 
     /**
      * Title for the page
@@ -146,6 +148,26 @@ class ExhibitPage extends Omeka_Record_AbstractRecord
         }
         $this->setSearchTextTitle($this->title);
         $this->addSearchText($this->title);
+    }
+
+    protected function filterPostData($post)
+    {
+        // JSON encode the layout data array before setting post data.
+        $post['layout_data'] = json_encode($post['layout_data']);
+        return $post;
+    }
+
+    /**
+     * Get layout data by key.
+     *
+     * @param string $key
+     * @param string $default
+     * @return string
+     */
+    public function getLayoutData($key, $default = null)
+    {
+        $layoutData = json_decode($this->layout_data, true);
+        return $layoutData[$key] ?? $default;
     }
 
     /**

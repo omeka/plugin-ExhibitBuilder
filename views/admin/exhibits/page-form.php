@@ -40,13 +40,14 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             </div>
         </div>
+        <h2><?php echo __('Page Layout Options'); ?></h2>
         <div class="field">
             <div class="two columns alpha">
-                <?php echo $this->formLabel('page_template', __('Page Template')); ?>
+                <?php echo $this->formLabel('layout_data[template]', __('Page Template')); ?>
             </div>
             <div class="inputs five columns omega">
                 <p class="explanation"><?php echo __('Enter a page template.'); ?></p>
-                <?php echo $this->formSelect('template', $exhibit_page->template, [], $page_templates); ?>
+                <?php echo $this->formSelect('layout_data[template]', $exhibit_page->getLayoutData('template'), [], $page_templates); ?>
             </div>
         </div>
     </fieldset>
