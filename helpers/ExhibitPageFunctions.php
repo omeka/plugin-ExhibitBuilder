@@ -24,9 +24,15 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     }
     foreach ($blocks as $index => $block) {
         $layout = $block->getLayout();
-        $template = $block->getLayoutData('template');
-        $partial = $template ? sprintf('common/block-template/%s/%s', $block->layout, $template) : $layout->getViewPartial();
-        echo '<div class="exhibit-block layout-' . html_escape($layout->id) . '">';
+        $classes = [
+            'exhibit-block',
+            sprintf('layout-%s', html_escape($layout->id)),
+            $block->getLayoutData('class')
+        ];
+        $partial = $template
+            ? sprintf('common/block-template/%s/%s', $block->layout, $block->getLayoutData('template'))
+            : $layout->getViewPartial();
+        echo sprintf('<div class="%s">', implode(' ', $classes));
         echo get_view()->partial($partial, array(
             'index' => $index,
             'options' => $block->getOptions(),
