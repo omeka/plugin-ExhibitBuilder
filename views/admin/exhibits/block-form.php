@@ -25,8 +25,14 @@ $blockTemplates = ['' => __('Default')] + $blockTemplates;
                 <button class="drawer-toggle" type="button" data-action-selector="opened"><span class="icon"></span></button>
             </div>
             <div class="drawer-contents" id="">
-                <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
-                <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), $block->getLayoutData('template'), [], $blockTemplates); ?>
+                <div>
+                    <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
+                    <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), $block->getLayoutData('template'), [], $blockTemplates); ?>
+                </div>
+                <div>
+                    <?php echo $this->formLabel(sprintf('%s[layout_data][class]', $stem), 'Class'); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][class]', $stem), $block->getLayoutData('class')); ?>
+                </div>
             </div>
         </div>
     </div>

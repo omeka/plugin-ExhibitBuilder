@@ -1,7 +1,8 @@
 <?php
+$bodyClasses = ['exhibits', 'show', $exhibit_page->getLayoutData('class')];
 echo head(array(
     'title' => metadata('exhibit_page', 'title') . ' &middot; ' . metadata('exhibit', 'title'),
-    'bodyclass' => 'exhibits show'));
+    'bodyclass' => implode(' ', $bodyClasses)));
 ?>
 
 <h1><span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></span></h1>

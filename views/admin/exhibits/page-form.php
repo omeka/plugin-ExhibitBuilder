@@ -46,8 +46,15 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formLabel('layout_data[template]', __('Template')); ?>
             </div>
             <div class="inputs five columns omega">
-                <p class="explanation"><?php echo __('Enter a page template.'); ?></p>
                 <?php echo $this->formSelect('layout_data[template]', $exhibit_page->getLayoutData('template'), [], $page_templates); ?>
+            </div>
+        </div>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('layout_data[class]', __('Class')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <?php echo $this->formText('layout_data[class]', $exhibit_page->getLayoutData('class')); ?>
             </div>
         </div>
     </fieldset>
