@@ -84,12 +84,59 @@ function exhibit_builder_get_block_classes($block)
         default:
             // No text alignment
     }
+
     return $classes;
 }
 
 function exhibit_builder_get_block_inline_styles($block)
 {
-    return [];
+    $inlineStyles = [];
+
+    // Validate a CSS <hex-color>.
+    $isValidHexColor = function ($hexColor) {
+        return preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $hexColor);
+    };
+    // Validate a CSS <length>
+    $isValidLength = function ($length) {
+        return preg_match(sprintf('/%s/', '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lvw|dvw|vmax|svmax|lvmax|dvmax|vmin|svmin|lvmin|dvmin|vb|svb|lvb|dvb|vi|svi|lvi|dvi|cqw|cqh|cqi|cqb|cqmin|cqmax|px|cm|mm|Q|in|pc|pt)?$'), $length);
+    };
+    // Prepare a CSS <length> for use in an inline style. Note that we convert bare numbers as pixels.
+    $prepareLength = function ($length) {
+        return is_numeric($length) ? sprintf('%spx', $length) : $length;
+    };
+
+    $backgroundColor = $block->getLayoutData('background_color');
+    if ($backgroundColor && $isValidHexColor($backgroundColor)) {
+        $inlineStyles[] = sprintf('background-color: %s', $backgroundColor);
+    }
+
+    $maxWidth = $block->getLayoutData('max_width');
+    if (is_string($maxWidth) && $isValidLength($maxWidth)) {
+        $inlineStyles[] = sprintf('max-width: %s', $prepareLength($maxWidth));
+    }
+    $minHeight = $block->getLayoutData('min_height');
+    if (is_string($minHeight) && $isValidLength($minHeight)) {
+        $inlineStyles[] = sprintf('min-height: %s', $prepareLength($minHeight));
+    }
+
+    $paddingTop = $block->getLayoutData('padding_top');
+    if (is_string($paddingTop) && $isValidLength($paddingTop)) {
+        $inlineStyles[] = sprintf('padding-top: %s', $prepareLength($paddingTop));
+    }
+    $paddingRight = $block->getLayoutData('padding_right');
+    if (is_string($paddingRight) && $isValidLength($paddingRight)) {
+        $inlineStyles[] = sprintf('padding-right: %s', $prepareLength($paddingRight));
+    }
+    $paddingBottom = $block->getLayoutData('padding_bottom');
+    if (is_string($paddingBottom) && $isValidLength($paddingBottom)) {
+        $inlineStyles[] = sprintf('padding-bottom: %s', $prepareLength($paddingBottom));
+    }
+    $paddingLeft = $block->getLayoutData('padding_left');
+    if (is_string($paddingLeft) && $isValidLength($paddingLeft)) {
+        $inlineStyles[] = sprintf('padding-left: %s', $prepareLength($paddingLeft));
+    }
+
+    return $inlineStyles;
 }
 
 /**
