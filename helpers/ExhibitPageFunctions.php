@@ -15,33 +15,81 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     if ($exhibitPage === null) {
         $exhibitPage = get_current_record('exhibit_page');
     }
-
     $blocks = $exhibitPage->ExhibitPageBlocks;
-    $rawAttachments = $exhibitPage->getAllAttachments();
-    $attachments = array();
-    foreach ($rawAttachments as $attachment) {
+    $attachments = [];
+    foreach ($exhibitPage->getAllAttachments() as $attachment) {
         $attachments[$attachment->block_id][] = $attachment;
     }
     foreach ($blocks as $index => $block) {
         $layout = $block->getLayout();
-        $classes = [
-            'exhibit-block',
-            sprintf('layout-%s', html_escape($layout->id)),
-            $block->getLayoutData('class')
-        ];
-        $partial = $template
-            ? sprintf('common/block-template/%s/%s', $block->layout, $block->getLayoutData('template'))
+        $template = $block->getLayoutData('template');
+        $partialTemplate = $template
+            ? sprintf('common/block-template/%s/%s', $layout->id, $template)
             : $layout->getViewPartial();
-        echo sprintf('<div class="%s">', implode(' ', $classes));
-        echo get_view()->partial($partial, array(
-            'index' => $index,
-            'options' => $block->getOptions(),
-            'text' => get_view()->shortcodes($block->text),
-            'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array(),
-            'block' => $block,
-        ));
-        echo '</div>';
+        $classes = exhibit_builder_get_block_classes($block);
+        $inlineStyles = exhibit_builder_get_block_inline_styles($block);
+        echo sprintf(
+            '<div class="%s" style="%s">%s</div>',
+            html_escape(implode(' ', $classes)),
+            html_escape(implode('; ', $inlineStyles)),
+            get_view()->partial($partialTemplate, [
+                'index' => $index,
+                'options' => $block->getOptions(),
+                'text' => get_view()->shortcodes($block->text),
+                'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : [],
+                'block' => $block,
+            ])
+        );
     }
+}
+
+function exhibit_builder_get_block_classes($block)
+{
+    $layout = $block->getLayout();
+
+    $classes = [];
+    $classes[] = 'exhibit-block';
+    $classes[] = sprintf('layout-%s', html_escape($layout->id));
+    $classes[] = $block->getLayoutData('class');
+
+    $alignmentBlock = $block->getLayoutData('alignment_block');
+    switch ($alignmentBlock) {
+        case 'left':
+            $classes[] = 'block-layout-alignment-block-left';
+            break;
+        case 'right':
+            $classes[] = 'block-layout-alignment-block-right';
+            break;
+        case 'center':
+            $classes[] = 'block-layout-alignment-block-center';
+            break;
+        default:
+            // No block alignment
+    }
+
+    $alignmentText = $block->getLayoutData('alignment_text');
+    switch ($alignmentText) {
+        case 'left':
+            $classes[] = 'block-layout-alignment-text-left';
+            break;
+        case 'center':
+            $classes[] = 'block-layout-alignment-text-center';
+            break;
+        case 'right':
+            $classes[] = 'block-layout-alignment-text-right';
+            break;
+        case 'justify':
+            $classes[] = 'block-layout-alignment-text-justify';
+            break;
+        default:
+            // No text alignment
+    }
+    return $classes;
+}
+
+function exhibit_builder_get_block_inline_styles($block)
+{
+    return [];
 }
 
 /**
