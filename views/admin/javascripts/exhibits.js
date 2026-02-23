@@ -93,7 +93,7 @@ Omeka.ExhibitBuilder = {};
                 });
             }
         });
-        
+
         var blockIndex = $('.block-form').length;
 
         $('.add-link').hide();
@@ -122,7 +122,7 @@ Omeka.ExhibitBuilder = {};
                 'html'
             );
         });
-        
+
         $('.layout').click(function (event) {
             var layout_id = $(this).attr('id');
             $(this).children('input[type="radio"]').prop('checked', true);
@@ -161,7 +161,7 @@ Omeka.ExhibitBuilder = {};
         if ($('#theme').val() === '') {
             $('.configure-button').hide();
         }
-        
+
         $('#theme').change(function() {
             if ($(this).val() === '') {
                 $('.configure-button').hide();
@@ -169,7 +169,7 @@ Omeka.ExhibitBuilder = {};
                 $('.configure-button').show();
             }
         });
-    }; 
+    };
 
     Omeka.ExhibitBuilder.setUpItemsSelect = function (itemOptionsUrl) {
         /*
@@ -288,7 +288,7 @@ Omeka.ExhibitBuilder = {};
                 file_id = container.find('input[name="file_id"]:checked').val();
                 caption = tinymce.get(container.find('textarea[name="caption"]').attr('id')).getContent();
             }
-            
+
             return {
                 'item_id': item_id,
                 'file_id': file_id,
@@ -303,7 +303,7 @@ Omeka.ExhibitBuilder = {};
 
         var attachmentPanel = $('#attachment-panel');
         Omeka.ExhibitBuilder.createDialog(attachmentPanel);
-        
+
         $('#attachment-item-options').on('click','.file-select .item-file', function(event) {
             $(this).find('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
@@ -365,7 +365,7 @@ Omeka.ExhibitBuilder = {};
             $('#page-list .deleted').each(function () {
                 deletedIds.push($(this).parent().attr('id').match(/_(.*)/)[1]);
             });
-            
+
             $('#pages-hidden').val(listData);
             $('#pages-delete-hidden').val(deletedIds.join(','));
         });
@@ -374,12 +374,11 @@ Omeka.ExhibitBuilder = {};
     Omeka.ExhibitBuilder.setUpPageValidate = function (validateUrl) {
         $('#exhibit-page-form').submit(function (event) {
             $('.page-validate-message').remove();
-
             $.ajax({
                 url: validateUrl,
                 method: 'POST',
                 dataType: 'json',
-                data: $('#title, #slug').serialize(),
+                data: $('#title, #slug, #layout_data-template, #layout_data-class').serialize(),
                 async: false,
                 success: function (response) {
                     if (!response.success) {
@@ -394,12 +393,21 @@ Omeka.ExhibitBuilder = {};
                 }
             });
         });
+        // Ensure that invalid form elements are focusable before the browser
+        // displays error messages.
+        $('#exhibit-page-form :input').on('invalid', function(e) {
+            const invalidElement = $(e.target);
+            if (invalidElement.is(':visible')) {
+                return;
+            }
+            invalidElement.closest('.layout-options').find('.drawer-toggle').click();
+        });
     };
 
     Omeka.ExhibitBuilder.setUpCoverImageChooser = function (coverImageChooserUrl, itemOptionsUrl) {
         var coverImagePanel = $('#cover-image-panel');
         var selected_cover_image_id = $('#cover_image_file_id').val();
-        
+
         Omeka.ExhibitBuilder.createDialog(coverImagePanel);
 
         function getCoverImageData(container) {
