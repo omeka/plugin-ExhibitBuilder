@@ -5,6 +5,9 @@ $order = $block->order;
 
 $blockTemplates = exhibit_builder_get_block_templates($block->getPage()->getExhibit(), $block->layout);
 $blockTemplates = ['' => __('Default')] + $blockTemplates;
+
+$cssHexColorRegex = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
+$cssLength = '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lvw|dvw|vmax|svmax|lvmax|dvmax|vmin|svmin|lvmin|dvmin|vb|svb|lvb|dvb|vi|svi|lvi|dvi|cqw|cqh|cqi|cqb|cqmin|cqmax|px|cm|mm|Q|in|pc|pt)?$';
 ?>
 <div class="block-form" data-block-index="<?php echo $order; ?>">
     <div class="sortable-item drawer block-header opened">
@@ -54,31 +57,31 @@ $blockTemplates = ['' => __('Default')] + $blockTemplates;
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][max_width]', $stem), 'Maximum Width'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][max_width]', $stem), $block->getLayoutData('max_width')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][max_width]', $stem), $block->getLayoutData('max_width'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][min_height]', $stem), 'Minimum Height'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][min_height]', $stem), $block->getLayoutData('min_height')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][min_height]', $stem), $block->getLayoutData('min_height'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][padding_top]', $stem), 'Top Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_top]', $stem), $block->getLayoutData('padding_top')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][padding_top]', $stem), $block->getLayoutData('padding_top'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][padding_right]', $stem), 'Right Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_right]', $stem), $block->getLayoutData('padding_right')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][padding_right]', $stem), $block->getLayoutData('padding_right'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][padding_bottom]', $stem), 'Bottom Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_bottom]', $stem), $block->getLayoutData('padding_bottom')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][padding_bottom]', $stem), $block->getLayoutData('padding_bottom'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][padding_left]', $stem), 'Left Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_left]', $stem), $block->getLayoutData('padding_left')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][padding_left]', $stem), $block->getLayoutData('padding_left'), ['pattern' => $cssLength]); ?>
                 </div>
                 <div>
                     <?php echo $this->formLabel(sprintf('%s[layout_data][background_color]', $stem), 'Background Color'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][background_color]', $stem), $block->getLayoutData('background_color')); ?>
+                    <?php echo $this->formText(sprintf('%s[layout_data][background_color]', $stem), $block->getLayoutData('background_color'), ['pattern' => $cssHexColorRegex]); ?>
                 </div>
             </div>
         </div>

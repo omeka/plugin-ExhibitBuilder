@@ -94,7 +94,7 @@ function exhibit_builder_get_block_inline_styles($block)
 
     // Validate a CSS <hex-color>.
     $isValidHexColor = function ($hexColor) {
-        return preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $hexColor);
+        return preg_match(sprintf('/%s/', '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'), $hexColor);
     };
     // Validate a CSS <length>
     $isValidLength = function ($length) {
