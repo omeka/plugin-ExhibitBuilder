@@ -103,7 +103,7 @@ Omeka.ExhibitBuilder = {};
             var newLayout = $('input[name=new-block-layout]:checked').val();
             if (!newLayout) return;
 
-            $.get(
+            $.post(
                 blockFormUrl,
                 {
                     layout: newLayout,

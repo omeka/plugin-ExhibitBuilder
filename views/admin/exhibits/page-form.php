@@ -68,7 +68,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         <?php
         foreach ($exhibit_page->getPageBlocks() as $index => $block):
             $block->order = $index + 1;
-            echo $this->partial('exhibits/block-form.php', array('block' => $block));
+            echo $this->partial('exhibits/block-form.php', array('block' => $block, 'exhibit' => $exhibit));
         endforeach;
         ?>
         <div class="add-block">
@@ -144,7 +144,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function () {
-    Omeka.ExhibitBuilder.setUpBlocks(<?php echo json_encode(url('exhibits/block-form')); ?>);
+    Omeka.ExhibitBuilder.setUpBlocks(<?php echo js_escape(url('exhibits/block-form/' . $exhibit->id)); ?>);
     Omeka.ExhibitBuilder.setUpItemsSelect(<?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.ExhibitBuilder.setUpAttachments(<?php echo js_escape(url('exhibits/attachment')); ?>, <?php echo js_escape(url('exhibits/attachment-item-options')); ?>);
     Omeka.manageDrawers('#block-container', '.block-form');

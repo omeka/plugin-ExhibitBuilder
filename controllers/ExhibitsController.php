@@ -428,6 +428,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $block->order = $this->getParam('order');
 
         $this->view->block = $block;
+        $this->view->exhibit = $this->_helper->db->findById(null,'Exhibit');
     }
 
     /**
