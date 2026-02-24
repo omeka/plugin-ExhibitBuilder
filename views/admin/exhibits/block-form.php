@@ -3,7 +3,7 @@ $layout = $block->getLayout();
 $stem = $block->getFormStem();
 $order = $block->order;
 
-$blockTemplates = exhibit_builder_get_block_templates($block->getPage()->getExhibit(), $block->layout);
+$blockTemplates = exhibit_builder_get_block_templates($exhibit, $block->layout);
 $blockTemplates = ['' => __('Default')] + $blockTemplates;
 
 $cssHexColorRegex = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
