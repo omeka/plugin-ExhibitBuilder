@@ -775,12 +775,12 @@ function exhibit_builder_static_site_export_exhibit_page_block($args)
             $item = $attachment->getItem();
             $file = $attachment->getFile();
             $frontMatterExhibitPageBlock['params']['attachments'][] = [
-                'itemID' => $item->id,
-                'itemTitle' => metadata($item, 'display_title'),
-                'fileID' => $file->id,
-                'fileMimeType' => explode('/', $file->mime_type)[0],
-                'fileName' => $file->original_filename,
-                'thumbnailSpec' => $job->getThumbnailSpec($file, $thumbnailType),
+                'itemID' => $item ? $item->id : null,
+                'itemTitle' => $item ? metadata($item, 'display_title') : null,
+                'fileID' => $file ? $file->id : null,
+                'fileMimeType' => $file ? explode('/', $file->mime_type)[0] : null,
+                'fileName' => $file ? $file->original_filename : null,
+                'thumbnailSpec' => $file ? $job->getThumbnailSpec($file, $thumbnailType) : null,
                 'caption' => $attachment->caption,
             ];
         }
