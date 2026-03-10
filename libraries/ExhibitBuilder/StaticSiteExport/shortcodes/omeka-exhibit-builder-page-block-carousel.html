@@ -14,15 +14,21 @@
         {{ range $attachments }}
             {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
             {{ $imgResource := false }}
-            {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
-                {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
-                {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .thumbnailSpec.resource) }}
-            {{ else if (.thumbnailSpec.resource) }}
-                {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+            {{ with .thumbnailSpec }}
+                {{ if and (.page) (.resource) }}
+                    {{ $imgPage := site.GetPage (.page) }}
+                    {{ $imgResource = $imgPage.Resources.GetMatch (printf "%s*" .resource) }}
+                {{ else if (.resource) }}
+                    {{ $imgResource = resources.Get (.resource) }}
+                {{ end }}
             {{ end }}
             <li>
                 <a href="{{ $linkResource.RelPermalink }}" class="exhibit-item-link">
+                    {{ if $imgResource }}
                     <img src="{{ $imgResource.RelPermalink }}" alt="">
+                    {{ else }}
+                    {{ .fileName }}
+                    {{ end }}
                 </a>
                 {{ if $params.options.showTitle }}
                 <div class="slide-meta">
