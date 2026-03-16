@@ -188,7 +188,7 @@ msgstr "Vali fail, mida kasutada."
 
 #: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
 msgid "Undo delete"
-msgstr ""
+msgstr "Tühista kustutamine"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
@@ -200,12 +200,12 @@ msgstr "Plokk"
 #: views/shared/exhibit_layouts/file/form.php:13
 #: views/shared/exhibit_layouts/gallery/form.php:18
 msgid "Show options"
-msgstr ""
+msgstr "Näita valikuid"
 
 #: views/admin/exhibits/block-form.php:10
 #: views/helpers/ExhibitPageEditTree.php:55
 msgid "Undo remove"
-msgstr ""
+msgstr "Tühista eemaldamine"
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."

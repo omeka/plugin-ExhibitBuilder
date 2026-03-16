@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Andreas Sandlund <andreas.sandlund@gmail.com>, 2016
-# Peter Krantz <peter.krantz@gmail.com>, 2015
+# M ksj, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Omeka Classic\n"
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Peter Krantz <peter.krantz@gmail.com>, 2015\n"
+"Last-Translator: M ksj, 2015\n"
 "Language-Team: Swedish (Sweden) (http://app.transifex.com/omeka/omeka/language/sv_SE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
