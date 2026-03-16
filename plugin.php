@@ -34,6 +34,7 @@ add_filter('api_extend_items', 'exhibit_builder_api_extend_items');
 add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 add_filter('api_import_omeka_adapters', 'exhibit_builder_api_import_omeka_adapters');
 add_filter('display_records_types', 'exhibit_builder_display_records_types');
+add_filter('exports_records_csv_get_field_data', 'exhibit_builder_exports_records_csv_get_field_data');
 
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
