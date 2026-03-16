@@ -899,6 +899,8 @@ function exhibit_builder_static_site_export_site_export_post($args)
     $job->makeDirectory('content/exhibits');
     $job->makeFile('content/exhibits/_index.md', json_encode($frontMatter, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
 
+    $includePrivate = $job->getStaticSite()->getDataValue('include_private');
+
     $page = 1;
     do {
         $exhibits = get_db()->getTable('Exhibit')->findBy([], 100, $page++);
@@ -907,7 +909,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
             $frontMatterExhibit = new ArrayObject([
                 'date' => (new DateTime(metadata($exhibit, 'added')))->format('c'),
                 'title' => $exhibit->title,
-                'draft' => $exhibit->public ? false : true,
+                'draft' => $exhibit->public ? false : !$includePrivate,
                 'type' => 'exhibit-pages',
                 'params' => [
                     'exhibitID' => $exhibit->id,
@@ -926,7 +928,7 @@ function exhibit_builder_static_site_export_site_export_post($args)
                 $frontMatterExhibitPage = new ArrayObject([
                     'date' => (new DateTime(metadata($exhibitPage, 'added')))->format('c'),
                     'title' => $exhibitPage->title,
-                    'draft' => $exhibit->public ? false : true,
+                    'draft' => $exhibit->public ? false : !$includePrivate,
                     'weight' => $exhibitPage->order + 10,
                     'type' => 'exhibit-pages',
                     'css' => [],
