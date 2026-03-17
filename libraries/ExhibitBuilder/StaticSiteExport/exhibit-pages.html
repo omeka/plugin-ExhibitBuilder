@@ -9,12 +9,6 @@
     <div class="exhibit-credits">{{ . }}</div>
     {{ end }}
 </div>
-<nav id="exhibit-pages">
-    <ul>
-        {{ range .Pages.ByWeight }}
-        <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
-        {{ end }}
-    </ul>
-</nav>
+{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-nav") }}
 {{ .Content }}
 {{ end }}

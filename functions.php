@@ -734,6 +734,12 @@ function exhibit_builder_static_site_export_site_config($args)
         'pageRef' => '/exhibits',
         'weight' => 40,
     ];
+    // Register exhibit menus.
+    $exhibits = get_db()->getTable('Exhibit')->findAll();
+    foreach ($exhibits as $exhibit) {
+        $menu = sprintf('exhibit_%s', $exhibit->id);
+        $args['site_config']['menus'][$menu] = [];
+    }
 }
 
 /**
@@ -937,6 +943,13 @@ function exhibit_builder_static_site_export_site_export_post($args)
                         'exhibitID' => $exhibit->id,
                         'exhibitPageID' => $exhibitPage->id,
                         'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                    ],
+                    // Set exhibit menu entry representing this page.
+                    'menus' => [
+                        sprintf('exhibit_%s', $exhibit->id) => [
+                            'identifier' => sprintf('exhibit_page_%s', $exhibitPage->id),
+                            'parent' => $exhibitPage->parent_id ? sprintf('exhibit_page_%s', $exhibitPage->parent_id) : null,
+                        ],
                     ],
                 ]);
                 $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));

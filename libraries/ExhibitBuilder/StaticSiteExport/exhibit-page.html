@@ -8,13 +8,7 @@
     </div>
     {{ end }}
 </div>
-<nav id="exhibit-pages">
-    <ul>
-        <li><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></li>
-        {{ range .Parent.Pages.ByWeight }}
-        <li{{ if eq $currentPage . }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
-        {{ end }}
-    </ul>
-</nav>
+<h4><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></h4>
+{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-nav") }}
 {{ .Content }}
 {{ end }}
