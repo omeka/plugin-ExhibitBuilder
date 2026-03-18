@@ -26,7 +26,7 @@
     {{ else }}
     <a class="download-file" href="{{ $linkResource.RelPermalink }}">
         {{ if $imgResource }}
-        <img class="{{ $params.options.imgClass }}" src="{{ $imgResource.RelPermalink }}" alt="">
+        <img class="{{ $params.options.imgClass }}" src="{{ $imgResource.RelPermalink }}" alt="{{ $filePage.Params.alt }}">
         {{ else }}
         {{ .fileName }}
         {{ end }}
