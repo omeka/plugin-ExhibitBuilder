@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ $currentPage := . }}
-<h2>{{ .Title }}</h2>
+<h1>{{ .Title }}</h1>
 <div id="exhibit-blocks">
     {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
     <div class="exhibit-block {{ printf "layout-%s" .Params.layout }}">
