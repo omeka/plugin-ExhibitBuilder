@@ -8,7 +8,7 @@
     </div>
     {{ end }}
 </div>
-<h4><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></h4>
-{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-nav") }}
+<h4 id="exhibit-pages-heading"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></h4>
+{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-pages") }}
 {{ .Content }}
 {{ end }}

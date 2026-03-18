@@ -788,6 +788,9 @@ function exhibit_builder_static_site_export_exhibit_page_block($args)
                 'fileName' => $file ? $file->original_filename : null,
                 'thumbnailSpec' => $file ? $job->getThumbnailSpec($file, $thumbnailType) : null,
                 'caption' => $attachment->caption,
+                'bodyClasses' => [
+                    'exhibits show',
+                ],
             ];
         }
     };
@@ -900,7 +903,11 @@ function exhibit_builder_static_site_export_site_export_post($args)
     $frontMatter = [
         'title' => __('Browse exhibits'),
         'type' => 'exhibits',
-        'params' => [],
+        'params' => [
+            'bodyClasses' => [
+                'exhibits browse',
+            ],
+        ],
     ];
     $job->makeDirectory('content/exhibits');
     $job->makeFile('content/exhibits/_index.md', json_encode($frontMatter, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
@@ -922,6 +929,9 @@ function exhibit_builder_static_site_export_site_export_post($args)
                     'description' => $exhibit->description,
                     'credits' => $exhibit->credits,
                     'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                    'bodyClasses' => [
+                        'exhibits show summary',
+                    ],
                 ],
             ]);
             $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
