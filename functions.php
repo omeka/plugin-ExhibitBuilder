@@ -788,9 +788,6 @@ function exhibit_builder_static_site_export_exhibit_page_block($args)
                 'fileName' => $file ? $file->original_filename : null,
                 'thumbnailSpec' => $file ? $job->getThumbnailSpec($file, $thumbnailType) : null,
                 'caption' => $attachment->caption,
-                'bodyClasses' => [
-                    'exhibits show',
-                ],
             ];
         }
     };
@@ -953,6 +950,9 @@ function exhibit_builder_static_site_export_site_export_post($args)
                         'exhibitID' => $exhibit->id,
                         'exhibitPageID' => $exhibitPage->id,
                         'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                        'bodyClasses' => [
+                            'exhibits show',
+                        ],
                     ],
                     // Set exhibit menu entry representing this page.
                     'menus' => [
