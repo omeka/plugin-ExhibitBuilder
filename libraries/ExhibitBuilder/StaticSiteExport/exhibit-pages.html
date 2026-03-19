@@ -9,6 +9,6 @@
     <div class="exhibit-credits">{{ . }}</div>
     {{ end }}
 </div>
-{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-nav") }}
+{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-pages") }}
 {{ .Content }}
 {{ end }}
