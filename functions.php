@@ -760,7 +760,54 @@ function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
     $shortcodes['omeka-exhibit-builder-page-block-gallery'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
     $shortcodes['omeka-exhibit-builder-page-block-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-text.html', PLUGIN_DIR);
     $shortcodes['omeka-exhibit-builder-page-block-carousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-carousel.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-single-exhibit'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-single-exhibit.html', PLUGIN_DIR);
     return $shortcodes;
+}
+
+function exhibit_builder_static_site_export_omeka_shortcode_callbacks($callbacks)
+{
+    // @see exhibit_builder_exhibits_shortcode()
+    $callbacks['exhibits'] = function ($args, $job) {
+        $params = [];
+        if (isset($args['is_featured'])) {
+            $params['featured'] = $args['is_featured'];
+        }
+        if (isset($args['sort'])) {
+            $params['sort_field'] = $args['sort'];
+        }
+        if (isset($args['order'])) {
+            $params['sort_dir'] = $args['order'];
+        }
+        if (isset($args['ids'])) {
+            $params['range'] = $args['ids'];
+        }
+        if (isset($args['tags'])) {
+            $params['tags'] = $args['tags'];
+        }
+        if (isset($args['num'])) {
+            $limit = $args['num'];
+        } else {
+            $limit = 10;
+        }
+        $content = [];
+        $exhibits = get_records('Exhibit', $params, $limit);
+        foreach ($exhibits as $exhibit) {
+            $content[] = sprintf('{{< omeka-exhibit-builder-single-exhibit exhibitPage="exhibits/%s" >}}', $exhibit->slug);
+        }
+        return implode("\n", $content);
+    };
+
+    // @see exhibit_builder_featured_exhibits_shortcode()
+    $callbacks['featured_exhibits'] = function ($args, $job) use ($callbacks) {
+        $args['is_featured'] = 1;
+        if (!isset($args['num'])) {
+            $args['num'] = 1;
+        }
+        $args['sort'] = 'random';
+        return $callbacks['exhibits']($args, $job);
+    };
+
+    return $callbacks;
 }
 
 /**

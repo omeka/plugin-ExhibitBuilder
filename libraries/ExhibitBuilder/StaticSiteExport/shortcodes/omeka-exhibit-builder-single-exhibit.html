@@ -1,0 +1,26 @@
+{{ $exhibitPage := site.GetPage (.Get "exhibitPage") }}
+{{ with $exhibitPage }}
+
+{{ $thumbnailResource := false }}
+{{ if .Params.thumbnailSpec.page }}
+    {{ $thumbnailPage := site.GetPage (.Params.thumbnailSpec.page) }}
+    {{ $thumbnailResource = $thumbnailPage.Resources.GetMatch (printf "%s*" (.Params.thumbnailSpec.resource)) }}
+{{ else }}
+    {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
+{{ end }}
+
+<div class="exhibit record">
+    <div class="title">
+        <a href="{{ .RelPermalink }}">
+            {{ if $thumbnailResource }}
+            <img class="image" src="{{ $thumbnailResource.RelPermalink }}">
+            {{ end }}
+            {{ .LinkTitle }}
+        </a>
+    </div>
+    {{ with .Params.description }}
+    <p class="description">{{ . | plainify | truncate 200 }}</p>
+    {{ end }}
+</div>
+
+{{ end }}

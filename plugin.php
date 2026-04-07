@@ -38,6 +38,7 @@ add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 add_filter('api_import_omeka_adapters', 'exhibit_builder_api_import_omeka_adapters');
 add_filter('static_site_export_vendor_packages', 'exhibit_builder_static_site_export_vendor_packages');
 add_filter('static_site_export_shortcodes', 'exhibit_builder_static_site_export_shortcodes');
+add_filter('static_site_export_omeka_shortcode_callbacks', 'exhibit_builder_static_site_export_omeka_shortcode_callbacks');
 
 // Helper functions for exhibits and exhibit pages
 require_once EXHIBIT_PLUGIN_DIR . '/helpers/ExhibitFunctions.php';
