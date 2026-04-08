@@ -767,7 +767,7 @@ function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
 function exhibit_builder_static_site_export_omeka_shortcode_callbacks($callbacks)
 {
     // @see exhibit_builder_exhibits_shortcode()
-    $callbacks['exhibits'] = function ($args, $job) {
+    $callbacks['exhibits'] = function ($args, $frontMatter, $job) {
         $params = [];
         if (isset($args['is_featured'])) {
             $params['featured'] = $args['is_featured'];
@@ -798,13 +798,13 @@ function exhibit_builder_static_site_export_omeka_shortcode_callbacks($callbacks
     };
 
     // @see exhibit_builder_featured_exhibits_shortcode()
-    $callbacks['featured_exhibits'] = function ($args, $job) use ($callbacks) {
+    $callbacks['featured_exhibits'] = function ($args, $frontMatter, $job) use ($callbacks) {
         $args['is_featured'] = 1;
         if (!isset($args['num'])) {
             $args['num'] = 1;
         }
         $args['sort'] = 'random';
-        return $callbacks['exhibits']($args, $job);
+        return $callbacks['exhibits']($args, $frontMatter, $job);
     };
 
     return $callbacks;
