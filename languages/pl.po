@@ -32,24 +32,24 @@ msgstr "Sposób sortowania listy wystaw na stronie wystawy/przeglądanie. Domyś
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabetycznie"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Najnowsze"
 
 #: config_form.php:14
 msgid "Contributor/Researcher Permissions"
-msgstr ""
+msgstr "Uprawnienia współtwórcy/badacza"
 
 #: config_form.php:18
 msgid "Allow Contributor and Researcher users to view unpublished exhibits."
-msgstr ""
+msgstr "Pozwól użytkownikom z rolami Współautor i Badacz na przeglądanie nieopublikowanych wystaw."
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr ""
+msgstr "To spowoduje trwałe usunięcie całej wystawy \"%s\" oraz wszystkich jej stron."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -116,13 +116,13 @@ msgstr "Tytuł szablonu może zawierać maksymalnie do 30 znaków."
 
 #: models/ExhibitLayout.php:143
 msgid "File with Text"
-msgstr ""
+msgstr "Plik z tekstem"
 
 #: models/ExhibitLayout.php:144
 msgid ""
 "Default layout features files justified to left or right with text "
 "displaying to the opposite side"
-msgstr ""
+msgstr "Domyślny układ prezentuje pliki wyrównane do lewej lub prawej, z tekstem wyświetlanym po przeciwnej stronie"
 
 #: models/ExhibitLayout.php:147
 msgid "Gallery"
@@ -130,7 +130,7 @@ msgstr "Galeria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr ""
+msgstr "Układ galerii z miniaturami plików"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -141,19 +141,19 @@ msgstr "Tekst"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr ""
+msgstr "Układ zawierający blok tekstu bez plików"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr ""
+msgstr "Układ z pojedynczym plikiem"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Karuzela"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Układ karuzeli z miniaturami plików"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -173,7 +173,7 @@ msgstr "Strony wystawy muszą mieć nadany tytuł."
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
-msgstr ""
+msgstr "Ktoś edytował stronę podczas Twojej pracy. Twoje zmiany zostały odrzucone, aby nie utracić ich modyfikacji."
 
 #: views/admin/exhibits/add.php:2
 msgid "Add Exhibit"
@@ -182,24 +182,32 @@ msgstr "Dodaj wystawę"
 #: views/admin/exhibits/attachment-item-options.php:16
 #, php-format
 msgid "Selected Item: %s"
-msgstr ""
+msgstr "Wybrana publikacja: %s"
 
 #: views/admin/exhibits/attachment-item-options.php:20
 msgid "Select a file to use."
-msgstr ""
+msgstr "Wybierz plik do użycia."
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
-msgid "Remove/Restore"
-msgstr ""
+#: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
+msgid "Undo delete"
+msgstr "Cofnij usunięcie"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
-msgstr ""
+msgstr "Blok"
+
+#: views/admin/exhibits/block-form.php:9
+#: views/shared/exhibit_layouts/carousel/form.php:13
+#: views/shared/exhibit_layouts/file-text/form.php:18
+#: views/shared/exhibit_layouts/file/form.php:13
+#: views/shared/exhibit_layouts/gallery/form.php:18
+msgid "Show options"
+msgstr "Pokaż opcje"
 
 #: views/admin/exhibits/block-form.php:10
-msgid "Expand/Collapse"
-msgstr ""
+#: views/helpers/ExhibitPageEditTree.php:55
+msgid "Undo remove"
+msgstr "Cofnij usunięcie"
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -249,23 +257,23 @@ msgstr "Podsumowanie"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:59
 msgid "Use Summary Page?"
-msgstr ""
+msgstr "Używać strony podsumowania?"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:62
 msgid ""
 "Start the exhibit on the summary page. If unchecked, start on the first "
 "exhibit page if it exists."
-msgstr ""
+msgstr "Rozpocznij wystawę na stronie podsumowania. Jeśli nie zaznaczone, rozpocznij na pierwszej stronie wystawy, jeśli istnieje."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:68
 msgid "Cover Image"
-msgstr ""
+msgstr "Obraz okładki"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:72
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
-msgstr ""
+msgstr "Wybierz plik, który będzie reprezentował tę wystawę. Wybrany plik posłuży jako miniatura wystawy."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:79
 msgid "Pages"
@@ -278,7 +286,7 @@ msgstr "Nie ma dostępnych stron."
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr ""
+msgstr "Aby zmienić kolejność lub zagnieździć strony, kliknij i przeciągnij stronę do preferowanego miejsca."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
@@ -287,11 +295,11 @@ msgstr "Dodaj stronę"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:100
 msgid "Delete Exhibit"
-msgstr ""
+msgstr "Usuń wystawę"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:116
 msgid "Choose a Cover Image"
-msgstr ""
+msgstr "Wybierz obraz okładki"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:120
 #: views/admin/exhibits/page-form.php:99
@@ -306,11 +314,11 @@ msgstr "Ukryj formularz wyszukiwania"
 #: views/admin/exhibits/exhibit-metadata-form.php:133
 #: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
-msgstr ""
+msgstr "Zmień wybraną publikację"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
-msgstr ""
+msgstr "Wybierz"
 
 #: views/admin/exhibits/page-form.php:2
 #, php-format
@@ -323,15 +331,15 @@ msgstr "Tytuł strony"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
-msgstr ""
+msgstr "Tytuł odnośnika w menu"
 
 #: views/admin/exhibits/page-form.php:30
 msgid "Optionally use a shorter title in the exhibit menu"
-msgstr ""
+msgstr "Opcjonalnie użyj krótszego tytułu w menu wystawy"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
-msgstr ""
+msgstr "Skrót adresu URL strony"
 
 #: views/admin/exhibits/page-form.php:45
 msgid "Content"
@@ -339,28 +347,28 @@ msgstr "Zawartość"
 
 #: views/admin/exhibits/page-form.php:47
 msgid "Expand All"
-msgstr ""
+msgstr "Rozwiń wszystko"
 
 #: views/admin/exhibits/page-form.php:48
 msgid "Collapse All"
-msgstr ""
+msgstr "Zwiń wszystko"
 
 #: views/admin/exhibits/page-form.php:50
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
-msgstr ""
+msgstr "Aby zmienić kolejność bloków i publikacji, kliknij i przeciągnij je w wybrane miejsce."
 
 #: views/admin/exhibits/page-form.php:58
 msgid "New Block"
-msgstr ""
+msgstr "Nowy blok"
 
 #: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
-msgstr ""
+msgstr "Wybierz układ"
 
 #: views/admin/exhibits/page-form.php:78
 msgid "Add new content block"
-msgstr ""
+msgstr "Dodaj nowy blok zawartości"
 
 #: views/admin/exhibits/page-form.php:88
 msgid "Save and Add Another Page"
@@ -372,7 +380,7 @@ msgstr "Dołącz publikację"
 
 #: views/admin/exhibits/page-form.php:116
 msgid "Provide a caption."
-msgstr ""
+msgstr "Podaj podpis."
 
 #: views/admin/exhibits/page-form.php:123
 msgid "Apply"
@@ -393,15 +401,15 @@ msgstr "Konfiguruj szablon &#8220;%s&#8221;"
 
 #: views/admin/files/cover-image.php:3
 msgid "Omeka will use the first attached file as the cover image."
-msgstr ""
+msgstr "Omeka użyje pierwszego dołączonego pliku jako obraz okładki."
 
-#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+#: views/admin/files/cover-image.php:23 views/admin/files/cover-image.php:26
 msgid "Change"
-msgstr ""
+msgstr "Zmień"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Wyczyść filtry"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
@@ -414,7 +422,7 @@ msgstr "Nie znaleziono publikacji do wybrania. Szukaj ponownie lub %s."
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr ""
+msgstr "Wybierz publikację"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
@@ -425,155 +433,155 @@ msgstr "Nie ma jeszcze dostępnych wystaw."
 #: views/shared/exhibit_layouts/file/form.php:12
 #: views/shared/exhibit_layouts/gallery/form.php:17
 msgid "Layout Options"
-msgstr ""
+msgstr "Opcje układu"
 
-#: views/shared/exhibit_layouts/carousel/form.php:17
+#: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
-msgstr ""
+msgstr "Tytuł karuzeli"
 
-#: views/shared/exhibit_layouts/carousel/form.php:26
+#: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
-msgstr ""
+msgstr "Elementów na slajd"
 
-#: views/shared/exhibit_layouts/carousel/form.php:46
+#: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
-msgstr ""
+msgstr "Rozmiar pliku publikacji"
 
-#: views/shared/exhibit_layouts/carousel/form.php:54
+#: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
-msgstr ""
+msgstr "Pełny rozmiar"
 
-#: views/shared/exhibit_layouts/carousel/form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
-msgstr ""
+msgstr "Pokaż tytuł publikacji"
 
-#: views/shared/exhibit_layouts/carousel/form.php:69
+#: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
-msgstr ""
+msgstr "Nakładka podpisu"
 
-#: views/shared/exhibit_layouts/carousel/form.php:75
+#: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Umieść podpis nad obrazem (może wymagać dostosowania ustawień CSS)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:79
+#: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
-msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:84
-#: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
-msgid "Center"
-msgstr ""
+msgstr "Pozycja podpisu/tytułu"
 
 #: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:41
 #: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Left"
-msgstr ""
+msgid "Center"
+msgstr "Wyśrodkuj"
 
 #: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Lewo"
+
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
 msgid "Right"
-msgstr ""
+msgstr "W prawo"
 
-#: views/shared/exhibit_layouts/carousel/form.php:92
+#: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
-msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:97
-msgid "None"
-msgstr ""
+msgstr "Rozciągnij obraz, aby wypełnić"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
-msgid "Fill width"
-msgstr ""
+msgid "None"
+msgstr "Brak"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
-msgid "Fill height"
-msgstr ""
+msgid "Fill width"
+msgstr "Wypełnij szerokość"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
+msgid "Fill height"
+msgstr "Wypełnij wysokość"
+
+#: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Wypełnij cały slajd"
 
-#: views/shared/exhibit_layouts/carousel/form.php:106
+#: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Prędkość przewijania"
 
-#: views/shared/exhibit_layouts/carousel/form.php:113
+#: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Ustawia prędkość animacji przewijania. Może to być \"fast\", \"slow\" lub czas w milisekundach. Domyślnie 400."
 
-#: views/shared/exhibit_layouts/carousel/form.php:117
+#: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Czas trwania automatycznego przesuwania"
 
-#: views/shared/exhibit_layouts/carousel/form.php:123
+#: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Czas w milisekundach na zatrzymanie przed automatycznym przejściem do następnego (ustaw na 0, aby wyłączyć)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:127
+#: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
-msgstr ""
+msgstr "Pętla"
 
-#: views/shared/exhibit_layouts/carousel/form.php:136
+#: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
-msgstr ""
+msgstr "Przełączanie między slajdami z efektem zanikania"
 
-#: views/shared/exhibit_layouts/carousel/form.php:142
+#: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Uwaga: działa tylko z 1 publikacją na slajd"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:18
 msgid "File position"
-msgstr ""
+msgstr "Pozycja pliku"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
-#: views/shared/exhibit_layouts/file/form.php:26
+#: views/shared/exhibit_layouts/file/form.php:27
 msgid "File size"
 msgstr "Rozmiar pliku"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
-#: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:64
+#: views/shared/exhibit_layouts/file/form.php:40
+#: views/shared/exhibit_layouts/gallery/form.php:65
 msgid "Captions position"
-msgstr ""
+msgstr "Pozycja podpisów"
 
-#: views/shared/exhibit_layouts/gallery/form.php:22
+#: views/shared/exhibit_layouts/gallery/form.php:23
 msgid "Showcase file position"
-msgstr ""
+msgstr "Pozycja pliku w wystawie"
 
-#: views/shared/exhibit_layouts/gallery/form.php:27
+#: views/shared/exhibit_layouts/gallery/form.php:28
 msgid "No showcase file"
-msgstr ""
+msgstr "Brak pliku wystawy"
 
-#: views/shared/exhibit_layouts/gallery/form.php:36
+#: views/shared/exhibit_layouts/gallery/form.php:37
 msgid "Gallery position"
-msgstr ""
+msgstr "Pozycja galerii"
 
-#: views/shared/exhibit_layouts/gallery/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:47
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
-msgstr ""
+msgstr "Jeśli nie ma pliku ani tekstu prezentacyjnego, galeria zajmie pełną szerokość strony."
 
-#: views/shared/exhibit_layouts/gallery/form.php:50
+#: views/shared/exhibit_layouts/gallery/form.php:51
 msgid "Gallery file size"
-msgstr ""
+msgstr "Rozmiar pliku galerii"

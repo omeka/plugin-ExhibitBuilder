@@ -724,6 +724,34 @@ function exhibit_builder_api_import_omeka_adapters($adapters, $args)
         return $adapters;
 }
 
+function exhibit_builder_display_records_types($recordTypes)
+{
+    $recordTypes['Exhibit'] = array('partial' => 'exhibit-builder/exhibits/single.php', 'alias' => 'exhibit');
+    return $recordTypes;
+}
+
+function exhibit_builder_exports_records_csv_get_field_data($fieldData, $args)
+{
+    $k = $args['k'];
+    $v = $args['v'];
+    $export = $args['export'];
+    $exportData = $export->getData();
+
+    // Add page block texts to a page_blocks CSV.
+    if ('exhibit_pages' === $exportData['record'] && 'page_blocks' === $k) {
+        $pageBlockTexts = [];
+        foreach ($v as $pageBlock) {
+            if (isset($pageBlock['text'])) {
+                $pageBlockTexts[] = $pageBlock['text'];
+            }
+        }
+        $fieldData = [['Text', implode($exportData['multivalue_separator'], $pageBlockTexts)]];
+        return $fieldData;
+    }
+
+    return $fieldData;
+}
+
 /**
  * StaticSiteExport plugin: Add "Browse exhibits" link to static site menu.
  */

@@ -5,7 +5,7 @@
 # Translators:
 # evilinstone <evilinstone@gmail.com>, 2013
 # evilinstone <evilinstone@gmail.com>, 2013
-# tanya chorna <tanya.chorna@gmail.com>, 2018
+# tanya chorna <tanya.chorna@gmail.com>, 2018,2024
 # Yuliya Ilchuk, 2022
 # Yuliya Ilchuk, 2022
 # Yurii Kostiuk <kostyuk.yuiriy@gmail.com>, 2015
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Yurii Kostiuk <kostyuk.yuiriy@gmail.com>, 2015\n"
+"Last-Translator: tanya chorna <tanya.chorna@gmail.com>, 2018,2024\n"
 "Language-Team: Ukrainian (http://app.transifex.com/omeka/omeka/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: config_form.php:3
 msgid "Sorting Exhibits"
-msgstr "Сортувати виставки"
+msgstr "Сортувати Виставки"
 
 #: config_form.php:7
 msgid ""
@@ -43,16 +43,16 @@ msgstr "Останні"
 
 #: config_form.php:14
 msgid "Contributor/Researcher Permissions"
-msgstr ""
+msgstr "Права доступу для Учасника/Дослідника"
 
 #: config_form.php:18
 msgid "Allow Contributor and Researcher users to view unpublished exhibits."
-msgstr ""
+msgstr "Дозволити Учаснику та Досліднику переглядати неопубліковані виставки."
 
 #: controllers/ExhibitsController.php:53
 #, php-format
 msgid "This will permanently delete the entire exhibit \"%s\" and all its pages."
-msgstr "Це назавжди видалить виставку \"%s\" та всі її сторінки."
+msgstr "Ця дія назавжди видалить виставку \"%s\" та всі її сторінки."
 
 #: controllers/ExhibitsController.php:102
 msgid "This item is not used within this exhibit."
@@ -69,7 +69,7 @@ msgstr "виставки"
 #: functions.php:466 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
-msgstr "Перегляд виставок"
+msgstr "Перегляд Виставок"
 
 #: functions.php:482 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
@@ -103,7 +103,7 @@ msgstr "Коротка назва має включати 30 або менше �
 #: models/Exhibit.php:129
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
-msgstr "Ця коротка назва (URL) вже використовується. Прошу обрати іншу."
+msgstr "Ваш URL вже використовується для іншої виставки. Будь ласка, виберіть інший."
 
 #: models/Exhibit.php:142
 msgid "An exhibit must be given a title."
@@ -152,11 +152,11 @@ msgstr "Макет з окремим файлом"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Слайдер"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Розташування слайдера з ескізами файлів"
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -191,18 +191,26 @@ msgstr "Вибрати елемент: %s"
 msgid "Select a file to use."
 msgstr "Вибрати файл для використання."
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
-msgid "Remove/Restore"
-msgstr "Видалити/Перемістити"
+#: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
+msgid "Undo delete"
+msgstr ""
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
 msgstr "Блок"
 
+#: views/admin/exhibits/block-form.php:9
+#: views/shared/exhibit_layouts/carousel/form.php:13
+#: views/shared/exhibit_layouts/file-text/form.php:18
+#: views/shared/exhibit_layouts/file/form.php:13
+#: views/shared/exhibit_layouts/gallery/form.php:18
+msgid "Show options"
+msgstr ""
+
 #: views/admin/exhibits/block-form.php:10
-msgid "Expand/Collapse"
-msgstr "Розгорнути/Згорнути"
+#: views/helpers/ExhibitPageEditTree.php:55
+msgid "Undo remove"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -398,7 +406,7 @@ msgstr "Налаштувати &#8220;%s&#8221; тему оформлення"
 msgid "Omeka will use the first attached file as the cover image."
 msgstr "Omeka використовуватиме перший прикріплений файл як зображення обкладинки."
 
-#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+#: views/admin/files/cover-image.php:23 views/admin/files/cover-image.php:26
 msgid "Change"
 msgstr "Змінити"
 
@@ -430,153 +438,153 @@ msgstr "Виставки відсутні."
 msgid "Layout Options"
 msgstr "Опції макету"
 
-#: views/shared/exhibit_layouts/carousel/form.php:17
+#: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
-msgstr ""
+msgstr "Назва слайдера"
 
-#: views/shared/exhibit_layouts/carousel/form.php:26
+#: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
-msgstr ""
+msgstr "Елементів на слайд"
 
-#: views/shared/exhibit_layouts/carousel/form.php:46
+#: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
-msgstr ""
+msgstr "Розмір файлу елементу"
 
-#: views/shared/exhibit_layouts/carousel/form.php:54
+#: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
-msgstr ""
+msgstr "Повний розмір"
 
-#: views/shared/exhibit_layouts/carousel/form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
-msgstr ""
+msgstr "Показати назву елемента"
 
-#: views/shared/exhibit_layouts/carousel/form.php:69
+#: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
-msgstr ""
+msgstr "Накладний підпис"
 
-#: views/shared/exhibit_layouts/carousel/form.php:75
+#: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Розмістити підпис над зображенням (може потребувати налаштування CSS)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:79
+#: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
-msgstr ""
+msgstr "Розташування підпису/назви"
 
-#: views/shared/exhibit_layouts/carousel/form.php:84
+#: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Center"
 msgstr "По центру"
 
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Left"
-msgstr "Вліво"
-
 #: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Вліво"
+
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
 msgid "Right"
 msgstr "Вправо"
 
-#: views/shared/exhibit_layouts/carousel/form.php:92
+#: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
-msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:97
-msgid "None"
-msgstr ""
+msgstr "Розтягніть зображення для заповнення"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
-msgid "Fill width"
-msgstr ""
+msgid "None"
+msgstr "Без підпису"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
-msgid "Fill height"
-msgstr ""
+msgid "Fill width"
+msgstr "Заповнення ширини"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
+msgid "Fill height"
+msgstr "Заповнення висоти"
+
+#: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Заповнення всього слайду"
 
-#: views/shared/exhibit_layouts/carousel/form.php:106
+#: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Швидкість прокручування"
 
-#: views/shared/exhibit_layouts/carousel/form.php:113
+#: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Встановлює швидкість анімації прокрутки. Може бути \"швидко\", \"повільно\" або час у мілісекундах. За замовчуванням - 400 мілісекунд."
 
-#: views/shared/exhibit_layouts/carousel/form.php:117
+#: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Тривалість автоматичної прокрутки слайдів"
 
-#: views/shared/exhibit_layouts/carousel/form.php:123
+#: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Час у мілісекундах перед автоматичним переходом до наступного слайда (встановіть 0 для вимкнення)"
 
-#: views/shared/exhibit_layouts/carousel/form.php:127
+#: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
-msgstr ""
+msgstr "Цикл"
 
-#: views/shared/exhibit_layouts/carousel/form.php:136
+#: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
-msgstr ""
+msgstr "Плавне зникання між слайдами"
 
-#: views/shared/exhibit_layouts/carousel/form.php:142
+#: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Примітка: працює тільки з 1 елементом на слайд"
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:18
 msgid "File position"
 msgstr "Розміщення файлу"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
-#: views/shared/exhibit_layouts/file/form.php:26
+#: views/shared/exhibit_layouts/file/form.php:27
 msgid "File size"
 msgstr "Розмір файлу"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
-#: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:64
+#: views/shared/exhibit_layouts/file/form.php:40
+#: views/shared/exhibit_layouts/gallery/form.php:65
 msgid "Captions position"
 msgstr "Розміщення підписів"
 
-#: views/shared/exhibit_layouts/gallery/form.php:22
+#: views/shared/exhibit_layouts/gallery/form.php:23
 msgid "Showcase file position"
 msgstr "Розміщення файлу прикладу"
 
-#: views/shared/exhibit_layouts/gallery/form.php:27
+#: views/shared/exhibit_layouts/gallery/form.php:28
 msgid "No showcase file"
 msgstr "Немає прикладів"
 
-#: views/shared/exhibit_layouts/gallery/form.php:36
+#: views/shared/exhibit_layouts/gallery/form.php:37
 msgid "Gallery position"
 msgstr "Розміщення галереї"
 
-#: views/shared/exhibit_layouts/gallery/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:47
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Якщо немає файлу або тексту, галерея буде використовувати всю ширину сторінки."
 
-#: views/shared/exhibit_layouts/gallery/form.php:50
+#: views/shared/exhibit_layouts/gallery/form.php:51
 msgid "Gallery file size"
 msgstr "Розмір файлу галереї"

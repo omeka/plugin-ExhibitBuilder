@@ -36,6 +36,8 @@ add_filter('api_resources', 'exhibit_builder_api_resources');
 add_filter('api_extend_items', 'exhibit_builder_api_extend_items');
 add_filter('item_search_filters', 'exhibit_builder_item_search_filters');
 add_filter('api_import_omeka_adapters', 'exhibit_builder_api_import_omeka_adapters');
+add_filter('display_records_types', 'exhibit_builder_display_records_types');
+add_filter('exports_records_csv_get_field_data', 'exhibit_builder_exports_records_csv_get_field_data');
 add_filter('static_site_export_vendor_packages', 'exhibit_builder_static_site_export_vendor_packages');
 add_filter('static_site_export_shortcodes', 'exhibit_builder_static_site_export_shortcodes');
 add_filter('static_site_export_omeka_shortcode_callbacks', 'exhibit_builder_static_site_export_omeka_shortcode_callbacks');

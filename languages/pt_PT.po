@@ -187,18 +187,26 @@ msgstr "Item seleccionado: %s"
 msgid "Select a file to use."
 msgstr "Seleccione um ficheiro para usar."
 
-#: views/admin/exhibits/attachment.php:12
-#: views/admin/exhibits/block-form.php:9
-msgid "Remove/Restore"
-msgstr "Remover/Restaurar"
+#: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
+msgid "Undo delete"
+msgstr ""
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
 msgstr "Bloco"
 
+#: views/admin/exhibits/block-form.php:9
+#: views/shared/exhibit_layouts/carousel/form.php:13
+#: views/shared/exhibit_layouts/file-text/form.php:18
+#: views/shared/exhibit_layouts/file/form.php:13
+#: views/shared/exhibit_layouts/gallery/form.php:18
+msgid "Show options"
+msgstr ""
+
 #: views/admin/exhibits/block-form.php:10
-msgid "Expand/Collapse"
-msgstr "Expandir/Colapsar"
+#: views/helpers/ExhibitPageEditTree.php:55
+msgid "Undo remove"
+msgstr ""
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -394,7 +402,7 @@ msgstr "Configurar o &#8220;%s&#8221; Tema"
 msgid "Omeka will use the first attached file as the cover image."
 msgstr "O Omeka vai usar o primeiro ficheiro anexado como imagem de capa."
 
-#: views/admin/files/cover-image.php:22 views/admin/files/cover-image.php:25
+#: views/admin/files/cover-image.php:23 views/admin/files/cover-image.php:26
 msgid "Change"
 msgstr "Alterar"
 
@@ -426,153 +434,153 @@ msgstr "Ainda não existem exposições."
 msgid "Layout Options"
 msgstr "Opções do Esquema"
 
-#: views/shared/exhibit_layouts/carousel/form.php:17
+#: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:26
+#: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:46
+#: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:54
+#: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:69
+#: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:75
+#: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:79
+#: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:84
+#: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:44
-#: views/shared/exhibit_layouts/gallery/form.php:69
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
 msgid "Center"
 msgstr "Centrar"
 
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:21
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:28
-#: views/shared/exhibit_layouts/gallery/form.php:41
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Left"
-msgstr "Esquerda"
-
 #: views/shared/exhibit_layouts/carousel/form.php:86
 #: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:21
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:46
 #: views/shared/exhibit_layouts/gallery/form.php:29
 #: views/shared/exhibit_layouts/gallery/form.php:42
 #: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Esquerda"
+
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
 msgid "Right"
 msgstr "Direita"
 
-#: views/shared/exhibit_layouts/carousel/form.php:92
+#: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:97
+#: views/shared/exhibit_layouts/carousel/form.php:98
 msgid "None"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:98
+#: views/shared/exhibit_layouts/carousel/form.php:99
 msgid "Fill width"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:99
+#: views/shared/exhibit_layouts/carousel/form.php:100
 msgid "Fill height"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:100
+#: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:106
+#: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:113
+#: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:117
+#: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:123
+#: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:127
+#: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:136
+#: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
 msgstr ""
 
-#: views/shared/exhibit_layouts/carousel/form.php:142
+#: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
 msgstr ""
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:17
+#: views/shared/exhibit_layouts/file/form.php:18
 msgid "File position"
 msgstr "Posição do ficheiro"
 
 #: views/shared/exhibit_layouts/file-text/form.php:31
-#: views/shared/exhibit_layouts/file/form.php:26
+#: views/shared/exhibit_layouts/file/form.php:27
 msgid "File size"
 msgstr "Tamanho do ficheiro"
 
 #: views/shared/exhibit_layouts/file-text/form.php:44
-#: views/shared/exhibit_layouts/file/form.php:39
-#: views/shared/exhibit_layouts/gallery/form.php:64
+#: views/shared/exhibit_layouts/file/form.php:40
+#: views/shared/exhibit_layouts/gallery/form.php:65
 msgid "Captions position"
 msgstr "Posição das legendas"
 
-#: views/shared/exhibit_layouts/gallery/form.php:22
+#: views/shared/exhibit_layouts/gallery/form.php:23
 msgid "Showcase file position"
 msgstr "Posição do ficheiro visível"
 
-#: views/shared/exhibit_layouts/gallery/form.php:27
+#: views/shared/exhibit_layouts/gallery/form.php:28
 msgid "No showcase file"
 msgstr "Nenhum ficheiro visível"
 
-#: views/shared/exhibit_layouts/gallery/form.php:36
+#: views/shared/exhibit_layouts/gallery/form.php:37
 msgid "Gallery position"
 msgstr "Posição da galeria"
 
-#: views/shared/exhibit_layouts/gallery/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:47
 msgid ""
 "If there is no showcase file or text, the gallery will use the full width of"
 " the page."
 msgstr "Se não estiver visível um ficheiro ou texto, a galeria irá usar a largura total da página."
 
-#: views/shared/exhibit_layouts/gallery/form.php:50
+#: views/shared/exhibit_layouts/gallery/form.php:51
 msgid "Gallery file size"
 msgstr "Tamanho da galeria de ficheiros"
