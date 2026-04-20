@@ -79,6 +79,10 @@ msgstr "Näitus"
 msgid "Exhibit Page"
 msgstr "Näituse lehekülg"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Esiletõstetud näitus"

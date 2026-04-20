@@ -85,6 +85,10 @@ msgstr "Tentoonstelling"
 msgid "Exhibit Page"
 msgstr "Tentoonstellingspagina"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Aanbevolen tentoonstelling"

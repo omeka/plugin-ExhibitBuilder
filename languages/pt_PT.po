@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the Omeka package.
 # 
 # Translators:
-# Daniel Alves <daniel_r_alves@hotmail.com>, 2013-2017,2019
+# Daniel Alves <daniel_r_alves@hotmail.com>, 2013-2017,2019,2026
 # Filipe <llopes@museus.ul.pt>, 2013
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Filipe <llopes@museus.ul.pt>, 2013\n"
+"Last-Translator: Daniel Alves <daniel_r_alves@hotmail.com>, 2013-2017,2019,2026\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/omeka/omeka/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,19 +31,19 @@ msgstr "O método por omissão pelo qual deseja fazer a ordenação da lista de 
 
 #: config_form.php:9
 msgid "Alphabetical"
-msgstr ""
+msgstr "Alfabética"
 
 #: config_form.php:9
 msgid "Recent"
-msgstr ""
+msgstr "Recente"
 
 #: config_form.php:14
 msgid "Contributor/Researcher Permissions"
-msgstr ""
+msgstr "Permissões para Colaboradores/Investigadores"
 
 #: config_form.php:18
 msgid "Allow Contributor and Researcher users to view unpublished exhibits."
-msgstr ""
+msgstr "Permitir que os utilizadores com as categorias Colaborador e Investigador visualizem exposições não publicadas."
 
 #: controllers/ExhibitsController.php:53
 #, php-format
@@ -79,6 +79,10 @@ msgstr "Exposição"
 #: functions.php:656
 msgid "Exhibit Page"
 msgstr "Página de Exposição"
+
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
@@ -129,7 +133,7 @@ msgstr "Galeria"
 
 #: models/ExhibitLayout.php:148
 msgid "A gallery layout featuring file thumbnails"
-msgstr "Um esquema de galeria apresentando miniaturas dos ficheiros"
+msgstr "Um esquema de galeria que apresenta miniaturas dos ficheiros"
 
 #: models/ExhibitLayout.php:151
 #: views/shared/exhibit_layouts/file-text/form.php:11
@@ -140,19 +144,19 @@ msgstr "Texto"
 
 #: models/ExhibitLayout.php:152
 msgid "Layout featuring a block of text without files"
-msgstr "Esquema apresentando um bloco de texto sem ficheiros"
+msgstr "Esquema que apresenta um bloco de texto sem ficheiros"
 
 #: models/ExhibitLayout.php:156
 msgid "Layout featuring a standalone file"
-msgstr "Esquema com a apresentação de um único ficheiro"
+msgstr "Esquema que apresenta um único ficheiro"
 
 #: models/ExhibitLayout.php:159
 msgid "Carousel"
-msgstr ""
+msgstr "Carrossel"
 
 #: models/ExhibitLayout.php:160
 msgid "A carousel layout featuring file thumbnails"
-msgstr ""
+msgstr "Um esquema em carrossel com miniaturas de ficheiros."
 
 #: models/ExhibitPage.php:98
 msgid "A slug must be given for each page of an exhibit."
@@ -189,7 +193,7 @@ msgstr "Seleccione um ficheiro para usar."
 
 #: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
 msgid "Undo delete"
-msgstr ""
+msgstr "Anular eliminação"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
@@ -201,12 +205,12 @@ msgstr "Bloco"
 #: views/shared/exhibit_layouts/file/form.php:13
 #: views/shared/exhibit_layouts/gallery/form.php:18
 msgid "Show options"
-msgstr ""
+msgstr "Mostrar opções"
 
 #: views/admin/exhibits/block-form.php:10
 #: views/helpers/ExhibitPageEditTree.php:55
 msgid "Undo remove"
-msgstr ""
+msgstr "Anular remoção"
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."
@@ -285,7 +289,7 @@ msgstr "Não existem páginas."
 #: views/admin/exhibits/exhibit-metadata-form.php:84
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
-msgstr "Para reordenar ou intercalar páginas, clique e arreste a página para a posição escolhida."
+msgstr "Para reordenar ou intercalar páginas, clique e arraste a página para a posição escolhida."
 
 #: views/admin/exhibits/exhibit-metadata-form.php:89
 #: views/admin/exhibits/page-form.php:2
@@ -308,12 +312,12 @@ msgstr "Mostrar Formulário de Pesquisa"
 #: views/admin/exhibits/exhibit-metadata-form.php:121
 #: views/admin/exhibits/page-form.php:100
 msgid "Hide Search Form"
-msgstr "Esconder o formulário de pesquisa"
+msgstr "Esconder Formulário de Pesquisa"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:133
 #: views/admin/exhibits/page-form.php:112
 msgid "Change Selected Item"
-msgstr "Modificar o item seleccionado"
+msgstr "Modificar Item Seleccionado"
 
 #: views/admin/exhibits/exhibit-metadata-form.php:138
 msgid "Choose"
@@ -326,7 +330,7 @@ msgstr "Editar Página \"%s\""
 
 #: views/admin/exhibits/page-form.php:19
 msgid "Page Title"
-msgstr "Título da página"
+msgstr "Título da Página"
 
 #: views/admin/exhibits/page-form.php:27
 msgid "Menu Link Title"
@@ -338,7 +342,7 @@ msgstr "Opcionalmente use um título curto no menu da exposição"
 
 #: views/admin/exhibits/page-form.php:36
 msgid "Page Slug"
-msgstr "Abreviatura da página"
+msgstr "Identificador da página"
 
 #: views/admin/exhibits/page-form.php:45
 msgid "Content"
@@ -359,7 +363,7 @@ msgstr "Para reordenar blocos e itens, clique e arraste para a posição escolhi
 
 #: views/admin/exhibits/page-form.php:58
 msgid "New Block"
-msgstr "Novo bloco"
+msgstr "Novo Bloco"
 
 #: views/admin/exhibits/page-form.php:60
 msgid "Select layout"
@@ -408,7 +412,7 @@ msgstr "Alterar"
 
 #: views/admin/items/browse.php:7
 msgid "Clear Filters"
-msgstr ""
+msgstr "Limpar Filtros"
 
 #: views/admin/items/browse.php:9
 msgid "add some items"
@@ -417,11 +421,11 @@ msgstr "adicionar itens"
 #: views/admin/items/browse.php:9
 #, php-format
 msgid "There are no items to choose from.  Please refine your search or %s."
-msgstr "Não há itens para escolher. Por favor refine a sua busca ou %s."
+msgstr "Não há itens para escolher. Por favor refine a sua pesquisa ou %s."
 
 #: views/helpers/ExhibitItemListing.php:36
 msgid "Select Item"
-msgstr "Seleccionar item"
+msgstr "Seleccionar Item"
 
 #: views/public/exhibits/browse.php:43
 msgid "There are no exhibits available yet."
@@ -436,35 +440,35 @@ msgstr "Opções do Esquema"
 
 #: views/shared/exhibit_layouts/carousel/form.php:18
 msgid "Carousel title"
-msgstr ""
+msgstr "Título do carrossel"
 
 #: views/shared/exhibit_layouts/carousel/form.php:27
 msgid "Items per slide"
-msgstr ""
+msgstr "Itens por slide"
 
 #: views/shared/exhibit_layouts/carousel/form.php:47
 msgid "Item file size"
-msgstr ""
+msgstr "Tamanho de ficheiro de item"
 
 #: views/shared/exhibit_layouts/carousel/form.php:55
 msgid "Full Size"
-msgstr ""
+msgstr "Tamanho Completo"
 
 #: views/shared/exhibit_layouts/carousel/form.php:61
 msgid "Show item title"
-msgstr ""
+msgstr "Mostrar título do item"
 
 #: views/shared/exhibit_layouts/carousel/form.php:70
 msgid "Overlay caption"
-msgstr ""
+msgstr "Legenda sobreposta"
 
 #: views/shared/exhibit_layouts/carousel/form.php:76
 msgid "Place caption over image (may require adjusting CSS settings)"
-msgstr ""
+msgstr "Inserir legenda sobre a imagem (pode ser necessário ajustar as definições de CSS)"
 
 #: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
-msgstr ""
+msgstr "Posição da legenda/título"
 
 #: views/shared/exhibit_layouts/carousel/form.php:85
 #: views/shared/exhibit_layouts/file-text/form.php:49
@@ -498,54 +502,54 @@ msgstr "Direita"
 
 #: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
-msgstr ""
+msgstr "Expandir imagem para preencher"
 
 #: views/shared/exhibit_layouts/carousel/form.php:98
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: views/shared/exhibit_layouts/carousel/form.php:99
 msgid "Fill width"
-msgstr ""
+msgstr "Preencher largura"
 
 #: views/shared/exhibit_layouts/carousel/form.php:100
 msgid "Fill height"
-msgstr ""
+msgstr "Preencher altura"
 
 #: views/shared/exhibit_layouts/carousel/form.php:101
 msgid "Fill entire slide"
-msgstr ""
+msgstr "Preencher slide completo"
 
 #: views/shared/exhibit_layouts/carousel/form.php:107
 msgid "Scrolling speed"
-msgstr ""
+msgstr "Velocidade de rolagem"
 
 #: views/shared/exhibit_layouts/carousel/form.php:114
 msgid ""
 "Sets the speed for the scrolling animation. May be \"fast\", \"slow\", or a "
 "time in milliseconds. Default is 400."
-msgstr ""
+msgstr "Define a velocidade da animação de rolagem. Pode ser \"rápido\", \"lento\" ou um tempo em milissegundos. O padrão é 400."
 
 #: views/shared/exhibit_layouts/carousel/form.php:118
 msgid "Auto slide duration"
-msgstr ""
+msgstr "Duração dos slides automáticos"
 
 #: views/shared/exhibit_layouts/carousel/form.php:124
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
-msgstr ""
+msgstr "Tempo em milissegundos para pausar antes do avanço automático (defina para 0 para desativar)"
 
 #: views/shared/exhibit_layouts/carousel/form.php:128
 msgid "Loop"
-msgstr ""
+msgstr "Loop"
 
 #: views/shared/exhibit_layouts/carousel/form.php:137
 msgid "Fade between slides"
-msgstr ""
+msgstr "Transição entre slides"
 
 #: views/shared/exhibit_layouts/carousel/form.php:143
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Nota: funciona apenas com 1 item por slide."
 
 #: views/shared/exhibit_layouts/file-text/form.php:22
 #: views/shared/exhibit_layouts/file/form.php:18

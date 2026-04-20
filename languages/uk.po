@@ -84,6 +84,10 @@ msgstr "Виставка"
 msgid "Exhibit Page"
 msgstr "Сторінка виставки"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Популярні виставки"

@@ -79,6 +79,10 @@ msgstr "Үзэсгэлэн"
 msgid "Exhibit Page"
 msgstr "Үзэсгэлэнгийн хуудас"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Онцлох үзэсгэлэн"

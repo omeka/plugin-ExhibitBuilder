@@ -82,6 +82,10 @@ msgstr "Kiállítás"
 msgid "Exhibit Page"
 msgstr "Kiállítás oldal"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Kiemelt kiállítás"
