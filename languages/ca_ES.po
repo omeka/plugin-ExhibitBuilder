@@ -5,7 +5,7 @@
 # Translators:
 # Miquel Àngel <ma.serra@gmail.com>, 2013
 # Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013
-# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2024
+# Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2025
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 # Sergi Montes <sergi.blanes@gmail.com>, 2013
 msgid ""
@@ -14,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ExhibitBuilder/issues\n"
 "POT-Creation-Date: 2013-01-23 21:49-0500\n"
 "PO-Revision-Date: 2012-01-10 19:03+0000\n"
-"Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2024\n"
+"Last-Translator: Rubén Alcaraz Martínez <rubenalcarazmartinez@gmail.com>, 2013-2018,2021,2023-2025\n"
 "Language-Team: Catalan (Spain) (http://app.transifex.com/omeka/omeka/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,6 +82,10 @@ msgstr "Exposició"
 #: functions.php:656
 msgid "Exhibit Page"
 msgstr "Pàgina de l'exposició"
+
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
@@ -192,7 +196,7 @@ msgstr "Seleccioneu un fitxer."
 
 #: views/admin/exhibits/attachment.php:19 views/admin/files/cover-image.php:9
 msgid "Undo delete"
-msgstr ""
+msgstr "Desfés la supressió"
 
 #: views/admin/exhibits/block-form.php:8
 msgid "Block"
@@ -204,12 +208,12 @@ msgstr "Bloc"
 #: views/shared/exhibit_layouts/file/form.php:13
 #: views/shared/exhibit_layouts/gallery/form.php:18
 msgid "Show options"
-msgstr ""
+msgstr "Mostra les opcions"
 
 #: views/admin/exhibits/block-form.php:10
 #: views/helpers/ExhibitPageEditTree.php:55
 msgid "Undo remove"
-msgstr ""
+msgstr "Desfés la retirada"
 
 #: views/admin/exhibits/browse.php:9
 msgid "There are no exhibits yet."

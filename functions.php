@@ -785,3 +785,343 @@ function exhibit_builder_get_theme_config(Exhibit $exhibit)
     }
     return [];
 }
+
+function exhibit_builder_exports_records_csv_get_field_data($fieldData, $args)
+{
+    $k = $args['k'];
+    $v = $args['v'];
+    $export = $args['export'];
+    $exportData = $export->getData();
+
+    // Add page block texts to a page_blocks CSV.
+    if ('exhibit_pages' === $exportData['record'] && 'page_blocks' === $k) {
+        $pageBlockTexts = [];
+        foreach ($v as $pageBlock) {
+            if (isset($pageBlock['text'])) {
+                $pageBlockTexts[] = $pageBlock['text'];
+            }
+        }
+        $fieldData = [['Text', implode($exportData['multivalue_separator'], $pageBlockTexts)]];
+        return $fieldData;
+    }
+
+    return $fieldData;
+}
+
+/**
+ * StaticSiteExport plugin: Add "Browse exhibits" link to static site menu.
+ */
+function exhibit_builder_static_site_export_site_config($args)
+{
+    $args['site_config']['menus']['main'][] = [
+        'name' => __('Browse exhibits'),
+        'pageRef' => '/exhibits',
+        'weight' => 40,
+    ];
+    // Register exhibit menus.
+    $exhibits = get_db()->getTable('Exhibit')->findAll();
+    foreach ($exhibits as $exhibit) {
+        $menu = sprintf('exhibit_%s', $exhibit->id);
+        $args['site_config']['menus'][$menu] = [];
+    }
+}
+
+/**
+ * StaticSiteExport plugin: Add vendor packages to static site.
+ */
+function exhibit_builder_static_site_export_vendor_packages($vendorPackages, $args)
+{
+    $vendorPackages['jcarousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/jcarousel', PLUGIN_DIR);
+    return $vendorPackages;
+}
+
+/**
+ * StaticSiteExport plugin: Add shortcodes to static site.
+ */
+function exhibit_builder_static_site_export_shortcodes($shortcodes, $args)
+{
+    $shortcodes['omeka-exhibit-builder-page-block-file-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-file-text.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-gallery'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-gallery.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-text'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-text.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-page-block-carousel'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-page-block-carousel.html', PLUGIN_DIR);
+    $shortcodes['omeka-exhibit-builder-single-exhibit'] = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/shortcodes/omeka-exhibit-builder-single-exhibit.html', PLUGIN_DIR);
+    return $shortcodes;
+}
+
+function exhibit_builder_static_site_export_omeka_shortcode_callbacks($callbacks)
+{
+    // @see exhibit_builder_exhibits_shortcode()
+    $callbacks['exhibits'] = function ($args, $frontMatter, $job) {
+        $params = [];
+        if (isset($args['is_featured'])) {
+            $params['featured'] = $args['is_featured'];
+        }
+        if (isset($args['sort'])) {
+            $params['sort_field'] = $args['sort'];
+        }
+        if (isset($args['order'])) {
+            $params['sort_dir'] = $args['order'];
+        }
+        if (isset($args['ids'])) {
+            $params['range'] = $args['ids'];
+        }
+        if (isset($args['tags'])) {
+            $params['tags'] = $args['tags'];
+        }
+        if (isset($args['num'])) {
+            $limit = $args['num'];
+        } else {
+            $limit = 10;
+        }
+        $content = [];
+        $exhibits = get_records('Exhibit', $params, $limit);
+        foreach ($exhibits as $exhibit) {
+            $content[] = sprintf('{{< omeka-exhibit-builder-single-exhibit exhibitPage="exhibits/%s" >}}', $exhibit->slug);
+        }
+        return implode("\n", $content);
+    };
+
+    // @see exhibit_builder_featured_exhibits_shortcode()
+    $callbacks['featured_exhibits'] = function ($args, $frontMatter, $job) use ($callbacks) {
+        $args['is_featured'] = 1;
+        if (!isset($args['num'])) {
+            $args['num'] = 1;
+        }
+        $args['sort'] = 'random';
+        return $callbacks['exhibits']($args, $frontMatter, $job);
+    };
+
+    return $callbacks;
+}
+
+/**
+ * StaticSiteExport plugin: Add markdown for exhibit builder block layouts.
+ */
+function exhibit_builder_static_site_export_exhibit_page_block($args)
+{
+    $job = $args['job'];
+    $frontMatterExhibitPage = $args['frontMatterExhibitPage'];
+    $frontMatterExhibitPageBlock = $args['frontMatterExhibitPageBlock'];
+    $block = $args['block'];
+    $markdown = $args['markdown'];
+    $attachments = $block->getAttachments();
+
+    // Set block attachments data to block front matter.
+    $setAttachmentsToFrontMatter = function ($thumbnailType) use ($job, $block, $frontMatterExhibitPageBlock) {
+        foreach ($block->getAttachments() as $attachment) {
+            $item = $attachment->getItem();
+            $file = $attachment->getFile();
+            $frontMatterExhibitPageBlock['params']['attachments'][] = [
+                'itemID' => $item ? $item->id : null,
+                'itemTitle' => $item ? metadata($item, 'display_title') : null,
+                'fileID' => $file ? $file->id : null,
+                'fileMimeType' => $file ? explode('/', $file->mime_type)[0] : null,
+                'fileName' => $file ? $file->original_filename : null,
+                'thumbnailSpec' => $file ? $job->getThumbnailSpec($file, $thumbnailType) : null,
+                'caption' => $attachment->caption,
+            ];
+        }
+    };
+
+    switch ($block->layout) {
+        // Build the "file" and "file-text" block markdown.
+        case 'file':
+        case 'file-text':
+            $options = $block->getOptions();
+            $thumbnailType = isset($options['file-size']) ? $options['file-size'] : 'fullsize';
+            $thumbnailTypeClassMap = [
+                'fullsize' => 'full',
+                'thumbnail' => 'thumb',
+                'square_thumbnail' => 'thumb',
+            ];
+            $frontMatterExhibitPageBlock['params']['options'] = [
+                'fileSize' => $thumbnailType,
+                'filePosition' => isset($options['file-position']) ? $options['file-position'] : 'left',
+                'captionsPosition' => isset($options['captions-position']) ? $options['captions-position'] : 'center',
+                'imgClass' => $thumbnailTypeClassMap[$thumbnailType],
+            ];
+            $setAttachmentsToFrontMatter($thumbnailType);
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-file-text >}}');
+            break;
+        // Build the "gallery" block markdown.
+        case 'gallery':
+            $options = $block->getOptions();
+            $showcasePosition = isset($options['showcase-position']) ? $options['showcase-position'] : 'none';
+            $galleryFileSize = isset($options['gallery-file-size']) ? $options['gallery-file-size'] : 'square_thumbnail';
+            $frontMatterExhibitPageBlock['params']['options'] = [
+                'showcasePosition' => $showcasePosition,
+                'showcaseFile' => ($showcasePosition !== 'none' && !empty($attachments)),
+                'galleryPosition' => isset($options['gallery-position']) ? $options['gallery-position'] : 'left',
+                'galleryFileSize' => $galleryFileSize,
+                'captionsPosition' => isset($options['captions-position']) ? $options['captions-position'] : 'center',
+            ];
+            $setAttachmentsToFrontMatter($galleryFileSize);
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-gallery >}}');
+            break;
+        // Build the "text" block markdown.
+        case 'text':
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-text >}}');
+            break;
+        // Build the "carousel" block markdown.
+        case 'carousel':
+            $frontMatterExhibitPage['css'][] = 'vendor/jcarousel/jcarousel.responsive.css';
+            $frontMatterExhibitPage['js'][] = 'vendor/jquery/jquery.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jquery/jquery-ui.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jquery.jcarousel.min.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jcarousel.responsive.js';
+            $frontMatterExhibitPage['js'][] = 'vendor/jcarousel/jquery.jcarousel-fade.min.js';
+
+            $options = $block->getOptions();
+            $fileSize = isset($options['file-size']) ? $options['file-size'] : 'thumbnail';
+            $fade = isset($options['fade']) ? $options['fade'] : 0;
+            $scrollingSpeed = isset($options['speed']) ? $options['speed'] : 400;
+            $autoSlide = isset($options['auto-slide']) ? (int) $options['auto-slide'] : 0;
+            $autoscroll = [];
+            if ($autoSlide > 0) {
+                $autoscroll['interval'] = $autoSlide;
+                if ($fade) {
+                    $autoscroll['method'] = 'fade';
+                }
+            }
+            $frontMatterExhibitPageBlock['params']['options'] = [
+                'carousel' => [
+                    'animation' => is_numeric($scrollingSpeed) ? (int) $scrollingSpeed : (($fade == true) ? 400 : $scrollingSpeed),
+                    'wrap' => $loop ? 'circular' : null,
+                    'transitions' => 1,
+                ],
+                'fileSize' => $fileSize,
+                'showTitle' => isset($options['show-title']) ? $options['show-title'] : 0,
+                'fade' => $fade,
+                'overlay' => (isset($options['float-caption']) && ($options['float-caption'] == 1)) ? 'text-overlay' : 'text-float',
+                'perSlide' => isset($options['per-slide']) ? $options['per-slide'] : 1,
+                'stretchImage' => isset($options['stretch-image']) ? $options['stretch-image'] : 'none',
+                'captionPosition' => isset($options['caption-position']) ? $options['caption-position'] : 'center',
+                'scrollingSpeed' => $scrollingSpeed,
+                'autoSlide' => $autoSlide,
+                'loop' => isset($options['loop']) ? $options['loop'] : 0,
+                'carouselTitle' => isset($options['carousel-title']) ? $options['carousel-title'] : '',
+                'autoscroll' => $autoscroll,
+            ];
+            $setAttachmentsToFrontMatter($fileSize);
+            $markdown[] = sprintf('{{< omeka-exhibit-builder-page-block-carousel >}}');
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ * StaticSiteExport plugin: Add exhibit builder content to static site.
+ */
+function exhibit_builder_static_site_export_site_export_post($args)
+{
+    $job = $args['job'];
+
+    // Add exhibit layouts.
+    $job->makeDirectory('layouts/exhibits');
+    $job->makeDirectory('layouts/exhibit-pages');
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibits.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibits/list.html', file_get_contents($fromPath));
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-pages.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibit-pages/list.html', file_get_contents($fromPath));
+    $fromPath = sprintf('%s/ExhibitBuilder/libraries/ExhibitBuilder/StaticSiteExport/exhibit-page.html', PLUGIN_DIR);
+    $job->makeFile('layouts/exhibit-pages/single.html', file_get_contents($fromPath));
+
+    // Create the exhibits section.
+    $frontMatter = [
+        'title' => __('Browse exhibits'),
+        'type' => 'exhibits',
+        'params' => [
+            'bodyClasses' => [
+                'exhibits browse',
+            ],
+        ],
+    ];
+    $job->makeDirectory('content/exhibits');
+    $job->makeFile('content/exhibits/_index.md', json_encode($frontMatter, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
+
+    $includePrivate = $job->getStaticSite()->getDataValue('include_private');
+
+    $page = 1;
+    do {
+        $exhibits = get_db()->getTable('Exhibit')->findBy([], 100, $page++);
+        foreach ($exhibits as $exhibit) {
+            // Create the exhibit pages section.
+            $frontMatterExhibit = new ArrayObject([
+                'date' => (new DateTime(metadata($exhibit, 'added')))->format('c'),
+                'title' => $exhibit->title,
+                'draft' => $exhibit->public ? false : !$includePrivate,
+                'type' => 'exhibit-pages',
+                'params' => [
+                    'exhibitID' => $exhibit->id,
+                    'description' => $exhibit->description,
+                    'credits' => $exhibit->credits,
+                    'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                    'bodyClasses' => [
+                        'exhibits show summary',
+                    ],
+                ],
+            ]);
+            $job->makeDirectory(sprintf('content/exhibits/%s', $exhibit->slug));
+            $job->makeFile(
+                sprintf('content/exhibits/%s/_index.md', $exhibit->slug),
+                json_encode($frontMatterExhibit, JSON_PRETTY_PRINT)
+            );
+            foreach ($exhibit->getPages() as $exhibitPage) {
+                // Create the exhibit page bundle.
+                $frontMatterExhibitPage = new ArrayObject([
+                    'date' => (new DateTime(metadata($exhibitPage, 'added')))->format('c'),
+                    'title' => $exhibitPage->title,
+                    'draft' => $exhibit->public ? false : !$includePrivate,
+                    'weight' => $exhibitPage->order + 10,
+                    'type' => 'exhibit-pages',
+                    'css' => [],
+                    'js' => [],
+                    'params' => [
+                        'exhibitID' => $exhibit->id,
+                        'exhibitPageID' => $exhibitPage->id,
+                        'thumbnailSpec' => $job->getThumbnailSpec($exhibit, 'square_thumbnail'),
+                        'bodyClasses' => [
+                            'exhibits show',
+                        ],
+                    ],
+                    // Set exhibit menu entry representing this page.
+                    'menus' => [
+                        sprintf('exhibit_%s', $exhibit->id) => [
+                            'identifier' => sprintf('exhibit_page_%s', $exhibitPage->id),
+                            'parent' => $exhibitPage->parent_id ? sprintf('exhibit_page_%s', $exhibitPage->parent_id) : null,
+                        ],
+                    ],
+                ]);
+                $job->makeDirectory(sprintf('content/exhibits/%s/%s', $exhibit->slug, $exhibitPage->slug));
+                $job->makeDirectory(sprintf('content/exhibits/%s/%s/blocks', $exhibit->slug, $exhibitPage->slug));
+                foreach ($exhibitPage->getPageBlocks() as $exhibitPageBlock) {
+                    // Create the exhibit page blocks.
+                    $frontMatterExhibitPageBlock = new ArrayObject([
+                        'params' => [
+                            'layout' => $exhibitPageBlock->layout,
+                            'text' => $exhibitPageBlock->text,
+                            'attachments' => [],
+                        ],
+                    ]);
+                    $markdown = new ArrayObject;
+                    $job->fireHook('exhibit_builder_static_site_export_exhibit_page_block', [
+                        'frontMatterExhibitPage' => $frontMatterExhibitPage,
+                        'frontMatterExhibitPageBlock' => $frontMatterExhibitPageBlock,
+                        'block' => $exhibitPageBlock,
+                        'markdown' => $markdown,
+                    ]);
+                    $blockNumber = str_pad($exhibitPageBlock->order++, 4, '0', STR_PAD_LEFT);
+                    $job->makeFile(
+                        sprintf('content/exhibits/%s/%s/blocks/%s-%s.md', $exhibit->slug, $exhibitPage->slug, $blockNumber, $exhibitPageBlock->layout),
+                        sprintf("%s\n%s", json_encode($frontMatterExhibitPageBlock, JSON_PRETTY_PRINT), implode("\n", $markdown->getArrayCopy()))
+                    );
+                }
+                $job->makeFile(
+                    sprintf('content/exhibits/%s/%s/index.md', $exhibit->slug, $exhibitPage->slug),
+                    json_encode($frontMatterExhibitPage, JSON_PRETTY_PRINT)
+                );
+            }
+        }
+    } while ($exhibits);
+}

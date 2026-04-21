@@ -80,6 +80,10 @@ msgstr "Arddangosyddion"
 msgid "Exhibit Page"
 msgstr "Tudalen Arddangosyn"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Arddangosfa Nodweddiadol"

@@ -91,6 +91,10 @@ msgstr "Exposition"
 msgid "Exhibit Page"
 msgstr "Page de l'exposition"
 
+#: functions.php:761 functions.php:976
+msgid "Browse exhibits"
+msgstr ""
+
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
 msgstr "Exposition mise en avant"

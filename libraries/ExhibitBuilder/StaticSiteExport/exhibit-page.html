@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ $currentPage := . }}
+<h1>{{ .Title }}</h1>
+<div id="exhibit-blocks">
+    {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
+    <div class="exhibit-block {{ printf "layout-%s" .Params.layout }}">
+        {{ .Content }}
+    </div>
+    {{ end }}
+</div>
+<h4 id="exhibit-pages-heading"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></h4>
+{{ partial "menu.html" (dict "menuID" (printf "exhibit_%s" (string .Params.exhibitID)) "page" . "id" "exhibit-pages") }}
+{{ .Content }}
+{{ end }}
