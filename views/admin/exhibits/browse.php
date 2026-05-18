@@ -37,20 +37,28 @@ echo item_search_filters();
 	
 	<?php foreach($exhibits as $key=>$exhibit): ?>
 	    <tr class="exhibit<?php if ($key % 2 == 1) echo ' even'; else echo ' odd'; ?>">
-	        <td class="exhibit-info">
-	            <?php $exhibitImage = record_image($exhibit, 'square_thumbnail');
-	            if ($exhibitImage):
-	                echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image'));
-	            endif; ?>
+	        <td class="record-info">
+				<?php
+				$exhibitTitle = metadata($exhibit, 'title');
+	            $exhibitImage = record_image($exhibit, 'square_thumbnail', ['class' => 'item-thumbnail', 'alt' => '']);
+	            if ($exhibitImage) {
+	                $exhibitTitle = $exhibitImage . $exhibitTitle;
+				}
+				$exhibitFeatured = $exhibit->featured;
+				$exhibitPrivate = !$exhibit->public;
+				?>
 	            
-	            <span class="title">
-                	<a href="<?php echo html_escape(exhibit_builder_exhibit_uri($exhibit)); ?>"><?php echo metadata($exhibit, 'title'); ?></a>
-					<?php if ($exhibit->featured): ?><span class="featured" aria-label="<?php echo __('Featured'); ?>" title="<?php echo __('Featured'); ?>"></span><?php endif; ?>
-
-                    <?php if(!$exhibit->public): ?>
-                    	<small><?php echo __('(Private)'); ?></small>
-                    <?php endif; ?>
-                </span>
+	            <span class="title"><?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitTitle); ?></span>
+				<?php if ($exhibitFeatured || $exhibitPrivate): ?>
+				<div class="labels">
+					<?php if ($exhibitFeatured): ?>
+					<span class="featured label"><?php echo __('Featured'); ?></span>
+					<?php endif; ?>
+					<?php if ($exhibitPrivate): ?>
+					<span class="private label"><?php echo __('Private'); ?></span>
+					<?php endif; ?>
+				</div>
+				<?php endif; ?>
 	            
 	            <ul class="action-links group">
 	                <?php if (is_allowed($exhibit, 'edit')): ?>
