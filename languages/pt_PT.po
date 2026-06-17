@@ -82,7 +82,7 @@ msgstr "Página de Exposição"
 
 #: functions.php:761 functions.php:976
 msgid "Browse exhibits"
-msgstr ""
+msgstr "Explorar exposições"
 
 #: helpers/ExhibitFunctions.php:151
 msgid "Featured Exhibit"
