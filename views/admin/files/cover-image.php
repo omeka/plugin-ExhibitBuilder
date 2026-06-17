@@ -14,7 +14,7 @@
         <h5>
             #<?php echo html_escape($item->id); ?>:
             <?php if (!metadata($item, 'public')): ?>
-            <?php echo __('(Private)') . ' '; ?>
+            <?php echo '(' . __('Private') . ') '; ?>
             <?php endif; ?>
             <?php echo metadata($item, array('Dublin Core', 'Title')); ?>
         </h5>

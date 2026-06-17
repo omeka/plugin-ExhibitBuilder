@@ -11,7 +11,7 @@ $stem = $block->getFormStem() . "[attachments][{$index}]";
     <div class="attachment-header">
         <h5>
             <?php if (!metadata($item, 'public')): ?>
-            <?php echo __('(Private)') . ' '; ?>
+            <?php echo '(' . __('Private') . ') '; ?>
             <?php endif; ?>
             <?php echo metadata($item,'rich_title', array('no_escape' => true)); ?>
         </h5>

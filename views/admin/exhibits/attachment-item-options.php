@@ -7,7 +7,7 @@ if ($file_id === null && $files) {
     $file_id = $files[0]->id;
 }
 if (!metadata($item, 'public')) {
-    $private = ' ' . __('(Private)');
+    $private = ' (' . __('Private') . ')';
 } else {
     $private = '';
 }
