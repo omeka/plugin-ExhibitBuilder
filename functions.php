@@ -314,7 +314,7 @@ SQL;
         $db->query($sql);
     }
 
-    if (version_compare($oldVersion, '3.10.1', '<')) {
+    if (version_compare($oldVersion, '3.11.0-alpha', '<')) {
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `layout` VARCHAR(255) DEFAULT NULL, ADD `layout_data` TEXT";
         $db->query($sql);
         $sql = "ALTER TABLE `{$db->prefix}exhibit_page_blocks` ADD `layout_data` TEXT";
