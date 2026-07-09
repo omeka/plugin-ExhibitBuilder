@@ -62,3 +62,35 @@
 .download-file * {
     vertical-align: top;
 }
+
+.block-layout-alignment-text-right {
+    text-align: right;
+}
+
+.block-layout-alignment-text-left {
+    text-align: left;
+}
+
+.block-layout-alignment-text-center {
+    text-align: center;
+}
+
+.block-layout-alignment-text-justify {
+    text-align: justify;
+}
+
+.block-layout-alignment-block-right {
+    float: right;
+}
+
+.block-layout-alignment-block-left {
+    float: left;
+}
+
+.block-layout-alignment-block-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: flow-root;
+    width: max-content;
+    max-width: 100%;
+}
