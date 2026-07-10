@@ -28,58 +28,75 @@ $cssLength = '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lv
                 <button class="drawer-toggle" type="button" data-action-selector="opened"><span class="icon"></span></button>
             </div>
             <div class="drawer-contents" id="">
-                <div>
+                <?php if (count($blockTemplates) > 1): ?>
+                <div class="block-template">
                     <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
                     <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), $block->getLayoutData('template'), [], $blockTemplates); ?>
                 </div>
-                <div>
+                <?php endif; ?>
+                <div class="block-class">
                     <?php echo $this->formLabel(sprintf('%s[layout_data][class]', $stem), 'Class'); ?>
                     <?php echo $this->formText(sprintf('%s[layout_data][class]', $stem), $block->getLayoutData('class')); ?>
                 </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][alignment_block]', $stem), 'Block Alignment'); ?>
-                    <?php echo $this->formSelect(sprintf('%s[layout_data][alignment_block]', $stem), $block->getLayoutData('alignment_block'), [], [
-                        '' => __('Default'),
-                        'left' => __('Left'),
-                        'right' => __('Right'),
-                        'center' => __('Center'),
-                    ]); ?>
+                <div class="block-alignment">
+                    <span class="label"><?php echo __('Alignment'); ?></span>
+                    <div class="options-group">
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][alignment_block]', $stem), 'Block'); ?>
+                            <?php echo $this->formSelect(sprintf('%s[layout_data][alignment_block]', $stem), $block->getLayoutData('alignment_block'), [], [
+                                '' => __('Default'),
+                                'left' => __('Left'),
+                                'right' => __('Right'),
+                                'center' => __('Center'),
+                            ]); ?>
+                        </div>
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][alignment_text]', $stem), 'Text'); ?>
+                            <?php echo $this->formSelect(sprintf('%s[layout_data][alignment_text]', $stem), $block->getLayoutData('alignment_text'), [], [
+                                '' => __('Default'),
+                                'left' => __('Left'),
+                                'right' => __('Right'),
+                                'center' => __('Center'),
+                                'justify' => __('Justify'),
+                            ]); ?>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][alignment_text]', $stem), 'Text Alignment'); ?>
-                    <?php echo $this->formSelect(sprintf('%s[layout_data][alignment_text]', $stem), $block->getLayoutData('alignment_text'), [], [
-                        '' => __('Default'),
-                        'left' => __('Left'),
-                        'right' => __('Right'),
-                        'center' => __('Center'),
-                        'justify' => __('Justify'),
-                    ]); ?>
+                <div class="block-size">
+                    <span class="label"><?php echo __('Size'); ?></span>
+                    <div class="options-group">
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][max_width]', $stem), 'Maximum Width'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][max_width]', $stem), $block->getLayoutData('max_width'), ['pattern' => $cssLength]); ?>
+                        </div>
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][min_height]', $stem), 'Minimum Height'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][min_height]', $stem), $block->getLayoutData('min_height'), ['pattern' => $cssLength]); ?>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][max_width]', $stem), 'Maximum Width'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][max_width]', $stem), $block->getLayoutData('max_width'), ['pattern' => $cssLength]); ?>
+                <div class="block-padding">
+                    <span class="label"><?php echo __('Padding'); ?></span>
+                    <div class="options-group">
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][padding_top]', $stem), 'Top'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][padding_top]', $stem), $block->getLayoutData('padding_top'), ['pattern' => $cssLength]); ?>
+                        </div>
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][padding_right]', $stem), 'Right'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][padding_right]', $stem), $block->getLayoutData('padding_right'), ['pattern' => $cssLength]); ?>
+                        </div>
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][padding_bottom]', $stem), 'Bottom'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][padding_bottom]', $stem), $block->getLayoutData('padding_bottom'), ['pattern' => $cssLength]); ?>
+                        </div>
+                        <div class="sub-option">
+                            <?php echo $this->formLabel(sprintf('%s[layout_data][padding_left]', $stem), 'Left'); ?>
+                            <?php echo $this->formText(sprintf('%s[layout_data][padding_left]', $stem), $block->getLayoutData('padding_left'), ['pattern' => $cssLength]); ?>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][min_height]', $stem), 'Minimum Height'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][min_height]', $stem), $block->getLayoutData('min_height'), ['pattern' => $cssLength]); ?>
-                </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][padding_top]', $stem), 'Top Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_top]', $stem), $block->getLayoutData('padding_top'), ['pattern' => $cssLength]); ?>
-                </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][padding_right]', $stem), 'Right Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_right]', $stem), $block->getLayoutData('padding_right'), ['pattern' => $cssLength]); ?>
-                </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][padding_bottom]', $stem), 'Bottom Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_bottom]', $stem), $block->getLayoutData('padding_bottom'), ['pattern' => $cssLength]); ?>
-                </div>
-                <div>
-                    <?php echo $this->formLabel(sprintf('%s[layout_data][padding_left]', $stem), 'Left Padding'); ?>
-                    <?php echo $this->formText(sprintf('%s[layout_data][padding_left]', $stem), $block->getLayoutData('padding_left'), ['pattern' => $cssLength]); ?>
-                </div>
-                <div>
+                <div class="block-bgcolor">
                     <?php echo $this->formLabel(sprintf('%s[layout_data][background_color]', $stem), 'Background Color'); ?>
                     <?php echo $this->formText(sprintf('%s[layout_data][background_color]', $stem), $block->getLayoutData('background_color'), ['pattern' => $cssHexColorRegex]); ?>
                 </div>

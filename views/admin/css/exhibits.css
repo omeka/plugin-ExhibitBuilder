@@ -407,7 +407,8 @@
     margin-bottom: 10px;
 }
 
-.block-form label {
+.block-form label,
+.block-form .label {
     font-weight: bold;
     font-size: 16px;
     margin: 0 20px 10px 0;
@@ -767,7 +768,8 @@
     margin-bottom: 0;
 }
 
-.layout-options label {
+.layout-options .drawer-contents > div > label,
+.layout-options .drawer-contents > div > .label {
     font-weight: normal;
     display: inline-block;
     width: 30%;
@@ -779,7 +781,8 @@
 }
 
 @media screen and (max-width: 480px) {
-    .layout-options label {
+    .layout-options label,
+    .layout-options .label {
         width: 100%;
         margin-bottom: .5rem;
     }
@@ -822,6 +825,32 @@
 .layout-options .instructions {
     width: calc(70% - 20px);
     margin: 10px 0 0 30%;
+}
+
+.layout-options .options-group {
+    width: 70%;
+    display: flex;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+}
+
+.layout-options .options-group input[type="text"] {
+    max-width: none;
+}
+
+.layout-options .options-group label,
+.layout-options .options-group .label {
+    font-weight: normal;
+    margin-right: 0;
+}
+
+.layout-options .sub-option {
+    max-width: 50%;
+}
+
+.layout-options .block-size input[type="text"],
+.layout-options .block-padding input[type="text"] {
+    width: 5rem;
 }
 
 .attachment-header.deleted > * {
@@ -1054,7 +1083,8 @@ input[type=submit].configure-button {
         padding: 0;
     }
 
-    .exhibits .field label {
+    .exhibits .field label,
+    .exhibits .field .label {
         min-width: 0;
     }
 
