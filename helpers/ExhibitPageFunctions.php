@@ -24,7 +24,7 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
         $layout = $block->getLayout();
         $template = $block->getLayoutData('template');
         $partialTemplate = $template
-            ? sprintf('common/block-template/%s/%s', $layout->id, $template)
+            ? sprintf('common/block-template/%s/%s.php', $layout->id, $template)
             : $layout->getViewPartial();
         $classes = exhibit_builder_get_block_classes($block);
         $inlineStyles = exhibit_builder_get_block_inline_styles($block);
