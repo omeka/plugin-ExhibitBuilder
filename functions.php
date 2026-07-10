@@ -25,13 +25,13 @@ function exhibit_builder_install()
     $db->query(<<<SQL
 CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `title` VARCHAR(255) DEFAULT NULL,
-    `description` TEXT,
-    `credits` TEXT,
+    `title` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `description` LONGTEXT COLLATE utf8mb4_unicode_ci,
+    `credits` LONGTEXT COLLATE utf8mb4_unicode_ci,
     `featured` TINYINT(1) DEFAULT 0,
     `public` TINYINT(1) DEFAULT 0,
     `theme` VARCHAR(30) DEFAULT NULL,
-    `theme_options` TEXT,
+    `theme_options` LONGTEXT COLLATE utf8mb4_unicode_ci,
     `slug` VARCHAR(30) NOT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `exhibit_id` INT UNSIGNED NOT NULL,
     `parent_id` INT UNSIGNED DEFAULT NULL,
-    `title` VARCHAR(255) DEFAULT NULL,
-    `short_title` VARCHAR(255) DEFAULT NULL,
+    `title` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    `short_title` VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `page_id` INT UNSIGNED NOT NULL,
     `layout` VARCHAR(50) NOT NULL,
-    `options` TEXT,
-    `text` MEDIUMTEXT,
+    `options` LONGTEXT COLLATE utf8mb4_unicode_ci,
+    `text` LONGTEXT COLLATE utf8mb4_unicode_ci,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY `page_id_order` (`page_id`, `order`)
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_block_attachments` (
     `block_id` INT UNSIGNED NOT NULL,
     `item_id` INT UNSIGNED NOT NULL,
     `file_id` INT UNSIGNED DEFAULT NULL,
-    `caption` TEXT,
+    `caption` LONGTEXT COLLATE utf8mb4_unicode_ci,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY `block_id_order` (`block_id`, `order`)
@@ -308,6 +308,37 @@ SQL;
 
     if (version_compare($oldVersion, '3.3.4', '<')) {
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `short_title` VARCHAR(255) DEFAULT NULL";
+        $db->query($sql);
+    }
+
+    if (version_compare($oldVersion, '3.11', '<')) {
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibits`
+    MODIFY `title` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    MODIFY `description` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    MODIFY `credits` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    MODIFY `theme_options` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+SQL;
+        $db->query($sql);
+
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibit_pages`
+    MODIFY `title` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    MODIFY `short_title` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL
+SQL;
+        $db->query($sql);
+
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibit_page_blocks`
+    MODIFY `options` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    MODIFY `text` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+SQL;
+        $db->query($sql);
+
+        $sql = <<<SQL
+ALTER TABLE `{$db->prefix}exhibit_block_attachments`
+    MODIFY `caption` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+SQL;
         $db->query($sql);
     }
 }
