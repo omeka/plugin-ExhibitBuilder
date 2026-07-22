@@ -177,6 +177,11 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         }
 
         $this->view->exhibit = $exhibit;
+
+        $template = $exhibit->summary_template;
+        if ($template) {
+            $this->render(sprintf('common/summary-template/%s', $template), null, true);
+        }
     }
 
     /**

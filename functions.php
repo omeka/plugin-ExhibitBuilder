@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `owner_id` INT UNSIGNED DEFAULT NULL,
     `use_summary_page` TINYINT(1) DEFAULT 1,
     `cover_image_file_id` INT UNSIGNED DEFAULT NULL,
+    `summary_template` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY  (`id`),
     UNIQUE KEY `slug` (`slug`),
     KEY `public` (`public`)
@@ -318,6 +319,11 @@ SQL;
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `layout` VARCHAR(255) DEFAULT NULL, ADD `layout_data` TEXT";
         $db->query($sql);
         $sql = "ALTER TABLE `{$db->prefix}exhibit_page_blocks` ADD `layout_data` TEXT";
+        $db->query($sql);
+    }
+
+    if (version_compare($oldVersion, '3.11.1', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `summary_template` VARCHAR(255) DEFAULT NULL";
         $db->query($sql);
     }
 }
@@ -1091,6 +1097,20 @@ function exhibit_builder_get_page_templates(Exhibit $exhibit)
     $themeConfig = exhibit_builder_get_theme_config($exhibit);
     $themeTemplates = $themeConfig['exhibit_builder_templates']['page_templates'] ?? [];
     $pluginTemplates = apply_filters('exhibit_builder_page_templates', []);
+    return array_merge($themeTemplates, $pluginTemplates);
+}
+
+/**
+ * Get all available summary page templates.
+ *
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_summary_templates(Exhibit $exhibit)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['summary_templates'] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_summary_templates', []);
     return array_merge($themeTemplates, $pluginTemplates);
 }
 
