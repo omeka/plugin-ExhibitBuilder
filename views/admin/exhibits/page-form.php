@@ -40,7 +40,6 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             </div>
         </div>
-        <?php if (count($page_templates) > 1): ?>
         <h2><?php echo __('Page Layout Options'); ?></h2>
         <div class="field">
             <div class="two columns alpha">
@@ -50,7 +49,6 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formSelect('layout_data[template]', $exhibit_page->getLayoutData('template'), [], $page_templates); ?>
             </div>
         </div>
-        <?php endif; ?>
         <div class="field">
             <div class="two columns alpha">
                 <?php echo $this->formLabel('layout_data[class]', __('Class')); ?>

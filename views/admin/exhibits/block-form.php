@@ -28,12 +28,10 @@ $cssLength = '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lv
                 <button class="drawer-toggle" type="button" data-action-selector="opened"><span class="icon"></span></button>
             </div>
             <div class="drawer-contents" id="">
-                <?php if (count($blockTemplates) > 1): ?>
                 <div class="block-template">
                     <?php echo $this->formLabel(sprintf('%s[layout_data][template]', $stem), 'Template'); ?>
                     <?php echo $this->formSelect(sprintf('%s[layout_data][template]', $stem), $block->getLayoutData('template'), [], $blockTemplates); ?>
                 </div>
-                <?php endif; ?>
                 <div class="block-class">
                     <?php echo $this->formLabel(sprintf('%s[layout_data][class]', $stem), 'Class'); ?>
                     <?php echo $this->formText(sprintf('%s[layout_data][class]', $stem), $block->getLayoutData('class')); ?>
