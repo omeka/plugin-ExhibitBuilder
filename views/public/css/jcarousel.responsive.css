@@ -82,6 +82,7 @@ button.jcarousel-control-next {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 0;
 }
 
 button.jcarousel-control-prev:after,
@@ -117,37 +118,32 @@ button.jcarousel-control-next:after {
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
 }
 
-.jcarousel-pagination button {
+.jcarousel-pagination button[type="button"] {
     text-decoration: none;
     display: inline-block;
     padding: 0;
-
-    font-size: 11px;
-    height: 10px;
-    width: 10px;
+    margin: 0;
+    height: 24px;
+    width: 24px;
+    min-height: 0;
+    min-width: 0;
+    font-size: 14px;
     line-height: 10px;
-
     background: #fff;
     color: #4E443C;
-    border-radius: 10px;
-    text-indent: -9999px;
-
-    margin-right: 7px;
-
-
-    -webkit-box-shadow: 0 0 2px #4E443C;
-    -moz-box-shadow: 0 0 2px #4E443C;
+    border: 0;
+    border-radius: 24px;
     box-shadow: 0 0 2px #4E443C;
 }
 
-.jcarousel-pagination button.active {
+.jcarousel-pagination button.active[type="button"] {
     background: #4E443C;
     color: #fff;
     opacity: 1;
-
-    -webkit-box-shadow: 0 0 2px #F0EFE7;
-    -moz-box-shadow: 0 0 2px #F0EFE7;
     box-shadow: 0 0 2px #F0EFE7;
 }

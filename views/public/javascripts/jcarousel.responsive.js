@@ -93,7 +93,7 @@
                         perPage: 1,
                         method: pageMethod,
                         item: function(page) {
-                            return '<button type="button" data-slide-number-"' + page + '"><span class="sr-only">' + page + '</span></button>';
+                            return '<button type="button" data-slide-number-"' + page + '">' + page + '</button>';
                         }
                     });
             })
