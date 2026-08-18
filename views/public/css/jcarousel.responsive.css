@@ -59,8 +59,8 @@ p.slide-title {
 
 /** Carousel Controls **/
 
-.jcarousel-control-prev,
-.jcarousel-control-next {
+button.jcarousel-control-prev,
+button.jcarousel-control-next {
     position: absolute;
     top: 50%;
     margin-top: -15px;
@@ -78,6 +78,25 @@ p.slide-title {
     -webkit-box-shadow: 0 0 4px #F0EFE7;
     -moz-box-shadow: 0 0 4px #F0EFE7;
     box-shadow: 0 0 4px #F0EFE7;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.jcarousel-control-prev:after,
+button.jcarousel-control-next:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 14px;
+}
+
+button.jcarousel-control-prev:after {
+    content: "\f104" / "";
+}
+
+button.jcarousel-control-next:after {
+    content: "\f105" / "";
 }
 
 .jcarousel-control-prev {
@@ -100,9 +119,10 @@ p.slide-title {
     margin: 0;
 }
 
-.jcarousel-pagination a {
+.jcarousel-pagination button {
     text-decoration: none;
     display: inline-block;
+    padding: 0;
 
     font-size: 11px;
     height: 10px;
@@ -122,7 +142,7 @@ p.slide-title {
     box-shadow: 0 0 2px #4E443C;
 }
 
-.jcarousel-pagination a.active {
+.jcarousel-pagination button.active {
     background: #4E443C;
     color: #fff;
     opacity: 1;

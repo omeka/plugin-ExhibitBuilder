@@ -80,10 +80,10 @@
                     });
 
                 element.find('.jcarousel-pagination')
-                    .on('jcarouselpagination:active', 'a', function() {
+                    .on('jcarouselpagination:active', 'button', function() {
                         $(this).addClass('active');
                     })
-                    .on('jcarouselpagination:inactive', 'a', function() {
+                    .on('jcarouselpagination:inactive', 'button', function() {
                         $(this).removeClass('active');
                     })
                     .on('click', function(e) {
@@ -93,7 +93,7 @@
                         perPage: 1,
                         method: pageMethod,
                         item: function(page) {
-                            return '<a href="#' + page + '">' + page + '</a>';
+                            return '<button type="button" data-slide-number-"' + page + '"><span class="sr-only">' + page + '</span></button>';
                         }
                     });
             })
