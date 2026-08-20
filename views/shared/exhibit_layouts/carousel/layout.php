@@ -60,6 +60,7 @@ $configs['carousel']['transitions'] = 1;
 <h2><?php echo $carouselTitle; ?></h2>
 <?php endif; ?>
 <div class="jcarousel-wrapper captions-<?php echo $captionPosition; ?> <?php echo $overlay; ?>"
+     tabindex="-1"
      data-jcarousel-perslide="<?php echo $perSlide ?>"
      data-jcarousel-stretch="<?php echo $stretchImage ?>"
      data-jcarousel-fade="<?php echo $fade ?>">

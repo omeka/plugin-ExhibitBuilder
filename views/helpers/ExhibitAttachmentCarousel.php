@@ -29,8 +29,8 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentCarousel extends Zend_View_Hel
         }
         $html .= '</ul>';
         $html .= '</div>';
-        $html .= '<button type="button" class="jcarousel-control-prev"><span class="sr-only">' . __('Previous') . '</button>';
-        $html .= '<button type="button" class="jcarousel-control-next"><span class="sr-only">' . __('Next') . '</button>';
+        $html .= '<button type="button" class="jcarousel-control-prev"><span class="sr-only">' . __('Previous') . '</span></button>';
+        $html .= '<button type="button" class="jcarousel-control-next"><span class="sr-only">' . __('Next') . '</span></button>';
         $html .= '<p class="jcarousel-pagination"></p>';
     
         return $html;

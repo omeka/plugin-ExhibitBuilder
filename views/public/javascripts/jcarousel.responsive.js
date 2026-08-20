@@ -1,7 +1,61 @@
 (function($) {
+
+    var focusableSelector = 'a, button, input, select, textarea, [tabindex]';
+
+    // jcarousel keeps off-screen slides (and, in circular mode, temporary
+    // clone slides) in the tab order. Reaching them with the keyboard makes
+    // focus appear to vanish, and clones get removed from the DOM outright
+    // once the transition finishes, dropping focus to <body>. Keep hidden
+    // and clone slides out of the tab order, and if focus was inside a
+    // slide that is about to be hidden or removed, move it somewhere safe.
+    function rescueFocus($goingAway, $wrapper) {
+        var activeEl = document.activeElement;
+        $goingAway.each(function() {
+            if (this === activeEl || $.contains(this, activeEl)) {
+                $wrapper.trigger('focus');
+                return false;
+            }
+        });
+    }
+
+    function makeInert($slides) {
+        $slides.attr('aria-hidden', 'true');
+        $slides.find(focusableSelector).attr('tabindex', '-1');
+    }
+
+    function makeFocusable($slides) {
+        $slides.removeAttr('aria-hidden');
+        $slides.find(focusableSelector).removeAttr('tabindex');
+    }
+
     $(function() {
         var jcarousel = $('.jcarousel');
-        
+
+        jcarousel
+            .on('jcarousel:visiblein', function(e) {
+                makeFocusable($(e.target));
+            })
+            .on('jcarousel:visibleout', function(e) {
+                var $slide = $(e.target);
+                rescueFocus($slide, $(this).closest('.jcarousel-wrapper'));
+                makeInert($slide);
+            })
+            .on('jcarousel:createend jcarousel:reloadend jcarousel:animate', function() {
+                var element = $(this);
+                var $wrapper = element.closest('.jcarousel-wrapper');
+
+                var clones = element.find('[data-jcarousel-clone]');
+                if (clones.length) {
+                    rescueFocus(clones, $wrapper);
+                    makeInert(clones);
+                }
+
+                var offscreen = element.jcarousel('items').not(element.jcarousel('visible'));
+                rescueFocus(offscreen, $wrapper);
+                makeInert(offscreen);
+                makeFocusable(element.jcarousel('visible'));
+            });
+
         jcarousel
             .on('jcarousel:create jcarousel:reload', function () {
                 var element = $(this);
