@@ -20,9 +20,21 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     foreach ($exhibitPage->getAllAttachments() as $attachment) {
         $attachments[$attachment->block_id][] = $attachment;
     }
+    $exhibit = null;
+    $blockTemplates = [];
     foreach ($blocks as $index => $block) {
         $layout = $block->getLayout();
         $template = $block->getLayoutData('template');
+        if ($template) {
+            // Verify that the exhibit's theme provides this template.
+            if (!isset($blockTemplates[$layout->id])) {
+                $exhibit = $exhibit ?: $exhibitPage->getExhibit();
+                $blockTemplates[$layout->id] = exhibit_builder_get_block_templates($exhibit, $layout->id);
+            }
+            if (!array_key_exists($template, $blockTemplates[$layout->id])) {
+                $template = null;
+            }
+        }
         $partialTemplate = $template
             ? sprintf('common/block-template/%s/%s.php', $layout->id, $template)
             : $layout->getViewPartial();
