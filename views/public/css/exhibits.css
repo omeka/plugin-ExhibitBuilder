@@ -81,10 +81,12 @@
 
 .block-layout-alignment-block-right {
     float: right;
+    max-width: 100%;
 }
 
 .block-layout-alignment-block-left {
     float: left;
+    max-width: 100%;
 }
 
 .block-layout-alignment-block-center {
