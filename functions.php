@@ -1089,6 +1089,10 @@ function exhibit_builder_static_site_export_site_export_post($args)
 /**
  * Get all available page templates.
  *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" is rendered from common/page-template/foo.php.
+ *
  * @param Exhibit $exhibit
  * @return array
  */
@@ -1103,6 +1107,10 @@ function exhibit_builder_get_page_templates(Exhibit $exhibit)
 /**
  * Get all available summary page templates.
  *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" is rendered from common/summary-template/foo.php.
+ *
  * @param Exhibit $exhibit
  * @return array
  */
@@ -1116,6 +1124,11 @@ function exhibit_builder_get_summary_templates(Exhibit $exhibit)
 
 /**
  * Get all available block templates.
+ *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" on the "bar" layout is rendered from
+ * common/block-template/bar/foo.php.
  *
  * @param Exhibit $exhibit
  * @param string $layout

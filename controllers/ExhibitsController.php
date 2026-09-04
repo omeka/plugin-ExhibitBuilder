@@ -148,7 +148,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $template = $exhibitPage->getLayoutData('template');
         // Verify that the exhibit's theme provides this template.
         if ($template && array_key_exists($template, exhibit_builder_get_page_templates($exhibit))) {
-            $this->render(sprintf('common/page-template/%s', $template), null, true);
+            $this->renderScript(sprintf('common/page-template/%s.php', $template));
         }
     }
 
@@ -182,7 +182,7 @@ class ExhibitBuilder_ExhibitsController extends Omeka_Controller_AbstractActionC
         $template = $exhibit->summary_template;
         // Verify that the exhibit's theme provides this template.
         if ($template && array_key_exists($template, exhibit_builder_get_summary_templates($exhibit))) {
-            $this->render(sprintf('common/summary-template/%s', $template), null, true);
+            $this->renderScript(sprintf('common/summary-template/%s.php', $template));
         }
     }
 
