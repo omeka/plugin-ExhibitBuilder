@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibits` (
     `owner_id` INT UNSIGNED DEFAULT NULL,
     `use_summary_page` TINYINT(1) DEFAULT 1,
     `cover_image_file_id` INT UNSIGNED DEFAULT NULL,
+    `summary_template` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY  (`id`),
     UNIQUE KEY `slug` (`slug`),
     KEY `public` (`public`)
@@ -53,6 +54,8 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_pages` (
     `title` VARCHAR(255) DEFAULT NULL,
     `short_title` VARCHAR(255) DEFAULT NULL,
     `slug` VARCHAR(30) NOT NULL,
+    `layout` VARCHAR(255) DEFAULT NULL,
+    `layout_data` TEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
     `added` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
     `modified` TIMESTAMP NOT NULL DEFAULT '2000-01-01 00:00:00',
@@ -68,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `{$db->prefix}exhibit_page_blocks` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `page_id` INT UNSIGNED NOT NULL,
     `layout` VARCHAR(50) NOT NULL,
+    `layout_data` TEXT,
     `options` TEXT,
     `text` MEDIUMTEXT,
     `order` SMALLINT UNSIGNED DEFAULT NULL,
@@ -308,6 +312,18 @@ SQL;
 
     if (version_compare($oldVersion, '3.3.4', '<')) {
         $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `short_title` VARCHAR(255) DEFAULT NULL";
+        $db->query($sql);
+    }
+
+    if (version_compare($oldVersion, '3.11.0-alpha', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_pages` ADD `layout` VARCHAR(255) DEFAULT NULL, ADD `layout_data` TEXT";
+        $db->query($sql);
+        $sql = "ALTER TABLE `{$db->prefix}exhibit_page_blocks` ADD `layout_data` TEXT";
+        $db->query($sql);
+    }
+
+    if (version_compare($oldVersion, '3.11.1', '<')) {
+        $sql = "ALTER TABLE `{$db->prefix}exhibits` ADD `summary_template` VARCHAR(255) DEFAULT NULL";
         $db->query($sql);
     }
 }
@@ -1068,4 +1084,77 @@ function exhibit_builder_static_site_export_site_export_post($args)
             }
         }
     } while ($exhibits);
+}
+
+/**
+ * Get all available page templates.
+ *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" is rendered from common/page-template/foo.php.
+ *
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_page_templates(Exhibit $exhibit)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['page_templates'] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_page_templates', []);
+    return array_merge($themeTemplates, $pluginTemplates);
+}
+
+/**
+ * Get all available summary page templates.
+ *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" is rendered from common/summary-template/foo.php.
+ *
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_summary_templates(Exhibit $exhibit)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['summary_templates'] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_summary_templates', []);
+    return array_merge($themeTemplates, $pluginTemplates);
+}
+
+/**
+ * Get all available block templates.
+ *
+ * Keys are template names, values are the labels shown in the admin. A
+ * template name must match the name of the partial that provides it: the
+ * template "foo" on the "bar" layout is rendered from
+ * common/block-template/bar/foo.php.
+ *
+ * @param Exhibit $exhibit
+ * @param string $layout
+ * @return array
+ */
+function exhibit_builder_get_block_templates(Exhibit $exhibit, $layout)
+{
+    $themeConfig = exhibit_builder_get_theme_config($exhibit);
+    $themeTemplates = $themeConfig['exhibit_builder_templates']['block_templates'][$layout] ?? [];
+    $pluginTemplates = apply_filters('exhibit_builder_block_templates', [], ['layout' => $layout]);
+    return array_merge($themeTemplates, $pluginTemplates);
+}
+
+/**
+ * Get the theme configuration.
+ *
+ * @todo Is there a way to get theme configuration via the core?
+ * @param Exhibit $exhibit
+ * @return array
+ */
+function exhibit_builder_get_theme_config(Exhibit $exhibit)
+{
+    $themeName = $exhibit->theme ? $exhibit->theme : Theme::getCurrentThemeName('public');
+    $configPath = sprintf('%s/%s/config.ini', PUBLIC_THEME_DIR, $themeName);
+    if (file_exists($configPath) && is_readable($configPath)) {
+        return (new Zend_Config_Ini($configPath))->toArray();
+    }
+    return [];
 }

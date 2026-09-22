@@ -63,6 +63,17 @@
                 <?php echo $this->formCheckbox('use_summary_page', $exhibit->use_summary_page, array(), array('1', '0')); ?>
             </div>
         </div>
+        <?php
+        $summaryTemplates = ['' => __('Default')] + exhibit_builder_get_summary_templates($exhibit);
+        ?>
+        <div class="field">
+            <div class="two columns alpha">
+                <?php echo $this->formLabel('summary_template', __('Summary Page Template')); ?>
+            </div>
+            <div class="inputs five columns omega">
+                <?php echo $this->formSelect('summary_template', $exhibit->summary_template, [], $summaryTemplates); ?>
+            </div>
+        </div>
         <div id="cover-image-container" class="field">
             <div class="two columns alpha">
                 <?php echo $this->formLabel('cover_image', __('Cover Image')); ?>

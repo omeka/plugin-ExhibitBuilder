@@ -15,25 +15,140 @@ function exhibit_builder_render_exhibit_page($exhibitPage = null)
     if ($exhibitPage === null) {
         $exhibitPage = get_current_record('exhibit_page');
     }
-    
     $blocks = $exhibitPage->ExhibitPageBlocks;
-    $rawAttachments = $exhibitPage->getAllAttachments();
-    $attachments = array();
-    foreach ($rawAttachments as $attachment) {
+    $attachments = [];
+    foreach ($exhibitPage->getAllAttachments() as $attachment) {
         $attachments[$attachment->block_id][] = $attachment;
     }
+    $exhibit = null;
+    $blockTemplates = [];
     foreach ($blocks as $index => $block) {
         $layout = $block->getLayout();
-        echo '<div class="exhibit-block layout-' . html_escape($layout->id) . '">';
-        echo get_view()->partial($layout->getViewPartial(), array(
-            'index' => $index,
-            'options' => $block->getOptions(),
-            'text' => get_view()->shortcodes($block->text),
-            'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : array(),
-            'block' => $block,
-        ));
-        echo '</div>';
+        $template = $block->getLayoutData('template');
+        if ($template) {
+            // Verify that the exhibit's theme provides this template.
+            if (!isset($blockTemplates[$layout->id])) {
+                $exhibit = $exhibit ?: $exhibitPage->getExhibit();
+                $blockTemplates[$layout->id] = exhibit_builder_get_block_templates($exhibit, $layout->id);
+            }
+            if (!array_key_exists($template, $blockTemplates[$layout->id])) {
+                $template = null;
+            }
+        }
+        $partialTemplate = $template
+            ? sprintf('common/block-template/%s/%s.php', $layout->id, $template)
+            : $layout->getViewPartial();
+        $classes = exhibit_builder_get_block_classes($block);
+        $inlineStyles = exhibit_builder_get_block_inline_styles($block);
+        echo sprintf(
+            '<div class="%s" style="%s">%s</div>',
+            html_escape(implode(' ', $classes)),
+            html_escape(implode('; ', $inlineStyles)),
+            get_view()->partial($partialTemplate, [
+                'index' => $index,
+                'options' => $block->getOptions(),
+                'text' => get_view()->shortcodes($block->text),
+                'attachments' => array_key_exists($block->id, $attachments) ? $attachments[$block->id] : [],
+                'block' => $block,
+            ])
+        );
     }
+}
+
+function exhibit_builder_get_block_classes($block)
+{
+    $layout = $block->getLayout();
+
+    $classes = [];
+    $classes[] = 'exhibit-block';
+    $classes[] = sprintf('layout-%s', html_escape($layout->id));
+    $classes[] = $block->getLayoutData('class');
+
+    $alignmentBlock = $block->getLayoutData('alignment_block');
+    switch ($alignmentBlock) {
+        case 'left':
+            $classes[] = 'block-layout-alignment-block-left';
+            break;
+        case 'right':
+            $classes[] = 'block-layout-alignment-block-right';
+            break;
+        case 'center':
+            $classes[] = 'block-layout-alignment-block-center';
+            break;
+        default:
+            // No block alignment
+    }
+
+    $alignmentText = $block->getLayoutData('alignment_text');
+    switch ($alignmentText) {
+        case 'left':
+            $classes[] = 'block-layout-alignment-text-left';
+            break;
+        case 'center':
+            $classes[] = 'block-layout-alignment-text-center';
+            break;
+        case 'right':
+            $classes[] = 'block-layout-alignment-text-right';
+            break;
+        case 'justify':
+            $classes[] = 'block-layout-alignment-text-justify';
+            break;
+        default:
+            // No text alignment
+    }
+
+    return $classes;
+}
+
+function exhibit_builder_get_block_inline_styles($block)
+{
+    $inlineStyles = [];
+
+    // Validate a CSS <hex-color>.
+    $isValidHexColor = function ($hexColor) {
+        return preg_match(sprintf('/%s/', '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'), $hexColor);
+    };
+    // Validate a CSS <length>
+    $isValidLength = function ($length) {
+        return preg_match(sprintf('/%s/', '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lvw|dvw|vmax|svmax|lvmax|dvmax|vmin|svmin|lvmin|dvmin|vb|svb|lvb|dvb|vi|svi|lvi|dvi|cqw|cqh|cqi|cqb|cqmin|cqmax|px|cm|mm|Q|in|pc|pt)?$'), $length);
+    };
+    // Prepare a CSS <length> for use in an inline style. Note that we convert bare numbers as pixels.
+    $prepareLength = function ($length) {
+        return is_numeric($length) ? sprintf('%spx', $length) : $length;
+    };
+
+    $backgroundColor = $block->getLayoutData('background_color');
+    if ($backgroundColor && $isValidHexColor($backgroundColor)) {
+        $inlineStyles[] = sprintf('background-color: %s', $backgroundColor);
+    }
+
+    $maxWidth = $block->getLayoutData('max_width');
+    if (is_string($maxWidth) && $isValidLength($maxWidth)) {
+        $inlineStyles[] = sprintf('max-width: %s', $prepareLength($maxWidth));
+    }
+    $minHeight = $block->getLayoutData('min_height');
+    if (is_string($minHeight) && $isValidLength($minHeight)) {
+        $inlineStyles[] = sprintf('min-height: %s', $prepareLength($minHeight));
+    }
+
+    $paddingTop = $block->getLayoutData('padding_top');
+    if (is_string($paddingTop) && $isValidLength($paddingTop)) {
+        $inlineStyles[] = sprintf('padding-top: %s', $prepareLength($paddingTop));
+    }
+    $paddingRight = $block->getLayoutData('padding_right');
+    if (is_string($paddingRight) && $isValidLength($paddingRight)) {
+        $inlineStyles[] = sprintf('padding-right: %s', $prepareLength($paddingRight));
+    }
+    $paddingBottom = $block->getLayoutData('padding_bottom');
+    if (is_string($paddingBottom) && $isValidLength($paddingBottom)) {
+        $inlineStyles[] = sprintf('padding-bottom: %s', $prepareLength($paddingBottom));
+    }
+    $paddingLeft = $block->getLayoutData('padding_left');
+    if (is_string($paddingLeft) && $isValidLength($paddingLeft)) {
+        $inlineStyles[] = sprintf('padding-left: %s', $prepareLength($paddingLeft));
+    }
+
+    return $inlineStyles;
 }
 
 /**
@@ -88,9 +203,9 @@ function exhibit_builder_page_nav($exhibitPage = null)
     $html .= '<li>';
     $html .= '<a class="exhibit-title" href="'. html_escape(exhibit_builder_exhibit_uri($exhibit)) . '">';
     $html .= html_escape($exhibit->title) .'</a></li>' . "\n";
-    
+
     $levelNumber = 1;
-    
+
     foreach ($pagesTrail as $page) {
         $pageExhibit = $page->getExhibit();
         $pageParent = $page->getParent();
@@ -289,7 +404,7 @@ function set_exhibit_pages_for_loop_by_exhibit($exhibit = null)
 
 /**
  * Get the children of a page.
- * 
+ *
  * @param ExhibitPage $exhibitPage The exhibit page. If null, uses the current page.
  * @return array[ExhibitPage]
  */

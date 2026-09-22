@@ -103,6 +103,8 @@ class Exhibit extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_I
      */
     public $cover_image_file_id;
 
+    public $summary_template;
+
     /**
      * Quick-access mappings for related records.
      *
