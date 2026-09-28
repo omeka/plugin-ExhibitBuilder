@@ -82,12 +82,13 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                         $layout_id = html_escape($layout->id);
                         echo '<div class="layout" id="' . $layout_id . '">';
                         echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
-                        echo '<span class="layout-name">' . $layout->name . '</span>';
-                        echo '<input type="radio" name="new-block-layout" value="'. $layout_id .'">';
+                        echo '<input type="radio" aria-labelledby="layout-' . $layout_id . '-title" aria-describedby="layout-' . $layout_id . '-description" name="new-block-layout" value="'. $layout_id .'">';
+                        echo '<label class="layout-name" id="layout-' . $layout_id . '-title">' . $layout->name . '</label>';
                         echo '</div>';
                     }
                     foreach ($layouts as $layout) {
-                        echo '<div class="'.html_escape($layout->id).' layout-description">';
+                        $layout_id = html_escape($layout->id);
+                        echo '<div id="layout-' . $layout_id . '-description" class="' . $layout_id . ' layout-description">';
                         echo $layout->description;
                         echo '</div>';
                     }
