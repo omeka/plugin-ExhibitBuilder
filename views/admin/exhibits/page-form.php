@@ -81,7 +81,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                     foreach ($layouts as $layout) {
                         $layout_id = html_escape($layout->id);
                         echo '<div class="layout" id="' . $layout_id . '">';
-                        echo '<img src="' . html_escape($layout->getIconUrl()) . '">';
+                        echo '<img src="' . html_escape($layout->getIconUrl()) . '" alt="">';
                         echo '<input type="radio" aria-labelledby="layout-' . $layout_id . '-title" aria-describedby="layout-' . $layout_id . '-description" name="new-block-layout" value="'. $layout_id .'">';
                         echo '<label class="layout-name" id="layout-' . $layout_id . '-title">' . $layout->name . '</label>';
                         echo '</div>';
