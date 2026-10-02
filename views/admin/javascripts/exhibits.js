@@ -51,6 +51,7 @@ Omeka.ExhibitBuilder = {};
             }
         });
     };
+
     Omeka.ExhibitBuilder.setUpBlocks = function(blockFormUrl) {
         function sortAttachments(ancestor) {
             $(ancestor).find('.selected-item-list').sortable({
@@ -65,6 +66,25 @@ Omeka.ExhibitBuilder = {};
                 }
             });
         }
+
+        var expandCollapseSrAlerts = $('#expand-collapse-sr-alerts');
+        var expandCollapseSrAlertsRepeat = $('#expand-collapse-sr-alerts-repeat');
+        $('#block-container').on('click', '.expand-collapse button', function() {
+            var expandCollapseButton = $(this);
+            var expandCollapseSuccessMessage = expandCollapseButton.data('success-message');
+            if (expandCollapseButton.hasClass('expand')) {
+                $('.sortable-item.block-header > .drawer-toggle[aria-expanded=false').click();
+            } else {
+                $('.sortable-item.block-header > .drawer-toggle[aria-expanded=true').click();
+            }
+            if (expandCollapseSrAlerts.text() == '') {
+                expandCollapseSrAlerts.text(expandCollapseSuccessMessage);
+                expandCollapseSrAlertsRepeat.text('');
+            } else {
+                expandCollapseSrAlertsRepeat.text(expandCollapseSuccessMessage);
+                expandCollapseSrAlerts.text('');
+            }
+        });
 
         $('#block-container').sortable({
             items: '> .block-form',

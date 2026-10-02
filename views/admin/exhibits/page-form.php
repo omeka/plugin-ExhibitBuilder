@@ -61,8 +61,10 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     <fieldset id="block-container">
         <h2><?php echo __('Content'); ?></h2>
         <div class="expand-collapse">
-        <button type="button" class="small button expand"><?php echo __('Expand All'); ?></button>
-        <button type="button" class="small button collapse"><?php echo __('Collapse All'); ?></button>
+        <button type="button" class="small button expand" data-success-message="<?php echo __('All blocks are expanded.'); ?>"><?php echo __('Expand All'); ?></button>
+        <button type="button" class="small button collapse" data-success-message="<?php echo __('All blocks are collapsed.'); ?>"><?php echo __('Collapse All'); ?></button>
+        <div id="expand-collapse-sr-alerts" class="sr-only" aria-live="polite"></div>
+        <div id="expand-collapse-sr-alerts-repeat" class="sr-only" aria-live="polite"></div>
         </div>
         <p class="instructions"><?php echo __('To reorder blocks and items, click and drag them to the preferred location.'); ?></p>
         <?php
