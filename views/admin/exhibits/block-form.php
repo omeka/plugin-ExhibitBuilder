@@ -9,9 +9,9 @@ $blockTemplates = ['' => __('Default')] + $blockTemplates;
 $cssHexColorRegex = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
 $cssLength = '^(\d*\.?\d+)(%|cap|ch|em|ex|ic|lh|rem|rlh|vh|svh|lvh|dvh|vw|svw|lvw|dvw|vmax|svmax|lvmax|dvmax|vmin|svmin|lvmin|dvmin|vb|svb|lvb|dvb|vi|svi|lvi|dvi|cqw|cqh|cqi|cqb|cqmin|cqmax|px|cm|mm|Q|in|pc|pt)?$';
 ?>
-<div class="block-form" data-block-index="<?php echo $order; ?>">
+<div class="block-form" data-block-index="<?php echo $order; ?>" role="group" aria-labelledby="block-<?php echo $order; ?>-heading">
     <div class="sortable-item drawer block-header opened">
-        <h2 class="drawer-name"><?php echo __('Block'); ?> <?php echo $order; ?> (<?php echo $layout->name; ?>)</h2>
+        <h2 id="block-<?php echo $order; ?>-heading" class="drawer-name"><?php echo __('Block'); ?> <?php echo $order; ?> (<?php echo $layout->name; ?>)</h2>
         <button class="drawer-toggle" type="button" data-action-selector="opened" aria-expanded="true" aria-controls="block-drawer-<?php echo $order; ?>" aria-label="<?php echo __('Show options'); ?>" title="<?php echo __('Show options'); ?>"><span class="icon"></span></button>
         <button class="undo-delete" type="button" data-action-selector="deleted" aria-label="<?php echo __('Undo remove'); ?>" title="<?php echo __('Undo remove'); ?>"><span class="icon"></span></button>
         <button class="delete-drawer" type="button" data-action-selector="deleted" aria-label="<?php echo __('Remove'); ?>" title="<?php echo __('Remove'); ?>"><span class="icon"></span></button>

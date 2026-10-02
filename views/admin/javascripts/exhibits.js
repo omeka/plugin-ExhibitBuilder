@@ -118,9 +118,8 @@ Omeka.ExhibitBuilder = {};
 
         $('.add-link').hide();
         $('.add-link').click(function (event) {
-            event.preventDefault();
-
             var newLayout = $('input[name=new-block-layout]:checked').val();
+            var newLayoutSuccessMessage = $('.layout.selected').data('success-message');
             if (!newLayout) return;
 
             $.post(
@@ -134,9 +133,11 @@ Omeka.ExhibitBuilder = {};
                         .insertBefore('.add-block')
                         .trigger('exhibit-builder-refresh-wysiwyg')
                         .trigger('exhibit-builder-add-block')
+                        .find(':focusable').first().focus()
                         ;
                     $('input[name=new-block-layout]').prop('checked', false);
                     $('.selected').removeClass('selected');
+                    $('#layout-sr-alert').text(newLayoutSuccessMessage);
                     $('.add-link').hide();
                 },
                 'html'
@@ -145,6 +146,10 @@ Omeka.ExhibitBuilder = {};
 
         $('.layout').click(function (event) {
             var layout_id = $(this).attr('id');
+            var layoutSrAlert = $('#layout-sr-alert');
+            if (layoutSrAlert.text() !== '') {
+                layoutSrAlert.text('');
+            }
             $(this).children('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');

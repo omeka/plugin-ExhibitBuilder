@@ -82,10 +82,13 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                     $layouts = ExhibitLayout::getLayouts();
                     foreach ($layouts as $layout) {
                         $layout_id = html_escape($layout->id);
-                        echo '<div class="layout" id="' . $layout_id . '">';
+                        $layout_name = html_escape($layout->name);
+                        echo '<div class="layout" id="' . $layout_id . '" data-success-message="' . __('%s added', $layout_name) . '">';
                         echo '<img src="' . html_escape($layout->getIconUrl()) . '" alt="">';
-                        echo '<input type="radio" aria-labelledby="layout-' . $layout_id . '-title" aria-describedby="layout-' . $layout_id . '-description" name="new-block-layout" value="'. $layout_id .'">';
-                        echo '<label class="layout-name" id="layout-' . $layout_id . '-title">' . $layout->name . '</label>';
+                        echo '<label>';
+                        echo '<input type="radio" aria-describedby="layout-' . $layout_id . '-description" name="new-block-layout" value="'. $layout_id .'">';
+                        echo $layout_name;
+                        echo '</label>';
                         echo '</div>';
                     }
                     foreach ($layouts as $layout) {
@@ -95,7 +98,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                         echo '</div>';
                     }
                 ?>
-                <a class="add-link big button" href="#"><?php echo __('Add new content block'); ?></a>
+                <div id="layout-sr-alert" aria-live="polite" class="sr-only"></div>
+                <button type="button" class="add-link big button"><?php echo __('Add new content block'); ?></button>
                 </div>
             </div>
         </div>
