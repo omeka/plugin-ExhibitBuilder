@@ -150,7 +150,7 @@ Omeka.ExhibitBuilder = {};
             if (layoutSrAlert.text() !== '') {
                 layoutSrAlert.text('');
             }
-            $(this).children('input[type="radio"]').prop('checked', true);
+            $(this).find('input[type="radio"]').prop('checked', true);
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
             $('.'+layout_id + '.layout-description').addClass('selected');
