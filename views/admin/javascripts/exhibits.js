@@ -116,7 +116,6 @@ Omeka.ExhibitBuilder = {};
 
         var blockIndex = $('.block-form').length;
 
-        $('.add-link').hide();
         $('.add-link').click(function (event) {
             var newLayout = $('input[name=new-block-layout]:checked').val();
             var newLayoutSuccessMessage = $('.layout.selected').data('success-message');
@@ -132,13 +131,16 @@ Omeka.ExhibitBuilder = {};
                     $(data)
                         .insertBefore('.add-block')
                         .trigger('exhibit-builder-refresh-wysiwyg')
-                        .trigger('exhibit-builder-add-block')
-                        .find(':focusable').first().focus()
-                        ;
-                    $('input[name=new-block-layout]').prop('checked', false);
-                    $('.selected').removeClass('selected');
-                    $('#layout-sr-alert').text(newLayoutSuccessMessage);
-                    $('.add-link').hide();
+                        .trigger('exhibit-builder-add-block');
+                    var layoutSrAlert = $('#layout-sr-alert');
+                    var layoutSrAlertRepeat = $('#layout-sr-alert-repeat');
+                    if (layoutSrAlert.text() !== newLayoutSuccessMessage) {
+                        layoutSrAlert.text(newLayoutSuccessMessage);
+                        layoutSrAlertRepeat.text('');
+                    } else {
+                        layoutSrAlertRepeat.text(newLayoutSuccessMessage);
+                        layoutSrAlert.text('');
+                    }
                 },
                 'html'
             );
@@ -154,7 +156,7 @@ Omeka.ExhibitBuilder = {};
             $('.selected').removeClass('selected');
             $(this).addClass('selected');
             $('.'+layout_id + '.layout-description').addClass('selected');
-            $('.add-link').show();
+            $('.add-link').removeAttr('disabled');
         });
 
         $('#block-container').on('omeka:delete-drawer omeka:undo-drawer-delete', '.delete-drawer, .undo-delete', function (e) {

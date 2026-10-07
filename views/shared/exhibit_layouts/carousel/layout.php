@@ -62,7 +62,8 @@ $configs['carousel']['transitions'] = 1;
 <div class="jcarousel-wrapper captions-<?php echo $captionPosition; ?> <?php echo $overlay; ?>"
      data-jcarousel-perslide="<?php echo $perSlide ?>"
      data-jcarousel-stretch="<?php echo $stretchImage ?>"
-     data-jcarousel-fade="<?php echo $fade ?>">
+     data-jcarousel-fade="<?php echo $fade ?>"
+     aria-live="off">
     <?php echo $this->exhibitAttachmentCarousel($attachments, $configs); ?>
 </div>
 

@@ -485,6 +485,12 @@
     width: 100%;
 }
 
+.add-link.button:disabled {
+    border-style: dashed;
+    background-color: #f8f8f8;
+    cursor: default;
+}
+
 .layout {
     width: 31%;
     display: inline-flex;

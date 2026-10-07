@@ -75,8 +75,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         ?>
         <div class="add-block">
             <h2><?php echo __('New Block'); ?></h2>
-            <div class="layout-select">
-                <h3><?php echo __('Select layout'); ?></h3>
+            <div class="layout-select" role="group" aria-labelledby="select-layout-heading">
+                <h3 id="select-layout-heading"><?php echo __('Select layout'); ?></h3>
                 <div class="layout-thumbs">
                 <?php
                     $layouts = ExhibitLayout::getLayouts();
@@ -99,7 +99,8 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                     }
                 ?>
                 <div id="layout-sr-alert" aria-live="polite" class="sr-only"></div>
-                <button type="button" class="add-link big button"><?php echo __('Add new content block'); ?></button>
+                <div id="layout-sr-alert-repeat" aria-live="polite" class="sr-only"></div>
+                <button type="button" class="add-link big button" disabled><?php echo __('Add new content block'); ?></button>
                 </div>
             </div>
         </div>
