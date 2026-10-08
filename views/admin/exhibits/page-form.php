@@ -83,7 +83,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                     foreach ($layouts as $layout) {
                         $layout_id = html_escape($layout->id);
                         $layout_name = html_escape($layout->name);
-                        echo '<div class="layout" id="' . $layout_id . '" data-success-message="' . __('%s added', $layout_name) . '">';
+                        echo '<div class="layout" id="' . $layout_id . '" data-success-message="' . __('%s added above.', $layout_name) . '">';
                         echo '<img src="' . html_escape($layout->getIconUrl()) . '" alt="">';
                         echo '<label>';
                         echo '<input type="radio" aria-describedby="layout-' . $layout_id . '-description" name="new-block-layout" value="'. $layout_id .'">';
