@@ -482,19 +482,26 @@
 
 .layout-thumbs .add-link {
     margin-top: 20px;
+    width: 100%;
+}
+
+.add-link.button:disabled {
+    border-style: dashed;
+    background-color: #f8f8f8;
+    cursor: default;
 }
 
 .layout {
     width: 31%;
-    display: inline-block;
-    overflow: auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .25rem;
     cursor: pointer;
     background-color: #fff;
     padding: 5px;
     box-shadow: 0 0 3px #ccc;
     margin: 0 1% 2%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border: 2px solid #fff;
 }
@@ -524,15 +531,9 @@
     background-color: #F3F3E7;
 }
 
-.layout input[type="radio"] {
-    display: none;
-}
-
 .add-block .layout-name {
     font-size: 14px;
     line-height: 20px;
-    clear: both;
-    display: block;
 }
 
 .delete-element {
