@@ -151,7 +151,7 @@ class ExhibitPageBlock extends Omeka_Record_AbstractRecord
      */
     public function getLayoutData($key, $default = null)
     {
-        $layoutData = json_decode($this->layout_data, true);
+        $layoutData = json_decode((string) $this->layout_data, true);
         return $layoutData[$key] ?? $default;
     }
 
