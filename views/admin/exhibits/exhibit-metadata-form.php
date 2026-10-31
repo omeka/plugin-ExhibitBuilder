@@ -67,12 +67,21 @@
         $summaryTemplates = ['' => __('Default')] + exhibit_builder_get_summary_templates($exhibit);
         ?>
         <div class="field">
+            <?php if (count($summaryTemplates) > 1): ?>
             <div class="two columns alpha">
                 <?php echo $this->formLabel('summary_template', __('Summary Page Template')); ?>
             </div>
             <div class="inputs five columns omega">
                 <?php echo $this->formSelect('summary_template', $exhibit->summary_template, [], $summaryTemplates); ?>
             </div>
+            <?php else: ?>
+            <div class="two columns alpha">
+                <label><?php echo __('Summary Page Template'); ?></label>
+            </div>
+            <div class="inputs five columns omega">
+                <p class="value"><?php echo __('Default'); ?></p>
+            </div>
+            <?php endif; ?>
         </div>
         <div id="cover-image-container" class="field">
             <div class="two columns alpha">

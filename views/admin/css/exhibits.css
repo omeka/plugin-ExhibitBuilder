@@ -777,6 +777,14 @@
     margin: 10px 0;
 }
 
+.layout-options .drawer-contents > div > .value {
+    align-self: center;
+}
+
+.field .inputs > .value {
+    margin: 0;
+}
+
 .layout-options:not(:last-child) .drawer-contents.opened {
     border-bottom: 1px solid #D6D5C2;
 }
