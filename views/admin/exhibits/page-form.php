@@ -42,12 +42,21 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <h2><?php echo __('Page Layout Options'); ?></h2>
         <div class="field">
+            <?php if (count($page_templates) > 1): ?>
             <div class="two columns alpha">
                 <?php echo $this->formLabel('layout_data[template]', __('Template')); ?>
             </div>
             <div class="inputs five columns omega">
                 <?php echo $this->formSelect('layout_data[template]', $exhibit_page->getLayoutData('template'), [], $page_templates); ?>
             </div>
+            <?php else: ?>
+            <div class="two columns alpha">
+                <label><?php echo __('Template'); ?></label>
+            </div>
+            <div class="inputs five columns omega">
+                <p class="value"><?php echo __('Default'); ?></p>
+            </div>
+            <?php endif; ?>
         </div>
         <div class="field">
             <div class="two columns alpha">
