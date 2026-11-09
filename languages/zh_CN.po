@@ -53,33 +53,45 @@ msgstr "这将永久删除整个%s展览，及其所有页面。"
 msgid "This item is not used within this exhibit."
 msgstr "该条目未在此展览中使用。"
 
-#: controllers/ExhibitsController.php:214
+#: controllers/ExhibitsController.php:226
 msgid "You must specifically select a theme in order to configure it."
 msgstr "您必须明确选定一个主题来设置它。"
 
-#: functions.php:449 functions.php:451
+#: controllers/ExhibitsController.php:320
+#: controllers/ExhibitsController.php:354
+#: views/admin/exhibits/block-form.php:7
+#: views/admin/exhibits/block-form.php:37
+#: views/admin/exhibits/block-form.php:50
+#: views/admin/exhibits/block-form.php:59
+#: views/admin/exhibits/exhibit-metadata-form.php:67
+#: views/admin/exhibits/exhibit-metadata-form.php:82
+#: views/admin/exhibits/page-form.php:57
+msgid "Default"
+msgstr ""
+
+#: functions.php:465 functions.php:467
 msgid "exhibits"
 msgstr "展览"
 
-#: functions.php:466 views/admin/exhibits/browse.php:2
+#: functions.php:482 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "浏览展览"
 
-#: functions.php:482 views/admin/exhibits/add.php:6
+#: functions.php:498 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "展览"
 
-#: functions.php:655
+#: functions.php:671
 msgid "Exhibit"
 msgstr "展览"
 
-#: functions.php:656
+#: functions.php:672
 msgid "Exhibit Page"
 msgstr "展览页"
 
-#: functions.php:761 functions.php:976
+#: functions.php:777 functions.php:992
 msgid "Browse exhibits"
 msgstr ""
 
@@ -91,28 +103,28 @@ msgstr "专题展览"
 msgid "You have no featured exhibits."
 msgstr "您没有专题展览。"
 
-#: models/Exhibit.php:127
+#: models/Exhibit.php:129
 msgid "Exhibits must be given a valid slug."
 msgstr "展览必须给定一个有效缩略名。"
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:99
+#: models/Exhibit.php:130 models/ExhibitPage.php:103
 msgid "A slug must be 30 characters or less."
 msgstr "一个缩略名必须只能有30个字符或更少。"
 
-#: models/Exhibit.php:129
+#: models/Exhibit.php:131
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "您的URL的缩略名已被另一个展览使用。请选择另一个。"
 
-#: models/Exhibit.php:142
+#: models/Exhibit.php:144
 msgid "An exhibit must be given a title."
 msgstr "一个展览必须给定一个标题。"
 
-#: models/Exhibit.php:146
+#: models/Exhibit.php:148
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "展览标题必须只能有255个字符或更少。"
 
-#: models/Exhibit.php:150
+#: models/Exhibit.php:152
 msgid "The name of your theme must be 30 characters or less."
 msgstr "您的主题名称必须只能有30个字符或更少。"
 
@@ -157,21 +169,21 @@ msgstr ""
 msgid "A carousel layout featuring file thumbnails"
 msgstr ""
 
-#: models/ExhibitPage.php:98
+#: models/ExhibitPage.php:102
 msgid "A slug must be given for each page of an exhibit."
 msgstr "每个展览的每个页面都必须给定一个缩略名。"
 
-#: models/ExhibitPage.php:100
+#: models/ExhibitPage.php:104
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "该页的缩略名已被使用。请修改缩略名使其具有唯一性。"
 
-#: models/ExhibitPage.php:111
+#: models/ExhibitPage.php:115
 msgid "Exhibit pages must be given a title."
 msgstr "展览页面必须给定标题"
 
-#: models/ExhibitPage.php:161
+#: models/ExhibitPage.php:185
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -194,11 +206,11 @@ msgstr "选择要使用的文件。"
 msgid "Undo delete"
 msgstr ""
 
-#: views/admin/exhibits/block-form.php:8
+#: views/admin/exhibits/block-form.php:14
 msgid "Block"
 msgstr "段落"
 
-#: views/admin/exhibits/block-form.php:9
+#: views/admin/exhibits/block-form.php:15
 #: views/shared/exhibit_layouts/carousel/form.php:13
 #: views/shared/exhibit_layouts/file-text/form.php:18
 #: views/shared/exhibit_layouts/file/form.php:13
@@ -206,9 +218,70 @@ msgstr "段落"
 msgid "Show options"
 msgstr ""
 
-#: views/admin/exhibits/block-form.php:10
+#: views/admin/exhibits/block-form.php:16
 #: views/helpers/ExhibitPageEditTree.php:55
 msgid "Undo remove"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:27
+msgid "Block Layout Options"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:36
+#: views/admin/exhibits/page-form.php:47 views/admin/exhibits/page-form.php:54
+msgid "Template"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:45
+msgid "Alignment"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:51
+#: views/admin/exhibits/block-form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:86
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "左"
+
+#: views/admin/exhibits/block-form.php:52
+#: views/admin/exhibits/block-form.php:61
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
+msgid "Right"
+msgstr "右"
+
+#: views/admin/exhibits/block-form.php:53
+#: views/admin/exhibits/block-form.php:62
+#: views/shared/exhibit_layouts/carousel/form.php:85
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
+msgid "Center"
+msgstr "中间"
+
+#: views/admin/exhibits/block-form.php:63
+msgid "Justify"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:69
+msgid "Size"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:82
+msgid "Padding"
 msgstr ""
 
 #: views/admin/exhibits/browse.php:9
@@ -224,7 +297,7 @@ msgstr "添加展览"
 msgid "Theme"
 msgstr "主题"
 
-#: views/admin/exhibits/browse.php:67
+#: views/admin/exhibits/browse.php:75
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "当前公共主题"
@@ -267,58 +340,63 @@ msgid ""
 "exhibit page if it exists."
 msgstr "在总结页面上开始展览。如果未被点选，那么如果展览的第一页存在，就从那里开始。"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:68
+#: views/admin/exhibits/exhibit-metadata-form.php:72
+#: views/admin/exhibits/exhibit-metadata-form.php:79
+msgid "Summary Page Template"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:88
 msgid "Cover Image"
 msgstr "封面图片"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:72
+#: views/admin/exhibits/exhibit-metadata-form.php:92
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
 msgstr "选择一个可以代表该展览的文件。选中的文件会被用作展览的缩略图。"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:79
+#: views/admin/exhibits/exhibit-metadata-form.php:99
 msgid "Pages"
 msgstr "页面"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:82
+#: views/admin/exhibits/exhibit-metadata-form.php:102
 msgid "There are no pages."
 msgstr "没有页面。"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:84
+#: views/admin/exhibits/exhibit-metadata-form.php:104
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "要对页面重新排序货嵌套，把它们点选并拖曳到合适位置。"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:89
+#: views/admin/exhibits/exhibit-metadata-form.php:109
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "添加页面"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:100
+#: views/admin/exhibits/exhibit-metadata-form.php:120
 msgid "Delete Exhibit"
 msgstr "删除展览"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:116
+#: views/admin/exhibits/exhibit-metadata-form.php:136
 msgid "Choose a Cover Image"
 msgstr "选择封面图片"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:99
+#: views/admin/exhibits/exhibit-metadata-form.php:140
+#: views/admin/exhibits/page-form.php:133
 msgid "Show Search Form"
 msgstr "显示搜索表单"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:100
+#: views/admin/exhibits/exhibit-metadata-form.php:141
+#: views/admin/exhibits/page-form.php:134
 msgid "Hide Search Form"
 msgstr "隐藏搜索表单"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:133
-#: views/admin/exhibits/page-form.php:112
+#: views/admin/exhibits/exhibit-metadata-form.php:153
+#: views/admin/exhibits/page-form.php:146
 msgid "Change Selected Item"
 msgstr "更换已选条目"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:138
+#: views/admin/exhibits/exhibit-metadata-form.php:158
 msgid "Choose"
 msgstr "挑选"
 
@@ -343,48 +421,65 @@ msgstr "在展览菜单上可选使用更短标题"
 msgid "Page Slug"
 msgstr "页面缩略名"
 
-#: views/admin/exhibits/page-form.php:45
-msgid "Content"
-msgstr "内容"
+#: views/admin/exhibits/page-form.php:43
+msgid "Page Layout Options"
+msgstr ""
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:63
+msgid "Class"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:73
+msgid "All blocks are expanded."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:73
 msgid "Expand All"
 msgstr "扩展全部"
 
-#: views/admin/exhibits/page-form.php:48
+#: views/admin/exhibits/page-form.php:74
+msgid "All blocks are collapsed."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:74
 msgid "Collapse All"
 msgstr "收缩全部"
 
-#: views/admin/exhibits/page-form.php:50
+#: views/admin/exhibits/page-form.php:78
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "要对段落和条目重新排序，把它们点选并拖曳到合适位置。"
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:86
 msgid "New Block"
 msgstr "新段落"
 
-#: views/admin/exhibits/page-form.php:60
+#: views/admin/exhibits/page-form.php:88
 msgid "Select layout"
 msgstr "选择布局"
 
-#: views/admin/exhibits/page-form.php:78
+#: views/admin/exhibits/page-form.php:95
+#, php-format
+msgid "%s added above."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:112
 msgid "Add new content block"
 msgstr "添加新内容段落"
 
-#: views/admin/exhibits/page-form.php:88
+#: views/admin/exhibits/page-form.php:122
 msgid "Save and Add Another Page"
 msgstr "保存并添加另一个页面"
 
-#: views/admin/exhibits/page-form.php:95
+#: views/admin/exhibits/page-form.php:129
 msgid "Attach an Item"
 msgstr "附加一个条目"
 
-#: views/admin/exhibits/page-form.php:116
+#: views/admin/exhibits/page-form.php:150
 msgid "Provide a caption."
 msgstr "提供一个标题。"
 
-#: views/admin/exhibits/page-form.php:123
+#: views/admin/exhibits/page-form.php:157
 msgid "Apply"
 msgstr "实施"
 
@@ -468,36 +563,6 @@ msgstr ""
 #: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
 msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Center"
-msgstr "中间"
-
-#: views/shared/exhibit_layouts/carousel/form.php:86
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:46
-#: views/shared/exhibit_layouts/gallery/form.php:29
-#: views/shared/exhibit_layouts/gallery/form.php:42
-#: views/shared/exhibit_layouts/gallery/form.php:71
-msgid "Left"
-msgstr "左"
-
-#: views/shared/exhibit_layouts/carousel/form.php:87
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:47
-#: views/shared/exhibit_layouts/gallery/form.php:30
-#: views/shared/exhibit_layouts/gallery/form.php:43
-#: views/shared/exhibit_layouts/gallery/form.php:72
-msgid "Right"
-msgstr "右"
 
 #: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"

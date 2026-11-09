@@ -53,33 +53,45 @@ msgstr "Гэта назаўжды выдаліць усю выставу \"%s\" 
 msgid "This item is not used within this exhibit."
 msgstr "Гэты элемент не выкарыстоўваецца ў дадзенай выставе."
 
-#: controllers/ExhibitsController.php:214
+#: controllers/ExhibitsController.php:226
 msgid "You must specifically select a theme in order to configure it."
 msgstr "Вы павінны выбраць тэму для таго, каб настроіць яе."
 
-#: functions.php:449 functions.php:451
+#: controllers/ExhibitsController.php:320
+#: controllers/ExhibitsController.php:354
+#: views/admin/exhibits/block-form.php:7
+#: views/admin/exhibits/block-form.php:37
+#: views/admin/exhibits/block-form.php:50
+#: views/admin/exhibits/block-form.php:59
+#: views/admin/exhibits/exhibit-metadata-form.php:67
+#: views/admin/exhibits/exhibit-metadata-form.php:82
+#: views/admin/exhibits/page-form.php:57
+msgid "Default"
+msgstr ""
+
+#: functions.php:465 functions.php:467
 msgid "exhibits"
 msgstr "Выставы"
 
-#: functions.php:466 views/admin/exhibits/browse.php:2
+#: functions.php:482 views/admin/exhibits/browse.php:2
 #: views/public/exhibits/browse.php:2
 msgid "Browse Exhibits"
 msgstr "Прагляд выстаў"
 
-#: functions.php:482 views/admin/exhibits/add.php:6
+#: functions.php:498 views/admin/exhibits/add.php:6
 #: views/admin/exhibits/edit.php:8 views/admin/exhibits/page-form.php:6
 msgid "Exhibits"
 msgstr "Выставы"
 
-#: functions.php:655
+#: functions.php:671
 msgid "Exhibit"
 msgstr "Выстава"
 
-#: functions.php:656
+#: functions.php:672
 msgid "Exhibit Page"
 msgstr "Старонка выставы"
 
-#: functions.php:761 functions.php:976
+#: functions.php:777 functions.php:992
 msgid "Browse exhibits"
 msgstr ""
 
@@ -91,28 +103,28 @@ msgstr "Прапануем выставу"
 msgid "You have no featured exhibits."
 msgstr "У вас няма выстаў для прапанавання."
 
-#: models/Exhibit.php:127
+#: models/Exhibit.php:129
 msgid "Exhibits must be given a valid slug."
 msgstr "Дайце карэктны чалавеказразумелы URL-загаловак для выставы."
 
-#: models/Exhibit.php:128 models/ExhibitPage.php:99
+#: models/Exhibit.php:130 models/ExhibitPage.php:103
 msgid "A slug must be 30 characters or less."
 msgstr "URL-загаловак не павінен перавышаць 30 знакаў."
 
-#: models/Exhibit.php:129
+#: models/Exhibit.php:131
 msgid ""
 "Your URL slug is already in use by another exhibit.  Please choose another."
 msgstr "Ваш URL-загаловак ўжо выкарыстоўваецца ў іншай выставе. Калі ласка, выберыце іншы загаловак."
 
-#: models/Exhibit.php:142
+#: models/Exhibit.php:144
 msgid "An exhibit must be given a title."
 msgstr "Выстава павінна мець загаловак."
 
-#: models/Exhibit.php:146
+#: models/Exhibit.php:148
 msgid "The title for an exhibit must be 255 characters or less."
 msgstr "Загаловак выставы не павінна перавышаць 255 знакаў."
 
-#: models/Exhibit.php:150
+#: models/Exhibit.php:152
 msgid "The name of your theme must be 30 characters or less."
 msgstr "Назва вашай тэмы не павінна перавышаць 30 знакаў."
 
@@ -157,21 +169,21 @@ msgstr ""
 msgid "A carousel layout featuring file thumbnails"
 msgstr ""
 
-#: models/ExhibitPage.php:98
+#: models/ExhibitPage.php:102
 msgid "A slug must be given for each page of an exhibit."
 msgstr "Неабходна дадаць URL-загаловак на кожнай старонцы выставы."
 
-#: models/ExhibitPage.php:100
+#: models/ExhibitPage.php:104
 msgid ""
 "This page slug has already been used.  Please modify the slug so that it is "
 "unique."
 msgstr "Такі загаловак старонкі ўжо выкарыстоўваецца. Калі ласка, прыдумайце ўнікальны загаловак."
 
-#: models/ExhibitPage.php:111
+#: models/ExhibitPage.php:115
 msgid "Exhibit pages must be given a title."
 msgstr "Неабходна зрабіць загалоўкі для старонак выставы."
 
-#: models/ExhibitPage.php:161
+#: models/ExhibitPage.php:185
 msgid ""
 "Someone has edited the page while you were working on it. Your changes have "
 "been discarded to prevent losing their changes."
@@ -194,11 +206,11 @@ msgstr "Выберыце файл для выкарыстання."
 msgid "Undo delete"
 msgstr ""
 
-#: views/admin/exhibits/block-form.php:8
+#: views/admin/exhibits/block-form.php:14
 msgid "Block"
 msgstr "Блок"
 
-#: views/admin/exhibits/block-form.php:9
+#: views/admin/exhibits/block-form.php:15
 #: views/shared/exhibit_layouts/carousel/form.php:13
 #: views/shared/exhibit_layouts/file-text/form.php:18
 #: views/shared/exhibit_layouts/file/form.php:13
@@ -206,9 +218,70 @@ msgstr "Блок"
 msgid "Show options"
 msgstr ""
 
-#: views/admin/exhibits/block-form.php:10
+#: views/admin/exhibits/block-form.php:16
 #: views/helpers/ExhibitPageEditTree.php:55
 msgid "Undo remove"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:27
+msgid "Block Layout Options"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:36
+#: views/admin/exhibits/page-form.php:47 views/admin/exhibits/page-form.php:54
+msgid "Template"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:45
+msgid "Alignment"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:51
+#: views/admin/exhibits/block-form.php:60
+#: views/shared/exhibit_layouts/carousel/form.php:86
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:50
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:46
+#: views/shared/exhibit_layouts/gallery/form.php:29
+#: views/shared/exhibit_layouts/gallery/form.php:42
+#: views/shared/exhibit_layouts/gallery/form.php:71
+msgid "Left"
+msgstr "Улева"
+
+#: views/admin/exhibits/block-form.php:52
+#: views/admin/exhibits/block-form.php:61
+#: views/shared/exhibit_layouts/carousel/form.php:87
+#: views/shared/exhibit_layouts/file-text/form.php:26
+#: views/shared/exhibit_layouts/file-text/form.php:51
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:47
+#: views/shared/exhibit_layouts/gallery/form.php:30
+#: views/shared/exhibit_layouts/gallery/form.php:43
+#: views/shared/exhibit_layouts/gallery/form.php:72
+msgid "Right"
+msgstr "Управа"
+
+#: views/admin/exhibits/block-form.php:53
+#: views/admin/exhibits/block-form.php:62
+#: views/shared/exhibit_layouts/carousel/form.php:85
+#: views/shared/exhibit_layouts/file-text/form.php:49
+#: views/shared/exhibit_layouts/file/form.php:22
+#: views/shared/exhibit_layouts/file/form.php:45
+#: views/shared/exhibit_layouts/gallery/form.php:70
+msgid "Center"
+msgstr "У цэнтры"
+
+#: views/admin/exhibits/block-form.php:63
+msgid "Justify"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:69
+msgid "Size"
+msgstr ""
+
+#: views/admin/exhibits/block-form.php:82
+msgid "Padding"
 msgstr ""
 
 #: views/admin/exhibits/browse.php:9
@@ -224,7 +297,7 @@ msgstr "Дабавіць выставу"
 msgid "Theme"
 msgstr "Тэма"
 
-#: views/admin/exhibits/browse.php:67
+#: views/admin/exhibits/browse.php:75
 #: views/admin/exhibits/exhibit-metadata-form.php:52
 msgid "Current Public Theme"
 msgstr "Бягучая карыстальніцкая тэма"
@@ -267,58 +340,63 @@ msgid ""
 "exhibit page if it exists."
 msgstr "Пачатак выставы са зводнай старонкі. Калі сцяжок зняты, пачатак  з першай старонкі выставы, калі яна існуе."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:68
+#: views/admin/exhibits/exhibit-metadata-form.php:72
+#: views/admin/exhibits/exhibit-metadata-form.php:79
+msgid "Summary Page Template"
+msgstr ""
+
+#: views/admin/exhibits/exhibit-metadata-form.php:88
 msgid "Cover Image"
 msgstr "Выява вокладкі"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:72
+#: views/admin/exhibits/exhibit-metadata-form.php:92
 msgid ""
 "Choose a file to represent this exhibit. The selected file will serve as the"
 " thumbnail for the exhibit."
 msgstr "Выберыце файл, які прадставіць гэтую выставу. Абраны файл будзе служыць у якасці эскіза для выставы."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:79
+#: views/admin/exhibits/exhibit-metadata-form.php:99
 msgid "Pages"
 msgstr "Старонкі"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:82
+#: views/admin/exhibits/exhibit-metadata-form.php:102
 msgid "There are no pages."
 msgstr "Няма ніводнай старонкі"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:84
+#: views/admin/exhibits/exhibit-metadata-form.php:104
 msgid ""
 "To reorder or nest pages, click and drag a page to the preferred location."
 msgstr "Каб упарадкаваць ці ўкласці старонкі, шчоўкніце мышкай і перацягніце старонку ў неабходнае месца."
 
-#: views/admin/exhibits/exhibit-metadata-form.php:89
+#: views/admin/exhibits/exhibit-metadata-form.php:109
 #: views/admin/exhibits/page-form.php:2
 msgid "Add Page"
 msgstr "Дадаць старонку"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:100
+#: views/admin/exhibits/exhibit-metadata-form.php:120
 msgid "Delete Exhibit"
 msgstr "Выдаліць выставу"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:116
+#: views/admin/exhibits/exhibit-metadata-form.php:136
 msgid "Choose a Cover Image"
 msgstr "Выбраць выяву вокладкі"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:120
-#: views/admin/exhibits/page-form.php:99
+#: views/admin/exhibits/exhibit-metadata-form.php:140
+#: views/admin/exhibits/page-form.php:133
 msgid "Show Search Form"
 msgstr "Паказаць форму пошуку"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:121
-#: views/admin/exhibits/page-form.php:100
+#: views/admin/exhibits/exhibit-metadata-form.php:141
+#: views/admin/exhibits/page-form.php:134
 msgid "Hide Search Form"
 msgstr "Схаваць форму пошуку"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:133
-#: views/admin/exhibits/page-form.php:112
+#: views/admin/exhibits/exhibit-metadata-form.php:153
+#: views/admin/exhibits/page-form.php:146
 msgid "Change Selected Item"
 msgstr "Змяніць выбраны элемент"
 
-#: views/admin/exhibits/exhibit-metadata-form.php:138
+#: views/admin/exhibits/exhibit-metadata-form.php:158
 msgid "Choose"
 msgstr "Выбраць"
 
@@ -343,48 +421,65 @@ msgstr ""
 msgid "Page Slug"
 msgstr "Чалавеказразумелы URL старонкі"
 
-#: views/admin/exhibits/page-form.php:45
-msgid "Content"
-msgstr "Змест"
+#: views/admin/exhibits/page-form.php:43
+msgid "Page Layout Options"
+msgstr ""
 
-#: views/admin/exhibits/page-form.php:47
+#: views/admin/exhibits/page-form.php:63
+msgid "Class"
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:73
+msgid "All blocks are expanded."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:73
 msgid "Expand All"
 msgstr "Раскрыць усё"
 
-#: views/admin/exhibits/page-form.php:48
+#: views/admin/exhibits/page-form.php:74
+msgid "All blocks are collapsed."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:74
 msgid "Collapse All"
 msgstr "Згарнуць усё"
 
-#: views/admin/exhibits/page-form.php:50
+#: views/admin/exhibits/page-form.php:78
 msgid ""
 "To reorder blocks and items, click and drag them to the preferred location."
 msgstr "Каб змяніць парадак блокаў і элементаў, шчоўкніце мышкай і перацягніце іх у патрэбнае месца."
 
-#: views/admin/exhibits/page-form.php:58
+#: views/admin/exhibits/page-form.php:86
 msgid "New Block"
 msgstr "Новы блок"
 
-#: views/admin/exhibits/page-form.php:60
+#: views/admin/exhibits/page-form.php:88
 msgid "Select layout"
 msgstr "Выбраць размяшчэнне"
 
-#: views/admin/exhibits/page-form.php:78
+#: views/admin/exhibits/page-form.php:95
+#, php-format
+msgid "%s added above."
+msgstr ""
+
+#: views/admin/exhibits/page-form.php:112
 msgid "Add new content block"
 msgstr "Дадать новы змястоўны блок"
 
-#: views/admin/exhibits/page-form.php:88
+#: views/admin/exhibits/page-form.php:122
 msgid "Save and Add Another Page"
 msgstr "Захаваць і дадаць іншую старонку"
 
-#: views/admin/exhibits/page-form.php:95
+#: views/admin/exhibits/page-form.php:129
 msgid "Attach an Item"
 msgstr "Далучыць элемент"
 
-#: views/admin/exhibits/page-form.php:116
+#: views/admin/exhibits/page-form.php:150
 msgid "Provide a caption."
 msgstr "Забяспечыць подпіс."
 
-#: views/admin/exhibits/page-form.php:123
+#: views/admin/exhibits/page-form.php:157
 msgid "Apply"
 msgstr "Прымяніть"
 
@@ -468,36 +563,6 @@ msgstr ""
 #: views/shared/exhibit_layouts/carousel/form.php:80
 msgid "Caption/title position"
 msgstr ""
-
-#: views/shared/exhibit_layouts/carousel/form.php:85
-#: views/shared/exhibit_layouts/file-text/form.php:49
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:45
-#: views/shared/exhibit_layouts/gallery/form.php:70
-msgid "Center"
-msgstr "У цэнтры"
-
-#: views/shared/exhibit_layouts/carousel/form.php:86
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:50
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:46
-#: views/shared/exhibit_layouts/gallery/form.php:29
-#: views/shared/exhibit_layouts/gallery/form.php:42
-#: views/shared/exhibit_layouts/gallery/form.php:71
-msgid "Left"
-msgstr "Улева"
-
-#: views/shared/exhibit_layouts/carousel/form.php:87
-#: views/shared/exhibit_layouts/file-text/form.php:26
-#: views/shared/exhibit_layouts/file-text/form.php:51
-#: views/shared/exhibit_layouts/file/form.php:22
-#: views/shared/exhibit_layouts/file/form.php:47
-#: views/shared/exhibit_layouts/gallery/form.php:30
-#: views/shared/exhibit_layouts/gallery/form.php:43
-#: views/shared/exhibit_layouts/gallery/form.php:72
-msgid "Right"
-msgstr "Управа"
 
 #: views/shared/exhibit_layouts/carousel/form.php:93
 msgid "Stretch image to fill"
